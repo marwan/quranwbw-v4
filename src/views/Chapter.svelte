@@ -1,9 +1,10 @@
 <script>
   import Selectors from "../components/Selectors.svelte";
   import DisplayVerses from "../components/DisplayVerses.svelte";
-  import { currentPageStore, chapterNumberStore, wordTypeStore, pageURLStore } from "../lib/stores";
   import { urlParse } from "../lib/urlParse";
+  import { websiteTitle, apiEndpoint } from "../lib/websiteSettings";
   import { quranMetaData } from "../lib/quranMeta";
+  import { currentPageStore, chapterNumberStore, wordTypeStore, pageURLStore } from "../lib/stores";
 
   // props from router
   export let chapter, startVerse, endVerse;
@@ -19,7 +20,7 @@
     (startVerse = urlParse($chapterNumberStore)[0]), (endVerse = urlParse($chapterNumberStore)[1]);
 
     fetchData = (async () => {
-      const api_url = `https://api.quranwbw.com/v1/verses?verses=${$chapterNumberStore}:${startVerse},${$chapterNumberStore}:${endVerse}&word_type=${$wordTypeStore}&verse_translation=1,15&between=true`;
+      const api_url = `${apiEndpoint}/verses?verses=${$chapterNumberStore}:${startVerse},${$chapterNumberStore}:${endVerse}&word_type=${$wordTypeStore}&verse_translation=1,15&between=true`;
       const response = await fetch(api_url);
       const data = await response.json();
       return data.data.verses;
@@ -33,7 +34,7 @@
 </script>
 
 <svelte:head>
-  <title>{quranMetaData[$chapterNumberStore].transliteration} - QuranWBW.com</title>
+  <title>{quranMetaData[$chapterNumberStore].transliteration} - {websiteTitle}</title>
 </svelte:head>
 
 <div class="">

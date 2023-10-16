@@ -1,6 +1,7 @@
 <script>
   import Selectors from "../components/Selectors.svelte";
   import DisplayVerses from "../components/DisplayVerses.svelte";
+  import { websiteTitle, apiEndpoint } from "../lib/websiteSettings";
   import { currentPageStore, wordTypeStore } from "../lib/stores";
 
   let fetchData;
@@ -12,7 +13,7 @@
   $: {
     if (userBookmarks.length != 0) {
       fetchData = (async () => {
-        const api_url = `https://api.quranwbw.com/v1/verses?verses=${userBookmarks.toString()}&word_type=${$wordTypeStore}&verse_translation=1,15`;
+        const api_url = `${apiEndpoint}/verses?verses=${userBookmarks.toString()}&word_type=${$wordTypeStore}&verse_translation=1,15`;
         const response = await fetch(api_url);
         const data = await response.json();
         return data.data.verses;
@@ -24,7 +25,7 @@
 </script>
 
 <svelte:head>
-  <title>Bookmarks - QuranWBW.com</title>
+  <title>Bookmarks - {websiteTitle}</title>
 </svelte:head>
 
 <div class="">
