@@ -1,9 +1,9 @@
 <script>
   import { Link } from "svelte-routing";
   import { quranMetaData } from "../lib/quranMeta";
-  import { currentPage } from "../lib/stores";
+  import { currentPageStore } from "../lib/stores";
 
-  currentPage.set("home");
+  currentPageStore.set("home");
 </script>
 
 <svelte:head>
@@ -11,7 +11,7 @@
 </svelte:head>
 
 <div class=" flex flex-col space-y-8">
-  <div id="most-read">
+  <div id="most-read" class="text-sm md:text-md">
     Most Read:
     <Link to="/2/255">2:255</Link>,
     <Link to="/2/285-286">2:285-286</Link>,

@@ -1,7 +1,7 @@
 <script>
-  import Selectors from "./Selectors.svelte";
-  import DisplayVerses from "./DisplayVerses.svelte";
-  import { currentPage, wordType } from "../lib/stores";
+  import Selectors from "../components/Selectors.svelte";
+  import DisplayVerses from "../components/DisplayVerses.svelte";
+  import { currentPageStore, wordTypeStore } from "../lib/stores";
 
   let fetchData;
 
@@ -10,14 +10,14 @@
   // fetch verses whenever there's a change
   $: {
     fetchData = (async () => {
-      const api_url = `https://api.quranwbw.com/v1/verses?verses=${supplicationVerses}&word_type=${$wordType}&verse_translation=1,15`;
+      const api_url = `https://api.quranwbw.com/v1/verses?verses=${supplicationVerses}&word_type=${$wordTypeStore}&verse_translation=1,15`;
       const response = await fetch(api_url);
       const data = await response.json();
       return data.data.verses;
     })();
   }
 
-  currentPage.set("supplications");
+  currentPageStore.set("supplications");
 </script>
 
 <svelte:head>

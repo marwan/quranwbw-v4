@@ -10,8 +10,8 @@ export function urlParse(chapter) {
   let urlSplit = url.split("/");
   let urlSlashesCount = urlSplit.length - 1;
 
-  // eg: /2
-  if (urlSlashesCount === 1) {
+  // eg: /2 or if there are more than two slashes
+  if (urlSlashesCount === 1 || urlSlashesCount > 2) {
     (startVerse = 1), (endVerse = chapterTotalVerses);
   }
 
@@ -29,6 +29,9 @@ export function urlParse(chapter) {
     else if (secondPartHyphenSplitCount === 1) {
       (startVerse = secondPartHyphenSplit[0]), (endVerse = secondPartHyphenSplit[1]);
     }
+
+    // all other possibilites
+    else (startVerse = 1), (endVerse = chapterTotalVerses);
   }
 
   // making sure the verses are between 1 and max chapter verses

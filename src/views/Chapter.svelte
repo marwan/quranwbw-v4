@@ -1,7 +1,7 @@
 <script>
-  import Selectors from "./Selectors.svelte";
-  import DisplayVerses from "./DisplayVerses.svelte";
-  import { currentPage, chapterNumber, wordType, pageURL } from "../lib/stores";
+  import Selectors from "../components/Selectors.svelte";
+  import DisplayVerses from "../components/DisplayVerses.svelte";
+  import { currentPageStore, chapterNumberStore, wordTypeStore, pageURLStore } from "../lib/stores";
   import { urlParse } from "../lib/urlParse";
   import { quranMetaData } from "../lib/quranMeta";
 
@@ -13,27 +13,27 @@
   // fetch verses whenever there's a change
   $: {
     // updating the reactive chapter number
-    chapterNumber.set(chapter);
+    chapterNumberStore.set(chapter);
 
     // get the starting and ending verses
-    (startVerse = urlParse($chapterNumber)[0]), (endVerse = urlParse($chapterNumber)[1]);
+    (startVerse = urlParse($chapterNumberStore)[0]), (endVerse = urlParse($chapterNumberStore)[1]);
 
     fetchData = (async () => {
-      const api_url = `https://api.quranwbw.com/v1/verses?verses=${$chapterNumber}:${startVerse},${$chapterNumber}:${endVerse}&word_type=${$wordType}&verse_translation=1,15&between=true`;
+      const api_url = `https://api.quranwbw.com/v1/verses?verses=${$chapterNumberStore}:${startVerse},${$chapterNumberStore}:${endVerse}&word_type=${$wordTypeStore}&verse_translation=1,15&between=true`;
       const response = await fetch(api_url);
       const data = await response.json();
       return data.data.verses;
     })();
 
     // logging it for now to re-run the block on URL change
-    console.log($pageURL);
+    console.log($pageURLStore);
   }
 
-  currentPage.set("chapter");
+  currentPageStore.set("chapter");
 </script>
 
 <svelte:head>
-  <title>{quranMetaData[$chapterNumber].transliteration} - QuranWBW.com</title>
+  <title>{quranMetaData[$chapterNumberStore].transliteration} - QuranWBW.com</title>
 </svelte:head>
 
 <div class="">

@@ -1,7 +1,7 @@
 <script>
   export let key, value;
 
-  import { wordType, userSettingsStore } from "../lib/stores";
+  import { wordTypeStore, userSettingsStore } from "../lib/stores";
   import { updateBookmarks } from "../lib/updateBookmarks";
 
   // update userBookmarksStore whenever the userSettingsStore changes
@@ -17,7 +17,7 @@
     <span>({key})</span>
     <button data-key={key} class="px-4" on:click={updateBookmarks}>{userBookmarksStore.includes(key) ? "Unbookmark" : "Bookmark"}</button>
   </div>
-  <p class="arabic-font-{$wordType} text-4xl leading-normal py-8">{value.words.arabic.replace(/\|/g, " ")} {value.words.end}</p>
+  <p class="arabic-font-{$wordTypeStore} text-4xl leading-normal py-8">{value.words.arabic.replace(/\|/g, " ")} {value.words.end}</p>
   <div class="flex flex-col space-y-4 text-lg leading-normal">
     <p>{value.translations["1"]}</p>
     <p>{value.translations["15"]}</p>
