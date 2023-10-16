@@ -8,6 +8,7 @@
   let userSettings = JSON.parse(localStorage.getItem("userSettings"));
   let userBookmarks = userSettings["userBookmarks"];
 
+  // fetch verses whenever there's a change
   $: {
     if (userBookmarks.length != 0) {
       fetchData = (async () => {

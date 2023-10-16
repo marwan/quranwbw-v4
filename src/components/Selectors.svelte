@@ -1,6 +1,6 @@
 <script>
   import { Link } from "svelte-routing";
-  import { currentPage, chapterNumber, wordType } from "../lib/stores";
+  import { currentPage, chapterNumber, wordType, pageURL } from "../lib/stores";
   import { quranMetaData } from "../lib/quranMeta";
 
   // manually toggling dropdowns with Svelte because for some reason Flowbite JS isn't working, will figure it out later
@@ -10,7 +10,7 @@
   let buttonCSS = "text-white bg-gray-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1.5 text-center inline-flex items-center daark:bg-blue-600 daark:hover:bg-blue-700 daark:focus:ring-blue-800";
 </script>
 
-<div class="flex flex-row justify-between py-8">
+<div class="flex flex-col md:flex-row justify-between py-8">
   <div class="flex flex-row space-x-8 {$currentPage === 'chapter' ? 'block' : 'hidden'}">
     <!-- chapters selector -->
     <div>
@@ -46,12 +46,12 @@
       <div id="versesDropdown" class="z-10 absolute {versesDropdownVisible === true ? 'block' : 'hidden'} bg-white divide-y divide-gray-100 rounded-lg shadow w-44 daark:bg-gray-700">
         <ul class="py-2 text-sm text-gray-700 overflow-y-scroll max-h-80 daark:text-gray-200" aria-labelledby="versesDropdownButton">
           <li>
-            <Link to="/{$chapterNumber}" class="block px-4 py-2 hover:bg-gray-100 daark:hover:bg-gray-600 daark:hover:text-white">All Verses</Link>
+            <Link to="/{$chapterNumber}" on:click={() => pageURL.set(Math.random())} class="block px-4 py-2 hover:bg-gray-100 daark:hover:bg-gray-600 daark:hover:text-white">All Verses</Link>
           </li>
-          {#each { length: quranMetaData[$chapterNumber].verses } as _, i}
+          {#each { length: quranMetaData[$chapterNumber].verses } as _, verse}
             <li>
               <!-- <a href="#{$chapterNumber}:{i + 1}" class="block px-4 py-2 hover:bg-gray-100 daark:hover:bg-gray-600 daark:hover:text-white">Verse {i + 1}</a> -->
-              <Link to="/{$chapterNumber}/{i + 1}" class="block px-4 py-2 hover:bg-gray-100 daark:hover:bg-gray-600 daark:hover:text-white">Verse {i + 1}</Link>
+              <Link to="/{$chapterNumber}/{verse + 1}" on:click={() => pageURL.set(Math.random())} class="block px-4 py-2 hover:bg-gray-100 daark:hover:bg-gray-600 daark:hover:text-white">Verse {verse + 1}</Link>
             </li>
           {/each}
         </ul>
