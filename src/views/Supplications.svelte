@@ -1,6 +1,6 @@
 <script>
   import Selectors from "../components/Selectors.svelte";
-  import DisplayIndividualVerses from "../components/DisplayIndividualVerses.svelte";
+  import DisplayIndividualVerses from "../components/verses/DisplayIndividualVerses.svelte";
   import { websiteTitle, apiEndpoint } from "../lib/websiteSettings";
   import { currentPageStore, wordTypeStore, displayTypeStore } from "../lib/stores";
 

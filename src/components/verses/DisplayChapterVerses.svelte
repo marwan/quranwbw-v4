@@ -2,11 +2,11 @@
 <script>
   export let startVerse, endVerse;
 
-  import WBWVerseDisplay from "../components/VerseDisplays/WBWVerseDisplay.svelte";
-  import NormalVerseDisplay from "../components/VerseDisplays/NormalVerseDisplay.svelte";
+  import WBWVerseDisplay from "./displayTypes/WBWVerseDisplay.svelte";
+  import NormalVerseDisplay from "./displayTypes/NormalVerseDisplay.svelte";
 
-  import { quranMetaData } from "../lib/quranMeta";
-  import { displayTypeStore, chapterNumberStore, chapterDataStore } from "../lib/stores";
+  import { quranMetaData } from "../../lib/quranMeta";
+  import { displayTypeStore, chapterNumberStore, chapterDataStore } from "../../lib/stores";
 
   const chapterTotalVerses = quranMetaData[$chapterNumberStore].verses;
 

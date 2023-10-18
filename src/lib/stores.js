@@ -18,5 +18,5 @@ export const displayTypeStore = writable(0);
 // local user settings
 export const userSettingsStore = writable(JSON.stringify(JSON.parse(localStorage.getItem("userSettings"))));
 
-// to store a random number (for now) when changing verses due to some issues while re-rending the component (probably because I'm still learning Svelte)
+// to store a random number (for now) when changing verses due to some issues while re-rendering the component (probably because I'm still learning Svelte)
 export const pageURLStore = writable(null);

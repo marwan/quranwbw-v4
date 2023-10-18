@@ -3,12 +3,13 @@
   export let chapter, startVerse, endVerse;
 
   import Selectors from "../components/Selectors.svelte";
-  import DisplayChapterVerses from "../components/DisplayChapterVerses.svelte";
+  import DisplayChapterVerses from "../components/verses/DisplayChapterVerses.svelte";
   import { parseURL } from "../lib/parseURL";
   import { websiteTitle, apiEndpoint } from "../lib/websiteSettings";
   import { quranMetaData } from "../lib/quranMeta";
   import { currentPageStore, chapterNumberStore, chapterDataStore, wordTypeStore, displayTypeStore, pageURLStore } from "../lib/stores";
 
+  // max verses to load if total verses in chapter are more than this
   let maxVersesThreshold = 10;
 
   let fetchData;
@@ -18,14 +19,9 @@
     // updating the reactive chapter number
     chapterNumberStore.set(chapter);
 
-    let chapterTotalVerses = quranMetaData[$chapterNumberStore].verses;
-
-    // get the starting and ending verses to load data from API
-    (startVerse = parseURL()[0]), (endVerse = parseURL()[1]);
-    // (startVerse = 1), (endVerse = chapterTotalVerses);
+    const chapterTotalVerses = quranMetaData[$chapterNumberStore].verses;
 
     fetchData = (async () => {
-      // const api_url = `${apiEndpoint}/verses?verses=${$chapterNumberStore}:${startVerse},${$chapterNumberStore}:${endVerse}&word_type=${$wordTypeStore}&verse_translation=1,15&between=true`;
       const api_url = `${apiEndpoint}/verses?verses=${$chapterNumberStore}:1,${$chapterNumberStore}:${chapterTotalVerses}&word_type=${$wordTypeStore}&verse_translation=1,15&between=true`;
       const response = await fetch(api_url);
       const data = await response.json();
@@ -33,8 +29,12 @@
       return data.data.verses;
     })();
 
-    // since we have loaded the data from API above, we'll just re-assign startVerse to 1 and endVerse to max threshold if no specific verse was opted for
-    // that is, when the complete chapter data was fetched, this is done to only show some verses to avoid huge loading times
+    // getting start and end range incase we need to load specific verses
+    (startVerse = parseURL()[0]), (endVerse = parseURL()[1]);
+
+    // Note: the below is only executed when start is 1 and end is total chapter verses, that is, user did not opt for a specific range
+    // if there were no specific range opted for, then start with 1 till threshold
+    // else we just skip this check and load as per URL parameters
     if (startVerse === 1 && endVerse === chapterTotalVerses) {
       (startVerse = 1), (endVerse = chapterTotalVerses > maxVersesThreshold ? maxVersesThreshold : chapterTotalVerses);
     }

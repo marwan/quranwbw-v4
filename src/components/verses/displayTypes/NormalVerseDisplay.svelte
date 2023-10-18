@@ -1,9 +1,9 @@
 <script>
   export let key, value;
 
-  import VersesButtons from "./VersesButtons.svelte";
-  import { wordTypeStore } from "../../lib/stores";
-  import { selectableVerseTranslations } from "../../lib/options";
+  import VersesButtons from "../VersesButtons.svelte";
+  import { wordTypeStore } from "../../../lib/stores";
+  import { selectableVerseTranslations } from "../../../lib/options";
 </script>
 
 <div id={key} class="flex flex-col py-8 space-y-8 border-b">
