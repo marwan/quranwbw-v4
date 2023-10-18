@@ -1,10 +1,11 @@
 <script>
   import Selectors from "../components/Selectors.svelte";
   import DisplayVerses from "../components/DisplayVerses.svelte";
-  import { urlParse } from "../lib/urlParse";
+  import { parseURL } from "../lib/parseURL";
   import { websiteTitle, apiEndpoint } from "../lib/websiteSettings";
   import { quranMetaData } from "../lib/quranMeta";
-  import { currentPageStore, chapterNumberStore, wordTypeStore, pageURLStore } from "../lib/stores";
+
+  import { currentPageStore, chapterNumberStore, wordTypeStore, displayTypeStore, pageURLStore } from "../lib/stores";
 
   // props from router
   export let chapter, startVerse, endVerse;
@@ -17,7 +18,7 @@
     chapterNumberStore.set(chapter);
 
     // get the starting and ending verses
-    (startVerse = urlParse($chapterNumberStore)[0]), (endVerse = urlParse($chapterNumberStore)[1]);
+    (startVerse = parseURL()[0]), (endVerse = parseURL()[1]);
 
     fetchData = (async () => {
       const api_url = `${apiEndpoint}/verses?verses=${$chapterNumberStore}:${startVerse},${$chapterNumberStore}:${endVerse}&word_type=${$wordTypeStore}&verse_translation=1,15&between=true`;
@@ -26,8 +27,8 @@
       return data.data.verses;
     })();
 
-    // logging it for now to re-run the block on URL change
-    console.log($pageURLStore);
+    // logging these for now to re-run the block on URL change
+    console.log($pageURLStore, $displayTypeStore);
   }
 
   currentPageStore.set("chapter");

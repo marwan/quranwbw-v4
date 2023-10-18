@@ -1,10 +1,13 @@
+import { get } from "svelte/store";
+
+import { chapterNumberStore } from "./stores";
 import { quranMetaData } from "./quranMeta";
 
 // function to parse the URL to get the starting and ending verses
-export function urlParse(chapter) {
+export function parseURL() {
   let startVerse, endVerse;
 
-  let chapterTotalVerses = quranMetaData[chapter].verses;
+  let chapterTotalVerses = quranMetaData[get(chapterNumberStore)].verses;
 
   let url = window.location.pathname;
   let urlSplit = url.split("/");

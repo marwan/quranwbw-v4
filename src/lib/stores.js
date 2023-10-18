@@ -9,6 +9,9 @@ export const chapterNumberStore = writable(1);
 // Uthmani, IndoPak, etc...
 export const wordTypeStore = writable(1);
 
+// WBW, Normal, etc...
+export const displayTypeStore = writable(0);
+
 // local user settings
 export const userSettingsStore = writable(JSON.stringify(JSON.parse(localStorage.getItem("userSettings"))));
 

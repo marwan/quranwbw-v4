@@ -2,12 +2,12 @@
   import Selectors from "../components/Selectors.svelte";
   import DisplayVerses from "../components/DisplayVerses.svelte";
   import { websiteTitle, apiEndpoint } from "../lib/websiteSettings";
-  import { currentPageStore, wordTypeStore } from "../lib/stores";
-
-  let fetchData;
+  import { currentPageStore, wordTypeStore, displayTypeStore } from "../lib/stores";
 
   let userSettings = JSON.parse(localStorage.getItem("userSettings"));
   let userBookmarks = userSettings["userBookmarks"];
+
+  let fetchData;
 
   // fetch verses whenever there's a change
   $: {
@@ -19,6 +19,9 @@
         return data.data.verses;
       })();
     }
+
+    // logging these for now to re-run the block on URL change
+    console.log($displayTypeStore);
   }
 
   currentPageStore.set("bookmarks");

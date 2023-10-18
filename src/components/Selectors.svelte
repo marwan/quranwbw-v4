@@ -1,13 +1,16 @@
 <script>
   import { Link } from "svelte-routing";
-  import { currentPageStore, chapterNumberStore, wordTypeStore, pageURLStore } from "../lib/stores";
+  import { currentPageStore, chapterNumberStore, wordTypeStore, displayTypeStore, pageURLStore } from "../lib/stores";
   import { quranMetaData } from "../lib/quranMeta";
+  import { displayOptions } from "../lib/options";
 
   // manually toggling dropdowns with Svelte because for some reason Flowbite JS isn't working, will figure it out later
   let chaptersDropdownVisible = false;
   let versesDropdownVisible = false;
 
-  let buttonCSS = "text-white bg-gray-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1.5 text-center inline-flex items-center daark:bg-blue-600 daark:hover:bg-blue-700 daark:focus:ring-blue-800";
+  const buttonCSS = "text-white bg-gray-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1.5 text-center inline-flex items-center daark:bg-blue-600 daark:hover:bg-blue-700 daark:focus:ring-blue-800";
+
+  $: selectedDisplay = displayOptions[$displayTypeStore];
 </script>
 
 <div class="flex flex-col md:flex-row justify-between py-8">
@@ -59,10 +62,20 @@
     </div>
   </div>
 
+  <!-- word type selector -->
   <div class="flex flex-row space-x-6">
     <select on:change={(event) => wordTypeStore.set(event.target.value)} bind:value={$wordTypeStore} class={buttonCSS}>
       <option value="1" class="bg-black text-white">Uthmani</option>
       <option value="2" class="bg-black text-white">IndoPak</option>
+    </select>
+  </div>
+
+  <!-- display type selector -->
+  <div class="flex flex-row space-x-6">
+    <select bind:value={selectedDisplay} on:change={(event) => displayTypeStore.set(event.target.selectedIndex)}>
+      {#each displayOptions as displayOption}
+        <option value={displayOption}>{displayOption.displayName}</option>
+      {/each}
     </select>
   </div>
 </div>

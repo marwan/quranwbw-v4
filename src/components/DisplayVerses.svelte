@@ -1,25 +1,10 @@
 <script>
   export let key, value;
 
-  import { wordTypeStore, userSettingsStore } from "../lib/stores";
-  import { updateBookmarks } from "../lib/updateBookmarks";
+  import WBWVerseDisplay from "../components/VerseDisplays/WBWVerseDisplay.svelte";
+  import NormalVerseDisplay from "../components/VerseDisplays/NormalVerseDisplay.svelte";
 
-  // update userBookmarksStore whenever the userSettingsStore changes
-  let userBookmarksStore;
-
-  $: {
-    userBookmarksStore = JSON.parse($userSettingsStore)["userBookmarks"];
-  }
+  import { displayTypeStore } from "../lib/stores";
 </script>
 
-<div id={key} class="flex flex-col py-8 border-b">
-  <div class="flex flex-row space-x-8">
-    <span>({key})</span>
-    <button data-key={key} class="px-4" on:click={updateBookmarks}>{userBookmarksStore.includes(key) ? "Unbookmark" : "Bookmark"}</button>
-  </div>
-  <p class="arabic-font-{$wordTypeStore} text-4xl leading-normal py-8">{value.words.arabic.replace(/\|/g, " ")} {value.words.end}</p>
-  <div class="flex flex-col space-y-4 text-lg leading-normal">
-    <p>{value.translations["1"]}</p>
-    <p>{value.translations["15"]}</p>
-  </div>
-</div>
+<svelte:component this={$displayTypeStore === 0 ? WBWVerseDisplay : NormalVerseDisplay} {key} {value} />
