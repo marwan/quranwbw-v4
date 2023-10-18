@@ -6,6 +6,9 @@ export const currentPageStore = writable("home");
 // self explanatory
 export const chapterNumberStore = writable(1);
 
+// chapter data from API
+export const chapterDataStore = writable(null);
+
 // Uthmani, IndoPak, etc...
 export const wordTypeStore = writable(1);
 

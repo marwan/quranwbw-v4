@@ -1,6 +1,6 @@
 <script>
   import Selectors from "../components/Selectors.svelte";
-  import DisplayVerses from "../components/DisplayVerses.svelte";
+  import DisplayIndividualVerses from "../components/DisplayIndividualVerses.svelte";
   import { websiteTitle, apiEndpoint } from "../lib/websiteSettings";
   import { currentPageStore, wordTypeStore, displayTypeStore } from "../lib/stores";
 
@@ -36,7 +36,7 @@
   {:then chapterData}
     <div>
       {#each Object.entries(chapterData) as [key, value]}
-        <DisplayVerses {key} {value} />
+        <DisplayIndividualVerses {key} {value} />
       {/each}
     </div>
   {:catch error}

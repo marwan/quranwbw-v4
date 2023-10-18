@@ -26,10 +26,10 @@
           <span class="text-sm">{chapter + 1}. {quranMetaData[chapter + 1].transliteration}</span>
           <div class="block text-xs text-gray-400">
             {quranMetaData[chapter + 1].translation} <br />
-            {quranMetaData[chapter + 1].verses} Verses • Meccan
+            {quranMetaData[chapter + 1].verses} Verses &bull; {quranMetaData[chapter + 1].revelation === 1 ? "Meccan" : "Medinan"}
           </div>
         </div>
-        <div class="chapter-icons justify-items-end text-gray-400 text-4xl"></div>
+        <!-- <div class="chapter-icons justify-items-end text-gray-400 text-4xl"></div> -->
       </Link>
     {/each}
   </div>

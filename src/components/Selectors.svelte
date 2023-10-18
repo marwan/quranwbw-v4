@@ -13,12 +13,12 @@
   $: selectedDisplay = displayOptions[$displayTypeStore];
 </script>
 
-<div class="flex flex-col md:flex-row justify-between py-8">
+<div class="flex flex-col md:flex-row justify-between py-8 space-y-4 md:space-y-0">
   <div class="flex flex-row space-x-8 {$currentPageStore === 'chapter' ? 'block' : 'hidden'}">
     <!-- chapters selector -->
     <div>
       <button on:click={() => (chaptersDropdownVisible = !chaptersDropdownVisible)} id="chaptersDropdownButton" class={buttonCSS} type="button"
-        >Chapter: {$chapterNumberStore}. {quranMetaData[$chapterNumberStore].transliteration}
+        >{$chapterNumberStore}. {quranMetaData[$chapterNumberStore].transliteration}
         <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
         </svg>
@@ -62,17 +62,15 @@
     </div>
   </div>
 
-  <!-- word type selector -->
   <div class="flex flex-row space-x-6">
+    <!-- word type selector -->
     <select on:change={(event) => wordTypeStore.set(event.target.value)} bind:value={$wordTypeStore} class={buttonCSS}>
       <option value="1" class="bg-black text-white">Uthmani</option>
       <option value="2" class="bg-black text-white">IndoPak</option>
     </select>
-  </div>
 
-  <!-- display type selector -->
-  <div class="flex flex-row space-x-6">
-    <select bind:value={selectedDisplay} on:change={(event) => displayTypeStore.set(event.target.selectedIndex)}>
+    <!-- display type selector -->
+    <select bind:value={selectedDisplay} on:change={(event) => displayTypeStore.set(event.target.selectedIndex)} class={buttonCSS}>
       {#each displayOptions as displayOption}
         <option value={displayOption}>{displayOption.displayName}</option>
       {/each}

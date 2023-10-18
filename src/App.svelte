@@ -11,8 +11,8 @@
 </script>
 
 <Router>
-  <div class="max-w-screen-lg mx-auto space-y-8 px-6 py-12">
-    <nav class="flex flex-row space-x-4 text-sm md:text-md md:space-x-8">
+  <div class="max-w-screen-lg mx-auto space-y-8 px-4 py-12">
+    <nav class="flex flex-row justify-center space-x-4 text-sm md:text-md md:space-x-8">
       <Link to="/">Home</Link>
       <Link to="/supplications">Supplications</Link>
       <Link to="/bookmarks">Bookmarks ({userBookmarksCount})</Link>
