@@ -2,10 +2,10 @@
 <script>
   export let startVerse, endVerse;
 
-  import WBWDisplay from "./DisplayTypes/WBWDisplay.svelte";
-  import NormalDisplay from "./DisplayTypes/NormalDisplay.svelte";
-  import ContinuousNormalDisplay from "./DisplayTypes/ContinuousNormalDisplay.svelte";
-  import SideBySideDisplay from "./DisplayTypes/SideBySideDisplay.svelte";
+  import WBWDisplay from "./displays/WBWDisplay.svelte";
+  import NormalDisplay from "./displays/NormalDisplay.svelte";
+  import ContinuousNormalDisplay from "./displays/ContinuousNormalDisplay.svelte";
+  import SideBySideDisplay from "./displays/SideBySideDisplay.svelte";
 
   import { quranMetaData } from "../../lib/quranMeta";
   import { displayTypeStore, chapterNumberStore, chapterDataStore } from "../../lib/stores";

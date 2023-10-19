@@ -13,7 +13,7 @@ export const chapterDataStore = writable(null);
 export const wordTypeStore = writable(1);
 
 // to store the display type - WBW, Normal, Continuous, etc...
-export const displayTypeStore = writable(3);
+export const displayTypeStore = writable(0);
 
 // to store the local user settings from LocalStorage
 export const userSettingsStore = writable(JSON.stringify(JSON.parse(localStorage.getItem("userSettings"))));

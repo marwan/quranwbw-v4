@@ -2,8 +2,8 @@
 <script>
   export let key, value;
 
-  import WBWDisplay from "./DisplayTypes/WBWDisplay.svelte";
-  import NormalDisplay from "./DisplayTypes/NormalDisplay.svelte";
+  import WBWDisplay from "./displays/WBWDisplay.svelte";
+  import NormalDisplay from "./displays/NormalDisplay.svelte";
 
   import { displayTypeStore } from "../../lib/stores";
 </script>
