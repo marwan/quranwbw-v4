@@ -14,7 +14,7 @@
 </script>
 
 <div class="flex flex-col md:flex-row justify-between py-8 space-y-4 md:space-y-0">
-  <div class="flex flex-row space-x-8 {$currentPageStore === 'chapter' ? 'block' : 'hidden'}">
+  <div class="flex flex-row space-x-2 {$currentPageStore === 'chapter' ? 'block' : 'hidden'}">
     <!-- chapters selector -->
     <div>
       <button on:click={() => (chaptersDropdownVisible = !chaptersDropdownVisible)} id="chaptersDropdownButton" class={buttonCSS} type="button"
@@ -62,7 +62,7 @@
     </div>
   </div>
 
-  <div class="flex flex-row space-x-6">
+  <div class="flex flex-row space-x-2">
     <!-- word type selector -->
     <select on:change={(event) => wordTypeStore.set(event.target.value)} bind:value={$wordTypeStore} class={buttonCSS}>
       <option value="1" class="bg-black text-white">Uthmani</option>

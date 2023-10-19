@@ -2,10 +2,10 @@
 <script>
   export let key, value;
 
-  import WBWVerseDisplay from "./displayTypes/WBWVerseDisplay.svelte";
-  import NormalVerseDisplay from "./displayTypes/NormalVerseDisplay.svelte";
+  import WBWDisplay from "./DisplayTypes/WBWDisplay.svelte";
+  import NormalDisplay from "./DisplayTypes/NormalDisplay.svelte";
 
   import { displayTypeStore } from "../../lib/stores";
 </script>
 
-<svelte:component this={$displayTypeStore === 0 ? WBWVerseDisplay : NormalVerseDisplay} {key} {value} />
+<svelte:component this={$displayTypeStore === 0 ? WBWDisplay : NormalDisplay} {key} {value} />

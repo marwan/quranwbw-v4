@@ -3,7 +3,7 @@
   export let chapter, startVerse, endVerse;
 
   import Selectors from "../components/Selectors.svelte";
-  import DisplayChapterVerses from "../components/verses/DisplayChapterVerses.svelte";
+  import DisplayChapterVerses from "../components/Verses/DisplayChapterVerses.svelte";
   import { parseURL } from "../lib/parseURL";
   import { websiteTitle, apiEndpoint } from "../lib/websiteSettings";
   import { quranMetaData } from "../lib/quranMeta";
@@ -50,7 +50,7 @@
   <title>{quranMetaData[$chapterNumberStore].transliteration} - {websiteTitle}</title>
 </svelte:head>
 
-<div class="">
+<div>
   <Selectors />
 
   {#await fetchData}

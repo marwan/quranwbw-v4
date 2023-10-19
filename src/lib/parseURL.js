@@ -10,31 +10,55 @@ export function parseURL() {
   let chapterTotalVerses = quranMetaData[get(chapterNumberStore)].verses;
 
   let url = window.location.pathname;
-  let urlSplit = url.split("/");
-  let urlSlashesCount = urlSplit.length - 1;
 
-  // eg: /2 or if there are more than two slashes
-  if (urlSlashesCount === 1 || urlSlashesCount > 2) {
-    (startVerse = 1), (endVerse = chapterTotalVerses);
+  // example verses: /1, /2/255, /2/285-286
+  let urlSlashesSplit = url.split("/");
+  let urlSlashesCount = urlSlashesSplit.length - 1;
+
+  // example verses: /2:255
+  let urlColenSplit = url.split(":");
+  let urlColenCount = urlColenSplit.length - 1;
+
+  // for URL with slashes
+  if (urlSlashesCount > 0) {
+    // eg: /2 or if there are more than two slashes
+    if (urlSlashesCount === 1 || urlSlashesCount > 2) {
+      (startVerse = 1), (endVerse = chapterTotalVerses);
+    }
+
+    // eg: /2/255 or /2/255-256
+    else if (urlSlashesCount === 2) {
+      let secondPartHyphenSplit = urlSlashesSplit[2].split("-");
+      let secondPartHyphenSplitCount = secondPartHyphenSplit.length - 1;
+
+      // eg: /2/255
+      if (secondPartHyphenSplitCount === 0) {
+        (startVerse = urlSlashesSplit[2]), (endVerse = startVerse);
+      }
+
+      // eg: /2/255-256
+      else if (secondPartHyphenSplitCount === 1) {
+        (startVerse = secondPartHyphenSplit[0]), (endVerse = secondPartHyphenSplit[1]);
+      }
+
+      // all other possibilites
+      else (startVerse = 1), (endVerse = chapterTotalVerses);
+    }
   }
 
-  // eg: /2/255 or /2/255-256
-  else if (urlSlashesCount === 2) {
-    let secondPartHyphenSplit = urlSplit[2].split("-");
-    let secondPartHyphenSplitCount = secondPartHyphenSplit.length - 1;
+  // for URL with colen
+  if (urlColenCount > 0) {
+    (chapter = urlColenSplit[0]), (startVerse = urlColenSplit[1]);
 
-    // eg: /2/255
-    if (secondPartHyphenSplitCount === 0) {
-      (startVerse = urlSplit[2]), (endVerse = urlSplit[2]);
-    }
+    if (chapter < 1) chapter = 1;
+    if (chapter > 114) chapter = 114;
 
-    // eg: /2/255-256
-    else if (secondPartHyphenSplitCount === 1) {
-      (startVerse = secondPartHyphenSplit[0]), (endVerse = secondPartHyphenSplit[1]);
-    }
+    if (startVerse < 1) startVerse = 1;
+    if (startVerse > quranMetaData[chapter].verses) startVerse = quranMetaData[chapter].verses;
 
-    // all other possibilites
-    else (startVerse = 1), (endVerse = chapterTotalVerses);
+    endVerse = startVerse;
+
+    console.log(chapter, startVerse, endVerse);
   }
 
   // making sure the verses are between 1 and max chapter verses
