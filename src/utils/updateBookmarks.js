@@ -1,4 +1,4 @@
-import { userSettingsStore } from "../lib/stores";
+import { userSettingsStore } from "../utils/stores";
 
 // function to add/remove a bookmark
 export function updateBookmarks(event) {

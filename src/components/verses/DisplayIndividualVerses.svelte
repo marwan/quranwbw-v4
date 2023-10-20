@@ -5,7 +5,7 @@
   import WBWDisplay from "./displays/WBWDisplay.svelte";
   import NormalDisplay from "./displays/NormalDisplay.svelte";
 
-  import { displayTypeStore } from "../../lib/stores";
+  import { displayTypeStore } from "../../utils/stores";
 </script>
 
-<svelte:component this={$displayTypeStore === 0 ? WBWDisplay : NormalDisplay} {key} {value} />
+<svelte:component this={$displayTypeStore === 1 ? WBWDisplay : NormalDisplay} {key} {value} />

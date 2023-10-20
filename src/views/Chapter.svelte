@@ -2,12 +2,13 @@
   // props from router
   export let chapter, startVerse, endVerse;
 
+  import { onMount } from "svelte";
   import Selectors from "../components/Selectors.svelte";
   import DisplayChapterVerses from "../components/verses/DisplayChapterVerses.svelte";
-  import { parseURL } from "../lib/parseURL";
-  import { websiteTitle, apiEndpoint } from "../lib/websiteSettings";
-  import { quranMetaData } from "../lib/quranMeta";
-  import { currentPageStore, chapterNumberStore, chapterDataStore, wordTypeStore, displayTypeStore, pageURLStore } from "../lib/stores";
+  import { parseURL } from "../utils/parseURL";
+  import { websiteTitle, apiEndpoint } from "../utils/websiteSettings";
+  import { quranMetaData } from "../utils/quranMeta";
+  import { currentPageStore, chapterNumberStore, chapterDataStore, wordTypeStore, displayTypeStore, pageURLStore } from "../utils/stores";
 
   // max verses to load if total verses in chapter are more than this
   let maxVersesThreshold = 10;
@@ -43,6 +44,19 @@
     console.log($pageURLStore, $displayTypeStore);
   }
 
+  // auto-load the next set of verses when the user almost reaches the bottom
+  onMount(() => {
+    try {
+      document.addEventListener("scroll", function (e) {
+        if (window.innerHeight + window.pageYOffset >= document.body.scrollHeight - 2000) {
+          // document.querySelector("#loadNextVersesButton > button").click();
+        }
+      });
+    } catch (error) {
+      // we know the error... but can make this better.
+    }
+  });
+
   currentPageStore.set("chapter");
 </script>
 
@@ -56,7 +70,8 @@
   {#await fetchData}
     <div class="flex items-center justify-center pt-28">loading...</div>
   {:then}
-    <div>
+    <!-- need custom stylings if display type is continuous -->
+    <div style={$displayTypeStore === 3 ? "text-align: center; direction: rtl;" : ""}>
       <DisplayChapterVerses {startVerse} {endVerse} />
     </div>
   {:catch error}

@@ -1,8 +1,9 @@
 export const displayOptions = [
-  { displayType: 0, displayName: "WBW", displayComponent: "WBWDisplay" },
-  { displayType: 1, displayName: "Normal", displayComponent: "NormalDisplay" },
-  { displayType: 2, displayName: "Continuous", displayComponent: "ContinuousNormalDisplay" },
-  { displayType: 3, displayName: "Side By Side", displayComponent: "SideBySideDisplay" },
+  { displayType: 0, displayComponent: null },
+  { displayType: 1, displayName: "WBW", displayComponent: "WBWDisplay" },
+  { displayType: 2, displayName: "Normal", displayComponent: "NormalDisplay" },
+  { displayType: 3, displayName: "Continuous", displayComponent: "ContinuousNormalDisplay" },
+  { displayType: 4, displayName: "Side By Side", displayComponent: "SideBySideDisplay" },
 ];
 
 export const selectableVerseTranslations = {

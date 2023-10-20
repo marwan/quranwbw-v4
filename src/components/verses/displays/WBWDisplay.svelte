@@ -2,8 +2,8 @@
   export let key, value;
 
   import VersesButtons from "../VersesButtons.svelte";
-  import { wordTypeStore } from "../../../lib/stores";
-  import { selectableVerseTranslations } from "../../../lib/options";
+  import { wordTypeStore } from "../../../utils/stores";
+  import { selectableVerseTranslations } from "../../../utils/options";
 </script>
 
 <div id={key} class="flex flex-col py-8 space-y-8 border-b">

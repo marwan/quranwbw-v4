@@ -1,8 +1,8 @@
 <script>
   import { Link } from "svelte-routing";
-  import { websiteTitle } from "../lib/websiteSettings";
-  import { quranMetaData } from "../lib/quranMeta";
-  import { currentPageStore } from "../lib/stores";
+  import { websiteTitle } from "../utils/websiteSettings";
+  import { quranMetaData } from "../utils/quranMeta";
+  import { currentPageStore } from "../utils/stores";
 
   currentPageStore.set("home");
 </script>

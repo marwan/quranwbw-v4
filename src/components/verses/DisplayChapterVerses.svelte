@@ -6,15 +6,15 @@
   import NormalDisplay from "./displays/NormalDisplay.svelte";
   import ContinuousNormalDisplay from "./displays/ContinuousNormalDisplay.svelte";
   import SideBySideDisplay from "./displays/SideBySideDisplay.svelte";
-
-  import { quranMetaData } from "../../lib/quranMeta";
-  import { displayTypeStore, chapterNumberStore, chapterDataStore } from "../../lib/stores";
+  import { quranMetaData } from "../../utils/quranMeta";
+  import { displayTypeStore, chapterNumberStore, chapterDataStore } from "../../utils/stores";
 
   const displayComponents = [
-    { displayType: 0, displayComponent: WBWDisplay, displayStyle: "" },
-    { displayType: 1, displayComponent: NormalDisplay, displayStyle: "" },
-    { displayType: 2, displayComponent: ContinuousNormalDisplay, displayStyle: "text-align: center; direction: rtl;" },
-    { displayType: 3, displayComponent: SideBySideDisplay, displayStyle: "" },
+    { displayType: 0, displayComponent: null },
+    { displayType: 1, displayComponent: WBWDisplay },
+    { displayType: 2, displayComponent: NormalDisplay },
+    { displayType: 3, displayComponent: ContinuousNormalDisplay },
+    { displayType: 4, displayComponent: SideBySideDisplay },
   ];
 
   const chapterTotalVerses = quranMetaData[$chapterNumberStore].verses;
@@ -30,6 +30,9 @@
     // importing the same component to be re-used when the "Load Next Verses" button is pressed
     import("./DisplayChapterVerses.svelte").then((res) => (DisplayChapterVerses = res.default));
 
+    // max verses to load when the next set is requested
+    const versesToLoad = 20;
+
     // get the last verse number from last prop value
     const lastVerseOnPage = endVerse;
 
@@ -37,7 +40,7 @@
     document.getElementById("loadNextVersesButton").remove();
 
     // define the new starting and ending range
-    (start = lastVerseOnPage + 1), (end = start + 10);
+    (start = lastVerseOnPage + 1), (end = start + versesToLoad);
 
     // if the end verse set above is greater than total verses, then set it as total verses
     if (end > chapterTotalVerses) end = chapterTotalVerses;
@@ -50,11 +53,9 @@
   }
 </script>
 
-<div style={displayComponents[$displayTypeStore].displayStyle}>
-  {#each Array.from(Array(endVerse + 1).keys()).slice(startVerse) as verse}
-    <svelte:component this={displayComponents[$displayTypeStore].displayComponent} key={`${$chapterNumberStore}:${verse}`} value={$chapterDataStore[`${$chapterNumberStore}:${verse}`]} />
-  {/each}
-</div>
+{#each Array.from(Array(endVerse + 1).keys()).slice(startVerse) as verse}
+  <svelte:component this={displayComponents[$displayTypeStore].displayComponent} key={`${$chapterNumberStore}:${verse}`} value={$chapterDataStore[`${$chapterNumberStore}:${verse}`]} />
+{/each}
 
 <!-- only show the button when the last verse on page is less than total verses in chapter -->
 {#if endVerse < chapterTotalVerses}

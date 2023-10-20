@@ -1,6 +1,6 @@
 <script>
-  import "./lib/userSettings";
-  import { userSettingsStore } from "./lib/stores";
+  import "./utils/userSettings";
+  import { userSettingsStore } from "./utils/stores";
   import { Router, Link, Route } from "svelte-routing";
   import Home from "./views/Home.svelte";
   import Chapter from "./views/Chapter.svelte";

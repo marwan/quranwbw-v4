@@ -1,23 +1,22 @@
 <script>
   import { Link } from "svelte-routing";
-  import { currentPageStore, chapterNumberStore, wordTypeStore, displayTypeStore, pageURLStore } from "../lib/stores";
-  import { quranMetaData } from "../lib/quranMeta";
-  import { displayOptions } from "../lib/options";
+  import { currentPageStore, chapterNumberStore, wordTypeStore, displayTypeStore, pageURLStore } from "../utils/stores";
+  import { quranMetaData } from "../utils/quranMeta";
+  import { displayOptions } from "../utils/options";
+  import { updateSettings } from "../utils/updateSettings";
 
   // manually toggling dropdowns with Svelte because for some reason Flowbite JS isn't working, will figure it out later
-  let chaptersDropdownVisible = false;
-  let versesDropdownVisible = false;
+  let isChaptersDropdownVisible = false;
+  let isVersesDropdownVisible = false;
 
   const buttonCSS = "text-white bg-gray-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1.5 text-center inline-flex items-center daark:bg-blue-600 daark:hover:bg-blue-700 daark:focus:ring-blue-800";
-
-  $: selectedDisplay = displayOptions[$displayTypeStore];
 </script>
 
 <div class="flex flex-col md:flex-row justify-between py-8 space-y-4 md:space-y-0">
   <div class="flex flex-row space-x-2 {$currentPageStore === 'chapter' ? 'block' : 'hidden'}">
     <!-- chapters selector -->
     <div>
-      <button on:click={() => (chaptersDropdownVisible = !chaptersDropdownVisible)} id="chaptersDropdownButton" class={buttonCSS} type="button"
+      <button on:click={() => (isChaptersDropdownVisible = !isChaptersDropdownVisible)} id="chaptersDropdownButton" class={buttonCSS} type="button"
         >{$chapterNumberStore}. {quranMetaData[$chapterNumberStore].transliteration}
         <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
@@ -25,7 +24,7 @@
       </button>
 
       <!-- Dropdown menu -->
-      <div id="chaptersDropdown" class="z-10 absolute {chaptersDropdownVisible === true ? 'block' : 'hidden'} bg-white divide-y divide-gray-100 rounded-lg shadow w-44 daark:bg-gray-700">
+      <div id="chaptersDropdown" class="z-10 absolute {isChaptersDropdownVisible === true ? 'block' : 'hidden'} bg-white divide-y divide-gray-100 rounded-lg shadow w-44 daark:bg-gray-700">
         <ul class="py-2 text-sm text-gray-700 overflow-y-scroll max-h-80 daark:text-gray-200" aria-labelledby="chaptersDropdownButton">
           {#each { length: 114 } as _, i}
             <li>
@@ -38,7 +37,7 @@
 
     <!-- verses selector -->
     <div>
-      <button on:click={() => (versesDropdownVisible = !versesDropdownVisible)} id="versesDropdownButton" data-dropdown-toggle="versesDropdown" class={buttonCSS} type="button"
+      <button on:click={() => (isVersesDropdownVisible = !isVersesDropdownVisible)} id="versesDropdownButton" data-dropdown-toggle="versesDropdown" class={buttonCSS} type="button"
         >Verses
         <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
@@ -46,14 +45,13 @@
       </button>
 
       <!-- Dropdown menu -->
-      <div id="versesDropdown" class="z-10 absolute {versesDropdownVisible === true ? 'block' : 'hidden'} bg-white divide-y divide-gray-100 rounded-lg shadow w-44 daark:bg-gray-700">
+      <div id="versesDropdown" class="z-10 absolute {isVersesDropdownVisible === true ? 'block' : 'hidden'} bg-white divide-y divide-gray-100 rounded-lg shadow w-44 daark:bg-gray-700">
         <ul class="py-2 text-sm text-gray-700 overflow-y-scroll max-h-80 daark:text-gray-200" aria-labelledby="versesDropdownButton">
           <li>
             <Link to="/{$chapterNumberStore}" on:click={() => pageURLStore.set(Math.random())} class="block px-4 py-2 hover:bg-gray-100 daark:hover:bg-gray-600 daark:hover:text-white">All Verses</Link>
           </li>
           {#each { length: quranMetaData[$chapterNumberStore].verses } as _, verse}
             <li>
-              <!-- <a href="#{$chapterNumberStore}:{i + 1}" class="block px-4 py-2 hover:bg-gray-100 daark:hover:bg-gray-600 daark:hover:text-white">Verse {i + 1}</a> -->
               <Link to="/{$chapterNumberStore}/{verse + 1}" on:click={() => pageURLStore.set(Math.random())} class="block px-4 py-2 hover:bg-gray-100 daark:hover:bg-gray-600 daark:hover:text-white">Verse {verse + 1}</Link>
             </li>
           {/each}
@@ -64,15 +62,17 @@
 
   <div class="flex flex-row space-x-2">
     <!-- word type selector -->
-    <select on:change={(event) => wordTypeStore.set(event.target.value)} bind:value={$wordTypeStore} class={buttonCSS}>
-      <option value="1" class="bg-black text-white">Uthmani</option>
-      <option value="2" class="bg-black text-white">IndoPak</option>
+    <select on:change={(event) => updateSettings("wordType", Number(event.target.value))} bind:value={$wordTypeStore} class={buttonCSS}>
+      <option value={1} class="bg-black text-white">Uthmani</option>
+      <option value={2} class="bg-black text-white">IndoPak</option>
     </select>
 
     <!-- display type selector -->
-    <select bind:value={selectedDisplay} on:change={(event) => displayTypeStore.set(event.target.selectedIndex)} class={buttonCSS}>
+    <select bind:value={$displayTypeStore} on:change={(event) => updateSettings("displayType", Number(event.target.selectedIndex) + 1)} class={buttonCSS}>
       {#each displayOptions as displayOption}
-        <option value={displayOption}>{displayOption.displayName}</option>
+        {#if displayOption.displayType > 0}
+          <option value={displayOption.displayType}>{displayOption.displayName}</option>
+        {/if}
       {/each}
     </select>
   </div>

@@ -1,8 +1,8 @@
 <script>
   export let key;
 
-  import { userSettingsStore } from "../../lib/stores";
-  import { updateBookmarks } from "../../lib/updateBookmarks";
+  import { userSettingsStore } from "../../utils/stores";
+  import { updateBookmarks } from "../../utils/updateBookmarks";
 
   // update userBookmarks whenever the userSettingsStore changes
   $: userBookmarks = JSON.parse($userSettingsStore)["userBookmarks"];

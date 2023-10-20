@@ -1,8 +1,8 @@
 <script>
   export let key, value;
 
-  import { wordTypeStore } from "../../../lib/stores";
-  import { pageNumberKeys } from "../../../lib/quranMeta";
+  import { wordTypeStore } from "../../../utils/stores";
+  import { pageNumberKeys } from "../../../utils/quranMeta";
 
   let pageNumber,
     isFirstOfPage = false;
