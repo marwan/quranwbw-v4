@@ -13,7 +13,7 @@
   const buttonCSS = "text-white bg-gray-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1.5 text-center inline-flex items-center daark:bg-blue-600 daark:hover:bg-blue-700 daark:focus:ring-blue-800";
 </script>
 
-<div class="flex flex-col justify-between py-8 space-y-4">
+<div class="flex flex-row py-8 space-x-4">
   <div class="flex flex-row space-x-2 {$currentPageStore === 'chapter' ? 'block' : 'hidden'}">
     <!-- chapters selector -->
     <div>

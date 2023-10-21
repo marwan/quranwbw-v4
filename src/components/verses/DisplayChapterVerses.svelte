@@ -11,7 +11,6 @@
   import { displayTypeStore, chapterNumberStore, chapterDataStore } from "../../utils/stores";
 
   const displayComponents = [
-    { displayID: 0, displayComponent: null },
     { displayID: 1, displayComponent: WBWDisplay },
     { displayID: 2, displayComponent: NormalDisplay },
     { displayID: 3, displayComponent: ContinuousWBWDisplay },
@@ -56,7 +55,7 @@
 </script>
 
 {#each Array.from(Array(endVerse + 1).keys()).slice(startVerse) as verse}
-  <svelte:component this={displayComponents[$displayTypeStore].displayComponent} key={`${$chapterNumberStore}:${verse}`} value={$chapterDataStore[`${$chapterNumberStore}:${verse}`]} />
+  <svelte:component this={displayComponents[$displayTypeStore - 1].displayComponent} key={`${$chapterNumberStore}:${verse}`} value={$chapterDataStore[`${$chapterNumberStore}:${verse}`]} />
 {/each}
 
 <!-- only show the button when the last verse on page is less than total verses in chapter -->

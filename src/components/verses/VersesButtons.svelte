@@ -4,11 +4,21 @@
   import { userSettingsStore } from "../../utils/stores";
   import { updateBookmarks } from "../../utils/updateBookmarks";
 
+  // icons
+  import Bookmark from "../icons/Bookmark.svelte";
+  import Bookmarked from "../icons/Bookmarked.svelte";
+
   // update userBookmarks whenever the userSettingsStore changes
   $: userBookmarks = JSON.parse($userSettingsStore)["userBookmarks"];
 </script>
 
 <div class="flex flex-row space-x-8">
-  <span>({key})</span>
-  <button on:click={updateBookmarks} data-key={key} class="px-4 text-sm rounded-lg">{userBookmarks.includes(key) ? "Unbookmark" : "Bookmark"}</button>
+  <button class="text-sm p-3 border-none">{key}</button>
+  <button on:click={updateBookmarks} data-key={key} class="text-sm p-3 border-none">
+    {#if userBookmarks.includes(key)}
+      <Bookmarked />
+    {:else}
+      <Bookmark />
+    {/if}
+  </button>
 </div>

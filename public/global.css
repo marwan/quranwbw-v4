@@ -66,6 +66,10 @@ button:focus {
 	border-color: #666;
 }
 
+svg {
+	pointer-events: none;
+}
+
 .arabic-font-1,
 .arabic-font-2 {
   direction: rtl;
