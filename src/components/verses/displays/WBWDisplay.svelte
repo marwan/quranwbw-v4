@@ -6,7 +6,7 @@
   import { selectableVerseTranslations } from "../../../utils/options";
 </script>
 
-<div id={key} class="flex flex-col py-8 space-y-8 border-b">
+<div id={key} data-page={value.meta.page} class="flex flex-col py-8 space-y-8 border-b">
   <VersesButtons {key} />
 
   <!-- words -->

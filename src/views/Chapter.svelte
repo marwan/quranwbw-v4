@@ -8,7 +8,7 @@
   import { parseURL } from "../utils/parseURL";
   import { websiteTitle, apiEndpoint } from "../utils/websiteSettings";
   import { quranMetaData } from "../utils/quranMeta";
-  import { currentPageStore, chapterNumberStore, chapterDataStore, wordTypeStore, displayTypeStore, pageURLStore } from "../utils/stores";
+  import { currentPageStore, chapterNumberStore, chapterDataStore, wordTypeStore, displayTypeStore, wordTranslationStore, verseTranslationsStore, pageURLStore } from "../utils/stores";
 
   // max verses to load if total verses in chapter are more than this
   let maxVersesThreshold = 10;
@@ -23,8 +23,17 @@
     const chapterTotalVerses = quranMetaData[$chapterNumberStore].verses;
 
     fetchData = (async () => {
-      const api_url = `${apiEndpoint}/verses?verses=${$chapterNumberStore}:1,${$chapterNumberStore}:${chapterTotalVerses}&word_type=${$wordTypeStore}&verse_translation=1,15&between=true`;
-      const response = await fetch(api_url);
+      const apiURL =
+        apiEndpoint +
+        new URLSearchParams({
+          verses: `${$chapterNumberStore}:1,${$chapterNumberStore}:${chapterTotalVerses}`,
+          word_type: $wordTypeStore,
+          word_translation: $wordTranslationStore,
+          verse_translation: $verseTranslationsStore.toString(),
+          between: true,
+        });
+
+      const response = await fetch(apiURL);
       const data = await response.json();
       chapterDataStore.set(data.data.verses);
       return data.data.verses;
@@ -41,7 +50,7 @@
     }
 
     // logging these for now to re-run the block on URL change
-    console.log($pageURLStore, $displayTypeStore);
+    console.log($pageURLStore, $displayTypeStore, $wordTranslationStore, $verseTranslationsStore);
   }
 
   // auto-load the next set of verses when the user almost reaches the bottom

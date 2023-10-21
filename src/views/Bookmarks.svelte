@@ -2,7 +2,7 @@
   import Selectors from "../components/Selectors.svelte";
   import DisplayIndividualVerses from "../components/verses/DisplayIndividualVerses.svelte";
   import { websiteTitle, apiEndpoint } from "../utils/websiteSettings";
-  import { currentPageStore, wordTypeStore, displayTypeStore } from "../utils/stores";
+  import { currentPageStore, wordTypeStore, displayTypeStore, wordTranslationStore, verseTranslationsStore } from "../utils/stores";
 
   let userSettings = JSON.parse(localStorage.getItem("userSettings"));
   let userBookmarks = userSettings["userBookmarks"];
@@ -13,15 +13,23 @@
   $: {
     if (userBookmarks.length != 0) {
       fetchData = (async () => {
-        const api_url = `${apiEndpoint}/verses?verses=${userBookmarks.toString()}&word_type=${$wordTypeStore}&verse_translation=1,15`;
-        const response = await fetch(api_url);
+        const apiURL =
+          apiEndpoint +
+          new URLSearchParams({
+            verses: userBookmarks.toString(),
+            word_type: $wordTypeStore,
+            word_translation: $wordTranslationStore,
+            verse_translation: $verseTranslationsStore.toString(),
+          });
+
+        const response = await fetch(apiURL);
         const data = await response.json();
         return data.data.verses;
       })();
     }
 
     // logging these for now to re-run the block on URL change
-    console.log($displayTypeStore);
+    console.log($displayTypeStore, $wordTranslationStore, $verseTranslationsStore);
   }
 
   currentPageStore.set("bookmarks");

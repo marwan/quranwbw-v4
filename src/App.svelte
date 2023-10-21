@@ -1,22 +1,19 @@
 <script>
   import "./utils/userSettings";
-  import { userSettingsStore } from "./utils/stores";
-  import { Router, Link, Route } from "svelte-routing";
+  import { currentPageStore } from "./utils/stores";
+  import { Router, Route } from "svelte-routing";
   import Home from "./views/Home.svelte";
   import Chapter from "./views/Chapter.svelte";
   import Supplications from "./views/Supplications.svelte";
   import Bookmarks from "./views/Bookmarks.svelte";
-
-  $: userBookmarksCount = JSON.parse($userSettingsStore)["userBookmarks"].length;
+  import Navbar from "./components/Navbar.svelte";
 </script>
 
 <Router>
   <div class="max-w-screen-lg mx-auto space-y-8 px-4 py-12">
-    <nav class="flex flex-row justify-center space-x-4 text-sm md:text-md md:space-x-8">
-      <Link to="/">Home</Link>
-      <Link to="/supplications">Supplications</Link>
-      <Link to="/bookmarks">Bookmarks ({userBookmarksCount})</Link>
-    </nav>
+    {#if $currentPageStore != "home"}
+      <Navbar />
+    {/if}
 
     <!-- components will be rendered in this div -->
     <div>

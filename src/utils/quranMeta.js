@@ -117,7 +117,6 @@ export const quranMetaData = [
 ];
 
 export const pageNumberKeys = [
-  0,
   "1:1",
   "2:1",
   "2:6",

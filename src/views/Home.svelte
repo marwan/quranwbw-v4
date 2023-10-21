@@ -1,5 +1,6 @@
 <script>
   import { Link } from "svelte-routing";
+  import Logo from "../components/Logo.svelte";
   import { websiteTitle } from "../utils/websiteSettings";
   import { quranMetaData } from "../utils/quranMeta";
   import { currentPageStore } from "../utils/stores";
@@ -12,6 +13,37 @@
 </svelte:head>
 
 <div class="max-w-4xl mx-auto flex flex-col space-y-8 md:px-4">
+  <div class="flex flex-col mt-10">
+    <Link to="/" class="flex justify-center">
+      <Logo />
+    </Link>
+    <div class="text-xs text-center text-gray-400">Word By Word Translation, Transliteration And Corpus</div>
+  </div>
+
+  <div class="flex flex-wrap flex-col md:flex-row mt-12 justify-center text-xs text-gray-400 space-x-2">
+    <!-- last read link -->
+    <div id="last-read-block" class="flex justify-center items-center block">
+      <a href="/1#1" id="last-read-link" class="py-2 px-4 text-xs focus:outline-none focus:ring-4 focus:ring-gray-200 rounded-lg">
+        <span class="font-bold">Last Read:&nbsp;</span>
+        <span id="last-read">Al Faatiha 1:1</span>
+      </a>
+    </div>
+
+    <!-- Supplications from Quran link -->
+    <div class="flex justify-center items-center block">
+      <span class="py-2 px-4 text-xs cursor-pointer focus:outline-none focus:ring-4 focus:ring-gray-200 rounded-lg">
+        <Link to="/supplications" class="font-bold">Supplications from Quran</Link>
+      </span>
+    </div>
+
+    <!-- bookmarks link -->
+    <div id="bookmarks-link" class="flex justify-center items-center block">
+      <span class="py-2 px-4 text-xs cursor-pointer focus:outline-none focus:ring-4 focus:ring-gray-200 rounded-lg">
+        <Link to="/bookmarks" class="font-bold">Bookmarks</Link>
+      </span>
+    </div>
+  </div>
+
   <div id="most-read" class="text-center text-sm md:text-md">
     Most Read:
     <Link to="/2/255">2:255</Link>,

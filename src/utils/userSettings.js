@@ -4,6 +4,10 @@ const defaultLocalSettings = {
     displayType: 1, // normal
     wordType: 1, // uthmani
   },
+  translations: {
+    word: 1,
+    verse: [1, 15],
+  },
   userBookmarks: [], // no bookmarks by default,
 };
 
