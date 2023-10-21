@@ -7,6 +7,7 @@
   import DisplayChapterVerses from "../components/verses/DisplayChapterVerses.svelte";
   import { parseURL } from "../utils/parseURL";
   import { websiteTitle, apiEndpoint } from "../utils/websiteSettings";
+  import { displayOptions } from "../utils/options";
   import { quranMetaData } from "../utils/quranMeta";
   import { currentPageStore, chapterNumberStore, chapterDataStore, wordTypeStore, displayTypeStore, wordTranslationStore, verseTranslationsStore, pageURLStore } from "../utils/stores";
 
@@ -80,7 +81,7 @@
     <div class="flex items-center justify-center pt-28">loading...</div>
   {:then}
     <!-- need custom stylings if display type is continuous -->
-    <div style={$displayTypeStore === 3 ? "text-align: center; direction: rtl;" : ""}>
+    <div style={displayOptions[$displayTypeStore - 1].continuous === true ? "text-align: center; direction: rtl;" : ""}>
       <DisplayChapterVerses {startVerse} {endVerse} />
     </div>
   {:catch error}

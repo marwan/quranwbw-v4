@@ -4,17 +4,19 @@
 
   import WBWDisplay from "./displays/WBWDisplay.svelte";
   import NormalDisplay from "./displays/NormalDisplay.svelte";
+  import ContinuousWBWDisplay from "./displays/ContinuousWBWDisplay.svelte";
   import ContinuousNormalDisplay from "./displays/ContinuousNormalDisplay.svelte";
   import SideBySideDisplay from "./displays/SideBySideDisplay.svelte";
   import { quranMetaData } from "../../utils/quranMeta";
   import { displayTypeStore, chapterNumberStore, chapterDataStore } from "../../utils/stores";
 
   const displayComponents = [
-    { displayType: 0, displayComponent: null },
-    { displayType: 1, displayComponent: WBWDisplay },
-    { displayType: 2, displayComponent: NormalDisplay },
-    { displayType: 3, displayComponent: ContinuousNormalDisplay },
-    { displayType: 4, displayComponent: SideBySideDisplay },
+    { displayID: 0, displayComponent: null },
+    { displayID: 1, displayComponent: WBWDisplay },
+    { displayID: 2, displayComponent: NormalDisplay },
+    { displayID: 3, displayComponent: ContinuousWBWDisplay },
+    { displayID: 4, displayComponent: ContinuousNormalDisplay },
+    { displayID: 5, displayComponent: SideBySideDisplay },
   ];
 
   const chapterTotalVerses = quranMetaData[$chapterNumberStore].verses;

@@ -101,8 +101,8 @@
     <!-- display type selector -->
     <select bind:value={$displayTypeStore} on:change={(event) => updateSettings("displayType", Number(event.target.selectedIndex) + 1)} class={buttonCSS}>
       {#each displayOptions as displayOption}
-        {#if displayOption.displayType > 0}
-          <option value={displayOption.displayType}>{displayOption.displayName}</option>
+        {#if displayOption.displayID > 0}
+          <option value={displayOption.displayID}>{displayOption.displayName}</option>
         {/if}
       {/each}
     </select>
