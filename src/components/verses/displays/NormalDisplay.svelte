@@ -2,8 +2,8 @@
   export let key, value;
 
   import VersesButtons from "../VersesButtons.svelte";
+  import VersesTranslations from "../VersesTranslations.svelte";
   import { wordTypeStore } from "../../../utils/stores";
-  import { selectableVerseTranslations } from "../../../utils/options";
 </script>
 
 <div id={key} class="flex flex-col py-8 space-y-8 border-b">
@@ -19,12 +19,5 @@
   </div>
 
   <!-- verse translations and transliterations -->
-  <div class="flex flex-col space-y-4 text-lg leading-normal">
-    {#each Object.entries(value.translations) as [verseTranslationID, verseTranslation]}
-      <div class="flex flex-col">
-        <span>{verseTranslation}</span>
-        <span class="text-sm">&mdash; {selectableVerseTranslations[verseTranslationID].author}</span>
-      </div>
-    {/each}
-  </div>
+  <VersesTranslations {value} />
 </div>

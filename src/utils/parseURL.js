@@ -3,6 +3,7 @@ import { get } from "svelte/store";
 import { chapterNumberStore } from "./stores";
 import { quranMetaData } from "./quranMeta";
 
+// using SvelteKit would be better for routing, but this gets the job done for now
 // function to parse the URL to get the starting and ending verses
 export function parseURL() {
   let startVerse, endVerse;
