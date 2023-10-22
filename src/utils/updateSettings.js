@@ -22,14 +22,14 @@ export function updateSettings(props) {
     // for verse translations
     case "verseTranslation":
       let verseTranslationsArray = [];
-      let translations = Object.keys(selectableVerseTranslations);
 
       // loop through all the available verse translations
-      for (let translation = 1; translation <= translations[translations.length - 1]; translation++) {
+      for (const key of Object.keys(selectableVerseTranslations)) {
+        const translationID = selectableVerseTranslations[key].id;
         try {
           // we check if this translation is checked, if true, push to array
-          if (document.getElementById(`verseTranslationCheckbox-${translation}`).checked) {
-            verseTranslationsArray.push(translation);
+          if (document.getElementById(`verseTranslationCheckbox-${translationID}`).checked) {
+            verseTranslationsArray.push(translationID);
           }
         } catch (error) {
           console.error(error);

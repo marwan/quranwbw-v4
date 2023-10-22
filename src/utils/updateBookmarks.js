@@ -13,7 +13,7 @@ export function updateBookmarks(event) {
   }
 
   // update the settings in localStorage and in store
-  userSettings["userBookmarks"] = userBookmarks;
+  userSettings.userBookmarks = userBookmarks;
   userSettingsStore.set(JSON.stringify(userSettings));
   localStorage.setItem("userSettings", JSON.stringify(userSettings));
 }

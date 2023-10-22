@@ -13,7 +13,8 @@
   const buttonCSS = "text-white bg-gray-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1.5 text-center inline-flex items-center daark:bg-blue-600 daark:hover:bg-blue-700 daark:focus:ring-blue-800";
 </script>
 
-<div class="flex flex-row py-8 space-x-4">
+<div class="flex flex-col space-y-4 md:flex-row py-8 md:space-x-4 md:space-y-0">
+  <!-- chapter and verse selectors -->
   <div class="flex flex-row space-x-2 {$currentPageStore === 'chapter' ? 'block' : 'hidden'}">
     <!-- chapters selector -->
     <div>
@@ -61,6 +62,7 @@
     </div>
   </div>
 
+  <!-- translation selectors -->
   <div class="flex flex-row space-x-2">
     <!-- verse translation selector -->
     <div>
@@ -91,6 +93,7 @@
     </div>
   </div>
 
+  <!-- display selectors -->
   <div class="flex flex-row space-x-2">
     <!-- word type selector -->
     <select on:change={(event) => updateSettings({ type: "wordType", value: Number(event.target.value) })} bind:value={$wordTypeStore} class={buttonCSS}>
@@ -101,9 +104,7 @@
     <!-- display type selector -->
     <select bind:value={$displayTypeStore} on:change={(event) => updateSettings({ type: "displayType", value: Number(event.target.selectedIndex) + 1 })} class={buttonCSS}>
       {#each displayOptions as displayOption}
-        {#if displayOption.displayID > 0}
-          <option value={displayOption.displayID}>{displayOption.displayName}</option>
-        {/if}
+        <option value={displayOption.displayID}>{displayOption.displayName}</option>
       {/each}
     </select>
   </div>
