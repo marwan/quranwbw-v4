@@ -5,6 +5,8 @@
   import { pageNumberKeys } from "../../../utils/quranMeta";
 
   const arabicWordStyles = `arabic-font-${$wordTypeStore} inline-block text-4xl leading-normal p-2 group-hover:bg-gray-200`;
+
+  const arabicSplit = value.words.arabic.split("|");
 </script>
 
 <!-- if the current key is the first verse of a page  -->
@@ -14,13 +16,7 @@
 
 <div id={key} class="inline py-2 group">
   {#each { length: value.meta.words } as _, word}
-    <!-- <div class="inline-flex flex-col p-3"> -->
-    <span class={arabicWordStyles}>{value.words.arabic.split("|")[word]}</span>
-    <!-- <div class="flex flex-col text-sm">
-        <span class="leading-normal">{value.words.transliteration.split("|")[word]}</span>
-        <span class="leading-normal">{value.words.translation.split("|")[word]}</span>
-      </div> -->
-    <!-- </div> -->
+    <span class={arabicWordStyles}>{arabicSplit[word]}</span>
   {/each}
   <span class={arabicWordStyles}>{value.words.end}</span>
 </div>

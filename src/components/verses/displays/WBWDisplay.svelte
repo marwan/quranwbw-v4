@@ -4,6 +4,10 @@
   import VersesButtons from "../VersesButtons.svelte";
   import VersesTranslations from "../VersesTranslations.svelte";
   import { wordTypeStore } from "../../../utils/stores";
+
+  const arabicSplit = value.words.arabic.split("|");
+  const transliterationSplit = value.words.transliteration.split("|");
+  const translationSplit = value.words.translation.split("|");
 </script>
 
 <div id={key} data-page={value.meta.page} class="flex flex-col py-8 space-y-8 border-b">
@@ -13,10 +17,10 @@
   <div class="flex flex-row-reverse flex-wrap">
     {#each { length: value.meta.words } as _, word}
       <div class="flex flex-col p-3 text-center">
-        <span class="arabic-font-{$wordTypeStore} text-4xl leading-normal">{value.words.arabic.split("|")[word]}</span>
+        <span class="arabic-font-{$wordTypeStore} text-4xl leading-normal">{arabicSplit[word]}</span>
         <div class="flex flex-col text-sm">
-          <span class="leading-normal">{value.words.transliteration.split("|")[word]}</span>
-          <span class="leading-normal">{value.words.translation.split("|")[word]}</span>
+          <span class="leading-normal">{transliterationSplit[word]}</span>
+          <span class="leading-normal">{translationSplit[word]}</span>
         </div>
       </div>
     {/each}
