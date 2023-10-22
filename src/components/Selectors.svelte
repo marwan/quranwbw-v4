@@ -78,9 +78,9 @@
               <div class="flex items-center">
                 <!-- using else-if block to add the "checked" attribute because for some reason the inline check is not working in Svelte as compared to regular javascript -->
                 {#if $verseTranslationsStore.includes(translation.id)}
-                  <input id="verseTranslationCheckbox-{translation.id}" on:click={() => updateSettings("verseTranslation", translation.id)} checked type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 daark:focus:ring-blue-600 daark:ring-offset-gray-700 daark:focus:ring-offset-gray-700 focus:ring-2 daark:bg-gray-600 daark:border-gray-500" />
+                  <input id="verseTranslationCheckbox-{translation.id}" on:click={() => updateSettings({ type: "verseTranslation", value: translation.id })} checked type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 daark:focus:ring-blue-600 daark:ring-offset-gray-700 daark:focus:ring-offset-gray-700 focus:ring-2 daark:bg-gray-600 daark:border-gray-500" />
                 {:else}
-                  <input id="verseTranslationCheckbox-{translation.id}" on:click={() => updateSettings("verseTranslation", translation.id)} type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 daark:focus:ring-blue-600 daark:ring-offset-gray-700 daark:focus:ring-offset-gray-700 focus:ring-2 daark:bg-gray-600 daark:border-gray-500" />
+                  <input id="verseTranslationCheckbox-{translation.id}" on:click={() => updateSettings({ type: "verseTranslation", value: translation.id })} type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 daark:focus:ring-blue-600 daark:ring-offset-gray-700 daark:focus:ring-offset-gray-700 focus:ring-2 daark:bg-gray-600 daark:border-gray-500" />
                 {/if}
                 <label for="verseTranslationCheckbox-{translation.id}" class="ml-2 text-sm font-medium text-gray-900 daark:text-gray-300">{translation.author}</label>
               </div>
@@ -93,13 +93,13 @@
 
   <div class="flex flex-row space-x-2">
     <!-- word type selector -->
-    <select on:change={(event) => updateSettings("wordType", Number(event.target.value))} bind:value={$wordTypeStore} class={buttonCSS}>
+    <select on:change={(event) => updateSettings({ type: "wordType", value: Number(event.target.value) })} bind:value={$wordTypeStore} class={buttonCSS}>
       <option value={1} class="bg-black text-white">Uthmani</option>
       <option value={2} class="bg-black text-white">IndoPak</option>
     </select>
 
     <!-- display type selector -->
-    <select bind:value={$displayTypeStore} on:change={(event) => updateSettings("displayType", Number(event.target.selectedIndex) + 1)} class={buttonCSS}>
+    <select bind:value={$displayTypeStore} on:change={(event) => updateSettings({ type: "displayType", value: Number(event.target.selectedIndex) + 1 })} class={buttonCSS}>
       {#each displayOptions as displayOption}
         {#if displayOption.displayID > 0}
           <option value={displayOption.displayID}>{displayOption.displayName}</option>

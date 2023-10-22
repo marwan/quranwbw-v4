@@ -2,21 +2,21 @@ import { userSettingsStore, wordTypeStore, displayTypeStore, verseTranslationsSt
 import { selectableVerseTranslations } from "./options";
 
 // function to update website settings
-export function updateSettings(type, value) {
+export function updateSettings(props) {
   // get the settings from localStorage
   const userSettings = JSON.parse(localStorage.getItem("userSettings"));
 
-  switch (type) {
+  switch (props.type) {
     // for word types
     case "wordType":
-      wordTypeStore.set(value);
-      userSettings.displaySettings.wordType = value;
+      wordTypeStore.set(props.value);
+      userSettings.displaySettings.wordType = props.value;
       break;
 
     // for display types
     case "displayType":
-      displayTypeStore.set(value);
-      userSettings.displaySettings.displayType = value;
+      displayTypeStore.set(props.value);
+      userSettings.displaySettings.displayType = props.value;
       break;
 
     // for verse translations
