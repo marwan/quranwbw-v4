@@ -5,8 +5,8 @@
   import { updateBookmarks } from "../../utils/updateBookmarks";
 
   // icons
-  import Bookmark from "../icons/Bookmark.svelte";
-  import Bookmarked from "../icons/Bookmarked.svelte";
+  import Bookmark from "../svgs/Bookmark.svelte";
+  import Bookmarked from "../svgs/Bookmarked.svelte";
 
   // update userBookmarks whenever the userSettingsStore changes
   $: userBookmarks = JSON.parse($userSettingsStore)["userBookmarks"];

@@ -4,8 +4,8 @@
 
   import { onMount } from "svelte";
   import DisplayChapterVerses from "../components/verses/DisplayChapterVerses.svelte";
-  import Bismillah from "../components/Bismillah.svelte";
-  import Spinner from "../components/Spinner.svelte";
+  import Bismillah from "../components/svgs/Bismillah.svelte";
+  import Spinner from "../components/svgs/Spinner.svelte";
   import { parseURL } from "../utils/parseURL";
   import { websiteTitle, apiEndpoint } from "../utils/websiteSettings";
   import { displayOptions } from "../utils/options";

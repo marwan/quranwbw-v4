@@ -3,7 +3,7 @@
   import { websiteTitle } from "../utils/websiteSettings";
   import { quranMetaData } from "../utils/quranMeta";
   import { currentPageStore } from "../utils/stores";
-  import Logo from "../components/Logo.svelte";
+  import Logo from "../components/svgs/Logo.svelte";
 
   currentPageStore.set("home");
 </script>

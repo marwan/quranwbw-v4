@@ -4,8 +4,8 @@
   import { chapterNumberStore, currentPageStore, pageURLStore } from "../utils/stores";
 
   // icons
-  import Menu from "./icons/Menu.svelte";
-  import Home from "./icons/Home.svelte";
+  import Menu from "./svgs/Menu.svelte";
+  import Home from "./svgs/Home.svelte";
 </script>
 
 <nav id="navbar" class="{$currentPageStore === 'home' ? 'hidden' : 'block'} bg-white fixed w-full z-20 top-0 left-0 border-b border-gray-200 text-black backdrop-filter backdrop-blur-lg bg-opacity-50 print:hidden">
