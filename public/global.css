@@ -33,7 +33,7 @@ label {
 	display: block;
 }
 
-input, button, select, textarea {
+input, select, textarea {
 	font-family: inherit;
 	font-size: inherit;
 	-webkit-padding: 0.4em 0;
@@ -48,7 +48,7 @@ input:disabled {
 	color: #ccc;
 }
 
-button {
+/* button {
 	color: #333;
 	background-color: #f4f4f4;
 	outline: none;
@@ -64,7 +64,7 @@ button:not(:disabled):active {
 
 button:focus {
 	border-color: #666;
-}
+} */
 
 svg {
 	pointer-events: none;

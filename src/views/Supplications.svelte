@@ -1,6 +1,6 @@
 <script>
-  import Selectors from "../components/Selectors.svelte";
   import DisplayIndividualVerses from "../components/verses/DisplayIndividualVerses.svelte";
+  import Spinner from "../components/Spinner.svelte";
   import { websiteTitle, apiEndpoint } from "../utils/websiteSettings";
   import { currentPageStore, wordTypeStore, displayTypeStore, wordTranslationStore, verseTranslationsStore } from "../utils/stores";
 
@@ -37,10 +37,8 @@
 </svelte:head>
 
 <div class="">
-  <Selectors />
-
   {#await fetchData}
-    <div class="flex items-center justify-center pt-28">loading...</div>
+    <Spinner />
   {:then chapterData}
     <div>
       {#each Object.entries(chapterData) as [key, value]}

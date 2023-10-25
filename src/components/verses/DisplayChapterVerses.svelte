@@ -61,7 +61,7 @@
 <!-- only show the button when the last verse on page is less than total verses in chapter -->
 {#if endVerse < chapterTotalVerses}
   <div id="loadNextVersesButton" class="flex justify-center pt-6 pb-14">
-    <button on:click={loadNextVerses} class="font-bold py-2 px-4 rounded-md"> Load Next Verses </button>
+    <button on:click={loadNextVerses} class="py-2 px-4 border border-gray-200 text-sm bg-gray-50 focus:outline-none focus:ring-4 focus:ring-gray-200 rounded-lg"> Load Next Verses </button>
   </div>
 {/if}
 

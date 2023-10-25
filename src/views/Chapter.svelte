@@ -3,13 +3,17 @@
   export let chapter, startVerse, endVerse;
 
   import { onMount } from "svelte";
-  import Selectors from "../components/Selectors.svelte";
   import DisplayChapterVerses from "../components/verses/DisplayChapterVerses.svelte";
+  import Bismillah from "../components/Bismillah.svelte";
+  import Spinner from "../components/Spinner.svelte";
   import { parseURL } from "../utils/parseURL";
   import { websiteTitle, apiEndpoint } from "../utils/websiteSettings";
   import { displayOptions } from "../utils/options";
   import { quranMetaData } from "../utils/quranMeta";
   import { currentPageStore, chapterNumberStore, chapterDataStore, wordTypeStore, displayTypeStore, wordTranslationStore, verseTranslationsStore, pageURLStore } from "../utils/stores";
+
+  // chapters that do not have Bismillah
+  const nonBismillahChapters = [1, 9];
 
   // max verses to load if total verses in chapter are more than this
   let maxVersesThreshold = 10;
@@ -19,7 +23,7 @@
   // fetch verses whenever there's a change
   $: {
     // updating the reactive chapter number
-    chapterNumberStore.set(chapter);
+    chapterNumberStore.set(Number(chapter));
 
     const chapterTotalVerses = quranMetaData[$chapterNumberStore].verses;
 
@@ -61,15 +65,15 @@
 
   // auto-load the next set of verses when the user almost reaches the bottom
   onMount(() => {
-    try {
-      document.addEventListener("scroll", function (e) {
+    document.addEventListener("scroll", function (e) {
+      try {
         if (window.innerHeight + window.pageYOffset >= document.body.scrollHeight - 2000) {
           document.querySelector("#loadNextVersesButton > button").click();
         }
-      });
-    } catch (error) {
-      // we know the error... but can make this better.
-    }
+      } catch (error) {
+        // we know the error... but can make this better.
+      }
+    });
   });
 
   currentPageStore.set("chapter");
@@ -80,11 +84,14 @@
 </svelte:head>
 
 <div>
-  <Selectors />
-
   {#await fetchData}
-    <div class="flex items-center justify-center pt-28">loading...</div>
+    <Spinner />
   {:then}
+    <!-- not sure why the || operator isn't working... -->
+    {#if nonBismillahChapters.includes($chapterNumberStore) === false}
+      <Bismillah />
+    {/if}
+
     <!-- need custom stylings if display type is continuous -->
     <div style={displayOptions[$displayTypeStore - 1].continuous === true ? "text-align: center; direction: rtl;" : ""}>
       <DisplayChapterVerses {startVerse} {endVerse} />

@@ -1,19 +1,19 @@
 <script>
   import "./utils/userSettings";
-  import { currentPageStore } from "./utils/stores";
   import { Router, Route } from "svelte-routing";
   import Home from "./views/Home.svelte";
   import Chapter from "./views/Chapter.svelte";
   import Supplications from "./views/Supplications.svelte";
   import Bookmarks from "./views/Bookmarks.svelte";
   import Navbar from "./components/Navbar.svelte";
+  import Drawer from "./components/Drawer.svelte";
 </script>
 
 <Router>
-  <div class="max-w-screen-lg mx-auto space-y-8 px-4 py-12">
-    {#if $currentPageStore != "home"}
-      <Navbar />
-    {/if}
+  <div class="max-w-screen-lg mx-auto px-4 py-12">
+    <!-- include the navbar and drawer -->
+    <Navbar />
+    <Drawer />
 
     <!-- components will be rendered in this div -->
     <div>
