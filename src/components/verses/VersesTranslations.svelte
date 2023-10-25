@@ -1,15 +1,16 @@
 <script>
   export let value;
-
+  import { userSettingsStore } from "../../utils/stores";
   import { selectableVerseTranslations } from "../../utils/options";
+  const fontSizes = JSON.parse($userSettingsStore).displaySettings.fontSizes;
 </script>
 
 {#if value.translations != undefined}
-  <div class="flex flex-col space-y-4 text-lg leading-normal">
+  <div class="verseTranslationText flex flex-col space-y-4 leading-normal {fontSizes.verseTranslationText}" data-fontSize={fontSizes.verseTranslationText}>
     {#each Object.entries(value.translations) as [verseTranslationID, verseTranslation]}
       <div class="flex flex-col">
         <span>{verseTranslation}</span>
-        <span class="text-sm">&mdash; {selectableVerseTranslations[verseTranslationID].author}</span>
+        <span>&mdash; {selectableVerseTranslations[verseTranslationID].author}</span>
       </div>
     {/each}
   </div>

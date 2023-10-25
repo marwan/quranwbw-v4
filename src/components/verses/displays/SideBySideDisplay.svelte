@@ -2,7 +2,10 @@
   export let key, value;
 
   import VersesTranslations from "../VersesTranslations.svelte";
-  import { wordTypeStore } from "../../../utils/stores";
+  import { wordTypeStore, userSettingsStore } from "../../../utils/stores";
+
+  const fontSizes = JSON.parse($userSettingsStore).displaySettings.fontSizes;
+  const arabicWordStyles = `arabicText arabic-font-${$wordTypeStore} leading-normal py-2 pl-2 ${fontSizes.arabicText}`;
 
   const arabicSplit = value.words.arabic.split("|");
 </script>
@@ -11,10 +14,10 @@
   <!-- words -->
   <div class="flex flex-row-reverse flex-wrap order-last">
     {#each { length: value.meta.words } as _, word}
-      <span class="arabic-font-{$wordTypeStore} text-4xl leading-normal py-2 pl-2">{arabicSplit[word]}</span>
+      <span class={arabicWordStyles} data-fontSize={fontSizes.arabicText}>{arabicSplit[word]}</span>
     {/each}
 
-    <span class="arabic-font-{$wordTypeStore} text-4xl leading-normal py-2 pl-2">{value.words.end}</span>
+    <span class={arabicWordStyles} data-fontSize={fontSizes.arabicText}>{value.words.end}</span>
   </div>
 
   <!-- verse translations and transliterations -->

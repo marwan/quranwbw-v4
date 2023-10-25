@@ -28,3 +28,9 @@ export const displayTypeStore = writable(localSettings.displaySettings.displayTy
 
 // to store a random number (for now) when changing verses due to some issues while re-rendering the component (probably because I'm still learning Svelte)
 export const pageURLStore = writable(null);
+
+// to store the toggle boolean for top navbar,
+export const topNavbarVisible = writable(true);
+
+// to store the toggle boolean for bottom navbar
+export const bottomNavbarVisible = writable(false);

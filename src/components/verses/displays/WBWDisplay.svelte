@@ -3,7 +3,10 @@
 
   import VersesButtons from "../VersesButtons.svelte";
   import VersesTranslations from "../VersesTranslations.svelte";
-  import { wordTypeStore } from "../../../utils/stores";
+  import { wordTypeStore, userSettingsStore } from "../../../utils/stores";
+
+  const fontSizes = JSON.parse($userSettingsStore).displaySettings.fontSizes;
+  const arabicWordStyles = `arabicText arabic-font-${$wordTypeStore} leading-normal ${fontSizes.arabicText}`;
 
   const arabicSplit = value.words.arabic.split("|");
   const transliterationSplit = value.words.transliteration.split("|");
@@ -17,15 +20,17 @@
   <div class="flex flex-row-reverse flex-wrap">
     {#each { length: value.meta.words } as _, word}
       <div class="flex flex-col p-3 text-center">
-        <span class="arabic-font-{$wordTypeStore} text-4xl leading-normal">{arabicSplit[word]}</span>
-        <div class="flex flex-col text-sm">
+        <span class={arabicWordStyles} data-fontSize={fontSizes.arabicText}>{arabicSplit[word]}</span>
+        <div class="wordTranslationText flex flex-col {fontSizes.wordTranslationText}" data-fontSize={fontSizes.wordTranslationText}>
           <span class="leading-normal">{transliterationSplit[word]}</span>
           <span class="leading-normal">{translationSplit[word]}</span>
         </div>
       </div>
     {/each}
 
-    <span class="arabic-font-{$wordTypeStore} text-4xl leading-normal p-3">{value.words.end}</span>
+    <div class="flex flex-col p-3 text-center">
+      <span class={arabicWordStyles} data-fontSize={fontSizes.arabicText}>{value.words.end}</span>
+    </div>
   </div>
 
   <!-- verse translations and transliterations -->

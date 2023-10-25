@@ -39,6 +39,40 @@ export function updateSettings(props) {
       verseTranslationsStore.set(verseTranslationsArray);
       userSettings.translations.verse = verseTranslationsArray;
       break;
+
+    // for increasing/decreasing font sizes
+    case "arabicText": // Arabic words
+    case "wordTranslationText": // word translations & transliterations
+    case "verseTranslationText": // verse translations & transliterations
+      // based upon Tailwind CSS
+      const fontSizePresets = ["text-sm", "text-base", "text-lg", "text-xl", "text-2xl", "text-3xl", "text-4xl", "text-5xl", "text-6xl", "text-7xl", "text-8xl"];
+
+      // change the font size for each 'element'
+      document.querySelectorAll(`.${props.type}`).forEach((element) => {
+        const currentSize = element.getAttribute("data-fontSize");
+        const currentIndex = fontSizePresets.indexOf(currentSize);
+
+        // set the new index and size
+        const newIndex = props.action === "increase" ? currentIndex + 1 : currentIndex - 1;
+        const newSize = fontSizePresets[newIndex];
+
+        // perform the action
+        if (newSize !== undefined) {
+          // remove the current class
+          element.classList.remove(currentSize);
+
+          // add the new class
+          element.classList.add(newSize);
+
+          // update the attribute
+          element.setAttribute("data-fontSize", newSize);
+
+          // update it in localSettings
+          userSettings.displaySettings.fontSizes[`${props.type}`] = newSize;
+        }
+      });
+
+      break;
   }
 
   // update the settings back into localStorage

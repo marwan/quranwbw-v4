@@ -10,6 +10,12 @@
   if (userSettings.displaySettings.displayType === undefined) userSettings.displaySettings.displayType = 1; // WBW
   if (userSettings.displaySettings.wordType === undefined) userSettings.displaySettings.wordType = 1; // Uthmani
 
+  // font size settings (child of display settings)
+  if (userSettings.displaySettings.fontSizes === undefined) userSettings.displaySettings.fontSizes = {}; // parent
+  if (userSettings.displaySettings.fontSizes.arabicText === undefined) userSettings.displaySettings.fontSizes.arabicText = "text-4xl";
+  if (userSettings.displaySettings.fontSizes.wordTranslationText === undefined) userSettings.displaySettings.fontSizes.wordTranslationText = "text-sm";
+  if (userSettings.displaySettings.fontSizes.verseTranslationText === undefined) userSettings.displaySettings.fontSizes.verseTranslationText = "text-sm";
+
   // translation settings
   if (userSettings.translations === undefined) userSettings.translations = {}; // parent
   if (userSettings.translations.word === undefined) userSettings.translations.word = 1; // English

@@ -1,10 +1,11 @@
 <script>
   export let key, value;
 
-  import { wordTypeStore } from "../../../utils/stores";
+  import { wordTypeStore, userSettingsStore } from "../../../utils/stores";
   import { pageNumberKeys } from "../../../utils/quranMeta";
 
-  const arabicWordStyles = `arabic-font-${$wordTypeStore} inline-block text-4xl leading-normal p-2 group-hover:bg-gray-200`;
+  const fontSizes = JSON.parse($userSettingsStore).displaySettings.fontSizes;
+  const arabicWordStyles = `arabicText arabic-font-${$wordTypeStore} inline-block leading-normal p-2 group-hover:bg-gray-200 ${fontSizes.arabicText}`;
 
   const arabicSplit = value.words.arabic.split("|");
 </script>
@@ -16,7 +17,7 @@
 
 <div id={key} class="inline py-2 group">
   {#each { length: value.meta.words } as _, word}
-    <span class={arabicWordStyles}>{arabicSplit[word]}</span>
+    <span class={arabicWordStyles} data-fontSize={fontSizes.arabicText}>{arabicSplit[word]}</span>
   {/each}
-  <span class={arabicWordStyles}>{value.words.end}</span>
+  <span class={arabicWordStyles} data-fontSize={fontSizes.arabicText}>{value.words.end}</span>
 </div>

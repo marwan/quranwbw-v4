@@ -1,14 +1,14 @@
 <script>
   import { Link } from "svelte-routing";
   import { quranMetaData } from "../utils/quranMeta.js";
-  import { chapterNumberStore, currentPageStore, pageURLStore } from "../utils/stores";
+  import { chapterNumberStore, currentPageStore, pageURLStore, topNavbarVisible, bottomNavbarVisible } from "../utils/stores";
 
   // icons
   import Menu from "./svgs/Menu.svelte";
   import Home from "./svgs/Home.svelte";
 </script>
 
-<nav id="navbar" class="{$currentPageStore === 'home' ? 'hidden' : 'block'} bg-white fixed w-full z-20 top-0 left-0 border-b border-gray-200 text-black backdrop-filter backdrop-blur-lg bg-opacity-50 print:hidden">
+<nav id="navbar" class="{$currentPageStore === 'home' ? 'hidden' : $topNavbarVisible === true ? 'block' : 'hidden'} bg-white fixed w-full z-20 top-0 left-0 border-b border-gray-200 text-black backdrop-filter backdrop-blur-lg bg-opacity-50 print:hidden">
   <div id="top-nav" class="flex flex-row items-center justify-between max-w-screen-lg mx-auto px-4 py-2">
     <Link to="/" class="flex flex-row items-center p-2 cursor-pointer hover:bg-gray-100 rounded-lg">
       <Home />
@@ -33,14 +33,9 @@
     </div>
   </div>
 
-  <div id="bottom-nav" class="hidden flex flex-row items-center justify-between border-t text-xs max-w-screen-lg mx-auto px-6">
-    <div id="navbar-bottom-chapter-revalation" class="flex flex-row items-center py-2" />
-
-    <div id="navbar-bottom-chapter-title" class="hidden flex flex-row items-center py-2">
-      <span id="navbar-bottom-chapter-transliteration" />&nbsp;
-      <span id="navbar-bottom-chapter-translation" />
-    </div>
-
+  <div id="bottom-nav" class="{$bottomNavbarVisible === true ? 'block' : 'hidden'} flex flex-row items-center justify-between border-t text-xs max-w-screen-lg mx-auto px-6">
+    <div id="navbar-bottom-chapter-revalation" class="flex flex-row items-center py-2">...</div>
+    <div id="navbar-bottom-chapter-title" class="hidden flex flex-row items-center py-2">{quranMetaData[$chapterNumberStore].transliteration}</div>
     <div class="flex flex-row items-center py-2">
       <span id="navbar-quran-divisions">..</span>
     </div>
