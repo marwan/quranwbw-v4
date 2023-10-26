@@ -1,7 +1,7 @@
 <script>
-  import { wordTypeStore, displayTypeStore, verseTranslationsStore } from "../utils/stores";
-  import { displayOptions, selectableVerseTranslations } from "../utils/options";
-  import { updateSettings } from "../utils/updateSettings";
+  import { wordTypeStore, displayTypeStore, verseTranslationsStore } from "$utils/stores";
+  import { displayOptions, selectableVerseTranslations } from "$data/options";
+  import { updateSettings } from "$utils/updateSettings";
 </script>
 
 <!-- drawer component -->
@@ -56,7 +56,7 @@
       <div class="flex flex-row justify-between items-center">
         <label for="display-style-list" class="block text-gray-900 daaark:text-white">Display Style</label>
         <select id="display-style-list" bind:value={$displayTypeStore} on:change={(event) => updateSettings({ type: "displayType", value: Number(event.target.selectedIndex) + 1 })} class="w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 daaark:bg-gray-700 daaark:border-gray-600 daaark:placeholder-gray-400 daaark:text-white daaark:focus:ring-blue-500 daaark:focus:border-blue-500">
-          {#each displayOptions as displayOption}
+          {#each Object.entries(displayOptions) as [id, displayOption]}
             <option value={displayOption.displayID}>{displayOption.displayName}</option>
           {/each}
         </select>

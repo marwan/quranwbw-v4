@@ -1,5 +1,5 @@
-import { userSettingsStore, wordTypeStore, displayTypeStore, verseTranslationsStore } from "./stores";
-import { selectableVerseTranslations } from "./options";
+import { userSettingsStore, wordTypeStore, displayTypeStore, verseTranslationsStore } from "$utils/stores";
+import { selectableVerseTranslations } from "$data/options";
 
 // function to update website settings
 export function updateSettings(props) {

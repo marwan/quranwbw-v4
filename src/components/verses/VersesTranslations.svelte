@@ -1,7 +1,7 @@
 <script>
   export let value;
-  import { userSettingsStore } from "../../utils/stores";
-  import { selectableVerseTranslations } from "../../utils/options";
+  import { userSettingsStore } from "$utils/stores";
+  import { selectableVerseTranslations } from "$data/options";
   const fontSizes = JSON.parse($userSettingsStore).displaySettings.fontSizes;
 </script>
 

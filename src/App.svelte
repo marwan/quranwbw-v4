@@ -1,12 +1,13 @@
 <script>
-  import "./utils/userSettings";
   import { Router, Route } from "svelte-routing";
-  import Home from "./views/Home.svelte";
-  import Chapter from "./views/Chapter.svelte";
-  import Supplications from "./views/Supplications.svelte";
-  import Bookmarks from "./views/Bookmarks.svelte";
-  import Navbar from "./components/Navbar.svelte";
-  import Drawer from "./components/Drawer.svelte";
+
+  import "$utils/userSettings";
+  import Home from "$views/Home.svelte";
+  import Chapter from "$views/Chapter.svelte";
+  import Supplications from "$views/Supplications.svelte";
+  import Bookmarks from "$views/Bookmarks.svelte";
+  import Navbar from "$ui/Navbar.svelte";
+  import Drawer from "$ui/Drawer.svelte";
 </script>
 
 <Router>

@@ -1,11 +1,11 @@
 <script>
   import { Link } from "svelte-routing";
-  import { quranMetaData } from "../utils/quranMeta.js";
-  import { chapterNumberStore, currentPageStore, pageURLStore, topNavbarVisible, bottomNavbarVisible } from "../utils/stores";
+  import { quranMetaData } from "$data/quranMeta";
+  import { chapterNumberStore, currentPageStore, pageURLStore, topNavbarVisible, bottomNavbarVisible } from "$utils/stores";
 
   // icons
-  import Menu from "./svgs/Menu.svelte";
-  import Home from "./svgs/Home.svelte";
+  import Menu from "$svgs/Menu.svelte";
+  import Home from "$svgs/Home.svelte";
 </script>
 
 <nav id="navbar" class="{$currentPageStore === 'home' ? 'hidden' : $topNavbarVisible === true ? 'block' : 'hidden'} bg-white fixed w-full z-20 top-0 left-0 border-b border-gray-200 text-black backdrop-filter backdrop-blur-lg bg-opacity-50 print:hidden">

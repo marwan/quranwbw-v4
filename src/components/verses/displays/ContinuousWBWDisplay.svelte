@@ -1,15 +1,8 @@
 <script>
   export let key, value;
 
-  import { wordTypeStore, userSettingsStore } from "../../../utils/stores";
-  import { pageNumberKeys } from "../../../utils/quranMeta";
-
-  const fontSizes = JSON.parse($userSettingsStore).displaySettings.fontSizes;
-  const arabicWordStyles = `arabicText arabic-font-${$wordTypeStore} inline-block leading-normal p-2 group-hover:bg-gray-200 ${fontSizes.arabicText}`;
-
-  const arabicSplit = value.words.arabic.split("|");
-  const transliterationSplit = value.words.transliteration.split("|");
-  const translationSplit = value.words.translation.split("|");
+  import VersesWords from "$verses/VersesWords.svelte";
+  import { pageNumberKeys } from "$data/quranMeta";
 </script>
 
 <!-- if the current key is the first verse of a page  -->
@@ -18,16 +11,5 @@
 {/if}
 
 <div id={key} class="inline py-2 group">
-  {#each { length: value.meta.words } as _, word}
-    <div class="inline-flex flex-col p-3">
-      <span class={arabicWordStyles} data-fontSize={fontSizes.arabicText}>{arabicSplit[word]}</span>
-      <div class="wordTranslationText flex flex-col {fontSizes.wordTranslationText}" data-fontSize={fontSizes.wordTranslationText}>
-        <span class="leading-normal">{transliterationSplit[word]}</span>
-        <span class="leading-normal">{translationSplit[word]}</span>
-      </div>
-    </div>
-  {/each}
-  <div class="inline-flex flex-col p-3">
-    <span class={arabicWordStyles} data-fontSize={fontSizes.arabicText}>{value.words.end}</span>
-  </div>
+  <VersesWords {value} />
 </div>

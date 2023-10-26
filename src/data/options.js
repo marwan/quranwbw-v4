@@ -1,10 +1,10 @@
-export const displayOptions = [
-  { displayID: 1, displayName: "WBW", displayComponent: "WBWDisplay", continuous: false },
-  { displayID: 2, displayName: "Normal", displayComponent: "NormalDisplay", continuous: false },
-  { displayID: 3, displayName: "Continuous WBW", displayComponent: "ContinuousNormalDisplay", continuous: true },
-  { displayID: 4, displayName: "Continuous Normal", displayComponent: "ContinuousNormalDisplay", continuous: true },
-  { displayID: 5, displayName: "Side By Side", displayComponent: "SideBySideDisplay", continuous: false },
-];
+export const displayOptions = {
+  1: { displayID: 1, displayName: "WBW", displayComponent: "WBWDisplay", layout: "wbw", continuous: false },
+  2: { displayID: 2, displayName: "Normal", displayComponent: "NormalDisplay", layout: "normal", continuous: false },
+  3: { displayID: 3, displayName: "Continuous WBW", displayComponent: "ContinuousNormalDisplay", layout: "wbw", continuous: true },
+  4: { displayID: 4, displayName: "Continuous Normal", displayComponent: "ContinuousNormalDisplay", layout: "normal", continuous: true },
+  5: { displayID: 5, displayName: "Side By Side", displayComponent: "SideBySideDisplay", layout: "normal", continuous: false },
+};
 
 export const selectableVerseTranslations = {
   1: {

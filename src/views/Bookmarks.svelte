@@ -1,8 +1,8 @@
 <script>
-  import DisplayIndividualVerses from "../components/verses/DisplayIndividualVerses.svelte";
-  import Spinner from "../components/svgs/Spinner.svelte";
-  import { websiteTitle, apiEndpoint } from "../utils/websiteSettings";
-  import { currentPageStore, wordTypeStore, displayTypeStore, wordTranslationStore, verseTranslationsStore } from "../utils/stores";
+  import DisplayIndividualVerses from "$verses/DisplayIndividualVerses.svelte";
+  import Spinner from "$svgs/Spinner.svelte";
+  import { websiteTitle, apiEndpoint } from "$utils/websiteSettings";
+  import { currentPageStore, wordTypeStore, displayTypeStore, wordTranslationStore, verseTranslationsStore } from "$utils/stores";
 
   let userSettings = JSON.parse(localStorage.getItem("userSettings"));
   let userBookmarks = userSettings["userBookmarks"];

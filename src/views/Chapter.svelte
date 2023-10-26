@@ -3,17 +3,17 @@
   export let chapter, startVerse, endVerse;
 
   import { onMount } from "svelte";
-  import DisplayChapterVerses from "../components/verses/DisplayChapterVerses.svelte";
-  import Bismillah from "../components/svgs/Bismillah.svelte";
-  import Spinner from "../components/svgs/Spinner.svelte";
-  import { parseURL } from "../utils/parseURL";
-  import { websiteTitle, apiEndpoint } from "../utils/websiteSettings";
-  import { displayOptions } from "../utils/options";
-  import { quranMetaData } from "../utils/quranMeta";
-  import { currentPageStore, chapterNumberStore, chapterDataStore, wordTypeStore, displayTypeStore, wordTranslationStore, verseTranslationsStore, pageURLStore } from "../utils/stores";
+  import DisplayChapterVerses from "$verses/DisplayChapterVerses.svelte";
+  import Bismillah from "$svgs/Bismillah.svelte";
+  import Spinner from "$svgs/Spinner.svelte";
+  import { parseURL } from "$utils/parseURL";
+  import { websiteTitle, apiEndpoint } from "$utils/websiteSettings";
+  import { displayOptions } from "$data/options";
+  import { quranMetaData } from "$data/quranMeta";
+  import { currentPageStore, chapterNumberStore, chapterDataStore, wordTypeStore, displayTypeStore, wordTranslationStore, verseTranslationsStore, pageURLStore } from "$utils/stores";
 
   // chapters that do not have Bismillah
-  const nonBismillahChapters = [1, 9];
+  const chaptersWithoutBismillah = [1, 9];
 
   // max verses to load if total verses in chapter are more than this
   let maxVersesThreshold = 10;
@@ -88,12 +88,12 @@
     <Spinner />
   {:then}
     <!-- not sure why the || operator isn't working... -->
-    {#if nonBismillahChapters.includes($chapterNumberStore) === false}
+    {#if chaptersWithoutBismillah.includes($chapterNumberStore) === false}
       <Bismillah />
     {/if}
 
     <!-- need custom stylings if display type is continuous -->
-    <div style={displayOptions[$displayTypeStore - 1].continuous === true ? "text-align: center; direction: rtl;" : ""}>
+    <div style={displayOptions[`${$displayTypeStore}`].continuous === true ? "text-align: center; direction: rtl;" : ""}>
       <DisplayChapterVerses {startVerse} {endVerse} />
     </div>
   {:catch error}

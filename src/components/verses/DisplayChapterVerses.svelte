@@ -2,21 +2,21 @@
 <script>
   export let startVerse, endVerse;
 
-  import WBWDisplay from "./displays/WBWDisplay.svelte";
-  import NormalDisplay from "./displays/NormalDisplay.svelte";
-  import ContinuousWBWDisplay from "./displays/ContinuousWBWDisplay.svelte";
-  import ContinuousNormalDisplay from "./displays/ContinuousNormalDisplay.svelte";
-  import SideBySideDisplay from "./displays/SideBySideDisplay.svelte";
-  import { quranMetaData } from "../../utils/quranMeta";
-  import { displayTypeStore, chapterNumberStore, chapterDataStore } from "../../utils/stores";
+  import WBWDisplay from "$displays/WBWDisplay.svelte";
+  import NormalDisplay from "$displays/NormalDisplay.svelte";
+  import ContinuousWBWDisplay from "$displays/ContinuousWBWDisplay.svelte";
+  import ContinuousNormalDisplay from "$displays/ContinuousNormalDisplay.svelte";
+  import SideBySideDisplay from "$displays/SideBySideDisplay.svelte";
+  import { quranMetaData } from "$data/quranMeta";
+  import { displayTypeStore, chapterNumberStore, chapterDataStore } from "$utils/stores";
 
-  const displayComponents = [
-    { displayID: 1, displayComponent: WBWDisplay },
-    { displayID: 2, displayComponent: NormalDisplay },
-    { displayID: 3, displayComponent: ContinuousWBWDisplay },
-    { displayID: 4, displayComponent: ContinuousNormalDisplay },
-    { displayID: 5, displayComponent: SideBySideDisplay },
-  ];
+  const displayComponents = {
+    1: { displayID: 1, displayComponent: WBWDisplay },
+    2: { displayID: 2, displayComponent: NormalDisplay },
+    3: { displayID: 3, displayComponent: ContinuousWBWDisplay },
+    4: { displayID: 4, displayComponent: ContinuousNormalDisplay },
+    5: { displayID: 5, displayComponent: SideBySideDisplay },
+  };
 
   const chapterTotalVerses = quranMetaData[$chapterNumberStore].verses;
 
@@ -55,7 +55,7 @@
 </script>
 
 {#each Array.from(Array(endVerse + 1).keys()).slice(startVerse) as verse}
-  <svelte:component this={displayComponents[$displayTypeStore - 1].displayComponent} key={`${$chapterNumberStore}:${verse}`} value={$chapterDataStore[`${$chapterNumberStore}:${verse}`]} />
+  <svelte:component this={displayComponents[`${$displayTypeStore}`].displayComponent} key={`${$chapterNumberStore}:${verse}`} value={$chapterDataStore[`${$chapterNumberStore}:${verse}`]} />
 {/each}
 
 <!-- only show the button when the last verse on page is less than total verses in chapter -->

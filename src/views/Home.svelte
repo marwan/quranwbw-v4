@@ -1,9 +1,9 @@
 <script>
   import { Link } from "svelte-routing";
-  import { websiteTitle } from "../utils/websiteSettings";
-  import { quranMetaData } from "../utils/quranMeta";
-  import { currentPageStore } from "../utils/stores";
-  import Logo from "../components/svgs/Logo.svelte";
+  import { websiteTitle } from "$utils/websiteSettings";
+  import { quranMetaData } from "$data/quranMeta";
+  import { currentPageStore } from "$utils/stores";
+  import Logo from "$svgs/Logo.svelte";
 
   currentPageStore.set("home");
 </script>

@@ -1,12 +1,12 @@
 <script>
   export let key;
 
-  import { userSettingsStore } from "../../utils/stores";
-  import { updateBookmarks } from "../../utils/updateBookmarks";
+  import { userSettingsStore } from "$utils/stores";
+  import { updateBookmarks } from "$utils/updateBookmarks";
 
   // icons
-  import Bookmark from "../svgs/Bookmark.svelte";
-  import Bookmarked from "../svgs/Bookmarked.svelte";
+  import Bookmark from "$svgs/Bookmark.svelte";
+  import Bookmarked from "$svgs/Bookmarked.svelte";
 
   // update userBookmarks whenever the userSettingsStore changes
   $: userBookmarks = JSON.parse($userSettingsStore).userBookmarks;
