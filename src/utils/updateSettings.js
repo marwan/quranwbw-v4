@@ -45,7 +45,7 @@ export function updateSettings(props) {
     case "wordTranslationText": // word translations & transliterations
     case "verseTranslationText": // verse translations & transliterations
       // based upon Tailwind CSS
-      const fontSizePresets = ["text-sm", "text-base", "text-lg", "text-xl", "text-2xl", "text-3xl", "text-4xl", "text-5xl", "text-6xl", "text-7xl", "text-8xl"];
+      const fontSizePresets = ["text-xs", "text-sm", "text-base", "text-lg", "text-xl", "text-2xl", "text-3xl", "text-4xl", "text-5xl", "text-6xl", "text-7xl", "text-8xl"];
 
       // change the font size for each 'element'
       document.querySelectorAll(`.${props.type}`).forEach((element) => {
