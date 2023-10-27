@@ -59,7 +59,7 @@
 {/each}
 
 <!-- if the verses are being shown to the user in a modal/drawer, then do not show the loadNextVersesButton -->
-{#if isExampleVerse === false}
+{#if isExampleVerse === undefined}
   <!-- only show the button when the last verse on page is less than total verses in chapter -->
   {#if endVerse < chapterTotalVerses}
     <div id="loadNextVersesButton" class="flex justify-center pt-6 pb-14">

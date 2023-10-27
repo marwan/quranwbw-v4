@@ -69,7 +69,7 @@
             <div class="flex flex-col pt-8 space-y-4">
               <span class="text-center text-xs">Example Verse:</span>
               <div style="zoom: 60%; {displayOptions[`${$displayTypeStore}`].continuous === true ? 'text-align: center; direction: rtl;' : ''}">
-                <DisplayChapterVerses startVerse={1} endVerse={1} />
+                <DisplayChapterVerses startVerse={1} endVerse={1} isExampleVerse={true} />
               </div>
             </div>
           {/if}
