@@ -2,10 +2,14 @@
   import { Link } from "svelte-routing";
   import { quranMetaData } from "$data/quranMeta";
   import { chapterNumberStore, currentPageStore, pageURLStore, topNavbarVisible, bottomNavbarVisible } from "$utils/stores";
+  import { toggleModal } from "$utils/toggleModal";
 
   // icons
   import Menu from "$svgs/Menu.svelte";
   import Home from "$svgs/Home.svelte";
+
+  // classes
+  const rightMenuDropdownClasses = "block w-full text-left px-4 py-2 hover:bg-gray-100 daaark:hover:bg-gray-600 daaark:hover:text-white";
 </script>
 
 <nav id="navbar" class="{$currentPageStore === 'home' ? 'hidden' : $topNavbarVisible === true ? 'block' : 'hidden'} bg-white fixed w-full z-20 top-0 left-0 border-b border-gray-200 text-black backdrop-filter backdrop-blur-lg bg-opacity-50 print:hidden">
@@ -15,7 +19,7 @@
       <span class="text-xs pl-2 hidden sm:block">Home</span>
     </Link>
 
-    <button id="mega-menu-dropdown-button" data-dropdown-toggle="navigation-dropdown" class="flex items-center py-2 pl-3 pr-4 text-sm border-gray-100 w-auto p-2 hover:bg-gray-100 rounded-lg">
+    <button id="navigationDropdownButton" data-dropdown-toggle="navigationDropdown" class="flex items-center py-2 pl-3 pr-4 text-sm border-gray-100 w-auto p-2 hover:bg-gray-100 rounded-lg">
       <span id="navbar-top-title">
         {#if $currentPageStore === "chapter"}
           {quranMetaData[$chapterNumberStore].transliteration} ({quranMetaData[$chapterNumberStore].translation})
@@ -27,7 +31,7 @@
       <svg class="w-2.5 h-2.5 ml-2.5 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" /></svg>
     </button>
 
-    <div class="flex flex-row items-center p-2 cursor-pointer hover:bg-gray-100 rounded-lg" type="button" id="menu-dropdownButton" data-dropdown-toggle="menu-dropdown">
+    <div class="flex flex-row items-center p-2 cursor-pointer hover:bg-gray-100 rounded-lg" type="button" id="rightMenuDropdownButton" data-dropdown-toggle="rightMenuDropdown">
       <span class="text-xs pr-2 hidden sm:block">Menu</span>
       <Menu />
     </div>
@@ -44,7 +48,7 @@
   <div id="chapter-progress-bar" class="fixed inset-x-0 z-20 h-1 bg-gray-300 transition-width transition-slowest ease" style="width: 0%" />
 
   <!-- navigation list -->
-  <div id="navigation-dropdown" class="navbar-dropdown z-30 mt-1 border border-gray-200 rounded-lg shadow-sm bg-white border-y shadow-lg hidden">
+  <div id="navigationDropdown" class="navbar-dropdown z-30 mt-1 border border-gray-200 rounded-lg shadow-sm bg-white border-y shadow-lg hidden">
     <div class="flex flex-row space-x-4 justify-between max-h-80 max-w-screen-lg px-4 py-5 mx-auto text-gray-900 daaark:text-white md:px-2">
       <!-- chapter selector -->
       <div class="flex">
@@ -76,13 +80,16 @@
   </div>
 
   <!-- Dropdown menu -->
-  <div id="menu-dropdown" class="navbar-dropdown z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 daaark:bg-gray-700 daaark:divide-gray-600">
-    <ul class="py-2 text-sm text-gray-700 daaark:text-gray-200" aria-labelledby="menu-dropdownButton">
+  <div id="rightMenuDropdown" class="navbar-dropdown z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 daaark:bg-gray-700 daaark:divide-gray-600">
+    <ul class="py-2 text-sm text-gray-700 daaark:text-gray-200" aria-labelledby="rightMenuDropdownButton">
       <li>
-        <button data-drawer-target="drawer-right" data-drawer-show="drawer-right" data-drawer-placement="right" aria-controls="drawer-right" class="block px-4 py-2 hover:bg-gray-100 daaark:hover:bg-gray-600 daaark:hover:text-white">Settings</button>
+        <button data-drawer-target="drawer-right" data-drawer-show="drawer-right" data-drawer-placement="right" aria-controls="drawer-right" class={rightMenuDropdownClasses}>Settings</button>
       </li>
       <li>
-        <button class="block px-4 py-2 hover:bg-gray-100 daaark:hover:bg-gray-600 daaark:hover:text-white">Chapter Overview</button>
+        <button class={rightMenuDropdownClasses}>Chapter Overview</button>
+      </li>
+      <li>
+        <button on:click={() => toggleModal("firstTimeSetupModal", "show")} class={rightMenuDropdownClasses}>Show First Time Setup</button>
       </li>
     </ul>
   </div>

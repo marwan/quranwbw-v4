@@ -1,6 +1,6 @@
 <!-- component to load verses from a SINGLE chapter, unlike supplications and bookmarks which are random -->
 <script>
-  export let startVerse, endVerse;
+  export let startVerse, endVerse, isExampleVerse;
 
   import WBWDisplay from "$displays/WBWDisplay.svelte";
   import NormalDisplay from "$displays/NormalDisplay.svelte";
@@ -58,11 +58,14 @@
   <svelte:component this={displayComponents[`${$displayTypeStore}`].displayComponent} key={`${$chapterNumberStore}:${verse}`} value={$chapterDataStore[`${$chapterNumberStore}:${verse}`]} />
 {/each}
 
-<!-- only show the button when the last verse on page is less than total verses in chapter -->
-{#if endVerse < chapterTotalVerses}
-  <div id="loadNextVersesButton" class="flex justify-center pt-6 pb-14">
-    <button on:click={loadNextVerses} class="py-2 px-4 border border-gray-200 text-sm bg-gray-50 focus:outline-none focus:ring-4 focus:ring-gray-200 rounded-lg"> Load Next Verses </button>
-  </div>
+<!-- if the verses are being shown to the user in a modal/drawer, then do not show the loadNextVersesButton -->
+{#if isExampleVerse === false}
+  <!-- only show the button when the last verse on page is less than total verses in chapter -->
+  {#if endVerse < chapterTotalVerses}
+    <div id="loadNextVersesButton" class="flex justify-center pt-6 pb-14">
+      <button on:click={loadNextVerses} class="py-2 px-4 border border-gray-200 text-sm bg-gray-50 focus:outline-none focus:ring-4 focus:ring-gray-200 rounded-lg"> Load Next Verses </button>
+    </div>
+  {/if}
 {/if}
 
 <svelte:component this={DisplayChapterVerses} {...props} />

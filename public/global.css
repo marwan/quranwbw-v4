@@ -14,6 +14,16 @@
 	font-display: swap;
 }
 
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #d1d5db;
+	height: 70px;
+	border-radius: 15px;
+}
+
 
 html, body {
 	position: relative;

@@ -73,9 +73,14 @@ export function updateSettings(props) {
       });
 
       break;
+
+    // for first time setup
+    case "firstTimeSetupCompleted":
+      userSettings.firstTimeSetupCompleted = props.value;
+      break;
   }
 
-  // update the settings back into localStorage
+  // update the settings back into localStorage and global store
   userSettingsStore.set(JSON.stringify(userSettings));
   localStorage.setItem("userSettings", JSON.stringify(userSettings));
 }

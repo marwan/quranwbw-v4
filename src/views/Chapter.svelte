@@ -94,7 +94,7 @@
 
     <!-- need custom stylings if display type is continuous -->
     <div style={displayOptions[`${$displayTypeStore}`].continuous === true ? "text-align: center; direction: rtl;" : ""}>
-      <DisplayChapterVerses {startVerse} {endVerse} />
+      <DisplayChapterVerses {startVerse} {endVerse} isExampleVerse={false} />
     </div>
   {:catch error}
     <p>{error}</p>

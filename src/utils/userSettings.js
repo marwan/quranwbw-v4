@@ -24,5 +24,8 @@
   // user bookmarks
   if (userSettings.userBookmarks === undefined) userSettings.userBookmarks = [];
 
+  // first time setup
+  if (userSettings.firstTimeSetupCompleted === undefined) userSettings.firstTimeSetupCompleted = false;
+
   localStorage.setItem("userSettings", JSON.stringify(userSettings));
 })();

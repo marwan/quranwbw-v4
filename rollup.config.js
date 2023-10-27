@@ -36,12 +36,14 @@ export default {
       entries: [
         { find: "$components", replacement: path.resolve(__dirname, "./src/components") },
         { find: "$ui", replacement: path.resolve(__dirname, "./src/components/ui") },
+        { find: "$modals", replacement: path.resolve(__dirname, "./src/components/ui/modals") },
         { find: "$verses", replacement: path.resolve(__dirname, "./src/components/verses") },
         { find: "$displays", replacement: path.resolve(__dirname, "./src/components/verses/displays") },
         { find: "$svgs", replacement: path.resolve(__dirname, "./src/components/svgs") },
         { find: "$utils", replacement: path.resolve(__dirname, "./src/utils") },
         { find: "$views", replacement: path.resolve(__dirname, "./src/views") },
         { find: "$data", replacement: path.resolve(__dirname, "./src/data") },
+        { find: "$lib", replacement: path.resolve(__dirname, "./src/lib") },
       ],
     }),
 
