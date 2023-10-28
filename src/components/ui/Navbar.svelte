@@ -64,18 +64,20 @@
       </div>
 
       <!-- verses selector -->
-      <div class="flex flex-col space-y-4">
-        <ul id="navbar-chapter-list" class="grow basis-1/2 px-2 overflow-y-scroll md:min-w-fit">
-          <li>
-            <Link to="/{$chapterNumberStore}" on:click={() => pageURLStore.set(Math.random())} class="block p-3 rounded-lg hover:bg-gray-100 text-sm text-gray-500">All Verses</Link>
-          </li>
-          {#each { length: quranMetaData[$chapterNumberStore].verses } as _, verse}
+      {#if $currentPageStore === "chapter"}
+        <div class="flex flex-col space-y-4">
+          <ul id="navbar-chapter-list" class="grow basis-1/2 px-2 overflow-y-scroll md:min-w-fit">
             <li>
-              <Link to="/{$chapterNumberStore}/{verse + 1}" on:click={() => pageURLStore.set(Math.random())} class="block p-3 rounded-lg hover:bg-gray-100 text-sm text-gray-500">Verse {verse + 1}</Link>
+              <Link to="/{$chapterNumberStore}" on:click={() => pageURLStore.set(Math.random())} class="block p-3 rounded-lg hover:bg-gray-100 text-sm text-gray-500">All Verses</Link>
             </li>
-          {/each}
-        </ul>
-      </div>
+            {#each { length: quranMetaData[$chapterNumberStore].verses } as _, verse}
+              <li>
+                <Link to="/{$chapterNumberStore}/{verse + 1}" on:click={() => pageURLStore.set(Math.random())} class="block p-3 rounded-lg hover:bg-gray-100 text-sm text-gray-500">Verse {verse + 1}</Link>
+              </li>
+            {/each}
+          </ul>
+        </div>
+      {/if}
     </div>
   </div>
 

@@ -1,7 +1,9 @@
 <script>
-  import { currentPageStore, wordTypeStore, displayTypeStore, verseTranslationsStore } from "$utils/stores";
+  import { currentPageStore, wordTypeStore, displayTypeStore, verseTranslationsStore, userSettingsStore } from "$utils/stores";
   import { displayOptions, selectableVerseTranslations } from "$data/options";
   import { updateSettings } from "$utils/updateSettings";
+
+  $: fontSizeCodes = JSON.parse($userSettingsStore).displaySettings.fontSizes;
 </script>
 
 <!-- drawer component -->
@@ -67,7 +69,7 @@
       {/if}
 
       <div class="flex flex-row justify-between items-center">
-        <span class="block text-gray-900 daaark:text-white">Arabic Word Size</span>
+        <span class="block text-gray-900 daaark:text-white">Arabic Word Size ({fontSizeCodes.arabicText.split("-")[1]})</span>
         <div class="inline-flex rounded-md shadow-sm" role="group">
           <button type="button" on:click={() => updateSettings({ type: "arabicText", action: "increase" })} class="inline-flex items-center px-4 py-2 font-medium text-gray-900 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 daaark:bg-gray-700 daaark:border-gray-600 daaark:text-white daaark:hover:text-white daaark:hover:bg-gray-600 daaark:focus:ring-blue-500 daaark:focus:text-white">
             <svg class="w-3 h-3 text-gray-800 daaark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
@@ -84,7 +86,7 @@
       <p class="mb-6 text-xs text-gray-500 daaark:text-gray-400">Modify the font size for arabic word text.</p>
 
       <div class="flex flex-row justify-between items-center">
-        <span class="block text-gray-900 daaark:text-white">Word Translation Size</span>
+        <span class="block text-gray-900 daaark:text-white">Word Translation Size ({fontSizeCodes.wordTranslationText.split("-")[1]})</span>
         <div class="inline-flex rounded-md shadow-sm" role="group">
           <button type="button" on:click={() => updateSettings({ type: "wordTranslationText", action: "increase" })} class="inline-flex items-center px-4 py-2 font-medium text-gray-900 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 daaark:bg-gray-700 daaark:border-gray-600 daaark:text-white daaark:hover:text-white daaark:hover:bg-gray-600 daaark:focus:ring-blue-500 daaark:focus:text-white">
             <svg class="w-3 h-3 text-gray-800 daaark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
@@ -101,7 +103,7 @@
       <p class="mb-6 text-xs text-gray-500 daaark:text-gray-400">Modify the font size for word translation and transliteration.</p>
 
       <div class="flex flex-row justify-between items-center">
-        <span class="block text-gray-900 daaark:text-white">Verse Translation Size</span>
+        <span class="block text-gray-900 daaark:text-white">Verse Translation Size ({fontSizeCodes.verseTranslationText.split("-")[1]})</span>
         <div class="inline-flex rounded-md shadow-sm" role="group">
           <button type="button" on:click={() => updateSettings({ type: "verseTranslationText", action: "increase" })} class="inline-flex items-center px-4 py-2 font-medium text-gray-900 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 daaark:bg-gray-700 daaark:border-gray-600 daaark:text-white daaark:hover:text-white daaark:hover:bg-gray-600 daaark:focus:ring-blue-500 daaark:focus:text-white">
             <svg class="w-3 h-3 text-gray-800 daaark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
