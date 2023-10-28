@@ -40,6 +40,22 @@ export function updateSettings(props) {
       userSettings.translations.verse = verseTranslationsArray;
       break;
 
+    // for first time setup
+    case "firstTimeSetupCompleted":
+      userSettings.firstTimeSetupCompleted = props.value;
+      break;
+
+    case "userBookmarks":
+      const key = props.key;
+      let userBookmarks = userSettings["userBookmarks"];
+
+      // if the bookmark (key) already exists, then remove it, else add it
+      userBookmarks.includes(key) === true ? (userBookmarks = userBookmarks.filter((x) => x !== key)) : userBookmarks.push(key);
+
+      // update the bookmarks
+      userSettings.userBookmarks = userBookmarks;
+      break;
+
     // for increasing/decreasing font sizes
     case "arabicText": // Arabic words
     case "wordTranslationText": // word translations & transliterations
@@ -72,11 +88,6 @@ export function updateSettings(props) {
         }
       });
 
-      break;
-
-    // for first time setup
-    case "firstTimeSetupCompleted":
-      userSettings.firstTimeSetupCompleted = props.value;
       break;
   }
 

@@ -2,7 +2,7 @@
   export let key;
 
   import { userSettingsStore } from "$utils/stores";
-  import { updateBookmarks } from "$utils/updateBookmarks";
+  import { updateSettings } from "$utils/updateSettings";
 
   // icons
   import Bookmark from "$svgs/Bookmark.svelte";
@@ -16,11 +16,7 @@
 
 <div class="flex flex-row space-x-4 text-gray-400">
   <button class={buttonStyles}>{key}</button>
-  <button on:click={updateBookmarks} data-key={key} class={buttonStyles}>
-    {#if userBookmarks.includes(key)}
-      <Bookmarked />
-    {:else}
-      <Bookmark />
-    {/if}
+  <button on:click={() => updateSettings({ type: "userBookmarks", key })} class={buttonStyles}>
+    <svelte:component this={userBookmarks.includes(key) === true ? Bookmarked : Bookmark} />
   </button>
 </div>
