@@ -1,5 +1,5 @@
 <script>
-  import DisplayIndividualVerses from "$verses/DisplayIndividualVerses.svelte";
+  import IndividualVerses from "$verses/IndividualVerses.svelte";
   import Spinner from "$svgs/Spinner.svelte";
   import { websiteTitle, apiEndpoint } from "$utils/websiteSettings";
   import { currentPageStore, wordTypeStore, displayTypeStore, wordTranslationStore, verseTranslationsStore } from "$utils/stores";
@@ -48,7 +48,7 @@
     {:then chapterData}
       <div>
         {#each Object.entries(chapterData) as [key, value]}
-          <DisplayIndividualVerses {key} {value} />
+          <IndividualVerses {key} {value} />
         {/each}
       </div>
     {:catch error}

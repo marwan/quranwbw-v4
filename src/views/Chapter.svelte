@@ -3,7 +3,7 @@
   export let chapter, startVerse, endVerse;
 
   import { onMount } from "svelte";
-  import DisplayChapterVerses from "$verses/DisplayChapterVerses.svelte";
+  import ChapterVerses from "$verses/ChapterVerses.svelte";
   import Bismillah from "$svgs/Bismillah.svelte";
   import Spinner from "$svgs/Spinner.svelte";
   import { parseURL } from "$utils/parseURL";
@@ -94,7 +94,7 @@
 
     <!-- need custom stylings if display type is continuous -->
     <div style={displayOptions[`${$displayTypeStore}`].continuous === true ? "text-align: center; direction: rtl;" : ""}>
-      <DisplayChapterVerses {startVerse} {endVerse} />
+      <ChapterVerses {startVerse} {endVerse} />
     </div>
   {:catch error}
     <p>{error}</p>

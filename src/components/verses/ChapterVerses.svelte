@@ -20,7 +20,7 @@
 
   const chapterTotalVerses = quranMetaData[$chapterNumberStore].verses;
 
-  let DisplayChapterVerses; // for the "DisplayChapterVerses" component
+  let ChapterVerses; // for the "ChapterVerses" component
 
   let props = {},
     start,
@@ -29,7 +29,7 @@
   // function to load the next set of verses
   function loadNextVerses() {
     // importing the same component to be re-used when the "Load Next Verses" button is pressed
-    import("./DisplayChapterVerses.svelte").then((res) => (DisplayChapterVerses = res.default));
+    import("./ChapterVerses.svelte").then((res) => (ChapterVerses = res.default));
 
     // max verses to load when the next set is requested
     const versesToLoad = 20;
@@ -68,4 +68,4 @@
   {/if}
 {/if}
 
-<svelte:component this={DisplayChapterVerses} {...props} />
+<svelte:component this={ChapterVerses} {...props} />
