@@ -61,7 +61,7 @@
             {quranMetaData[chapter + 1].verses} Verses &bull; {quranMetaData[chapter + 1].revelation === 1 ? "Meccan" : "Medinan"}
           </div>
         </div>
-        <!-- <div class="chapter-icons justify-items-end text-gray-400 text-4xl"></div> -->
+        <div class="chapter-icons justify-items-end text-gray-400 text-3xl mt-2">{@html `&#xE9${quranMetaData[chapter + 1].icon};`}</div>
       </Link>
     {/each}
   </div>
