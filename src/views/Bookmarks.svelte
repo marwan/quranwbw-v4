@@ -4,8 +4,8 @@
   import { websiteTitle, apiEndpoint } from "$utils/websiteSettings";
   import { currentPageStore, wordTypeStore, displayTypeStore, wordTranslationStore, verseTranslationsStore } from "$utils/stores";
 
-  let userSettings = JSON.parse(localStorage.getItem("userSettings"));
-  let userBookmarks = userSettings["userBookmarks"];
+  const userSettings = JSON.parse(localStorage.getItem("userSettings"));
+  const userBookmarks = userSettings["userBookmarks"];
 
   let fetchData;
 

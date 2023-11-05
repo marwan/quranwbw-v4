@@ -40,9 +40,9 @@ export function updateSettings(props) {
       userSettings.translations.verse = verseTranslationsArray;
       break;
 
-    // for first time setup
-    case "firstTimeSetupCompleted":
-      userSettings.firstTimeSetupCompleted = props.value;
+    // for Initial Setup
+    case "initialSetupCompleted":
+      userSettings.initialSetupCompleted = props.value;
       break;
 
     case "userBookmarks":
@@ -50,7 +50,7 @@ export function updateSettings(props) {
       let userBookmarks = userSettings["userBookmarks"];
 
       // if the bookmark (key) already exists, then remove it, else add it
-      userBookmarks.includes(key) === true ? (userBookmarks = userBookmarks.filter((x) => x !== key)) : userBookmarks.push(key);
+      userBookmarks.includes(key) ? (userBookmarks = userBookmarks.filter((x) => x !== key)) : userBookmarks.push(key);
 
       // update the bookmarks
       userSettings.userBookmarks = userBookmarks;

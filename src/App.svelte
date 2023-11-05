@@ -13,7 +13,8 @@
   import Bookmarks from "$views/Bookmarks.svelte";
   import Navbar from "$ui/Navbar.svelte";
   import Drawer from "$ui/Drawer.svelte";
-  import FirstTimeSetupModal from "$modals/FirstTimeSetupModal.svelte";
+  import InitialSetupModal from "$modals/InitialSetupModal.svelte";
+  import AudioModal from "$modals/AudioModal.svelte";
 </script>
 
 <Router>
@@ -21,7 +22,8 @@
     <!-- include the UI elements -->
     <Navbar />
     <Drawer />
-    <FirstTimeSetupModal />
+    <InitialSetupModal />
+    <AudioModal />
 
     <!-- components will be rendered in this div -->
     <div>
@@ -32,20 +34,6 @@
       <Route path="/:chapter/*" let:params>
         <Chapter chapter={params.chapter} />
       </Route>
-
-      <!-- different combinations of chapter routes -->
-      <!-- Example 1: "/1" (chapter 1) -->
-      <!-- <Route path="/:chapter" let:params>
-        <SingleChapter chapter={params.chapter} />
-      </Route> -->
-      <!-- Example 2: "/2/255" (chapter 2, verse 255) -->
-      <!-- <Route path="/:chapter/:startVerse" let:params>
-        <SingleChapter chapter={params.chapter} startVerse={params.startVerse} />
-      </Route> -->
-      <!-- Example 3: "/2/285-286" (chapter 2, verse 285 to verse 286) -->
-      <!-- <Route path="/:chapter/:startVerse-:endVerse" let:params>
-        <SingleChapter chapter={params.chapter} startVerse={params.startVerse} endVerse={params.endVerse} />
-      </Route> -->
     </div>
   </div>
 </Router>

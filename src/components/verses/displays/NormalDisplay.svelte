@@ -11,7 +11,7 @@
 
   <!-- words -->
   <div class="flex flex-row-reverse flex-wrap">
-    <VersesWords {value} />
+    <VersesWords {key} {value} />
   </div>
 
   <!-- verse translations and transliterations -->

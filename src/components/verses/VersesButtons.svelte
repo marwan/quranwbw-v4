@@ -1,22 +1,33 @@
 <script>
   export let key;
 
-  import { userSettingsStore } from "$utils/stores";
+  const chapter = +key.split(":")[0];
+  const verse = +key.split(":")[1];
+
+  import { Link } from "svelte-routing";
+  import { showAudioModal } from "$utils/audioController";
+  import { currentPageStore, userSettingsStore, currentPlayingKeyStore, audioPlayingStore } from "$utils/stores";
   import { updateSettings } from "$utils/updateSettings";
 
   // icons
   import Bookmark from "$svgs/Bookmark.svelte";
   import Bookmarked from "$svgs/Bookmarked.svelte";
+  import Play from "$svgs/Play.svelte";
+  import Pause from "$svgs/Pause.svelte";
 
   // update userBookmarks whenever the userSettingsStore changes
   $: userBookmarks = JSON.parse($userSettingsStore).userBookmarks;
 
-  const buttonStyles = "inline-flex items-center justify-center w-10 h-10 mr-2 text-gray-700 transition-colors duration-150 rounded-lg focus:shadow-outline hover:bg-white print:hidden";
+  const buttonClasses = "inline-flex items-center justify-center w-10 h-10 mr-2 text-gray-400 transition-colors duration-150 rounded-md focus:shadow-outline hover:bg-gray-200 print:hidden";
 </script>
 
-<div class="flex flex-row space-x-4 text-gray-400">
-  <button class={buttonStyles}>{key}</button>
-  <button on:click={() => updateSettings({ type: "userBookmarks", key })} class={buttonStyles}>
-    <svelte:component this={userBookmarks.includes(key) === true ? Bookmarked : Bookmark} />
+<div class="verseButtons flex flex-row space-x-4 text-gray-400">
+  <Link to={$currentPageStore === "chapter" ? "#" : `/${chapter}/${verse}`} class={buttonClasses}>{key}</Link>
+
+  <button on:click={() => updateSettings({ type: "userBookmarks", key })} class={buttonClasses}>
+    <svelte:component this={userBookmarks.includes(key) ? Bookmarked : Bookmark} />
+  </button>
+  <button on:click={() => showAudioModal(key)} class={buttonClasses}>
+    <svelte:component this={$audioPlayingStore === true && $currentPlayingKeyStore === key ? Pause : Play} />
   </button>
 </div>

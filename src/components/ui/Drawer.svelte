@@ -27,13 +27,13 @@
   <div class="flex flex-row justify-between items-center py-5 text-xs border-gray-200">
     <span class="block text-gray-900 daaark:text-white">Website Theme</span>
     <div class="inline-flex rounded-md shadow-sm" role="group">
-      <button type="button" class="inline-flex items-center px-4 py-2 text-gray-900 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 daaark:bg-gray-700 daaark:border-gray-600 daaark:text-white daaark:hover:text-white daaark:hover:bg-gray-600 daaark:focus:ring-blue-500 daaark:focus:text-white">
+      <button type="button" class="inline-flex items-center px-4 py-2 text-gray-900 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-200 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 daaark:bg-gray-700 daaark:border-gray-600 daaark:text-white daaark:hover:text-white daaark:hover:bg-gray-600 daaark:focus:ring-blue-500 daaark:focus:text-white">
         <svg class="w-3 h-3 mr-1 text-gray-800 daaark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 3V1m0 18v-2M5.05 5.05 3.636 3.636m12.728 12.728L14.95 14.95M3 10H1m18 0h-2M5.05 14.95l-1.414 1.414M16.364 3.636 14.95 5.05M14 10a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z" />
         </svg>
         Light
       </button>
-      <button type="button" class="inline-flex items-center px-4 py-2 text-gray-900 bg-white border border-gray-200 rounded-r-md hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 daaark:bg-gray-700 daaark:border-gray-600 daaark:text-white daaark:hover:text-white daaark:hover:bg-gray-600 daaark:focus:ring-blue-500 daaark:focus:text-white">
+      <button type="button" class="inline-flex items-center px-4 py-2 text-gray-900 bg-white border border-gray-200 rounded-r-md hover:bg-gray-200 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 daaark:bg-gray-700 daaark:border-gray-600 daaark:text-white daaark:hover:text-white daaark:hover:bg-gray-600 daaark:focus:ring-blue-500 daaark:focus:text-white">
         <svg class="w-3 h-3 mr-1 text-gray-800 daaark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.509 5.75c0-1.493.394-2.96 1.144-4.25h-.081a8.5 8.5 0 1 0 7.356 12.746A8.5 8.5 0 0 1 8.509 5.75Z" />
         </svg>
@@ -48,7 +48,7 @@
     <div class="flex flex-col flex-wrap space-y-4 text-xs">
       <div class="flex flex-row justify-between items-center">
         <label for="quran-font-list" class="block text-gray-900 daaark:text-white">Quran Font</label>
-        <select id="quran-font-list" on:change={(event) => updateSettings({ type: "wordType", value: Number(event.target.value) })} bind:value={$wordTypeStore} class="w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 daaark:bg-gray-700 daaark:border-gray-600 daaark:placeholder-gray-400 daaark:text-white daaark:focus:ring-blue-500 daaark:focus:border-blue-500">
+        <select id="quran-font-list" on:change={(event) => updateSettings({ type: "wordType", value: +event.target.value })} bind:value={$wordTypeStore} class="w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 daaark:bg-gray-700 daaark:border-gray-600 daaark:placeholder-gray-400 daaark:text-white daaark:focus:ring-blue-500 daaark:focus:border-blue-500">
           <option value={1}>Uthmani</option>
           <option value={2}>IndoPak</option>
         </select>
@@ -59,7 +59,7 @@
       {#if $currentPageStore === "chapter"}
         <div class="flex flex-row justify-between items-center">
           <label for="display-style-list" class="block text-gray-900 daaark:text-white">Display Type</label>
-          <select id="display-style-list" bind:value={$displayTypeStore} on:change={(event) => updateSettings({ type: "displayType", value: Number(event.target.selectedIndex) + 1 })} class="w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 daaark:bg-gray-700 daaark:border-gray-600 daaark:placeholder-gray-400 daaark:text-white daaark:focus:ring-blue-500 daaark:focus:border-blue-500">
+          <select id="display-style-list" bind:value={$displayTypeStore} on:change={(event) => updateSettings({ type: "displayType", value: +event.target.selectedIndex + 1 })} class="w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 daaark:bg-gray-700 daaark:border-gray-600 daaark:placeholder-gray-400 daaark:text-white daaark:focus:ring-blue-500 daaark:focus:border-blue-500">
             {#each Object.entries(displayOptions) as [id, displayOption]}
               <option value={displayOption.displayID}>{displayOption.displayName}</option>
             {/each}
@@ -71,12 +71,12 @@
       <div class="flex flex-row justify-between items-center">
         <span class="block text-gray-900 daaark:text-white">Arabic Word Size ({fontSizeCodes.arabicText.split("-")[1]})</span>
         <div class="inline-flex rounded-md shadow-sm" role="group">
-          <button type="button" on:click={() => updateSettings({ type: "arabicText", action: "increase" })} class="inline-flex items-center px-4 py-2 font-medium text-gray-900 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 daaark:bg-gray-700 daaark:border-gray-600 daaark:text-white daaark:hover:text-white daaark:hover:bg-gray-600 daaark:focus:ring-blue-500 daaark:focus:text-white">
+          <button type="button" on:click={() => updateSettings({ type: "arabicText", action: "increase" })} class="inline-flex items-center px-4 py-2 font-medium text-gray-900 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-200 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 daaark:bg-gray-700 daaark:border-gray-600 daaark:text-white daaark:hover:text-white daaark:hover:bg-gray-600 daaark:focus:ring-blue-500 daaark:focus:text-white">
             <svg class="w-3 h-3 text-gray-800 daaark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
             </svg>
           </button>
-          <button type="button" on:click={() => updateSettings({ type: "arabicText", action: "decrease" })} class="inline-flex items-center px-4 py-2 font-medium text-gray-900 bg-white border border-gray-200 rounded-r-md hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 daaark:bg-gray-700 daaark:border-gray-600 daaark:text-white daaark:hover:text-white daaark:hover:bg-gray-600 daaark:focus:ring-blue-500 daaark:focus:text-white">
+          <button type="button" on:click={() => updateSettings({ type: "arabicText", action: "decrease" })} class="inline-flex items-center px-4 py-2 font-medium text-gray-900 bg-white border border-gray-200 rounded-r-md hover:bg-gray-200 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 daaark:bg-gray-700 daaark:border-gray-600 daaark:text-white daaark:hover:text-white daaark:hover:bg-gray-600 daaark:focus:ring-blue-500 daaark:focus:text-white">
             <svg class="w-3 h-3 text-gray-800 daaark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
             </svg>
@@ -88,12 +88,12 @@
       <div class="flex flex-row justify-between items-center">
         <span class="block text-gray-900 daaark:text-white">Word Translation Size ({fontSizeCodes.wordTranslationText.split("-")[1]})</span>
         <div class="inline-flex rounded-md shadow-sm" role="group">
-          <button type="button" on:click={() => updateSettings({ type: "wordTranslationText", action: "increase" })} class="inline-flex items-center px-4 py-2 font-medium text-gray-900 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 daaark:bg-gray-700 daaark:border-gray-600 daaark:text-white daaark:hover:text-white daaark:hover:bg-gray-600 daaark:focus:ring-blue-500 daaark:focus:text-white">
+          <button type="button" on:click={() => updateSettings({ type: "wordTranslationText", action: "increase" })} class="inline-flex items-center px-4 py-2 font-medium text-gray-900 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-200 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 daaark:bg-gray-700 daaark:border-gray-600 daaark:text-white daaark:hover:text-white daaark:hover:bg-gray-600 daaark:focus:ring-blue-500 daaark:focus:text-white">
             <svg class="w-3 h-3 text-gray-800 daaark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
             </svg>
           </button>
-          <button type="button" on:click={() => updateSettings({ type: "wordTranslationText", action: "decrease" })} class="inline-flex items-center px-4 py-2 font-medium text-gray-900 bg-white border border-gray-200 rounded-r-md hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 daaark:bg-gray-700 daaark:border-gray-600 daaark:text-white daaark:hover:text-white daaark:hover:bg-gray-600 daaark:focus:ring-blue-500 daaark:focus:text-white">
+          <button type="button" on:click={() => updateSettings({ type: "wordTranslationText", action: "decrease" })} class="inline-flex items-center px-4 py-2 font-medium text-gray-900 bg-white border border-gray-200 rounded-r-md hover:bg-gray-200 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 daaark:bg-gray-700 daaark:border-gray-600 daaark:text-white daaark:hover:text-white daaark:hover:bg-gray-600 daaark:focus:ring-blue-500 daaark:focus:text-white">
             <svg class="w-3 h-3 text-gray-800 daaark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
             </svg>
@@ -105,12 +105,12 @@
       <div class="flex flex-row justify-between items-center">
         <span class="block text-gray-900 daaark:text-white">Verse Translation Size ({fontSizeCodes.verseTranslationText.split("-")[1]})</span>
         <div class="inline-flex rounded-md shadow-sm" role="group">
-          <button type="button" on:click={() => updateSettings({ type: "verseTranslationText", action: "increase" })} class="inline-flex items-center px-4 py-2 font-medium text-gray-900 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 daaark:bg-gray-700 daaark:border-gray-600 daaark:text-white daaark:hover:text-white daaark:hover:bg-gray-600 daaark:focus:ring-blue-500 daaark:focus:text-white">
+          <button type="button" on:click={() => updateSettings({ type: "verseTranslationText", action: "increase" })} class="inline-flex items-center px-4 py-2 font-medium text-gray-900 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-200 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 daaark:bg-gray-700 daaark:border-gray-600 daaark:text-white daaark:hover:text-white daaark:hover:bg-gray-600 daaark:focus:ring-blue-500 daaark:focus:text-white">
             <svg class="w-3 h-3 text-gray-800 daaark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
             </svg>
           </button>
-          <button type="button" on:click={() => updateSettings({ type: "verseTranslationText", action: "decrease" })} class="inline-flex items-center px-4 py-2 font-medium text-gray-900 bg-white border border-gray-200 rounded-r-md hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 daaark:bg-gray-700 daaark:border-gray-600 daaark:text-white daaark:hover:text-white daaark:hover:bg-gray-600 daaark:focus:ring-blue-500 daaark:focus:text-white">
+          <button type="button" on:click={() => updateSettings({ type: "verseTranslationText", action: "decrease" })} class="inline-flex items-center px-4 py-2 font-medium text-gray-900 bg-white border border-gray-200 rounded-r-md hover:bg-gray-200 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 daaark:bg-gray-700 daaark:border-gray-600 daaark:text-white daaark:hover:text-white daaark:hover:bg-gray-600 daaark:focus:ring-blue-500 daaark:focus:text-white">
             <svg class="w-3 h-3 text-gray-800 daaark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
             </svg>

@@ -6,19 +6,19 @@ import { quranMetaData } from "$data/quranMeta";
 // using SvelteKit would be better for routing, but this gets the job done for now
 // function to parse the URL to get the starting and ending verses
 export function parseURL() {
-  let startVerse, endVerse;
+  const chapterTotalVerses = quranMetaData[get(chapterNumberStore)].verses;
 
-  let chapterTotalVerses = quranMetaData[get(chapterNumberStore)].verses;
-
-  let url = window.location.pathname;
+  const url = window.location.pathname;
 
   // example verses: /1, /2/255, /2/285-286
-  let urlSlashesSplit = url.split("/");
-  let urlSlashesCount = urlSlashesSplit.length - 1;
+  const urlSlashesSplit = url.split("/");
+  const urlSlashesCount = urlSlashesSplit.length - 1;
 
   // example verses: /2:255
-  let urlColenSplit = url.split(":");
-  let urlColenCount = urlColenSplit.length - 1;
+  const urlColenSplit = url.split(":");
+  const urlColenCount = urlColenSplit.length - 1;
+
+  let startVerse, endVerse;
 
   // for URL with slashes
   if (urlSlashesCount > 0) {
@@ -29,8 +29,8 @@ export function parseURL() {
 
     // eg: /2/255 or /2/255-256
     else if (urlSlashesCount === 2) {
-      let secondPartHyphenSplit = urlSlashesSplit[2].split("-");
-      let secondPartHyphenSplitCount = secondPartHyphenSplit.length - 1;
+      const secondPartHyphenSplit = urlSlashesSplit[2].split("-");
+      const secondPartHyphenSplitCount = secondPartHyphenSplit.length - 1;
 
       // eg: /2/255
       if (secondPartHyphenSplitCount === 0) {
@@ -69,5 +69,5 @@ export function parseURL() {
   // making sure the start verse is not higher than the ending verse
   if (startVerse > endVerse) startVerse = endVerse;
 
-  return [Number(startVerse), Number(endVerse)];
+  return [+startVerse, +endVerse];
 }

@@ -30,7 +30,18 @@ export const displayTypeStore = writable(localSettings.displaySettings.displayTy
 export const pageURLStore = writable(null);
 
 // to store the toggle boolean for top navbar,
-export const topNavbarVisible = writable(true);
+export const topNavbarVisibleStore = writable(true);
 
 // to store the toggle boolean for bottom navbar
-export const bottomNavbarVisible = writable(false);
+export const bottomNavbarVisibleStore = writable(false);
+
+// to store the current playing verse's key
+export const currentPlayingKeyStore = writable(null);
+
+// to store boolean for if any audio is playing or not
+export const audioPlayingStore = writable(false);
+
+// to store all the audio settings
+export const audioSettingsStore = writable({
+  audioPlaying: false,
+});

@@ -8,22 +8,18 @@
   import Spinner from "$svgs/Spinner.svelte";
   import { parseURL } from "$utils/parseURL";
   import { websiteTitle, apiEndpoint } from "$utils/websiteSettings";
-  import { displayOptions } from "$data/options";
   import { quranMetaData } from "$data/quranMeta";
   import { currentPageStore, chapterNumberStore, chapterDataStore, wordTypeStore, displayTypeStore, wordTranslationStore, verseTranslationsStore, pageURLStore } from "$utils/stores";
 
-  // chapters that do not have Bismillah
-  const chaptersWithoutBismillah = [1, 9];
-
   // max verses to load if total verses in chapter are more than this
-  let maxVersesThreshold = 10;
+  const maxVersesThreshold = 10;
 
   let fetchData;
 
   // fetch verses whenever there's a change
   $: {
     // updating the reactive chapter number
-    chapterNumberStore.set(Number(chapter));
+    chapterNumberStore.set(+chapter);
 
     const chapterTotalVerses = quranMetaData[$chapterNumberStore].verses;
 
@@ -87,13 +83,13 @@
   {#await fetchData}
     <Spinner />
   {:then}
-    <!-- not sure why the || operator isn't working... -->
-    {#if chaptersWithoutBismillah.includes($chapterNumberStore) === false}
+    <!-- show Bismillah if chapter is not 1st or 9th -->
+    {#if ![1, 9].includes($chapterNumberStore)}
       <Bismillah />
     {/if}
 
-    <!-- need custom stylings if display type is continuous -->
-    <div style={displayOptions[`${$displayTypeStore}`].continuous === true ? "text-align: center; direction: rtl;" : ""}>
+    <!-- need custom stylings if display type is 3 or 4 - continuous -->
+    <div style={[3, 4].includes($displayTypeStore) ? "text-align: center; direction: rtl;" : ""}>
       <ChapterVerses {startVerse} {endVerse} />
     </div>
   {:catch error}
