@@ -51,11 +51,12 @@
   <div id="navigationDropdown" class="navbar-dropdown z-30 mt-1 border border-gray-200 rounded-lg shadow-sm bg-white border-y shadow-lg hidden">
     <div class="flex flex-row space-x-4 justify-between max-h-80 max-w-screen-lg px-4 py-5 mx-auto text-gray-900 daaark:text-white md:px-2">
       <!-- chapter selector -->
-      <div class="flex">
+      <div class="flex flex-col space-y-2">
+        <div class="mx-4 text-xs pb-2 border-b">Chapters</div>
         <ul id="navbar-chapter-list" class="grow basis-1/2 px-2 overflow-y-scroll md:min-w-fit">
           {#each { length: 114 } as _, chapter}
             <li>
-              <Link to="/{chapter + 1}" class="block p-3 rounded-lg hover:bg-gray-200">
+              <Link to="/{chapter + 1}" class="block p-3 rounded-lg hover:bg-gray-200 {$chapterNumberStore === chapter + 1 && 'bg-gray-200'}">
                 <span class="text-sm text-gray-500">{chapter + 1}. {quranMetaData[chapter + 1].transliteration} ({quranMetaData[chapter + 1].translation})</span>
               </Link>
             </li>
@@ -66,13 +67,14 @@
       <!-- verses selector -->
       {#if $currentPageStore === "chapter"}
         <div class="flex flex-col space-y-4">
+          <div class="mx-4 text-xs pb-2 border-b">Verses</div>
           <ul id="navbar-chapter-list" class="grow basis-1/2 px-2 overflow-y-scroll md:min-w-fit">
             <li>
-              <Link to="/{$chapterNumberStore}" on:click={() => pageURLStore.set(Math.random())} class="block p-3 rounded-lg hover:bg-gray-200 text-sm text-gray-500">All Verses</Link>
+              <Link to="/{$chapterNumberStore}" on:click={() => pageURLStore.set(Math.random())} class="block p-3 rounded-lg hover:bg-gray-200 text-sm text-gray-500">All</Link>
             </li>
             {#each { length: quranMetaData[$chapterNumberStore].verses } as _, verse}
               <li>
-                <Link to="/{$chapterNumberStore}/{verse + 1}" on:click={() => pageURLStore.set(Math.random())} class="block p-3 rounded-lg hover:bg-gray-200 text-sm text-gray-500">Verse {verse + 1}</Link>
+                <Link to="/{$chapterNumberStore}/{verse + 1}" on:click={() => pageURLStore.set(Math.random())} class="block p-3 rounded-lg hover:bg-gray-200 text-sm text-gray-500">{verse + 1}</Link>
               </li>
             {/each}
           </ul>

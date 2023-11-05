@@ -11,5 +11,5 @@
 {/if}
 
 <div id={key} class="inline py-2 group">
-  <VersesWords {value} />
+  <VersesWords {key} {value} />
 </div>

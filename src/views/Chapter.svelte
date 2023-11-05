@@ -89,7 +89,7 @@
     {/if}
 
     <!-- need custom stylings if display type is 3 or 4 - continuous -->
-    <div style={[3, 4].includes($displayTypeStore) ? "text-align: center; direction: rtl;" : ""}>
+    <div style={[3, 4].includes($displayTypeStore) && "text-align: center; direction: rtl;"}>
       <ChapterVerses {startVerse} {endVerse} />
     </div>
   {:catch error}
