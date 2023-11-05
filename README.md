@@ -1,5 +1,6 @@
+<br />
 <div align="center">
-  <a target="_blank" href="[https://quranwbw.com](https://svelte.quranwbw.com)"><img src="https://raw.githubusercontent.com/marwan/quranwbw-svelte/main/public/images/logo.png" width="300"></a>
+  <a target="_blank" href="https://svelte.quranwbw.com"><img src="https://raw.githubusercontent.com/marwan/quranwbw-svelte/main/public/images/logo.png" width="300"></a>
 </div>
 
 # About
