@@ -48,7 +48,7 @@
   <div id="chapter-progress-bar" class="fixed inset-x-0 z-20 h-1 bg-gray-300 transition-width transition-slowest ease" style="width: 0%" />
 
   <!-- navigation list -->
-  <div id="navigationDropdown" class="navbar-dropdown z-30 mt-1 border border-gray-200 rounded-lg shadow-sm bg-white border-y shadow-lg hidden">
+  <div id="navigationDropdown" class="navbar-dropdown z-30 mt-1 border border-gray-200 rounded-lg shadow-sm bg-white border-y shadow-lg backdrop-filter backdrop-blur-lg bg-opacity-95 hidden">
     <div class="flex flex-row space-x-4 justify-between max-h-80 max-w-screen-lg px-4 py-5 mx-auto text-gray-900 daaark:text-white md:px-2">
       <!-- chapter selector -->
       <div class="flex flex-col space-y-2">
