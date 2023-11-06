@@ -4,6 +4,7 @@
   import { displayOptions } from "$data/options";
   import { updateSettings } from "$utils/updateSettings";
   import { toggleModal } from "$utils/toggleModal";
+  import { buttonElement } from "$utils/commonStyles";
 
   // show the setup modal on first visit except on the home page
   $: {
@@ -77,7 +78,7 @@
       </div>
       <!-- Modal footer -->
       <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b daark:border-gray-600">
-        <button on:click={() => toggleModal("InitialSetupModal", "hide")} type="button" class="inline-flex items-center justify-center mr-2 border py-2 px-4 border-gray-200 bg-gray-50 text-gray-700 space-x-2 transition-colors duration-150 rounded-lg focus:shadow-outline">Close</button>
+        <button on:click={() => toggleModal("InitialSetupModal", "hide")} type="button" class={buttonElement}>Close</button>
       </div>
     </div>
   </div>

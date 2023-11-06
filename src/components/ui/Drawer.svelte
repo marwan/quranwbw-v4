@@ -2,6 +2,7 @@
   import { currentPageStore, wordTypeStore, displayTypeStore, verseTranslationsStore, userSettingsStore } from "$utils/stores";
   import { displayOptions, selectableVerseTranslations } from "$data/options";
   import { updateSettings } from "$utils/updateSettings";
+  import { disabledElement, buttonElement } from "$utils/commonStyles";
 
   $: fontSizeCodes = JSON.parse($userSettingsStore).displaySettings.fontSizes;
 </script>
@@ -24,7 +25,7 @@
 
   <p class="mb-6 text-xs text-gray-500 daaark:text-gray-400">Change the website settings like the website theme, display, translations or the audio settings.</p>
 
-  <div class="flex flex-row justify-between items-center py-5 text-xs border-gray-200">
+  <div class="flex flex-row justify-between items-center py-5 text-xs border-gray-200 {disabledElement}">
     <span class="block text-gray-900 daaark:text-white">Website Theme</span>
     <div class="inline-flex rounded-md shadow-sm" role="group">
       <button type="button" class="inline-flex items-center px-4 py-2 text-gray-900 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-200 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 daaark:bg-gray-700 daaark:border-gray-600 daaark:text-white daaark:hover:text-white daaark:hover:bg-gray-600 daaark:focus:ring-blue-500 daaark:focus:text-white">
@@ -126,7 +127,7 @@
     <h3 class="block mb-2 font-medium text-base text-gray-900 daaark:text-white">Translations</h3>
 
     <div class="flex flex-col flex-wrap space-y-4 text-xs">
-      <div class="flex flex-row justify-between items-center">
+      <div class="flex flex-row justify-between items-center {disabledElement}">
         <label for="word-translations-list" class="block text-gray-900 daaark:text-white">Word</label>
         <select id="word-translations-list" onchange="update_settings('translation', ['word'])" class="w-24 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 daaark:bg-gray-700 daaark:border-gray-600 daaark:placeholder-gray-400 daaark:text-white daaark:focus:ring-blue-500 daaark:focus:border-blue-500" />
       </div>
@@ -160,7 +161,7 @@
   </div>
 
   <!-- audio -->
-  <div class="py-5 text-xs border-t border-gray-200">
+  <div class="py-5 text-xs border-t border-gray-200 {disabledElement}">
     <h3 class="block mb-2 font-medium text-base text-gray-900 daaark:text-white">Audios</h3>
 
     <div class="flex flex-col flex-wrap space-y-4 text-xs">
@@ -185,8 +186,8 @@
   </div>
 
   <!-- reset settings button -->
-  <div class="flex flex-col justify-center border-t border-gray-200 py-6 space-y-4">
-    <button onclick="reset_defaults()" class="py-2 px-4 border border-gray-200 text-sm bg-gray-50 focus:outline-none focus:ring-4 focus:ring-gray-200 rounded-lg">Reset Settings</button>
+  <div class="flex flex-col justify-center border-t border-gray-200 py-6 space-y-4 {disabledElement}">
+    <button onclick="reset_defaults()" class="text-sm {buttonElement}">Reset Settings</button>
     <p class="mb-6 text-xs text-gray-500 daaark:text-gray-400">Resetting the website settings will also erase your last read location and bookmarks and the page will be reloaded for changes to take effect.</p>
   </div>
 </div>

@@ -3,12 +3,13 @@
   import { chapterNumberStore, currentPlayingKeyStore, audioSettingsStore } from "$utils/stores";
   import { initializeAudio } from "$utils/audioController";
   import { toggleModal } from "$utils/toggleModal";
+  import { disabledElement } from "$utils/commonStyles";
   import Play from "$svgs/Play.svelte";
-
-  const disabledElementClasses = "opacity-30 cursor-not-allowed pointer-events-none select-none";
 
   let currentPlayingChapter = 1,
     currentPlayingVerse = 1;
+
+  let endVerseStartingIndex = 0;
 
   $: {
     if ($currentPlayingKeyStore) {
@@ -37,14 +38,19 @@
 
   function updateStartVerse(event) {
     $audioSettingsStore.startVerse = +event.target.value;
-
-    if ($audioSettingsStore.endVerse < $audioSettingsStore.startVerse) {
-      $audioSettingsStore.endVerse = +event.target.value;
-    }
+    endVerseStartingIndex = $audioSettingsStore.startVerse - 1;
+    fixEndVerse();
   }
 
   function updateEndVerse(event) {
     $audioSettingsStore.endVerse = +event.target.value;
+    fixEndVerse();
+  }
+
+  function fixEndVerse() {
+    if ($audioSettingsStore.endVerse < $audioSettingsStore.startVerse) {
+      $audioSettingsStore.endVerse = $audioSettingsStore.startVerse;
+    }
   }
 </script>
 
@@ -72,7 +78,7 @@
                 <label for="playVerse" class="ml-2 text-sm font-medium text-gray-900 daaark:text-gray-300">Play Verse</label>
               </div>
               <!-- play word -->
-              <div class="flex items-center {disabledElementClasses}">
+              <div class="flex items-center {disabledElement}">
                 <input id="playWord-radio" type="radio" value="" onclick="audio_settings_change(this)" name="radio-audio-type" class="radio-play-type w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 focus:ring-gray-500 daaark:focus:ring-blue-600 daaark:ring-offset-gray-800 focus:ring-2 daaark:bg-gray-700 daaark:border-gray-600" />
                 <label for="playWord-radio" class="ml-2 text-sm font-medium text-gray-900 daaark:text-gray-300">Play Word</label>
               </div>
@@ -94,7 +100,7 @@
                 <label for="playFromHere" class="ml-2 text-sm font-medium text-gray-900 daaark:text-gray-300">From Here</label>
               </div>
               <!-- play range -->
-              <div class="flex items-center {disabledElementClasses}">
+              <div class="flex items-center {disabledElement}">
                 <input id="playRange" type="radio" value="" on:click={updateRange} name="audioRange-radios" class=" w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 focus:ring-gray-500 daaark:focus:ring-blue-600 daaark:ring-offset-gray-800 focus:ring-2 daaark:bg-gray-700 daaark:border-gray-600" />
                 <label for="playRange" class="ml-2 text-sm font-medium text-gray-900 daaark:text-gray-300">Verses Range</label>
               </div>
@@ -124,7 +130,7 @@
                   </select> -->
 
                   <select id="endVerse-list" on:change={updateEndVerse} class="w-18 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 daaark:bg-gray-700 daaark:border-gray-600 daaark:placeholder-gray-400 daaark:text-white daaark:focus:ring-blue-500 daaark:focus:border-blue-500">
-                    {#each Array.from(Array(quranMetaData[$chapterNumberStore].verses).keys()).slice(0) as verse}
+                    {#each Array.from(Array(quranMetaData[$chapterNumberStore].verses).keys()).slice(endVerseStartingIndex) as verse}
                       <option value={verse + 1}>{verse + 1}</option>
                     {/each}
                   </select>
@@ -146,7 +152,7 @@
           </div>
         </div>
 
-        <div class={$audioSettingsStore.audioRange === undefined && disabledElementClasses}>
+        <div class={$audioSettingsStore.audioRange === undefined && disabledElement}>
           <button on:click={initializeAudio} class="w-full inline-flex items-center justify-center mr-2 border mt-6 py-2 px-4 border-gray-200 bg-gray-50 text-gray-700 space-x-2 transition-colors duration-150 rounded-lg focus:shadow-outline">
             <Play />
 
