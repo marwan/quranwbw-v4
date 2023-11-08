@@ -33,18 +33,18 @@ function serve() {
 export default {
   plugins: [
     alias({
-      entries: [
-        { find: "$components", replacement: path.resolve(__dirname, "./src/components") },
-        { find: "$ui", replacement: path.resolve(__dirname, "./src/components/ui") },
-        { find: "$modals", replacement: path.resolve(__dirname, "./src/components/ui/modals") },
-        { find: "$verses", replacement: path.resolve(__dirname, "./src/components/verses") },
-        { find: "$displays", replacement: path.resolve(__dirname, "./src/components/verses/displays") },
-        { find: "$svgs", replacement: path.resolve(__dirname, "./src/components/svgs") },
-        { find: "$utils", replacement: path.resolve(__dirname, "./src/utils") },
-        { find: "$views", replacement: path.resolve(__dirname, "./src/views") },
-        { find: "$data", replacement: path.resolve(__dirname, "./src/data") },
-        { find: "$lib", replacement: path.resolve(__dirname, "./src/lib") },
-      ],
+      entries: {
+        $components: path.resolve(__dirname, "./src/components"),
+        $ui: path.resolve(__dirname, "./src/components/ui"),
+        $modals: path.resolve(__dirname, "./src/components/ui/modals"),
+        $verses: path.resolve(__dirname, "./src/components/verses"),
+        $displays: path.resolve(__dirname, "./src/components/verses/displays"),
+        $svgs: path.resolve(__dirname, "./src/components/svgs"),
+        $utils: path.resolve(__dirname, "./src/utils"),
+        $views: path.resolve(__dirname, "./src/views"),
+        $data: path.resolve(__dirname, "./src/data"),
+        $lib: path.resolve(__dirname, "./src/lib"),
+      },
     }),
 
     svelte({

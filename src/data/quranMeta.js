@@ -163,6 +163,7 @@ export const supplicationsFromQuran = {
   "60:4": 46,
   "60:5": 1,
   "66:8": 35,
+  "66:11": 10,
 };
 
 export const pageNumberKeys = [

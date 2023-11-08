@@ -35,13 +35,10 @@ export const topNavbarVisibleStore = writable(true);
 // to store the toggle boolean for bottom navbar
 export const bottomNavbarVisibleStore = writable(false);
 
-// to store the current playing verse's key
-export const currentPlayingKeyStore = writable(null);
-
-// to store boolean for if any audio is playing or not
-export const audioPlayingStore = writable(false);
-
 // to store all the audio settings
 export const audioSettingsStore = writable({
-  audioPlaying: false,
+  isPlaying: false,
+  timesToRepeat: 1,
+  timesRepeated: 0,
+  delay: 0,
 });

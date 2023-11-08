@@ -1,5 +1,5 @@
 import { get } from "svelte/store";
-import { currentPlayingKeyStore, audioSettingsStore, audioPlayingStore } from "$utils/stores";
+import { audioSettingsStore } from "$utils/stores";
 import { toggleModal } from "$utils/toggleModal";
 import { wordsAudioURL } from "$utils/websiteSettings";
 
@@ -10,9 +10,6 @@ window.audio = document.querySelector("#player");
 // window.audioSettings = {};
 // let audioSettings = {};
 const audioSettings = get(audioSettingsStore);
-
-// set to false by default
-audioSettings.timesRepeated = 0;
 
 let nextToPlay;
 
@@ -49,14 +46,10 @@ export function playAudio(props) {
   audio.load();
   audio.play();
 
-  // set the audio type
+  // update the audio settings
   audioSettings.audioType = props.type;
-
-  // set to true
-  audioPlayingStore.set(true);
-
-  // update the key
-  currentPlayingKeyStore.set(`${props.chapter}:${verse}`);
+  audioSettings.isPlaying = true;
+  audioSettings.playingKey = `${props.chapter}:${verse}`;
 
   // scroll to the top of the verse
   // window.scrollTo(window.scrollX, document.getElementById(`${chapter}:${verse}`).getBoundingClientRect().top - 50);
@@ -98,6 +91,9 @@ export function playAudio(props) {
     // once everything is done, reset settings
     resetAudioSettings();
   };
+
+  // update the audio settings
+  audioSettingsStore.set(audioSettings);
 }
 
 export function initializeAudio() {
@@ -107,28 +103,34 @@ export function initializeAudio() {
 
   playAudio({
     type: "verse",
-    chapter: +get(currentPlayingKeyStore).split(":")[0],
+    chapter: audioSettings.playingChapter,
     firstToPlay: audioSettings.startVerse,
     lastToPlay: audioSettings.endVerse,
-    timesToRepeat: 1,
-    delay: 0,
+    timesToRepeat: audioSettings.timesToRepeat,
+    delay: audioSettings.delay,
   });
 
   toggleModal("audioModal", "hide");
 }
 
 export function resetAudioSettings() {
-  // reset
   audio.pause();
   audio.currentTime = 0;
-
-  // set to false
-  audioPlayingStore.set(false);
+  audioSettings.isPlaying = false;
+  audioSettingsStore.set(audioSettings);
 }
 
 export function showAudioModal(key) {
-  currentPlayingKeyStore.set(key);
+  // reset audio settings
   resetAudioSettings();
+
+  // update the key, chapter, verse and update the store
+  audioSettings.playingKey = key;
+  audioSettings.playingChapter = +audioSettings.playingKey.split(":")[0];
+  audioSettings.playingVerse = +audioSettings.playingKey.split(":")[1];
+  audioSettingsStore.set(audioSettings);
+
+  // show the modal
   toggleModal("audioModal", "show");
 }
 

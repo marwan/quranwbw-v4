@@ -11,14 +11,14 @@
 
   const fontSizes = JSON.parse($userSettingsStore).displaySettings.fontSizes;
 
-  const wordClasses = "rounded-md hover:cursor-pointer hover:bg-gray-200 daaark:hover:bg-slate-800";
+  const wordClasses = "rounded-md hover:cursor-pointer hover:bg-[#ebebeb] daaark:hover:bg-slate-800";
 
   // classes for each display types
   const layoutClasses = {
     1: `arabicText arabic-font-${$wordTypeStore} leading-normal ${fontSizes.arabicText}`,
     2: `arabicText arabic-font-${$wordTypeStore} leading-normal py-2 pl-2 ${fontSizes.arabicText}`,
-    3: `arabicText arabic-font-${$wordTypeStore} inline-block leading-normal p-2 group-hover:bg-gray-200 ${fontSizes.arabicText}`,
-    4: `arabicText arabic-font-${$wordTypeStore} inline-block leading-normal p-2 group-hover:bg-gray-200 ${fontSizes.arabicText}`,
+    3: `arabicText arabic-font-${$wordTypeStore} inline-block leading-normal p-2 group-hover:bg-[#ebebeb] ${fontSizes.arabicText}`,
+    4: `arabicText arabic-font-${$wordTypeStore} inline-block leading-normal p-2 group-hover:bg-[#ebebeb] ${fontSizes.arabicText}`,
     5: `arabicText arabic-font-${$wordTypeStore} leading-normal py-2 pl-2 ${fontSizes.arabicText}`,
   };
 

@@ -9,17 +9,17 @@
   import Home from "$svgs/Home.svelte";
 
   // classes
-  const rightMenuDropdownClasses = "block w-full text-left px-4 py-2 hover:bg-gray-200 daaark:hover:bg-gray-600 daaark:hover:text-white";
+  const rightMenuDropdownClasses = "block w-full text-left px-4 py-2 hover:bg-[#ebebeb] daaark:hover:bg-gray-600 daaark:hover:text-white";
 </script>
 
 <nav id="navbar" class="{$currentPageStore === 'home' ? 'hidden' : $topNavbarVisibleStore ? 'block' : 'hidden'} bg-white fixed w-full z-20 top-0 left-0 border-b border-gray-200 text-black backdrop-filter backdrop-blur-lg bg-opacity-50 print:hidden">
   <div id="top-nav" class="flex flex-row items-center justify-between max-w-screen-lg mx-auto px-4 py-2">
-    <Link to="/" class="flex flex-row items-center p-2 cursor-pointer hover:bg-gray-200 rounded-lg">
+    <Link to="/" class="flex flex-row items-center p-2 cursor-pointer hover:bg-[#ebebeb] rounded-lg">
       <Home />
       <span class="text-xs pl-2 hidden sm:block">Home</span>
     </Link>
 
-    <button id="navigationDropdownButton" data-dropdown-toggle="navigationDropdown" class="flex items-center py-2 pl-3 pr-4 text-sm border-gray-200 w-auto p-2 hover:bg-gray-200 rounded-lg">
+    <button id="navigationDropdownButton" data-dropdown-toggle="navigationDropdown" class="flex items-center py-2 pl-3 pr-4 text-sm border-gray-200 w-auto p-2 hover:bg-[#ebebeb] rounded-lg">
       <span id="navbar-top-title">
         {#if $currentPageStore === "chapter"}
           {quranMetaData[$chapterNumberStore].transliteration} ({quranMetaData[$chapterNumberStore].translation})
@@ -31,7 +31,7 @@
       <svg class="w-2.5 h-2.5 ml-2.5 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" /></svg>
     </button>
 
-    <div class="flex flex-row items-center p-2 cursor-pointer hover:bg-gray-200 rounded-lg" type="button" id="rightMenuDropdownButton" data-dropdown-toggle="rightMenuDropdown">
+    <div class="flex flex-row items-center p-2 cursor-pointer hover:bg-[#ebebeb] rounded-lg" type="button" id="rightMenuDropdownButton" data-dropdown-toggle="rightMenuDropdown">
       <span class="text-xs pr-2 hidden sm:block">Menu</span>
       <Menu />
     </div>
@@ -56,7 +56,7 @@
         <ul id="navbar-chapter-list" class="grow basis-1/2 px-2 overflow-y-scroll md:min-w-fit">
           {#each { length: 114 } as _, chapter}
             <li>
-              <Link to="/{chapter + 1}" class="block p-3 rounded-lg hover:bg-gray-200 {$chapterNumberStore === chapter + 1 && 'bg-gray-200'}">
+              <Link to="/{chapter + 1}" class="block p-3 rounded-lg hover:bg-[#ebebeb] {$chapterNumberStore === chapter + 1 && 'bg-[#ebebeb]'}">
                 <span class="text-sm text-gray-500">{chapter + 1}. {quranMetaData[chapter + 1].transliteration} ({quranMetaData[chapter + 1].translation})</span>
               </Link>
             </li>
@@ -70,11 +70,11 @@
           <div class="mx-4 text-xs pb-2 border-b">Verses</div>
           <ul id="navbar-chapter-list" class="grow basis-1/2 px-2 overflow-y-scroll md:min-w-fit">
             <li>
-              <Link to="/{$chapterNumberStore}" on:click={() => pageURLStore.set(Math.random())} class="block p-3 rounded-lg hover:bg-gray-200 text-sm text-gray-500">All</Link>
+              <Link to="/{$chapterNumberStore}" on:click={() => pageURLStore.set(Math.random())} class="block p-3 rounded-lg hover:bg-[#ebebeb] text-sm text-gray-500">All</Link>
             </li>
             {#each { length: quranMetaData[$chapterNumberStore].verses } as _, verse}
               <li>
-                <Link to="/{$chapterNumberStore}/{verse + 1}" on:click={() => pageURLStore.set(Math.random())} class="block p-3 rounded-lg hover:bg-gray-200 text-sm text-gray-500">{verse + 1}</Link>
+                <Link to="/{$chapterNumberStore}/{verse + 1}" on:click={() => pageURLStore.set(Math.random())} class="block p-3 rounded-lg hover:bg-[#ebebeb] text-sm text-gray-500">{verse + 1}</Link>
               </li>
             {/each}
           </ul>

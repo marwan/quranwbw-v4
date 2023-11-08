@@ -5,7 +5,7 @@
   import { currentPageStore } from "$utils/stores";
   import Logo from "$svgs/Logo.svelte";
 
-  const linkStyles = "py-2 px-4 text-xs cursor-pointer focus:outline-none focus:ring-4 focus:ring-gray-200 rounded-lg hover:bg-gray-200";
+  const linkStyles = "py-2 px-4 text-xs cursor-pointer focus:outline-none focus:ring-4 focus:ring-gray-200 rounded-lg hover:bg-[#ebebeb]";
 
   currentPageStore.set("home");
 </script>
@@ -52,7 +52,7 @@
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
     {#each { length: 114 } as _, chapter}
-      <Link to="/{chapter + 1}" class="flex items-center justify-between border border-gray-200 text-sm bg-gray-50 rounded-lg p-4 hover:cursor-pointer hover:bg-gray-200 hover:border-gray-400 focus:outline-none focus:ring-4 focus:ring-gray-200">
+      <Link to="/{chapter + 1}" class="flex items-center justify-between border border-gray-200 text-sm bg-gray-50 rounded-lg p-4 hover:cursor-pointer hover:bg-[#ebebeb] hover:border-gray-400 focus:outline-none focus:ring-4 focus:ring-gray-200">
         <div class="">
           <span class="text-sm">{chapter + 1}. {quranMetaData[chapter + 1].transliteration}</span>
           <div class="block text-xs text-gray-400">
