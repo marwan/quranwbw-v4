@@ -86,11 +86,12 @@ svg {
 }
 
 .arabic-font-1,
-.arabic-font-2 {
+.arabic-font-2,
+.arabic-font-3 {
   direction: rtl;
 }
 
-.arabic-font-1 {
+.arabic-font-1, .arabic-font-3 {
   font-family: "Uthmani-Hafs";
 }
 

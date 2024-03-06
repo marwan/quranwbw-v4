@@ -19,7 +19,7 @@
       <span class="text-xs pl-2 hidden sm:block">Home</span>
     </Link>
 
-    <button id="navigationDropdownButton" data-dropdown-toggle="navigationDropdown" class="flex items-center py-2 pl-3 pr-4 text-sm border-gray-200 w-auto p-2 hover:bg-[#ebebeb] rounded-lg">
+    <button id="navigationDropdownButton" data-dropdown-toggle="navigationDropdown" class="flex items-center py-2 px-3 text-sm border-gray-200 w-auto p-2 hover:bg-[#ebebeb] rounded-lg">
       <span id="navbar-top-title">
         {#if $currentPageStore === "chapter"}
           {quranMetaData[$chapterNumberStore].transliteration} ({quranMetaData[$chapterNumberStore].translation})

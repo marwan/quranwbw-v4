@@ -49,8 +49,9 @@
           <div class="flex flex-col">
             <label for="quran-font-list" class="block mb-2 text-sm font-medium text-gray-900">Quran Font</label>
             <select id="quran-font-list" on:change={(event) => updateSettings({ type: "wordType", value: +event.target.value })} bind:value={$wordTypeStore} class="w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 daaark:bg-gray-700 daaark:border-gray-600 daaark:placeholder-gray-400 daaark:text-white daaark:focus:ring-blue-500 daaark:focus:border-blue-500">
-              <option value={1}>Uthmani</option>
-              <option value={2}>IndoPak</option>
+              <option value={1}>Uthmani Hafs</option>
+              <option value={2}>Naskh Nastaleeq IndoPak</option>
+              <option value={3}>Uthmani Tajweed</option>
             </select>
           </div>
 

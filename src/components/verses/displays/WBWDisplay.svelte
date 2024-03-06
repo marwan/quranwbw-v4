@@ -6,7 +6,7 @@
   import VersesTranslations from "$verses/VersesTranslations.svelte";
 </script>
 
-<div id={key} data-page={value.meta.page} class="flex flex-col py-8 space-y-8 border-b">
+<div id={key} data-page={value.meta.page} class="verse flex flex-col py-8 space-y-8 border-b">
   <VersesButtons {key} />
 
   <!-- words -->

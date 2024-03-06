@@ -4,22 +4,25 @@
   import { displayOptions } from "$data/options";
   import { supplicationsFromQuran } from "$data/quranMeta";
   import { currentPageStore, wordTypeStore, displayTypeStore, userSettingsStore } from "$utils/stores";
-  import { playAudio } from "$utils/audioController";
+  import { wordAudioController } from "$utils/audioController";
 
   const chapter = key.split(":")[0];
   const verse = key.split(":")[1];
 
   const fontSizes = JSON.parse($userSettingsStore).displaySettings.fontSizes;
 
-  const wordClasses = "rounded-md hover:cursor-pointer hover:bg-[#ebebeb] daaark:hover:bg-slate-800";
+  const wordClasses = "rounded-lg hover:cursor-pointer hover:bg-[#ebebeb] daaark:hover:bg-slate-800";
+
+  const tajweedWordsURL = "https://static.qurancdn.com/images/w/rq-color";
+  const tajweedEndURL = "https://static.qurancdn.com/images/w/common";
 
   // classes for each display types
   const layoutClasses = {
-    1: `arabicText arabic-font-${$wordTypeStore} leading-normal ${fontSizes.arabicText}`,
-    2: `arabicText arabic-font-${$wordTypeStore} leading-normal py-2 pl-2 ${fontSizes.arabicText}`,
-    3: `arabicText arabic-font-${$wordTypeStore} inline-block leading-normal p-2 group-hover:bg-[#ebebeb] ${fontSizes.arabicText}`,
-    4: `arabicText arabic-font-${$wordTypeStore} inline-block leading-normal p-2 group-hover:bg-[#ebebeb] ${fontSizes.arabicText}`,
-    5: `arabicText arabic-font-${$wordTypeStore} leading-normal py-2 pl-2 ${fontSizes.arabicText}`,
+    1: `arabicText leading-normal arabic-font-${$wordTypeStore} ${fontSizes.arabicText}`,
+    2: `arabicText leading-normal arabic-font-${$wordTypeStore} ${fontSizes.arabicText} p-2`,
+    3: `arabicText leading-normal arabic-font-${$wordTypeStore} ${fontSizes.arabicText} inline-block p-2 group-hover:bg-[#ebebeb]`,
+    4: `arabicText leading-normal arabic-font-${$wordTypeStore} ${fontSizes.arabicText} inline-block p-2 group-hover:bg-[#ebebeb]`,
+    5: `arabicText leading-normal arabic-font-${$wordTypeStore} ${fontSizes.arabicText} p-2`,
   };
 
   const arabicSplit = value.words.arabic.split("|");
@@ -33,8 +36,15 @@
 {#if displayOptions[`${$displayTypeStore}`].layout === "wbw"}
   {#each { length: value.meta.words } as _, word}
     <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <div on:click={() => playAudio({ type: "word", chapter, verse, word: word + 1 })} class="{$displayTypeStore === 1 ? 'text-center flex flex-col p-3' : 'inline-flex flex-col p-3'} {wordClasses}" style={$currentPageStore === "supplications" && word + 1 < supplicationsFromQuran[key] ? "opacity: 30%;" : ""}>
-      <span class={currentLayoutClasses} data-fontSize={fontSizes.arabicText}>{arabicSplit[word]}</span>
+    <div on:click={() => wordAudioController({ chapter, verse, word })} class="{$displayTypeStore === 1 ? 'text-center flex flex-col p-3' : 'inline-flex flex-col p-3'} {wordClasses}" style={$currentPageStore === "supplications" && word + 1 < supplicationsFromQuran[key] ? "opacity: 30%;" : ""}>
+      <span class={currentLayoutClasses} data-fontSize={fontSizes.arabicText}>
+        {#if $wordTypeStore === 3}
+          <img class="mx-auto max-h-16 md:max-h-20" alt={arabicSplit[word]} src="{tajweedWordsURL}/{value.meta.chapter}/{value.meta.verse}/{word + 1}.png?v=1" />
+        {:else}
+          {arabicSplit[word]}
+        {/if}
+      </span>
+
       <div class="wordTranslationText flex flex-col {fontSizes.wordTranslationText}" data-fontSize={fontSizes.wordTranslationText}>
         <span class="leading-normal">{transliterationSplit[word]}</span>
         <span class="leading-normal">{translationSplit[word]}</span>
@@ -44,7 +54,13 @@
 
   <!-- end icon -->
   <div class="{$displayTypeStore === 1 ? 'text-center flex flex-col p-3' : 'inline-flex flex-col p-3'} {wordClasses}">
-    <span class={currentLayoutClasses} data-fontSize={fontSizes.arabicText}>{value.words.end}</span>
+    <span class={currentLayoutClasses} data-fontSize={fontSizes.arabicText}>
+      {#if $wordTypeStore === 3}
+        <img class="mx-auto max-h-16 md:max-h-20" alt={verse} src="{tajweedEndURL}/{verse}.png?v=1" />
+      {:else}
+        {value.words.end}
+      {/if}
+    </span>
   </div>
 
   <!-- normal layout -->
@@ -52,10 +68,22 @@
   <div class={$displayTypeStore === 4 ? "inline" : "flex flex-row-reverse flex-wrap"}>
     {#each { length: value.meta.words } as _, word}
       <!-- svelte-ignore a11y-click-events-have-key-events -->
-      <span on:click={() => playAudio({ type: "word", chapter, verse, word: word + 1 })} class="{currentLayoutClasses} {wordClasses}" data-fontSize={fontSizes.arabicText}>{arabicSplit[word]}</span>
+      <span on:click={() => wordAudioController({ chapter, verse, word })} class="{currentLayoutClasses} {wordClasses}" data-fontSize={fontSizes.arabicText}>
+        {#if $wordTypeStore === 3}
+          <img class="mx-auto max-h-16 md:max-h-20" alt={arabicSplit[word]} src="{tajweedWordsURL}/{value.meta.chapter}/{value.meta.verse}/{word + 1}.png?v=1" />
+        {:else}
+          {arabicSplit[word]}
+        {/if}
+      </span>
     {/each}
 
     <!-- end icon -->
-    <span class="{currentLayoutClasses} {wordClasses}" data-fontSize={fontSizes.arabicText}>{value.words.end}</span>
+    <span class="{currentLayoutClasses} {wordClasses}" data-fontSize={fontSizes.arabicText}>
+      {#if $wordTypeStore === 3}
+        <img class="mx-auto max-h-16 md:max-h-20" alt={verse} src="{tajweedEndURL}/{verse}.png?v=1" />
+      {:else}
+        {value.words.end}
+      {/if}
+    </span>
   </div>
 {/if}

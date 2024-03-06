@@ -1,47 +1,12 @@
 <script>
   import { quranMetaData } from "$data/quranMeta";
-  import { chapterNumberStore, audioSettingsStore } from "$utils/stores";
-  import { initializeAudio } from "$utils/audioController";
+  import { currentPageStore, chapterNumberStore, audioSettingsStore } from "$utils/stores";
+  import { initializeAudio, updateAudioSettings } from "$utils/audioController";
   import { toggleModal } from "$utils/toggleModal";
-  import { disabledElement } from "$utils/commonStyles";
+  import { disabledElement, buttonElement } from "$utils/commonStyles";
   import Play from "$svgs/Play.svelte";
 
-  let endVerseStartingIndex = 0;
-
-  $: console.table($audioSettingsStore);
-
-  function updateRange(event) {
-    $audioSettingsStore.audioRange = event.target.id;
-
-    switch (event.target.id) {
-      case "playThisVerse":
-        $audioSettingsStore.startVerse = $audioSettingsStore.playingVerse;
-        $audioSettingsStore.endVerse = $audioSettingsStore.playingVerse;
-        break;
-
-      case "playFromHere":
-        $audioSettingsStore.startVerse = $audioSettingsStore.playingVerse;
-        $audioSettingsStore.endVerse = quranMetaData[$audioSettingsStore.playingChapter].verses;
-        break;
-    }
-  }
-
-  function updateStartVerse(event) {
-    $audioSettingsStore.startVerse = +event.target.value;
-    endVerseStartingIndex = $audioSettingsStore.startVerse - 1;
-    fixEndVerse();
-  }
-
-  function updateEndVerse(event) {
-    $audioSettingsStore.endVerse = +event.target.value;
-    fixEndVerse();
-  }
-
-  function fixEndVerse() {
-    if ($audioSettingsStore.endVerse < $audioSettingsStore.startVerse) {
-      $audioSettingsStore.endVerse = $audioSettingsStore.startVerse;
-    }
-  }
+  $: audioSettingsJSON = JSON.stringify($audioSettingsStore, undefined, 2);
 </script>
 
 <!-- Audio modal -->
@@ -56,7 +21,7 @@
         <span class="sr-only">Close modal</span>
       </button>
       <div class="px-6 py-6 lg:px-8">
-        <h3 id="audioModal-title" class="mb-8 text-xl font-medium text-gray-900 daaark:text-white">{quranMetaData[$audioSettingsStore.playingChapter || 1].transliteration}, {$audioSettingsStore.playingKey}</h3>
+        <h3 id="audioModal-title" class="mb-4 text-xl font-medium text-gray-900 daaark:text-white">{quranMetaData[$audioSettingsStore.playingChapter || 1].transliteration}, {$audioSettingsStore.playingKey}</h3>
         <div class="flex flex-col">
           <!-- verse or words -->
           <div class="flex flex-col space-y-4 py-4">
@@ -64,13 +29,13 @@
             <div class="flex flex-row space-x-4">
               <!-- play verse -->
               <div class="flex items-center">
-                <input checked id="playVerse" type="radio" value="" onclick="audio_settings_change(this)" name="radio-audio-type" class="radio-play-type w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 focus:ring-gray-500 daaark:focus:ring-blue-600 daaark:ring-offset-gray-800 focus:ring-2 daaark:bg-gray-700 daaark:border-gray-600" />
+                <input checked id="playVerse" type="radio" value="" on:click={updateAudioSettings} name="radio-audio-type" class="radio-play-type w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 focus:ring-gray-500 daaark:focus:ring-blue-600 daaark:ring-offset-gray-800 focus:ring-2 daaark:bg-gray-700 daaark:border-gray-600" />
                 <label for="playVerse" class="ml-2 text-sm font-medium text-gray-900 daaark:text-gray-300">Play Verse</label>
               </div>
               <!-- play word -->
               <div class="flex items-center {disabledElement}">
-                <input id="playWord-radio" type="radio" value="" onclick="audio_settings_change(this)" name="radio-audio-type" class="radio-play-type w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 focus:ring-gray-500 daaark:focus:ring-blue-600 daaark:ring-offset-gray-800 focus:ring-2 daaark:bg-gray-700 daaark:border-gray-600" />
-                <label for="playWord-radio" class="ml-2 text-sm font-medium text-gray-900 daaark:text-gray-300">Play Word</label>
+                <input id="playWord" type="radio" value="" on:click={updateAudioSettings} name="radio-audio-type" class="radio-play-type w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 focus:ring-gray-500 daaark:focus:ring-blue-600 daaark:ring-offset-gray-800 focus:ring-2 daaark:bg-gray-700 daaark:border-gray-600" />
+                <label for="playWord" class="ml-2 text-sm font-medium text-gray-900 daaark:text-gray-300">Play Word</label>
               </div>
             </div>
           </div>
@@ -81,31 +46,31 @@
             <div class="flex flex-row space-x-4">
               <!-- play this verse -->
               <div class="flex items-center">
-                <input id="playThisVerse" type="radio" value="" on:click={updateRange} name="audioRange-radios" class=" w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 focus:ring-gray-500 daaark:focus:ring-blue-600 daaark:ring-offset-gray-800 focus:ring-2 daaark:bg-gray-700 daaark:border-gray-600" />
+                <input checked id="playThisVerse" type="radio" value="" on:click={updateAudioSettings} name="audioRange-radios" class=" w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 focus:ring-gray-500 daaark:focus:ring-blue-600 daaark:ring-offset-gray-800 focus:ring-2 daaark:bg-gray-700 daaark:border-gray-600" />
                 <label for="playThisVerse" class="ml-2 text-sm font-medium text-gray-900 daaark:text-gray-300">This Verse</label>
               </div>
               <!-- play from here -->
-              <div class="flex items-center">
-                <input id="playFromHere" type="radio" value="" on:click={updateRange} name="audioRange-radios" class=" w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 focus:ring-gray-500 daaark:focus:ring-blue-600 daaark:ring-offset-gray-800 focus:ring-2 daaark:bg-gray-700 daaark:border-gray-600" />
+              <div class="flex items-center {$currentPageStore !== 'chapter' && disabledElement}">
+                <input id="playFromHere" type="radio" value="" on:click={updateAudioSettings} name="audioRange-radios" class=" w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 focus:ring-gray-500 daaark:focus:ring-blue-600 daaark:ring-offset-gray-800 focus:ring-2 daaark:bg-gray-700 daaark:border-gray-600" />
                 <label for="playFromHere" class="ml-2 text-sm font-medium text-gray-900 daaark:text-gray-300">From Here</label>
               </div>
               <!-- play range -->
-              <div class="flex items-center {disabledElement}">
-                <input id="playRange" type="radio" value="" on:click={updateRange} name="audioRange-radios" class=" w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 focus:ring-gray-500 daaark:focus:ring-blue-600 daaark:ring-offset-gray-800 focus:ring-2 daaark:bg-gray-700 daaark:border-gray-600" />
+              <div class="flex items-center {$currentPageStore !== 'chapter' && disabledElement}">
+                <input id="playRange" type="radio" value="" on:click={updateAudioSettings} name="audioRange-radios" class=" w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 focus:ring-gray-500 daaark:focus:ring-blue-600 daaark:ring-offset-gray-800 focus:ring-2 daaark:bg-gray-700 daaark:border-gray-600" />
                 <label for="playRange" class="ml-2 text-sm font-medium text-gray-900 daaark:text-gray-300">Verses Range</label>
               </div>
             </div>
           </div>
 
           <!-- audio range options -->
-          <div id="audio-range-options" class={$audioSettingsStore.audioRange === "playRange" ? "block" : "hidden"}>
+          <div id="audio-range-options" class={$audioSettingsStore.audioRange === "playRange" ? "block" : "block"}>
             <!-- from / till -->
             <div class="flex flex-col space-y-4 py-4 border-t">
               <span class="text-xs text-gray-500 daaark:text-gray-400">Select the range of verses or words to be played.</span>
               <div class="flex flex-row space-x-4">
                 <div class="flex flex-row space-x-2">
                   <!-- <label class="m-auto text-sm font-medium text-gray-900 daaark:text-gray-300">Start <span class="audio-type-text">Verse</span></label> -->
-                  <select id="startVerse-list" bind:value={$audioSettingsStore.startVerse} on:change={updateStartVerse} class="w-18 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 daaark:bg-gray-700 daaark:border-gray-600 daaark:placeholder-gray-400 daaark:text-white daaark:focus:ring-blue-500 daaark:focus:border-blue-500">
+                  <select id="startVerse" on:change={updateAudioSettings} class="w-18 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 daaark:bg-gray-700 daaark:border-gray-600 daaark:placeholder-gray-400 daaark:text-white daaark:focus:ring-blue-500 daaark:focus:border-blue-500">
                     {#each Array.from(Array(quranMetaData[$chapterNumberStore].verses).keys()).slice(0) as verse}
                       <option value={verse + 1}>{verse + 1}</option>
                     {/each}
@@ -113,37 +78,35 @@
                 </div>
                 <div class="flex flex-row space-x-2">
                   <!-- <label class="m-auto text-sm font-medium text-gray-900 daaark:text-gray-300">End <span class="audio-type-text">Verse</span></label> -->
-                  <!-- <select id="endVerse-list" on:change={updateEndVerse} class="w-18 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 daaark:bg-gray-700 daaark:border-gray-600 daaark:placeholder-gray-400 daaark:text-white daaark:focus:ring-blue-500 daaark:focus:border-blue-500">
-                    {#each Array.from(Array(quranMetaData[$chapterNumberStore].verses).keys()).slice($audioSettingsStore.startVerse) as verse}
-                      <option value={verse}>{verse}</option>
-                    {/each}
-                  </select> -->
-
-                  <select id="endVerse-list" on:change={updateEndVerse} class="w-18 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 daaark:bg-gray-700 daaark:border-gray-600 daaark:placeholder-gray-400 daaark:text-white daaark:focus:ring-blue-500 daaark:focus:border-blue-500">
-                    {#each Array.from(Array(quranMetaData[$chapterNumberStore].verses).keys()).slice(endVerseStartingIndex) as verse}
+                  <select id="endVerse" on:change={updateAudioSettings} class="w-18 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 daaark:bg-gray-700 daaark:border-gray-600 daaark:placeholder-gray-400 daaark:text-white daaark:focus:ring-blue-500 daaark:focus:border-blue-500">
+                    {#each Array.from(Array(quranMetaData[$chapterNumberStore].verses).keys()).slice(0) as verse}
                       <option value={verse + 1}>{verse + 1}</option>
                     {/each}
                   </select>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
 
-            <!-- repeat times -->
-            <div class="flex flex-col space-y-4 py-4 border-t hidden">
-              <span class="text-xs text-gray-500 daaark:text-gray-400">Select the number of times a verse or word has to be repeated.</span>
-              <div class="flex flex-row space-x-4">
-                <div class="flex flex-row space-x-2">
-                  <span class="m-auto text-sm font-medium text-gray-900 daaark:text-gray-300">Repeat for </span>
-                  <input id="input-audio-repeat" type="number" value="1" min="1" onchange="audio_settings_change(this)" class="w-16 text-xs border border-gray-300 text-gray-900 rounded-lg focus:ring-gray-500 focus:border-blue-500 block p-2.5 daaark:bg-gray-700 daaark:border-gray-600 daaark:placeholder-gray-400 daaark:text-white daaark:focus:ring-gray-500 daaark:focus:border-blue-500" />
-                  <span class="m-auto text-sm font-medium text-gray-900 daaark:text-gray-300">time(s)</span>
-                </div>
-              </div>
+        <!-- repeat times -->
+        <div class="flex flex-col space-y-4 py-4 border-t">
+          <span class="text-xs text-gray-500 daaark:text-gray-400">Select the number of times a verse or word has to be repeated.</span>
+          <div class="flex flex-row space-x-4">
+            <div class="flex flex-row space-x-2">
+              <span class="m-auto text-sm font-medium text-gray-900 daaark:text-gray-300">Repeat each verse </span>
+              <input id="timesToRepeat" type="number" value="1" min="1" max="20" on:change={updateAudioSettings} class="w-16 text-xs border border-gray-300 text-gray-900 rounded-lg focus:ring-gray-500 focus:border-blue-500 block p-2.5 daaark:bg-gray-700 daaark:border-gray-600 daaark:placeholder-gray-400 daaark:text-white daaark:focus:ring-gray-500 daaark:focus:border-blue-500" />
+              <span class="m-auto text-sm font-medium text-gray-900 daaark:text-gray-300">{$audioSettingsStore.timesToRepeat < 2 ? "time" : "times"} </span>
             </div>
           </div>
         </div>
 
-        <div class={$audioSettingsStore.audioRange === undefined && disabledElement}>
-          <button on:click={initializeAudio} class="w-full inline-flex items-center justify-center mr-2 border mt-6 py-2 px-4 border-gray-200 bg-gray-50 text-gray-700 space-x-2 transition-colors duration-150 rounded-lg focus:shadow-outline">
+        <div class="text-xs">
+          <pre>{audioSettingsJSON}</pre>
+        </div>
+
+        <div>
+          <button on:click={initializeAudio} class="w-full inline-flex items-center justify-center mr-2 mt-6 space-x-2 {buttonElement}">
             <Play />
 
             <span>Play Verse</span>

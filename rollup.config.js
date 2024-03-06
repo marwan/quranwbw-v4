@@ -34,7 +34,6 @@ export default {
   plugins: [
     alias({
       entries: {
-        $components: path.resolve(__dirname, "./src/components"),
         $ui: path.resolve(__dirname, "./src/components/ui"),
         $modals: path.resolve(__dirname, "./src/components/ui/modals"),
         $verses: path.resolve(__dirname, "./src/components/verses"),

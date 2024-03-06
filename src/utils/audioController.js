@@ -1,7 +1,9 @@
 import { get } from "svelte/store";
-import { audioSettingsStore } from "$utils/stores";
+import { quranMetaData } from "$data/quranMeta";
+import { displayTypeStore, audioSettingsStore } from "$utils/stores";
 import { toggleModal } from "$utils/toggleModal";
 import { wordsAudioURL } from "$utils/websiteSettings";
+import { displayOptions } from "$data/options";
 
 // getting the audio element
 window.audio = document.querySelector("#player");
@@ -99,7 +101,19 @@ export function playAudio(props) {
 export function initializeAudio() {
   resetAudioSettings();
 
-  console.log(audioSettings);
+  // play this verse
+  if (document.getElementById("playThisVerse").checked === true) {
+    audioSettings.startVerse = audioSettings.playingVerse;
+    audioSettings.endVerse = audioSettings.playingVerse;
+  }
+
+  // play from here
+  if (document.getElementById("playFromHere").checked === true) {
+    audioSettings.startVerse = audioSettings.playingVerse;
+    audioSettings.endVerse = quranMetaData[audioSettings.playingChapter].verses;
+  }
+
+  audioSettingsStore.set(audioSettings);
 
   playAudio({
     type: "verse",
@@ -111,6 +125,66 @@ export function initializeAudio() {
   });
 
   toggleModal("audioModal", "hide");
+}
+
+export function updateAudioSettings(event) {
+  // 1. update values based on clicked ID
+  try {
+    switch (event.target.id) {
+      case "playVerse":
+        // WIP...
+        break;
+
+      case "playWord":
+        // WIP...
+        break;
+
+      case "playThisVerse":
+        audioSettings.audioRange = event.target.id;
+        audioSettings.startVerse = audioSettings.playingVerse;
+        audioSettings.endVerse = audioSettings.playingVerse;
+        break;
+
+      case "playFromHere":
+        audioSettings.audioRange = event.target.id;
+        audioSettings.startVerse = audioSettings.playingVerse;
+        audioSettings.endVerse = quranMetaData[audioSettings.playingChapter].verses;
+        break;
+
+      case "playRange":
+        audioSettings.audioRange = event.target.id;
+        break;
+
+      case "startVerse":
+        audioSettings.startVerse = +event.target.value;
+        // endVerseStartingIndex = audioSettings.startVerse - 1;
+        break;
+
+      case "endVerse":
+        audioSettings.endVerse = +event.target.value;
+        break;
+
+      case "timesToRepeat":
+        audioSettings.timesToRepeat = event.target.valueAsNumber;
+        break;
+    }
+  } catch (error) {}
+
+  // 2. set default values if nothing was clicked
+  if (audioSettings.endVerse < audioSettings.startVerse || audioSettings.endVerse === undefined) {
+    audioSettings.endVerse = audioSettings.startVerse;
+  }
+
+  // 3. update the global audio settings
+  audioSettingsStore.set(audioSettings);
+
+  // 4. update checked/selected values for all radios/options
+  try {
+    document.getElementById("startVerse").options[audioSettings.startVerse - 1].selected = true;
+    document.getElementById("endVerse").options[audioSettings.endVerse - 1].selected = true;
+  } catch (error) {}
+
+  console.table(audioSettings);
 }
 
 export function resetAudioSettings() {
@@ -130,8 +204,23 @@ export function showAudioModal(key) {
   audioSettings.playingVerse = +audioSettings.playingKey.split(":")[1];
   audioSettingsStore.set(audioSettings);
 
+  // update default settings, if any
+  updateAudioSettings();
+
   // show the modal
   toggleModal("audioModal", "show");
+}
+
+export function wordAudioController(props) {
+  // show audio modal for continuous display types
+  if (displayOptions[`${get(displayTypeStore)}`].continuous === true) {
+    showAudioModal(`${props.chapter}:${props.verse}`);
+  }
+
+  // play word audio directly for non-continuous display types
+  else {
+    playAudio({ chapter: props.chapter, verse: props.verse, word: props.word + 1, type: "word" });
+  }
 }
 
 function convertTime(time) {

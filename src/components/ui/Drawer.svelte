@@ -50,8 +50,9 @@
       <div class="flex flex-row justify-between items-center">
         <label for="quran-font-list" class="block text-gray-900 daaark:text-white">Quran Font</label>
         <select id="quran-font-list" on:change={(event) => updateSettings({ type: "wordType", value: +event.target.value })} bind:value={$wordTypeStore} class="w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 daaark:bg-gray-700 daaark:border-gray-600 daaark:placeholder-gray-400 daaark:text-white daaark:focus:ring-blue-500 daaark:focus:border-blue-500">
-          <option value={1}>Uthmani</option>
-          <option value={2}>IndoPak</option>
+          <option value={1}>Uthmani Hafs</option>
+          <option value={2}>Naskh Nastaleeq IndoPak</option>
+          <option value={3}>Uthmani Tajweed</option>
         </select>
       </div>
       <p class="mb-6 text-xs text-gray-500 daaark:text-gray-400">Select the Quranic font type depending on your region.</p>
@@ -131,7 +132,7 @@
         <label for="word-translations-list" class="block text-gray-900 daaark:text-white">Word</label>
         <select id="word-translations-list" onchange="update_settings('translation', ['word'])" class="w-24 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 daaark:bg-gray-700 daaark:border-gray-600 daaark:placeholder-gray-400 daaark:text-white daaark:focus:ring-blue-500 daaark:focus:border-blue-500" />
       </div>
-      <p class="mb-6 text-xs text-gray-500 daaark:text-gray-400">Select the word translation which will be displaced under the arabic word text.</p>
+      <p class="mb-6 text-xs text-gray-500 daaark:text-gray-400 {disabledElement}">Select the word translation which will be displaced under the arabic word text.</p>
 
       <div class="flex flex-row justify-between items-center">
         <label for="verse-translations-list" class="block text-gray-900 daaark:text-white">Verse</label>
