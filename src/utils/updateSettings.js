@@ -1,4 +1,4 @@
-import { userSettingsStore, wordTypeStore, displayTypeStore, wordTranslationStore, verseTranslationsStore, reciterStore } from "$utils/stores";
+import { userSettingsStore, wordTypeStore, displayTypeStore, wordTranslationStore, verseTranslationsStore, reciterStore, lastReadStore } from "$utils/stores";
 import { selectableVerseTranslations } from "$data/options";
 
 // function to update website settings
@@ -66,6 +66,12 @@ export function updateSettings(props) {
 
       // update the bookmarks
       userSettings.userBookmarks = userBookmarks;
+      break;
+
+    // for last read
+    case "lastRead":
+      lastReadStore.set(props.value);
+      userSettings.lastRead = props.value;
       break;
 
     // for increasing/decreasing font sizes

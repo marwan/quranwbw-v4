@@ -1,7 +1,7 @@
 <script>
   import { Link } from "svelte-routing";
   import { quranMetaData, pageNumberKeys } from "$data/quranMeta";
-  import { chapterNumberStore, currentPageStore, pageURLStore, topNavbarVisibleStore, bottomNavbarVisibleStore } from "$utils/stores";
+  import { chapterNumberStore, currentPageStore, lastReadStore, pageURLStore, topNavbarVisibleStore, bottomNavbarVisibleStore } from "$utils/stores";
   import { toggleModal } from "$utils/toggleModal";
   import { disabledElement, buttonElement } from "$utils/commonStyles";
 
@@ -12,7 +12,9 @@
   // classes
   const rightMenuDropdownClasses = "block w-full text-left px-4 py-2 hover:bg-[#ebebeb] daaark:hover:bg-gray-600 daaark:hover:text-white";
 
-  let gotoVerse, gotoPage;
+  let gotoVerse,
+    gotoPageChapter = 1,
+    gotoPageVerse = 1;
 
   function verseSelector(event) {
     gotoVerse = event.target.valueAsNumber;
@@ -24,8 +26,21 @@
 
   function pageSelector(event) {
     const pageKey = pageNumberKeys[event.target.valueAsNumber - 1].split(":");
-    gotoPage = `${+pageKey[0]}/${+pageKey[1]}`; // chapter/verse
+    (gotoPageChapter = +pageKey[0]), (gotoPageVerse = +pageKey[1]);
   }
+
+  // updating the page, juz... when the last read location updates
+  let lastReadPage, lastReadJuz;
+
+  $: {
+    try {
+      lastReadPage = document.getElementById($lastReadStore).getAttribute("data-page");
+      lastReadJuz = document.getElementById($lastReadStore).getAttribute("data-juz");
+    } catch (error) {}
+  }
+
+  // revelation
+  $: chapterRevelation = quranMetaData[$chapterNumberStore].revelation;
 </script>
 
 <nav id="navbar" class="{$currentPageStore === 'home' ? 'hidden' : $topNavbarVisibleStore ? 'block' : 'hidden'} bg-white fixed w-full z-20 top-0 left-0 border-b border-gray-200 text-black backdrop-filter backdrop-blur-lg bg-opacity-50 print:hidden">
@@ -54,10 +69,12 @@
   </div>
 
   <div id="bottom-nav" class="{$bottomNavbarVisibleStore === true ? 'block' : 'hidden'} flex flex-row items-center justify-between border-t text-xs max-w-screen-lg mx-auto px-6">
-    <div id="navbar-bottom-chapter-revalation" class="flex flex-row items-center py-2">...</div>
-    <div id="navbar-bottom-chapter-title" class="flex flex-row items-center py-2">{quranMetaData[$chapterNumberStore].transliteration}</div>
+    <div id="navbar-bottom-chapter-revalation" class="flex flex-row items-center py-2">{chapterRevelation === 1 ? "Meccan" : "Medinan"}</div>
+    <!-- <div id="navbar-bottom-chapter-title" class="flex flex-row items-center py-2">{quranMetaData[$chapterNumberStore].transliteration}</div> -->
     <div class="flex flex-row items-center py-2">
-      <span id="navbar-quran-divisions">...</span>
+      <span>{lastReadPage !== undefined ? `Page ${lastReadPage}` : "..."}</span>
+      <span class="px-2">/</span>
+      <span>{lastReadJuz !== undefined ? `Juz ${lastReadJuz}` : "..."}</span>
     </div>
   </div>
 
@@ -82,22 +99,23 @@
 
       <!-- verses selector -->
       {#if $currentPageStore === "chapter"}
-        <div class="flex flex-col space-y-4">
+        <div class="flex flex-col space-y-6">
           <!-- goto verse -->
-          <div>
-            <div class="text-xs pb-2">Go to Verse</div>
+          <div class="flex flex-col space-y-2">
+            <div class="text-xs">Go to Verse</div>
             <div class="flex flex-row space-x-2">
               <input type="number" min="1" max={quranMetaData[$chapterNumberStore].verses} id="gotoVerse" on:change={(event) => verseSelector(event)} aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-24 p-2.5 daaark:bg-gray-700 daaark:border-gray-600 daaark:placeholder-gray-400 daaark:text-white daaark:focus:ring-blue-500 daaark:focus:border-blue-500" placeholder="e.g. {Math.floor(Math.random() * (quranMetaData[$chapterNumberStore].verses - 1 + 1)) + 1}" />
               <Link to="/{$chapterNumberStore}/{gotoVerse}" on:click={() => pageURLStore.set(Math.random())} class={buttonElement}>Go</Link>
             </div>
           </div>
           <!-- goto page -->
-          <div class="flex flex-col">
-            <div class="text-xs pb-2">Go to Page</div>
+          <div class="flex flex-col space-y-2">
+            <div class="text-xs">Go to Page</div>
             <div class="flex flex-row space-x-2">
               <input type="number" min="1" max="604" id="gotoPage" on:change={(event) => pageSelector(event)} aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-24 p-2.5 daaark:bg-gray-700 daaark:border-gray-600 daaark:placeholder-gray-400 daaark:text-white daaark:focus:ring-blue-500 daaark:focus:border-blue-500" placeholder="e.g. {Math.floor(Math.random() * 604) + 1}" />
-              <Link to="/{gotoPage}" on:click={() => pageURLStore.set(Math.random())} class={buttonElement}>Go</Link>
+              <Link to="/{gotoPageChapter}/{gotoPageVerse}" on:click={() => pageURLStore.set(Math.random())} class={buttonElement}>Go</Link>
             </div>
+            <div class="flex flex-col text-xs opacity-50">{quranMetaData[gotoPageChapter].transliteration}, {gotoPageChapter}:{gotoPageVerse}</div>
           </div>
         </div>
       {/if}

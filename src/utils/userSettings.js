@@ -25,6 +25,9 @@
   if (userSettings.audioSettings === undefined) userSettings.audioSettings = {}; // parent
   if (userSettings.audioSettings.reciter === undefined) userSettings.audioSettings.reciter = 10; // Mishary Rashid Alafasy
 
+  // last read
+  if (userSettings.lastRead === undefined) userSettings.lastRead = "1:1";
+
   // user bookmarks
   if (userSettings.userBookmarks === undefined) userSettings.userBookmarks = [];
 

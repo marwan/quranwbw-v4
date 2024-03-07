@@ -9,8 +9,7 @@
   import { parseURL } from "$utils/parseURL";
   import { websiteTitle, apiEndpoint } from "$utils/websiteSettings";
   import { quranMetaData } from "$data/quranMeta";
-  import { currentPageStore, chapterNumberStore, chapterDataStore, wordTypeStore, displayTypeStore, wordTranslationStore, verseTranslationsStore, pageURLStore } from "$utils/stores";
-  import { elementInViewport } from "$utils/elementInViewport";
+  import { currentPageStore, chapterNumberStore, chapterDataStore, wordTypeStore, displayTypeStore, wordTranslationStore, verseTranslationsStore, lastReadStore, pageURLStore } from "$utils/stores";
 
   // max verses to load if total verses in chapter are more than this
   const maxVersesThreshold = 10;
@@ -60,25 +59,14 @@
     console.log($pageURLStore, $displayTypeStore, $wordTranslationStore, $verseTranslationsStore);
   }
 
-  // auto-load the next set of verses when the user almost reaches the bottom
+  // scroll events
   onMount(() => {
     document.addEventListener("scroll", function (e) {
       try {
+        // auto-load the next set of verses when the user almost reaches the bottom
         if (window.innerHeight + window.pageYOffset >= document.body.scrollHeight - 2000) {
           document.querySelector("#loadNextVersesButton > button").click();
         }
-
-        // let offsetPercentage = 50;
-        // let VersesOnPage = document.getElementsByClassName("verse");
-        // let firstVerseOnPage = VersesOnPage[0].id;
-        // let lastVerseOnPage = VersesOnPage[VersesOnPage.length - 1].id;
-
-        // for (let verse = +firstVerseOnPage.split(":")[1]; verse <= +lastVerseOnPage.split(":")[1]; verse++) {
-        //   if (elementInViewport(document.getElementById(`${firstVerseOnPage.split(":")[0]}:${verse}`), offsetPercentage)) {
-        //     console.log(`${firstVerseOnPage.split(":")[0]}:${verse}`);
-        //     // break;
-        //   }
-        // }
       } catch (error) {
         // we know the error... but can make this better.
         console.log(error);

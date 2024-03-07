@@ -29,6 +29,9 @@ export const reciterStore = writable(localSettings.audioSettings.reciter);
 // to store the display type - WBW, Normal, Continuous, etc...
 export const displayTypeStore = writable(localSettings.displaySettings.displayType);
 
+// to store the last read key
+export const lastReadStore = writable(localSettings.lastRead);
+
 // to store a random number (for now) when changing verses due to some issues while re-rendering the component (probably because I'm still learning Svelte)
 export const pageURLStore = writable(null);
 
@@ -36,7 +39,7 @@ export const pageURLStore = writable(null);
 export const topNavbarVisibleStore = writable(true);
 
 // to store the toggle boolean for bottom navbar
-export const bottomNavbarVisibleStore = writable(false);
+export const bottomNavbarVisibleStore = writable(true);
 
 // to store all the audio settings
 export const audioSettingsStore = writable({

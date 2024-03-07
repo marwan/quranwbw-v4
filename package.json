@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "sirv-cli": "^1.0.0",
+    "svelte-inview": "^4.0.2",
     "svelte-navigator": "^3.1.5",
     "svelte-routing": "^2.5.0"
   }

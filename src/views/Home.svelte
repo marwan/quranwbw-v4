@@ -2,7 +2,7 @@
   import { Link } from "svelte-routing";
   import { websiteTitle } from "$utils/websiteSettings";
   import { quranMetaData } from "$data/quranMeta";
-  import { currentPageStore } from "$utils/stores";
+  import { currentPageStore, lastReadStore } from "$utils/stores";
   import Logo from "$svgs/Logo.svelte";
 
   const linkStyles = "py-2 px-4 text-xs cursor-pointer focus:outline-none focus:ring-4 focus:ring-gray-200 rounded-lg hover:bg-[#ebebeb]";
@@ -25,7 +25,7 @@
   <div class="flex flex-wrap flex-row md:flex-row mt-12 justify-center text-xs font-bold text-gray-400 space-x-2">
     <!-- last read link -->
     <div id="last-read-block" class="flex justify-center items-center block">
-      <a href="/1#1" id="last-read-link" class={linkStyles}>Last Read (1:1) </a>
+      <Link to="/{$lastReadStore.split(':')[0]}/{$lastReadStore.split(':')[1]}" id="last-read-link" class={linkStyles}>Last Read ({$lastReadStore})</Link>
     </div>
 
     <!-- Supplications from Quran link -->

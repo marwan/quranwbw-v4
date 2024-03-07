@@ -18,7 +18,7 @@
 </script>
 
 <Router>
-  <div class="max-w-screen-lg mx-auto px-4 py-12">
+  <div class="max-w-screen-lg mx-auto px-4 py-16">
     <!-- include the UI elements -->
     <Navbar />
     <Drawer />
