@@ -1,6 +1,6 @@
 <script>
   import { Link } from "svelte-routing";
-  import { websiteTitle } from "$utils/websiteSettings";
+  import { websiteTagline, websiteTitle } from "$utils/websiteSettings";
   import { quranMetaData } from "$data/quranMeta";
   import { currentPageStore, lastReadStore } from "$utils/stores";
   import Logo from "$svgs/Logo.svelte";
@@ -19,7 +19,7 @@
     <Link to="/" class="flex justify-center text-gray-500">
       <Logo />
     </Link>
-    <div class="text-xs text-center text-gray-400">Word By Word Translation, Transliteration And Corpus</div>
+    <div class="text-xs text-center text-gray-400">{websiteTagline}</div>
   </div>
 
   <div class="flex flex-wrap flex-row md:flex-row mt-12 justify-center text-xs font-bold text-gray-400 space-x-2">
