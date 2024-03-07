@@ -1,4 +1,4 @@
-import { userSettingsStore, wordTypeStore, displayTypeStore, wordTranslationStore, verseTranslationsStore } from "$utils/stores";
+import { userSettingsStore, wordTypeStore, displayTypeStore, wordTranslationStore, verseTranslationsStore, reciterStore } from "$utils/stores";
 import { selectableVerseTranslations } from "$data/options";
 
 // function to update website settings
@@ -44,6 +44,12 @@ export function updateSettings(props) {
 
       verseTranslationsStore.set(verseTranslationsArray);
       userSettings.translations.verse = verseTranslationsArray;
+      break;
+
+    // for verse reciter
+    case "reciter":
+      reciterStore.set(props.value);
+      userSettings.audioSettings.reciter = props.value;
       break;
 
     // for Initial Setup

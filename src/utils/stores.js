@@ -23,6 +23,9 @@ export const wordTranslationStore = writable(localSettings.translations.word);
 // to store the verse translations
 export const verseTranslationsStore = writable(localSettings.translations.verse);
 
+// to store reciter
+export const reciterStore = writable(localSettings.audioSettings.reciter);
+
 // to store the display type - WBW, Normal, Continuous, etc...
 export const displayTypeStore = writable(localSettings.displaySettings.displayType);
 

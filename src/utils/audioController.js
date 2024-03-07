@@ -1,12 +1,15 @@
 import { get } from "svelte/store";
 import { quranMetaData } from "$data/quranMeta";
-import { displayTypeStore, audioSettingsStore } from "$utils/stores";
+import { displayTypeStore, reciterStore, audioSettingsStore } from "$utils/stores";
 import { toggleModal } from "$utils/toggleModal";
 import { wordsAudioURL } from "$utils/websiteSettings";
-import { displayOptions } from "$data/options";
+import { displayOptions, selectableReciters } from "$data/options";
 
 // getting the audio element
 window.audio = document.querySelector("#player");
+
+// get the settings from localStorage
+const userSettings = JSON.parse(localStorage.getItem("userSettings"));
 
 // set global audio settings
 // window.audioSettings = {};
@@ -34,7 +37,7 @@ export function playAudio(props) {
   // making the file name and getting the repeat times from localStorage
   else if (props.type === "verse") {
     // get the reciter url from selectableReciters
-    const reciterAudioUrl = "https://everyayah.com/data/Alafasy_128kbps/";
+    const reciterAudioUrl = selectableReciters[get(reciterStore)].url;
 
     // generate mp3 file names for current and next verse
     const currentVerseFileName = `${`00${props.chapter}`.slice(-3)}${`00${verse}`.slice(-3)}.mp3`;

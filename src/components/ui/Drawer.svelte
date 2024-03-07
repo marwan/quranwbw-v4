@@ -1,6 +1,6 @@
 <script>
-  import { currentPageStore, wordTypeStore, displayTypeStore, wordTranslationStore, verseTranslationsStore, userSettingsStore } from "$utils/stores";
-  import { displayOptions, selectableVerseTranslations, selectableWordTranslations } from "$data/options";
+  import { currentPageStore, wordTypeStore, displayTypeStore, wordTranslationStore, verseTranslationsStore, reciterStore, userSettingsStore } from "$utils/stores";
+  import { displayOptions, selectableVerseTranslations, selectableWordTranslations, selectableReciters } from "$data/options";
   import { updateSettings } from "$utils/updateSettings";
   import { disabledElement, buttonElement } from "$utils/commonStyles";
 
@@ -166,27 +166,31 @@
   </div>
 
   <!-- audio -->
-  <div class="py-5 text-xs border-t border-gray-200 {disabledElement}">
+  <div class="py-5 text-xs border-t border-gray-200">
     <h3 class="block mb-2 font-medium text-base text-gray-900 daaark:text-white">Audios</h3>
 
     <div class="flex flex-col flex-wrap space-y-4 text-xs">
       <div class="flex flex-row justify-between items-center">
         <label for="reciter-list" class="block text-gray-900 daaark:text-white">Verse Reciter</label>
-        <select id="reciter-list" onchange="update_settings('audio', ['reciter'])" class="w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 daaark:bg-gray-700 daaark:border-gray-600 daaark:placeholder-gray-400 daaark:text-white daaark:focus:ring-blue-500 daaark:focus:border-blue-500" />
+        <select id="reciter-list" bind:value={$reciterStore} on:change={(event) => updateSettings({ type: "reciter", value: +event.target.selectedIndex + 1 })} class="w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 daaark:bg-gray-700 daaark:border-gray-600 daaark:placeholder-gray-400 daaark:text-white daaark:focus:ring-blue-500 daaark:focus:border-blue-500">
+          {#each Object.entries(selectableReciters) as [id, reciter]}
+            <option value={reciter.id}>{reciter.reciter}</option>
+          {/each}
+        </select>
       </div>
       <p class="mb-6 text-xs text-gray-500 daaark:text-gray-400">Select the desired reciter whose audio will be played when you choose to listen to a verse.</p>
 
-      <div class="flex flex-row justify-between items-center">
+      <div class="flex flex-row justify-between items-center {disabledElement}">
         <label for="verse-repeat-list" class="block text-gray-900 daaark:text-white">Verse Repeat</label>
         <select id="verse-repeat-list" onchange="update_settings('audio', ['verse-repeat'])" class="w-24 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 daaark:bg-gray-700 daaark:border-gray-600 daaark:placeholder-gray-400 daaark:text-white daaark:focus:ring-blue-500 daaark:focus:border-blue-500" />
       </div>
-      <p class="mb-6 text-xs text-gray-500 daaark:text-gray-400">Select the number of times that a verse audio has to be repeated when you play it.</p>
+      <p class="mb-6 text-xs text-gray-500 daaark:text-gray-400 {disabledElement}">Select the number of times that a verse audio has to be repeated when you play it.</p>
 
-      <div class="flex flex-row justify-between items-center">
+      <div class="flex flex-row justify-between items-center {disabledElement}">
         <label for="word-repeat-list" class="block text-gray-900 daaark:text-white">Word Repeat</label>
         <select id="word-repeat-list" onchange="update_settings('audio', ['word-repeat'])" class="w-24 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 daaark:bg-gray-700 daaark:border-gray-600 daaark:placeholder-gray-400 daaark:text-white daaark:focus:ring-blue-500 daaark:focus:border-blue-500" />
       </div>
-      <p class="mb-6 text-xs text-gray-500 daaark:text-gray-400">Select the number of times that a word audio has to be repeated when you click on it.</p>
+      <p class="mb-6 text-xs text-gray-500 daaark:text-gray-400 {disabledElement}">Select the number of times that a word audio has to be repeated when you click on it.</p>
     </div>
   </div>
 

@@ -21,6 +21,10 @@
   if (userSettings.translations.word === undefined) userSettings.translations.word = 1; // English
   if (userSettings.translations.verse === undefined) userSettings.translations.verse = [1, 15]; // Transliteration (Tajweed), The Clear Quran (Mustafa Khattab)
 
+  // audio settings
+  if (userSettings.audioSettings === undefined) userSettings.audioSettings = {}; // parent
+  if (userSettings.audioSettings.reciter === undefined) userSettings.audioSettings.reciter = 10; // Mishary Rashid Alafasy
+
   // user bookmarks
   if (userSettings.userBookmarks === undefined) userSettings.userBookmarks = [];
 
