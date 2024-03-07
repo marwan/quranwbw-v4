@@ -39,9 +39,9 @@
 
   <div id="bottom-nav" class="{$bottomNavbarVisibleStore === true ? 'block' : 'hidden'} flex flex-row items-center justify-between border-t text-xs max-w-screen-lg mx-auto px-6">
     <div id="navbar-bottom-chapter-revalation" class="flex flex-row items-center py-2">...</div>
-    <div id="navbar-bottom-chapter-title" class="hidden flex flex-row items-center py-2">{quranMetaData[$chapterNumberStore].transliteration}</div>
+    <div id="navbar-bottom-chapter-title" class="flex flex-row items-center py-2">{quranMetaData[$chapterNumberStore].transliteration}</div>
     <div class="flex flex-row items-center py-2">
-      <span id="navbar-quran-divisions">..</span>
+      <span id="navbar-quran-divisions">...</span>
     </div>
   </div>
 

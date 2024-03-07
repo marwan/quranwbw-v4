@@ -1,6 +1,6 @@
 <script>
-  import { currentPageStore, wordTypeStore, displayTypeStore, verseTranslationsStore, userSettingsStore } from "$utils/stores";
-  import { displayOptions, selectableVerseTranslations } from "$data/options";
+  import { currentPageStore, wordTypeStore, displayTypeStore, wordTranslationStore, verseTranslationsStore, userSettingsStore } from "$utils/stores";
+  import { displayOptions, selectableVerseTranslations, selectableWordTranslations } from "$data/options";
   import { updateSettings } from "$utils/updateSettings";
   import { disabledElement, buttonElement } from "$utils/commonStyles";
 
@@ -128,11 +128,15 @@
     <h3 class="block mb-2 font-medium text-base text-gray-900 daaark:text-white">Translations</h3>
 
     <div class="flex flex-col flex-wrap space-y-4 text-xs">
-      <div class="flex flex-row justify-between items-center {disabledElement}">
+      <div class="flex flex-row justify-between items-center">
         <label for="word-translations-list" class="block text-gray-900 daaark:text-white">Word</label>
-        <select id="word-translations-list" onchange="update_settings('translation', ['word'])" class="w-24 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 daaark:bg-gray-700 daaark:border-gray-600 daaark:placeholder-gray-400 daaark:text-white daaark:focus:ring-blue-500 daaark:focus:border-blue-500" />
+        <select id="word-translations-list" bind:value={$wordTranslationStore} on:change={(event) => updateSettings({ type: "wordTranslation", value: +event.target.selectedIndex + 1 })} class="w-24 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 daaark:bg-gray-700 daaark:border-gray-600 daaark:placeholder-gray-400 daaark:text-white daaark:focus:ring-blue-500 daaark:focus:border-blue-500">
+          {#each Object.entries(selectableWordTranslations) as [id, translation]}
+            <option value={translation.id}>{translation.language}</option>
+          {/each}
+        </select>
       </div>
-      <p class="mb-6 text-xs text-gray-500 daaark:text-gray-400 {disabledElement}">Select the word translation which will be displaced under the arabic word text.</p>
+      <p class="mb-6 text-xs text-gray-500 daaark:text-gray-400">Select the word translation which will be displaced under the arabic word text.</p>
 
       <div class="flex flex-row justify-between items-center">
         <label for="verse-translations-list" class="block text-gray-900 daaark:text-white">Verse</label>

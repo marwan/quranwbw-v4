@@ -152,3 +152,32 @@ export const selectableVerseTranslations = {
     slug: "tam_janturstfoundat",
   },
 };
+
+export const selectableWordTranslations = [
+  { id: 1, language: "English" },
+  { id: 2, language: "Urdu" },
+  { id: 3, language: "Hindi" },
+  { id: 4, language: "Indonesian" },
+  { id: 5, language: "Bangla" },
+  { id: 6, language: "Turkish" },
+  { id: 7, language: "Tamil" },
+];
+
+export const selectableReciters = [
+  { id: 1, reciter: "Abdul Basit (Mujawwad)", url: "https://verses.quran.com/AbdulBaset/Mujawwad/mp3/" },
+  { id: 2, reciter: "Abdul Basit (Murattal)", url: "https://verses.quran.com/AbdulBaset/Murattal/mp3/" },
+  { id: 3, reciter: "Abdul-Rahman Al-Sudais", url: "https://mirrors.quranicaudio.com/everyayah/Abdurrahmaan_As-Sudais_192kbps/" },
+  { id: 4, reciter: "Abu Bakr Ash-Shaatree", url: "https://mirrors.quranicaudio.com/everyayah/Abu_Bakr_Ash-Shaatree_128kbps/" },
+  { id: 5, reciter: "Dr. Farhat Hashmi (Urdu/Hindi WBW)", url: "https://everyayah.com/data/translations/urdu_farhat_hashmi/" },
+  { id: 6, reciter: "Hani Ar-Rifai", url: "https://everyayah.com/data/Hani_Rifai_192kbps/" },
+  { id: 7, reciter: "Maher Al-Muaiqly", url: "https://mirrors.quranicaudio.com/everyayah/Maher_AlMuaiqly_64kbps/" },
+  { id: 8, reciter: "Mahmoud Khalil Al-Husary", url: "https://everyayah.com/data/Husary_128kbps/" },
+  { id: 9, reciter: "Mahmoud Khalil Al-Husary (with gaps)", url: "https://everyayah.com/data/Husary_Muallim_128kbps/" },
+  { id: 10, reciter: "Mishary Rashid Alafasy", url: "https://everyayah.com/data/Alafasy_128kbps/" },
+  { id: 11, reciter: "Mohamed El-Minshawi (Mujawwad)", url: "https://mirrors.quranicaudio.com/everyayah/Minshawy_Mujawwad_192kbps/" },
+  { id: 12, reciter: "Mohamed El-Minshawi (Teacher)", url: "https://everyayah.com/data/Minshawy_Teacher_128kbps/" },
+  { id: 13, reciter: "Muhammad Ayyub", url: "https://mirrors.quranicaudio.com/everyayah/Muhammad_Ayyoub_128kbps/" },
+  { id: 14, reciter: "Nasser Al Qatami", url: "https://everyayah.com/data/Nasser_Alqatami_128kbps/" },
+  { id: 15, reciter: "Saood Ash-Shuraym", url: "https://everyayah.com/data/Saood_ash-Shuraym_128kbps/" },
+  { id: 16, reciter: "Yasser Ad-Dossari", url: "https://mirrors.quranicaudio.com/everyayah/Yasser_Ad-Dussary_128kbps/" },
+];
