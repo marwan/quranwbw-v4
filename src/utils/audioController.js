@@ -8,9 +8,6 @@ import { displayOptions, selectableReciters } from "$data/options";
 // getting the audio element
 window.audio = document.querySelector("#player");
 
-// get the settings from localStorage
-const userSettings = JSON.parse(localStorage.getItem("userSettings"));
-
 // set global audio settings
 // window.audioSettings = {};
 // let audioSettings = {};
@@ -56,6 +53,11 @@ export function playAudio(props) {
   audioSettings.isPlaying = true;
   audioSettings.playingKey = `${props.chapter}:${verse}`;
 
+  // attach the word highlighter function
+  if (props.type === "verse") {
+    // audio.addEventListener("timeupdate", wordHighlighter);
+  }
+
   // scroll to the top of the verse
   // window.scrollTo(window.scrollX, document.getElementById(`${chapter}:${verse}`).getBoundingClientRect().top - 50);
   // things to do when the audio has ended
@@ -92,6 +94,9 @@ export function playAudio(props) {
         delay: props.delay,
       });
     }
+
+    // detach the word highlighter function
+    audio.removeEventListener("timeupdate", wordHighlighter);
 
     // once everything is done, reset settings
     resetAudioSettings();
@@ -131,6 +136,8 @@ export function initializeAudio() {
 }
 
 export function updateAudioSettings(event) {
+  const chapterVerses = quranMetaData[audioSettings.playingChapter].verses;
+
   // 1. update values based on clicked ID
   try {
     switch (event.target.id) {
@@ -151,7 +158,7 @@ export function updateAudioSettings(event) {
       case "playFromHere":
         audioSettings.audioRange = event.target.id;
         audioSettings.startVerse = audioSettings.playingVerse;
-        audioSettings.endVerse = quranMetaData[audioSettings.playingChapter].verses;
+        audioSettings.endVerse = chapterVerses;
         break;
 
       case "playRange":
@@ -160,7 +167,6 @@ export function updateAudioSettings(event) {
 
       case "startVerse":
         audioSettings.startVerse = +event.target.value;
-        // endVerseStartingIndex = audioSettings.startVerse - 1;
         break;
 
       case "endVerse":
@@ -176,16 +182,15 @@ export function updateAudioSettings(event) {
   // 2. set default values if nothing was clicked
   if (audioSettings.endVerse < audioSettings.startVerse || audioSettings.endVerse === undefined) {
     audioSettings.endVerse = audioSettings.startVerse;
+    document.getElementById("endVerse").value = audioSettings.startVerse;
   }
 
   // 3. update the global audio settings
   audioSettingsStore.set(audioSettings);
 
   // 4. update checked/selected values for all radios/options
-  try {
-    document.getElementById("startVerse").options[audioSettings.startVerse - 1].selected = true;
-    document.getElementById("endVerse").options[audioSettings.endVerse - 1].selected = true;
-  } catch (error) {}
+  // try {
+  // } catch (error) {}
 
   console.table(audioSettings);
 }
@@ -195,6 +200,11 @@ export function resetAudioSettings() {
   audio.currentTime = 0;
   audioSettings.isPlaying = false;
   audioSettingsStore.set(audioSettings);
+
+  // remove word highlight
+  document.querySelectorAll(".word").forEach((element) => {
+    element.classList.remove("bg-[#ebebeb]");
+  });
 }
 
 export function showAudioModal(key) {
@@ -223,6 +233,28 @@ export function wordAudioController(props) {
   // play word audio directly for non-continuous display types
   else {
     playAudio({ chapter: props.chapter, verse: props.verse, word: props.word + 1, type: "word" });
+  }
+}
+
+function wordHighlighter() {
+  // get the total number of words in the ayah
+  const wordsInVerse = document.getElementById(audioSettings.playingKey).getAttribute("data-words");
+
+  // loop through all the words
+  for (let word = 0; word <= wordsInVerse - 1; word++) {
+    // get the current word's timestamp
+    const wordTimestamp = document.getElementById(`${audioSettings.playingKey}:${word + 1}`).getAttribute("data-timestamp");
+
+    // as long as the word timestamp is lower than the current audio time
+    if (wordTimestamp < audio.currentTime) {
+      if (word > 0) {
+        document.getElementById(`${audioSettings.playingKey}:${word}`).classList.remove("bg-[#ebebeb]");
+      }
+
+      document.getElementById(`${audioSettings.playingKey}:${word + 1}`).classList.add("bg-[#ebebeb]");
+
+      console.log(`${audioSettings.playingKey}:${word}`);
+    }
   }
 }
 

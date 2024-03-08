@@ -11,6 +11,7 @@
 
 <div
   id={key}
+  data-words={value.meta.words}
   data-page={value.meta.page}
   data-juz={value.meta.juz}
   class="verse flex flex-col py-8 space-y-8 border-b"

@@ -28,6 +28,7 @@
   const arabicSplit = value.words.arabic.split("|");
   const transliterationSplit = value.words.transliteration.split("|");
   const translationSplit = value.words.translation.split("|");
+  const timestampSplit = value.words.timestamp.split("|");
 
   const currentLayoutClasses = layoutClasses[`${$displayTypeStore}`];
 </script>
@@ -36,7 +37,7 @@
 {#if displayOptions[`${$displayTypeStore}`].layout === "wbw"}
   {#each { length: value.meta.words } as _, word}
     <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <div on:click={() => wordAudioController({ chapter, verse, word })} class="{$displayTypeStore === 1 ? 'text-center flex flex-col p-3' : 'inline-flex flex-col p-3'} {wordClasses}" style={$currentPageStore === "supplications" && word + 1 < supplicationsFromQuran[key] ? "opacity: 30%;" : ""}>
+    <div id={`${chapter}:${verse}:${word + 1}`} on:click={() => wordAudioController({ chapter, verse, word })} class="word {$displayTypeStore === 1 ? 'text-center flex flex-col p-3' : 'inline-flex flex-col p-3'} {wordClasses}" style={$currentPageStore === "supplications" && word + 1 < supplicationsFromQuran[key] ? "opacity: 30%;" : ""} data-timestamp={timestampSplit[word]}>
       <span class={currentLayoutClasses} data-fontSize={fontSizes.arabicText}>
         {#if $wordTypeStore === 3}
           <img class="mx-auto max-h-16 md:max-h-20" alt={arabicSplit[word]} src="{tajweedWordsURL}/{value.meta.chapter}/{value.meta.verse}/{word + 1}.png?v=1" />
@@ -68,7 +69,7 @@
   <div class={$displayTypeStore === 4 ? "inline" : "flex flex-row-reverse flex-wrap"}>
     {#each { length: value.meta.words } as _, word}
       <!-- svelte-ignore a11y-click-events-have-key-events -->
-      <span on:click={() => wordAudioController({ chapter, verse, word })} class="{currentLayoutClasses} {wordClasses}" data-fontSize={fontSizes.arabicText}>
+      <span id={`${chapter}:${verse}:${word + 1}`} on:click={() => wordAudioController({ chapter, verse, word })} class="word {currentLayoutClasses} {wordClasses}" data-fontSize={fontSizes.arabicText} data-timestamp={timestampSplit[word]}>
         {#if $wordTypeStore === 3}
           <img class="mx-auto max-h-16 md:max-h-20" alt={arabicSplit[word]} src="{tajweedWordsURL}/{value.meta.chapter}/{value.meta.verse}/{word + 1}.png?v=1" />
         {:else}
