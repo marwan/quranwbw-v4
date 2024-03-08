@@ -76,10 +76,15 @@
     {#each { length: value.meta.words } as _, word}
       <!-- svelte-ignore a11y-click-events-have-key-events -->
       <span id={`${chapter}:${verse}:${word + 1}`} on:click={() => wordAudioController({ chapter, verse, word })} class="word {currentLayoutClasses} {wordClasses}" data-fontSize={fontSizes.arabicText} data-timestamp={timestampSplit[word]}>
-        {#if $wordTypeStore === 3}
-          <img class="mx-auto max-h-16 md:max-h-20" alt={arabicSplit[word]} src="{tajweedWordsURL}/{value.meta.chapter}/{value.meta.verse}/{word + 1}.png?v=1" />
-        {:else}
+        <!-- 1: Uthmani Hafs, 2: Naskh Nastaleeq IndoPak -->
+        {#if $wordTypeStore === 1 || $wordTypeStore === 2}
           {arabicSplit[word]}
+          <!-- 3: Uthmani Tajweed -->
+        {:else if $wordTypeStore === 3}
+          <img class="mx-auto max-h-16 md:max-h-20" alt={arabicSplit[word]} src="{tajweedWordsURL}/{value.meta.chapter}/{value.meta.verse}/{word + 1}.png?v=1" />
+          <!-- 4: KFGQPC Tajweed v4 -->
+        {:else if $wordTypeStore === 4}
+          <span class="p{value.meta.page}">{v4Split[word]}</span>
         {/if}
       </span>
     {/each}
