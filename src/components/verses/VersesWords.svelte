@@ -94,7 +94,3 @@
     </span>
   </div>
 {/if}
-
-<style>
-  @import "./mushaf.css";
-</style>
