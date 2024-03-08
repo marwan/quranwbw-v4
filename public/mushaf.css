@@ -1,0 +1,1811 @@
+@font-face { font-family: 'p1'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p1.woff2') format('truetype'); }
+.p1 { font-family: 'p1'!important; }
+
+@font-face { font-family: 'p2'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p2.woff2') format('truetype'); }
+.p2 { font-family: 'p2'!important; }
+
+@font-face { font-family: 'p3'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p3.woff2') format('truetype'); }
+.p3 { font-family: 'p3'!important; }
+
+@font-face { font-family: 'p4'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p4.woff2') format('truetype'); }
+.p4 { font-family: 'p4'!important; }
+
+@font-face { font-family: 'p5'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p5.woff2') format('truetype'); }
+.p5 { font-family: 'p5'!important; }
+
+@font-face { font-family: 'p6'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p6.woff2') format('truetype'); }
+.p6 { font-family: 'p6'!important; }
+
+@font-face { font-family: 'p7'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p7.woff2') format('truetype'); }
+.p7 { font-family: 'p7'!important; }
+
+@font-face { font-family: 'p8'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p8.woff2') format('truetype'); }
+.p8 { font-family: 'p8'!important; }
+
+@font-face { font-family: 'p9'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p9.woff2') format('truetype'); }
+.p9 { font-family: 'p9'!important; }
+
+@font-face { font-family: 'p10'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p10.woff2') format('truetype'); }
+.p10 { font-family: 'p10'!important; }
+
+@font-face { font-family: 'p11'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p11.woff2') format('truetype'); }
+.p11 { font-family: 'p11'!important; }
+
+@font-face { font-family: 'p12'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p12.woff2') format('truetype'); }
+.p12 { font-family: 'p12'!important; }
+
+@font-face { font-family: 'p13'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p13.woff2') format('truetype'); }
+.p13 { font-family: 'p13'!important; }
+
+@font-face { font-family: 'p14'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p14.woff2') format('truetype'); }
+.p14 { font-family: 'p14'!important; }
+
+@font-face { font-family: 'p15'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p15.woff2') format('truetype'); }
+.p15 { font-family: 'p15'!important; }
+
+@font-face { font-family: 'p16'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p16.woff2') format('truetype'); }
+.p16 { font-family: 'p16'!important; }
+
+@font-face { font-family: 'p17'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p17.woff2') format('truetype'); }
+.p17 { font-family: 'p17'!important; }
+
+@font-face { font-family: 'p18'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p18.woff2') format('truetype'); }
+.p18 { font-family: 'p18'!important; }
+
+@font-face { font-family: 'p19'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p19.woff2') format('truetype'); }
+.p19 { font-family: 'p19'!important; }
+
+@font-face { font-family: 'p20'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p20.woff2') format('truetype'); }
+.p20 { font-family: 'p20'!important; }
+
+@font-face { font-family: 'p21'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p21.woff2') format('truetype'); }
+.p21 { font-family: 'p21'!important; }
+
+@font-face { font-family: 'p22'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p22.woff2') format('truetype'); }
+.p22 { font-family: 'p22'!important; }
+
+@font-face { font-family: 'p23'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p23.woff2') format('truetype'); }
+.p23 { font-family: 'p23'!important; }
+
+@font-face { font-family: 'p24'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p24.woff2') format('truetype'); }
+.p24 { font-family: 'p24'!important; }
+
+@font-face { font-family: 'p25'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p25.woff2') format('truetype'); }
+.p25 { font-family: 'p25'!important; }
+
+@font-face { font-family: 'p26'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p26.woff2') format('truetype'); }
+.p26 { font-family: 'p26'!important; }
+
+@font-face { font-family: 'p27'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p27.woff2') format('truetype'); }
+.p27 { font-family: 'p27'!important; }
+
+@font-face { font-family: 'p28'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p28.woff2') format('truetype'); }
+.p28 { font-family: 'p28'!important; }
+
+@font-face { font-family: 'p29'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p29.woff2') format('truetype'); }
+.p29 { font-family: 'p29'!important; }
+
+@font-face { font-family: 'p30'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p30.woff2') format('truetype'); }
+.p30 { font-family: 'p30'!important; }
+
+@font-face { font-family: 'p31'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p31.woff2') format('truetype'); }
+.p31 { font-family: 'p31'!important; }
+
+@font-face { font-family: 'p32'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p32.woff2') format('truetype'); }
+.p32 { font-family: 'p32'!important; }
+
+@font-face { font-family: 'p33'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p33.woff2') format('truetype'); }
+.p33 { font-family: 'p33'!important; }
+
+@font-face { font-family: 'p34'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p34.woff2') format('truetype'); }
+.p34 { font-family: 'p34'!important; }
+
+@font-face { font-family: 'p35'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p35.woff2') format('truetype'); }
+.p35 { font-family: 'p35'!important; }
+
+@font-face { font-family: 'p36'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p36.woff2') format('truetype'); }
+.p36 { font-family: 'p36'!important; }
+
+@font-face { font-family: 'p37'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p37.woff2') format('truetype'); }
+.p37 { font-family: 'p37'!important; }
+
+@font-face { font-family: 'p38'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p38.woff2') format('truetype'); }
+.p38 { font-family: 'p38'!important; }
+
+@font-face { font-family: 'p39'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p39.woff2') format('truetype'); }
+.p39 { font-family: 'p39'!important; }
+
+@font-face { font-family: 'p40'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p40.woff2') format('truetype'); }
+.p40 { font-family: 'p40'!important; }
+
+@font-face { font-family: 'p41'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p41.woff2') format('truetype'); }
+.p41 { font-family: 'p41'!important; }
+
+@font-face { font-family: 'p42'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p42.woff2') format('truetype'); }
+.p42 { font-family: 'p42'!important; }
+
+@font-face { font-family: 'p43'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p43.woff2') format('truetype'); }
+.p43 { font-family: 'p43'!important; }
+
+@font-face { font-family: 'p44'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p44.woff2') format('truetype'); }
+.p44 { font-family: 'p44'!important; }
+
+@font-face { font-family: 'p45'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p45.woff2') format('truetype'); }
+.p45 { font-family: 'p45'!important; }
+
+@font-face { font-family: 'p46'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p46.woff2') format('truetype'); }
+.p46 { font-family: 'p46'!important; }
+
+@font-face { font-family: 'p47'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p47.woff2') format('truetype'); }
+.p47 { font-family: 'p47'!important; }
+
+@font-face { font-family: 'p48'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p48.woff2') format('truetype'); }
+.p48 { font-family: 'p48'!important; }
+
+@font-face { font-family: 'p49'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p49.woff2') format('truetype'); }
+.p49 { font-family: 'p49'!important; }
+
+@font-face { font-family: 'p50'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p50.woff2') format('truetype'); }
+.p50 { font-family: 'p50'!important; }
+
+@font-face { font-family: 'p51'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p51.woff2') format('truetype'); }
+.p51 { font-family: 'p51'!important; }
+
+@font-face { font-family: 'p52'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p52.woff2') format('truetype'); }
+.p52 { font-family: 'p52'!important; }
+
+@font-face { font-family: 'p53'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p53.woff2') format('truetype'); }
+.p53 { font-family: 'p53'!important; }
+
+@font-face { font-family: 'p54'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p54.woff2') format('truetype'); }
+.p54 { font-family: 'p54'!important; }
+
+@font-face { font-family: 'p55'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p55.woff2') format('truetype'); }
+.p55 { font-family: 'p55'!important; }
+
+@font-face { font-family: 'p56'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p56.woff2') format('truetype'); }
+.p56 { font-family: 'p56'!important; }
+
+@font-face { font-family: 'p57'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p57.woff2') format('truetype'); }
+.p57 { font-family: 'p57'!important; }
+
+@font-face { font-family: 'p58'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p58.woff2') format('truetype'); }
+.p58 { font-family: 'p58'!important; }
+
+@font-face { font-family: 'p59'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p59.woff2') format('truetype'); }
+.p59 { font-family: 'p59'!important; }
+
+@font-face { font-family: 'p60'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p60.woff2') format('truetype'); }
+.p60 { font-family: 'p60'!important; }
+
+@font-face { font-family: 'p61'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p61.woff2') format('truetype'); }
+.p61 { font-family: 'p61'!important; }
+
+@font-face { font-family: 'p62'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p62.woff2') format('truetype'); }
+.p62 { font-family: 'p62'!important; }
+
+@font-face { font-family: 'p63'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p63.woff2') format('truetype'); }
+.p63 { font-family: 'p63'!important; }
+
+@font-face { font-family: 'p64'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p64.woff2') format('truetype'); }
+.p64 { font-family: 'p64'!important; }
+
+@font-face { font-family: 'p65'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p65.woff2') format('truetype'); }
+.p65 { font-family: 'p65'!important; }
+
+@font-face { font-family: 'p66'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p66.woff2') format('truetype'); }
+.p66 { font-family: 'p66'!important; }
+
+@font-face { font-family: 'p67'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p67.woff2') format('truetype'); }
+.p67 { font-family: 'p67'!important; }
+
+@font-face { font-family: 'p68'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p68.woff2') format('truetype'); }
+.p68 { font-family: 'p68'!important; }
+
+@font-face { font-family: 'p69'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p69.woff2') format('truetype'); }
+.p69 { font-family: 'p69'!important; }
+
+@font-face { font-family: 'p70'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p70.woff2') format('truetype'); }
+.p70 { font-family: 'p70'!important; }
+
+@font-face { font-family: 'p71'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p71.woff2') format('truetype'); }
+.p71 { font-family: 'p71'!important; }
+
+@font-face { font-family: 'p72'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p72.woff2') format('truetype'); }
+.p72 { font-family: 'p72'!important; }
+
+@font-face { font-family: 'p73'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p73.woff2') format('truetype'); }
+.p73 { font-family: 'p73'!important; }
+
+@font-face { font-family: 'p74'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p74.woff2') format('truetype'); }
+.p74 { font-family: 'p74'!important; }
+
+@font-face { font-family: 'p75'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p75.woff2') format('truetype'); }
+.p75 { font-family: 'p75'!important; }
+
+@font-face { font-family: 'p76'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p76.woff2') format('truetype'); }
+.p76 { font-family: 'p76'!important; }
+
+@font-face { font-family: 'p77'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p77.woff2') format('truetype'); }
+.p77 { font-family: 'p77'!important; }
+
+@font-face { font-family: 'p78'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p78.woff2') format('truetype'); }
+.p78 { font-family: 'p78'!important; }
+
+@font-face { font-family: 'p79'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p79.woff2') format('truetype'); }
+.p79 { font-family: 'p79'!important; }
+
+@font-face { font-family: 'p80'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p80.woff2') format('truetype'); }
+.p80 { font-family: 'p80'!important; }
+
+@font-face { font-family: 'p81'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p81.woff2') format('truetype'); }
+.p81 { font-family: 'p81'!important; }
+
+@font-face { font-family: 'p82'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p82.woff2') format('truetype'); }
+.p82 { font-family: 'p82'!important; }
+
+@font-face { font-family: 'p83'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p83.woff2') format('truetype'); }
+.p83 { font-family: 'p83'!important; }
+
+@font-face { font-family: 'p84'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p84.woff2') format('truetype'); }
+.p84 { font-family: 'p84'!important; }
+
+@font-face { font-family: 'p85'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p85.woff2') format('truetype'); }
+.p85 { font-family: 'p85'!important; }
+
+@font-face { font-family: 'p86'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p86.woff2') format('truetype'); }
+.p86 { font-family: 'p86'!important; }
+
+@font-face { font-family: 'p87'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p87.woff2') format('truetype'); }
+.p87 { font-family: 'p87'!important; }
+
+@font-face { font-family: 'p88'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p88.woff2') format('truetype'); }
+.p88 { font-family: 'p88'!important; }
+
+@font-face { font-family: 'p89'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p89.woff2') format('truetype'); }
+.p89 { font-family: 'p89'!important; }
+
+@font-face { font-family: 'p90'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p90.woff2') format('truetype'); }
+.p90 { font-family: 'p90'!important; }
+
+@font-face { font-family: 'p91'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p91.woff2') format('truetype'); }
+.p91 { font-family: 'p91'!important; }
+
+@font-face { font-family: 'p92'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p92.woff2') format('truetype'); }
+.p92 { font-family: 'p92'!important; }
+
+@font-face { font-family: 'p93'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p93.woff2') format('truetype'); }
+.p93 { font-family: 'p93'!important; }
+
+@font-face { font-family: 'p94'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p94.woff2') format('truetype'); }
+.p94 { font-family: 'p94'!important; }
+
+@font-face { font-family: 'p95'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p95.woff2') format('truetype'); }
+.p95 { font-family: 'p95'!important; }
+
+@font-face { font-family: 'p96'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p96.woff2') format('truetype'); }
+.p96 { font-family: 'p96'!important; }
+
+@font-face { font-family: 'p97'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p97.woff2') format('truetype'); }
+.p97 { font-family: 'p97'!important; }
+
+@font-face { font-family: 'p98'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p98.woff2') format('truetype'); }
+.p98 { font-family: 'p98'!important; }
+
+@font-face { font-family: 'p99'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p99.woff2') format('truetype'); }
+.p99 { font-family: 'p99'!important; }
+
+@font-face { font-family: 'p100'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p100.woff2') format('truetype'); }
+.p100 { font-family: 'p100'!important; }
+
+@font-face { font-family: 'p101'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p101.woff2') format('truetype'); }
+.p101 { font-family: 'p101'!important; }
+
+@font-face { font-family: 'p102'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p102.woff2') format('truetype'); }
+.p102 { font-family: 'p102'!important; }
+
+@font-face { font-family: 'p103'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p103.woff2') format('truetype'); }
+.p103 { font-family: 'p103'!important; }
+
+@font-face { font-family: 'p104'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p104.woff2') format('truetype'); }
+.p104 { font-family: 'p104'!important; }
+
+@font-face { font-family: 'p105'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p105.woff2') format('truetype'); }
+.p105 { font-family: 'p105'!important; }
+
+@font-face { font-family: 'p106'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p106.woff2') format('truetype'); }
+.p106 { font-family: 'p106'!important; }
+
+@font-face { font-family: 'p107'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p107.woff2') format('truetype'); }
+.p107 { font-family: 'p107'!important; }
+
+@font-face { font-family: 'p108'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p108.woff2') format('truetype'); }
+.p108 { font-family: 'p108'!important; }
+
+@font-face { font-family: 'p109'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p109.woff2') format('truetype'); }
+.p109 { font-family: 'p109'!important; }
+
+@font-face { font-family: 'p110'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p110.woff2') format('truetype'); }
+.p110 { font-family: 'p110'!important; }
+
+@font-face { font-family: 'p111'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p111.woff2') format('truetype'); }
+.p111 { font-family: 'p111'!important; }
+
+@font-face { font-family: 'p112'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p112.woff2') format('truetype'); }
+.p112 { font-family: 'p112'!important; }
+
+@font-face { font-family: 'p113'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p113.woff2') format('truetype'); }
+.p113 { font-family: 'p113'!important; }
+
+@font-face { font-family: 'p114'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p114.woff2') format('truetype'); }
+.p114 { font-family: 'p114'!important; }
+
+@font-face { font-family: 'p115'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p115.woff2') format('truetype'); }
+.p115 { font-family: 'p115'!important; }
+
+@font-face { font-family: 'p116'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p116.woff2') format('truetype'); }
+.p116 { font-family: 'p116'!important; }
+
+@font-face { font-family: 'p117'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p117.woff2') format('truetype'); }
+.p117 { font-family: 'p117'!important; }
+
+@font-face { font-family: 'p118'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p118.woff2') format('truetype'); }
+.p118 { font-family: 'p118'!important; }
+
+@font-face { font-family: 'p119'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p119.woff2') format('truetype'); }
+.p119 { font-family: 'p119'!important; }
+
+@font-face { font-family: 'p120'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p120.woff2') format('truetype'); }
+.p120 { font-family: 'p120'!important; }
+
+@font-face { font-family: 'p121'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p121.woff2') format('truetype'); }
+.p121 { font-family: 'p121'!important; }
+
+@font-face { font-family: 'p122'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p122.woff2') format('truetype'); }
+.p122 { font-family: 'p122'!important; }
+
+@font-face { font-family: 'p123'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p123.woff2') format('truetype'); }
+.p123 { font-family: 'p123'!important; }
+
+@font-face { font-family: 'p124'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p124.woff2') format('truetype'); }
+.p124 { font-family: 'p124'!important; }
+
+@font-face { font-family: 'p125'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p125.woff2') format('truetype'); }
+.p125 { font-family: 'p125'!important; }
+
+@font-face { font-family: 'p126'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p126.woff2') format('truetype'); }
+.p126 { font-family: 'p126'!important; }
+
+@font-face { font-family: 'p127'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p127.woff2') format('truetype'); }
+.p127 { font-family: 'p127'!important; }
+
+@font-face { font-family: 'p128'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p128.woff2') format('truetype'); }
+.p128 { font-family: 'p128'!important; }
+
+@font-face { font-family: 'p129'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p129.woff2') format('truetype'); }
+.p129 { font-family: 'p129'!important; }
+
+@font-face { font-family: 'p130'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p130.woff2') format('truetype'); }
+.p130 { font-family: 'p130'!important; }
+
+@font-face { font-family: 'p131'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p131.woff2') format('truetype'); }
+.p131 { font-family: 'p131'!important; }
+
+@font-face { font-family: 'p132'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p132.woff2') format('truetype'); }
+.p132 { font-family: 'p132'!important; }
+
+@font-face { font-family: 'p133'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p133.woff2') format('truetype'); }
+.p133 { font-family: 'p133'!important; }
+
+@font-face { font-family: 'p134'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p134.woff2') format('truetype'); }
+.p134 { font-family: 'p134'!important; }
+
+@font-face { font-family: 'p135'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p135.woff2') format('truetype'); }
+.p135 { font-family: 'p135'!important; }
+
+@font-face { font-family: 'p136'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p136.woff2') format('truetype'); }
+.p136 { font-family: 'p136'!important; }
+
+@font-face { font-family: 'p137'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p137.woff2') format('truetype'); }
+.p137 { font-family: 'p137'!important; }
+
+@font-face { font-family: 'p138'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p138.woff2') format('truetype'); }
+.p138 { font-family: 'p138'!important; }
+
+@font-face { font-family: 'p139'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p139.woff2') format('truetype'); }
+.p139 { font-family: 'p139'!important; }
+
+@font-face { font-family: 'p140'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p140.woff2') format('truetype'); }
+.p140 { font-family: 'p140'!important; }
+
+@font-face { font-family: 'p141'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p141.woff2') format('truetype'); }
+.p141 { font-family: 'p141'!important; }
+
+@font-face { font-family: 'p142'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p142.woff2') format('truetype'); }
+.p142 { font-family: 'p142'!important; }
+
+@font-face { font-family: 'p143'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p143.woff2') format('truetype'); }
+.p143 { font-family: 'p143'!important; }
+
+@font-face { font-family: 'p144'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p144.woff2') format('truetype'); }
+.p144 { font-family: 'p144'!important; }
+
+@font-face { font-family: 'p145'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p145.woff2') format('truetype'); }
+.p145 { font-family: 'p145'!important; }
+
+@font-face { font-family: 'p146'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p146.woff2') format('truetype'); }
+.p146 { font-family: 'p146'!important; }
+
+@font-face { font-family: 'p147'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p147.woff2') format('truetype'); }
+.p147 { font-family: 'p147'!important; }
+
+@font-face { font-family: 'p148'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p148.woff2') format('truetype'); }
+.p148 { font-family: 'p148'!important; }
+
+@font-face { font-family: 'p149'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p149.woff2') format('truetype'); }
+.p149 { font-family: 'p149'!important; }
+
+@font-face { font-family: 'p150'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p150.woff2') format('truetype'); }
+.p150 { font-family: 'p150'!important; }
+
+@font-face { font-family: 'p151'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p151.woff2') format('truetype'); }
+.p151 { font-family: 'p151'!important; }
+
+@font-face { font-family: 'p152'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p152.woff2') format('truetype'); }
+.p152 { font-family: 'p152'!important; }
+
+@font-face { font-family: 'p153'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p153.woff2') format('truetype'); }
+.p153 { font-family: 'p153'!important; }
+
+@font-face { font-family: 'p154'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p154.woff2') format('truetype'); }
+.p154 { font-family: 'p154'!important; }
+
+@font-face { font-family: 'p155'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p155.woff2') format('truetype'); }
+.p155 { font-family: 'p155'!important; }
+
+@font-face { font-family: 'p156'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p156.woff2') format('truetype'); }
+.p156 { font-family: 'p156'!important; }
+
+@font-face { font-family: 'p157'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p157.woff2') format('truetype'); }
+.p157 { font-family: 'p157'!important; }
+
+@font-face { font-family: 'p158'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p158.woff2') format('truetype'); }
+.p158 { font-family: 'p158'!important; }
+
+@font-face { font-family: 'p159'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p159.woff2') format('truetype'); }
+.p159 { font-family: 'p159'!important; }
+
+@font-face { font-family: 'p160'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p160.woff2') format('truetype'); }
+.p160 { font-family: 'p160'!important; }
+
+@font-face { font-family: 'p161'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p161.woff2') format('truetype'); }
+.p161 { font-family: 'p161'!important; }
+
+@font-face { font-family: 'p162'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p162.woff2') format('truetype'); }
+.p162 { font-family: 'p162'!important; }
+
+@font-face { font-family: 'p163'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p163.woff2') format('truetype'); }
+.p163 { font-family: 'p163'!important; }
+
+@font-face { font-family: 'p164'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p164.woff2') format('truetype'); }
+.p164 { font-family: 'p164'!important; }
+
+@font-face { font-family: 'p165'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p165.woff2') format('truetype'); }
+.p165 { font-family: 'p165'!important; }
+
+@font-face { font-family: 'p166'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p166.woff2') format('truetype'); }
+.p166 { font-family: 'p166'!important; }
+
+@font-face { font-family: 'p167'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p167.woff2') format('truetype'); }
+.p167 { font-family: 'p167'!important; }
+
+@font-face { font-family: 'p168'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p168.woff2') format('truetype'); }
+.p168 { font-family: 'p168'!important; }
+
+@font-face { font-family: 'p169'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p169.woff2') format('truetype'); }
+.p169 { font-family: 'p169'!important; }
+
+@font-face { font-family: 'p170'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p170.woff2') format('truetype'); }
+.p170 { font-family: 'p170'!important; }
+
+@font-face { font-family: 'p171'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p171.woff2') format('truetype'); }
+.p171 { font-family: 'p171'!important; }
+
+@font-face { font-family: 'p172'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p172.woff2') format('truetype'); }
+.p172 { font-family: 'p172'!important; }
+
+@font-face { font-family: 'p173'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p173.woff2') format('truetype'); }
+.p173 { font-family: 'p173'!important; }
+
+@font-face { font-family: 'p174'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p174.woff2') format('truetype'); }
+.p174 { font-family: 'p174'!important; }
+
+@font-face { font-family: 'p175'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p175.woff2') format('truetype'); }
+.p175 { font-family: 'p175'!important; }
+
+@font-face { font-family: 'p176'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p176.woff2') format('truetype'); }
+.p176 { font-family: 'p176'!important; }
+
+@font-face { font-family: 'p177'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p177.woff2') format('truetype'); }
+.p177 { font-family: 'p177'!important; }
+
+@font-face { font-family: 'p178'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p178.woff2') format('truetype'); }
+.p178 { font-family: 'p178'!important; }
+
+@font-face { font-family: 'p179'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p179.woff2') format('truetype'); }
+.p179 { font-family: 'p179'!important; }
+
+@font-face { font-family: 'p180'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p180.woff2') format('truetype'); }
+.p180 { font-family: 'p180'!important; }
+
+@font-face { font-family: 'p181'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p181.woff2') format('truetype'); }
+.p181 { font-family: 'p181'!important; }
+
+@font-face { font-family: 'p182'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p182.woff2') format('truetype'); }
+.p182 { font-family: 'p182'!important; }
+
+@font-face { font-family: 'p183'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p183.woff2') format('truetype'); }
+.p183 { font-family: 'p183'!important; }
+
+@font-face { font-family: 'p184'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p184.woff2') format('truetype'); }
+.p184 { font-family: 'p184'!important; }
+
+@font-face { font-family: 'p185'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p185.woff2') format('truetype'); }
+.p185 { font-family: 'p185'!important; }
+
+@font-face { font-family: 'p186'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p186.woff2') format('truetype'); }
+.p186 { font-family: 'p186'!important; }
+
+@font-face { font-family: 'p187'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p187.woff2') format('truetype'); }
+.p187 { font-family: 'p187'!important; }
+
+@font-face { font-family: 'p188'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p188.woff2') format('truetype'); }
+.p188 { font-family: 'p188'!important; }
+
+@font-face { font-family: 'p189'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p189.woff2') format('truetype'); }
+.p189 { font-family: 'p189'!important; }
+
+@font-face { font-family: 'p190'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p190.woff2') format('truetype'); }
+.p190 { font-family: 'p190'!important; }
+
+@font-face { font-family: 'p191'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p191.woff2') format('truetype'); }
+.p191 { font-family: 'p191'!important; }
+
+@font-face { font-family: 'p192'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p192.woff2') format('truetype'); }
+.p192 { font-family: 'p192'!important; }
+
+@font-face { font-family: 'p193'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p193.woff2') format('truetype'); }
+.p193 { font-family: 'p193'!important; }
+
+@font-face { font-family: 'p194'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p194.woff2') format('truetype'); }
+.p194 { font-family: 'p194'!important; }
+
+@font-face { font-family: 'p195'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p195.woff2') format('truetype'); }
+.p195 { font-family: 'p195'!important; }
+
+@font-face { font-family: 'p196'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p196.woff2') format('truetype'); }
+.p196 { font-family: 'p196'!important; }
+
+@font-face { font-family: 'p197'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p197.woff2') format('truetype'); }
+.p197 { font-family: 'p197'!important; }
+
+@font-face { font-family: 'p198'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p198.woff2') format('truetype'); }
+.p198 { font-family: 'p198'!important; }
+
+@font-face { font-family: 'p199'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p199.woff2') format('truetype'); }
+.p199 { font-family: 'p199'!important; }
+
+@font-face { font-family: 'p200'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p200.woff2') format('truetype'); }
+.p200 { font-family: 'p200'!important; }
+
+@font-face { font-family: 'p201'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p201.woff2') format('truetype'); }
+.p201 { font-family: 'p201'!important; }
+
+@font-face { font-family: 'p202'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p202.woff2') format('truetype'); }
+.p202 { font-family: 'p202'!important; }
+
+@font-face { font-family: 'p203'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p203.woff2') format('truetype'); }
+.p203 { font-family: 'p203'!important; }
+
+@font-face { font-family: 'p204'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p204.woff2') format('truetype'); }
+.p204 { font-family: 'p204'!important; }
+
+@font-face { font-family: 'p205'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p205.woff2') format('truetype'); }
+.p205 { font-family: 'p205'!important; }
+
+@font-face { font-family: 'p206'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p206.woff2') format('truetype'); }
+.p206 { font-family: 'p206'!important; }
+
+@font-face { font-family: 'p207'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p207.woff2') format('truetype'); }
+.p207 { font-family: 'p207'!important; }
+
+@font-face { font-family: 'p208'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p208.woff2') format('truetype'); }
+.p208 { font-family: 'p208'!important; }
+
+@font-face { font-family: 'p209'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p209.woff2') format('truetype'); }
+.p209 { font-family: 'p209'!important; }
+
+@font-face { font-family: 'p210'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p210.woff2') format('truetype'); }
+.p210 { font-family: 'p210'!important; }
+
+@font-face { font-family: 'p211'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p211.woff2') format('truetype'); }
+.p211 { font-family: 'p211'!important; }
+
+@font-face { font-family: 'p212'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p212.woff2') format('truetype'); }
+.p212 { font-family: 'p212'!important; }
+
+@font-face { font-family: 'p213'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p213.woff2') format('truetype'); }
+.p213 { font-family: 'p213'!important; }
+
+@font-face { font-family: 'p214'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p214.woff2') format('truetype'); }
+.p214 { font-family: 'p214'!important; }
+
+@font-face { font-family: 'p215'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p215.woff2') format('truetype'); }
+.p215 { font-family: 'p215'!important; }
+
+@font-face { font-family: 'p216'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p216.woff2') format('truetype'); }
+.p216 { font-family: 'p216'!important; }
+
+@font-face { font-family: 'p217'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p217.woff2') format('truetype'); }
+.p217 { font-family: 'p217'!important; }
+
+@font-face { font-family: 'p218'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p218.woff2') format('truetype'); }
+.p218 { font-family: 'p218'!important; }
+
+@font-face { font-family: 'p219'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p219.woff2') format('truetype'); }
+.p219 { font-family: 'p219'!important; }
+
+@font-face { font-family: 'p220'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p220.woff2') format('truetype'); }
+.p220 { font-family: 'p220'!important; }
+
+@font-face { font-family: 'p221'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p221.woff2') format('truetype'); }
+.p221 { font-family: 'p221'!important; }
+
+@font-face { font-family: 'p222'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p222.woff2') format('truetype'); }
+.p222 { font-family: 'p222'!important; }
+
+@font-face { font-family: 'p223'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p223.woff2') format('truetype'); }
+.p223 { font-family: 'p223'!important; }
+
+@font-face { font-family: 'p224'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p224.woff2') format('truetype'); }
+.p224 { font-family: 'p224'!important; }
+
+@font-face { font-family: 'p225'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p225.woff2') format('truetype'); }
+.p225 { font-family: 'p225'!important; }
+
+@font-face { font-family: 'p226'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p226.woff2') format('truetype'); }
+.p226 { font-family: 'p226'!important; }
+
+@font-face { font-family: 'p227'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p227.woff2') format('truetype'); }
+.p227 { font-family: 'p227'!important; }
+
+@font-face { font-family: 'p228'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p228.woff2') format('truetype'); }
+.p228 { font-family: 'p228'!important; }
+
+@font-face { font-family: 'p229'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p229.woff2') format('truetype'); }
+.p229 { font-family: 'p229'!important; }
+
+@font-face { font-family: 'p230'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p230.woff2') format('truetype'); }
+.p230 { font-family: 'p230'!important; }
+
+@font-face { font-family: 'p231'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p231.woff2') format('truetype'); }
+.p231 { font-family: 'p231'!important; }
+
+@font-face { font-family: 'p232'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p232.woff2') format('truetype'); }
+.p232 { font-family: 'p232'!important; }
+
+@font-face { font-family: 'p233'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p233.woff2') format('truetype'); }
+.p233 { font-family: 'p233'!important; }
+
+@font-face { font-family: 'p234'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p234.woff2') format('truetype'); }
+.p234 { font-family: 'p234'!important; }
+
+@font-face { font-family: 'p235'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p235.woff2') format('truetype'); }
+.p235 { font-family: 'p235'!important; }
+
+@font-face { font-family: 'p236'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p236.woff2') format('truetype'); }
+.p236 { font-family: 'p236'!important; }
+
+@font-face { font-family: 'p237'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p237.woff2') format('truetype'); }
+.p237 { font-family: 'p237'!important; }
+
+@font-face { font-family: 'p238'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p238.woff2') format('truetype'); }
+.p238 { font-family: 'p238'!important; }
+
+@font-face { font-family: 'p239'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p239.woff2') format('truetype'); }
+.p239 { font-family: 'p239'!important; }
+
+@font-face { font-family: 'p240'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p240.woff2') format('truetype'); }
+.p240 { font-family: 'p240'!important; }
+
+@font-face { font-family: 'p241'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p241.woff2') format('truetype'); }
+.p241 { font-family: 'p241'!important; }
+
+@font-face { font-family: 'p242'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p242.woff2') format('truetype'); }
+.p242 { font-family: 'p242'!important; }
+
+@font-face { font-family: 'p243'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p243.woff2') format('truetype'); }
+.p243 { font-family: 'p243'!important; }
+
+@font-face { font-family: 'p244'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p244.woff2') format('truetype'); }
+.p244 { font-family: 'p244'!important; }
+
+@font-face { font-family: 'p245'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p245.woff2') format('truetype'); }
+.p245 { font-family: 'p245'!important; }
+
+@font-face { font-family: 'p246'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p246.woff2') format('truetype'); }
+.p246 { font-family: 'p246'!important; }
+
+@font-face { font-family: 'p247'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p247.woff2') format('truetype'); }
+.p247 { font-family: 'p247'!important; }
+
+@font-face { font-family: 'p248'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p248.woff2') format('truetype'); }
+.p248 { font-family: 'p248'!important; }
+
+@font-face { font-family: 'p249'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p249.woff2') format('truetype'); }
+.p249 { font-family: 'p249'!important; }
+
+@font-face { font-family: 'p250'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p250.woff2') format('truetype'); }
+.p250 { font-family: 'p250'!important; }
+
+@font-face { font-family: 'p251'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p251.woff2') format('truetype'); }
+.p251 { font-family: 'p251'!important; }
+
+@font-face { font-family: 'p252'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p252.woff2') format('truetype'); }
+.p252 { font-family: 'p252'!important; }
+
+@font-face { font-family: 'p253'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p253.woff2') format('truetype'); }
+.p253 { font-family: 'p253'!important; }
+
+@font-face { font-family: 'p254'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p254.woff2') format('truetype'); }
+.p254 { font-family: 'p254'!important; }
+
+@font-face { font-family: 'p255'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p255.woff2') format('truetype'); }
+.p255 { font-family: 'p255'!important; }
+
+@font-face { font-family: 'p256'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p256.woff2') format('truetype'); }
+.p256 { font-family: 'p256'!important; }
+
+@font-face { font-family: 'p257'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p257.woff2') format('truetype'); }
+.p257 { font-family: 'p257'!important; }
+
+@font-face { font-family: 'p258'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p258.woff2') format('truetype'); }
+.p258 { font-family: 'p258'!important; }
+
+@font-face { font-family: 'p259'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p259.woff2') format('truetype'); }
+.p259 { font-family: 'p259'!important; }
+
+@font-face { font-family: 'p260'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p260.woff2') format('truetype'); }
+.p260 { font-family: 'p260'!important; }
+
+@font-face { font-family: 'p261'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p261.woff2') format('truetype'); }
+.p261 { font-family: 'p261'!important; }
+
+@font-face { font-family: 'p262'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p262.woff2') format('truetype'); }
+.p262 { font-family: 'p262'!important; }
+
+@font-face { font-family: 'p263'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p263.woff2') format('truetype'); }
+.p263 { font-family: 'p263'!important; }
+
+@font-face { font-family: 'p264'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p264.woff2') format('truetype'); }
+.p264 { font-family: 'p264'!important; }
+
+@font-face { font-family: 'p265'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p265.woff2') format('truetype'); }
+.p265 { font-family: 'p265'!important; }
+
+@font-face { font-family: 'p266'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p266.woff2') format('truetype'); }
+.p266 { font-family: 'p266'!important; }
+
+@font-face { font-family: 'p267'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p267.woff2') format('truetype'); }
+.p267 { font-family: 'p267'!important; }
+
+@font-face { font-family: 'p268'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p268.woff2') format('truetype'); }
+.p268 { font-family: 'p268'!important; }
+
+@font-face { font-family: 'p269'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p269.woff2') format('truetype'); }
+.p269 { font-family: 'p269'!important; }
+
+@font-face { font-family: 'p270'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p270.woff2') format('truetype'); }
+.p270 { font-family: 'p270'!important; }
+
+@font-face { font-family: 'p271'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p271.woff2') format('truetype'); }
+.p271 { font-family: 'p271'!important; }
+
+@font-face { font-family: 'p272'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p272.woff2') format('truetype'); }
+.p272 { font-family: 'p272'!important; }
+
+@font-face { font-family: 'p273'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p273.woff2') format('truetype'); }
+.p273 { font-family: 'p273'!important; }
+
+@font-face { font-family: 'p274'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p274.woff2') format('truetype'); }
+.p274 { font-family: 'p274'!important; }
+
+@font-face { font-family: 'p275'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p275.woff2') format('truetype'); }
+.p275 { font-family: 'p275'!important; }
+
+@font-face { font-family: 'p276'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p276.woff2') format('truetype'); }
+.p276 { font-family: 'p276'!important; }
+
+@font-face { font-family: 'p277'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p277.woff2') format('truetype'); }
+.p277 { font-family: 'p277'!important; }
+
+@font-face { font-family: 'p278'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p278.woff2') format('truetype'); }
+.p278 { font-family: 'p278'!important; }
+
+@font-face { font-family: 'p279'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p279.woff2') format('truetype'); }
+.p279 { font-family: 'p279'!important; }
+
+@font-face { font-family: 'p280'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p280.woff2') format('truetype'); }
+.p280 { font-family: 'p280'!important; }
+
+@font-face { font-family: 'p281'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p281.woff2') format('truetype'); }
+.p281 { font-family: 'p281'!important; }
+
+@font-face { font-family: 'p282'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p282.woff2') format('truetype'); }
+.p282 { font-family: 'p282'!important; }
+
+@font-face { font-family: 'p283'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p283.woff2') format('truetype'); }
+.p283 { font-family: 'p283'!important; }
+
+@font-face { font-family: 'p284'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p284.woff2') format('truetype'); }
+.p284 { font-family: 'p284'!important; }
+
+@font-face { font-family: 'p285'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p285.woff2') format('truetype'); }
+.p285 { font-family: 'p285'!important; }
+
+@font-face { font-family: 'p286'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p286.woff2') format('truetype'); }
+.p286 { font-family: 'p286'!important; }
+
+@font-face { font-family: 'p287'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p287.woff2') format('truetype'); }
+.p287 { font-family: 'p287'!important; }
+
+@font-face { font-family: 'p288'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p288.woff2') format('truetype'); }
+.p288 { font-family: 'p288'!important; }
+
+@font-face { font-family: 'p289'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p289.woff2') format('truetype'); }
+.p289 { font-family: 'p289'!important; }
+
+@font-face { font-family: 'p290'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p290.woff2') format('truetype'); }
+.p290 { font-family: 'p290'!important; }
+
+@font-face { font-family: 'p291'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p291.woff2') format('truetype'); }
+.p291 { font-family: 'p291'!important; }
+
+@font-face { font-family: 'p292'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p292.woff2') format('truetype'); }
+.p292 { font-family: 'p292'!important; }
+
+@font-face { font-family: 'p293'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p293.woff2') format('truetype'); }
+.p293 { font-family: 'p293'!important; }
+
+@font-face { font-family: 'p294'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p294.woff2') format('truetype'); }
+.p294 { font-family: 'p294'!important; }
+
+@font-face { font-family: 'p295'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p295.woff2') format('truetype'); }
+.p295 { font-family: 'p295'!important; }
+
+@font-face { font-family: 'p296'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p296.woff2') format('truetype'); }
+.p296 { font-family: 'p296'!important; }
+
+@font-face { font-family: 'p297'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p297.woff2') format('truetype'); }
+.p297 { font-family: 'p297'!important; }
+
+@font-face { font-family: 'p298'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p298.woff2') format('truetype'); }
+.p298 { font-family: 'p298'!important; }
+
+@font-face { font-family: 'p299'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p299.woff2') format('truetype'); }
+.p299 { font-family: 'p299'!important; }
+
+@font-face { font-family: 'p300'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p300.woff2') format('truetype'); }
+.p300 { font-family: 'p300'!important; }
+
+@font-face { font-family: 'p301'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p301.woff2') format('truetype'); }
+.p301 { font-family: 'p301'!important; }
+
+@font-face { font-family: 'p302'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p302.woff2') format('truetype'); }
+.p302 { font-family: 'p302'!important; }
+
+@font-face { font-family: 'p303'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p303.woff2') format('truetype'); }
+.p303 { font-family: 'p303'!important; }
+
+@font-face { font-family: 'p304'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p304.woff2') format('truetype'); }
+.p304 { font-family: 'p304'!important; }
+
+@font-face { font-family: 'p305'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p305.woff2') format('truetype'); }
+.p305 { font-family: 'p305'!important; }
+
+@font-face { font-family: 'p306'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p306.woff2') format('truetype'); }
+.p306 { font-family: 'p306'!important; }
+
+@font-face { font-family: 'p307'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p307.woff2') format('truetype'); }
+.p307 { font-family: 'p307'!important; }
+
+@font-face { font-family: 'p308'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p308.woff2') format('truetype'); }
+.p308 { font-family: 'p308'!important; }
+
+@font-face { font-family: 'p309'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p309.woff2') format('truetype'); }
+.p309 { font-family: 'p309'!important; }
+
+@font-face { font-family: 'p310'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p310.woff2') format('truetype'); }
+.p310 { font-family: 'p310'!important; }
+
+@font-face { font-family: 'p311'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p311.woff2') format('truetype'); }
+.p311 { font-family: 'p311'!important; }
+
+@font-face { font-family: 'p312'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p312.woff2') format('truetype'); }
+.p312 { font-family: 'p312'!important; }
+
+@font-face { font-family: 'p313'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p313.woff2') format('truetype'); }
+.p313 { font-family: 'p313'!important; }
+
+@font-face { font-family: 'p314'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p314.woff2') format('truetype'); }
+.p314 { font-family: 'p314'!important; }
+
+@font-face { font-family: 'p315'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p315.woff2') format('truetype'); }
+.p315 { font-family: 'p315'!important; }
+
+@font-face { font-family: 'p316'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p316.woff2') format('truetype'); }
+.p316 { font-family: 'p316'!important; }
+
+@font-face { font-family: 'p317'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p317.woff2') format('truetype'); }
+.p317 { font-family: 'p317'!important; }
+
+@font-face { font-family: 'p318'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p318.woff2') format('truetype'); }
+.p318 { font-family: 'p318'!important; }
+
+@font-face { font-family: 'p319'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p319.woff2') format('truetype'); }
+.p319 { font-family: 'p319'!important; }
+
+@font-face { font-family: 'p320'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p320.woff2') format('truetype'); }
+.p320 { font-family: 'p320'!important; }
+
+@font-face { font-family: 'p321'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p321.woff2') format('truetype'); }
+.p321 { font-family: 'p321'!important; }
+
+@font-face { font-family: 'p322'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p322.woff2') format('truetype'); }
+.p322 { font-family: 'p322'!important; }
+
+@font-face { font-family: 'p323'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p323.woff2') format('truetype'); }
+.p323 { font-family: 'p323'!important; }
+
+@font-face { font-family: 'p324'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p324.woff2') format('truetype'); }
+.p324 { font-family: 'p324'!important; }
+
+@font-face { font-family: 'p325'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p325.woff2') format('truetype'); }
+.p325 { font-family: 'p325'!important; }
+
+@font-face { font-family: 'p326'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p326.woff2') format('truetype'); }
+.p326 { font-family: 'p326'!important; }
+
+@font-face { font-family: 'p327'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p327.woff2') format('truetype'); }
+.p327 { font-family: 'p327'!important; }
+
+@font-face { font-family: 'p328'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p328.woff2') format('truetype'); }
+.p328 { font-family: 'p328'!important; }
+
+@font-face { font-family: 'p329'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p329.woff2') format('truetype'); }
+.p329 { font-family: 'p329'!important; }
+
+@font-face { font-family: 'p330'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p330.woff2') format('truetype'); }
+.p330 { font-family: 'p330'!important; }
+
+@font-face { font-family: 'p331'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p331.woff2') format('truetype'); }
+.p331 { font-family: 'p331'!important; }
+
+@font-face { font-family: 'p332'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p332.woff2') format('truetype'); }
+.p332 { font-family: 'p332'!important; }
+
+@font-face { font-family: 'p333'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p333.woff2') format('truetype'); }
+.p333 { font-family: 'p333'!important; }
+
+@font-face { font-family: 'p334'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p334.woff2') format('truetype'); }
+.p334 { font-family: 'p334'!important; }
+
+@font-face { font-family: 'p335'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p335.woff2') format('truetype'); }
+.p335 { font-family: 'p335'!important; }
+
+@font-face { font-family: 'p336'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p336.woff2') format('truetype'); }
+.p336 { font-family: 'p336'!important; }
+
+@font-face { font-family: 'p337'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p337.woff2') format('truetype'); }
+.p337 { font-family: 'p337'!important; }
+
+@font-face { font-family: 'p338'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p338.woff2') format('truetype'); }
+.p338 { font-family: 'p338'!important; }
+
+@font-face { font-family: 'p339'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p339.woff2') format('truetype'); }
+.p339 { font-family: 'p339'!important; }
+
+@font-face { font-family: 'p340'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p340.woff2') format('truetype'); }
+.p340 { font-family: 'p340'!important; }
+
+@font-face { font-family: 'p341'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p341.woff2') format('truetype'); }
+.p341 { font-family: 'p341'!important; }
+
+@font-face { font-family: 'p342'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p342.woff2') format('truetype'); }
+.p342 { font-family: 'p342'!important; }
+
+@font-face { font-family: 'p343'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p343.woff2') format('truetype'); }
+.p343 { font-family: 'p343'!important; }
+
+@font-face { font-family: 'p344'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p344.woff2') format('truetype'); }
+.p344 { font-family: 'p344'!important; }
+
+@font-face { font-family: 'p345'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p345.woff2') format('truetype'); }
+.p345 { font-family: 'p345'!important; }
+
+@font-face { font-family: 'p346'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p346.woff2') format('truetype'); }
+.p346 { font-family: 'p346'!important; }
+
+@font-face { font-family: 'p347'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p347.woff2') format('truetype'); }
+.p347 { font-family: 'p347'!important; }
+
+@font-face { font-family: 'p348'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p348.woff2') format('truetype'); }
+.p348 { font-family: 'p348'!important; }
+
+@font-face { font-family: 'p349'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p349.woff2') format('truetype'); }
+.p349 { font-family: 'p349'!important; }
+
+@font-face { font-family: 'p350'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p350.woff2') format('truetype'); }
+.p350 { font-family: 'p350'!important; }
+
+@font-face { font-family: 'p351'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p351.woff2') format('truetype'); }
+.p351 { font-family: 'p351'!important; }
+
+@font-face { font-family: 'p352'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p352.woff2') format('truetype'); }
+.p352 { font-family: 'p352'!important; }
+
+@font-face { font-family: 'p353'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p353.woff2') format('truetype'); }
+.p353 { font-family: 'p353'!important; }
+
+@font-face { font-family: 'p354'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p354.woff2') format('truetype'); }
+.p354 { font-family: 'p354'!important; }
+
+@font-face { font-family: 'p355'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p355.woff2') format('truetype'); }
+.p355 { font-family: 'p355'!important; }
+
+@font-face { font-family: 'p356'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p356.woff2') format('truetype'); }
+.p356 { font-family: 'p356'!important; }
+
+@font-face { font-family: 'p357'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p357.woff2') format('truetype'); }
+.p357 { font-family: 'p357'!important; }
+
+@font-face { font-family: 'p358'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p358.woff2') format('truetype'); }
+.p358 { font-family: 'p358'!important; }
+
+@font-face { font-family: 'p359'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p359.woff2') format('truetype'); }
+.p359 { font-family: 'p359'!important; }
+
+@font-face { font-family: 'p360'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p360.woff2') format('truetype'); }
+.p360 { font-family: 'p360'!important; }
+
+@font-face { font-family: 'p361'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p361.woff2') format('truetype'); }
+.p361 { font-family: 'p361'!important; }
+
+@font-face { font-family: 'p362'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p362.woff2') format('truetype'); }
+.p362 { font-family: 'p362'!important; }
+
+@font-face { font-family: 'p363'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p363.woff2') format('truetype'); }
+.p363 { font-family: 'p363'!important; }
+
+@font-face { font-family: 'p364'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p364.woff2') format('truetype'); }
+.p364 { font-family: 'p364'!important; }
+
+@font-face { font-family: 'p365'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p365.woff2') format('truetype'); }
+.p365 { font-family: 'p365'!important; }
+
+@font-face { font-family: 'p366'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p366.woff2') format('truetype'); }
+.p366 { font-family: 'p366'!important; }
+
+@font-face { font-family: 'p367'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p367.woff2') format('truetype'); }
+.p367 { font-family: 'p367'!important; }
+
+@font-face { font-family: 'p368'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p368.woff2') format('truetype'); }
+.p368 { font-family: 'p368'!important; }
+
+@font-face { font-family: 'p369'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p369.woff2') format('truetype'); }
+.p369 { font-family: 'p369'!important; }
+
+@font-face { font-family: 'p370'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p370.woff2') format('truetype'); }
+.p370 { font-family: 'p370'!important; }
+
+@font-face { font-family: 'p371'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p371.woff2') format('truetype'); }
+.p371 { font-family: 'p371'!important; }
+
+@font-face { font-family: 'p372'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p372.woff2') format('truetype'); }
+.p372 { font-family: 'p372'!important; }
+
+@font-face { font-family: 'p373'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p373.woff2') format('truetype'); }
+.p373 { font-family: 'p373'!important; }
+
+@font-face { font-family: 'p374'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p374.woff2') format('truetype'); }
+.p374 { font-family: 'p374'!important; }
+
+@font-face { font-family: 'p375'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p375.woff2') format('truetype'); }
+.p375 { font-family: 'p375'!important; }
+
+@font-face { font-family: 'p376'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p376.woff2') format('truetype'); }
+.p376 { font-family: 'p376'!important; }
+
+@font-face { font-family: 'p377'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p377.woff2') format('truetype'); }
+.p377 { font-family: 'p377'!important; }
+
+@font-face { font-family: 'p378'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p378.woff2') format('truetype'); }
+.p378 { font-family: 'p378'!important; }
+
+@font-face { font-family: 'p379'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p379.woff2') format('truetype'); }
+.p379 { font-family: 'p379'!important; }
+
+@font-face { font-family: 'p380'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p380.woff2') format('truetype'); }
+.p380 { font-family: 'p380'!important; }
+
+@font-face { font-family: 'p381'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p381.woff2') format('truetype'); }
+.p381 { font-family: 'p381'!important; }
+
+@font-face { font-family: 'p382'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p382.woff2') format('truetype'); }
+.p382 { font-family: 'p382'!important; }
+
+@font-face { font-family: 'p383'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p383.woff2') format('truetype'); }
+.p383 { font-family: 'p383'!important; }
+
+@font-face { font-family: 'p384'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p384.woff2') format('truetype'); }
+.p384 { font-family: 'p384'!important; }
+
+@font-face { font-family: 'p385'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p385.woff2') format('truetype'); }
+.p385 { font-family: 'p385'!important; }
+
+@font-face { font-family: 'p386'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p386.woff2') format('truetype'); }
+.p386 { font-family: 'p386'!important; }
+
+@font-face { font-family: 'p387'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p387.woff2') format('truetype'); }
+.p387 { font-family: 'p387'!important; }
+
+@font-face { font-family: 'p388'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p388.woff2') format('truetype'); }
+.p388 { font-family: 'p388'!important; }
+
+@font-face { font-family: 'p389'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p389.woff2') format('truetype'); }
+.p389 { font-family: 'p389'!important; }
+
+@font-face { font-family: 'p390'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p390.woff2') format('truetype'); }
+.p390 { font-family: 'p390'!important; }
+
+@font-face { font-family: 'p391'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p391.woff2') format('truetype'); }
+.p391 { font-family: 'p391'!important; }
+
+@font-face { font-family: 'p392'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p392.woff2') format('truetype'); }
+.p392 { font-family: 'p392'!important; }
+
+@font-face { font-family: 'p393'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p393.woff2') format('truetype'); }
+.p393 { font-family: 'p393'!important; }
+
+@font-face { font-family: 'p394'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p394.woff2') format('truetype'); }
+.p394 { font-family: 'p394'!important; }
+
+@font-face { font-family: 'p395'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p395.woff2') format('truetype'); }
+.p395 { font-family: 'p395'!important; }
+
+@font-face { font-family: 'p396'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p396.woff2') format('truetype'); }
+.p396 { font-family: 'p396'!important; }
+
+@font-face { font-family: 'p397'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p397.woff2') format('truetype'); }
+.p397 { font-family: 'p397'!important; }
+
+@font-face { font-family: 'p398'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p398.woff2') format('truetype'); }
+.p398 { font-family: 'p398'!important; }
+
+@font-face { font-family: 'p399'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p399.woff2') format('truetype'); }
+.p399 { font-family: 'p399'!important; }
+
+@font-face { font-family: 'p400'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p400.woff2') format('truetype'); }
+.p400 { font-family: 'p400'!important; }
+
+@font-face { font-family: 'p401'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p401.woff2') format('truetype'); }
+.p401 { font-family: 'p401'!important; }
+
+@font-face { font-family: 'p402'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p402.woff2') format('truetype'); }
+.p402 { font-family: 'p402'!important; }
+
+@font-face { font-family: 'p403'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p403.woff2') format('truetype'); }
+.p403 { font-family: 'p403'!important; }
+
+@font-face { font-family: 'p404'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p404.woff2') format('truetype'); }
+.p404 { font-family: 'p404'!important; }
+
+@font-face { font-family: 'p405'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p405.woff2') format('truetype'); }
+.p405 { font-family: 'p405'!important; }
+
+@font-face { font-family: 'p406'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p406.woff2') format('truetype'); }
+.p406 { font-family: 'p406'!important; }
+
+@font-face { font-family: 'p407'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p407.woff2') format('truetype'); }
+.p407 { font-family: 'p407'!important; }
+
+@font-face { font-family: 'p408'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p408.woff2') format('truetype'); }
+.p408 { font-family: 'p408'!important; }
+
+@font-face { font-family: 'p409'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p409.woff2') format('truetype'); }
+.p409 { font-family: 'p409'!important; }
+
+@font-face { font-family: 'p410'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p410.woff2') format('truetype'); }
+.p410 { font-family: 'p410'!important; }
+
+@font-face { font-family: 'p411'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p411.woff2') format('truetype'); }
+.p411 { font-family: 'p411'!important; }
+
+@font-face { font-family: 'p412'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p412.woff2') format('truetype'); }
+.p412 { font-family: 'p412'!important; }
+
+@font-face { font-family: 'p413'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p413.woff2') format('truetype'); }
+.p413 { font-family: 'p413'!important; }
+
+@font-face { font-family: 'p414'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p414.woff2') format('truetype'); }
+.p414 { font-family: 'p414'!important; }
+
+@font-face { font-family: 'p415'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p415.woff2') format('truetype'); }
+.p415 { font-family: 'p415'!important; }
+
+@font-face { font-family: 'p416'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p416.woff2') format('truetype'); }
+.p416 { font-family: 'p416'!important; }
+
+@font-face { font-family: 'p417'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p417.woff2') format('truetype'); }
+.p417 { font-family: 'p417'!important; }
+
+@font-face { font-family: 'p418'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p418.woff2') format('truetype'); }
+.p418 { font-family: 'p418'!important; }
+
+@font-face { font-family: 'p419'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p419.woff2') format('truetype'); }
+.p419 { font-family: 'p419'!important; }
+
+@font-face { font-family: 'p420'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p420.woff2') format('truetype'); }
+.p420 { font-family: 'p420'!important; }
+
+@font-face { font-family: 'p421'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p421.woff2') format('truetype'); }
+.p421 { font-family: 'p421'!important; }
+
+@font-face { font-family: 'p422'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p422.woff2') format('truetype'); }
+.p422 { font-family: 'p422'!important; }
+
+@font-face { font-family: 'p423'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p423.woff2') format('truetype'); }
+.p423 { font-family: 'p423'!important; }
+
+@font-face { font-family: 'p424'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p424.woff2') format('truetype'); }
+.p424 { font-family: 'p424'!important; }
+
+@font-face { font-family: 'p425'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p425.woff2') format('truetype'); }
+.p425 { font-family: 'p425'!important; }
+
+@font-face { font-family: 'p426'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p426.woff2') format('truetype'); }
+.p426 { font-family: 'p426'!important; }
+
+@font-face { font-family: 'p427'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p427.woff2') format('truetype'); }
+.p427 { font-family: 'p427'!important; }
+
+@font-face { font-family: 'p428'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p428.woff2') format('truetype'); }
+.p428 { font-family: 'p428'!important; }
+
+@font-face { font-family: 'p429'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p429.woff2') format('truetype'); }
+.p429 { font-family: 'p429'!important; }
+
+@font-face { font-family: 'p430'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p430.woff2') format('truetype'); }
+.p430 { font-family: 'p430'!important; }
+
+@font-face { font-family: 'p431'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p431.woff2') format('truetype'); }
+.p431 { font-family: 'p431'!important; }
+
+@font-face { font-family: 'p432'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p432.woff2') format('truetype'); }
+.p432 { font-family: 'p432'!important; }
+
+@font-face { font-family: 'p433'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p433.woff2') format('truetype'); }
+.p433 { font-family: 'p433'!important; }
+
+@font-face { font-family: 'p434'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p434.woff2') format('truetype'); }
+.p434 { font-family: 'p434'!important; }
+
+@font-face { font-family: 'p435'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p435.woff2') format('truetype'); }
+.p435 { font-family: 'p435'!important; }
+
+@font-face { font-family: 'p436'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p436.woff2') format('truetype'); }
+.p436 { font-family: 'p436'!important; }
+
+@font-face { font-family: 'p437'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p437.woff2') format('truetype'); }
+.p437 { font-family: 'p437'!important; }
+
+@font-face { font-family: 'p438'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p438.woff2') format('truetype'); }
+.p438 { font-family: 'p438'!important; }
+
+@font-face { font-family: 'p439'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p439.woff2') format('truetype'); }
+.p439 { font-family: 'p439'!important; }
+
+@font-face { font-family: 'p440'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p440.woff2') format('truetype'); }
+.p440 { font-family: 'p440'!important; }
+
+@font-face { font-family: 'p441'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p441.woff2') format('truetype'); }
+.p441 { font-family: 'p441'!important; }
+
+@font-face { font-family: 'p442'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p442.woff2') format('truetype'); }
+.p442 { font-family: 'p442'!important; }
+
+@font-face { font-family: 'p443'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p443.woff2') format('truetype'); }
+.p443 { font-family: 'p443'!important; }
+
+@font-face { font-family: 'p444'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p444.woff2') format('truetype'); }
+.p444 { font-family: 'p444'!important; }
+
+@font-face { font-family: 'p445'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p445.woff2') format('truetype'); }
+.p445 { font-family: 'p445'!important; }
+
+@font-face { font-family: 'p446'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p446.woff2') format('truetype'); }
+.p446 { font-family: 'p446'!important; }
+
+@font-face { font-family: 'p447'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p447.woff2') format('truetype'); }
+.p447 { font-family: 'p447'!important; }
+
+@font-face { font-family: 'p448'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p448.woff2') format('truetype'); }
+.p448 { font-family: 'p448'!important; }
+
+@font-face { font-family: 'p449'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p449.woff2') format('truetype'); }
+.p449 { font-family: 'p449'!important; }
+
+@font-face { font-family: 'p450'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p450.woff2') format('truetype'); }
+.p450 { font-family: 'p450'!important; }
+
+@font-face { font-family: 'p451'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p451.woff2') format('truetype'); }
+.p451 { font-family: 'p451'!important; }
+
+@font-face { font-family: 'p452'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p452.woff2') format('truetype'); }
+.p452 { font-family: 'p452'!important; }
+
+@font-face { font-family: 'p453'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p453.woff2') format('truetype'); }
+.p453 { font-family: 'p453'!important; }
+
+@font-face { font-family: 'p454'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p454.woff2') format('truetype'); }
+.p454 { font-family: 'p454'!important; }
+
+@font-face { font-family: 'p455'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p455.woff2') format('truetype'); }
+.p455 { font-family: 'p455'!important; }
+
+@font-face { font-family: 'p456'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p456.woff2') format('truetype'); }
+.p456 { font-family: 'p456'!important; }
+
+@font-face { font-family: 'p457'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p457.woff2') format('truetype'); }
+.p457 { font-family: 'p457'!important; }
+
+@font-face { font-family: 'p458'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p458.woff2') format('truetype'); }
+.p458 { font-family: 'p458'!important; }
+
+@font-face { font-family: 'p459'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p459.woff2') format('truetype'); }
+.p459 { font-family: 'p459'!important; }
+
+@font-face { font-family: 'p460'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p460.woff2') format('truetype'); }
+.p460 { font-family: 'p460'!important; }
+
+@font-face { font-family: 'p461'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p461.woff2') format('truetype'); }
+.p461 { font-family: 'p461'!important; }
+
+@font-face { font-family: 'p462'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p462.woff2') format('truetype'); }
+.p462 { font-family: 'p462'!important; }
+
+@font-face { font-family: 'p463'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p463.woff2') format('truetype'); }
+.p463 { font-family: 'p463'!important; }
+
+@font-face { font-family: 'p464'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p464.woff2') format('truetype'); }
+.p464 { font-family: 'p464'!important; }
+
+@font-face { font-family: 'p465'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p465.woff2') format('truetype'); }
+.p465 { font-family: 'p465'!important; }
+
+@font-face { font-family: 'p466'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p466.woff2') format('truetype'); }
+.p466 { font-family: 'p466'!important; }
+
+@font-face { font-family: 'p467'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p467.woff2') format('truetype'); }
+.p467 { font-family: 'p467'!important; }
+
+@font-face { font-family: 'p468'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p468.woff2') format('truetype'); }
+.p468 { font-family: 'p468'!important; }
+
+@font-face { font-family: 'p469'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p469.woff2') format('truetype'); }
+.p469 { font-family: 'p469'!important; }
+
+@font-face { font-family: 'p470'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p470.woff2') format('truetype'); }
+.p470 { font-family: 'p470'!important; }
+
+@font-face { font-family: 'p471'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p471.woff2') format('truetype'); }
+.p471 { font-family: 'p471'!important; }
+
+@font-face { font-family: 'p472'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p472.woff2') format('truetype'); }
+.p472 { font-family: 'p472'!important; }
+
+@font-face { font-family: 'p473'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p473.woff2') format('truetype'); }
+.p473 { font-family: 'p473'!important; }
+
+@font-face { font-family: 'p474'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p474.woff2') format('truetype'); }
+.p474 { font-family: 'p474'!important; }
+
+@font-face { font-family: 'p475'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p475.woff2') format('truetype'); }
+.p475 { font-family: 'p475'!important; }
+
+@font-face { font-family: 'p476'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p476.woff2') format('truetype'); }
+.p476 { font-family: 'p476'!important; }
+
+@font-face { font-family: 'p477'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p477.woff2') format('truetype'); }
+.p477 { font-family: 'p477'!important; }
+
+@font-face { font-family: 'p478'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p478.woff2') format('truetype'); }
+.p478 { font-family: 'p478'!important; }
+
+@font-face { font-family: 'p479'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p479.woff2') format('truetype'); }
+.p479 { font-family: 'p479'!important; }
+
+@font-face { font-family: 'p480'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p480.woff2') format('truetype'); }
+.p480 { font-family: 'p480'!important; }
+
+@font-face { font-family: 'p481'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p481.woff2') format('truetype'); }
+.p481 { font-family: 'p481'!important; }
+
+@font-face { font-family: 'p482'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p482.woff2') format('truetype'); }
+.p482 { font-family: 'p482'!important; }
+
+@font-face { font-family: 'p483'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p483.woff2') format('truetype'); }
+.p483 { font-family: 'p483'!important; }
+
+@font-face { font-family: 'p484'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p484.woff2') format('truetype'); }
+.p484 { font-family: 'p484'!important; }
+
+@font-face { font-family: 'p485'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p485.woff2') format('truetype'); }
+.p485 { font-family: 'p485'!important; }
+
+@font-face { font-family: 'p486'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p486.woff2') format('truetype'); }
+.p486 { font-family: 'p486'!important; }
+
+@font-face { font-family: 'p487'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p487.woff2') format('truetype'); }
+.p487 { font-family: 'p487'!important; }
+
+@font-face { font-family: 'p488'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p488.woff2') format('truetype'); }
+.p488 { font-family: 'p488'!important; }
+
+@font-face { font-family: 'p489'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p489.woff2') format('truetype'); }
+.p489 { font-family: 'p489'!important; }
+
+@font-face { font-family: 'p490'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p490.woff2') format('truetype'); }
+.p490 { font-family: 'p490'!important; }
+
+@font-face { font-family: 'p491'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p491.woff2') format('truetype'); }
+.p491 { font-family: 'p491'!important; }
+
+@font-face { font-family: 'p492'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p492.woff2') format('truetype'); }
+.p492 { font-family: 'p492'!important; }
+
+@font-face { font-family: 'p493'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p493.woff2') format('truetype'); }
+.p493 { font-family: 'p493'!important; }
+
+@font-face { font-family: 'p494'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p494.woff2') format('truetype'); }
+.p494 { font-family: 'p494'!important; }
+
+@font-face { font-family: 'p495'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p495.woff2') format('truetype'); }
+.p495 { font-family: 'p495'!important; }
+
+@font-face { font-family: 'p496'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p496.woff2') format('truetype'); }
+.p496 { font-family: 'p496'!important; }
+
+@font-face { font-family: 'p497'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p497.woff2') format('truetype'); }
+.p497 { font-family: 'p497'!important; }
+
+@font-face { font-family: 'p498'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p498.woff2') format('truetype'); }
+.p498 { font-family: 'p498'!important; }
+
+@font-face { font-family: 'p499'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p499.woff2') format('truetype'); }
+.p499 { font-family: 'p499'!important; }
+
+@font-face { font-family: 'p500'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p500.woff2') format('truetype'); }
+.p500 { font-family: 'p500'!important; }
+
+@font-face { font-family: 'p501'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p501.woff2') format('truetype'); }
+.p501 { font-family: 'p501'!important; }
+
+@font-face { font-family: 'p502'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p502.woff2') format('truetype'); }
+.p502 { font-family: 'p502'!important; }
+
+@font-face { font-family: 'p503'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p503.woff2') format('truetype'); }
+.p503 { font-family: 'p503'!important; }
+
+@font-face { font-family: 'p504'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p504.woff2') format('truetype'); }
+.p504 { font-family: 'p504'!important; }
+
+@font-face { font-family: 'p505'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p505.woff2') format('truetype'); }
+.p505 { font-family: 'p505'!important; }
+
+@font-face { font-family: 'p506'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p506.woff2') format('truetype'); }
+.p506 { font-family: 'p506'!important; }
+
+@font-face { font-family: 'p507'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p507.woff2') format('truetype'); }
+.p507 { font-family: 'p507'!important; }
+
+@font-face { font-family: 'p508'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p508.woff2') format('truetype'); }
+.p508 { font-family: 'p508'!important; }
+
+@font-face { font-family: 'p509'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p509.woff2') format('truetype'); }
+.p509 { font-family: 'p509'!important; }
+
+@font-face { font-family: 'p510'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p510.woff2') format('truetype'); }
+.p510 { font-family: 'p510'!important; }
+
+@font-face { font-family: 'p511'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p511.woff2') format('truetype'); }
+.p511 { font-family: 'p511'!important; }
+
+@font-face { font-family: 'p512'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p512.woff2') format('truetype'); }
+.p512 { font-family: 'p512'!important; }
+
+@font-face { font-family: 'p513'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p513.woff2') format('truetype'); }
+.p513 { font-family: 'p513'!important; }
+
+@font-face { font-family: 'p514'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p514.woff2') format('truetype'); }
+.p514 { font-family: 'p514'!important; }
+
+@font-face { font-family: 'p515'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p515.woff2') format('truetype'); }
+.p515 { font-family: 'p515'!important; }
+
+@font-face { font-family: 'p516'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p516.woff2') format('truetype'); }
+.p516 { font-family: 'p516'!important; }
+
+@font-face { font-family: 'p517'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p517.woff2') format('truetype'); }
+.p517 { font-family: 'p517'!important; }
+
+@font-face { font-family: 'p518'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p518.woff2') format('truetype'); }
+.p518 { font-family: 'p518'!important; }
+
+@font-face { font-family: 'p519'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p519.woff2') format('truetype'); }
+.p519 { font-family: 'p519'!important; }
+
+@font-face { font-family: 'p520'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p520.woff2') format('truetype'); }
+.p520 { font-family: 'p520'!important; }
+
+@font-face { font-family: 'p521'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p521.woff2') format('truetype'); }
+.p521 { font-family: 'p521'!important; }
+
+@font-face { font-family: 'p522'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p522.woff2') format('truetype'); }
+.p522 { font-family: 'p522'!important; }
+
+@font-face { font-family: 'p523'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p523.woff2') format('truetype'); }
+.p523 { font-family: 'p523'!important; }
+
+@font-face { font-family: 'p524'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p524.woff2') format('truetype'); }
+.p524 { font-family: 'p524'!important; }
+
+@font-face { font-family: 'p525'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p525.woff2') format('truetype'); }
+.p525 { font-family: 'p525'!important; }
+
+@font-face { font-family: 'p526'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p526.woff2') format('truetype'); }
+.p526 { font-family: 'p526'!important; }
+
+@font-face { font-family: 'p527'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p527.woff2') format('truetype'); }
+.p527 { font-family: 'p527'!important; }
+
+@font-face { font-family: 'p528'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p528.woff2') format('truetype'); }
+.p528 { font-family: 'p528'!important; }
+
+@font-face { font-family: 'p529'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p529.woff2') format('truetype'); }
+.p529 { font-family: 'p529'!important; }
+
+@font-face { font-family: 'p530'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p530.woff2') format('truetype'); }
+.p530 { font-family: 'p530'!important; }
+
+@font-face { font-family: 'p531'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p531.woff2') format('truetype'); }
+.p531 { font-family: 'p531'!important; }
+
+@font-face { font-family: 'p532'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p532.woff2') format('truetype'); }
+.p532 { font-family: 'p532'!important; }
+
+@font-face { font-family: 'p533'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p533.woff2') format('truetype'); }
+.p533 { font-family: 'p533'!important; }
+
+@font-face { font-family: 'p534'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p534.woff2') format('truetype'); }
+.p534 { font-family: 'p534'!important; }
+
+@font-face { font-family: 'p535'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p535.woff2') format('truetype'); }
+.p535 { font-family: 'p535'!important; }
+
+@font-face { font-family: 'p536'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p536.woff2') format('truetype'); }
+.p536 { font-family: 'p536'!important; }
+
+@font-face { font-family: 'p537'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p537.woff2') format('truetype'); }
+.p537 { font-family: 'p537'!important; }
+
+@font-face { font-family: 'p538'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p538.woff2') format('truetype'); }
+.p538 { font-family: 'p538'!important; }
+
+@font-face { font-family: 'p539'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p539.woff2') format('truetype'); }
+.p539 { font-family: 'p539'!important; }
+
+@font-face { font-family: 'p540'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p540.woff2') format('truetype'); }
+.p540 { font-family: 'p540'!important; }
+
+@font-face { font-family: 'p541'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p541.woff2') format('truetype'); }
+.p541 { font-family: 'p541'!important; }
+
+@font-face { font-family: 'p542'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p542.woff2') format('truetype'); }
+.p542 { font-family: 'p542'!important; }
+
+@font-face { font-family: 'p543'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p543.woff2') format('truetype'); }
+.p543 { font-family: 'p543'!important; }
+
+@font-face { font-family: 'p544'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p544.woff2') format('truetype'); }
+.p544 { font-family: 'p544'!important; }
+
+@font-face { font-family: 'p545'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p545.woff2') format('truetype'); }
+.p545 { font-family: 'p545'!important; }
+
+@font-face { font-family: 'p546'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p546.woff2') format('truetype'); }
+.p546 { font-family: 'p546'!important; }
+
+@font-face { font-family: 'p547'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p547.woff2') format('truetype'); }
+.p547 { font-family: 'p547'!important; }
+
+@font-face { font-family: 'p548'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p548.woff2') format('truetype'); }
+.p548 { font-family: 'p548'!important; }
+
+@font-face { font-family: 'p549'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p549.woff2') format('truetype'); }
+.p549 { font-family: 'p549'!important; }
+
+@font-face { font-family: 'p550'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p550.woff2') format('truetype'); }
+.p550 { font-family: 'p550'!important; }
+
+@font-face { font-family: 'p551'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p551.woff2') format('truetype'); }
+.p551 { font-family: 'p551'!important; }
+
+@font-face { font-family: 'p552'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p552.woff2') format('truetype'); }
+.p552 { font-family: 'p552'!important; }
+
+@font-face { font-family: 'p553'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p553.woff2') format('truetype'); }
+.p553 { font-family: 'p553'!important; }
+
+@font-face { font-family: 'p554'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p554.woff2') format('truetype'); }
+.p554 { font-family: 'p554'!important; }
+
+@font-face { font-family: 'p555'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p555.woff2') format('truetype'); }
+.p555 { font-family: 'p555'!important; }
+
+@font-face { font-family: 'p556'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p556.woff2') format('truetype'); }
+.p556 { font-family: 'p556'!important; }
+
+@font-face { font-family: 'p557'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p557.woff2') format('truetype'); }
+.p557 { font-family: 'p557'!important; }
+
+@font-face { font-family: 'p558'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p558.woff2') format('truetype'); }
+.p558 { font-family: 'p558'!important; }
+
+@font-face { font-family: 'p559'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p559.woff2') format('truetype'); }
+.p559 { font-family: 'p559'!important; }
+
+@font-face { font-family: 'p560'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p560.woff2') format('truetype'); }
+.p560 { font-family: 'p560'!important; }
+
+@font-face { font-family: 'p561'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p561.woff2') format('truetype'); }
+.p561 { font-family: 'p561'!important; }
+
+@font-face { font-family: 'p562'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p562.woff2') format('truetype'); }
+.p562 { font-family: 'p562'!important; }
+
+@font-face { font-family: 'p563'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p563.woff2') format('truetype'); }
+.p563 { font-family: 'p563'!important; }
+
+@font-face { font-family: 'p564'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p564.woff2') format('truetype'); }
+.p564 { font-family: 'p564'!important; }
+
+@font-face { font-family: 'p565'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p565.woff2') format('truetype'); }
+.p565 { font-family: 'p565'!important; }
+
+@font-face { font-family: 'p566'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p566.woff2') format('truetype'); }
+.p566 { font-family: 'p566'!important; }
+
+@font-face { font-family: 'p567'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p567.woff2') format('truetype'); }
+.p567 { font-family: 'p567'!important; }
+
+@font-face { font-family: 'p568'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p568.woff2') format('truetype'); }
+.p568 { font-family: 'p568'!important; }
+
+@font-face { font-family: 'p569'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p569.woff2') format('truetype'); }
+.p569 { font-family: 'p569'!important; }
+
+@font-face { font-family: 'p570'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p570.woff2') format('truetype'); }
+.p570 { font-family: 'p570'!important; }
+
+@font-face { font-family: 'p571'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p571.woff2') format('truetype'); }
+.p571 { font-family: 'p571'!important; }
+
+@font-face { font-family: 'p572'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p572.woff2') format('truetype'); }
+.p572 { font-family: 'p572'!important; }
+
+@font-face { font-family: 'p573'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p573.woff2') format('truetype'); }
+.p573 { font-family: 'p573'!important; }
+
+@font-face { font-family: 'p574'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p574.woff2') format('truetype'); }
+.p574 { font-family: 'p574'!important; }
+
+@font-face { font-family: 'p575'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p575.woff2') format('truetype'); }
+.p575 { font-family: 'p575'!important; }
+
+@font-face { font-family: 'p576'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p576.woff2') format('truetype'); }
+.p576 { font-family: 'p576'!important; }
+
+@font-face { font-family: 'p577'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p577.woff2') format('truetype'); }
+.p577 { font-family: 'p577'!important; }
+
+@font-face { font-family: 'p578'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p578.woff2') format('truetype'); }
+.p578 { font-family: 'p578'!important; }
+
+@font-face { font-family: 'p579'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p579.woff2') format('truetype'); }
+.p579 { font-family: 'p579'!important; }
+
+@font-face { font-family: 'p580'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p580.woff2') format('truetype'); }
+.p580 { font-family: 'p580'!important; }
+
+@font-face { font-family: 'p581'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p581.woff2') format('truetype'); }
+.p581 { font-family: 'p581'!important; }
+
+@font-face { font-family: 'p582'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p582.woff2') format('truetype'); }
+.p582 { font-family: 'p582'!important; }
+
+@font-face { font-family: 'p583'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p583.woff2') format('truetype'); }
+.p583 { font-family: 'p583'!important; }
+
+@font-face { font-family: 'p584'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p584.woff2') format('truetype'); }
+.p584 { font-family: 'p584'!important; }
+
+@font-face { font-family: 'p585'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p585.woff2') format('truetype'); }
+.p585 { font-family: 'p585'!important; }
+
+@font-face { font-family: 'p586'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p586.woff2') format('truetype'); }
+.p586 { font-family: 'p586'!important; }
+
+@font-face { font-family: 'p587'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p587.woff2') format('truetype'); }
+.p587 { font-family: 'p587'!important; }
+
+@font-face { font-family: 'p588'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p588.woff2') format('truetype'); }
+.p588 { font-family: 'p588'!important; }
+
+@font-face { font-family: 'p589'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p589.woff2') format('truetype'); }
+.p589 { font-family: 'p589'!important; }
+
+@font-face { font-family: 'p590'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p590.woff2') format('truetype'); }
+.p590 { font-family: 'p590'!important; }
+
+@font-face { font-family: 'p591'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p591.woff2') format('truetype'); }
+.p591 { font-family: 'p591'!important; }
+
+@font-face { font-family: 'p592'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p592.woff2') format('truetype'); }
+.p592 { font-family: 'p592'!important; }
+
+@font-face { font-family: 'p593'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p593.woff2') format('truetype'); }
+.p593 { font-family: 'p593'!important; }
+
+@font-face { font-family: 'p594'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p594.woff2') format('truetype'); }
+.p594 { font-family: 'p594'!important; }
+
+@font-face { font-family: 'p595'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p595.woff2') format('truetype'); }
+.p595 { font-family: 'p595'!important; }
+
+@font-face { font-family: 'p596'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p596.woff2') format('truetype'); }
+.p596 { font-family: 'p596'!important; }
+
+@font-face { font-family: 'p597'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p597.woff2') format('truetype'); }
+.p597 { font-family: 'p597'!important; }
+
+@font-face { font-family: 'p598'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p598.woff2') format('truetype'); }
+.p598 { font-family: 'p598'!important; }
+
+@font-face { font-family: 'p599'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p599.woff2') format('truetype'); }
+.p599 { font-family: 'p599'!important; }
+
+@font-face { font-family: 'p600'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p600.woff2') format('truetype'); }
+.p600 { font-family: 'p600'!important; }
+
+@font-face { font-family: 'p601'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p601.woff2') format('truetype'); }
+.p601 { font-family: 'p601'!important; }
+
+@font-face { font-family: 'p602'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p602.woff2') format('truetype'); }
+.p602 { font-family: 'p602'!important; }
+
+@font-face { font-family: 'p603'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p603.woff2') format('truetype'); }
+.p603 { font-family: 'p603'!important; }
+
+@font-face { font-family: 'p604'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p604.woff2') format('truetype'); }
+.p604 { font-family: 'p604'!important; }
