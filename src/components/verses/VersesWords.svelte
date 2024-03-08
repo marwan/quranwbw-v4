@@ -26,6 +26,7 @@
   };
 
   const arabicSplit = value.words.arabic.split("|");
+  const v4Split = value.words.v4.split("|"); // KFGQPC v4
   const transliterationSplit = value.words.transliteration.split("|");
   const translationSplit = value.words.translation.split("|");
   const timestampSplit = value.words.timestamp.split("|");
@@ -39,10 +40,15 @@
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <div id={`${chapter}:${verse}:${word + 1}`} on:click={() => wordAudioController({ chapter, verse, word })} class="word {$displayTypeStore === 1 ? 'text-center flex flex-col p-3' : 'inline-flex flex-col p-3'} {wordClasses}" style={$currentPageStore === "supplications" && word + 1 < supplicationsFromQuran[key] ? "opacity: 30%;" : ""} data-timestamp={timestampSplit[word]}>
       <span class={currentLayoutClasses} data-fontSize={fontSizes.arabicText}>
-        {#if $wordTypeStore === 3}
-          <img class="mx-auto max-h-16 md:max-h-20" alt={arabicSplit[word]} src="{tajweedWordsURL}/{value.meta.chapter}/{value.meta.verse}/{word + 1}.png?v=1" />
-        {:else}
+        <!-- 1: Uthmani Hafs, 2: Naskh Nastaleeq IndoPak -->
+        {#if $wordTypeStore === 1 || $wordTypeStore === 2}
           {arabicSplit[word]}
+          <!-- 3: Uthmani Tajweed -->
+        {:else if $wordTypeStore === 3}
+          <img class="mx-auto max-h-16 md:max-h-20" alt={arabicSplit[word]} src="{tajweedWordsURL}/{value.meta.chapter}/{value.meta.verse}/{word + 1}.png?v=1" />
+          <!-- 4: KFGQPC Tajweed v4 -->
+        {:else if $wordTypeStore === 4}
+          <span class="p{value.meta.page}">{v4Split[word]}</span>
         {/if}
       </span>
 
@@ -88,3 +94,7 @@
     </span>
   </div>
 {/if}
+
+<style>
+  @import "./mushaf.css";
+</style>

@@ -13,6 +13,7 @@
   import Bookmarks from "$views/Bookmarks.svelte";
   import Navbar from "$ui/Navbar.svelte";
   import Drawer from "$ui/Drawer.svelte";
+  import BottomPlayer from "$ui/BottomPlayer.svelte";
   import InitialSetupModal from "$modals/InitialSetupModal.svelte";
   import AudioModal from "$modals/AudioModal.svelte";
 </script>
@@ -24,6 +25,7 @@
     <Drawer />
     <InitialSetupModal />
     <AudioModal />
+    <BottomPlayer />
 
     <!-- components will be rendered in this div -->
     <div>
