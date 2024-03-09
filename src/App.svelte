@@ -11,6 +11,7 @@
   import Chapter from "$views/Chapter.svelte";
   import Supplications from "$views/Supplications.svelte";
   import Bookmarks from "$views/Bookmarks.svelte";
+  import Changelogs from "$views/Changelogs.svelte";
   import Navbar from "$ui/Navbar.svelte";
   import Drawer from "$ui/Drawer.svelte";
   import BottomPlayer from "$ui/BottomPlayer.svelte";
@@ -32,6 +33,7 @@
       <Route path="/" component={Home} />
       <Route path="/supplications" component={Supplications} />
       <Route path="/bookmarks" component={Bookmarks} />
+      <Route path="/changelogs" component={Changelogs} />
 
       <Route path="/:chapter/*" let:params>
         <Chapter chapter={params.chapter} />

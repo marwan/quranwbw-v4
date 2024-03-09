@@ -136,8 +136,15 @@
   <!-- Dropdown menu -->
   <div id="rightMenuDropdown" class="navbar-dropdown z-30 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 daaark:bg-gray-700 daaark:divide-gray-600">
     <ul class="py-2 text-sm text-gray-700 daaark:text-gray-200" aria-labelledby="rightMenuDropdownButton">
+      {#if $currentPageStore !== "changelogs"}
+        <li>
+          <button data-drawer-target="drawer-right" data-drawer-show="drawer-right" data-drawer-placement="right" aria-controls="drawer-right" class={rightMenuDropdownClasses}>Settings</button>
+        </li>
+      {/if}
       <li>
-        <button data-drawer-target="drawer-right" data-drawer-show="drawer-right" data-drawer-placement="right" aria-controls="drawer-right" class={rightMenuDropdownClasses}>Settings</button>
+        <Link to="/changelogs">
+          <button class={rightMenuDropdownClasses}>Changelogs</button>
+        </Link>
       </li>
       <li>
         <button class={rightMenuDropdownClasses}>Chapter Overview</button>

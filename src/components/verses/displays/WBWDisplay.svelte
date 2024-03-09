@@ -14,11 +14,11 @@
   data-words={value.meta.words}
   data-page={value.meta.page}
   data-juz={value.meta.juz}
-  class="verse flex flex-col py-8 space-y-8 border-b"
   use:inview
   on:inview_enter={(event) => {
     updateSettings({ type: "lastRead", value: `${event.target.id}` });
   }}
+  class="verse flex flex-col py-8 space-y-8 border-b"
 >
   <VersesButtons {key} />
 
