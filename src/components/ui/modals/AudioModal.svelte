@@ -63,22 +63,24 @@
           </div>
 
           <!-- audio range options -->
-          <div id="audio-range-options" class={$audioSettingsStore.audioRange === "playRange" ? "block" : "block"}>
-            <!-- from / till -->
-            <div class="flex flex-col space-y-4 py-4 border-t">
-              <span class="text-xs text-gray-500 daaark:text-gray-400">Select the range of verses or words to be played.</span>
-              <div class="flex flex-row space-x-4">
-                <div class="flex flex-row space-x-2">
-                  <span class="m-auto text-sm font-medium text-gray-900 daaark:text-gray-300">Start Verse</span>
-                  <input type="number" min="1" max={quranMetaData[$chapterNumberStore].verses} value={$audioSettingsStore.playingVerse} id="startVerse" on:change={updateAudioSettings} aria-describedby="helper-text-explanation" class="w-16 text-xs border border-gray-300 text-gray-900 rounded-lg focus:ring-gray-500 focus:border-blue-500 block p-2.5 daaark:bg-gray-700 daaark:border-gray-600 daaark:placeholder-gray-400 daaark:text-white daaark:focus:ring-gray-500 daaark:focus:border-blue-500" placeholder="start" />
-                </div>
-                <div class="flex flex-row space-x-2">
-                  <span class="m-auto text-sm font-medium text-gray-900 daaark:text-gray-300">End Verse</span>
-                  <input type="number" min={$audioSettingsStore.startVerse} max={quranMetaData[$chapterNumberStore].verses} id="endVerse" on:change={updateAudioSettings} aria-describedby="helper-text-explanation" class="w-16 text-xs border border-gray-300 text-gray-900 rounded-lg focus:ring-gray-500 focus:border-blue-500 block p-2.5 daaark:bg-gray-700 daaark:border-gray-600 daaark:placeholder-gray-400 daaark:text-white daaark:focus:ring-gray-500 daaark:focus:border-blue-500" placeholder="end" />
+          {#if $currentPageStore === "chapter"}
+            <div id="audio-range-options" class={$audioSettingsStore.audioRange === "playRange" ? "block" : "hidden"}>
+              <!-- from / till -->
+              <div class="flex flex-col space-y-4 py-4 border-t">
+                <span class="text-xs text-gray-500 daaark:text-gray-400">Select the range of verses or words to be played.</span>
+                <div class="flex flex-row space-x-4">
+                  <div class="flex flex-row space-x-2">
+                    <span class="m-auto text-sm font-medium text-gray-900 daaark:text-gray-300">Start Verse</span>
+                    <input type="number" min="1" max={quranMetaData[$chapterNumberStore].verses} value={$audioSettingsStore.startVerse} id="startVerse" on:change={updateAudioSettings} aria-describedby="helper-text-explanation" class="w-16 text-xs border border-gray-300 text-gray-900 rounded-lg focus:ring-gray-500 focus:border-blue-500 block p-2.5 daaark:bg-gray-700 daaark:border-gray-600 daaark:placeholder-gray-400 daaark:text-white daaark:focus:ring-gray-500 daaark:focus:border-blue-500" placeholder="start" />
+                  </div>
+                  <div class="flex flex-row space-x-2">
+                    <span class="m-auto text-sm font-medium text-gray-900 daaark:text-gray-300">End Verse</span>
+                    <input type="number" min={$audioSettingsStore.startVerse} max={quranMetaData[$chapterNumberStore].verses} value={$audioSettingsStore.endVerse} id="endVerse" on:change={updateAudioSettings} aria-describedby="helper-text-explanation" class="w-16 text-xs border border-gray-300 text-gray-900 rounded-lg focus:ring-gray-500 focus:border-blue-500 block p-2.5 daaark:bg-gray-700 daaark:border-gray-600 daaark:placeholder-gray-400 daaark:text-white daaark:focus:ring-gray-500 daaark:focus:border-blue-500" placeholder="end" />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          {/if}
         </div>
 
         <!-- repeat times -->
@@ -101,12 +103,12 @@
           <button on:click={initializeAudio} class="w-full inline-flex items-center justify-center mr-2 mt-6 space-x-2 {buttonElement}">
             <Play />
 
-            <span>Play Verse</span>
-            <div class="hidden">
+            <span>Play Verse:</span>
+            <div class="">
               {#if $audioSettingsStore.startVerse !== null}
                 {$audioSettingsStore.startVerse}
               {/if}
-              {#if $audioSettingsStore.endVerse !== $audioSettingsStore.startVerse}
+              {#if $audioSettingsStore.endVerse !== undefined}
                 to {$audioSettingsStore.endVerse}
               {/if}
             </div>

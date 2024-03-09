@@ -1,8 +1,11 @@
 <script>
   export let key, value;
 
+  import { inview } from "svelte-inview";
+
   import VersesWords from "$verses/VersesWords.svelte";
   import { pageNumberKeys } from "$data/quranMeta";
+  import { updateSettings } from "$utils/updateSettings";
 </script>
 
 <!-- if the current key is the first verse of a page  -->
@@ -10,6 +13,16 @@
   <div class="flex flex-col justify-center mx-auto w-32 mt-12 mb-6 border px-4 py-2 text-sm rounded-lg">Page {value.meta.page}</div>
 {/if}
 
-<div id={key} class="inline py-2 group">
+<div
+  id={key}
+  data-words={value.meta.words}
+  data-page={value.meta.page}
+  data-juz={value.meta.juz}
+  use:inview
+  on:inview_enter={(event) => {
+    updateSettings({ type: "lastRead", value: `${event.target.id}` });
+  }}
+  class="inline py-2 group"
+>
   <VersesWords {key} {value} />
 </div>

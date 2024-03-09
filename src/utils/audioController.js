@@ -13,6 +13,8 @@ window.audio = document.querySelector("#player");
 // let audioSettings = {};
 const audioSettings = get(audioSettingsStore);
 
+// const chapterTotalVerses = quranMetaData[audioSettings.playingChapter].verses;
+
 let nextToPlay;
 
 // function to play word or verse audio, either one time, or multiple
@@ -136,7 +138,7 @@ export function initializeAudio() {
 }
 
 export function updateAudioSettings(event) {
-  const chapterVerses = quranMetaData[audioSettings.playingChapter].verses;
+  const chapterTotalVerses = quranMetaData[audioSettings.playingChapter].verses;
 
   // 1. update values based on clicked ID
   try {
@@ -158,7 +160,7 @@ export function updateAudioSettings(event) {
       case "playFromHere":
         audioSettings.audioRange = event.target.id;
         audioSettings.startVerse = audioSettings.playingVerse;
-        audioSettings.endVerse = chapterVerses;
+        audioSettings.endVerse = chapterTotalVerses;
         break;
 
       case "playRange":
@@ -179,20 +181,40 @@ export function updateAudioSettings(event) {
     }
   } catch (error) {}
 
-  // 2. set default values if nothing was clicked
+  // making sure endVerse is not less than startVerse
   if (audioSettings.endVerse < audioSettings.startVerse || audioSettings.endVerse === undefined) {
     audioSettings.endVerse = audioSettings.startVerse;
-    document.getElementById("endVerse").value = audioSettings.startVerse;
   }
 
   // 3. update the global audio settings
   audioSettingsStore.set(audioSettings);
 
-  // 4. update checked/selected values for all radios/options
-  // try {
-  // } catch (error) {}
-
   console.table(audioSettings);
+}
+
+export function initializeAudioSettings(key) {
+  // update the key, chapter, verse and update the store
+  audioSettings.playingKey = key;
+  audioSettings.playingChapter = +audioSettings.playingKey.split(":")[0];
+  audioSettings.playingVerse = +audioSettings.playingKey.split(":")[1];
+  audioSettingsStore.set(audioSettings);
+
+  const chapterTotalVerses = quranMetaData[audioSettings.playingChapter].verses;
+
+  // update the startVerse to be same as playingVerse on modal load only, not everytime the audio setting changes
+  if (audioSettings.startVerse > audioSettings.playingVerse) {
+    audioSettings.startVerse = audioSettings.playingVerse;
+  }
+
+  audioSettings.startVerse = audioSettings.playingVerse;
+
+  if (audioSettings.endVerse > chapterTotalVerses) {
+    audioSettings.endVerse = chapterTotalVerses;
+  }
+
+  if (audioSettings.endVerse < audioSettings.startVerse) {
+    audioSettings.endVerse = audioSettings.startVerse;
+  }
 }
 
 export function resetAudioSettings() {
@@ -211,14 +233,8 @@ export function showAudioModal(key) {
   // reset audio settings
   resetAudioSettings();
 
-  // update the key, chapter, verse and update the store
-  audioSettings.playingKey = key;
-  audioSettings.playingChapter = +audioSettings.playingKey.split(":")[0];
-  audioSettings.playingVerse = +audioSettings.playingKey.split(":")[1];
-  audioSettingsStore.set(audioSettings);
-
   // update default settings, if any
-  updateAudioSettings();
+  initializeAudioSettings(key);
 
   // show the modal
   toggleModal("audioModal", "show");
