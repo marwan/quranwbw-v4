@@ -19,14 +19,13 @@
   // classes for each display types
   const layoutClasses = {
     1: `arabicText leading-normal arabic-font-${$wordTypeStore} ${fontSizes.arabicText}`,
-    2: `arabicText leading-normal arabic-font-${$wordTypeStore} ${fontSizes.arabicText} p-2`,
+    2: `arabicText leading-normal arabic-font-${$wordTypeStore} ${fontSizes.arabicText} p-2 px-1`,
     3: `arabicText leading-normal arabic-font-${$wordTypeStore} ${fontSizes.arabicText} inline-block p-2 group-hover:bg-[#ebebeb]`,
     4: `arabicText leading-normal arabic-font-${$wordTypeStore} ${fontSizes.arabicText} inline-block p-2 group-hover:bg-[#ebebeb]`,
-    5: `arabicText leading-normal arabic-font-${$wordTypeStore} ${fontSizes.arabicText} p-2`,
+    5: `arabicText leading-normal arabic-font-${$wordTypeStore} ${fontSizes.arabicText} p-2 px-1`,
   };
 
   const arabicSplit = value.words.arabic.split("|");
-  const v4Split = value.words.v4.split("|"); // KFGQPC v4
   const transliterationSplit = value.words.transliteration.split("|");
   const translationSplit = value.words.translation.split("|");
   const timestampSplit = value.words.timestamp.split("|");
@@ -48,7 +47,7 @@
           <img class="mx-auto max-h-16 md:max-h-20" alt={arabicSplit[word]} src="{tajweedWordsURL}/{value.meta.chapter}/{value.meta.verse}/{word + 1}.png?v=1" />
           <!-- 4: KFGQPC Tajweed v4 -->
         {:else if $wordTypeStore === 4}
-          <span class="p{value.meta.page}">{v4Split[word]}</span>
+          <span class="p{value.meta.page}">{arabicSplit[word]}</span>
         {/if}
       </span>
 
@@ -62,10 +61,14 @@
   <!-- end icon -->
   <div class="{$displayTypeStore === 1 ? 'text-center flex flex-col p-3' : 'inline-flex flex-col p-3'} {wordClasses}">
     <span class={currentLayoutClasses} data-fontSize={fontSizes.arabicText}>
-      {#if $wordTypeStore === 3}
-        <img class="mx-auto max-h-16 md:max-h-20" alt={verse} src="{tajweedEndURL}/{verse}.png?v=1" />
-      {:else}
+      {#if $wordTypeStore === 1 || $wordTypeStore === 2}
         {value.words.end}
+        <!-- 3: Uthmani Tajweed -->
+      {:else if $wordTypeStore === 3}
+        <img class="mx-auto max-h-16 md:max-h-20" alt={verse} src="{tajweedEndURL}/{verse}.png?v=1" />
+        <!-- 4: KFGQPC Tajweed v4 -->
+      {:else if $wordTypeStore === 4}
+        <span class="p{value.meta.page}">{value.words.end}</span>
       {/if}
     </span>
   </div>
@@ -84,17 +87,21 @@
           <img class="mx-auto max-h-16 md:max-h-20" alt={arabicSplit[word]} src="{tajweedWordsURL}/{value.meta.chapter}/{value.meta.verse}/{word + 1}.png?v=1" />
           <!-- 4: KFGQPC Tajweed v4 -->
         {:else if $wordTypeStore === 4}
-          <span class="p{value.meta.page}">{v4Split[word]}</span>
+          <span class="p{value.meta.page}">{arabicSplit[word]}</span>
         {/if}
       </span>
     {/each}
 
     <!-- end icon -->
     <span class="{currentLayoutClasses} {wordClasses}" data-fontSize={fontSizes.arabicText}>
-      {#if $wordTypeStore === 3}
-        <img class="mx-auto max-h-16 md:max-h-20" alt={verse} src="{tajweedEndURL}/{verse}.png?v=1" />
-      {:else}
+      {#if $wordTypeStore === 1 || $wordTypeStore === 2}
         {value.words.end}
+        <!-- 3: Uthmani Tajweed -->
+      {:else if $wordTypeStore === 3}
+        <img class="mx-auto max-h-16 md:max-h-20" alt={verse} src="{tajweedEndURL}/{verse}.png?v=1" />
+        <!-- 4: KFGQPC Tajweed v4 -->
+      {:else if $wordTypeStore === 4}
+        <span class="p{value.meta.page}">{value.words.end}</span>
       {/if}
     </span>
   </div>
