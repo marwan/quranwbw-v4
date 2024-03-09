@@ -94,9 +94,11 @@
         <ul id="navbar-chapter-list" class="grow basis-1/2 px-2 overflow-y-scroll md:min-w-fit">
           {#each { length: 114 } as _, chapter}
             <li>
-              <Link to="/{chapter + 1}" class="block p-3 rounded-lg hover:bg-[#ebebeb] {$chapterNumberStore === chapter + 1 && 'bg-[#ebebeb]'}">
-                <span class="text-sm text-gray-500">{chapter + 1}. {quranMetaData[chapter + 1].transliteration} ({quranMetaData[chapter + 1].translation})</span>
-              </Link>
+              <button on:click={() => toggleModal("navigationDropdown", "hide")} class="w-full text-left">
+                <Link to="/{chapter + 1}" class="block p-3 rounded-lg hover:bg-[#ebebeb] {$chapterNumberStore === chapter + 1 && 'bg-[#ebebeb]'}">
+                  <span class="text-sm text-gray-500">{chapter + 1}. {quranMetaData[chapter + 1].transliteration} ({quranMetaData[chapter + 1].translation})</span>
+                </Link>
+              </button>
             </li>
           {/each}
         </ul>
@@ -110,7 +112,9 @@
             <div class="text-xs pb-2 border-b">Go to Verse</div>
             <div class="flex flex-row space-x-2">
               <input type="number" min="1" max={quranMetaData[$chapterNumberStore].verses} id="gotoVerse" on:change={(event) => verseSelector(event)} aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-24 p-2.5 daaark:bg-gray-700 daaark:border-gray-600 daaark:placeholder-gray-400 daaark:text-white daaark:focus:ring-blue-500 daaark:focus:border-blue-500" placeholder="e.g. {Math.floor(Math.random() * (quranMetaData[$chapterNumberStore].verses - 1 + 1)) + 1}" />
-              <Link to="/{$chapterNumberStore}/{gotoVerse}" on:click={() => pageURLStore.set(Math.random())} class={buttonElement}>Go</Link>
+              <button on:click={() => toggleModal("navigationDropdown", "hide")}>
+                <Link to="/{$chapterNumberStore}/{gotoVerse}" on:click={() => pageURLStore.set(Math.random())} class={buttonElement}>Go</Link>
+              </button>
             </div>
           </div>
           <!-- goto page -->
@@ -118,7 +122,9 @@
             <div class="text-xs pb-2 border-b">Go to Page</div>
             <div class="flex flex-row space-x-2">
               <input type="number" min="1" max="604" id="gotoPage" on:change={(event) => pageSelector(event)} aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-24 p-2.5 daaark:bg-gray-700 daaark:border-gray-600 daaark:placeholder-gray-400 daaark:text-white daaark:focus:ring-blue-500 daaark:focus:border-blue-500" placeholder="e.g. {Math.floor(Math.random() * 604) + 1}" />
-              <Link to="/{gotoPageChapter}/{gotoPageVerse}" on:click={() => pageURLStore.set(Math.random())} class={buttonElement}>Go</Link>
+              <button on:click={() => toggleModal("navigationDropdown", "hide")}>
+                <Link to="/{gotoPageChapter}/{gotoPageVerse}" on:click={() => pageURLStore.set(Math.random())} class={buttonElement}>Go</Link>
+              </button>
             </div>
             <div class="flex flex-col text-xs opacity-50">{quranMetaData[gotoPageChapter].transliteration}, {gotoPageChapter}:{gotoPageVerse}</div>
           </div>
