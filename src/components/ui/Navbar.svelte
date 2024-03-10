@@ -77,7 +77,7 @@
       <!-- <div id="navbar-bottom-chapter-title" class="flex flex-row items-center py-2">{quranMetaData[$chapterNumberStore].transliteration}</div> -->
       <div class="flex flex-row items-center py-2">
         <span>{lastReadPage !== undefined ? `Page ${lastReadPage}` : "..."}</span>
-        <span class="px-2">/</span>
+        <span class="px-1 opacity-60">/</span>
         <span>{lastReadJuz !== undefined ? `Juz ${lastReadJuz}` : "..."}</span>
       </div>
     </div>
