@@ -10,7 +10,7 @@
     {#each Object.entries(value.translations) as [verseTranslationID, verseTranslation]}
       <div class="flex flex-col">
         <span>{verseTranslation}</span>
-        <span>&mdash; {selectableVerseTranslations[verseTranslationID].author}</span>
+        <span class="text-gray-400">&mdash; {selectableVerseTranslations[verseTranslationID].author}</span>
       </div>
     {/each}
   </div>
