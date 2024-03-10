@@ -263,13 +263,12 @@ function wordHighlighter() {
 
     // as long as the word timestamp is lower than the current audio time
     if (wordTimestamp < audio.currentTime) {
-      if (word > 0) {
-        document.getElementById(`${audioSettings.playingKey}:${word}`).classList.remove("bg-[#ebebeb]");
-      }
-
-      document.getElementById(`${audioSettings.playingKey}:${word + 1}`).classList.add("bg-[#ebebeb]");
-
-      console.log(`${audioSettings.playingKey}:${word}`);
+      // if (word > 0) {
+      //   document.getElementById(`${audioSettings.playingKey}:${word}`).classList.remove("bg-[#ebebeb]");
+      // }
+      // audioSettings.playingWordKey = `${audioSettings.playingKey}:${word + 1}`;
+      // document.getElementById(`${audioSettings.playingKey}:${word + 1}`).classList.add("bg-[#ebebeb]");
+      // console.log(`${audioSettings.playingKey}:${word}`);
     }
   }
 }

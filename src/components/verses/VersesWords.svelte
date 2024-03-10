@@ -3,7 +3,7 @@
 
   import { displayOptions } from "$data/options";
   import { supplicationsFromQuran } from "$data/quranMeta";
-  import { currentPageStore, wordTypeStore, displayTypeStore, userSettingsStore } from "$utils/stores";
+  import { currentPageStore, wordTypeStore, displayTypeStore, userSettingsStore, audioSettingsStore } from "$utils/stores";
   import { wordAudioController } from "$utils/audioController";
 
   const chapter = key.split(":")[0];

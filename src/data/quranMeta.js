@@ -772,3 +772,10 @@ export const pageNumberKeys = [
   "109:1",
   "112:1",
 ];
+
+export const mostRead = [
+  { id: 1, chapter: 2, verses: "255", title: "Whoever recites Ayat al-Kursi after every Salat, the only barrier between him and paradise is death.", url: "/2/255" },
+  { id: 2, chapter: 2, verses: "285-286", title: "Whoever recites the last two verses of Surat al-Baqarah in the night, it is enough for him.", url: "/2/285-286" },
+  { id: 3, chapter: 18, verses: "1-10", title: "Whoever commits ten verses from the beginning Sura al Kahf will be protected from the Dajjal.", url: "/18/1-10" },
+  { id: 4, chapter: 67, verses: "1-30", title: "A chapter from the Quran containing thirty verses will intercede for a man so that he will be forgiven.", url: "/67" },
+];
