@@ -1,6 +1,6 @@
 <script>
   import { currentPageStore, wordTypeStore, displayTypeStore, wordTranslationStore, verseTranslationsStore, reciterStore, userSettingsStore } from "$utils/stores";
-  import { displayOptions, selectableVerseTranslations, selectableWordTranslations, selectableReciters } from "$data/options";
+  import { displayOptions, selectableFontTypes, selectableVerseTranslations, selectableWordTranslations, selectableReciters } from "$data/options";
   import { updateSettings } from "$utils/updateSettings";
   import { disabledElement, buttonElement } from "$utils/commonStyles";
 
@@ -50,10 +50,9 @@
       <div class="flex flex-row justify-between items-center">
         <label for="quran-font-list" class="block text-gray-900 daaark:text-white">Quran Font</label>
         <select id="quran-font-list" on:change={(event) => updateSettings({ type: "wordType", value: +event.target.value })} bind:value={$wordTypeStore} class="w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 daaark:bg-gray-700 daaark:border-gray-600 daaark:placeholder-gray-400 daaark:text-white daaark:focus:ring-blue-500 daaark:focus:border-blue-500">
-          <option value={1}>Uthmani Hafs</option>
-          <option value={2}>Naskh Nastaleeq IndoPak</option>
-          <option value={3}>Uthmani Tajweed</option>
-          <option value={4}>KFGQPC Tajweed</option>
+          {#each Object.entries(selectableFontTypes) as [id, font]}
+            <option value={font.id}>{font.font}</option>
+          {/each}
         </select>
       </div>
       <p class="mb-6 text-xs text-gray-500 daaark:text-gray-400">Select the Quranic font type depending on your region.</p>

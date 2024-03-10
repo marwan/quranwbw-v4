@@ -6,6 +6,13 @@ export const displayOptions = {
   5: { displayID: 5, displayName: "Side By Side", displayComponent: "SideBySideDisplay", layout: "normal", continuous: false },
 };
 
+export const selectableFontTypes = {
+  1: { id: 1, font: "Uthmanic Hafs Digital" },
+  2: { id: 2, font: "Indopak Madinah" },
+  3: { id: 3, font: "Uthmanic Hafs Mushaf V4" },
+  4: { id: 4, font: "Uthmanic Hafs Mushaf V4 (Tajweed)" },
+};
+
 export const selectableVerseTranslations = {
   1: {
     id: 1,
