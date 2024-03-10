@@ -10,7 +10,7 @@
 
 <!-- if the current key is the first verse of a page  -->
 {#if pageNumberKeys.includes(key)}
-  <div class="flex flex-col justify-center mx-auto w-32 mt-12 mb-6 border px-4 py-2 text-sm rounded-lg">Page {value.meta.page}</div>
+  <div class="flex flex-col justify-center mx-auto w-32 mt-12 mb-6 py-2 px-4 text-sm cursor-pointer rounded-lg bg-[#ebebeb]">Page {value.meta.page}</div>
 {/if}
 
 <div

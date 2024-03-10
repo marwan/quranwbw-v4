@@ -22,15 +22,16 @@ export function playAudio(props) {
   // we will first reset all audio settings
   resetAudioSettings();
 
-  const verse = props.firstToPlay;
-
   // making the file name and getting the repeat times from localStorage
   if (props.type === "word") {
     // generate mp3 file names for current word
-    const fileName = `${props.chapter}/${`00${props.chapter}`.slice(-3)}_${`00${props.verse}`.slice(-3)}_${`00${props.word}`.slice(-3)}.mp3`;
+    const fileName = `${props.chapter}/${`00${props.chapter}`.slice(-3)}_${`00${props.verse}`.slice(-3)}_${`00${props.firstToPlay}`.slice(-3)}.mp3`;
 
     // assign to source
     audio.src = `${wordsAudioURL}/${fileName}`;
+
+    // update the playing key
+    audioSettings.playingKey = `${props.chapter}:${props.verse}`;
   }
 
   // making the file name and getting the repeat times from localStorage
@@ -39,10 +40,13 @@ export function playAudio(props) {
     const reciterAudioUrl = selectableReciters[get(reciterStore)].url;
 
     // generate mp3 file names for current and next verse
-    const currentVerseFileName = `${`00${props.chapter}`.slice(-3)}${`00${verse}`.slice(-3)}.mp3`;
+    const currentVerseFileName = `${`00${props.chapter}`.slice(-3)}${`00${props.firstToPlay}`.slice(-3)}.mp3`;
 
     // assign to source
     audio.src = `${reciterAudioUrl}/${currentVerseFileName}`;
+
+    // update the playing key
+    audioSettings.playingKey = `${props.chapter}:${props.firstToPlay}`;
   }
 
   // load and play the audio
@@ -53,7 +57,6 @@ export function playAudio(props) {
   // update the audio settings
   audioSettings.audioType = props.type;
   audioSettings.isPlaying = true;
-  audioSettings.playingKey = `${props.chapter}:${verse}`;
 
   // attach the word highlighter function
   if (props.type === "verse") {
@@ -71,17 +74,18 @@ export function playAudio(props) {
         audioSettings.timesRepeated++;
         playAudio({
           type: props.type,
-          chapter: props.chapter,
-          firstToPlay: props.firstToPlay,
-          lastToPlay: props.lastToPlay,
-          timesToRepeat: props.timesToRepeat,
-          delay: props.delay,
+          chapter: +props.chapter,
+          verse: +props.verse,
+          firstToPlay: +props.firstToPlay,
+          lastToPlay: +props.lastToPlay,
+          timesToRepeat: +props.timesToRepeat,
+          delay: +props.delay,
         });
       }, props.delay);
     }
 
     // if type is word, then next to play shall be word+1, else will be verse+1
-    props.type === "word" ? (nextToPlay = props.firstToPlay + 1) : (nextToPlay = verse + 1);
+    props.type === "word" ? (nextToPlay = props.firstToPlay + 1) : (nextToPlay = props.verse + 1);
 
     audioSettings.timesRepeated = 0;
 
@@ -89,11 +93,12 @@ export function playAudio(props) {
     if (nextToPlay <= props.lastToPlay) {
       return playAudio({
         type: props.type,
-        chapter: props.chapter,
-        firstToPlay: nextToPlay,
-        lastToPlay: props.lastToPlay,
-        timesToRepeat: props.timesToRepeat,
-        delay: props.delay,
+        chapter: +props.chapter,
+        verse: +props.verse,
+        firstToPlay: +nextToPlay,
+        lastToPlay: +props.lastToPlay,
+        timesToRepeat: +props.timesToRepeat,
+        delay: +props.delay,
       });
     }
 
@@ -109,6 +114,8 @@ export function playAudio(props) {
 }
 
 export function initializeAudio() {
+  const wordsInVerse = document.getElementById(`${audioSettings.playingChapter}:${audioSettings.startVerse}`).getAttribute("data-words");
+
   resetAudioSettings();
 
   // play this verse
@@ -126,10 +133,11 @@ export function initializeAudio() {
   audioSettingsStore.set(audioSettings);
 
   playAudio({
-    type: "verse",
+    type: audioSettings.audioType === undefined ? "verse" : audioSettings.audioType,
     chapter: audioSettings.playingChapter,
-    firstToPlay: audioSettings.startVerse,
-    lastToPlay: audioSettings.endVerse,
+    verse: audioSettings.startVerse,
+    firstToPlay: audioSettings.audioType === "word" ? 1 : audioSettings.startVerse,
+    lastToPlay: audioSettings.audioType === "word" ? wordsInVerse : audioSettings.endVerse,
     timesToRepeat: audioSettings.timesToRepeat,
     delay: audioSettings.delay,
   });
@@ -145,10 +153,12 @@ export function updateAudioSettings(event) {
     switch (event.target.id) {
       case "playVerse":
         // WIP...
+        audioSettings.audioType = "verse";
         break;
 
       case "playWord":
         // WIP...
+        audioSettings.audioType = "word";
         break;
 
       case "playThisVerse":
@@ -189,7 +199,7 @@ export function updateAudioSettings(event) {
   // 3. update the global audio settings
   audioSettingsStore.set(audioSettings);
 
-  console.table(audioSettings);
+  // console.table(audioSettings);
 }
 
 export function initializeAudioSettings(key) {
@@ -214,6 +224,11 @@ export function initializeAudioSettings(key) {
 
   if (audioSettings.endVerse < audioSettings.startVerse) {
     audioSettings.endVerse = audioSettings.startVerse;
+  }
+
+  // set default audio type to verse
+  if (audioSettings.audioType === undefined) {
+    audioSettings.audioType = "verse";
   }
 }
 
@@ -248,7 +263,15 @@ export function wordAudioController(props) {
 
   // play word audio directly for non-continuous display types
   else {
-    playAudio({ chapter: props.chapter, verse: props.verse, word: props.word + 1, type: "word" });
+    playAudio({
+      type: "word",
+      chapter: props.chapter,
+      verse: props.verse,
+      firstToPlay: props.word + 1,
+      lastToPlay: props.word + 1,
+      timesToRepeat: 1,
+      delay: 0,
+    });
   }
 }
 
