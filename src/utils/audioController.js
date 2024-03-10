@@ -32,6 +32,9 @@ export function playAudio(props) {
 
     // update the playing key
     audioSettings.playingKey = `${props.chapter}:${props.verse}`;
+    audioSettings.playingWordKey = `${props.chapter}:${props.verse}:${props.firstToPlay}`;
+
+    console.log(audioSettings.playingWordKey);
   }
 
   // making the file name and getting the repeat times from localStorage
