@@ -34,8 +34,10 @@
     <div class="text-sm">
       {#each Object.entries(fetchData) as [key, value]}
         <div class="py-6 space-y-2 border-b">
-          <div><span class="font-bold">Message:</span> {value.commit.message}</div>
-          <div><span class="font-bold">Date:</span> {value.commit.committer.date}</div>
+          <div>
+            <span class="opacity-100 underline decoration-dotted">{value.commit.committer.date.substring(0, 10)}:</span>
+            <span> {value.commit.message}</span>
+          </div>
           <div class="truncate"><a href={value.html_url} target="_blank" class={linkElement}>{value.html_url}</a></div>
         </div>
       {/each}
