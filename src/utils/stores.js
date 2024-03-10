@@ -26,6 +26,9 @@ export const verseTranslationsStore = writable(localSettings.translations.verse)
 // to store reciter
 export const reciterStore = writable(localSettings.audioSettings.reciter);
 
+// to store playback speed
+export const playbackSpeedStore = writable(localSettings.audioSettings.playbackSpeed);
+
 // to store the display type - WBW, Normal, Continuous, etc...
 export const displayTypeStore = writable(localSettings.displaySettings.displayType);
 

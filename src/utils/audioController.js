@@ -1,9 +1,9 @@
 import { get } from "svelte/store";
 import { quranMetaData } from "$data/quranMeta";
-import { displayTypeStore, reciterStore, audioSettingsStore } from "$utils/stores";
+import { displayTypeStore, reciterStore, playbackSpeedStore, audioSettingsStore } from "$utils/stores";
 import { toggleModal } from "$utils/toggleModal";
 import { wordsAudioURL } from "$utils/websiteSettings";
-import { displayOptions, selectableReciters } from "$data/options";
+import { displayOptions, selectableReciters, selectablePlaybackSpeeds } from "$data/options";
 
 // getting the audio element
 window.audio = document.querySelector("#player");
@@ -55,6 +55,7 @@ export function playAudio(props) {
   // load and play the audio
   audio.currentTime = 0;
   audio.load();
+  audio.playbackRate = selectablePlaybackSpeeds[get(playbackSpeedStore)].speed;
   audio.play();
 
   // update the audio settings

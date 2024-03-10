@@ -24,6 +24,7 @@
   // audio settings
   if (userSettings.audioSettings === undefined) userSettings.audioSettings = {}; // parent
   if (userSettings.audioSettings.reciter === undefined) userSettings.audioSettings.reciter = 10; // Mishary Rashid Alafasy
+  if (userSettings.audioSettings.playbackSpeed === undefined) userSettings.audioSettings.playbackSpeed = 3; // x1
 
   // last read
   if (userSettings.lastRead === undefined) userSettings.lastRead = "1:1";

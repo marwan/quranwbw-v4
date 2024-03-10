@@ -1,4 +1,4 @@
-import { userSettingsStore, wordTypeStore, displayTypeStore, wordTranslationStore, verseTranslationsStore, reciterStore, lastReadStore } from "$utils/stores";
+import { userSettingsStore, wordTypeStore, displayTypeStore, wordTranslationStore, verseTranslationsStore, reciterStore, playbackSpeedStore, lastReadStore } from "$utils/stores";
 import { selectableVerseTranslations } from "$data/options";
 
 // function to update website settings
@@ -50,6 +50,12 @@ export function updateSettings(props) {
     case "reciter":
       reciterStore.set(props.value);
       userSettings.audioSettings.reciter = props.value;
+      break;
+
+    // for playback speed
+    case "playbackSpeed":
+      playbackSpeedStore.set(props.value);
+      userSettings.audioSettings.playbackSpeed = props.value;
       break;
 
     // for Initial Setup

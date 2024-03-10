@@ -188,3 +188,12 @@ export const selectableReciters = {
   15: { id: 15, reciter: "Saood Ash-Shuraym", url: "https://everyayah.com/data/Saood_ash-Shuraym_128kbps/" },
   16: { id: 16, reciter: "Yasser Ad-Dossari", url: "https://mirrors.quranicaudio.com/everyayah/Yasser_Ad-Dussary_128kbps/" },
 };
+
+export const selectablePlaybackSpeeds = {
+  1: { id: 1, speed: 0.5 },
+  2: { id: 2, speed: 0.75 },
+  3: { id: 3, speed: 1 },
+  4: { id: 4, speed: 1.5 },
+  5: { id: 5, speed: 1.75 },
+  6: { id: 6, speed: 2 },
+};

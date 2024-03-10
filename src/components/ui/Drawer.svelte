@@ -1,6 +1,6 @@
 <script>
-  import { currentPageStore, wordTypeStore, displayTypeStore, wordTranslationStore, verseTranslationsStore, reciterStore, userSettingsStore } from "$utils/stores";
-  import { displayOptions, selectableFontTypes, selectableVerseTranslations, selectableWordTranslations, selectableReciters } from "$data/options";
+  import { currentPageStore, wordTypeStore, displayTypeStore, wordTranslationStore, verseTranslationsStore, reciterStore, playbackSpeedStore, userSettingsStore } from "$utils/stores";
+  import { displayOptions, selectableFontTypes, selectableVerseTranslations, selectableWordTranslations, selectableReciters, selectablePlaybackSpeeds } from "$data/options";
   import { updateSettings } from "$utils/updateSettings";
   import { disabledElement, buttonElement } from "$utils/commonStyles";
 
@@ -171,6 +171,7 @@
     <h3 class="block mb-2 font-medium text-base text-gray-900 daaark:text-white">Audios</h3>
 
     <div class="flex flex-col flex-wrap space-y-4 text-xs">
+      <!-- reciter -->
       <div class="flex flex-row justify-between items-center">
         <label for="reciter-list" class="block text-gray-900 daaark:text-white">Verse Reciter</label>
         <select id="reciter-list" bind:value={$reciterStore} on:change={(event) => updateSettings({ type: "reciter", value: +event.target.selectedIndex + 1 })} class="w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 daaark:bg-gray-700 daaark:border-gray-600 daaark:placeholder-gray-400 daaark:text-white daaark:focus:ring-blue-500 daaark:focus:border-blue-500">
@@ -180,6 +181,17 @@
         </select>
       </div>
       <p class="mb-6 text-xs text-gray-500 daaark:text-gray-400">Select the desired reciter whose audio will be played when you choose to listen to a verse.</p>
+
+      <!-- playback speed -->
+      <div class="flex flex-row justify-between items-center">
+        <label for="speed-list" class="block text-gray-900 daaark:text-white">Playback Speed</label>
+        <select id="speed-list" bind:value={$playbackSpeedStore} on:change={(event) => updateSettings({ type: "playbackSpeed", value: +event.target.selectedIndex + 1 })} class="w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 daaark:bg-gray-700 daaark:border-gray-600 daaark:placeholder-gray-400 daaark:text-white daaark:focus:ring-blue-500 daaark:focus:border-blue-500">
+          {#each Object.entries(selectablePlaybackSpeeds) as [id, speed]}
+            <option value={speed.id}>x{speed.speed}</option>
+          {/each}
+        </select>
+      </div>
+      <p class="mb-6 text-xs text-gray-500 daaark:text-gray-400">Select the desired playback speed at which the verse/word audio will be played.</p>
 
       <div class="flex flex-row justify-between items-center {disabledElement}">
         <label for="verse-repeat-list" class="block text-gray-900 daaark:text-white">Verse Repeat</label>
