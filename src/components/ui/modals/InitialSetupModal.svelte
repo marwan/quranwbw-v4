@@ -52,6 +52,7 @@
               <option value={1}>Uthmani Hafs</option>
               <option value={2}>Naskh Nastaleeq IndoPak</option>
               <option value={3}>Uthmani Tajweed</option>
+              <option value={4}>KFGQPC Tajweed</option>
             </select>
           </div>
 
