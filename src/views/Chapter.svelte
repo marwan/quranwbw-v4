@@ -78,7 +78,7 @@
 </script>
 
 <svelte:head>
-  <title>{quranMetaData[$chapterNumberStore].transliteration} - {websiteTitle}</title>
+  <title>{quranMetaData[$chapterNumberStore].transliteration} ({$chapterNumberStore}) - {websiteTitle}</title>
 </svelte:head>
 
 <div>
