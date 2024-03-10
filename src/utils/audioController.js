@@ -63,7 +63,7 @@ export function playAudio(props) {
 
   // attach the word highlighter function
   if (props.type === "verse") {
-    // audio.addEventListener("timeupdate", wordHighlighter);
+    audio.addEventListener("timeupdate", wordHighlighter);
   }
 
   // scroll to the top of the verse
@@ -88,7 +88,7 @@ export function playAudio(props) {
     }
 
     // if type is word, then next to play shall be word+1, else will be verse+1
-    props.type === "word" ? (nextToPlay = props.firstToPlay + 1) : (nextToPlay = props.verse + 1);
+    nextToPlay = props.firstToPlay + 1;
 
     audioSettings.timesRepeated = 0;
 
@@ -289,14 +289,12 @@ function wordHighlighter() {
 
     // as long as the word timestamp is lower than the current audio time
     if (wordTimestamp < audio.currentTime) {
-      // if (word > 0) {
-      //   document.getElementById(`${audioSettings.playingKey}:${word}`).classList.remove("bg-[#ebebeb]");
-      // }
-      // audioSettings.playingWordKey = `${audioSettings.playingKey}:${word + 1}`;
-      // document.getElementById(`${audioSettings.playingKey}:${word + 1}`).classList.add("bg-[#ebebeb]");
-      // console.log(`${audioSettings.playingKey}:${word}`);
+      audioSettings.playingWordKey = `${audioSettings.playingKey}:${word + 1}`;
     }
   }
+
+  // update the audio settings
+  audioSettingsStore.set(audioSettings);
 }
 
 function convertTime(time) {
