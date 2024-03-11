@@ -260,6 +260,15 @@ export function showAudioModal(key) {
 }
 
 export function wordAudioController(props) {
+  // if verse audio is already playing, a set the verse audio timestamp same as word timestamp
+  // ...this is incase the user would like to start from a certain section of the verse
+  if (audioSettings.isPlaying === true && audioSettings.audioType === "verse") {
+    // set the verse audio time same as word timestamp
+    audio.currentTime = document.getElementById(`${props.chapter}:${props.verse}:${props.word + 1}`).getAttribute("data-timestamp");
+
+    return;
+  }
+
   // show audio modal for continuous display types
   if (displayOptions[`${get(displayTypeStore)}`].continuous === true) {
     showAudioModal(`${props.chapter}:${props.verse}`);
