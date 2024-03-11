@@ -23,6 +23,12 @@ export const wordTranslationStore = writable(localSettings.translations.word);
 // to store the verse translations
 export const verseTranslationsStore = writable(localSettings.translations.verse);
 
+// to store the word translation toggle
+export const wordTranslationEnabledStore = writable(localSettings.displaySettings.wordTranslationEnabled);
+
+// to store the word transliteration toggle
+export const wordTransliterationEnabledStore = writable(localSettings.displaySettings.wordTransliterationEnabled);
+
 // to store reciter
 export const reciterStore = writable(localSettings.audioSettings.reciter);
 

@@ -4,18 +4,20 @@ import { displayTypeStore, reciterStore, playbackSpeedStore, audioSettingsStore 
 import { toggleModal } from "$utils/toggleModal";
 import { wordsAudioURL } from "$utils/websiteSettings";
 import { displayOptions, selectableReciters, selectablePlaybackSpeeds } from "$data/options";
+// import { scrollSmoothly } from "$utils/scrollSmoothly";
 
 // getting the audio element
 window.audio = document.querySelector("#player");
 
 // set global audio settings
-// window.audioSettings = {};
-// let audioSettings = {};
 const audioSettings = get(audioSettingsStore);
 
-// const chapterTotalVerses = quranMetaData[audioSettings.playingChapter].verses;
+let verseTranslationPlayed = false;
 
 let nextToPlay;
+
+// to be moved to drawer/settings
+audioSettings.playTranslation = false;
 
 // function to play word or verse audio, either one time, or multiple
 export function playAudio(props) {
@@ -37,8 +39,11 @@ export function playAudio(props) {
 
   // making the file name and getting the repeat times from localStorage
   else if (props.type === "verse") {
-    // get the reciter url from selectableReciters
-    const reciterAudioUrl = selectableReciters[get(reciterStore)].url;
+    // get the reciter URL from selectableReciters
+    let reciterAudioUrl = selectableReciters[get(reciterStore)].url;
+
+    // or if the user has opted to play the translation after arabic audio, the URL would have to be updated
+    if (props.playTranslation === true) reciterAudioUrl = "https://everyayah.com/data/English/Sahih_Intnl_Ibrahim_Walk_192kbps/";
 
     // generate mp3 file names for current and next verse
     const currentVerseFileName = `${`00${props.chapter}`.slice(-3)}${`00${props.firstToPlay}`.slice(-3)}.mp3`;
@@ -52,8 +57,8 @@ export function playAudio(props) {
 
   // load and play the audio
   audio.currentTime = 0;
-  audio.load();
   audio.playbackRate = selectablePlaybackSpeeds[get(playbackSpeedStore)].speed;
+  audio.load();
   audio.play();
 
   // update the audio settings
@@ -61,19 +66,46 @@ export function playAudio(props) {
   audioSettings.isPlaying = true;
 
   // attach the word highlighter function
-  if (props.type === "verse") {
+  if (props.type === "verse" && props.playTranslation !== true) {
     audio.addEventListener("timeupdate", wordHighlighter);
+
+    // scroll to the top of the playing verse
+    // window.scrollTo(window.scrollX, document.getElementById(`${audioSettings.playingKey}`).getBoundingClientRect().top - 100);
+
+    // document.getElementById(`${audioSettings.playingKey}`).scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+
+    // scrollSmoothly(document.getElementById(`${audioSettings.playingKey}`).offsetTop, 100);
   }
 
-  // scroll to the top of the verse
-  // window.scrollTo(window.scrollX, document.getElementById(`${chapter}:${verse}`).getBoundingClientRect().top - 50);
   // things to do when the audio has ended
   audio.onended = function () {
+    // detach the word highlighter function
+    audio.removeEventListener("timeupdate", wordHighlighter);
+
+    // play verse translation after arabic audio if opted by the user
+    if (audioSettings.playTranslation === true) {
+      if (verseTranslationPlayed === false) {
+        verseTranslationPlayed = true;
+
+        return playAudio({
+          type: props.type,
+          chapter: +props.chapter,
+          verse: +props.verse,
+          firstToPlay: +props.firstToPlay,
+          lastToPlay: +props.lastToPlay,
+          timesToRepeat: +props.timesToRepeat,
+          delay: +props.delay,
+          playTranslation: true,
+        });
+      }
+    }
+
     // repeating the audio if 'timesToRepeat' is more than 1
     // for some reason, audio always repeats timesToPlay + 2 times hence need to do: timesToPlay - 2
     if (audioSettings.timesRepeated <= props.timesToRepeat - 2) {
       return setTimeout(function () {
         audioSettings.timesRepeated++;
+
         playAudio({
           type: props.type,
           chapter: +props.chapter,
@@ -86,13 +118,15 @@ export function playAudio(props) {
       }, props.delay);
     }
 
+    audioSettings.timesRepeated = 0;
+
     // if type is word, then next to play shall be word+1, else will be verse+1
     nextToPlay = props.firstToPlay + 1;
 
-    audioSettings.timesRepeated = 0;
-
     // if the next word/verse to play is less than or equal to the last word/verse to play
     if (nextToPlay <= props.lastToPlay) {
+      verseTranslationPlayed = false;
+
       return playAudio({
         type: props.type,
         chapter: +props.chapter,
@@ -103,9 +137,6 @@ export function playAudio(props) {
         delay: +props.delay,
       });
     }
-
-    // detach the word highlighter function
-    audio.removeEventListener("timeupdate", wordHighlighter);
 
     // once everything is done, reset settings
     resetAudioSettings();
@@ -244,6 +275,8 @@ export function resetAudioSettings() {
   audio.currentTime = 0;
   audioSettings.isPlaying = false;
   audioSettingsStore.set(audioSettings);
+
+  // verseTranslationPlayed = false;
 
   // remove word highlight
   document.querySelectorAll(".word").forEach((element) => {

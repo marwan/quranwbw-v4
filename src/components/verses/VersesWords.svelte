@@ -3,7 +3,7 @@
 
   import { displayOptions } from "$data/options";
   import { supplicationsFromQuran } from "$data/quranMeta";
-  import { currentPageStore, wordTypeStore, displayTypeStore, userSettingsStore, audioSettingsStore } from "$utils/stores";
+  import { currentPageStore, wordTypeStore, displayTypeStore, userSettingsStore, audioSettingsStore, wordTranslationEnabledStore, wordTransliterationEnabledStore } from "$utils/stores";
   import { wordAudioController } from "$utils/audioController";
 
   const chapter = key.split(":")[0];
@@ -52,8 +52,8 @@
       </span>
 
       <div class="wordTranslationText flex flex-col {fontSizes.wordTranslationText}" data-fontSize={fontSizes.wordTranslationText}>
-        <span class="leading-normal">{transliterationSplit[word]}</span>
-        <span class="leading-normal">{translationSplit[word]}</span>
+        <span class="leading-normal {$wordTransliterationEnabledStore === true ? 'block' : 'hidden'}">{transliterationSplit[word]}</span>
+        <span class="leading-normal {$wordTranslationEnabledStore === true ? 'block' : 'hidden'}">{translationSplit[word]}</span>
       </div>
     </div>
   {/each}

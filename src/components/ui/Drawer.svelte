@@ -79,7 +79,7 @@
               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
             </svg>
           </button>
-          <button type="button" on:click={() => updateSettings({ type: "arabicText", action: "decrease" })} class="inline-flex items-center px-4 py-2 font-medium text-gray-900 bg-white border border-gray-200 rounded-r-md hover:bg-[#ebebeb] focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 daaark:bg-gray-700 daaark:border-gray-600 daaark:text-white daaark:hover:text-white daaark:hover:bg-gray-600 daaark:focus:ring-blue-500 daaark:focus:text-white">
+          <button type="button" on:click={() => updateSettings({ type: "arabicText", action: "decrease" })} class="inline-flex items-center px-4 py-2 font-medium text-gray-900 bg-white border border-gray-200 rounded-r-lg hover:bg-[#ebebeb] focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 daaark:bg-gray-700 daaark:border-gray-600 daaark:text-white daaark:hover:text-white daaark:hover:bg-gray-600 daaark:focus:ring-blue-500 daaark:focus:text-white">
             <svg class="w-3 h-3 text-gray-800 daaark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
             </svg>
@@ -96,7 +96,7 @@
               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
             </svg>
           </button>
-          <button type="button" on:click={() => updateSettings({ type: "wordTranslationText", action: "decrease" })} class="inline-flex items-center px-4 py-2 font-medium text-gray-900 bg-white border border-gray-200 rounded-r-md hover:bg-[#ebebeb] focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 daaark:bg-gray-700 daaark:border-gray-600 daaark:text-white daaark:hover:text-white daaark:hover:bg-gray-600 daaark:focus:ring-blue-500 daaark:focus:text-white">
+          <button type="button" on:click={() => updateSettings({ type: "wordTranslationText", action: "decrease" })} class="inline-flex items-center px-4 py-2 font-medium text-gray-900 bg-white border border-gray-200 rounded-r-lg hover:bg-[#ebebeb] focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 daaark:bg-gray-700 daaark:border-gray-600 daaark:text-white daaark:hover:text-white daaark:hover:bg-gray-600 daaark:focus:ring-blue-500 daaark:focus:text-white">
             <svg class="w-3 h-3 text-gray-800 daaark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
             </svg>
@@ -113,7 +113,7 @@
               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
             </svg>
           </button>
-          <button type="button" on:click={() => updateSettings({ type: "verseTranslationText", action: "decrease" })} class="inline-flex items-center px-4 py-2 font-medium text-gray-900 bg-white border border-gray-200 rounded-r-md hover:bg-[#ebebeb] focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 daaark:bg-gray-700 daaark:border-gray-600 daaark:text-white daaark:hover:text-white daaark:hover:bg-gray-600 daaark:focus:ring-blue-500 daaark:focus:text-white">
+          <button type="button" on:click={() => updateSettings({ type: "verseTranslationText", action: "decrease" })} class="inline-flex items-center px-4 py-2 font-medium text-gray-900 bg-white border border-gray-200 rounded-r-lg hover:bg-[#ebebeb] focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 daaark:bg-gray-700 daaark:border-gray-600 daaark:text-white daaark:hover:text-white daaark:hover:bg-gray-600 daaark:focus:ring-blue-500 daaark:focus:text-white">
             <svg class="w-3 h-3 text-gray-800 daaark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
             </svg>
