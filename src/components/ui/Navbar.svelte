@@ -96,7 +96,10 @@
             <li>
               <button on:click={() => toggleModal("navigationDropdown", "hide")} class="w-full text-left">
                 <Link to="/{chapter + 1}" class="block p-3 rounded-lg hover:bg-[#ebebeb] {$chapterNumberStore === chapter + 1 && 'bg-[#ebebeb]'}">
-                  <span class="text-sm text-gray-500">{chapter + 1}. {quranMetaData[chapter + 1].transliteration} ({quranMetaData[chapter + 1].translation})</span>
+                  <span class="text-sm text-gray-500">
+                    {chapter + 1}. {quranMetaData[chapter + 1].transliteration}
+                    <span class="hidden md:inline-block">({quranMetaData[chapter + 1].translation})</span>
+                  </span>
                 </Link>
               </button>
             </li>
