@@ -18,11 +18,11 @@
 
   // classes for each display types
   const layoutClasses = {
-    1: `arabicText leading-normal arabic-font-${$wordTypeStore} ${fontSizes.arabicText}`,
-    2: `arabicText leading-normal arabic-font-${$wordTypeStore} ${fontSizes.arabicText} p-2 px-1`,
-    3: `arabicText leading-normal arabic-font-${$wordTypeStore} ${fontSizes.arabicText} inline-block p-2 group-hover:bg-[#ebebeb]`,
-    4: `arabicText leading-normal arabic-font-${$wordTypeStore} ${fontSizes.arabicText} inline-block p-2 group-hover:bg-[#ebebeb]`,
-    5: `arabicText leading-normal arabic-font-${$wordTypeStore} ${fontSizes.arabicText} p-2 px-1`,
+    1: `arabicText select-none leading-normal arabic-font-${$wordTypeStore} ${fontSizes.arabicText}`,
+    2: `arabicText select-none leading-normal arabic-font-${$wordTypeStore} ${fontSizes.arabicText} p-2 px-1`,
+    3: `arabicText select-none leading-normal arabic-font-${$wordTypeStore} ${fontSizes.arabicText} inline-block p-2 group-hover:bg-[#ebebeb]`,
+    4: `arabicText select-none leading-normal arabic-font-${$wordTypeStore} ${fontSizes.arabicText} inline-block p-2 group-hover:bg-[#ebebeb]`,
+    5: `arabicText select-none leading-normal arabic-font-${$wordTypeStore} ${fontSizes.arabicText} p-2 px-1`,
   };
 
   const arabicSplit = value.words.arabic.split("|");
@@ -51,7 +51,7 @@
         {/if}
       </span>
 
-      <div class="wordTranslationText flex flex-col {fontSizes.wordTranslationText}" data-fontSize={fontSizes.wordTranslationText}>
+      <div class="wordTranslationText flex flex-col {fontSizes.wordTranslationText} select-none" data-fontSize={fontSizes.wordTranslationText}>
         <span class="leading-normal">{transliterationSplit[word]}</span>
         <span class="leading-normal">{translationSplit[word]}</span>
       </div>
