@@ -229,7 +229,7 @@ export function initializeAudioSettings(key) {
   }
 
   // set default audio type to verse
-  if (audioSettings.audioType === undefined) {
+  if (audioSettings.audioType !== "verse") {
     audioSettings.audioType = "verse";
   }
 }
