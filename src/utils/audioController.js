@@ -232,6 +232,11 @@ export function initializeAudioSettings(key) {
   if (audioSettings.audioType !== "verse") {
     audioSettings.audioType = "verse";
   }
+
+  // set default audio range to playThisVerse
+  if (audioSettings.audioRange === undefined) {
+    audioSettings.audioRange = "playThisVerse";
+  }
 }
 
 export function resetAudioSettings() {

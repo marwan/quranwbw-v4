@@ -32,12 +32,12 @@
             <div class="flex flex-row space-x-4">
               <!-- play verse -->
               <div class="flex items-center">
-                <input checked id="playVerse" type="radio" value="" on:click={updateAudioSettings} name="radio-audio-type" class="radio-play-type w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 focus:ring-gray-500 daaark:focus:ring-blue-600 daaark:ring-offset-gray-800 focus:ring-2 daaark:bg-gray-700 daaark:border-gray-600" />
+                <input checked={$audioSettingsStore.audioType === "verse" ? true : false} id="playVerse" type="radio" value="" on:click={updateAudioSettings} name="radio-audio-type" class="radio-play-type w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 focus:ring-gray-500 daaark:focus:ring-blue-600 daaark:ring-offset-gray-800 focus:ring-2 daaark:bg-gray-700 daaark:border-gray-600" />
                 <label for="playVerse" class="ml-2 text-sm font-medium text-gray-900 daaark:text-gray-300">Play Verse</label>
               </div>
               <!-- play word -->
               <div class="flex items-center">
-                <input id="playWord" type="radio" value="" on:click={updateAudioSettings} name="radio-audio-type" class="radio-play-type w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 focus:ring-gray-500 daaark:focus:ring-blue-600 daaark:ring-offset-gray-800 focus:ring-2 daaark:bg-gray-700 daaark:border-gray-600" />
+                <input checked={$audioSettingsStore.audioType === "word" ? true : false} id="playWord" type="radio" value="" on:click={updateAudioSettings} name="radio-audio-type" class="radio-play-type w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 focus:ring-gray-500 daaark:focus:ring-blue-600 daaark:ring-offset-gray-800 focus:ring-2 daaark:bg-gray-700 daaark:border-gray-600" />
                 <label for="playWord" class="ml-2 text-sm font-medium text-gray-900 daaark:text-gray-300">Play Word</label>
               </div>
             </div>
@@ -56,17 +56,17 @@
             <div class="flex flex-row space-x-4">
               <!-- play this verse -->
               <div class="flex items-center">
-                <input checked id="playThisVerse" type="radio" value="" on:click={updateAudioSettings} name="audioRange-radios" class=" w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 focus:ring-gray-500 daaark:focus:ring-blue-600 daaark:ring-offset-gray-800 focus:ring-2 daaark:bg-gray-700 daaark:border-gray-600" />
+                <input checked={$audioSettingsStore.audioRange === "playThisVerse" ? true : false} id="playThisVerse" type="radio" value="" on:click={updateAudioSettings} name="audioRange-radios" class=" w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 focus:ring-gray-500 daaark:focus:ring-blue-600 daaark:ring-offset-gray-800 focus:ring-2 daaark:bg-gray-700 daaark:border-gray-600" />
                 <label for="playThisVerse" class="ml-2 text-sm font-medium text-gray-900 daaark:text-gray-300">This Verse</label>
               </div>
               <!-- play from here -->
               <div class="flex items-center {$currentPageStore !== 'chapter' && disabledElement}">
-                <input id="playFromHere" type="radio" value="" on:click={updateAudioSettings} name="audioRange-radios" class=" w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 focus:ring-gray-500 daaark:focus:ring-blue-600 daaark:ring-offset-gray-800 focus:ring-2 daaark:bg-gray-700 daaark:border-gray-600" />
+                <input checked={$audioSettingsStore.audioRange === "playFromHere" ? true : false} id="playFromHere" type="radio" value="" on:click={updateAudioSettings} name="audioRange-radios" class=" w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 focus:ring-gray-500 daaark:focus:ring-blue-600 daaark:ring-offset-gray-800 focus:ring-2 daaark:bg-gray-700 daaark:border-gray-600" />
                 <label for="playFromHere" class="ml-2 text-sm font-medium text-gray-900 daaark:text-gray-300">From Here</label>
               </div>
               <!-- play range -->
               <div class="flex items-center {$currentPageStore !== 'chapter' && disabledElement}">
-                <input id="playRange" type="radio" value="" on:click={updateAudioSettings} name="audioRange-radios" class=" w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 focus:ring-gray-500 daaark:focus:ring-blue-600 daaark:ring-offset-gray-800 focus:ring-2 daaark:bg-gray-700 daaark:border-gray-600" />
+                <input checked={$audioSettingsStore.audioRange === "playRange" ? true : false} id="playRange" type="radio" value="" on:click={updateAudioSettings} name="audioRange-radios" class=" w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 focus:ring-gray-500 daaark:focus:ring-blue-600 daaark:ring-offset-gray-800 focus:ring-2 daaark:bg-gray-700 daaark:border-gray-600" />
                 <label for="playRange" class="ml-2 text-sm font-medium text-gray-900 daaark:text-gray-300">Verses Range</label>
               </div>
             </div>
