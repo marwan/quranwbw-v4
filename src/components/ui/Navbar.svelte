@@ -157,10 +157,10 @@
           <button class={rightMenuDropdownClasses}>Issues</button>
         </Link>
       </li>
-      <li>
+      <li class={disabledElement}>
         <button class={rightMenuDropdownClasses}>Chapter Overview</button>
       </li>
-      <li>
+      <li class={$currentPageStore === "changelogs" || $currentPageStore === "issues" || $currentPageStore === "about" ? disabledElement : ""}>
         <button on:click={() => toggleModal("InitialSetupModal", "show")} class={rightMenuDropdownClasses}>Initial Setup</button>
       </li>
     </ul>
