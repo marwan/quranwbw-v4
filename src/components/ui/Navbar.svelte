@@ -139,8 +139,13 @@
   <!-- Dropdown menu -->
   <div id="rightMenuDropdown" class="navbar-dropdown z-30 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 daark:bg-slate-800 daark:border-slate-700">
     <ul class="py-2 text-sm text-gray-700 daark:text-slate-400" aria-labelledby="rightMenuDropdownButton">
-      <li class={$currentPageStore === "changelogs" || $currentPageStore === "issues" ? disabledElement : ""}>
+      <li class={$currentPageStore === "changelogs" || $currentPageStore === "issues" || $currentPageStore === "about" ? disabledElement : ""}>
         <button data-drawer-target="drawer-right" data-drawer-show="drawer-right" data-drawer-placement="right" aria-controls="drawer-right" class={rightMenuDropdownClasses}>Settings</button>
+      </li>
+      <li>
+        <Link to="/about">
+          <button class={rightMenuDropdownClasses}>About</button>
+        </Link>
       </li>
       <li>
         <Link to="/changelogs">
