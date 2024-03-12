@@ -26,7 +26,12 @@
 <div class="">
   <div class="my-6 space-y-4 pb-4 border-b-2">
     <h1 class="text-2xl">Changelogs</h1>
-    <div class="text-sm">This page contains all the commits made to the Quranwbw.com's <a href="https://github.com/marwan/quranwbw-svelte" target="_blank" class={linkElement}>source code on GitHub</a>. However, the changes made to the database or the API will not be reflected here.</div>
+    <div class="text-sm">
+      This page contains all the commits made to the Quranwbw.com's <a href="https://github.com/marwan/quranwbw-svelte" target="_blank" class={linkElement}>GitHub repo</a>.
+
+      <br /><br />
+      <a href="https://github.com/marwan/quranwbw-svelte/commits/main/" target="_blank" class={linkElement}>https://github.com/marwan/quranwbw-svelte/commits/main</a>
+    </div>
   </div>
 
   {#await fetchData}
