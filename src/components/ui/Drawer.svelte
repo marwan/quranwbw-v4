@@ -4,16 +4,12 @@
   import { updateSettings } from "$utils/updateSettings";
   import { disabledElement, buttonElement } from "$utils/commonStyles";
 
-  // icons
-  import Info from "$svgs/Info.svelte";
-
   $: fontSizeCodes = JSON.parse($userSettingsStore).displaySettings.fontSizes;
 </script>
 
 <!-- drawer component -->
 <div id="drawer-right" class="fixed top-0 right-0 z-40 h-screen p-4 pb-16 overflow-y-auto transition-transform rounded-tl-xl rounded-bl-xl translate-x-full bg-white w-72 md:w-96 daark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-right-label">
-  <h5 id="drawer-right-label" class="inline-flex items-center mb-4 text-lg space-x-2 font-semibold text-gray-500 daark:text-gray-400">
-    <Info />
+  <h5 id="drawer-right-label" class="inline-flex items-center mb-4 text-xl space-x-2 font-semibold text-gray-500 daark:text-gray-400">
     <span>Settings</span>
   </h5>
 
@@ -45,7 +41,7 @@
   </div>
 
   <div class="py-5 text-xs border-t border-gray-200 daark:border-slate-700">
-    <h3 class="block mb-2 font-medium text-base text-gray-900 daark:text-slate-400">Display</h3>
+    <h3 class="block mb-2 font-medium text-base text-gray-500 daark:text-slate-400">Display</h3>
 
     <div class="flex flex-col flex-wrap space-y-4 text-xs">
       <div class="flex flex-row justify-between items-center">
@@ -126,7 +122,7 @@
 
   <!-- translations -->
   <div class="py-5 text-xs border-t border-gray-200 daark:border-slate-700">
-    <h3 class="block mb-2 font-medium text-base text-gray-900 daark:text-slate-400">Translations</h3>
+    <h3 class="block mb-2 font-medium text-base text-gray-500 daark:text-slate-400">Translations</h3>
 
     <div class="flex flex-col flex-wrap space-y-4 text-xs">
       <div class="flex flex-row justify-between items-center">
@@ -168,7 +164,7 @@
 
   <!-- audio -->
   <div class="py-5 text-xs border-t border-gray-200 daark:border-slate-700">
-    <h3 class="block mb-2 font-medium text-base text-gray-900 daark:text-slate-400">Audios</h3>
+    <h3 class="block mb-2 font-medium text-base text-gray-500 daark:text-slate-400">Audios</h3>
 
     <div class="flex flex-col flex-wrap space-y-4 text-xs">
       <!-- reciter -->
