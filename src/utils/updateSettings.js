@@ -1,4 +1,4 @@
-import { userSettingsStore, wordTypeStore, displayTypeStore, wordTranslationStore, verseTranslationsStore, reciterStore, playbackSpeedStore, lastReadStore } from "$utils/stores";
+import { userSettingsStore, wordTypeStore, displayTypeStore, websiteThemeStore, wordTranslationStore, verseTranslationsStore, reciterStore, playbackSpeedStore, lastReadStore } from "$utils/stores";
 import { selectableVerseTranslations } from "$data/options";
 
 // function to update website settings
@@ -17,6 +17,12 @@ export function updateSettings(props) {
     case "displayType":
       displayTypeStore.set(props.value);
       userSettings.displaySettings.displayType = props.value;
+      break;
+
+    // for website theme
+    case "websiteTheme":
+      websiteThemeStore.set(props.value);
+      userSettings.displaySettings.websiteTheme = props.value;
       break;
 
     // for word translation

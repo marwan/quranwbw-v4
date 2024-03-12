@@ -18,7 +18,7 @@
   // update userBookmarks whenever the userSettingsStore changes
   $: userBookmarks = JSON.parse($userSettingsStore).userBookmarks;
 
-  const buttonClasses = "inline-flex items-center justify-center w-10 h-10 text-gray-400 transition-colors duration-150 rounded-lg focus:shadow-outline bg-[#ebebeb] hover:bg-gray-200 print:hidden";
+  const buttonClasses = "inline-flex items-center justify-center w-10 h-10 text-gray-400 transition-colors duration-150 rounded-lg focus:shadow-outline bg-[#ebebeb] hover:bg-gray-200 print:hidden daark:bg-slate-800 daark:hover:bg-slate-700";
 </script>
 
 <div class="verseButtons flex flex-row space-x-4 text-gray-400 text-xs">

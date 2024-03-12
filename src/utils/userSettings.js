@@ -7,6 +7,7 @@
 
   // display settings
   if (userSettings.displaySettings === undefined) userSettings.displaySettings = {}; // parent
+  if (userSettings.displaySettings.websiteTheme === undefined) userSettings.displaySettings.websiteTheme = 1; // light
   if (userSettings.displaySettings.displayType === undefined) userSettings.displaySettings.displayType = 1; // WBW
   if (userSettings.displaySettings.wordType === undefined) userSettings.displaySettings.wordType = 1; // Uthmani
   if (userSettings.displaySettings.wordTranslationEnabled === undefined) userSettings.displaySettings.wordTranslationEnabled = true; // shown

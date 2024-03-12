@@ -10,7 +10,7 @@
   import Home from "$svgs/Home.svelte";
 
   // classes
-  const rightMenuDropdownClasses = "block w-full text-left px-4 py-2 hover:bg-[#ebebeb] daaark:hover:bg-gray-600 daaark:hover:text-white";
+  const rightMenuDropdownClasses = "block w-full text-left px-4 py-2 hover:bg-[#ebebeb] daark:hover:bg-slate-700";
 
   let gotoVerse,
     gotoPageChapter = 1,
@@ -46,14 +46,14 @@
   $: chapterProgress = ($lastReadStore.split(":")[1] / quranMetaData[$chapterNumberStore].verses) * 100;
 </script>
 
-<nav id="navbar" class="{$currentPageStore === 'home' ? 'hidden' : $topNavbarVisibleStore ? 'block' : 'hidden'} bg-white fixed w-full z-20 top-0 left-0 border-b border-gray-200 text-black backdrop-filter backdrop-blur-lg bg-opacity-50 print:hidden">
+<nav id="navbar" class="{$currentPageStore === 'home' ? 'hidden' : $topNavbarVisibleStore ? 'block' : 'hidden'} bg-white fixed w-full z-20 top-0 left-0 border-b border-gray-200 text-black backdrop-filter backdrop-blur-lg bg-opacity-50 print:hidden daark:bg-slate-900 daark:text-slate-400 daark:border-slate-700">
   <div id="top-nav" class="flex flex-row items-center justify-between max-w-screen-lg mx-auto px-4 py-2">
-    <Link to="/" class="flex flex-row items-center p-2 cursor-pointer hover:bg-[#ebebeb] rounded-lg">
+    <Link to="/" class="flex flex-row items-center p-2 cursor-pointer hover:bg-[#ebebeb] rounded-lg daark:hover:bg-slate-700">
       <Home />
       <span class="text-xs pl-2 hidden sm:block">Home</span>
     </Link>
 
-    <button id="navigationDropdownButton" data-dropdown-toggle="navigationDropdown" class="flex items-center py-2 px-3 text-sm border-gray-200 w-auto p-2 hover:bg-[#ebebeb] rounded-lg">
+    <button id="navigationDropdownButton" data-dropdown-toggle="navigationDropdown" class="flex items-center py-2 px-3 text-sm border-gray-200 w-auto p-2 hover:bg-[#ebebeb] rounded-lg daark:hover:bg-slate-700">
       <span id="navbar-top-title">
         {#if $currentPageStore === "chapter"}
           {quranMetaData[$chapterNumberStore].transliteration} ({quranMetaData[$chapterNumberStore].translation})
@@ -65,14 +65,14 @@
       <svg class="w-2.5 h-2.5 ml-2.5 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" /></svg>
     </button>
 
-    <div class="flex flex-row items-center p-2 cursor-pointer hover:bg-[#ebebeb] rounded-lg" type="button" id="rightMenuDropdownButton" data-dropdown-toggle="rightMenuDropdown">
+    <div class="flex flex-row items-center p-2 cursor-pointer hover:bg-[#ebebeb] rounded-lg daark:hover:bg-slate-700" type="button" id="rightMenuDropdownButton" data-dropdown-toggle="rightMenuDropdown">
       <span class="text-xs pr-2 hidden sm:block">Menu</span>
       <Menu />
     </div>
   </div>
 
   {#if $currentPageStore === "chapter"}
-    <div id="bottom-nav" class="{$bottomNavbarVisibleStore === true ? 'block' : 'hidden'} flex flex-row items-center justify-between border-t text-xs max-w-screen-lg mx-auto px-6">
+    <div id="bottom-nav" class="{$bottomNavbarVisibleStore === true ? 'block' : 'hidden'} flex flex-row items-center justify-between border-t text-xs max-w-screen-lg mx-auto px-6 daark:border-slate-700">
       <div id="navbar-bottom-chapter-revalation" class="flex flex-row items-center py-2">{chapterRevelation === 1 ? "Meccan" : "Medinan"}</div>
       <!-- <div id="navbar-bottom-chapter-title" class="flex flex-row items-center py-2">{quranMetaData[$chapterNumberStore].transliteration}</div> -->
       <div class="flex flex-row items-center py-2">
@@ -82,21 +82,21 @@
       </div>
     </div>
 
-    <div id="chapter-progress-bar" class="fixed inset-x-0 z-20 h-1 bg-gray-300 transition-width transition-slowest ease" style="width: {chapterProgress}%" />
+    <div id="chapter-progress-bar" class="fixed inset-x-0 z-20 h-1 bg-gray-300 transition-width transition-slowest ease daark:bg-slate-500" style="width: {chapterProgress}%" />
   {/if}
 
   <!-- navigation list -->
-  <div id="navigationDropdown" class="navbar-dropdown z-30 mt-1 border border-gray-200 rounded-lg shadow-sm bg-white border-y shadow-lg backdrop-filter backdrop-blur-lg bg-opacity-95 hidden">
-    <div class="flex flex-row space-x-4 justify-between max-h-80 max-w-screen-lg px-4 py-5 mx-auto text-gray-900 daaark:text-white md:px-2">
+  <div id="navigationDropdown" class="navbar-dropdown z-30 mt-1 border border-gray-200 rounded-lg shadow-sm bg-white border-y shadow-lg backdrop-filter backdrop-blur-lg bg-opacity-95 hidden daark:bg-slate-800 daark:text-slate-400 daark:border-slate-700">
+    <div class="flex flex-row space-x-4 justify-between max-h-80 max-w-screen-lg px-4 py-5 mx-auto text-gray-900 daark:text-slate-400 md:px-2">
       <!-- chapter selector -->
       <div class="flex flex-col space-y-2">
-        <div class="mx-4 text-xs pb-2 border-b">Chapters</div>
+        <div class="mx-4 text-xs pb-2 border-b daark:border-slate-700">Chapters</div>
         <ul id="navbar-chapter-list" class="grow basis-1/2 px-2 overflow-y-scroll md:min-w-fit">
           {#each { length: 114 } as _, chapter}
             <li>
               <button on:click={() => toggleModal("navigationDropdown", "hide")} class="w-full text-left">
-                <Link to="/{chapter + 1}" class="block p-3 rounded-lg hover:bg-[#ebebeb] {$chapterNumberStore === chapter + 1 && 'bg-[#ebebeb]'}">
-                  <span class="text-sm text-gray-500">
+                <Link to="/{chapter + 1}" class="block p-3 rounded-lg hover:bg-[#ebebeb] daark:hover:bg-slate-700 {$chapterNumberStore === chapter + 1 && 'bg-[#ebebeb] daark:bg-slate-700'}">
+                  <span class="text-sm text-gray-500 daark:text-slate-400">
                     {chapter + 1}. {quranMetaData[chapter + 1].transliteration}
                     <span class="hidden md:inline-block">({quranMetaData[chapter + 1].translation})</span>
                   </span>
@@ -112,9 +112,9 @@
         <div class="flex flex-col space-y-6">
           <!-- goto verse -->
           <div class="flex flex-col space-y-2">
-            <div class="text-xs pb-2 border-b">Go to Verse</div>
+            <div class="text-xs pb-2 border-b daark:border-slate-700">Go to Verse</div>
             <div class="flex flex-row space-x-2">
-              <input type="number" min="1" max={quranMetaData[$chapterNumberStore].verses} id="gotoVerse" on:change={(event) => verseSelector(event)} aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-24 p-2.5 daaark:bg-gray-700 daaark:border-gray-600 daaark:placeholder-gray-400 daaark:text-white daaark:focus:ring-blue-500 daaark:focus:border-blue-500" placeholder="e.g. {Math.floor(Math.random() * (quranMetaData[$chapterNumberStore].verses - 1 + 1)) + 1}" />
+              <input type="number" min="1" max={quranMetaData[$chapterNumberStore].verses} id="gotoVerse" on:change={(event) => verseSelector(event)} aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-24 p-2.5 daark:bg-gray-700 daark:border-gray-600 daark:placeholder-gray-400 daark:text-slate-400 daark:focus:ring-blue-500 daark:focus:border-blue-500" placeholder="e.g. {Math.floor(Math.random() * (quranMetaData[$chapterNumberStore].verses - 1 + 1)) + 1}" />
               <button on:click={() => toggleModal("navigationDropdown", "hide")}>
                 <Link to="/{$chapterNumberStore}/{gotoVerse}" on:click={() => pageURLStore.set(Math.random())} class={buttonElement}>Go</Link>
               </button>
@@ -122,9 +122,9 @@
           </div>
           <!-- goto page -->
           <div class="flex flex-col space-y-2">
-            <div class="text-xs pb-2 border-b">Go to Page</div>
+            <div class="text-xs pb-2 border-b daark:border-slate-700">Go to Page</div>
             <div class="flex flex-row space-x-2">
-              <input type="number" min="1" max="604" id="gotoPage" on:change={(event) => pageSelector(event)} aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-24 p-2.5 daaark:bg-gray-700 daaark:border-gray-600 daaark:placeholder-gray-400 daaark:text-white daaark:focus:ring-blue-500 daaark:focus:border-blue-500" placeholder="e.g. {Math.floor(Math.random() * 604) + 1}" />
+              <input type="number" min="1" max="604" id="gotoPage" on:change={(event) => pageSelector(event)} aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-24 p-2.5 daark:bg-gray-700 daark:border-gray-600 daark:placeholder-gray-400 daark:text-slate-400 daark:focus:ring-blue-500 daark:focus:border-blue-500" placeholder="e.g. {Math.floor(Math.random() * 604) + 1}" />
               <button on:click={() => toggleModal("navigationDropdown", "hide")}>
                 <Link to="/{gotoPageChapter}/{gotoPageVerse}" on:click={() => pageURLStore.set(Math.random())} class={buttonElement}>Go</Link>
               </button>
@@ -137,8 +137,8 @@
   </div>
 
   <!-- Dropdown menu -->
-  <div id="rightMenuDropdown" class="navbar-dropdown z-30 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 daaark:bg-gray-700 daaark:divide-gray-600">
-    <ul class="py-2 text-sm text-gray-700 daaark:text-gray-200" aria-labelledby="rightMenuDropdownButton">
+  <div id="rightMenuDropdown" class="navbar-dropdown z-30 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 daark:bg-slate-800 daark:border-slate-700">
+    <ul class="py-2 text-sm text-gray-700 daark:text-slate-400" aria-labelledby="rightMenuDropdownButton">
       {#if $currentPageStore !== "changelogs"}
         <li>
           <button data-drawer-target="drawer-right" data-drawer-show="drawer-right" data-drawer-placement="right" aria-controls="drawer-right" class={rightMenuDropdownClasses}>Settings</button>

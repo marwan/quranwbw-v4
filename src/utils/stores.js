@@ -38,6 +38,9 @@ export const playbackSpeedStore = writable(localSettings.audioSettings.playbackS
 // to store the display type - WBW, Normal, Continuous, etc...
 export const displayTypeStore = writable(localSettings.displaySettings.displayType);
 
+// to store the website theme
+export const websiteThemeStore = writable(localSettings.displaySettings.websiteTheme);
+
 // to store the last read key
 export const lastReadStore = writable(localSettings.lastRead);
 
