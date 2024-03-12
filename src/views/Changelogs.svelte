@@ -10,7 +10,7 @@
   // fetch the commits from our API
   $: {
     fetchData = (async () => {
-      const response = await fetch("https://api.quranwbw.com/v1/commits");
+      const response = await fetch("https://api.quranwbw.com/v1/repo/commits");
       const data = await response.json();
       return data.data;
     })();
