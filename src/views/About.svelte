@@ -45,7 +45,7 @@
       </ul>
 
       <br /><br />
-      Please note, this website is just a hobby project of mine and I do not work full time on it. Hence you might find issues here and there. If you'd like to report an issue, have any suggestions, or would like to contribute, please visit our <a class={linkElement} target="_blank" rel="noreferrer" href="https://github.com/marwan/quranwbw-svelte">repo at GitHub</a>, or contact me on <a class={linkElement} href="mailto:quranwbw@gmail.com">quranwbw@gmail.com</a>.
+      Please note, this website is just a hobby project of mine and I do not work full time on it. Hence you might find issues here and there. If you'd like to report an issue, have any suggestions, or would like to contribute, please visit Quranwbw.com's <a class={linkElement} target="_blank" rel="noreferrer" href="https://github.com/marwan/quranwbw-svelte">repo on GitHub</a>, or contact me on <a class={linkElement} href="mailto:quranwbw@gmail.com">quranwbw@gmail.com</a>.
 
       <br /><br />
       All the data used on this website belongs to their respective owners/authors and copying them is not allowed.
