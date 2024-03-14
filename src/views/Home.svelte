@@ -6,7 +6,7 @@
 
   import HomepageTabs from "$ui/HomepageTabs.svelte";
 
-  const linkStyles = "py-2 px-4 text-xs cursor-pointer focus:outline-none focus:ring-4 focus:ring-gray-200 rounded-lg hover:bg-[#ebebeb] dark:hover:bg-slate-700";
+  const linkStyles = "py-2 px-2 text-xs cursor-pointer focus:outline-none focus:ring-4 focus:ring-gray-200 rounded-lg hover:bg-[#ebebeb] dark:hover:bg-slate-700";
 
   currentPageStore.set("home");
 </script>
