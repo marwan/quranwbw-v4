@@ -11,7 +11,7 @@
 
   const fontSizes = JSON.parse($userSettingsStore).displaySettings.fontSizes;
 
-  const wordClasses = "rounded-lg hover:cursor-pointer hover:bg-[#ebebeb] daark:hover:bg-slate-800";
+  const wordClasses = "rounded-lg hover:cursor-pointer hover:bg-[#ebebeb] dark:hover:bg-slate-800";
 
   const tajweedWordsURL = "https://static.qurancdn.com/images/w/rq-color";
   const tajweedEndURL = "https://static.qurancdn.com/images/w/common";

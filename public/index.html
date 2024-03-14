@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="">
+<html lang="en">
   <head>
     <title>QuranWBW.com</title>
     <meta charset="utf-8" />
@@ -10,8 +10,23 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="/build/bundle.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
+
+    <!-- tailwind config -->
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+      };
+    </script>
+
+    <!-- set the website theme -->
+    <script>
+      try {
+        const websiteTheme = JSON.parse(localStorage.getItem("userSettings")).displaySettings.websiteTheme;
+        document.documentElement.classList.add(`${websiteTheme === 2 ? "dark" : ""}`);
+      } catch (error) {}
+    </script>
   </head>
-  <body class="bg-[#f3f3f3] daark:bg-slate-900 daark:text-slate-400">
+  <body class="bg-[#f3f3f3] dark:bg-slate-900 dark:text-slate-400">
     <!-- global audio player -->
     <audio id="player"></audio>
   </body>

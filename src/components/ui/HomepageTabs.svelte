@@ -5,16 +5,16 @@
   // chapter cards, tab styles
   const homepageTabsStyles = {
     cardGridStyle: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4",
-    cardInnerStyle: "flex items-center justify-between border border-gray-200 text-sm bg-gray-50 rounded-lg p-4 hover:cursor-pointer hover:bg-[#ebebeb] hover:border-gray-400 focus:outline-none focus:ring-4 focus:ring-gray-200 daark:bg-slate-800 daark:border-slate-700 daark:hover:bg-slate-700 daark:hover:bg-slate-700",
-    tabStyle: "py-2 px-4 text-xs cursor-pointer rounded-lg hover:bg-[#ebebeb] daark:hover:bg-slate-700",
-    activeTab: "bg-[#ebebeb] daark:bg-slate-700",
+    cardInnerStyle: "flex items-center justify-between border border-gray-200 text-sm bg-gray-50 rounded-lg p-4 hover:cursor-pointer hover:bg-[#ebebeb] hover:border-gray-400 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:bg-slate-800 dark:border-slate-700 dark:hover:bg-slate-700 dark:hover:bg-slate-700",
+    tabStyle: "py-2 px-4 text-xs cursor-pointer rounded-lg hover:bg-[#ebebeb] dark:hover:bg-slate-700",
+    activeTab: "bg-[#ebebeb] dark:bg-slate-700",
   };
 
   let activeTab = 1; // chapters tab
 </script>
 
 <div id="homepage-tabs" class="pt-0">
-  <div class="mb-4 text-gray-400 daark:border-gray-700 px-8">
+  <div class="mb-4 text-gray-400 dark:border-gray-700 px-8">
     <ul class="flex flex-wrap -mb-px text-sm font-medium text-center justify-center space-x-4">
       <li>
         <button on:click={() => (activeTab = 1)} class="{homepageTabsStyles.tabStyle} {activeTab === 1 ? `${homepageTabsStyles.activeTab}` : ''}" id="chapters-tab" data-tabs-target="#chapters-tab-panel" type="button" role="tab" aria-controls="chapters-tab-panel" aria-selected="false">Chapters</button>

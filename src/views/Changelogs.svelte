@@ -24,7 +24,7 @@
 </svelte:head>
 
 <div class="">
-  <div class="my-6 space-y-4 pb-4 border-b-2">
+  <div class="my-6 space-y-4 pb-4 border-b-2 dark:border-slate-700">
     <h1 class="text-2xl">Changelogs</h1>
     <div class="text-sm">
       This page contains all the commits made to the Quranwbw.com's <a href="https://github.com/marwan/quranwbw-svelte" target="_blank" class={linkElement}>GitHub repo</a>.
@@ -39,7 +39,7 @@
   {:then fetchData}
     <div class="text-sm">
       {#each Object.entries(fetchData) as [key, value]}
-        <div class="py-6 space-y-2 border-b daark:border-slate-700">
+        <div class="py-6 space-y-2 border-b dark:border-slate-700">
           <div class="space-y-2">
             <div class="truncate"><a href={value.html_url} target="_blank" class={linkElement}>{value.commit.message}</a></div>
             <div>

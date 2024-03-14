@@ -23,6 +23,9 @@ export function updateSettings(props) {
     case "websiteTheme":
       websiteThemeStore.set(props.value);
       userSettings.displaySettings.websiteTheme = props.value;
+
+      if (props.value === 1) document.documentElement.classList.remove("dark");
+      else if (props.value === 2) document.documentElement.classList.add("dark");
       break;
 
     // for word translation

@@ -24,7 +24,7 @@
 </svelte:head>
 
 <div class="">
-  <div class="my-6 space-y-4 pb-4 border-b-2">
+  <div class="my-6 space-y-4 pb-4 border-b-2 dark:border-slate-700">
     <h1 class="text-2xl">Issues</h1>
     <div class="text-sm">
       This page contains all the active issues raised on the Quranwbw.com's <a href="https://github.com/marwan/quranwbw-svelte" target="_blank" class={linkElement}>GitHub repo</a>.
@@ -39,7 +39,7 @@
   {:then fetchData}
     <div class="text-sm">
       {#each Object.entries(fetchData) as [key, value]}
-        <div class="py-6 space-y-2 border-b daark:border-slate-700">
+        <div class="py-6 space-y-2 border-b dark:border-slate-700">
           <div class="space-y-2">
             <div class="truncate">
               <a href={value.html_url} target="_blank" class={linkElement}>Issue #{value.number}: {value.title}</a>
@@ -47,7 +47,7 @@
               <!-- labels -->
               <div class="inline-flex ml-2 space-x-2">
                 {#each Object.entries(value.labels) as [id, label]}
-                  <span class="flex py-1 px-3 bg-[#ebebeb] rounded-lg text-xs items-center hover:bg-[#ebebeb] daark:hover:bg-slate-700">{label.name}</span>
+                  <span class="flex py-1 px-3 bg-[#ebebeb] rounded-lg text-xs items-center hover:bg-[#ebebeb] dark:hover:bg-slate-700">{label.name}</span>
                 {/each}
               </div>
             </div>

@@ -18,7 +18,7 @@
   on:inview_enter={(event) => {
     updateSettings({ type: "lastRead", value: `${event.target.id}` });
   }}
-  class="flex flex-col py-8 space-y-8 border-b daark:border-slate-700"
+  class="flex flex-col py-8 space-y-8 border-b dark:border-slate-700"
 >
   <VersesButtons {key} />
 
