@@ -6,6 +6,7 @@
   import { disabledElement, buttonElement } from "$utils/commonStyles";
 
   // icons
+  import Logo from "$svgs/Logo.svelte";
   import Menu from "$svgs/Menu.svelte";
   import Home from "$svgs/Home.svelte";
 
@@ -53,17 +54,21 @@
       <span class="text-xs pl-2 hidden sm:block">Home</span>
     </Link>
 
-    <button id="navigationDropdownButton" data-dropdown-toggle="navigationDropdown" class="flex items-center py-2 px-3 text-sm border-gray-200 w-auto p-2 hover:bg-[#ebebeb] rounded-lg dark:hover:bg-slate-700">
-      <span id="navbar-top-title">
-        {#if $currentPageStore === "chapter"}
-          {quranMetaData[$chapterNumberStore].transliteration} ({quranMetaData[$chapterNumberStore].translation})
-        {:else}
-          <!-- capitalize the first letter of the current page and display it -->
-          {$currentPageStore[0].toUpperCase() + $currentPageStore.slice(1)}
-        {/if}
-      </span>
-      <svg class="w-2.5 h-2.5 ml-2.5 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" /></svg>
-    </button>
+    <div class="flex items-center py-2 px-3 text-sm border-gray-200 w-auto p-2 hover:bg-[#ebebeb] rounded-lg dark:hover:bg-slate-700">
+      {#if $currentPageStore === "chapter"}
+        <button id="navigationDropdownButton" data-dropdown-toggle="navigationDropdown">
+          <span id="navbar-top-title">
+            {quranMetaData[$chapterNumberStore].transliteration} ({quranMetaData[$chapterNumberStore].translation})
+          </span>
+        </button>
+
+        <svg class="w-2.5 h-2.5 ml-2.5 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" /></svg>
+      {:else}
+        <Link to="/" class="text-gray-500">
+          <Logo width="24" />
+        </Link>
+      {/if}
+    </div>
 
     <div class="flex flex-row items-center p-2 cursor-pointer hover:bg-[#ebebeb] rounded-lg dark:hover:bg-slate-700" type="button" id="rightMenuDropdownButton" data-dropdown-toggle="rightMenuDropdown">
       <span class="text-xs pr-2 hidden sm:block">Menu</span>

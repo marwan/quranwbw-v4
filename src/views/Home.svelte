@@ -1,7 +1,6 @@
 <script>
   import { Link } from "svelte-routing";
   import { websiteTagline, websiteTitle } from "$utils/websiteSettings";
-  import { quranMetaData } from "$data/quranMeta";
   import { currentPageStore, lastReadStore } from "$utils/stores";
   import Logo from "$svgs/Logo.svelte";
 
@@ -19,7 +18,7 @@
 <div class="max-w-4xl mx-auto flex flex-col space-y-8 md:px-4">
   <div class="flex flex-col mt-4">
     <Link to="/" class="flex justify-center text-gray-500">
-      <Logo />
+      <Logo width="52" />
     </Link>
     <div class="text-xs text-center text-gray-400">{websiteTagline}</div>
   </div>
