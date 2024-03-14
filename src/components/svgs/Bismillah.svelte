@@ -1,5 +1,5 @@
 <div class="flex flex-col text-center flex-wrap px-6 pt-6 space-y-4 block">
-  <svg class="w-32 h-12 mx-auto opacity-80 prevent-drag" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="584.4px" height="178.4px" viewBox="0 0 584.4 178.4" enable-background="new 0 0 584.4 178.4" xml:space="preserve">
+  <svg class="w-32 h-12 mx-auto opacity-80 prevent-drag dark:opacity-100" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="584.4px" height="178.4px" viewBox="0 0 584.4 178.4" enable-background="new 0 0 584.4 178.4" xml:space="preserve">
     <pattern x="283.391" y="97.5" width="69" height="69" patternUnits="userSpaceOnUse" id="Polka_Dot_Pattern" viewBox="2.125 -70.896 69 69" overflow="visible">
       <g>
         <polygon fill="none" points="71.125,-1.896 2.125,-1.896 2.125,-70.896 71.125,-70.896 		" />

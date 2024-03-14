@@ -10,7 +10,6 @@
   import { websiteTitle, apiEndpoint } from "$utils/websiteSettings";
   import { quranMetaData } from "$data/quranMeta";
   import { currentPageStore, chapterNumberStore, chapterDataStore, wordTypeStore, displayTypeStore, wordTranslationStore, verseTranslationsStore, lastReadStore, pageURLStore } from "$utils/stores";
-  import { initFlowbite } from "flowbite";
 
   // max verses to load if total verses in chapter are more than this
   const maxVersesThreshold = 10;
@@ -73,9 +72,6 @@
         console.log(error);
       }
     });
-
-    // initialize Flowbite
-    initFlowbite();
   });
 
   currentPageStore.set("chapter");
