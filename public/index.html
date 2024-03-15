@@ -22,7 +22,10 @@
     <script>
       try {
         const websiteTheme = JSON.parse(localStorage.getItem("userSettings")).displaySettings.websiteTheme;
-        document.documentElement.classList.add(`${websiteTheme === 2 ? "dark" : ""}`);
+        if (websiteTheme === 2) document.documentElement.classList.add("dark");
+        else if (websiteTheme === 3) document.documentElement.classList.add("invert");
+        else if (websiteTheme === 4) document.documentElement.classList.add("invert-[90%]");
+        else if (websiteTheme === 5) document.documentElement.classList.add("green");
       } catch (error) {}
     </script>
   </head>

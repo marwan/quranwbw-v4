@@ -104,3 +104,10 @@ svg {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale
 }
+
+/* themes */
+.green {
+	filter: grayscale(100%) sepia(5%) brightness(90%) hue-rotate(300deg) saturate(600%) invert(100%);
+	-webkit-filter: grayscale(100%) sepia(5%) brightness(90%) hue-rotate(300deg) saturate(600%) invert(100%);
+	-moz-filter: grayscale(100%) sepia(5%) brightness(90%) hue-rotate(300deg) saturate(600%) invert(100%);
+}

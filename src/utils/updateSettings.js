@@ -24,8 +24,13 @@ export function updateSettings(props) {
       websiteThemeStore.set(props.value);
       userSettings.displaySettings.websiteTheme = props.value;
 
-      if (props.value === 1) document.documentElement.classList.remove("dark");
+      document.documentElement.classList = "";
+
+      if (props.value === 1) document.documentElement.classList = "";
       else if (props.value === 2) document.documentElement.classList.add("dark");
+      else if (props.value === 3) document.documentElement.classList.add("invert");
+      else if (props.value === 4) document.documentElement.classList.add("invert-[90%]");
+      else if (props.value === 5) document.documentElement.classList.add("green");
       break;
 
     // for word translation view

@@ -25,16 +25,11 @@
   <div class="flex flex-row justify-between items-center py-5 text-xs border-gray-200 dark:border-slate-700">
     <span class="block text-gray-900 dark:text-slate-400">Website Theme</span>
     <div class="inline-flex rounded-md shadow-sm" role="group">
-      <button type="button" on:click={() => updateSettings({ type: "websiteTheme", value: 1 })} class="{$websiteThemeStore === 1 && disabledElement} inline-flex items-center px-4 py-2 text-gray-900 bg-white border border-gray-200 rounded-l-lg hover:bg-[#ebebeb] focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-slate-700 dark:text-slate-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
-        <svg class="w-3 h-3 mr-1 text-gray-800 dark:text-slate-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 3V1m0 18v-2M5.05 5.05 3.636 3.636m12.728 12.728L14.95 14.95M3 10H1m18 0h-2M5.05 14.95l-1.414 1.414M16.364 3.636 14.95 5.05M14 10a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z" />
-        </svg>
-      </button>
-      <button type="button" on:click={() => updateSettings({ type: "websiteTheme", value: 2 })} class="{$websiteThemeStore === 2 && disabledElement} inline-flex items-center px-4 py-2 text-gray-900 bg-white border border-gray-200 rounded-r-md hover:bg-[#ebebeb] focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-slate-700 dark:text-slate-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
-        <svg class="w-3 h-3 mr-1 text-gray-800 dark:text-slate-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.509 5.75c0-1.493.394-2.96 1.144-4.25h-.081a8.5 8.5 0 1 0 7.356 12.746A8.5 8.5 0 0 1 8.509 5.75Z" />
-        </svg>
-      </button>
+      <button type="button" on:click={() => updateSettings({ type: "websiteTheme", value: 1 })} class="inline-flex items-center px-4 py-2 text-gray-900 bg-white border border-gray-200 rounded-l-lg hover:bg-[#ebebeb] focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-slate-700 dark:text-slate-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"> 1 </button>
+      <button type="button" on:click={() => updateSettings({ type: "websiteTheme", value: 2 })} class="inline-flex items-center px-4 py-2 text-gray-900 bg-white border border-gray-200 hover:bg-[#ebebeb] focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-slate-700 dark:text-slate-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"> 2 </button>
+      <button type="button" on:click={() => updateSettings({ type: "websiteTheme", value: 3 })} class="inline-flex items-center px-4 py-2 text-gray-900 bg-white border border-gray-200 hover:bg-[#ebebeb] focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-slate-700 dark:text-slate-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"> 3 </button>
+      <button type="button" on:click={() => updateSettings({ type: "websiteTheme", value: 4 })} class="inline-flex items-center px-4 py-2 text-gray-900 bg-white border border-gray-200 hover:bg-[#ebebeb] focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-slate-700 dark:text-slate-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"> 4 </button>
+      <button type="button" on:click={() => updateSettings({ type: "websiteTheme", value: 5 })} class="inline-flex items-center px-4 py-2 text-gray-900 bg-white border border-gray-200 rounded-r-lg hover:bg-[#ebebeb] focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-slate-700 dark:text-slate-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"> 5 </button>
     </div>
   </div>
 
