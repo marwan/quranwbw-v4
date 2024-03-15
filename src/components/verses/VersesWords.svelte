@@ -26,7 +26,7 @@
   $: displayIsContinuous = displayOptions[`${$displayTypeStore}`].continuous;
 </script>
 
-<!-- word by word layout -->
+<!-- words -->
 {#each { length: value.meta.words } as _, word}
   <!-- svelte-ignore a11y-click-events-have-key-events -->
   <div id={`${chapter}:${verse}:${word + 1}`} on:click={() => wordAudioController({ chapter, verse, word })} class="word {$displayTypeStore === 1 ? 'text-center flex flex-col' : 'inline-flex flex-col'} {wordClasses} {$audioSettingsStore.playingWordKey === `${chapter}:${verse}:${word + 1}` && 'bg-[#ebebeb] dark:bg-slate-800'}" style={$currentPageStore === "supplications" && word + 1 < supplicationsFromQuran[key] && "opacity: 30%;"} data-timestamp={timestampSplit[word]}>
@@ -56,6 +56,7 @@
 <!-- end icon -->
 <div class="{$displayTypeStore === 1 ? 'text-center flex flex-col' : 'inline-flex flex-col'} {wordClasses}">
   <span class="{`arabicText leading-normal arabic-font-${$wordTypeStore} ${fontSizes.arabicText}`} {displayIsContinuous === true && 'inline-block group-hover:text-gray-500 dark:group-hover:text-slate-300'}" data-fontSize={fontSizes.arabicText}>
+    <!-- 1: Uthmani Hafs, 2: Naskh Nastaleeq IndoPak -->
     {#if $wordTypeStore === 1 || $wordTypeStore === 2}
       {value.words.end}
       <!-- 3: Uthmani Tajweed -->

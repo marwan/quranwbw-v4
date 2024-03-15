@@ -1,5 +1,5 @@
 <script>
-  import { currentPageStore, wordTypeStore, displayTypeStore, websiteThemeStore, wordTranslationStore, verseTranslationsStore, reciterStore, playbackSpeedStore, userSettingsStore } from "$utils/stores";
+  import { currentPageStore, wordTypeStore, displayTypeStore, websiteThemeStore, wordTranslationStore, wordTranslationEnabledStore, wordTransliterationEnabledStore, verseTranslationsStore, reciterStore, playbackSpeedStore, userSettingsStore } from "$utils/stores";
   import { displayOptions, selectableFontTypes, selectableVerseTranslations, selectableWordTranslations, selectableReciters, selectablePlaybackSpeeds } from "$data/options";
   import { updateSettings } from "$utils/updateSettings";
   import { disabledElement, buttonElement } from "$utils/commonStyles";
@@ -115,6 +115,28 @@
         </div>
       </div>
       <p class="mb-6 text-xs text-gray-500 dark:text-gray-400">Modify the font size for verse translation and transliteration.</p>
+
+      <!-- wbw translation toggle -->
+      <div class="flex flex-row justify-between items-center">
+        <span class="block text-gray-900 dark:text-slate-400">Word Translation Display</span>
+        <div class="inline-flex rounded-md shadow-sm {$wordTransliterationEnabledStore === false && disabledElement}" role="group">
+          <button type="button" on:click={() => updateSettings({ type: "wordTranslationEnabled" })} class="inline-flex items-center px-4 py-2 text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-[#ebebeb] focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-slate-700 dark:text-slate-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+            {$wordTranslationEnabledStore === true ? "Shown" : "Hidden"}
+          </button>
+        </div>
+      </div>
+      <p class="mb-6 text-xs text-gray-500 dark:text-gray-400">Select whether you would like to show/hide word translations.</p>
+
+      <!-- wbw transliteration toggle -->
+      <div class="flex flex-row justify-between items-center">
+        <span class="block text-gray-900 dark:text-slate-400">Word Transliteration Display</span>
+        <div class="inline-flex rounded-md shadow-sm {$wordTranslationEnabledStore === false && disabledElement}" role="group">
+          <button type="button" on:click={() => updateSettings({ type: "wordTransliterationEnabled" })} class="inline-flex items-center px-4 py-2 text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-[#ebebeb] focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-slate-700 dark:text-slate-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+            {$wordTransliterationEnabledStore === true ? "Shown" : "Hidden"}
+          </button>
+        </div>
+      </div>
+      <p class="mb-6 text-xs text-gray-500 dark:text-gray-400">Select whether you would like to show/hide word transliterations.</p>
     </div>
   </div>
 
@@ -135,12 +157,12 @@
 
       <div class="flex flex-row justify-between items-center">
         <label for="verse-translations-list" class="block text-gray-900 dark:text-slate-400">Verse</label>
-        <button id="dropdownCheckboxButton" data-dropdown-toggle="verse-translation-checkbox" class="w-24 text-left border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" type="button"> Select </button>
+        <button id="dropdownCheckboxButton" data-dropdown-toggle="verse-translation-checkbox" class="inline-flex items-center px-4 py-2 text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-[#ebebeb] focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-slate-700 dark:text-slate-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white" type="button"> Select </button>
       </div>
-      <p class="mb-6 text-xs text-gray-500 dark:text-gray-400">Select verse translations from various author and languages. Choose the ones you like and then click on the 'Save' button.</p>
+      <p class="mb-6 text-xs text-gray-500 dark:text-gray-400">Select verse translations from various author and languages.</p>
 
       <!-- Dropdown menu -->
-      <div id="verse-translation-checkbox" class="z-10 hidden w-56 bg-white divide-y divide-gray-100 rounded-lg border border-gray-200 dark:bg-gray-700 dark:divide-gray-600">
+      <div id="verse-translation-checkbox" class="z-10 hidden w-56 bg-white divide-y divide-gray-100 rounded-lg border border-gray-200 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700">
         <ul id="verse-translations-list" class="max-h-56 overflow-y-scroll p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownCheckboxButton">
           {#each Object.values(selectableVerseTranslations) as translation}
             <li>

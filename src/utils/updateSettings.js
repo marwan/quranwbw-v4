@@ -1,4 +1,4 @@
-import { userSettingsStore, wordTypeStore, displayTypeStore, websiteThemeStore, wordTranslationStore, verseTranslationsStore, reciterStore, playbackSpeedStore, lastReadStore } from "$utils/stores";
+import { userSettingsStore, wordTypeStore, displayTypeStore, websiteThemeStore, wordTranslationStore, verseTranslationsStore, wordTranslationEnabledStore, wordTransliterationEnabledStore, reciterStore, playbackSpeedStore, lastReadStore } from "$utils/stores";
 import { selectableVerseTranslations } from "$data/options";
 
 // function to update website settings
@@ -26,6 +26,18 @@ export function updateSettings(props) {
 
       if (props.value === 1) document.documentElement.classList.remove("dark");
       else if (props.value === 2) document.documentElement.classList.add("dark");
+      break;
+
+    // for word translation view
+    case "wordTranslationEnabled":
+      wordTranslationEnabledStore.set(!userSettings.displaySettings.wordTranslationEnabled);
+      userSettings.displaySettings.wordTranslationEnabled = !userSettings.displaySettings.wordTranslationEnabled;
+      break;
+
+    // for word transliteration view
+    case "wordTransliterationEnabled":
+      wordTransliterationEnabledStore.set(!userSettings.displaySettings.wordTransliterationEnabled);
+      userSettings.displaySettings.wordTransliterationEnabled = !userSettings.displaySettings.wordTransliterationEnabled;
       break;
 
     // for word translation
