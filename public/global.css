@@ -105,27 +105,36 @@ svg {
     -moz-osx-font-smoothing: grayscale
 }
 
-/* dark green themes */
-.greenTheme {
+
+/* dark blue theme */
+.theme-2, .theme-2 .invertTheme {
+	filter: grayscale(100%) sepia(15%) brightness(100%) hue-rotate(325deg) saturate(625%) invert(100%);
+	-webkit-filter: grayscale(100%) sepia(15%) brightness(100%) hue-rotate(325deg) saturate(625%) invert(100%);
+	-moz-filter: grayscale(100%) sepia(15%) brightness(100%) hue-rotate(325deg) saturate(625%) invert(100%);
+}
+
+/* dark green theme */
+.theme-3, .theme-3 .invertTheme {
 	filter: grayscale(100%) sepia(5%) brightness(95%) hue-rotate(315deg) saturate(625%) invert(100%);
 	-webkit-filter: grayscale(100%) sepia(5%) brightness(95%) hue-rotate(315deg) saturate(625%) invert(100%);
 	-moz-filter: grayscale(100%) sepia(5%) brightness(95%) hue-rotate(315deg) saturate(625%) invert(100%);
 }
 
-/* sepia theme */
-.sepiaTheme {
-	filter: brightness(70%) contrast(145%) saturate(0%) sepia(65%);
-	-webkit-filter: brightness(70%) contrast(145%) saturate(0%) sepia(65%);
-	-moz-filter: brightness(70%) contrast(145%) saturate(0%) sepia(65%);
-}
-
 /* pure black theme (OLED) */
-.pureBlackTheme {
+.theme-4, .theme-4 .invertTheme {
 	filter: brightness(70%) contrast(300%) invert(100%) saturate(0%);
 	-webkit-filter: brightness(70%) contrast(300%) invert(100%) saturate(0%);
 	-moz-filter: brightness(70%) contrast(300%) invert(100%) saturate(0%);
 }
 
-.pureBlackTheme .custom-backdrop {
+.theme-4 .custom-backdrop {
 	filter: invert(90%)
 }
+
+/* sepia theme */
+.theme-5, .theme-5 .invertTheme {
+	filter: brightness(70%) contrast(145%) saturate(0%) sepia(65%);
+	-webkit-filter: brightness(70%) contrast(145%) saturate(0%) sepia(65%);
+	-moz-filter: brightness(70%) contrast(145%) saturate(0%) sepia(65%);
+}
+

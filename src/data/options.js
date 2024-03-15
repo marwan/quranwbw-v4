@@ -13,6 +13,14 @@ export const selectableFontTypes = {
   4: { id: 4, font: "Uthmanic Hafs Mushaf V4 (Tajweed)" },
 };
 
+export const selectableThemes = {
+  1: { id: 1, name: "Light" },
+  2: { id: 2, name: "Blue" },
+  3: { id: 3, name: "Green" },
+  4: { id: 4, name: "Black" },
+  5: { id: 5, name: "Sepia" },
+};
+
 export const selectableVerseTranslations = {
   1: {
     id: 1,

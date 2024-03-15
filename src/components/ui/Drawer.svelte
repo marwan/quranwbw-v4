@@ -1,6 +1,6 @@
 <script>
   import { currentPageStore, wordTypeStore, displayTypeStore, websiteThemeStore, wordTranslationStore, wordTranslationEnabledStore, wordTransliterationEnabledStore, verseTranslationsStore, reciterStore, playbackSpeedStore, userSettingsStore } from "$utils/stores";
-  import { displayOptions, selectableFontTypes, selectableVerseTranslations, selectableWordTranslations, selectableReciters, selectablePlaybackSpeeds } from "$data/options";
+  import { displayOptions, selectableFontTypes, selectableThemes, selectableVerseTranslations, selectableWordTranslations, selectableReciters, selectablePlaybackSpeeds } from "$data/options";
   import { updateSettings } from "$utils/updateSettings";
   import { disabledElement, buttonElement } from "$utils/commonStyles";
 
@@ -22,15 +22,12 @@
 
   <p class="mb-6 text-xs text-gray-500 dark:text-gray-400">Change the website settings like the theme, display, translations or the audio settings.</p>
 
-  <div class="flex flex-col justify-between items-center py-5 space-y-2 text-xs border-gray-200 dark:border-slate-700">
-    <span class="block text-gray-900 dark:text-slate-400">Theme</span>
+  <div class="flex flex-col justify-between items-center py-5 space-y-4 text-xs border-gray-200 dark:border-slate-700">
+    <span class="block text-gray-900 dark:text-slate-400">Theme: {selectableThemes[$websiteThemeStore].name}</span>
     <div class="inline-flex rounded-md shadow-sm" role="group">
-      <button type="button" on:click={() => updateSettings({ type: "websiteTheme", value: 1 })} class="{$websiteThemeStore === 1 && 'border-gray-900'} inline-flex items-center px-4 py-2 text-gray-900 bg-white border rounded-l-lg hover:bg-[#ebebeb] focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-slate-700 dark:text-slate-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"> 1 </button>
-      <button type="button" on:click={() => updateSettings({ type: "websiteTheme", value: 2 })} class="{$websiteThemeStore === 2 && 'border-gray-900'} inline-flex items-center px-4 py-2 text-gray-900 bg-white border hover:bg-[#ebebeb] focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-slate-700 dark:text-slate-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"> 2 </button>
-      <button type="button" on:click={() => updateSettings({ type: "websiteTheme", value: 3 })} class="{$websiteThemeStore === 3 && 'border-gray-900'} inline-flex items-center px-4 py-2 text-gray-900 bg-white border hover:bg-[#ebebeb] focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-slate-700 dark:text-slate-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"> 3 </button>
-      <button type="button" on:click={() => updateSettings({ type: "websiteTheme", value: 4 })} class="{$websiteThemeStore === 4 && 'border-gray-900'} inline-flex items-center px-4 py-2 text-gray-900 bg-white border hover:bg-[#ebebeb] focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-slate-700 dark:text-slate-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"> 4 </button>
-      <button type="button" on:click={() => updateSettings({ type: "websiteTheme", value: 5 })} class="{$websiteThemeStore === 5 && 'border-gray-900'} inline-flex items-center px-4 py-2 text-gray-900 bg-white border hover:bg-[#ebebeb] focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-slate-700 dark:text-slate-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"> 5 </button>
-      <button type="button" on:click={() => updateSettings({ type: "websiteTheme", value: 6 })} class="{$websiteThemeStore === 6 && 'border-gray-900'} inline-flex items-center px-4 py-2 text-gray-900 bg-white border rounded-r-lg hover:bg-[#ebebeb] focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-slate-700 dark:text-slate-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"> 6 </button>
+      {#each Array.from(Array(5 + 1).keys()).slice(1) as theme}
+        <button type="button" on:click={() => updateSettings({ type: "websiteTheme", value: theme })} class="{$websiteThemeStore === theme && 'border-gray-900'} inline-flex items-center px-4 py-2 text-gray-900 bg-white border hover:bg-[#ebebeb] focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-slate-700 dark:text-slate-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"> {theme} </button>
+      {/each}
     </div>
   </div>
 

@@ -23,19 +23,8 @@ export function updateSettings(props) {
     case "websiteTheme":
       websiteThemeStore.set(props.value);
       userSettings.displaySettings.websiteTheme = props.value;
-
-      let theme;
-
       document.documentElement.classList = "";
-
-      if (props.value === 1) theme = "";
-      else if (props.value === 2) theme = "dark";
-      else if (props.value === 3) theme = "invert";
-      else if (props.value === 4) theme = "sepiaTheme";
-      else if (props.value === 5) theme = "greenTheme";
-      else if (props.value === 6) theme = "pureBlackTheme";
-
-      document.documentElement.classList = theme;
+      document.documentElement.classList = `theme-${props.value}`;
       break;
 
     // for word translation view

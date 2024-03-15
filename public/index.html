@@ -22,17 +22,7 @@
     <script>
       try {
         const websiteTheme = JSON.parse(localStorage.getItem("userSettings")).displaySettings.websiteTheme;
-
-        let theme;
-
-        if (websiteTheme === 1) theme = "";
-        else if (websiteTheme === 2) theme = "dark";
-        else if (websiteTheme === 3) theme = "invert";
-        else if (websiteTheme === 4) theme = "sepiaTheme";
-        else if (websiteTheme === 5) theme = "greenTheme";
-        else if (websiteTheme === 6) theme = "pureBlackTheme";
-
-        document.documentElement.classList = theme;
+        document.documentElement.classList = `theme-${websiteTheme}`;
       } catch (error) {}
     </script>
   </head>
