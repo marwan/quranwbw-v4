@@ -22,10 +22,17 @@
     <script>
       try {
         const websiteTheme = JSON.parse(localStorage.getItem("userSettings")).displaySettings.websiteTheme;
-        if (websiteTheme === 2) document.documentElement.classList.add("dark");
-        else if (websiteTheme === 3) document.documentElement.classList.add("invert");
-        else if (websiteTheme === 4) document.documentElement.classList.add("invert-[90%]");
-        else if (websiteTheme === 5) document.documentElement.classList.add("green");
+
+        let theme;
+
+        if (websiteTheme === 1) theme = "";
+        else if (websiteTheme === 2) theme = "dark";
+        else if (websiteTheme === 3) theme = "invert";
+        else if (websiteTheme === 4) theme = "sepiaTheme";
+        else if (websiteTheme === 5) theme = "greenTheme";
+        else if (websiteTheme === 6) theme = "pureBlackTheme";
+
+        document.documentElement.classList = theme;
       } catch (error) {}
     </script>
   </head>

@@ -105,9 +105,27 @@ svg {
     -moz-osx-font-smoothing: grayscale
 }
 
-/* themes */
-.green {
-	filter: grayscale(100%) sepia(5%) brightness(90%) hue-rotate(300deg) saturate(600%) invert(100%);
-	-webkit-filter: grayscale(100%) sepia(5%) brightness(90%) hue-rotate(300deg) saturate(600%) invert(100%);
-	-moz-filter: grayscale(100%) sepia(5%) brightness(90%) hue-rotate(300deg) saturate(600%) invert(100%);
+/* dark green themes */
+.greenTheme {
+	filter: grayscale(100%) sepia(5%) brightness(95%) hue-rotate(315deg) saturate(625%) invert(100%);
+	-webkit-filter: grayscale(100%) sepia(5%) brightness(95%) hue-rotate(315deg) saturate(625%) invert(100%);
+	-moz-filter: grayscale(100%) sepia(5%) brightness(95%) hue-rotate(315deg) saturate(625%) invert(100%);
+}
+
+/* sepia theme */
+.sepiaTheme {
+	filter: brightness(70%) contrast(145%) saturate(0%) sepia(65%);
+	-webkit-filter: brightness(70%) contrast(145%) saturate(0%) sepia(65%);
+	-moz-filter: brightness(70%) contrast(145%) saturate(0%) sepia(65%);
+}
+
+/* pure black theme (OLED) */
+.pureBlackTheme {
+	filter: brightness(70%) contrast(300%) invert(100%) saturate(0%);
+	-webkit-filter: brightness(70%) contrast(300%) invert(100%) saturate(0%);
+	-moz-filter: brightness(70%) contrast(300%) invert(100%) saturate(0%);
+}
+
+.pureBlackTheme .custom-backdrop {
+	filter: invert(90%)
 }
