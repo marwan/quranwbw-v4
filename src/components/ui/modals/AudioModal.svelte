@@ -105,9 +105,9 @@
           </div>
         </div>
 
-        <div class="text-xs">
+        <!-- <div class="text-xs">
           <pre>{audioSettingsJSON}</pre>
-        </div>
+        </div> -->
 
         <div>
           <button on:click={initializeAudio} class="w-full inline-flex items-center justify-center mr-2 mt-6 space-x-2 {buttonElement}">
