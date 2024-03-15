@@ -37,7 +37,7 @@
 {#if displayOptions[`${$displayTypeStore}`].layout === "wbw"}
   {#each { length: value.meta.words } as _, word}
     <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <div id={`${chapter}:${verse}:${word + 1}`} on:click={() => wordAudioController({ chapter, verse, word })} class="word {$displayTypeStore === 1 ? 'text-center flex flex-col p-3' : 'inline-flex flex-col p-3'} {wordClasses} {$audioSettingsStore.playingWordKey === `${chapter}:${verse}:${word + 1}` ? 'bg-[#ebebeb]' : ''}" style={$currentPageStore === "supplications" && word + 1 < supplicationsFromQuran[key] ? "opacity: 30%;" : ""} data-timestamp={timestampSplit[word]}>
+    <div id={`${chapter}:${verse}:${word + 1}`} on:click={() => wordAudioController({ chapter, verse, word })} class="word {$displayTypeStore === 1 ? 'text-center flex flex-col p-3' : 'inline-flex flex-col p-3'} {wordClasses} {$audioSettingsStore.playingWordKey === `${chapter}:${verse}:${word + 1}` ? 'bg-[#ebebeb]' : ''}" style={$currentPageStore === "supplications" && word + 1 < supplicationsFromQuran[key] && "opacity: 30%;"} data-timestamp={timestampSplit[word]}>
       <span class={currentLayoutClasses} data-fontSize={fontSizes.arabicText}>
         <!-- 1: Uthmani Hafs, 2: Naskh Nastaleeq IndoPak -->
         {#if $wordTypeStore === 1 || $wordTypeStore === 2}
@@ -47,7 +47,7 @@
           <img class="mx-auto max-h-16 md:max-h-20" alt={arabicSplit[word]} src="{tajweedWordsURL}/{value.meta.chapter}/{value.meta.verse}/{word + 1}.png?v=1" />
           <!-- 4: KFGQPC Tajweed v4 -->
         {:else if $wordTypeStore === 4}
-          <span class="p{value.meta.page} {$websiteThemeStore === 2 ? 'v4dark' : ''}">{arabicSplit[word]}</span>
+          <span class="p{value.meta.page} {$websiteThemeStore === 2 && 'v4dark'}">{arabicSplit[word]}</span>
         {/if}
       </span>
 
@@ -68,7 +68,7 @@
         <img class="mx-auto max-h-16 md:max-h-20" alt={verse} src="{tajweedEndURL}/{verse}.png?v=1" />
         <!-- 4: KFGQPC Tajweed v4 -->
       {:else if $wordTypeStore === 4}
-        <span class="p{value.meta.page} {$websiteThemeStore === 2 ? 'v4dark' : ''}">{value.words.end}</span>
+        <span class="p{value.meta.page} {$websiteThemeStore === 2 && 'v4dark'}">{value.words.end}</span>
       {/if}
     </span>
   </div>
@@ -87,7 +87,7 @@
           <img class="mx-auto max-h-16 md:max-h-20" alt={arabicSplit[word]} src="{tajweedWordsURL}/{value.meta.chapter}/{value.meta.verse}/{word + 1}.png?v=1" />
           <!-- 4: KFGQPC Tajweed v4 -->
         {:else if $wordTypeStore === 4}
-          <span class="p{value.meta.page} {$websiteThemeStore === 2 ? 'v4dark' : ''}">{arabicSplit[word]}</span>
+          <span class="p{value.meta.page} {$websiteThemeStore === 2 && 'v4dark'}">{arabicSplit[word]}</span>
         {/if}
       </span>
     {/each}
@@ -101,7 +101,7 @@
         <img class="mx-auto max-h-16 md:max-h-20" alt={verse} src="{tajweedEndURL}/{verse}.png?v=1" />
         <!-- 4: KFGQPC Tajweed v4 -->
       {:else if $wordTypeStore === 4}
-        <span class="p{value.meta.page} {$websiteThemeStore === 2 ? 'v4dark' : ''}">{value.words.end}</span>
+        <span class="p{value.meta.page} {$websiteThemeStore === 2 && 'v4dark'}">{value.words.end}</span>
       {/if}
     </span>
   </div>
