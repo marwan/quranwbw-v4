@@ -3,7 +3,7 @@
 
   import { displayOptions } from "$data/options";
   import { supplicationsFromQuran } from "$data/quranMeta";
-  import { currentPageStore, wordTypeStore, displayTypeStore, userSettingsStore, audioSettingsStore, wordTranslationEnabledStore, wordTransliterationEnabledStore } from "$utils/stores";
+  import { currentPageStore, wordTypeStore, displayTypeStore, websiteThemeStore, userSettingsStore, audioSettingsStore, wordTranslationEnabledStore, wordTransliterationEnabledStore } from "$utils/stores";
   import { wordAudioController } from "$utils/audioController";
 
   const chapter = key.split(":")[0];
@@ -20,8 +20,8 @@
   const layoutClasses = {
     1: `arabicText leading-normal arabic-font-${$wordTypeStore} ${fontSizes.arabicText}`,
     2: `arabicText leading-normal arabic-font-${$wordTypeStore} ${fontSizes.arabicText} p-2 px-1`,
-    3: `arabicText leading-normal arabic-font-${$wordTypeStore} ${fontSizes.arabicText} inline-block p-2 group-hover:bg-[#ebebeb]`,
-    4: `arabicText leading-normal arabic-font-${$wordTypeStore} ${fontSizes.arabicText} inline-block p-2 group-hover:bg-[#ebebeb]`,
+    3: `arabicText leading-normal arabic-font-${$wordTypeStore} ${fontSizes.arabicText} inline-block p-2 group-hover:text-gray-500 dark:group-hover:text-slate-300`,
+    4: `arabicText leading-normal arabic-font-${$wordTypeStore} ${fontSizes.arabicText} inline-block p-2 group-hover:text-gray-500 dark:group-hover:text-slate-300`,
     5: `arabicText leading-normal arabic-font-${$wordTypeStore} ${fontSizes.arabicText} p-2 px-1`,
   };
 
@@ -47,7 +47,7 @@
           <img class="mx-auto max-h-16 md:max-h-20" alt={arabicSplit[word]} src="{tajweedWordsURL}/{value.meta.chapter}/{value.meta.verse}/{word + 1}.png?v=1" />
           <!-- 4: KFGQPC Tajweed v4 -->
         {:else if $wordTypeStore === 4}
-          <span class="p{value.meta.page}">{arabicSplit[word]}</span>
+          <span class="p{value.meta.page} {$websiteThemeStore === 2 ? 'v4dark' : ''}">{arabicSplit[word]}</span>
         {/if}
       </span>
 
@@ -68,7 +68,7 @@
         <img class="mx-auto max-h-16 md:max-h-20" alt={verse} src="{tajweedEndURL}/{verse}.png?v=1" />
         <!-- 4: KFGQPC Tajweed v4 -->
       {:else if $wordTypeStore === 4}
-        <span class="p{value.meta.page}">{value.words.end}</span>
+        <span class="p{value.meta.page} {$websiteThemeStore === 2 ? 'v4dark' : ''}">{value.words.end}</span>
       {/if}
     </span>
   </div>
@@ -87,7 +87,7 @@
           <img class="mx-auto max-h-16 md:max-h-20" alt={arabicSplit[word]} src="{tajweedWordsURL}/{value.meta.chapter}/{value.meta.verse}/{word + 1}.png?v=1" />
           <!-- 4: KFGQPC Tajweed v4 -->
         {:else if $wordTypeStore === 4}
-          <span class="p{value.meta.page}">{arabicSplit[word]}</span>
+          <span class="p{value.meta.page} {$websiteThemeStore === 2 ? 'v4dark' : ''}">{arabicSplit[word]}</span>
         {/if}
       </span>
     {/each}
@@ -101,7 +101,7 @@
         <img class="mx-auto max-h-16 md:max-h-20" alt={verse} src="{tajweedEndURL}/{verse}.png?v=1" />
         <!-- 4: KFGQPC Tajweed v4 -->
       {:else if $wordTypeStore === 4}
-        <span class="p{value.meta.page}">{value.words.end}</span>
+        <span class="p{value.meta.page} {$websiteThemeStore === 2 ? 'v4dark' : ''}">{value.words.end}</span>
       {/if}
     </span>
   </div>
