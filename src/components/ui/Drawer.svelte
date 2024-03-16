@@ -45,18 +45,15 @@
       </div>
       <p class="mb-6 text-xs text-gray-500 dark:text-gray-400">Select the Quranic font type depending on your region.</p>
 
-      <!-- only show the display type option in the chapter page -->
-      {#if $currentPageStore === "chapter"}
-        <div class="flex flex-row justify-between items-center">
-          <label for="display-style-list" class="block text-gray-900 dark:text-slate-400">Display Type</label>
-          <select id="display-style-list" bind:value={$displayTypeStore} on:change={(event) => updateSettings({ type: "displayType", value: +event.target.selectedIndex + 1 })} class="w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            {#each Object.entries(displayOptions) as [id, displayOption]}
-              <option value={displayOption.displayID}>{displayOption.displayName}</option>
-            {/each}
-          </select>
-        </div>
-        <p class="mb-6 text-xs text-gray-500 dark:text-gray-400">Select the verses display type based on your reading preference.</p>
-      {/if}
+      <div class="flex flex-row justify-between items-center">
+        <label for="display-style-list" class="block text-gray-900 dark:text-slate-400">Display Type</label>
+        <select id="display-style-list" bind:value={$displayTypeStore} on:change={(event) => updateSettings({ type: "displayType", value: +event.target.selectedIndex + 1 })} class="w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          {#each Object.entries(displayOptions) as [id, displayOption]}
+            <option disabled={$currentPageStore !== "chapter" && displayOption.displayID > 2 && "true"} value={displayOption.displayID}>{displayOption.displayName}</option>
+          {/each}
+        </select>
+      </div>
+      <p class="mb-6 text-xs text-gray-500 dark:text-gray-400">Select the verses display type based on your reading preference.</p>
 
       <div class="flex flex-row justify-between items-center">
         <span class="block text-gray-900 dark:text-slate-400">Arabic Word Size ({fontSizeCodes.arabicText.split("-")[1]})</span>
