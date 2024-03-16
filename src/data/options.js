@@ -8,9 +8,8 @@ export const displayOptions = {
 
 export const selectableFontTypes = {
   1: { id: 1, font: "Uthmanic Hafs Digital" },
-  2: { id: 2, font: "Indopak Madinah" },
-  3: { id: 3, font: "Uthmanic Hafs Mushaf V4" },
-  4: { id: 4, font: "Uthmanic Hafs Mushaf V4 (Tajweed)" },
+  2: { id: 2, font: "Uthmanic Hafs Mushaf" },
+  3: { id: 3, font: "Indopak Madinah" },
 };
 
 export const selectableThemes = {

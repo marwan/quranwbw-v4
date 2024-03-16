@@ -91,11 +91,11 @@ svg {
   direction: rtl;
 }
 
-.arabic-font-1, .arabic-font-3 {
+.arabic-font-1, .arabic-font-2 {
   font-family: "Uthmani-Hafs";
 }
 
-.arabic-font-2 {
+.arabic-font-3 {
   font-family: "IndoPak";
 }
 
@@ -107,10 +107,17 @@ svg {
 
 
 /* dark blue theme */
-.theme-2, .theme-2 .invertTheme {
+.theme-2 {
 	filter: grayscale(100%) sepia(15%) brightness(100%) hue-rotate(325deg) saturate(625%) invert(100%);
 	-webkit-filter: grayscale(100%) sepia(15%) brightness(100%) hue-rotate(325deg) saturate(625%) invert(100%);
 	-moz-filter: grayscale(100%) sepia(15%) brightness(100%) hue-rotate(325deg) saturate(625%) invert(100%);
+}
+
+.theme-2 .invertTheme {
+	filter: grayscale(100%) sepia(15%) brightness(100%) hue-rotate(325deg) saturate(625%) invert(100%);
+	-webkit-filter: grayscale(100%) sepia(15%) brightness(100%) hue-rotate(325deg) saturate(625%) invert(100%);
+	-moz-filter: grayscale(100%) sepia(15%) brightness(100%) hue-rotate(325deg) saturate(625%) invert(100%);
+	/* -webkit-filter: grayscale(0%) sepia(0%) brightness(100%) hue-rotate(0deg) saturate(0%) invert(0%); */
 }
 
 /* dark green theme */
