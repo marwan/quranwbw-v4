@@ -1,7 +1,7 @@
 @font-face { font-family: 'p1'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p1.woff2') format('truetype'); }
 .p1 { font-family: 'p1'!important; }
 
-@font-face { font-family: 'p2', 'page-font'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p2.woff2') format('truetype'); }
+@font-face { font-family: 'p2'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p2.woff2') format('truetype'); }
 .p2 { font-family: 'p2'!important; }
 
 @font-face { font-family: 'p3'; src: url('https://tajweed.beta.quran.com/fonts/quran/hafs/v4/colrv1/woff2/p3.woff2') format('truetype'); }
