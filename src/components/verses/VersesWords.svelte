@@ -1,7 +1,7 @@
 <script>
   export let key, value;
 
-  import { displayOptions } from "$data/options";
+  import { displayOptions, selectableThemes } from "$data/options";
   import { supplicationsFromQuran } from "$data/quranMeta";
   import { currentPageStore, wordTypeStore, displayTypeStore, websiteThemeStore, userSettingsStore, audioSettingsStore, wordTranslationEnabledStore, wordTransliterationEnabledStore } from "$utils/stores";
   import { wordAudioController } from "$utils/audioController";
@@ -16,7 +16,7 @@
   const translationSplit = value.words.translation.split("|");
   const timestampSplit = value.words.timestamp.split("|");
 
-  const wordClasses = `rounded-lg hover:cursor-pointer hover:bg-[#ebebeb] dark:hover:bg-slate-800 ${displayOptions[`${$displayTypeStore}`].layout === "wbw" ? "p-3" : "p-2"}`;
+  const wordClasses = `rounded-lg hover:cursor-pointer hover:bg-[#ebebeb] dark:hover:bg-slate-800 ${displayOptions[`${$displayTypeStore}`].layout === "wbw" ? "p-3" : "p-1"}`;
 
   let displayIsContinuous;
 
@@ -33,7 +33,7 @@
         {arabicSplit[word]}
         <!-- 2: Uthmanic Hafs Mushaf -->
       {:else if $wordTypeStore === 2}
-        <span class="p{value.meta.page} {$websiteThemeStore > 1 && 'v4dark'}">{arabicSplit[word]}</span>
+        <span class="p{value.meta.page} {selectableThemes[$websiteThemeStore].palette === 1 && 'v4dark'} font-filter">{arabicSplit[word]}</span>
       {/if}
     </span>
 

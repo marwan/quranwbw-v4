@@ -47,7 +47,7 @@
   $: chapterProgress = ($lastReadStore.split(":")[1] / quranMetaData[$chapterNumberStore].verses) * 100;
 </script>
 
-<nav id="navbar" class="{$currentPageStore === 'home' ? 'hidden' : $topNavbarVisibleStore ? 'block' : 'hidden'} bg-white fixed w-full z-20 top-0 left-0 border-b border-gray-200 text-black backdrop-filter backdrop-blur-lg bg-opacity-50 print:hidden dark:bg-slate-900 dark:text-slate-400 dark:border-slate-700">
+<nav id="navbar" class="{$currentPageStore === 'home' ? 'hidden' : $topNavbarVisibleStore ? 'block' : 'hidden'} bg-white fixed w-full z-20 top-0 left-0 border-b border-gray-200 text-black backdrop-filter backdrop-blur-lg bg-opacity-50 print:hidden dark:bg-slate-900 dark:text-slate-400 dark:border-slate-700 grayscale">
   <div id="top-nav" class="flex flex-row items-center justify-between max-w-screen-lg mx-auto px-4 py-2">
     <Link to="/" class="flex flex-row items-center p-2 cursor-pointer hover:bg-[#ebebeb] rounded-lg dark:hover:bg-slate-700">
       <Home />

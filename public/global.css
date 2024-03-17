@@ -108,30 +108,46 @@ svg {
 
 /* dark blue theme */
 .theme-2 {
-	filter: grayscale(100%) sepia(15%) brightness(100%) hue-rotate(325deg) saturate(625%) invert(100%);
-	-webkit-filter: grayscale(100%) sepia(15%) brightness(100%) hue-rotate(325deg) saturate(625%) invert(100%);
-	-moz-filter: grayscale(100%) sepia(15%) brightness(100%) hue-rotate(325deg) saturate(625%) invert(100%);
+	filter: grayscale(0%) sepia(15%) brightness(100%) hue-rotate(325deg) saturate(625%) invert(100%);
+	-webkit-filter: grayscale(0%) sepia(15%) brightness(100%) hue-rotate(325deg) saturate(625%) invert(100%);
+	-moz-filter: grayscale(0%) sepia(15%) brightness(100%) hue-rotate(325deg) saturate(625%) invert(100%);
 }
 
-.theme-2 .invertTheme {
-	filter: grayscale(100%) sepia(15%) brightness(100%) hue-rotate(325deg) saturate(625%) invert(100%);
-	-webkit-filter: grayscale(100%) sepia(15%) brightness(100%) hue-rotate(325deg) saturate(625%) invert(100%);
-	-moz-filter: grayscale(100%) sepia(15%) brightness(100%) hue-rotate(325deg) saturate(625%) invert(100%);
-	/* -webkit-filter: grayscale(0%) sepia(0%) brightness(100%) hue-rotate(0deg) saturate(0%) invert(0%); */
+.theme-2 .font-filter {
+	filter: grayscale(0%) sepia(25%) brightness(100%) hue-rotate(50deg) saturate(30%) invert(100%);
+	-webkit-filter: grayscale(0%) sepia(25%) brightness(100%) hue-rotate(50deg) saturate(30%) invert(100%);
+	-moz-filter:grayscale(0%) sepia(25%) brightness(100%) hue-rotate(50deg) saturate(30%) invert(100%);
 }
 
 /* dark green theme */
-.theme-3, .theme-3 .invertTheme {
-	filter: grayscale(100%) sepia(5%) brightness(95%) hue-rotate(315deg) saturate(625%) invert(100%);
-	-webkit-filter: grayscale(100%) sepia(5%) brightness(95%) hue-rotate(315deg) saturate(625%) invert(100%);
-	-moz-filter: grayscale(100%) sepia(5%) brightness(95%) hue-rotate(315deg) saturate(625%) invert(100%);
+.theme-3 {
+	filter: grayscale(0) sepia(5%) brightness(95%) hue-rotate(315deg) saturate(625%) invert(100%);
+	-webkit-filter: grayscale(0) sepia(5%) brightness(95%) hue-rotate(315deg) saturate(625%) invert(100%);
+	-moz-filter: grayscale(0) sepia(5%) brightness(95%) hue-rotate(315deg) saturate(625%) invert(100%);
 }
 
+.theme-3 .font-filter {
+	filter: grayscale(0%) sepia(25%) brightness(100%) hue-rotate(50deg) saturate(30%) invert(100%);
+	-webkit-filter: grayscale(0%) sepia(25%) brightness(100%) hue-rotate(50deg) saturate(30%) invert(100%);
+	-moz-filter: grayscale(0%) sepia(25%) brightness(100%) hue-rotate(50deg) saturate(30%) invert(100%);
+}
+
+.theme-2 .grayscale, .theme-3 .grayscale, .theme-4 .grayscale {
+	filter: grayscale(100%);
+	-webkit-filter: grayscale(100%);
+	-moz-filter:grayscale(100%);
+}
 /* pure black theme (OLED) */
-.theme-4, .theme-4 .invertTheme {
-	filter: brightness(70%) contrast(300%) invert(100%) saturate(0%);
-	-webkit-filter: brightness(70%) contrast(300%) invert(100%) saturate(0%);
-	-moz-filter: brightness(70%) contrast(300%) invert(100%) saturate(0%);
+.theme-4 {
+	filter: brightness(70%) contrast(300%) invert(100%) saturate(100%);
+	-webkit-filter: brightness(70%) contrast(300%) invert(100%) saturate(100%);
+	-moz-filter: brightness(70%) contrast(300%) invert(100%) saturate(100%);
+}
+
+.theme-4 .font-filter {
+	filter: brightness(60%) contrast(70%) invert(600%) saturate(200%);
+	-webkit-filter: brightness(60%) contrast(70%) invert(600%) saturate(200%);
+	-moz-filter: brightness(60%) contrast(70%) invert(600%) saturate(200%);
 }
 
 .theme-4 .custom-backdrop {
@@ -139,9 +155,9 @@ svg {
 }
 
 /* sepia theme */
-.theme-5, .theme-5 .invertTheme {
-	filter: brightness(70%) contrast(145%) saturate(0%) sepia(65%);
-	-webkit-filter: brightness(70%) contrast(145%) saturate(0%) sepia(65%);
-	-moz-filter: brightness(70%) contrast(145%) saturate(0%) sepia(65%);
+.theme-5 {
+	filter: brightness(70%) contrast(100%) saturate(100%) sepia(35%);
+	-webkit-filter: brightness(70%) contrast(100%) saturate(100%) sepia(35%);
+	-moz-filter: brightness(70%) contrast(100%) saturate(100%) sepia(35%);
 }
 

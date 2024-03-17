@@ -6,7 +6,7 @@
 </script>
 
 {#if value.translations != undefined}
-  <div class="verseTranslationText flex flex-col space-y-4 leading-normal {fontSizes.verseTranslationText}" data-fontSize={fontSizes.verseTranslationText}>
+  <div class="verseTranslationText flex flex-col space-y-4 leading-normal grayscale {fontSizes.verseTranslationText}" data-fontSize={fontSizes.verseTranslationText}>
     {#each Object.entries(value.translations) as [verseTranslationID, verseTranslation]}
       <div class="flex flex-col">
         <span>{verseTranslation}</span>

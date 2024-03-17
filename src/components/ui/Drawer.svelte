@@ -8,7 +8,7 @@
 </script>
 
 <!-- drawer component -->
-<div id="drawer-right" class="fixed top-0 right-0 z-40 h-screen p-4 pb-16 overflow-y-auto transition-transform rounded-tl-xl rounded-bl-xl translate-x-full bg-white w-72 md:w-96 dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-right-label">
+<div id="drawer-right" class="fixed top-0 right-0 z-40 h-screen p-4 pb-16 overflow-y-auto transition-transform rounded-tl-xl rounded-bl-xl translate-x-full bg-white grayscale w-72 md:w-96 dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-right-label">
   <h5 id="drawer-right-label" class="inline-flex items-center mb-4 text-xl space-x-2 font-semibold text-gray-500 dark:text-gray-400">
     <span>Settings</span>
   </h5>

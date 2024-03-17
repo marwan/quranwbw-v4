@@ -13,11 +13,11 @@ export const selectableFontTypes = {
 };
 
 export const selectableThemes = {
-  1: { id: 1, name: "Light" },
-  2: { id: 2, name: "Blue" },
-  3: { id: 3, name: "Green" },
-  4: { id: 4, name: "Black" },
-  5: { id: 5, name: "Sepia" },
+  1: { id: 1, name: "Light", palette: 2 },
+  2: { id: 2, name: "Blue", palette: 1 },
+  3: { id: 3, name: "Green", palette: 1 },
+  4: { id: 4, name: "Black", palette: 1 },
+  5: { id: 5, name: "Sepia", palette: 2 },
 };
 
 export const selectableVerseTranslations = {

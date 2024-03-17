@@ -15,7 +15,7 @@
   <title>{websiteTitle}</title>
 </svelte:head>
 
-<div class="max-w-4xl mx-auto flex flex-col space-y-8 md:px-4">
+<div class="max-w-4xl mx-auto flex flex-col space-y-8 md:px-4 grayscale">
   <div class="flex flex-col mt-4">
     <Link to="/" class="flex justify-center text-gray-500">
       <Logo width="52" />
