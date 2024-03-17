@@ -10,6 +10,7 @@
   // views
   import Home from "$views/Home.svelte";
   import Chapter from "$views/Chapter.svelte";
+  import Page from "$views/Page.svelte";
   import Supplications from "$views/Supplications.svelte";
   import Bookmarks from "$views/Bookmarks.svelte";
   import Changelogs from "$views/Changelogs.svelte";
@@ -42,6 +43,7 @@
       <Route path="/changelogs" component={Changelogs} />
       <Route path="/issues" component={Issues} />
       <Route path="/about" component={About} />
+      <Route path="/page" component={Page} />
       <!-- <Route path="/words" component={Words} /> -->
 
       <Route path="/:chapter/*" let:params>
