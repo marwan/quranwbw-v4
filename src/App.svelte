@@ -43,7 +43,10 @@
       <Route path="/changelogs" component={Changelogs} />
       <Route path="/issues" component={Issues} />
       <Route path="/about" component={About} />
-      <Route path="/page" component={Page} />
+      <Route path="/page/:page" let:params>
+        <Page page={params.page} />
+      </Route>
+
       <!-- <Route path="/words" component={Words} /> -->
 
       <Route path="/:chapter/*" let:params>

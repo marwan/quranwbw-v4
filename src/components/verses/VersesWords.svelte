@@ -16,7 +16,7 @@
   const translationSplit = value.words.translation.split("|");
   const timestampSplit = value.words.timestamp.split("|");
 
-  const wordClasses = `rounded-lg hover:cursor-pointer hover:bg-[#ebebeb] dark:hover:bg-slate-800 ${displayOptions[`${$displayTypeStore}`].layout === "wbw" ? "p-3" : "p-1"}`;
+  const wordClasses = `rounded-lg hover:cursor-pointer hover:bg-[#ebebeb] dark:hover:bg-slate-800 ${displayOptions[`${$displayTypeStore}`].layout === "wbw" ? "p-3" : "p-0"}`;
 
   let displayIsContinuous;
 
@@ -50,7 +50,7 @@
 {/each}
 
 <!-- end icon -->
-{#if $currentPageStore === "chapter" || ($currentPageStore === "page" && +value.words.line.split("|")[value.meta.words - 1] === line)}
+{#if $currentPageStore === "chapter" || ($currentPageStore === "page" && value.words.end_line === line)}
   <div class="{$displayTypeStore === 1 ? 'text-center flex flex-col' : 'inline-flex flex-col'} {wordClasses}">
     <span class="{`arabicText leading-normal arabic-font-${$wordTypeStore} ${fontSizes.arabicText}`} {displayIsContinuous === true && 'inline-block group-hover:text-gray-500 dark:group-hover:text-slate-300'}" data-fontSize={fontSizes.arabicText}>
       {#if $wordTypeStore === 1 || $wordTypeStore === 3}
