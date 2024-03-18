@@ -1,8 +1,6 @@
 <script>
   export let page;
 
-  page = +page;
-
   import { Link } from "svelte-routing";
   import VersesWords from "$verses/VersesWords.svelte";
   import Spinner from "$svgs/Spinner.svelte";
@@ -10,6 +8,7 @@
   import { currentPageStore, wordTypeStore } from "$utils/stores";
   import { updateSettings } from "$utils/updateSettings";
   import { quranMetaData } from "$data/quranMeta";
+  import BismillahMushaf from "$svgs/BismillahMushaf.svelte";
 
   updateSettings({ type: "displayType", value: 4 });
 
@@ -31,8 +30,8 @@
     (chapters = []), (verses = []), (lines = []);
 
     fetchData = (async () => {
-      // const apiHost = "http://localhost:7500";
-      const apiHost = "https://api.quranwbw.com";
+      const apiHost = "http://localhost:7500";
+      // const apiHost = "https://api.quranwbw.com";
       const apiURL = `${apiHost}/v1/page?page=${page}&word_type=${$wordTypeStore}&word_translation=1`;
       const response = await fetch(apiURL);
       const data = await response.json();
@@ -76,6 +75,8 @@
 
       return apiData;
     })();
+
+    console.log(centeredPageLines[+page]);
   }
 
   currentPageStore.set("page");
@@ -86,8 +87,8 @@
 </svelte:head>
 
 <div class="flex flex-row space-x-8 my-8 justify-center">
-  <Link to="/page/{page - 1}">Previous Page</Link>
-  <Link to="/page/{page + 1}">Next Page</Link>
+  <Link to="/page/{+page - 1}">Previous Page</Link>
+  <Link to="/page/{+page + 1}">Next Page</Link>
 </div>
 
 <div class="text-center mt-8 text-xl">
@@ -98,10 +99,12 @@
       {#each Array.from(Array(endingLine + 1).keys()).slice(startingLine) as line}
         <!-- if it's the first verse of a chapter -->
         {#if chapters.length > 1 && lines.includes(line) && verses[lines.indexOf(line)] === 1}
-          <div class="mt-8 mb-4">Chapter {chapters[lines.indexOf(line)]}</div>
+          <img class="mt-12" src="https://cdn.quranonline.net/wp-content/plugins/quran-learning-app/public/app/assets/images/surah-name-background.png" alt="surah name background" />
+          <div class="-mt-10 mb-4">Chapter {chapters[lines.indexOf(line)]}</div>
+          <BismillahMushaf />
         {/if}
 
-        <div class="line {line} arabic-font-{$wordTypeStore} {page > 2 && centeredPageLines[page] === undefined && 'flex justify-between'} {centeredPageLines[page] !== undefined && centeredPageLines[page].includes(line) && 'flex justify-center'}">
+        <div class="line {line} arabic-font-{$wordTypeStore} {+page > 2 && centeredPageLines[+page] === undefined ? 'flex justify-between' : ''} {centeredPageLines[+page] !== undefined && centeredPageLines[+page].includes(line) ? 'flex justify-center' : ''}">
           {#each Object.entries(JSON.parse(localStorage.getItem("pageData"))) as [key, value]}
             <VersesWords {key} {value} {line} />
           {/each}
