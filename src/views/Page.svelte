@@ -30,8 +30,8 @@
     (chapters = []), (verses = []), (lines = []);
 
     fetchData = (async () => {
-      const apiHost = "http://localhost:7500";
-      // const apiHost = "https://api.quranwbw.com";
+      // const apiHost = "http://localhost:7500";
+      const apiHost = "https://api.quranwbw.com";
       const apiURL = `${apiHost}/v1/page?page=${page}&word_type=${$wordTypeStore}&word_translation=1`;
       const response = await fetch(apiURL);
       const data = await response.json();
