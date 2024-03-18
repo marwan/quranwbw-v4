@@ -1,6 +1,8 @@
 <script>
   export let page;
 
+  page = +page;
+
   import { Link } from "svelte-routing";
   import VersesWords from "$verses/VersesWords.svelte";
   import Spinner from "$svgs/Spinner.svelte";
@@ -17,6 +19,13 @@
     verses = [],
     lines = [];
 
+  // pages and the lines for which we need to center the verse rathen than justify
+  const centeredPageLines = {
+    602: [5, 15],
+    603: [10, 15],
+    604: [4, 9, 14, 15],
+  };
+
   $: {
     // empty all the arrays
     (chapters = []), (verses = []), (lines = []);
@@ -29,6 +38,10 @@
       const data = await response.json();
       const apiData = data.data.verses;
       localStorage.setItem("pageData", JSON.stringify(apiData));
+
+      // !!!!!!!!!!!!!!!!!!!!!!!!!!!
+      // page 27: does not load because last verse icon is null
+      // page 36, 77: last word of first line is overflowing
 
       startingLine = apiData[Object.keys(apiData)[0]].words.line.split("|")[0];
       endingLine = apiData[Object.keys(apiData)[Object.keys(apiData).length - 1]].words.end_line;
@@ -46,8 +59,7 @@
         for (let chapter = 0; chapter <= chapters.length - 1; chapter++) {
           const chapterTotalVerses = quranMetaData[chapters[chapter]].verses;
           for (let verse = 1; verse <= chapterTotalVerses; verse++) {
-            let thisVerse = apiData[`${chapters[chapter]}:${verse}`];
-            if (thisVerse !== undefined) {
+            if (apiData[`${chapters[chapter]}:${verse}`] !== undefined) {
               verses.push(verse);
               break;
             }
@@ -74,22 +86,22 @@
 </svelte:head>
 
 <div class="flex flex-row space-x-8 my-8 justify-center">
-  <Link to="/page/{+page - 1}">Previous Page</Link>
-  <Link to="/page/{+page + 1}">Next Page</Link>
+  <Link to="/page/{page - 1}">Previous Page</Link>
+  <Link to="/page/{page + 1}">Next Page</Link>
 </div>
 
 <div class="text-center mt-8 text-xl">
   {#await fetchData}
     <Spinner />
   {:then}
-    <div style="max-width: 80%;" class="mx-auto">
+    <div style="max-width: 65%;" class="mx-auto">
       {#each Array.from(Array(endingLine + 1).keys()).slice(startingLine) as line}
         <!-- if it's the first verse of a chapter -->
         {#if chapters.length > 1 && lines.includes(line) && verses[lines.indexOf(line)] === 1}
           <div class="mt-8 mb-4">Chapter {chapters[lines.indexOf(line)]}</div>
         {/if}
 
-        <div class="line {line} arabic-font-{$wordTypeStore} {+page > 2 ? 'flex justify-between' : ''}">
+        <div class="line {line} arabic-font-{$wordTypeStore} {page > 2 && centeredPageLines[page] === undefined && 'flex justify-between'} {centeredPageLines[page] !== undefined && centeredPageLines[page].includes(line) && 'flex justify-center'}">
           {#each Object.entries(JSON.parse(localStorage.getItem("pageData"))) as [key, value]}
             <VersesWords {key} {value} {line} />
           {/each}
