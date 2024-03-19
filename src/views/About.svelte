@@ -1,5 +1,5 @@
 <script>
-  import { websiteTitle } from "$utils/websiteSettings";
+  import { websiteURL } from "$utils/websiteSettings";
   import { currentPageStore } from "$utils/stores";
   import { linkElement } from "$utils/commonStyles";
 
@@ -7,7 +7,7 @@
 </script>
 
 <svelte:head>
-  <title>About - {websiteTitle}</title>
+  <title>About - {websiteURL}</title>
 </svelte:head>
 
 <div class="">

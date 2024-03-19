@@ -4,7 +4,7 @@
   import { Link } from "svelte-routing";
   import VersesWords from "$verses/VersesWords.svelte";
   import Spinner from "$svgs/Spinner.svelte";
-  import { websiteTitle } from "$utils/websiteSettings";
+  import { websiteURL } from "$utils/websiteSettings";
   import { currentPageStore, wordTypeStore } from "$utils/stores";
   import { updateSettings } from "$utils/updateSettings";
   import { quranMetaData } from "$data/quranMeta";
@@ -83,7 +83,7 @@
 </script>
 
 <svelte:head>
-  <title>Page {page} - {websiteTitle}</title>
+  <title>Page {page} - {websiteURL}</title>
 </svelte:head>
 
 <div class="flex flex-row space-x-8 my-8 justify-center">

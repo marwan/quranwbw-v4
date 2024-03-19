@@ -7,7 +7,7 @@
   import Bismillah from "$svgs/Bismillah.svelte";
   import Spinner from "$svgs/Spinner.svelte";
   import { parseURL } from "$utils/parseURL";
-  import { websiteTitle, apiEndpoint } from "$utils/websiteSettings";
+  import { websiteURL, apiEndpoint } from "$utils/websiteSettings";
   import { quranMetaData } from "$data/quranMeta";
   import { currentPageStore, chapterNumberStore, chapterDataStore, wordTypeStore, displayTypeStore, wordTranslationStore, verseTranslationsStore, lastReadStore, pageURLStore } from "$utils/stores";
 
@@ -78,7 +78,7 @@
 </script>
 
 <svelte:head>
-  <title>{quranMetaData[$chapterNumberStore].transliteration} ({$chapterNumberStore}) - {websiteTitle}</title>
+  <title>{quranMetaData[$chapterNumberStore].transliteration} ({$chapterNumberStore}) - {websiteURL}</title>
 </svelte:head>
 
 <div>

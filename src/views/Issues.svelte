@@ -1,6 +1,6 @@
 <script>
   import Spinner from "$svgs/Spinner.svelte";
-  import { websiteTitle } from "$utils/websiteSettings";
+  import { websiteURL } from "$utils/websiteSettings";
   import { currentPageStore } from "$utils/stores";
   import { timeAgo } from "$utils/timeAgo";
   import { linkElement } from "$utils/commonStyles";
@@ -20,7 +20,7 @@
 </script>
 
 <svelte:head>
-  <title>Issues - {websiteTitle}</title>
+  <title>Issues - {websiteURL}</title>
 </svelte:head>
 
 <div class="">

@@ -1,7 +1,7 @@
 <script>
   import IndividualVerses from "$verses/IndividualVerses.svelte";
   import Spinner from "$svgs/Spinner.svelte";
-  import { websiteTitle, apiEndpoint } from "$utils/websiteSettings";
+  import { websiteURL, apiEndpoint } from "$utils/websiteSettings";
   import { currentPageStore, wordTypeStore, displayTypeStore, wordTranslationStore, verseTranslationsStore } from "$utils/stores";
 
   const userSettings = JSON.parse(localStorage.getItem("userSettings"));
@@ -36,7 +36,7 @@
 </script>
 
 <svelte:head>
-  <title>Bookmarks - {websiteTitle}</title>
+  <title>Bookmarks - {websiteURL}</title>
 </svelte:head>
 
 <div class="">

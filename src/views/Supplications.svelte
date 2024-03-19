@@ -1,7 +1,7 @@
 <script>
   import IndividualVerses from "$verses/IndividualVerses.svelte";
   import Spinner from "$svgs/Spinner.svelte";
-  import { websiteTitle, apiEndpoint } from "$utils/websiteSettings";
+  import { websiteURL, apiEndpoint } from "$utils/websiteSettings";
   import { currentPageStore, wordTypeStore, displayTypeStore, wordTranslationStore, verseTranslationsStore } from "$utils/stores";
   import { getSupplicationKeys } from "$utils/getSupplicationKeys";
 
@@ -32,7 +32,7 @@
 </script>
 
 <svelte:head>
-  <title>Supplications From Quran - {websiteTitle}</title>
+  <title>Supplications From Quran - {websiteURL}</title>
 </svelte:head>
 
 <div>
