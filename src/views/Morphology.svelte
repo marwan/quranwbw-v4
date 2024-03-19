@@ -5,11 +5,11 @@
   import Spinner from "$svgs/Spinner.svelte";
   import VersesWords from "$verses/VersesWords.svelte";
   import { websiteTitle, apiEndpoint } from "$utils/websiteSettings";
-  import { currentPageStore, wordTypeStore, wordTranslationStore, verseTranslationsStore } from "$utils/stores";
+  import { currentPageStore, wordTypeStore, wordTranslationStore, verseTranslationsStore, morphologyKey } from "$utils/stores";
 
   let fetchData, fetchWordsData;
 
-  let chapter, verse, word, wordID;
+  let chapter, verse, word;
 
   $: {
     chapter = +key.split(":")[0];
@@ -18,7 +18,7 @@
 
     if (isNaN(word)) word = 1;
 
-    wordID = `${chapter}:${verse}:${word}`;
+    morphologyKey.set(`${chapter}:${verse}:${word}`);
   }
 
   // fetch verses whenever there's a change
@@ -42,7 +42,7 @@
   // fetch words
   $: {
     fetchWordsData = (async () => {
-      const response = await fetch(`https://api.quranwbw.com/v1/words?words=${wordID}`);
+      const response = await fetch(`https://api.quranwbw.com/v1/words?words=${$morphologyKey}`);
       const data = await response.json();
       return data.data;
     })();
@@ -74,7 +74,7 @@
     <Spinner />
   {:then fetchWordsData}
     {#if Object.keys(fetchWordsData[0].morphology.root.words_with_same_root).length > 0}
-      <div class="relative overflow-x-auto shadow-md sm:rounded-lg grayscale">
+      <div class="relative overflow-x-auto sm:rounded-lg grayscale">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>

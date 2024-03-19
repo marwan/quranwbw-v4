@@ -60,3 +60,6 @@ export const audioSettingsStore = writable({
   timesRepeated: 0,
   delay: 0,
 });
+
+// to store the morphology verse/word key
+export const morphologyKey = writable(null);
