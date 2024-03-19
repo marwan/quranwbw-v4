@@ -1,11 +1,24 @@
 <script>
+  export let key;
+
+  import { Link } from "svelte-routing";
   import Spinner from "$svgs/Spinner.svelte";
   import { websiteTitle, apiEndpoint } from "$utils/websiteSettings";
   import { currentPageStore, wordTypeStore, wordTranslationStore, verseTranslationsStore } from "$utils/stores";
 
   let fetchData, fetchWordsData;
 
-  let wordID;
+  let chapter, verse, word, wordID;
+
+  $: {
+    chapter = +key.split(":")[0];
+    verse = +key.split(":")[1];
+    word = +key.split(":")[2];
+
+    if (isNaN(word)) word = 1;
+
+    wordID = `${chapter}:${verse}:${word}`;
+  }
 
   // fetch verses whenever there's a change
   $: {
@@ -13,7 +26,7 @@
       const apiURL =
         apiEndpoint +
         new URLSearchParams({
-          verses: "1:7",
+          verses: `${chapter}:${verse}`,
           word_type: $wordTypeStore,
           word_translation: $wordTranslationStore,
           verse_translation: $verseTranslationsStore.toString(),
@@ -41,7 +54,7 @@
   <title>Words - {websiteTitle}</title>
 </svelte:head>
 
-<div class="my-6">
+<div class="my-8">
   {#await fetchData}
     <Spinner />
   {:then fetchData}
@@ -58,13 +71,40 @@
   {/await}
 </div>
 
-<div class="my-8">
+<div class="my-14">
   {#await fetchWordsData}
     <Spinner />
   {:then fetchWordsData}
-    {#each Object.entries(fetchWordsData) as [key, value]}
-      {JSON.stringify(fetchWordsData)}
-    {/each}
+    {#if Object.keys(fetchWordsData[0].morphology.root.words_with_same_root).length > 0}
+      <div class="relative overflow-x-auto shadow-md sm:rounded-lg grayscale">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+              <th scope="col" class="px-6 py-3"> # </th>
+              <th scope="col" class="px-6 py-3"> Word </th>
+              <th scope="col" class="px-6 py-3"> Translation </th>
+              <th scope="col" class="px-6 py-3"> Transliteration </th>
+              <th scope="col" class="px-6 py-3"> Verse </th>
+              <th scope="col" class="px-6 py-3"> Word </th>
+            </tr>
+          </thead>
+          <tbody>
+            {#each Object.entries(fetchWordsData[0].morphology.root.words_with_same_root) as [key, value]}
+              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"> {+key + 1} </th>
+                <td class="px-6 py-4 arabic-font-{$wordTypeStore} text-2xl"> {value.arabic} </td>
+                <td class="px-6 py-4"> {value.translation} </td>
+                <td class="px-6 py-4"> {value.transliteration} </td>
+                <td class="px-6 py-4"> <Link to="/{value.key.split(':')[0]}/{value.key.split(':')[1]}">{value.key.split(":")[0]}:{value.key.split(":")[1]}</Link> </td>
+                <td class="px-6 py-4"> <Link to="/words/{value.key}" on:click={() => (key = value.key)}>{value.key}</Link> </td>
+              </tr>
+            {/each}
+          </tbody>
+        </table>
+      </div>
+    {:else}
+      <div class="text-center my-6 text-2xl opacity-60">Root data for this word is not available.</div>
+    {/if}
   {:catch error}
     <p>{error}</p>
   {/await}

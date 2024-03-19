@@ -16,7 +16,7 @@
   import Changelogs from "$views/Changelogs.svelte";
   import Issues from "$views/Issues.svelte";
   import About from "$views/About.svelte";
-  // import Words from "$views/Words.svelte";
+  import Words from "$views/Words.svelte";
 
   // ui
   import Navbar from "$ui/Navbar.svelte";
@@ -47,7 +47,9 @@
         <Page page={params.page} />
       </Route>
 
-      <!-- <Route path="/words" component={Words} /> -->
+      <Route path="/words/:key" let:params>
+        <Words key={params.key} />
+      </Route>
 
       <Route path="/:chapter/*" let:params>
         <Chapter chapter={params.chapter} />

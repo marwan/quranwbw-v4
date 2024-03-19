@@ -95,16 +95,20 @@
   {#await fetchData}
     <Spinner />
   {:then}
-    <div style="max-width: 65%;" class="mx-auto">
+    <div class="max-w-2xl border-l-2 border-r-2 border-b-2 pb-2 mx-auto">
       {#each Array.from(Array(endingLine + 1).keys()).slice(startingLine) as line}
         <!-- if it's the first verse of a chapter -->
         {#if chapters.length > 1 && lines.includes(line) && verses[lines.indexOf(line)] === 1}
-          <img class="mt-12" src="https://cdn.quranonline.net/wp-content/plugins/quran-learning-app/public/app/assets/images/surah-name-background.png" alt="surah name background" />
-          <div class="-mt-10 mb-4">Chapter {chapters[lines.indexOf(line)]}</div>
-          <BismillahMushaf />
+          <div class="flex flex-col space-y-8 my-8">
+            <img class="" src="https://cdn.quranonline.net/wp-content/plugins/quran-learning-app/public/app/assets/images/surah-name-background.png" alt="surah name background" />
+            <div class="chapter-icons text-4xl" style="margin-top: -44px;">{@html `&#xE9${quranMetaData[chapters[lines.indexOf(line)]].icon};`} {@html `&#xE903;`}</div>
+            <div class="flex justify-center">
+              <div class="w-36 md:w-52 h-11"><BismillahMushaf /></div>
+            </div>
+          </div>
         {/if}
 
-        <div class="line {line} arabic-font-{$wordTypeStore} {+page > 2 && centeredPageLines[+page] === undefined ? 'flex justify-between' : ''} {centeredPageLines[+page] !== undefined && centeredPageLines[+page].includes(line) ? 'flex justify-center' : ''}">
+        <div class="line {line} px-2 arabic-font-{$wordTypeStore} {+page > 2 && centeredPageLines[+page] === undefined ? 'flex justify-between' : ''} {centeredPageLines[+page] !== undefined && centeredPageLines[+page].includes(line) ? 'flex justify-center' : ''}">
           {#each Object.entries(JSON.parse(localStorage.getItem("pageData"))) as [key, value]}
             <VersesWords {key} {value} {line} />
           {/each}
