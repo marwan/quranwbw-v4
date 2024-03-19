@@ -16,7 +16,7 @@
   import Changelogs from "$views/Changelogs.svelte";
   import Issues from "$views/Issues.svelte";
   import About from "$views/About.svelte";
-  import Words from "$views/Words.svelte";
+  import Morphology from "$views/Morphology.svelte";
 
   // ui
   import Navbar from "$ui/Navbar.svelte";
@@ -47,8 +47,8 @@
         <Page page={params.page} />
       </Route>
 
-      <Route path="/words/:key" let:params>
-        <Words key={params.key} />
+      <Route path="/morphology/:key" let:params>
+        <Morphology key={params.key} />
       </Route>
 
       <Route path="/:chapter/*" let:params>

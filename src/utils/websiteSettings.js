@@ -1,6 +1,6 @@
 export const websiteURL = "QuranWBW.com";
 
-export const websiteTagline = "Word By Word Translation, Transliteration And Corpus";
+export const websiteTagline = "Word By Word Translation, Transliteration And Morphology";
 
 export const websiteTitle = `Quran ${websiteTagline} - ${websiteURL}`;
 

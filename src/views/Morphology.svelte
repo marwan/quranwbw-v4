@@ -3,6 +3,7 @@
 
   import { Link } from "svelte-routing";
   import Spinner from "$svgs/Spinner.svelte";
+  import VersesWords from "$verses/VersesWords.svelte";
   import { websiteTitle, apiEndpoint } from "$utils/websiteSettings";
   import { currentPageStore, wordTypeStore, wordTranslationStore, verseTranslationsStore } from "$utils/stores";
 
@@ -47,23 +48,20 @@
     })();
   }
 
-  currentPageStore.set("words");
+  currentPageStore.set("morphology");
 </script>
 
 <svelte:head>
-  <title>Words - {websiteTitle}</title>
+  <title>Morphology - {websiteTitle}</title>
 </svelte:head>
 
 <div class="my-8">
   {#await fetchData}
     <Spinner />
   {:then fetchData}
-    <div style="direction: rtl;" class="arabicText leading-normal text-4xl arabic-font-{$wordTypeStore}">
+    <div style="direction: rtl;" class="flex flex-wrap">
       {#each Object.entries(fetchData) as [key, value]}
-        {#each { length: value.meta.words } as _, word}
-          <!-- svelte-ignore a11y-click-events-have-key-events -->
-          <span class="p-2 px-1" on:click={() => (wordID = `${value.meta.chapter}:${value.meta.verse}:${word + 1}`)}>{value.words.arabic.split("|")[word]} </span>
-        {/each}
+        <VersesWords {key} {value} />
       {/each}
     </div>
   {:catch error}
@@ -96,7 +94,7 @@
                 <td class="px-6 py-4"> {value.translation} </td>
                 <td class="px-6 py-4"> {value.transliteration} </td>
                 <td class="px-6 py-4"> <Link to="/{value.key.split(':')[0]}/{value.key.split(':')[1]}">{value.key.split(":")[0]}:{value.key.split(":")[1]}</Link> </td>
-                <td class="px-6 py-4"> <Link to="/words/{value.key}" on:click={() => (key = value.key)}>{value.key}</Link> </td>
+                <td class="px-6 py-4"> <Link to="/morphology/{value.key}" on:click={() => (key = value.key)}>{value.key}</Link> </td>
               </tr>
             {/each}
           </tbody>

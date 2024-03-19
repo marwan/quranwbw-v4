@@ -16,9 +16,7 @@
   const translationSplit = value.words.translation.split("|");
   const timestampSplit = value.words.timestamp.split("|");
 
-  const wordClasses = `rounded-lg hover:cursor-pointer hover:bg-[#ebebeb] dark:hover:bg-slate-800 ${displayOptions[`${$displayTypeStore}`].layout === "wbw" ? "p-3" : "p-0"}`;
-
-  let displayIsContinuous;
+  $: wordClasses = `rounded-lg hover:cursor-pointer hover:bg-[#ebebeb] dark:hover:bg-slate-800 ${displayOptions[`${$displayTypeStore}`].layout === "wbw" ? "p-3" : "p-1"}`;
 
   $: displayIsContinuous = displayOptions[`${$displayTypeStore}`].continuous;
 </script>
