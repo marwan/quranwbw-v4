@@ -4,8 +4,10 @@
   import { Link } from "svelte-routing";
   import Spinner from "$svgs/Spinner.svelte";
   import VersesWords from "$verses/VersesWords.svelte";
+  import { quranMetaData } from "$data/quranMeta";
   import { websiteTitle, apiEndpoint } from "$utils/websiteSettings";
   import { currentPageStore, wordTypeStore, wordTranslationStore, verseTranslationsStore, morphologyKey } from "$utils/stores";
+  import { tabPillElement } from "$utils/commonStyles";
 
   let fetchData, fetchWordsData, fetchWordSummary;
 
@@ -61,15 +63,21 @@
 </script>
 
 <svelte:head>
-  <title>Morphology - {websiteTitle}</title>
+  <title>Morphology ({chapter}:{verse}) - {websiteTitle}</title>
 </svelte:head>
 
 <div class="space-y-12 my-8">
+  <div id="verse-navigator" class="flex flex-row justify-center space-x-8">
+    <Link to="/morphology/{chapter}:{+verse - 1}" class="{tabPillElement} {verse === 1 && 'hidden'}">{@html "&#x2190;"} Verse {chapter}:{+verse - 1}</Link>
+    <!-- <span class="text-xs py-2">{chapter}:{verse}</span> -->
+    <Link to="/morphology/{chapter}:{+verse + 1}" class="{tabPillElement} {verse === quranMetaData[chapter].verses && 'hidden'}">Verse {chapter}:{+verse + 1} {@html "&#x2192;"}</Link>
+  </div>
+
   <div id="verse">
     {#await fetchData}
       <Spinner />
     {:then fetchData}
-      <div style="direction: rtl;" class="flex flex-wrap">
+      <div style="direction: rtl;" class="flex flex-wrap justify-center">
         {#each Object.entries(fetchData) as [key, value]}
           <VersesWords {key} {value} />
         {/each}
@@ -100,12 +108,14 @@
             <div class="mx-auto text-center">
               <div class="relative grid gap-8 grid-cols-2 row-gap-5 md:row-gap-8 md:grid-cols-6">
                 {#each Object.entries(fetchWordsData[0].morphology.verbs) as [key, value]}
-                  <div class="flex flex-col py-5 duration-300 transform bg-white border rounded-lg shadow-sm text-center hover:-translate-y-2">
-                    <div class="flex items-center justify-center mb-2">
-                      <p id="verb-1" class="text-xl md:text-2xl pb-4 leading-5 arabic-font-{$wordTypeStore}">{value}</p>
+                  {#if value !== null}
+                    <div class="flex flex-col py-5 duration-300 transform bg-white border rounded-lg shadow-sm text-center hover:-translate-y-2">
+                      <div class="flex items-center justify-center mb-2">
+                        <p id="verb-1" class="text-xl md:text-2xl pb-4 leading-5 arabic-font-{$wordTypeStore}">{value}</p>
+                      </div>
+                      <p class="text-xs text-gray-900">{key}</p>
                     </div>
-                    <p class="text-xs text-gray-900">{key}</p>
-                  </div>
+                  {/if}
                 {/each}
               </div>
             </div>
@@ -140,7 +150,7 @@
           </div>
         </div>
       {:else}
-        <div class="text-center my-8 text-xl opacity-70">Root data for this word is not available.</div>
+        <div class="text-center my-8 text-sm opacity-70">Root data for this word is not available.</div>
       {/if}
     {:catch error}
       <p>{error}</p>

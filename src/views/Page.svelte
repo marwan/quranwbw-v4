@@ -8,6 +8,7 @@
   import { currentPageStore, wordTypeStore } from "$utils/stores";
   import { updateSettings } from "$utils/updateSettings";
   import { quranMetaData } from "$data/quranMeta";
+  import { tabPillElement } from "$utils/commonStyles";
   import BismillahMushaf from "$svgs/BismillahMushaf.svelte";
 
   updateSettings({ type: "displayType", value: 4 });
@@ -87,8 +88,8 @@
 </svelte:head>
 
 <div class="flex flex-row space-x-8 my-8 justify-center">
-  <Link to="/page/{+page - 1}">Previous Page</Link>
-  <Link to="/page/{+page + 1}">Next Page</Link>
+  <Link to="/page/{+page - 1}" class={tabPillElement}>{@html "&#x2190;"} Previous Page</Link>
+  <Link to="/page/{+page + 1}" class={tabPillElement}>Next Page {@html "&#x2192;"}</Link>
 </div>
 
 <div class="text-center mt-8 text-xl">
