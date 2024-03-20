@@ -96,7 +96,7 @@
   {#await fetchData}
     <Spinner />
   {:then}
-    <div class="max-w-2xl border-l-2 border-r-2 border-b-2 pb-2 mx-auto">
+    <div class="max-w-2xl space-y-2 pb-2 mx-auto">
       {#each Array.from(Array(endingLine + 1).keys()).slice(startingLine) as line}
         <!-- if it's the first verse of a chapter -->
         {#if chapters.length > 1 && lines.includes(line) && verses[lines.indexOf(line)] === 1}

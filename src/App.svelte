@@ -1,5 +1,6 @@
 <script>
   import { Router, Route } from "svelte-routing";
+  import { currentPageStore } from "$utils/stores";
 
   // Flowbite JS
   import "$lib/flowbite.min.js";
@@ -27,7 +28,7 @@
 </script>
 
 <Router>
-  <div class="max-w-screen-lg mx-auto px-4 py-16 select-none">
+  <div class="max-w-screen-lg mx-auto py-16 select-none {$currentPageStore === 'page' ? 'px-0 md:px-4' : 'px-4'}">
     <!-- include the UI elements -->
     <Navbar />
     <Drawer />

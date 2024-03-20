@@ -63,7 +63,7 @@
 </script>
 
 <svelte:head>
-  <title>Morphology ({chapter}:{verse}) - {websiteTitle}</title>
+  <title>Morphology ({$morphologyKey}) - {websiteTitle}</title>
 </svelte:head>
 
 <div class="space-y-12 my-8">

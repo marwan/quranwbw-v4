@@ -1,6 +1,8 @@
 <script>
   export let key, value, line;
 
+  import { navigate } from "svelte-routing";
+
   import { displayOptions, selectableThemes } from "$data/options";
   import { supplicationsFromQuran } from "$data/quranMeta";
   import { currentPageStore, wordTypeStore, displayTypeStore, websiteThemeStore, userSettingsStore, audioSettingsStore, wordTranslationEnabledStore, wordTransliterationEnabledStore, morphologyKey } from "$utils/stores";
@@ -19,7 +21,9 @@
   // handle what happens when a word is clicked depending on page type
   function wordClickController(chapter, verse, word) {
     if ($currentPageStore === "morphology") {
-      morphologyKey.set(`${chapter}:${verse}:${word + 1}`);
+      const wordKey = `${chapter}:${verse}:${word + 1}`;
+      morphologyKey.set(wordKey);
+      navigate(`/morphology/${wordKey}`, { replace: true });
     } else {
       wordAudioController({ chapter, verse, word });
     }
