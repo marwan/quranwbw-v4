@@ -19,7 +19,7 @@ export const quranMetaData = [
   { id: 17, arabic: "الإسراء", translation: "The Night Journey", transliteration: "Al Israa", verses: 111, revelation: 1, icon: "16" },
   { id: 18, arabic: "الكهف", translation: "The Cave", transliteration: "Al Kahf", verses: 110, revelation: 1, icon: "17" },
   { id: 19, arabic: "مريم", translation: "Mary", transliteration: "Maryam", verses: 98, revelation: 1, icon: "18" },
-  { id: 20, arabic: "طه", translation: "Taa-Haa", transliteration: "Taa Haa", verses: 135, revelation: 1, icon: "19" },
+  { id: 20, arabic: "طه", translation: "Taa Haa", transliteration: "Taa Haa", verses: 135, revelation: 1, icon: "19" },
   { id: 21, arabic: "الأنبياء", translation: "The Prophets", transliteration: "Al Anbiyaa", verses: 112, revelation: 1, icon: "1A" },
   { id: 22, arabic: "الحج", translation: "The Pilgrimage", transliteration: "Al Hajj", verses: 78, revelation: 2, icon: "1B" },
   { id: 23, arabic: "المؤمنون", translation: "The Believers", transliteration: "Al Muminoon", verses: 118, revelation: 1, icon: "1C" },

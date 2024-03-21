@@ -6,8 +6,10 @@
 
   // default user settings
   import "$utils/userSettings";
-
   import { currentPageStore } from "$utils/stores";
+
+  // check and set user settings from URL parameters
+  import "$utils/checkURLParameters";
 
   // views
   import Home from "$views/Home.svelte";

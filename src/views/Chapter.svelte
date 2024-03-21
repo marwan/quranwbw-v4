@@ -56,7 +56,7 @@
     }
 
     // logging these for now to re-run the block on URL change
-    console.log($pageURLStore, $displayTypeStore, $wordTranslationStore, $verseTranslationsStore);
+    console.log($pageURLStore, $displayTypeStore);
   }
 
   // scroll events
