@@ -83,7 +83,7 @@
 
 <div>
   {#await fetchData}
-    <Spinner />
+    <Spinner height="screen" margin="-mt-20" />
   {:then}
     <!-- show Bismillah if chapter is not 1st or 9th -->
     {#if ![1, 9].includes($chapterNumberStore)}

@@ -16,10 +16,10 @@
   let lastWordToLoad = loadAll === true ? totalAvailableWords : totalAvailableWords > 10 ? 10 : totalAvailableWords;
 </script>
 
-{#if Object.keys(wordData).length > 0}
+{#if totalAvailableWords > 0}
   <div class="flex flex-col">
     <div class="relative space-y-6 sm:rounded-lg grayscale">
-      <h1 class="text-md md:text-2xl text-center opacity-70">{tableTitles[tableType].title} ({Object.keys(wordData).length})</h1>
+      <h1 class="text-md md:text-2xl text-center opacity-70">{tableTitles[tableType].title} ({totalAvailableWords})</h1>
       <div class="max-h-80 overflow-auto">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -48,9 +48,11 @@
       </div>
 
       <!-- button to load more words -->
-      <div class="text-center text-xs">
-        <button on:click={() => (lastWordToLoad = lastWordToLoad + 10)} class={buttonElement}>Load more 10 words</button>
-      </div>
+      {#if totalAvailableWords > 10}
+        <div class="text-center text-xs">
+          <button on:click={() => (lastWordToLoad = lastWordToLoad + 10)} class={buttonElement}>Load more 10 words</button>
+        </div>
+      {/if}
     </div>
   </div>
 {:else}
