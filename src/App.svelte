@@ -1,12 +1,13 @@
 <script>
   import { Router, Route } from "svelte-routing";
-  import { currentPageStore } from "$utils/stores";
 
   // Flowbite JS
   import "$lib/flowbite.min.js";
 
   // default user settings
   import "$utils/userSettings";
+
+  import { currentPageStore } from "$utils/stores";
 
   // views
   import Home from "$views/Home.svelte";
