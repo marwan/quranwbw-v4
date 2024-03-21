@@ -44,7 +44,7 @@
   // fetch words
   $: {
     fetchWordsData = (async () => {
-      const response = await fetch(`https://api.quranwbw.com/v1/words?words=${$morphologyKey}`);
+      const response = await fetch(`https://api.quranwbw.com/v1/morphology?words=${$morphologyKey}`);
       const data = await response.json();
       return data.data;
     })();
@@ -53,7 +53,7 @@
   // fetch word summary
   $: {
     fetchWordSummary = (async () => {
-      const response = await fetch(`https://api.quranwbw.com/v1/words/summary?word=${$morphologyKey}`);
+      const response = await fetch(`https://api.quranwbw.com/v1/morphology/summary?word=${$morphologyKey}`);
       const data = await response.json();
       return data.data;
     })();
@@ -68,9 +68,18 @@
 
 <div class="space-y-12 my-8">
   <div id="verse-navigator" class="flex flex-row justify-center space-x-8">
+    <!-- previous chapter -->
+    {#if verse === 1 && chapter > 1}
+      <Link to="/morphology/{+chapter - 1}:1" class={tabPillElement}>{@html "&#x2190;"} Chapter {+chapter - 1}</Link>
+    {/if}
+
     <Link to="/morphology/{chapter}:{+verse - 1}" class="{tabPillElement} {verse === 1 && 'hidden'}">{@html "&#x2190;"} Verse {chapter}:{+verse - 1}</Link>
-    <!-- <span class="text-xs py-2">{chapter}:{verse}</span> -->
     <Link to="/morphology/{chapter}:{+verse + 1}" class="{tabPillElement} {verse === quranMetaData[chapter].verses && 'hidden'}">Verse {chapter}:{+verse + 1} {@html "&#x2192;"}</Link>
+
+    <!-- next chapter -->
+    {#if verse === quranMetaData[chapter].verses && chapter < 114}
+      <Link to="/morphology/{+chapter + 1}:1" class={tabPillElement}>Chapter {+chapter + 1} {@html "&#x2192;"}</Link>
+    {/if}
   </div>
 
   <div id="verse">
@@ -87,7 +96,7 @@
     {/await}
   </div>
 
-  <div id="word-summary" class="text-center opacity-70 mx-auto md:w-3/4 text-sm md:text-lg">
+  <div id="word-summary" class="text-center opacity-70 mx-auto md:w-3/4 text-sm pb-6 border-b-2 md:text-lg">
     {#await fetchWordSummary}
       <span>...</span>
     {:then fetchWordSummary}
@@ -97,7 +106,7 @@
     {/await}
   </div>
 
-  <div id="word-root-data">
+  <div id="word-root-data" class="pb-8 border-b-2">
     {#await fetchWordsData}
       <Spinner />
     {:then fetchWordsData}
@@ -122,35 +131,83 @@
           </div>
 
           <!-- words with same root -->
-          <div id="words-with-same-root" class="relative overflow-x-auto sm:rounded-lg grayscale">
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-              <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                <tr>
-                  <th scope="col" class="px-6 py-3"> # </th>
-                  <th scope="col" class="px-6 py-3"> Word </th>
-                  <th scope="col" class="px-6 py-3"> Translation </th>
-                  <th scope="col" class="px-6 py-3"> Transliteration </th>
-                  <th scope="col" class="px-6 py-3"> Verse </th>
-                  <th scope="col" class="px-6 py-3"> Word </th>
-                </tr>
-              </thead>
-              <tbody>
-                {#each Object.entries(fetchWordsData[0].morphology.root.words_with_same_root) as [key, value]}
-                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <td class="px-6 py-4"> {+key + 1} </td>
-                    <td class="px-6 py-4 arabic-font-{$wordTypeStore} text-xl md:text-2xl"> {value.arabic} </td>
-                    <td class="px-6 py-4"> {value.translation} </td>
-                    <td class="px-6 py-4"> {value.transliteration} </td>
-                    <td class="px-6 py-4"> <Link to="/{value.key.split(':')[0]}/{value.key.split(':')[1]}">{value.key.split(":")[0]}:{value.key.split(":")[1]}</Link> </td>
-                    <td class="px-6 py-4"> <Link to="/morphology/{value.key}" on:click={() => (key = value.key)}>{value.key}</Link> </td>
+          <div id="words-with-same-root" class="relative space-y-6 sm:rounded-lg grayscale">
+            <h1 class="text-md md:text-2xl text-center opacity-70">Words in Quran having same root ({Object.keys(fetchWordsData[0].morphology.root.words_with_same_root).length})</h1>
+            <div class="max-h-64 overflow-auto">
+              <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                  <tr>
+                    <th scope="col" class="px-6 py-3"> # </th>
+                    <th scope="col" class="px-6 py-3"> Word </th>
+                    <th scope="col" class="px-6 py-3"> Translation </th>
+                    <th scope="col" class="px-6 py-3"> Transliteration </th>
+                    <th scope="col" class="px-6 py-3"> Verse </th>
+                    <th scope="col" class="px-6 py-3"> Word </th>
                   </tr>
-                {/each}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {#each Object.entries(fetchWordsData[0].morphology.root.words_with_same_root) as [key, value]}
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                      <td class="px-6 py-4"> {+key + 1} </td>
+                      <td class="px-6 py-4 arabic-font-{$wordTypeStore} text-xl md:text-2xl"> {value.arabic} </td>
+                      <td class="px-6 py-4"> {value.translation} </td>
+                      <td class="px-6 py-4"> {value.transliteration} </td>
+                      <td class="px-6 py-4"> <Link to="/{value.key.split(':')[0]}/{value.key.split(':')[1]}">{value.key.split(":")[0]}:{value.key.split(":")[1]}</Link> </td>
+                      <td class="px-6 py-4"> <Link to="/morphology/{value.key}" on:click={() => (key = value.key)}>{value.key}</Link> </td>
+                    </tr>
+                  {/each}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       {:else}
         <div class="text-center my-8 text-sm opacity-70">Root data for this word is not available.</div>
+      {/if}
+    {:catch error}
+      <p>{error}</p>
+    {/await}
+  </div>
+
+  <div id="exact-word-data" class="pb-8 border-b-2">
+    {#await fetchWordsData}
+      <Spinner />
+    {:then fetchWordsData}
+      {#if Object.keys(fetchWordsData[0].morphology.exact_words_in_quran).length > 0}
+        <div class="flex flex-col">
+          <!-- exact words in Quran -->
+          <div id="exact-words-in-quran" class="relative space-y-6 sm:rounded-lg grayscale">
+            <h1 class="text-md md:text-2xl text-center opacity-70">Exact words in Quran ({Object.keys(fetchWordsData[0].morphology.exact_words_in_quran).length})</h1>
+            <div class="max-h-64 overflow-auto">
+              <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                  <tr>
+                    <th scope="col" class="px-6 py-3"> # </th>
+                    <th scope="col" class="px-6 py-3"> Word </th>
+                    <th scope="col" class="px-6 py-3"> Translation </th>
+                    <th scope="col" class="px-6 py-3"> Transliteration </th>
+                    <th scope="col" class="px-6 py-3"> Verse </th>
+                    <th scope="col" class="px-6 py-3"> Word </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {#each Object.entries(fetchWordsData[0].morphology.exact_words_in_quran) as [key, value]}
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                      <td class="px-6 py-4"> {+key + 1} </td>
+                      <td class="px-6 py-4 arabic-font-{$wordTypeStore} text-xl md:text-2xl"> {value.arabic} </td>
+                      <td class="px-6 py-4"> {value.translation} </td>
+                      <td class="px-6 py-4"> {value.transliteration} </td>
+                      <td class="px-6 py-4"> <Link to="/{value.key.split(':')[0]}/{value.key.split(':')[1]}">{value.key.split(":")[0]}:{value.key.split(":")[1]}</Link> </td>
+                      <td class="px-6 py-4"> <Link to="/morphology/{value.key}" on:click={() => (key = value.key)}>{value.key}</Link> </td>
+                    </tr>
+                  {/each}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      {:else}
+        <div class="text-center my-8 text-sm opacity-70">Exact word data for this word is not available.</div>
       {/if}
     {:catch error}
       <p>{error}</p>
