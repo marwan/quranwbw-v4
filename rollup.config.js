@@ -43,6 +43,7 @@ export default {
         $views: path.resolve(__dirname, "./src/views"),
         $data: path.resolve(__dirname, "./src/data"),
         $lib: path.resolve(__dirname, "./src/lib"),
+        $morphology: path.resolve(__dirname, "./src/components/morphology"),
       },
     }),
 

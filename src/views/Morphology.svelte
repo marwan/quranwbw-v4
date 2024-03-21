@@ -4,6 +4,7 @@
   import { Link } from "svelte-routing";
   import Spinner from "$svgs/Spinner.svelte";
   import VersesWords from "$verses/VersesWords.svelte";
+  import MorphologyTable from "$morphology/MorphologyTable.svelte";
   import { quranMetaData } from "$data/quranMeta";
   import { websiteTitle, apiEndpoint } from "$utils/websiteSettings";
   import { currentPageStore, wordTypeStore, wordTranslationStore, verseTranslationsStore, morphologyKey } from "$utils/stores";
@@ -106,13 +107,12 @@
     {/await}
   </div>
 
-  <div id="word-root-data" class="pb-8 border-b-2">
+  <div id="word-forms" class="pb-8 border-b-2">
     {#await fetchWordsData}
       <Spinner />
     {:then fetchWordsData}
       {#if Object.keys(fetchWordsData[0].morphology.root.words_with_same_root).length > 0}
-        <div class="flex flex-col space-y-12">
-          <!-- word verbs -->
+        <div class="flex flex-col">
           <div id="different-verbs" class="grayscale">
             <div class="mx-auto text-center">
               <div class="relative grid gap-8 grid-cols-2 row-gap-5 md:row-gap-8 md:grid-cols-6">
@@ -129,37 +129,6 @@
               </div>
             </div>
           </div>
-
-          <!-- words with same root -->
-          <div id="words-with-same-root" class="relative space-y-6 sm:rounded-lg grayscale">
-            <h1 class="text-md md:text-2xl text-center opacity-70">Words in Quran having same root ({Object.keys(fetchWordsData[0].morphology.root.words_with_same_root).length})</h1>
-            <div class="max-h-64 overflow-auto">
-              <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                  <tr>
-                    <th scope="col" class="px-6 py-3"> # </th>
-                    <th scope="col" class="px-6 py-3"> Word </th>
-                    <th scope="col" class="px-6 py-3"> Translation </th>
-                    <th scope="col" class="px-6 py-3"> Transliteration </th>
-                    <th scope="col" class="px-6 py-3"> Verse </th>
-                    <th scope="col" class="px-6 py-3"> Word </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {#each Object.entries(fetchWordsData[0].morphology.root.words_with_same_root) as [key, value]}
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                      <td class="px-6 py-4"> {+key + 1} </td>
-                      <td class="px-6 py-4 arabic-font-{$wordTypeStore} text-xl md:text-2xl"> {value.arabic} </td>
-                      <td class="px-6 py-4"> {value.translation} </td>
-                      <td class="px-6 py-4"> {value.transliteration} </td>
-                      <td class="px-6 py-4"> <Link to="/{value.key.split(':')[0]}/{value.key.split(':')[1]}">{value.key.split(":")[0]}:{value.key.split(":")[1]}</Link> </td>
-                      <td class="px-6 py-4"> <Link to="/morphology/{value.key}" on:click={() => (key = value.key)}>{value.key}</Link> </td>
-                    </tr>
-                  {/each}
-                </tbody>
-              </table>
-            </div>
-          </div>
         </div>
       {:else}
         <div class="text-center my-8 text-sm opacity-70">Root data for this word is not available.</div>
@@ -169,46 +138,21 @@
     {/await}
   </div>
 
+  <div id="word-root-data" class="pb-8 border-b-2">
+    {#await fetchWordsData}
+      <Spinner />
+    {:then fetchWordsData}
+      <MorphologyTable wordData={fetchWordsData[0].morphology.root.words_with_same_root} tableType={1} />
+    {:catch error}
+      <p>{error}</p>
+    {/await}
+  </div>
+
   <div id="exact-word-data" class="pb-8 border-b-2">
     {#await fetchWordsData}
       <Spinner />
     {:then fetchWordsData}
-      {#if Object.keys(fetchWordsData[0].morphology.exact_words_in_quran).length > 0}
-        <div class="flex flex-col">
-          <!-- exact words in Quran -->
-          <div id="exact-words-in-quran" class="relative space-y-6 sm:rounded-lg grayscale">
-            <h1 class="text-md md:text-2xl text-center opacity-70">Exact words in Quran ({Object.keys(fetchWordsData[0].morphology.exact_words_in_quran).length})</h1>
-            <div class="max-h-64 overflow-auto">
-              <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                  <tr>
-                    <th scope="col" class="px-6 py-3"> # </th>
-                    <th scope="col" class="px-6 py-3"> Word </th>
-                    <th scope="col" class="px-6 py-3"> Translation </th>
-                    <th scope="col" class="px-6 py-3"> Transliteration </th>
-                    <th scope="col" class="px-6 py-3"> Verse </th>
-                    <th scope="col" class="px-6 py-3"> Word </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {#each Object.entries(fetchWordsData[0].morphology.exact_words_in_quran) as [key, value]}
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                      <td class="px-6 py-4"> {+key + 1} </td>
-                      <td class="px-6 py-4 arabic-font-{$wordTypeStore} text-xl md:text-2xl"> {value.arabic} </td>
-                      <td class="px-6 py-4"> {value.translation} </td>
-                      <td class="px-6 py-4"> {value.transliteration} </td>
-                      <td class="px-6 py-4"> <Link to="/{value.key.split(':')[0]}/{value.key.split(':')[1]}">{value.key.split(":")[0]}:{value.key.split(":")[1]}</Link> </td>
-                      <td class="px-6 py-4"> <Link to="/morphology/{value.key}" on:click={() => (key = value.key)}>{value.key}</Link> </td>
-                    </tr>
-                  {/each}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      {:else}
-        <div class="text-center my-8 text-sm opacity-70">Exact word data for this word is not available.</div>
-      {/if}
+      <MorphologyTable wordData={fetchWordsData[0].morphology.exact_words_in_quran} tableType={2} />
     {:catch error}
       <p>{error}</p>
     {/await}
