@@ -1,6 +1,6 @@
 <script>
   import { currentPageStore, wordTypeStore, displayTypeStore, websiteThemeStore, wordTranslationStore, wordTranslationEnabledStore, wordTransliterationEnabledStore, verseTranslationsStore, reciterStore, playbackSpeedStore, userSettingsStore } from "$utils/stores";
-  import { displayOptions, selectableFontTypes, selectableThemes, selectableVerseTranslations, selectableWordTranslations, selectableReciters, selectablePlaybackSpeeds } from "$data/options";
+  import { displayOptions, selectableFontTypes, selectableThemes, selectableVerseTranslations, verseTranslationsLanguages, selectableWordTranslations, selectableReciters, selectablePlaybackSpeeds } from "$data/options";
   import { updateSettings } from "$utils/updateSettings";
   import { disabledElement, buttonElement } from "$utils/commonStyles";
 
@@ -142,7 +142,7 @@
     <div class="flex flex-col flex-wrap space-y-4 text-xs">
       <div class="flex flex-row justify-between items-center">
         <label for="word-translations-list" class="block text-gray-900 dark:text-slate-400">Word</label>
-        <select id="word-translations-list" bind:value={$wordTranslationStore} on:change={(event) => updateSettings({ type: "wordTranslation", value: +event.target.selectedIndex + 1 })} class="w-24 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <select id="word-translations-list" bind:value={$wordTranslationStore} on:change={(event) => updateSettings({ type: "wordTranslation", value: +event.target.value })} class="w-24 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
           {#each Object.entries(selectableWordTranslations) as [id, translation]}
             <option value={translation.id}>{translation.language}</option>
           {/each}
@@ -158,19 +158,28 @@
 
       <!-- Dropdown menu -->
       <div id="verse-translation-checkbox" class="z-10 hidden w-56 bg-white divide-y divide-gray-100 rounded-lg border border-gray-200 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700">
-        <ul id="verse-translations-list" class="max-h-56 overflow-y-scroll p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownCheckboxButton">
-          {#each Object.values(selectableVerseTranslations) as translation}
-            <li>
-              <div class="flex items-center">
-                <!-- using else-if block to add the "checked" attribute because for some reason the inline check is not working in Svelte as compared to regular javascript -->
-                {#if $verseTranslationsStore.includes(translation.id)}
-                  <input id="verseTranslationCheckbox-{translation.id}" on:click={() => updateSettings({ type: "verseTranslation", value: translation.id })} checked type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-slate-700" />
-                {:else}
-                  <input id="verseTranslationCheckbox-{translation.id}" on:click={() => updateSettings({ type: "verseTranslation", value: translation.id })} type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-slate-700" />
-                {/if}
-                <label for="verseTranslationCheckbox-{translation.id}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{translation.author}</label>
+        <ul id="verse-translations-list" class="max-h-56 overflow-y-scroll p-3 space-y-4 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownCheckboxButton">
+          {#each Object.entries(verseTranslationsLanguages) as [id, language]}
+            <div class="space-y-2">
+              <div id="translation-name" class="text-sm font-medium">{language.language}</div>
+              <div id="translation-list" class="space-y-2">
+                {#each Object.values(selectableVerseTranslations) as translation}
+                  {#if translation.language === language.language}
+                    <li>
+                      <div class="flex items-center">
+                        <!-- using else-if block to add the "checked" attribute because for some reason the inline check is not working in Svelte as compared to regular javascript -->
+                        {#if $verseTranslationsStore.includes(translation.id)}
+                          <input id="verseTranslationCheckbox-{translation.id}" on:click={() => updateSettings({ type: "verseTranslation", value: translation.id })} checked type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-slate-700" />
+                        {:else}
+                          <input id="verseTranslationCheckbox-{translation.id}" on:click={() => updateSettings({ type: "verseTranslation", value: translation.id })} type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-slate-700" />
+                        {/if}
+                        <label for="verseTranslationCheckbox-{translation.id}" class="ml-2 text-sm text-gray-900 dark:text-gray-300">{translation.author}</label>
+                      </div>
+                    </li>
+                  {/if}
+                {/each}
               </div>
-            </li>
+            </div>
           {/each}
         </ul>
       </div>

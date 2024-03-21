@@ -20,6 +20,19 @@ export const selectableThemes = {
   5: { id: 5, name: "Sepia", palette: 2 },
 };
 
+export const verseTranslationsLanguages = {
+  1: { id: 1, language: "Arabic" },
+  2: { id: 2, language: "Bangla" },
+  3: { id: 3, language: "English" },
+  4: { id: 4, language: "Hindi" },
+  5: { id: 5, language: "Hindi Literal" },
+  6: { id: 6, language: "Indonesian" },
+  7: { id: 7, language: "Turkish" },
+  8: { id: 8, language: "Tamil" },
+  9: { id: 9, language: "Urdu" },
+  10: { id: 10, language: "Urdu Literal" },
+};
+
 export const selectableVerseTranslations = {
   1: {
     id: 1,
@@ -113,7 +126,7 @@ export const selectableVerseTranslations = {
   },
   33: {
     id: 33,
-    language: "Urdu",
+    language: "Urdu Literal",
     author: "Abul Alaa Maududi",
     slug: "urd_abulaalamaududi_la",
   },
@@ -125,7 +138,7 @@ export const selectableVerseTranslations = {
   },
   35: {
     id: 35,
-    language: "Hindi",
+    language: "Hindi Literal",
     author: "Suhel Farooq & Saifur Rahman",
     slug: "hin_suhelfarooqkhan_la",
   },
@@ -168,13 +181,13 @@ export const selectableVerseTranslations = {
 };
 
 export const selectableWordTranslations = {
-  1: { id: 1, language: "English" },
-  2: { id: 2, language: "Urdu" },
+  1: { id: 5, language: "Bangla" },
+  2: { id: 1, language: "English" },
   3: { id: 3, language: "Hindi" },
   4: { id: 4, language: "Indonesian" },
-  5: { id: 5, language: "Bangla" },
-  6: { id: 6, language: "Turkish" },
-  7: { id: 7, language: "Tamil" },
+  5: { id: 6, language: "Turkish" },
+  6: { id: 7, language: "Tamil" },
+  7: { id: 2, language: "Urdu" },
 };
 
 export const selectableReciters = {
