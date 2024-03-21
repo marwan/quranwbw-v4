@@ -57,7 +57,12 @@
     <button id="navigationDropdownButton" data-dropdown-toggle="navigationDropdown" class="flex items-center py-2 px-3 text-sm border-gray-200 w-auto p-2 hover:bg-[#ebebeb] rounded-lg dark:hover:bg-slate-700">
       <span id="navbar-top-title">
         {#if $currentPageStore === "chapter"}
-          {quranMetaData[$chapterNumberStore].transliteration} ({quranMetaData[$chapterNumberStore].translation})
+          {quranMetaData[$chapterNumberStore].transliteration}
+
+          <!-- chapters for which the Arabic and English names are same, the navbar should only show one -->
+          {#if quranMetaData[$chapterNumberStore].transliteration !== quranMetaData[$chapterNumberStore].translation}
+            ({quranMetaData[$chapterNumberStore].translation})
+          {/if}
         {:else}
           <!-- capitalize the first letter of the current page and display it -->
           {$currentPageStore[0].toUpperCase() + $currentPageStore.slice(1)}
