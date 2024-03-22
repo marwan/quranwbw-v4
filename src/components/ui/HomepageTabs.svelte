@@ -5,8 +5,8 @@
 
   import { inview } from "svelte-inview";
 
-  // load button click options
-  const loadButtonOptions = {
+  // chapter data fetch options
+  const fetchOptions = {
     rootMargin: "10px",
     unobserveOnEnter: true,
   };
@@ -40,7 +40,7 @@
       <div class={homepageTabsStyles.cardGridStyle}>
         {#each { length: 114 } as _, chapter}
           <Link to="/{chapter + 1}" class={homepageTabsStyles.cardInnerStyle}>
-            <div class="" use:inview={loadButtonOptions} on:inview_enter={(event) => fetchChapterData(+chapter + 1)}>
+            <div class="" use:inview={fetchOptions} on:inview_enter={(event) => fetchChapterData(+chapter + 1)}>
               <span class="text-sm">{chapter + 1}. {quranMetaData[chapter + 1].transliteration}</span>
               <div class="block text-xs text-gray-400">
                 {quranMetaData[chapter + 1].translation} <br />

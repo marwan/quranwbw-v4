@@ -9,10 +9,12 @@
   import { websiteURL } from "$utils/websiteSettings";
   import { fetchChapterData } from "$utils/fetchChapterData";
   import { quranMetaData } from "$data/quranMeta";
-  import { currentPageStore, chapterNumberStore, displayTypeStore, pageURLStore } from "$utils/stores";
+  import { currentPageStore, chapterNumberStore, displayTypeStore, wordTypeStore, wordTranslationStore, verseTranslationsStore, pageURLStore } from "$utils/stores";
 
   // max verses to load if total verses in chapter are more than this
   const maxVersesThreshold = 10;
+
+  let chapterData;
 
   // fetch verses whenever there's a change
   $: {
@@ -20,6 +22,8 @@
     chapterNumberStore.set(+chapter);
 
     const chapterTotalVerses = quranMetaData[$chapterNumberStore].verses;
+
+    chapterData = fetchChapterData($chapterNumberStore);
 
     // getting start and end range incase we need to load specific verses
     (startVerse = parseURL()[0]), (endVerse = parseURL()[1]);
@@ -32,7 +36,7 @@
     }
 
     // logging these for now to re-run the block on URL change
-    console.log($pageURLStore, $displayTypeStore);
+    console.log($pageURLStore, $displayTypeStore, $wordTypeStore, $wordTranslationStore, $verseTranslationsStore);
   }
 
   currentPageStore.set("chapter");
@@ -43,7 +47,7 @@
 </svelte:head>
 
 <div>
-  {#await fetchChapterData($chapterNumberStore)}
+  {#await chapterData}
     <Spinner height="screen" margin="-mt-20" />
   {:then}
     <!-- show Bismillah if chapter is not 1st or 9th -->
