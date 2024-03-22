@@ -4,7 +4,7 @@ import { displayTypeStore, reciterStore, playbackSpeedStore, audioSettingsStore 
 import { toggleModal } from "$utils/toggleModal";
 import { wordsAudioURL } from "$utils/websiteSettings";
 import { displayOptions, selectableReciters, selectablePlaybackSpeeds } from "$data/options";
-// import { scrollSmoothly } from "$utils/scrollSmoothly";
+import { scrollSmoothly } from "$utils/scrollSmoothly";
 
 // getting the audio element
 window.audio = document.querySelector("#player");
@@ -74,7 +74,7 @@ export function playAudio(props) {
 
     // document.getElementById(`${audioSettings.playingKey}`).scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
 
-    // scrollSmoothly(document.getElementById(`${audioSettings.playingKey}`).offsetTop, 100);
+    scrollSmoothly(document.getElementById(`${audioSettings.playingKey}`).offsetTop - 100, 500);
   }
 
   // things to do when the audio has ended

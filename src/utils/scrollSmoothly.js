@@ -1,7 +1,7 @@
 export function scrollSmoothly(pos, time) {
   const currentPos = window.pageYOffset;
   let start = null;
-  if (time == null) time = 500;
+  if (time == null) time = 2000;
   (pos = +pos), (time = +time);
   window.requestAnimationFrame(function step(currentTime) {
     start = !start ? currentTime : start;

@@ -59,21 +59,6 @@
     console.log($pageURLStore, $displayTypeStore);
   }
 
-  // scroll events
-  onMount(() => {
-    document.addEventListener("scroll", function (e) {
-      try {
-        // auto-load the next set of verses when the user almost reaches the bottom
-        if (window.innerHeight + window.pageYOffset >= document.body.scrollHeight - 2000) {
-          document.querySelector("#loadNextVersesButton > button").click();
-        }
-      } catch (error) {
-        // we know the error... but can make this better.
-        console.log(error);
-      }
-    });
-  });
-
   currentPageStore.set("chapter");
 </script>
 

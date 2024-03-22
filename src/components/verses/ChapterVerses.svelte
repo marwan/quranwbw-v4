@@ -2,6 +2,8 @@
 <script>
   export let startVerse, endVerse, isExampleVerse;
 
+  import { inview } from "svelte-inview";
+
   import WBWDisplay from "$displays/WBWDisplay.svelte";
   import NormalDisplay from "$displays/NormalDisplay.svelte";
   import ContinuousWBWDisplay from "$displays/ContinuousWBWDisplay.svelte";
@@ -10,6 +12,12 @@
   import { quranMetaData } from "$data/quranMeta";
   import { displayTypeStore, chapterNumberStore, chapterDataStore } from "$utils/stores";
   import { buttonElement } from "$utils/commonStyles";
+
+  // load button click options
+  const loadButtonOptions = {
+    rootMargin: "2000px",
+    unobserveOnEnter: true,
+  };
 
   const displayComponents = {
     1: { displayID: 1, displayComponent: WBWDisplay },
@@ -111,8 +119,8 @@
 {#if isExampleVerse === undefined}
   <!-- only show the button when the last verse on page is less than total verses in chapter -->
   {#if endVerse < chapterTotalVerses && document.getElementById("loadNextVersesButton") === null}
-    <div id="loadNextVersesButton" class="flex justify-center pt-6 pb-14">
-      <button on:click={loadNextVerses} class="text-sm {buttonElement}"> Load Next Verses </button>
+    <div class="flex justify-center pt-6 pb-14" use:inview={loadButtonOptions} on:inview_enter={(event) => document.querySelector("#loadNextVersesButton").click()}>
+      <button id="loadNextVersesButton" on:click={loadNextVerses} class="text-sm {buttonElement}"> Load Next Verses </button>
     </div>
   {/if}
 {/if}

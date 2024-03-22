@@ -3,12 +3,12 @@ import { displayOptions, selectableFontTypes, selectableThemes, selectableWordTr
 
 const params = new URLSearchParams(window.location.search);
 
-const wordType = +params.get("word_type");
-const displayType = +params.get("display_type");
-const websiteTheme = +params.get("website_theme");
-const wordTranslation = +params.get("word_translation");
+const wordType = +params.get("wordType");
+const displayType = +params.get("displayType");
+const websiteTheme = +params.get("websiteTheme");
+const wordTranslation = +params.get("wordTranslation");
 
-const initialSetup = params.get("initial_setup_completed");
+const initialSetup = params.get("initialSetupCompleted");
 const initialSetupCompleted = initialSetup === "true";
 
 // word_type
