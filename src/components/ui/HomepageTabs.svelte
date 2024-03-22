@@ -1,6 +1,15 @@
 <script>
   import { Link } from "svelte-routing";
   import { quranMetaData, mostRead } from "$data/quranMeta";
+  import { fetchChapterData } from "$utils/fetchChapterData";
+
+  import { inview } from "svelte-inview";
+
+  // load button click options
+  const loadButtonOptions = {
+    rootMargin: "10px",
+    unobserveOnEnter: true,
+  };
 
   // chapter cards, tab styles
   const homepageTabsStyles = {
@@ -31,7 +40,7 @@
       <div class={homepageTabsStyles.cardGridStyle}>
         {#each { length: 114 } as _, chapter}
           <Link to="/{chapter + 1}" class={homepageTabsStyles.cardInnerStyle}>
-            <div class="">
+            <div class="" use:inview={loadButtonOptions} on:inview_enter={(event) => fetchChapterData(+chapter + 1)}>
               <span class="text-sm">{chapter + 1}. {quranMetaData[chapter + 1].transliteration}</span>
               <div class="block text-xs text-gray-400">
                 {quranMetaData[chapter + 1].translation} <br />

@@ -2,19 +2,17 @@
   // props from router
   export let chapter, startVerse, endVerse;
 
-  import { onMount } from "svelte";
   import ChapterVerses from "$verses/ChapterVerses.svelte";
   import Bismillah from "$svgs/Bismillah.svelte";
   import Spinner from "$svgs/Spinner.svelte";
   import { parseURL } from "$utils/parseURL";
-  import { websiteURL, apiEndpoint } from "$utils/websiteSettings";
+  import { websiteURL } from "$utils/websiteSettings";
+  import { fetchChapterData } from "$utils/fetchChapterData";
   import { quranMetaData } from "$data/quranMeta";
-  import { currentPageStore, chapterNumberStore, chapterDataStore, wordTypeStore, displayTypeStore, wordTranslationStore, verseTranslationsStore, lastReadStore, pageURLStore } from "$utils/stores";
+  import { currentPageStore, chapterNumberStore, displayTypeStore, pageURLStore } from "$utils/stores";
 
   // max verses to load if total verses in chapter are more than this
   const maxVersesThreshold = 10;
-
-  let fetchData;
 
   // fetch verses whenever there's a change
   $: {
@@ -22,28 +20,6 @@
     chapterNumberStore.set(+chapter);
 
     const chapterTotalVerses = quranMetaData[$chapterNumberStore].verses;
-
-    // QuranWBW.com always loads the complete chapter data rather than verses on demand (like Quran.com)
-    // though the initial loading time might be higher, but for the subsequent visits it will be lower and we get some benefits like:
-    // - the whole chapter and all its verses can be viewed without ever making another request to the API (eg: /2 or /2/255) unless there'a a change in settings
-    // - offline capabilities
-    // Other option would be to load the few initial verses on page load and then the complete data for faster loading times, might think about it later.
-    fetchData = (async () => {
-      const apiURL =
-        apiEndpoint +
-        new URLSearchParams({
-          verses: `${$chapterNumberStore}:1,${$chapterNumberStore}:${chapterTotalVerses}`,
-          word_type: $wordTypeStore,
-          word_translation: $wordTranslationStore,
-          verse_translation: $verseTranslationsStore.toString(),
-          between: true,
-        });
-
-      const response = await fetch(apiURL);
-      const data = await response.json();
-      chapterDataStore.set(data.data.verses);
-      return data.data.verses;
-    })();
 
     // getting start and end range incase we need to load specific verses
     (startVerse = parseURL()[0]), (endVerse = parseURL()[1]);
@@ -67,7 +43,7 @@
 </svelte:head>
 
 <div>
-  {#await fetchData}
+  {#await fetchChapterData($chapterNumberStore)}
     <Spinner height="screen" margin="-mt-20" />
   {:then}
     <!-- show Bismillah if chapter is not 1st or 9th -->

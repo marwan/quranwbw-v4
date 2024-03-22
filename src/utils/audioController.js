@@ -68,12 +68,6 @@ export function playAudio(props) {
   // attach the word highlighter function
   if (props.type === "verse" && props.playTranslation !== true) {
     audio.addEventListener("timeupdate", wordHighlighter);
-
-    // scroll to the top of the playing verse
-    // window.scrollTo(window.scrollX, document.getElementById(`${audioSettings.playingKey}`).getBoundingClientRect().top - 100);
-
-    // document.getElementById(`${audioSettings.playingKey}`).scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
-
     scrollSmoothly(document.getElementById(`${audioSettings.playingKey}`).offsetTop - 100, 500);
   }
 
