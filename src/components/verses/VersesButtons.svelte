@@ -14,6 +14,7 @@
   import Bookmarked from "$svgs/Bookmarked.svelte";
   import Play from "$svgs/Play.svelte";
   import Pause from "$svgs/Pause.svelte";
+  // import DotsVertical from "$svgs/DotsVertical.svelte";
 
   // update userBookmarks whenever the userSettingsStore changes
   $: userBookmarks = JSON.parse($userSettingsStore).userBookmarks;
@@ -30,4 +31,8 @@
   <button on:click={() => showAudioModal(key)} class={buttonClasses}>
     <svelte:component this={$audioSettingsStore.isPlaying === true && $audioSettingsStore.playingKey === key ? Pause : Play} />
   </button>
+
+  <!-- <button class={buttonClasses}>
+    <DotsVertical />
+  </button> -->
 </div>
