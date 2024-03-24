@@ -38,7 +38,7 @@
 
   <div class="flex max-w-3xl mx-auto">
     <div id="dropdown" class="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-      <select id="dropdown" bind:value={selectedTranslation} on:change={(event) => (selectedTranslation = +event.target.value)} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg rounded-r-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+      <select id="dropdown" bind:value={selectedTranslation} on:change={(event) => (selectedTranslation = +event.target.value)} class="truncate bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg rounded-r-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
         {#each Object.entries(searchableTranslations) as [id, translation]}
           <option value={+id}>{translation.language.toUpperCase()} - {translation.name} ({translation.englishName})</option>
         {/each}

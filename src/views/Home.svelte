@@ -23,24 +23,40 @@
     <div class="text-xs text-center text-gray-400">{websiteTagline}</div>
   </div>
 
-  <div class="flex flex-wrap flex-row md:flex-row mt-12 justify-center text-xs font-bold text-gray-400 space-x-2">
+  <div class="flex flex-wrap flex-col md:flex-col mt-12 justify-center text-xs font-bold text-gray-400 space-y-4">
     <!-- last read link -->
-    <div id="last-read-block" class="flex justify-center items-center block">
+    <!-- <div id="last-read-block" class="flex justify-center items-center block">
       <Link to="/{$lastReadStore.split(':')[0]}/{$lastReadStore.split(':')[1]}" id="last-read-link" class={linkStyles}>Last Read ({$lastReadStore})</Link>
-    </div>
+    </div> -->
 
-    <!-- Supplications from Quran link -->
-    <div class="flex justify-center items-center block">
-      <span class={linkStyles}>
-        <Link to="/supplications">Supplications</Link>
-      </span>
-    </div>
+    <div class="flex flex-row flex-wrap space-x-1 md:space-x-2 justify-center">
+      <!-- Supplications from Quran page -->
+      <div id="supplications-link" class="flex justify-center items-center block">
+        <span class={linkStyles}>
+          <Link to="/supplications">Supplications</Link>
+        </span>
+      </div>
 
-    <!-- bookmarks link -->
-    <div id="bookmarks-link" class="flex justify-center items-center block">
-      <span class={linkStyles}>
-        <Link to="/bookmarks">Bookmarks</Link>
-      </span>
+      <!-- bookmarks page -->
+      <div id="bookmarks-link" class="flex justify-center items-center block">
+        <span class={linkStyles}>
+          <Link to="/bookmarks">Bookmarks</Link>
+        </span>
+      </div>
+
+      <!-- morphology page -->
+      <div id="morphology-link" class="flex justify-center items-center block">
+        <span class={linkStyles}>
+          <Link to="/morphology/1:1">Morphology</Link>
+        </span>
+      </div>
+
+      <!-- search page -->
+      <div id="search-link" class="flex justify-center items-center block">
+        <span class={linkStyles}>
+          <Link to="/search">Search</Link>
+        </span>
+      </div>
     </div>
   </div>
 

@@ -2,6 +2,7 @@
   import { Link } from "svelte-routing";
   import { quranMetaData, mostRead } from "$data/quranMeta";
   import { fetchChapterData } from "$utils/fetchChapterData";
+  import { lastReadStore } from "$utils/stores";
 
   import { inview } from "svelte-inview";
 
@@ -23,13 +24,16 @@
 </script>
 
 <div id="homepage-tabs" class="pt-0">
-  <div class="mb-4 text-gray-400 dark:border-gray-700 px-8">
-    <ul class="flex flex-wrap -mb-px text-sm font-medium text-center justify-center space-x-4">
+  <div class="mb-4 text-gray-400 dark:border-gray-700">
+    <ul class="flex flex-wrap text-sm font-medium text-center justify-center space-x-2 md:space-x-4">
       <li>
         <button on:click={() => (activeTab = 1)} class="{homepageTabsStyles.tabStyle} {activeTab === 1 ? `${homepageTabsStyles.activeTab}` : ''}" id="chapters-tab" data-tabs-target="#chapters-tab-panel" type="button" role="tab" aria-controls="chapters-tab-panel" aria-selected="false">Chapters</button>
       </li>
       <li>
         <button on:click={() => (activeTab = 2)} class="{homepageTabsStyles.tabStyle} {activeTab === 2 ? `${homepageTabsStyles.activeTab}` : ''}" id="most-read-tab" data-tabs-target="#most-read-tab-panel" type="button" role="tab" aria-controls="most-read-tab-panel" aria-selected="false">Most Read</button>
+      </li>
+      <li>
+        <Link to="/{$lastReadStore.split(':')[0]}/{$lastReadStore.split(':')[1]}" class={homepageTabsStyles.tabStyle} id="last-read-tab" data-tabs-target="#most-read-tab-panel" type="button" role="tab" aria-controls="most-read-tab-panel" aria-selected="false">Last Read ({$lastReadStore})</Link>
       </li>
     </ul>
   </div>
