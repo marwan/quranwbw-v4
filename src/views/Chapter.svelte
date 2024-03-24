@@ -10,6 +10,8 @@
   import { fetchChapterData } from "$utils/fetchChapterData";
   import { quranMetaData } from "$data/quranMeta";
   import { currentPageStore, chapterNumberStore, displayTypeStore, wordTypeStore, wordTranslationStore, verseTranslationsStore, pageURLStore } from "$utils/stores";
+  import { debounce } from "$utils/debounce";
+  import { toggleNavbar } from "$utils/toggleNavbar";
 
   // max verses to load if total verses in chapter are more than this
   const maxVersesThreshold = 10;
@@ -38,6 +40,19 @@
     // logging these for now to re-run the block on URL change
     console.log($pageURLStore, $displayTypeStore, $wordTypeStore, $wordTranslationStore, $verseTranslationsStore);
   }
+
+  // toggle bottom nav on scroll
+  document.addEventListener(
+    "scroll",
+    () => {
+      // toggle the navbars based on the scroll direction
+      debounce(toggleNavbar, 100);
+    },
+    {
+      capture: true,
+      passive: true,
+    }
+  );
 
   currentPageStore.set("chapter");
 </script>

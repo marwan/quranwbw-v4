@@ -45,10 +45,21 @@
 
   // scroll percentage
   $: chapterProgress = ($lastReadStore.split(":")[1] / quranMetaData[$chapterNumberStore].verses) * 100;
+
+  let navbarChapterName;
+
+  $: {
+    navbarChapterName = quranMetaData[$chapterNumberStore].transliteration;
+
+    // chapters for which the Arabic and English names are same, the navbar should only show one
+    if (quranMetaData[$chapterNumberStore].transliteration !== quranMetaData[$chapterNumberStore].translation) {
+      navbarChapterName += ` (${quranMetaData[$chapterNumberStore].translation})`;
+    }
+  }
 </script>
 
-<nav id="navbar" class="{$currentPageStore === 'home' ? 'hidden' : $topNavbarVisibleStore ? 'block' : 'hidden'} bg-white fixed w-full z-20 top-0 left-0 border-b border-gray-200 text-black backdrop-filter backdrop-blur-lg bg-opacity-50 print:hidden dark:bg-slate-900 dark:text-slate-400 dark:border-slate-700 grayscale">
-  <div id="top-nav" class="flex flex-row items-center justify-between max-w-screen-lg mx-auto px-4 py-2">
+<nav id="navbar" class="{$currentPageStore === 'home' ? 'hidden' : 'block'} bg-white fixed w-full z-20 top-0 left-0 border-b border-gray-200 text-black backdrop-filter backdrop-blur-lg bg-opacity-50 print:hidden dark:bg-slate-900 dark:text-slate-400 dark:border-slate-700 grayscale">
+  <div id="top-nav" class="{$topNavbarVisibleStore === true ? 'block' : 'hidden'} flex flex-row items-center justify-between max-w-screen-lg mx-auto px-4 py-2">
     <Link to="/" class="flex flex-row items-center p-2 cursor-pointer hover:bg-[#ebebeb] rounded-lg dark:hover:bg-slate-700">
       <Home />
       <span class="text-xs pl-2 hidden sm:block">Home</span>
@@ -57,12 +68,7 @@
     <button id="navigationDropdownButton" data-dropdown-toggle="navigationDropdown" class="flex items-center py-2 px-3 text-sm border-gray-200 w-auto p-2 hover:bg-[#ebebeb] rounded-lg dark:hover:bg-slate-700">
       <span id="navbar-top-title">
         {#if $currentPageStore === "chapter"}
-          {quranMetaData[$chapterNumberStore].transliteration}
-
-          <!-- chapters for which the Arabic and English names are same, the navbar should only show one -->
-          {#if quranMetaData[$chapterNumberStore].transliteration !== quranMetaData[$chapterNumberStore].translation}
-            ({quranMetaData[$chapterNumberStore].translation})
-          {/if}
+          {navbarChapterName}
         {:else}
           <!-- capitalize the first letter of the current page and display it -->
           {$currentPageStore[0].toUpperCase() + $currentPageStore.slice(1)}
@@ -78,8 +84,14 @@
   </div>
 
   {#if $currentPageStore === "chapter"}
-    <div id="bottom-nav" class="{$bottomNavbarVisibleStore === true ? 'block' : 'hidden'} flex flex-row items-center justify-between border-t text-xs max-w-screen-lg mx-auto px-6 dark:border-slate-700">
-      <div id="navbar-bottom-chapter-revalation" class="flex flex-row items-center py-2">{chapterRevelation === 1 ? "Meccan" : "Medinan"}</div>
+    <div id="bottom-nav" class="flex flex-row items-center justify-between border-t text-xs max-w-screen-lg mx-auto px-6 dark:border-slate-700">
+      <div id="navbar-bottom-chapter-revalation" class="flex flex-row items-center py-2">
+        {#if $topNavbarVisibleStore === false}
+          <span>{navbarChapterName}</span>
+        {:else}
+          <span>{chapterRevelation === 1 ? "Meccan" : "Medinan"}</span>
+        {/if}
+      </div>
       <!-- <div id="navbar-bottom-chapter-title" class="flex flex-row items-center py-2">{quranMetaData[$chapterNumberStore].transliteration}</div> -->
       <div class="flex flex-row items-center py-2">
         <span>{lastReadPage !== undefined ? `Page ${lastReadPage}` : "..."}</span>
