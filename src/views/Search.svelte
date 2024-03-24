@@ -83,7 +83,7 @@
             <Link to="/{value.surah.number}/{value.numberInSurah}">
               <div class="py-6 space-y-2 border-b dark:border-slate-700">
                 <div>{@html highlightSearchedText(value.text)}</div>
-                <div class="text-gray-500">&mdash; {quranMetaData[value.surah.number].transliteration} {value.surah.number}:{value.numberInSurah} ({value.edition.name})</div>
+                <div class="text-gray-500">&mdash; {quranMetaData[value.surah.number].transliteration}, {value.surah.number}:{value.numberInSurah} ({value.edition.name})</div>
               </div>
             </Link>
           {/each}
