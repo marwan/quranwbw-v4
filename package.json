@@ -5,7 +5,8 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "sirv public --single"
+    "start": "sirv public --single",
+    "css": "npx tailwindcss -i ./src/main.css -o ./public/global.css --watch"
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^5.0.1",
@@ -24,6 +25,7 @@
   "dependencies": {
     "@babel/core": "^7.24.0",
     "@babel/preset-env": "^7.24.0",
+    "preline": "^2.0.3",
     "rollup-plugin-babel": "^4.4.0",
     "sirv-cli": "^1.0.0",
     "svelte-inview": "^4.0.2",

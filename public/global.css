@@ -1,66 +1,79 @@
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
 @font-face {
-	font-family: "Uthmani-Hafs";
-	src: url("./fonts/Uthmani-Hafs.woff2") format("woff2"), url("./fonts/Uthmani-Hafs.woff") format("woff");
-	font-weight: normal;
-	font-style: normal;
-	font-display: swap;
+  font-family: "Uthmani-Hafs";
+
+  src: url("./fonts/Uthmani-Hafs.woff2") format("woff2"), url("./fonts/Uthmani-Hafs.woff") format("woff");
+
+  font-weight: normal;
+
+  font-style: normal;
+
+  font-display: swap;
 }
 
 @font-face {
-	font-family: "IndoPak";
-	src: url("./fonts/Naskh-Nastaleeq-IndoPak-QWBW.woff2") format("woff2"), url("./fonts/Naskh-Nastaleeq-IndoPak-QWBW.woff") format("woff");
-	font-weight: normal;
-	font-style: normal;
-	font-display: swap;
+  font-family: "IndoPak";
+
+  src: url("./fonts/Naskh-Nastaleeq-IndoPak-QWBW.woff2") format("woff2"), url("./fonts/Naskh-Nastaleeq-IndoPak-QWBW.woff") format("woff");
+
+  font-weight: normal;
+
+  font-style: normal;
+
+  font-display: swap;
 }
 
 @font-face {
-	font-family: "chapter-icons";
-	src: url("./fonts/chapter-icons.woff") format("woff");
-  }
+  font-family: "chapter-icons";
+
+  src: url("./fonts/chapter-icons.woff") format("woff");
+}
 
 ::-webkit-scrollbar {
-	width: 10px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-	background: #d1d5db;
-	height: 70px;
-	border-radius: 15px;
+  background: #d1d5db;
+  height: 70px;
+  border-radius: 15px;
 }
 
 html, body {
-	position: relative;
-	width: 100%;
-	height: 100%;
-	/* scroll-behavior: smooth; */
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /* scroll-behavior: smooth; */
 }
 
 body {
-	color: #333;
-	margin: 0;
-	padding: 8px;
-	box-sizing: border-box;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 8px;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
 
 label {
-	display: block;
+  display: block;
 }
 
 input, select, textarea {
-	font-family: inherit;
-	font-size: inherit;
-	-webkit-padding: 0.4em 0;
-	padding: 0.4em;
-	margin: 0 0 0.5em 0;
-	box-sizing: border-box;
-	border: 1px solid #ccc;
-	border-radius: 2px;
+  font-family: inherit;
+  font-size: inherit;
+  -webkit-padding: 0.4em 0;
+  padding: 0.4em;
+  margin: 0 0 0.5em 0;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 2px;
 }
 
 input:disabled {
-	color: #ccc;
+  color: #ccc;
 }
 
 /* button {
@@ -82,7 +95,7 @@ button:focus {
 } */
 
 svg {
-	pointer-events: none;
+  pointer-events: none;
 }
 
 .arabic-font-1,
@@ -100,64 +113,68 @@ svg {
 }
 
 .chapter-icons {
-    font-family: chapter-icons !important;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+  font-family: chapter-icons !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale
 }
 
-
 /* dark blue theme */
+
 .theme-2 {
-	filter: grayscale(0%) sepia(15%) brightness(100%) hue-rotate(325deg) saturate(625%) invert(100%);
-	-webkit-filter: grayscale(0%) sepia(15%) brightness(100%) hue-rotate(325deg) saturate(625%) invert(100%);
-	-moz-filter: grayscale(0%) sepia(15%) brightness(100%) hue-rotate(325deg) saturate(625%) invert(100%);
+  filter: grayscale(0%) sepia(15%) brightness(100%) hue-rotate(325deg) saturate(625%) invert(100%);
+  -webkit-filter: grayscale(0%) sepia(15%) brightness(100%) hue-rotate(325deg) saturate(625%) invert(100%);
+  -moz-filter: grayscale(0%) sepia(15%) brightness(100%) hue-rotate(325deg) saturate(625%) invert(100%);
 }
 
 .theme-2 .font-filter {
-	filter: grayscale(0%) sepia(25%) brightness(100%) hue-rotate(50deg) saturate(30%) invert(100%);
-	-webkit-filter: grayscale(0%) sepia(25%) brightness(100%) hue-rotate(50deg) saturate(30%) invert(100%);
-	-moz-filter:grayscale(0%) sepia(25%) brightness(100%) hue-rotate(50deg) saturate(30%) invert(100%);
+  filter: grayscale(0%) sepia(25%) brightness(100%) hue-rotate(50deg) saturate(30%) invert(100%);
+  -webkit-filter: grayscale(0%) sepia(25%) brightness(100%) hue-rotate(50deg) saturate(30%) invert(100%);
+  -moz-filter:grayscale(0%) sepia(25%) brightness(100%) hue-rotate(50deg) saturate(30%) invert(100%);
 }
 
 /* dark green theme */
+
 .theme-3 {
-	filter: grayscale(0) sepia(5%) brightness(95%) hue-rotate(315deg) saturate(625%) invert(100%);
-	-webkit-filter: grayscale(0) sepia(5%) brightness(95%) hue-rotate(315deg) saturate(625%) invert(100%);
-	-moz-filter: grayscale(0) sepia(5%) brightness(95%) hue-rotate(315deg) saturate(625%) invert(100%);
+  filter: grayscale(0) sepia(5%) brightness(95%) hue-rotate(315deg) saturate(625%) invert(100%);
+  -webkit-filter: grayscale(0) sepia(5%) brightness(95%) hue-rotate(315deg) saturate(625%) invert(100%);
+  -moz-filter: grayscale(0) sepia(5%) brightness(95%) hue-rotate(315deg) saturate(625%) invert(100%);
 }
 
 .theme-3 .font-filter {
-	filter: grayscale(0%) sepia(25%) brightness(100%) hue-rotate(50deg) saturate(30%) invert(100%);
-	-webkit-filter: grayscale(0%) sepia(25%) brightness(100%) hue-rotate(50deg) saturate(30%) invert(100%);
-	-moz-filter: grayscale(0%) sepia(25%) brightness(100%) hue-rotate(50deg) saturate(30%) invert(100%);
+  filter: grayscale(0%) sepia(25%) brightness(100%) hue-rotate(50deg) saturate(30%) invert(100%);
+  -webkit-filter: grayscale(0%) sepia(25%) brightness(100%) hue-rotate(50deg) saturate(30%) invert(100%);
+  -moz-filter: grayscale(0%) sepia(25%) brightness(100%) hue-rotate(50deg) saturate(30%) invert(100%);
 }
 
 .theme-2 .grayscale, .theme-3 .grayscale, .theme-4 .grayscale {
-	filter: grayscale(100%);
-	-webkit-filter: grayscale(100%);
-	-moz-filter:grayscale(100%);
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  -moz-filter:grayscale(100%);
 }
+
 /* pure black theme (OLED) */
+
 .theme-4 {
-	filter: brightness(70%) contrast(300%) invert(100%) saturate(100%);
-	-webkit-filter: brightness(70%) contrast(300%) invert(100%) saturate(100%);
-	-moz-filter: brightness(70%) contrast(300%) invert(100%) saturate(100%);
+  filter: brightness(70%) contrast(300%) invert(100%) saturate(100%);
+  -webkit-filter: brightness(70%) contrast(300%) invert(100%) saturate(100%);
+  -moz-filter: brightness(70%) contrast(300%) invert(100%) saturate(100%);
 }
 
 .theme-4 .font-filter {
-	filter: brightness(60%) contrast(70%) invert(600%) saturate(200%);
-	-webkit-filter: brightness(60%) contrast(70%) invert(600%) saturate(200%);
-	-moz-filter: brightness(60%) contrast(70%) invert(600%) saturate(200%);
+  filter: brightness(60%) contrast(70%) invert(600%) saturate(200%);
+  -webkit-filter: brightness(60%) contrast(70%) invert(600%) saturate(200%);
+  -moz-filter: brightness(60%) contrast(70%) invert(600%) saturate(200%);
 }
 
 .theme-4 .custom-backdrop {
-	filter: invert(90%)
+  filter: invert(90%)
 }
 
 /* sepia theme */
+
 .theme-5 {
-	filter: brightness(70%) contrast(100%) saturate(100%) sepia(35%);
-	-webkit-filter: brightness(70%) contrast(100%) saturate(100%) sepia(35%);
-	-moz-filter: brightness(70%) contrast(100%) saturate(100%) sepia(35%);
+  filter: brightness(70%) contrast(100%) saturate(100%) sepia(35%);
+  -webkit-filter: brightness(70%) contrast(100%) saturate(100%) sepia(35%);
+  -moz-filter: brightness(70%) contrast(100%) saturate(100%) sepia(35%);
 }
 
