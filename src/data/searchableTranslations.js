@@ -62,6 +62,12 @@ export const searchableTranslations = [
     direction: "rtl",
   },
   {
+    identifier: "en",
+    language: "en",
+    name: "All English translations",
+    englishName: "All English translations",
+  },
+  {
     identifier: "en.ahmedali",
     language: "en",
     name: "Ahmed Ali",

@@ -10,7 +10,7 @@
   let fetchData;
 
   const params = new URLSearchParams(window.location.search);
-  const defaultTranslation = 18;
+  const defaultTranslation = 19;
 
   let selectedTranslation = params.get("translation") === null ? defaultTranslation : +params.get("translation"); // default to Saheeh International
   let searchText = params.get("text") === null ? "abraham" : params.get("text"); // default to "abraham"
