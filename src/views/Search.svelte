@@ -30,6 +30,13 @@
     })();
   }
 
+  // to make the searched text bolder
+  function highlightSearchedText(verseText) {
+    const searchTextReg = searchText.replace(/(\s+)/, "(<[^>]+>)*$1(<[^>]+>)*");
+    const pattern = new RegExp("(" + searchTextReg + ")", "gi");
+    return verseText.replace(pattern, "<b>$1</b>");
+  }
+
   currentPageStore.set("search");
 </script>
 
@@ -75,7 +82,7 @@
           {#each Object.entries(fetchData.matches) as [key, value]}
             <Link to="/{value.surah.number}/{value.numberInSurah}">
               <div class="py-6 space-y-2 border-b dark:border-slate-700">
-                <div>{value.text}</div>
+                <div>{@html highlightSearchedText(value.text)}</div>
                 <div class="text-gray-500">&mdash; {quranMetaData[value.surah.number].transliteration} {value.surah.number}:{value.numberInSurah} ({value.edition.name})</div>
               </div>
             </Link>
