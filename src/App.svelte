@@ -21,6 +21,7 @@
   import Issues from "$views/Issues.svelte";
   import About from "$views/About.svelte";
   import Morphology from "$views/Morphology.svelte";
+  import Search from "$views/Search.svelte";
 
   // ui
   import Navbar from "$ui/Navbar.svelte";
@@ -47,6 +48,8 @@
       <Route path="/changelogs" component={Changelogs} />
       <Route path="/issues" component={Issues} />
       <Route path="/about" component={About} />
+      <Route path="/search" component={Search} />
+
       <Route path="/page/:page" let:params>
         <Page page={params.page} />
       </Route>

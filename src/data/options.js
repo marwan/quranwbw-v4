@@ -217,3 +217,27 @@ export const selectablePlaybackSpeeds = {
   5: { id: 5, speed: 1.75 },
   6: { id: 6, speed: 2 },
 };
+
+// export const selectableSearchTranslations = {
+//   // english
+//   1: { id: 1, language: "English", author: "Ahmed Ali", code: "en.ahmedali" },
+//   2: { id: 2, language: "English", author: "Ahmed Raza Khan", code: "en.ahmedraza" },
+//   3: { id: 3, language: "English", author: "Arberry", code: "en.arberry" },
+//   4: { id: 4, language: "English", author: "Asad", code: "en.asad" },
+//   5: { id: 5, language: "English", author: "Daryabadi", code: "en.daryabadi" },
+//   6: { id: 6, language: "English", author: "Hilali & Khan", code: "en.hilali" },
+//   7: { id: 7, language: "English", author: "Pickthall", code: "en.pickthall" },
+//   8: { id: 8, language: "English", author: "Qaribullah & Darwish", code: "en.qaribullah" },
+//   9: { id: 9, language: "English", author: "Saheeh International", code: "en.sahih" },
+//   10: { id: 10, language: "English", author: "Sarwar", code: "en.sarwar" },
+//   11: { id: 11, language: "English", author: "Yusuf Ali", code: "en.yusufali" },
+//   12: { id: 12, language: "English", author: "Maududi", code: "en.maududi" },
+//   13: { id: 13, language: "English", author: "Shakir", code: "en.shakir" },
+//   14: { id: 14, language: "English", author: "Transliteration", code: "en.transliteration" },
+//   15: { id: 15, language: "English", author: "Ibrahim Walk", code: "en.walk" },
+//   16: { id: 16, language: "English", author: "Clear Qur'an - Talal Itani", code: "en.itani" },
+//   17: { id: 17, language: "English", author: "Mubarakpuri", code: "en.mubarakpuri" },
+//   18: { id: 18, language: "English", author: "Qarai", code: "en.qarai" },
+//   19: { id: 19, language: "English", author: "Wahiduddin Khan", code: "en.wahiduddin" },
+//   20: { id: 20, language: "English", author: "All English Translations", code: "en" },
+// };
