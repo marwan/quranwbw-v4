@@ -1,5 +1,5 @@
 <script>
-  import { Link } from "svelte-routing";
+  import { Link, navigate } from "svelte-routing";
   import Spinner from "$svgs/Spinner.svelte";
   import { websiteURL } from "$utils/websiteSettings";
   import { searchableTranslations } from "$data/searchableTranslations";
@@ -9,11 +9,20 @@
 
   let fetchData;
 
-  let selectedTranslation = 18; // default to Saheeh International
-  let searchText = "abraham"; // default to "abraham"
+  const params = new URLSearchParams(window.location.search);
+  const defaultTranslation = 18;
+
+  let selectedTranslation = params.get("translation") === null ? defaultTranslation : +params.get("translation"); // default to Saheeh International
+  let searchText = params.get("text") === null ? "abraham" : params.get("text"); // default to "abraham"
+
+  // in case it's not a number or out of range
+  if (isNaN(selectedTranslation) || selectedTranslation < 0 || selectedTranslation > 120) selectedTranslation = defaultTranslation;
 
   // fetch the search results from Al Quran Cloud API
   $: {
+    // update the params
+    navigate(`/search?text=${searchText}&translation=${selectedTranslation}`, { replace: true });
+
     fetchData = (async () => {
       const response = await fetch(`https://api.alquran.cloud/v1/search/${searchText}/all/${searchableTranslations[selectedTranslation].identifier}`);
       const data = await response.json();
