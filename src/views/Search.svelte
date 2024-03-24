@@ -48,7 +48,7 @@
   <div class="my-6 space-y-4 pb-4 border-b-2 dark:border-slate-700">
     <h1 class="text-2xl">Search the Quran</h1>
     <div class="text-sm">
-      Search the Quran for any text in over 100+ translations. API provided by <a href="https://alquran.cloud/api" target="_blank" class={linkElement}>Al Quran Cloud</a>.
+      Search the Quran for any text in over 100+ translations. Powered by the <a href="https://alquran.cloud/api" target="_blank" class={linkElement}>Al Quran Cloud API</a>.
     </div>
   </div>
 
@@ -77,7 +77,7 @@
       <Spinner />
     {:then fetchData}
       <div class="text-sm space-y-2 pt-4">
-        <div id="info" class="font-medium text-center">Showing {fetchData.count} results for "{searchText}" in {searchableTranslations[selectedTranslation].name}</div>
+        <div id="info" class="font-medium text-center">Showing {fetchData.count} results for "{searchText}" from {searchableTranslations[selectedTranslation].name}</div>
         <div id="results">
           {#each Object.entries(fetchData.matches) as [key, value]}
             <Link to="/{value.surah.number}/{value.numberInSurah}">
