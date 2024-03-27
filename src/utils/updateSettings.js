@@ -87,8 +87,14 @@ export function updateSettings(props) {
       const key = props.key;
       let userBookmarks = userSettings["userBookmarks"];
 
+      // for old imports, only push if bookmark doesn't exist
+      if (props.oldCheck === true) {
+        if (userBookmarks.includes(key) === false) userBookmarks.push(key);
+      }
+
+      // for existing bookmarks...
       // if the bookmark (key) already exists, then remove it, else add it
-      userBookmarks.includes(key) ? (userBookmarks = userBookmarks.filter((x) => x !== key)) : userBookmarks.push(key);
+      else userBookmarks.includes(key) ? (userBookmarks = userBookmarks.filter((x) => x !== key)) : userBookmarks.push(key);
 
       // update the bookmarks
       userSettings.userBookmarks = userBookmarks;

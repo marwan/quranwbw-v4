@@ -34,6 +34,8 @@
   let lastReadPage, lastReadJuz;
 
   $: {
+    // window.HSStaticMethods.autoInit();
+
     try {
       lastReadPage = document.getElementById($lastReadStore).getAttribute("data-page");
       lastReadJuz = document.getElementById($lastReadStore).getAttribute("data-juz");

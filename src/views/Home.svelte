@@ -32,30 +32,22 @@
     <div class="flex flex-row flex-wrap space-x-1 md:space-x-2 justify-center">
       <!-- Supplications from Quran page -->
       <div id="supplications-link" class="flex justify-center items-center block">
-        <span class={linkStyles}>
-          <Link to="/supplications">Supplications</Link>
-        </span>
+        <Link to="/supplications" class={linkStyles}>Supplications</Link>
       </div>
 
       <!-- bookmarks page -->
       <div id="bookmarks-link" class="flex justify-center items-center block">
-        <span class={linkStyles}>
-          <Link to="/bookmarks">Bookmarks</Link>
-        </span>
+        <Link to="/bookmarks" class={linkStyles}>Bookmarks</Link>
       </div>
 
       <!-- morphology page -->
       <div id="morphology-link" class="flex justify-center items-center block">
-        <span class={linkStyles}>
-          <Link to="/morphology/1:1">Morphology</Link>
-        </span>
+        <Link to="/morphology/1:1" class={linkStyles}>Morphology</Link>
       </div>
 
       <!-- search page -->
       <div id="search-link" class="flex justify-center items-center block">
-        <span class={linkStyles}>
-          <Link to="/search">Search</Link>
-        </span>
+        <Link to="/search" class={linkStyles}>Search</Link>
       </div>
     </div>
   </div>

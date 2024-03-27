@@ -8,6 +8,8 @@
   import "$utils/userSettings";
   import { currentPageStore } from "$utils/stores";
 
+  import { checkOldBookmarks } from "$utils/checkOldBookmarks";
+
   // check and set user settings from URL parameters
   import "$utils/checkURLParameters";
 
@@ -29,6 +31,9 @@
   import BottomPlayer from "$ui/BottomPlayer.svelte";
   import InitialSetupModal from "$modals/InitialSetupModal.svelte";
   import AudioModal from "$modals/AudioModal.svelte";
+
+  // check old bookmarks for v3 update
+  checkOldBookmarks();
 </script>
 
 <Router>
