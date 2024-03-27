@@ -8,7 +8,6 @@
   import { updateSettings } from "$utils/updateSettings";
 
   // icons
-  // import Play from "$svgs/Play.svelte";
   import PlaySolid from "$svgs/PlaySolid.svelte";
   import Pause from "$svgs/Pause.svelte";
   import ChevronLeft from "$svgs/ChevronLeft.svelte";
@@ -24,7 +23,7 @@
         type: "verse",
         chapter: $chapterNumberStore,
         verse: 1,
-        firstToPlay: 1,
+        firstToPlay: +document.querySelector("#verses-block :nth-child(1)").id.split(":")[1], // first verse of page
         lastToPlay: quranMetaData[$chapterNumberStore].verses,
         timesToRepeat: 1,
         delay: 0,
@@ -43,7 +42,7 @@
       </Link>
 
       <!-- 2nd icon -->
-      <button type="button" on:click={() => updateSettings({ type: "displayType", value: $displayTypeStore === 5 ? 1 : $displayTypeStore + 1 })} class="opacity-70 inline-flex flex-col items-center justify-center px-5 hover:bg-gray-200 dark:hover:bg-gray-800 group">
+      <button type="button" on:click={() => updateSettings({ type: "displayType", value: $displayTypeStore === 5 ? 1 : $displayTypeStore + 1 })} class="opacity-70 inline-flex flex-col items-center justify-center px-5 relative inline-flex items-center hover:bg-gray-200 dark:hover:bg-gray-800 group">
         <Eye />
         <span class="sr-only">Display Type</span>
       </button>
@@ -51,9 +50,15 @@
       <!-- 3rd icon -->
       <!-- play/pause button -->
       <div class="flex items-center justify-center">
-        <button type="button" on:click={() => audioController()} class="inline-flex items-center justify-center w-10 h-10 font-medium bg-[#ebebeb] hover:bg-gray-200 rounded-full group focus:ring-2 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800">
+        <button type="button" on:click={() => audioController()} class="inline-flex flex-col items-center justify-center w-10 h-10 font-medium bg-[#ebebeb] hover:bg-gray-200 rounded-full group focus:ring-2 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800">
           <svelte:component this={$audioSettingsStore.isPlaying === true ? Pause : PlaySolid} />
+
           <span class="sr-only">Play/Pause</span>
+
+          <!-- show badge when a verse is playing -->
+          {#if $audioSettingsStore.isPlaying === true && $audioSettingsStore.audioType === "verse"}
+            <div class="absolute inline-flex items-center justify-center z-30 text-xs px-2 text-white bg-gray-500 border-2 border-white rounded-md -top-3 dark:border-gray-900">{$audioSettingsStore.playingKey}</div>
+          {/if}
         </button>
       </div>
 

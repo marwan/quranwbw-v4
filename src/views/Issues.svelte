@@ -41,15 +41,13 @@
       {#each Object.entries(fetchData) as [key, value]}
         <div class="py-6 space-y-2 border-b dark:border-slate-700">
           <div class="space-y-2">
-            <div class="truncate">
-              <a href={value.html_url} target="_blank" class={linkElement}>Issue #{value.number}: {value.title}</a>
+            <a href={value.html_url} target="_blank" class={linkElement}>Issue #{value.number}: {value.title}</a>
 
-              <!-- labels -->
-              <div class="inline-flex ml-2 space-x-2">
-                {#each Object.entries(value.labels) as [id, label]}
-                  <span class="bg-gray-300 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full grayscale">{label.name}</span>
-                {/each}
-              </div>
+            <!-- labels -->
+            <div class="inline-flex ml-2 space-x-2">
+              {#each Object.entries(value.labels) as [id, label]}
+                <span class="bg-gray-300 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full grayscale">{label.name}</span>
+              {/each}
             </div>
             <div>
               <img class="rounded-full inline-flex w-5 h-5" src={value.user.avatar_url} alt={value.user.login} />

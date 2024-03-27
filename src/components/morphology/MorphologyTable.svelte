@@ -14,6 +14,13 @@
   const loadAll = params.get("load_all") === "true";
   const totalAvailableWords = Object.keys(wordData).length;
   let lastWordToLoad = loadAll === true ? totalAvailableWords : totalAvailableWords > 10 ? 10 : totalAvailableWords;
+
+  function updateLastWordToLoad() {
+    lastWordToLoad = lastWordToLoad + 10;
+    if (lastWordToLoad > totalAvailableWords) {
+      lastWordToLoad = totalAvailableWords;
+    }
+  }
 </script>
 
 {#if totalAvailableWords > 0}
@@ -49,8 +56,8 @@
 
       <!-- button to load more words -->
       {#if totalAvailableWords > 10}
-        <div class="text-center text-xs">
-          <button on:click={() => (lastWordToLoad = lastWordToLoad + 10)} class={buttonElement}>Load more 10 words</button>
+        <div class="text-center text-xs {lastWordToLoad === totalAvailableWords && 'hidden'}">
+          <button on:click={() => updateLastWordToLoad()} class={buttonElement}>Load more...</button>
         </div>
       {/if}
     </div>

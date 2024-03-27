@@ -41,7 +41,7 @@
       {#each Object.entries(fetchData) as [key, value]}
         <div class="py-6 space-y-2 border-b dark:border-slate-700">
           <div class="space-y-2">
-            <div class="truncate"><a href={value.html_url} target="_blank" class={linkElement}>{value.commit.message}</a></div>
+            <div><a href={value.html_url} target="_blank" class={linkElement}>{value.commit.message}</a></div>
             <div>
               <img class="rounded-full inline-flex w-5 h-5" src={value.author.avatar_url} alt={value.author.login} />
               {value.author.login} commited {timeAgo(value.commit.committer.date)} <span class="hidden md:inline-block">({value.sha.substring(0, 7)})</span>
