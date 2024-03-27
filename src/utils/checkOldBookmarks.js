@@ -11,4 +11,7 @@ export function checkOldBookmarks() {
       updateSettings({ type: "userBookmarks", key: bookmark, oldCheck: true });
     });
   }
+
+  // remove the old bookmarks localStorage as it's no longer needed
+  localStorage.removeItem("bookmarks");
 }
