@@ -37,13 +37,13 @@
   <div class="{$bottomNavbarVisibleStore === true ? 'block' : 'hidden'} fixed z-20 w-full h-16 max-w-xs md:max-w-lg shadow-md -translate-x-1/2 bg-white backdrop-filter backdrop-blur-lg bg-opacity-50 border border-gray-200 rounded-full bottom-4 left-1/2 grayscale">
     <div class="grid h-full max-w-lg grid-cols-5 mx-auto">
       <!-- Previous Chapter -->
-      <Link to="/{$chapterNumberStore - 1}" class="{$chapterNumberStore === 1 && disabledElement} inline-flex flex-col items-center justify-center px-5 rounded-s-full hover:bg-gray-50 dark:hover:bg-gray-800 group">
+      <Link to="/{$chapterNumberStore - 1}" class="{$chapterNumberStore === 1 && disabledElement} inline-flex flex-col items-center justify-center px-5 rounded-s-full hover:bg-gray-200 dark:hover:bg-gray-800 group">
         <ChevronLeft />
         <span class="sr-only">Previous Chapter</span>
       </Link>
 
       <!-- 2nd icon -->
-      <button type="button" on:click={() => updateSettings({ type: "displayType", value: $displayTypeStore === 5 ? 1 : $displayTypeStore + 1 })} class="opacity-70 inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
+      <button type="button" on:click={() => updateSettings({ type: "displayType", value: $displayTypeStore === 5 ? 1 : $displayTypeStore + 1 })} class="opacity-70 inline-flex flex-col items-center justify-center px-5 hover:bg-gray-200 dark:hover:bg-gray-800 group">
         <Eye />
         <span class="sr-only">Display Type</span>
       </button>
@@ -58,13 +58,13 @@
       </div>
 
       <!-- 4th icon -->
-      <button type="button" data-drawer-target="settings-drawer" data-drawer-show="settings-drawer" data-drawer-placement="right" aria-controls="settings-drawer" class="opacity-70 inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
+      <button type="button" data-drawer-target="settings-drawer" data-drawer-show="settings-drawer" data-drawer-placement="right" aria-controls="settings-drawer" class="opacity-70 inline-flex flex-col items-center justify-center px-5 hover:bg-gray-200 dark:hover:bg-gray-800 group">
         <Settings />
         <span class="sr-only">Settings</span>
       </button>
 
       <!-- Next Chapter -->
-      <Link to="/{$chapterNumberStore + 1}" class="{$chapterNumberStore === 114 && disabledElement} inline-flex flex-col items-center justify-center px-5 rounded-e-full hover:bg-gray-50 dark:hover:bg-gray-800 group">
+      <Link to="/{$chapterNumberStore + 1}" class="{$chapterNumberStore === 114 && disabledElement} inline-flex flex-col items-center justify-center px-5 rounded-e-full hover:bg-gray-200 dark:hover:bg-gray-800 group">
         <ChevronRight />
         <span class="sr-only">Next Chapter</span>
       </Link>

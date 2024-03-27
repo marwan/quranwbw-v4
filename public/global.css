@@ -76,6 +76,10 @@ input:disabled {
   color: #ccc;
 }
 
+input:placeholder-shown {
+  text-overflow: ellipsis;
+}
+
 /* button {
 	color: #333;
 	background-color: #f4f4f4;

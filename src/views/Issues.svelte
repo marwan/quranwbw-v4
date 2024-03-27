@@ -47,7 +47,7 @@
               <!-- labels -->
               <div class="inline-flex ml-2 space-x-2">
                 {#each Object.entries(value.labels) as [id, label]}
-                  <span class="flex py-1 px-3 bg-[#ebebeb] rounded-lg text-xs items-center hover:bg-[#ebebeb] dark:hover:bg-slate-700">{label.name}</span>
+                  <span class="bg-gray-300 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full grayscale">{label.name}</span>
                 {/each}
               </div>
             </div>
