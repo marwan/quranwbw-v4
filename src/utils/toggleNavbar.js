@@ -13,11 +13,13 @@ export function toggleNavbar() {
     // scrolling down
     if (scrollTop > lastScrollTop) {
       topNavbarVisibleStore.set(false);
+      // bottomNavbarVisibleStore.set(false);
     }
 
     // scrolling up
     else if (scrollTop < lastScrollTop) {
       topNavbarVisibleStore.set(true);
+      // bottomNavbarVisibleStore.set(true);
     }
 
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling

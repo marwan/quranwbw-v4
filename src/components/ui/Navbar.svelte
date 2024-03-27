@@ -1,7 +1,7 @@
 <script>
   import { Link } from "svelte-routing";
   import { quranMetaData, pageNumberKeys } from "$data/quranMeta";
-  import { chapterNumberStore, currentPageStore, lastReadStore, pageURLStore, topNavbarVisibleStore, bottomNavbarVisibleStore } from "$utils/stores";
+  import { chapterNumberStore, currentPageStore, lastReadStore, pageURLStore, topNavbarVisibleStore } from "$utils/stores";
   import { toggleModal } from "$utils/toggleModal";
   import { disabledElement, buttonElement } from "$utils/commonStyles";
 
@@ -160,7 +160,7 @@
   <div id="rightMenuDropdown" class="navbar-dropdown z-30 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-slate-800 dark:border-slate-700">
     <ul class="py-2 text-sm text-gray-700 dark:text-slate-400" aria-labelledby="rightMenuDropdownButton">
       <li class={$currentPageStore === "changelogs" || $currentPageStore === "issues" || $currentPageStore === "about" || $currentPageStore === "search" ? disabledElement : ""}>
-        <button data-drawer-target="drawer-right" data-drawer-show="drawer-right" data-drawer-placement="right" aria-controls="drawer-right" class={rightMenuDropdownClasses}>Settings</button>
+        <button data-drawer-target="settings-drawer" data-drawer-show="settings-drawer" data-drawer-placement="right" aria-controls="settings-drawer" class={rightMenuDropdownClasses}>Settings</button>
       </li>
       <li>
         <Link to="/about">

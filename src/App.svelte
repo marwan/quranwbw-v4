@@ -1,17 +1,16 @@
 <script>
-  import { Router, Route } from "svelte-routing";
-
   // Flowbite JS
   import "$lib/flowbite.min.js";
 
   // default user settings
   import "$utils/userSettings";
-  import { currentPageStore } from "$utils/stores";
-
-  import { checkOldBookmarks } from "$utils/checkOldBookmarks";
 
   // check and set user settings from URL parameters
   import "$utils/checkURLParameters";
+
+  import { Router, Route } from "svelte-routing";
+  import { currentPageStore } from "$utils/stores";
+  import { checkOldBookmarks } from "$utils/checkOldBookmarks";
 
   // views
   import Home from "$views/Home.svelte";
@@ -28,7 +27,8 @@
   // ui
   import Navbar from "$ui/Navbar.svelte";
   import Drawer from "$ui/Drawer.svelte";
-  import BottomPlayer from "$ui/BottomPlayer.svelte";
+  // import BottomPlayer from "$ui/BottomPlayer.svelte";
+  import BottomNavbar from "$ui/BottomNavbar.svelte";
   import InitialSetupModal from "$modals/InitialSetupModal.svelte";
   import AudioModal from "$modals/AudioModal.svelte";
 
@@ -43,7 +43,8 @@
     <Drawer />
     <InitialSetupModal />
     <AudioModal />
-    <BottomPlayer />
+    <BottomNavbar />
+    <!-- <BottomPlayer /> -->
 
     <!-- components will be rendered in this div -->
     <div>
