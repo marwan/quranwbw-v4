@@ -16,7 +16,7 @@
   let lastWordToLoad = loadAll === true ? totalAvailableWords : totalAvailableWords > 10 ? 10 : totalAvailableWords;
 
   function updateLastWordToLoad() {
-    lastWordToLoad = lastWordToLoad + 10;
+    lastWordToLoad = lastWordToLoad + 50;
     if (lastWordToLoad > totalAvailableWords) {
       lastWordToLoad = totalAvailableWords;
     }

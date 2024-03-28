@@ -6,7 +6,6 @@
   import { disabledElement, buttonElement } from "$utils/commonStyles";
 
   // icons
-  import Logo from "$svgs/Logo.svelte";
   import Menu from "$svgs/Menu.svelte";
   import Home from "$svgs/Home.svelte";
 
@@ -16,14 +15,6 @@
   let gotoVerse = 1,
     gotoPageChapter = 1,
     gotoPageVerse = 1;
-
-  function verseSelector(event) {
-    gotoVerse = event.target.valueAsNumber;
-    // todo:
-    // 1. if verse is less than 1, or more than max verses, set default
-    // 2. bind input to gotoVerse
-    // 3. disable "Go" button when input is empty
-  }
 
   function pageSelector(event) {
     const pageKey = pageNumberKeys[event.target.valueAsNumber - 1].split(":");
@@ -134,7 +125,7 @@
           <div class="flex flex-col space-y-2">
             <div class="text-xs pb-2 border-b dark:border-slate-700">Go to Verse</div>
             <div class="flex flex-row space-x-2">
-              <input type="number" min="1" max={quranMetaData[$chapterNumberStore].verses} id="gotoVerse" on:change={(event) => verseSelector(event)} aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-24 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="e.g. {Math.floor(Math.random() * (quranMetaData[$chapterNumberStore].verses - 1 + 1)) + 1}" />
+              <input type="number" min="1" max={quranMetaData[$chapterNumberStore].verses} id="gotoVerse" on:change={(event) => (gotoVerse = event.target.valueAsNumber)} aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-24 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="e.g. {Math.floor(Math.random() * (quranMetaData[$chapterNumberStore].verses - 1 + 1)) + 1}" />
               <button on:click={() => toggleModal("navigationDropdown", "hide")}>
                 <Link to="/{$chapterNumberStore}/{gotoVerse}" on:click={() => pageURLStore.set(Math.random())} class={buttonElement}>Go</Link>
               </button>
