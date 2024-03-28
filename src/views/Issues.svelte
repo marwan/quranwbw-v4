@@ -1,6 +1,7 @@
 <script>
+  import PageMeta from "$components/PageMeta.svelte";
   import Spinner from "$svgs/Spinner.svelte";
-  import { websiteURL } from "$utils/websiteSettings";
+  import { websiteURL } from "$data/websiteSettings";
   import { currentPageStore } from "$utils/stores";
   import { timeAgo } from "$utils/timeAgo";
   import { linkElement } from "$utils/commonStyles";
@@ -19,9 +20,7 @@
   currentPageStore.set("issues");
 </script>
 
-<svelte:head>
-  <title>Issues - {websiteURL}</title>
-</svelte:head>
+<PageMeta title={"Issues"} />
 
 <div class="">
   <div class="my-6 space-y-4 pb-4 border-b-2 dark:border-slate-700">

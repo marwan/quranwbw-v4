@@ -1,10 +1,11 @@
 <script>
   export let page;
 
+  import PageMeta from "$components/PageMeta.svelte";
   import { Link } from "svelte-routing";
   import VersesWords from "$verses/VersesWords.svelte";
   import Spinner from "$svgs/Spinner.svelte";
-  import { websiteURL } from "$utils/websiteSettings";
+  import { websiteURL } from "$data/websiteSettings";
   import { currentPageStore, wordTypeStore } from "$utils/stores";
   import { updateSettings } from "$utils/updateSettings";
   import { quranMetaData } from "$data/quranMeta";
@@ -83,9 +84,7 @@
   currentPageStore.set("page");
 </script>
 
-<svelte:head>
-  <title>Page {page} - {websiteURL}</title>
-</svelte:head>
+<PageMeta title={`Page ${page}`} />
 
 <div class="flex flex-row space-x-8 my-8 justify-center">
   <Link to="/page/{+page - 1}" class={tabPillElement}>{@html "&#x2190;"} Previous Page</Link>

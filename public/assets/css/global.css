@@ -5,7 +5,7 @@
 @font-face {
   font-family: "Uthmani-Hafs";
 
-  src: url("./fonts/Uthmani-Hafs.woff2") format("woff2"), url("./fonts/Uthmani-Hafs.woff") format("woff");
+  src: url("../fonts/Uthmani-Hafs.woff2") format("woff2"), url("../fonts/Uthmani-Hafs.woff") format("woff");
 
   font-weight: normal;
 
@@ -17,7 +17,7 @@
 @font-face {
   font-family: "IndoPak";
 
-  src: url("./fonts/Naskh-Nastaleeq-IndoPak-QWBW.woff2") format("woff2"), url("./fonts/Naskh-Nastaleeq-IndoPak-QWBW.woff") format("woff");
+  src: url("../fonts/Naskh-Nastaleeq-IndoPak-QWBW.woff2") format("woff2"), url("../fonts/Naskh-Nastaleeq-IndoPak-QWBW.woff") format("woff");
 
   font-weight: normal;
 
@@ -29,7 +29,7 @@
 @font-face {
   font-family: "chapter-icons";
 
-  src: url("./fonts/chapter-icons.woff") format("woff");
+  src: url("../fonts/chapter-icons.woff") format("woff");
 }
 
 ::-webkit-scrollbar {

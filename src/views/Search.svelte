@@ -1,7 +1,8 @@
 <script>
+  import PageMeta from "$components/PageMeta.svelte";
   import { Link, navigate } from "svelte-routing";
   import Spinner from "$svgs/Spinner.svelte";
-  import { websiteURL } from "$utils/websiteSettings";
+  import { websiteURL } from "$data/websiteSettings";
   import { searchableTranslations } from "$data/searchableTranslations";
   import { quranMetaData } from "$data/quranMeta";
   import { currentPageStore } from "$utils/stores";
@@ -40,9 +41,7 @@
   currentPageStore.set("search");
 </script>
 
-<svelte:head>
-  <title>Search - {websiteURL}</title>
-</svelte:head>
+<PageMeta title={"Search"} />
 
 <div class="grayscale space-y-8">
   <div class="my-6 space-y-4 pb-4 border-b-2 dark:border-slate-700">

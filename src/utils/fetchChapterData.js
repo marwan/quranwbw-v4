@@ -1,6 +1,6 @@
 import { get } from "svelte/store";
 import { currentPageStore, wordTypeStore, chapterDataStore, wordTranslationStore, verseTranslationsStore } from "$utils/stores";
-import { apiEndpoint } from "$utils/websiteSettings";
+import { apiEndpoint } from "$data/websiteSettings";
 import { quranMetaData } from "$data/quranMeta";
 
 // QuranWBW.com always loads the complete chapter data rather than verses on demand (like Quran.com)

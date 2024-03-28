@@ -2,7 +2,7 @@ import { get } from "svelte/store";
 import { quranMetaData } from "$data/quranMeta";
 import { displayTypeStore, reciterStore, playbackSpeedStore, audioSettingsStore } from "$utils/stores";
 import { toggleModal } from "$utils/toggleModal";
-import { wordsAudioURL } from "$utils/websiteSettings";
+import { wordsAudioURL } from "$data/websiteSettings";
 import { displayOptions, selectableReciters, selectablePlaybackSpeeds } from "$data/options";
 import { scrollSmoothly } from "$utils/scrollSmoothly";
 

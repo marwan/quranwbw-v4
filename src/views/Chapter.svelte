@@ -2,11 +2,12 @@
   // props from router
   export let chapter, startVerse, endVerse;
 
+  import PageMeta from "$components/PageMeta.svelte";
   import ChapterVerses from "$verses/ChapterVerses.svelte";
   import Bismillah from "$svgs/Bismillah.svelte";
   import Spinner from "$svgs/Spinner.svelte";
   import { parseURL } from "$utils/parseURL";
-  import { websiteURL } from "$utils/websiteSettings";
+  import { websiteURL } from "$data/websiteSettings";
   import { fetchChapterData } from "$utils/fetchChapterData";
   import { quranMetaData } from "$data/quranMeta";
   import { currentPageStore, chapterNumberStore, displayTypeStore, wordTypeStore, wordTranslationStore, verseTranslationsStore, pageURLStore } from "$utils/stores";
@@ -57,9 +58,7 @@
   currentPageStore.set("chapter");
 </script>
 
-<svelte:head>
-  <title>{quranMetaData[$chapterNumberStore].transliteration} ({$chapterNumberStore}) - {websiteURL}</title>
-</svelte:head>
+<PageMeta title={`${quranMetaData[$chapterNumberStore].transliteration} (${$chapterNumberStore})`} />
 
 <div>
   {#await chapterData}

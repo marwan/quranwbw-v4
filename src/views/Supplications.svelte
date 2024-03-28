@@ -1,7 +1,8 @@
 <script>
+  import PageMeta from "$components/PageMeta.svelte";
   import IndividualVerses from "$verses/IndividualVerses.svelte";
   import Spinner from "$svgs/Spinner.svelte";
-  import { websiteURL, apiEndpoint } from "$utils/websiteSettings";
+  import { websiteURL, apiEndpoint } from "$data/websiteSettings";
   import { currentPageStore, wordTypeStore, displayTypeStore, wordTranslationStore, verseTranslationsStore } from "$utils/stores";
   import { getSupplicationKeys } from "$utils/getSupplicationKeys";
 
@@ -31,9 +32,7 @@
   currentPageStore.set("supplications");
 </script>
 
-<svelte:head>
-  <title>Supplications From Quran - {websiteURL}</title>
-</svelte:head>
+<PageMeta title={"Supplications From Quran"} />
 
 <div>
   {#await fetchData}

@@ -1,12 +1,13 @@
 <script>
   export let key;
 
+  import PageMeta from "$components/PageMeta.svelte";
   import { Link } from "svelte-routing";
   import Spinner from "$svgs/Spinner.svelte";
   import VersesWords from "$verses/VersesWords.svelte";
   import MorphologyTable from "$morphology/MorphologyTable.svelte";
   import { quranMetaData } from "$data/quranMeta";
-  import { websiteTitle, apiEndpoint } from "$utils/websiteSettings";
+  import { websiteTitle, apiEndpoint } from "$data/websiteSettings";
   import { currentPageStore, wordTypeStore, wordTranslationStore, verseTranslationsStore, morphologyKey } from "$utils/stores";
   import { tabPillElement } from "$utils/commonStyles";
 
@@ -63,9 +64,7 @@
   currentPageStore.set("morphology");
 </script>
 
-<svelte:head>
-  <title>Morphology ({$morphologyKey}) - {websiteTitle}</title>
-</svelte:head>
+<PageMeta title={`Morphology (${$morphologyKey})`} />
 
 <div class="space-y-12 my-8">
   <div id="verse-navigator" class="flex flex-row justify-center space-x-8">

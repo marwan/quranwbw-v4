@@ -1,14 +1,13 @@
 <script>
-  import { websiteURL } from "$utils/websiteSettings";
+  import PageMeta from "$components/PageMeta.svelte";
+  import { websiteURL } from "$data/websiteSettings";
   import { currentPageStore } from "$utils/stores";
   import { linkElement } from "$utils/commonStyles";
 
   currentPageStore.set("about");
 </script>
 
-<svelte:head>
-  <title>About - {websiteURL}</title>
-</svelte:head>
+<PageMeta title={"About"} />
 
 <div class="">
   <div class="my-6 space-y-4 pb-4">

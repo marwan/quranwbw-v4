@@ -1,6 +1,7 @@
 <script>
+  import PageMeta from "$components/PageMeta.svelte";
   import { Link } from "svelte-routing";
-  import { websiteTagline, websiteTitle } from "$utils/websiteSettings";
+  import { websiteTagline, websiteTitle } from "$data/websiteSettings";
   import { currentPageStore, lastReadStore } from "$utils/stores";
   import Logo from "$svgs/Logo.svelte";
 
@@ -11,9 +12,7 @@
   currentPageStore.set("home");
 </script>
 
-<svelte:head>
-  <title>{websiteTitle}</title>
-</svelte:head>
+<PageMeta title={`Quran ${websiteTagline}`} />
 
 <div class="max-w-4xl mx-auto flex flex-col space-y-8 md:px-4 grayscale">
   <div class="flex flex-col mt-4">

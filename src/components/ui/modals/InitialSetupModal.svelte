@@ -11,13 +11,13 @@
     if ($currentPageStore === "chapter") {
       const userSettings = JSON.parse(localStorage.getItem("userSettings"));
 
-      // if the setup was not already done
-      if (userSettings.initialSetupCompleted === false) {
-        toggleModal("InitialSetupModal", "show");
+      // // if the setup was not already done
+      // if (userSettings.initialSetupCompleted === false) {
+      //   toggleModal("InitialSetupModal", "show");
 
-        // set initialSetupCompleted to true
-        updateSettings({ type: "initialSetupCompleted", value: true });
-      }
+      //   // set initialSetupCompleted to true
+      //   updateSettings({ type: "initialSetupCompleted", value: true });
+      // }
     }
   }
 </script>

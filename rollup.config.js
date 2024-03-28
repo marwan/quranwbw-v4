@@ -36,6 +36,7 @@ export default {
       entries: {
         $ui: path.resolve(__dirname, "./src/components/ui"),
         $modals: path.resolve(__dirname, "./src/components/ui/modals"),
+        $components: path.resolve(__dirname, "./src/components"),
         $verses: path.resolve(__dirname, "./src/components/verses"),
         $displays: path.resolve(__dirname, "./src/components/verses/displays"),
         $svgs: path.resolve(__dirname, "./src/components/svgs"),

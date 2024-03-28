@@ -27,7 +27,6 @@
   // ui
   import Navbar from "$ui/Navbar.svelte";
   import Drawer from "$ui/Drawer.svelte";
-  // import BottomPlayer from "$ui/BottomPlayer.svelte";
   import BottomNavbar from "$ui/BottomNavbar.svelte";
   import InitialSetupModal from "$modals/InitialSetupModal.svelte";
   import AudioModal from "$modals/AudioModal.svelte";

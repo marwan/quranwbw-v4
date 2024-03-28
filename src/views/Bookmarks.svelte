@@ -1,7 +1,8 @@
 <script>
+  import PageMeta from "$components/PageMeta.svelte";
   import IndividualVerses from "$verses/IndividualVerses.svelte";
   import Spinner from "$svgs/Spinner.svelte";
-  import { websiteURL, apiEndpoint } from "$utils/websiteSettings";
+  import { websiteURL, apiEndpoint } from "$data/websiteSettings";
   import { currentPageStore, wordTypeStore, displayTypeStore, wordTranslationStore, verseTranslationsStore } from "$utils/stores";
 
   const userSettings = JSON.parse(localStorage.getItem("userSettings"));
@@ -35,9 +36,7 @@
   currentPageStore.set("bookmarks");
 </script>
 
-<svelte:head>
-  <title>Bookmarks - {websiteURL}</title>
-</svelte:head>
+<PageMeta title={"Bookmarks"} />
 
 <div class="">
   {#if userBookmarks.length === 0}
