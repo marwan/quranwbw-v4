@@ -57,8 +57,8 @@ export function playAudio(props) {
 
   // load and play the audio
   audio.currentTime = 0;
-  audio.playbackRate = selectablePlaybackSpeeds[get(playbackSpeedStore)].speed;
   audio.load();
+  audio.playbackRate = selectablePlaybackSpeeds[get(playbackSpeedStore)].speed;
   audio.play();
 
   // update the audio settings
