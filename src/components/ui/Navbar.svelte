@@ -13,7 +13,7 @@
   // classes
   const rightMenuDropdownClasses = "block w-full text-left px-4 py-2 hover:bg-[#ebebeb] dark:hover:bg-slate-700";
 
-  let gotoVerse,
+  let gotoVerse = 1,
     gotoPageChapter = 1,
     gotoPageVerse = 1;
 
