@@ -171,6 +171,9 @@
       <li class={disabledElement}>
         <button class={rightMenuDropdownClasses}>Chapter Overview</button>
       </li>
+      <li>
+        <button on:click={() => toggleModal("TajweedRulingModal", "show")} class={rightMenuDropdownClasses}>Tajweed Rulings</button>
+      </li>
       <li class={$currentPageStore === "changelogs" || $currentPageStore === "issues" || $currentPageStore === "about" || $currentPageStore === "search" ? disabledElement : ""}>
         <button on:click={() => toggleModal("InitialSetupModal", "show")} class={rightMenuDropdownClasses}>Initial Setup</button>
       </li>

@@ -83,7 +83,7 @@
     const lastVerseOnPage = endVerse;
 
     // remove the existing button
-    document.getElementById("loadNextVersesButton").remove();
+    document.getElementById("loadVersesButton").remove();
 
     // define the new starting and ending range
     (nextVersesStart = lastVerseOnPage + 1), (nextVersesEnd = nextVersesStart + versesToLoad);
@@ -119,8 +119,8 @@
 {#if isExampleVerse === undefined}
   <!-- only show the button when the last verse on page is less than total verses in chapter -->
   {#if endVerse < chapterTotalVerses && document.getElementById("loadNextVersesButton") === null}
-    <div class="flex justify-center pt-6 pb-14" use:inview={loadButtonOptions} on:inview_enter={(event) => document.querySelector("#loadNextVersesButton").click()}>
-      <button id="loadNextVersesButton" on:click={loadNextVerses} class="text-sm {buttonElement}"> Load Next Verses </button>
+    <div id="loadVersesButton" class="flex justify-center pt-6 pb-14" use:inview={loadButtonOptions} on:inview_enter={(event) => document.querySelector("#loadVersesButton > button").click()}>
+      <button on:click={loadNextVerses} class="text-sm {buttonElement}"> Load Next Verses </button>
     </div>
   {/if}
 {/if}

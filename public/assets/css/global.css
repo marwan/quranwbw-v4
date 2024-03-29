@@ -30,6 +30,24 @@
   font-family: "chapter-icons";
 
   src: url("../fonts/chapter-icons.woff") format("woff");
+
+  font-weight: normal;
+
+  font-style: normal;
+
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "tajweed-ruling";
+
+  src: url("../fonts/QCF4_TAJWEED_RULES-Regular.woff2") format("woff2"), url("../fonts/QCF4_TAJWEED_RULES-Regular.woff") format("woff");
+
+  font-weight: normal;
+
+  font-style: normal;
+
+  font-display: swap;
 }
 
 ::-webkit-scrollbar {
@@ -120,6 +138,10 @@ svg {
   font-family: chapter-icons !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale
+}
+
+.tajweed-ruling {
+  font-family: "tajweed-ruling";
 }
 
 /* dark blue theme */

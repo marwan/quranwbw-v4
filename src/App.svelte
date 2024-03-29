@@ -30,6 +30,7 @@
   import BottomNavbar from "$ui/BottomNavbar.svelte";
   import InitialSetupModal from "$modals/InitialSetupModal.svelte";
   import AudioModal from "$modals/AudioModal.svelte";
+  import TajweedRulingModal from "$modals/TajweedRulingModal.svelte";
 
   // check old bookmarks for v3 update
   checkOldBookmarks();
@@ -43,6 +44,7 @@
     <InitialSetupModal />
     <AudioModal />
     <BottomNavbar />
+    <TajweedRulingModal />
     <!-- <BottomPlayer /> -->
 
     <!-- components will be rendered in this div -->

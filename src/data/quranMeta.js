@@ -800,3 +800,20 @@ export const mostRead = [
   { id: 3, chapter: 18, verses: "Verses 1-10", title: "Whoever memorizes ten verses from the beginning of Surat al-Kahf will be immune to the False Messiah.", url: "/18/1-10" },
   { id: 4, chapter: 67, verses: "Verses 1-30", title: "Whoever reads Surah al-Mulk every night, Allah will protect him from the torment of the grave.", url: "/67" },
 ];
+
+export const tajweedRulings = [
+  { code: "A", description: "Black Text" },
+  { code: "B", description: "Alif Hamzat Wasl" },
+  { code: "C", description: "Idgham / Silent" },
+  { code: "D", description: "Madd Lazim 6 Harakah" },
+  { code: "E", description: "Madd Arid Lis-sukoon 2-4 or 6 Harakah" },
+  { code: "F", description: "Madd 2 Harakah" },
+  { code: "G", description: "Ghunna" },
+  { code: "H", description: "Tafkhim" },
+  { code: "I", description: "Qalqalah" },
+  { code: "J", description: "Madd Wajib 4-5 Harakah" },
+  { code: "K", description: "Alif Hamzat Wasl for first letter of the words, except first word of Verse and first word after a waqf sign" },
+  { code: "L", description: "Waqf Mark with Shapes Outline indicating diacritic to be silenced/not pronounced" },
+  { code: "W", description: "Verse Icon with Number (e.g. 1:1)" },
+  { code: "Y", description: "Verse Icon with Number expressing preferred continuation without stopping (e.g. 110:1)" },
+];
