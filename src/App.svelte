@@ -37,15 +37,14 @@
 </script>
 
 <Router>
-  <div class="max-w-screen-lg mx-auto py-16 select-none {$currentPageStore === 'page' ? 'px-0 md:px-4' : 'px-4'}">
+  <div class="max-w-screen-lg mx-auto pt-16 pb-24 select-none {$currentPageStore === 'page' ? 'px-0 md:px-4' : 'px-4'}">
     <!-- include the UI elements -->
     <Navbar />
     <Drawer />
     <InitialSetupModal />
     <AudioModal />
-    <BottomNavbar />
     <TajweedRulingModal />
-    <!-- <BottomPlayer /> -->
+    <BottomNavbar />
 
     <!-- components will be rendered in this div -->
     <div>

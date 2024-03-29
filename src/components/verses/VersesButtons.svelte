@@ -8,7 +8,7 @@
   import { showAudioModal } from "$utils/audioController";
   import { currentPageStore, userSettingsStore, audioSettingsStore } from "$utils/stores";
   import { updateSettings } from "$utils/updateSettings";
-  import { disabledElement } from "$utils/commonStyles";
+  import { downloadVerseImage } from "$utils/downloadVerseImage";
 
   // icons
   import Bookmark from "$svgs/Bookmark.svelte";
@@ -44,6 +44,8 @@
   <button on:click={() => showAudioModal(key)} class={buttonClasses}>
     <svelte:component this={$audioSettingsStore.isPlaying === true && $audioSettingsStore.playingKey === key ? Pause : Play} />
   </button>
+
+  <button on:click={() => downloadVerseImage(key)}> Pic </button>
 
   <!-- verses option dropdown -->
   <!-- <div class="relative inline-block text-left">

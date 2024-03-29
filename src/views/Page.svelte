@@ -5,11 +5,10 @@
   import { Link } from "svelte-routing";
   import VersesWords from "$verses/VersesWords.svelte";
   import Spinner from "$svgs/Spinner.svelte";
-  import { websiteURL } from "$data/websiteSettings";
   import { currentPageStore, wordTypeStore } from "$utils/stores";
   import { updateSettings } from "$utils/updateSettings";
   import { quranMetaData } from "$data/quranMeta";
-  import { tabPillElement } from "$utils/commonStyles";
+  import { tabPillElement, disabledElement } from "$utils/commonStyles";
   import BismillahMushaf from "$svgs/BismillahMushaf.svelte";
 
   updateSettings({ type: "displayType", value: 4 });
@@ -87,15 +86,15 @@
 <PageMeta title={`Page ${page}`} />
 
 <div class="flex flex-row space-x-8 my-8 justify-center">
-  <Link to="/page/{+page - 1}" class={tabPillElement}>{@html "&#x2190;"} Previous Page</Link>
-  <Link to="/page/{+page + 1}" class={tabPillElement}>Next Page {@html "&#x2192;"}</Link>
+  <Link to="/page/{+page - 1}" class="{tabPillElement} {+page === 1 && disabledElement}">{@html "&#x2190;"} Previous Page</Link>
+  <Link to="/page/{+page + 1}" class="{tabPillElement} {+page === 604 && disabledElement}">Next Page {@html "&#x2192;"}</Link>
 </div>
 
 <div class="text-center mt-8 text-xl">
   {#await fetchData}
     <Spinner />
   {:then}
-    <div class="max-w-2xl space-y-2 pb-2 mx-auto">
+    <div class="max-w-3xl space-y-2 pb-2 mx-auto">
       {#each Array.from(Array(endingLine + 1).keys()).slice(startingLine) as line}
         <!-- if it's the first verse of a chapter -->
         {#if chapters.length > 1 && lines.includes(line) && verses[lines.indexOf(line)] === 1}
