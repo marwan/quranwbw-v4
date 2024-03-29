@@ -3,6 +3,7 @@ export function downloadVerseImage(key) {
     letterRendering: 1,
     allowTaint: true,
     useCORS: true,
+    scale: 2,
   })
     .then(function (canvas) {
       download(canvas, key);
@@ -15,6 +16,7 @@ export function downloadVerseImage(key) {
 function download(canvas, key) {
   let downloadLink = document.createElement("a");
   downloadLink.setAttribute("download", `Verse ${key} - ${Date.now()}.png`);
+
   canvas.toBlob(function (blob) {
     let url = URL.createObjectURL(blob);
     downloadLink.setAttribute("href", url);

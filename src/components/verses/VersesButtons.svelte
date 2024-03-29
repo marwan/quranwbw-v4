@@ -15,7 +15,7 @@
   import Bookmarked from "$svgs/Bookmarked.svelte";
   import Play from "$svgs/Play.svelte";
   import Pause from "$svgs/Pause.svelte";
-  // import DotsVertical from "$svgs/DotsVertical.svelte";
+  import DotsVertical from "$svgs/DotsVertical.svelte";
 
   // update userBookmarks whenever the userSettingsStore changes
   $: userBookmarks = JSON.parse($userSettingsStore).userBookmarks;
@@ -24,15 +24,15 @@
 
   let verseDropdownVisible = false;
 
-  // // hide all other dropdown and show the current one
-  // function verseDropdownToggle() {
-  //   document.querySelectorAll(".verse-dropdown").forEach((element) => {
-  //     element.classList.remove("block");
-  //     element.classList.add("hidden");
-  //   });
+  // hide all other dropdown and show the current one
+  function verseDropdownToggle() {
+    document.querySelectorAll(".verse-dropdown").forEach((element) => {
+      element.classList.remove("block");
+      element.classList.add("hidden");
+    });
 
-  //   verseDropdownVisible = !verseDropdownVisible;
-  // }
+    verseDropdownVisible = !verseDropdownVisible;
+  }
 </script>
 
 <div class="verseButtons flex flex-row space-x-4 text-gray-400 text-xs grayscale">
@@ -45,10 +45,8 @@
     <svelte:component this={$audioSettingsStore.isPlaying === true && $audioSettingsStore.playingKey === key ? Pause : Play} />
   </button>
 
-  <button on:click={() => downloadVerseImage(key)}> Pic </button>
-
   <!-- verses option dropdown -->
-  <!-- <div class="relative inline-block text-left">
+  <!-- <div class="relative inline-block text-left" data-html2canvas-ignore>
     <button data-dropdown-toggle="dropdown" class={buttonClasses} on:click={() => verseDropdownToggle()}>
       <DotsVertical />
     </button>
@@ -57,13 +55,10 @@
       <div class="py-2 space-y-4">
         <ul class=" text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
           <li>
-            <Link to="/morphology/{chapter}:{verse}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Verse Morphology</Link>
+            <Link to="/morphology/{chapter}:{verse}" class="block px-4 py-2 hover:bg-gray-100">Verse Morphology</Link>
           </li>
-          <li class={disabledElement}>
-            <Link href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Verse Tafseer</Link>
-          </li>
-          <li class={disabledElement}>
-            <Link href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Copy Verse</Link>
+          <li>
+            <button on:click={() => downloadVerseImage(key)} class="block px-4 py-2 hover:bg-gray-100 w-full text-left"> Verse Screenshot </button>
           </li>
         </ul>
       </div>
