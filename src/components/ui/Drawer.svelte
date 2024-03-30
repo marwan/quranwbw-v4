@@ -12,7 +12,7 @@
 
 <!-- drawer component -->
 <div id="settings-drawer" class="fixed top-0 right-0 z-40 h-screen p-4 pt-0 pb-16 overflow-y-auto transition-transform rounded-tl-xl rounded-bl-xl translate-x-full bg-white grayscale w-full md:w-1/2 lg:w-[430px] dark:bg-gray-800" tabindex="-1" aria-labelledby="settings-drawer-label">
-  <div id="settings-head" class="top-0 sticky bg-white border-b-2 py-4 mb-4">
+  <div id="settings-head" class="z-30 top-0 sticky bg-white border-b-2 py-4 mb-4">
     <h5 id="settings-drawer-label" class="inline-flex items-center mb-4 text-3xl space-x-2 font-semibold text-gray-500 dark:text-gray-400">
       <span>Settings</span>
     </h5>
@@ -91,11 +91,6 @@
         </div>
         <p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Toggle the word transliteration which is shown below the Arabic word.</p>
       </div>
-
-      <!-- <label class="inline-flex items-center cursor-pointer">
-        <input type="checkbox" value="" class="sr-only peer" on:click={(event) => console.log(event.target.checked)} />
-        <div class="relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-      </label> -->
     </div>
   </div>
 
