@@ -45,7 +45,7 @@
         </div>
       </div>
       <!-- Modal footer -->
-      <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+      <div class="flex justify-end p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
         <button on:click={() => toggleModal("TajweedRulingModal", "hide")} type="button" class={buttonElement}>Close</button>
       </div>
     </div>

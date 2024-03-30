@@ -3,7 +3,7 @@
   import { displayOptions, selectableFontTypes, selectableThemes, selectableVerseTranslations, verseTranslationsLanguages, selectableWordTranslations, selectableReciters, selectablePlaybackSpeeds } from "$data/options";
   import { updateSettings } from "$utils/updateSettings";
   import { resetSettings } from "$utils/resetSettings";
-  import { disabledElement, buttonElement } from "$utils/commonStyles";
+  import { disabledElement, buttonElement, labelPillElement } from "$utils/commonStyles";
 
   const settingsBlockClasses = "space-y-2 py-6 border-b";
 
@@ -12,10 +12,20 @@
 
 <!-- drawer component -->
 <div id="settings-drawer" class="fixed top-0 right-0 z-40 h-screen p-4 pt-0 pb-16 overflow-y-auto transition-transform rounded-tl-xl rounded-bl-xl translate-x-full bg-white grayscale w-full md:w-1/2 lg:w-[430px] dark:bg-gray-800" tabindex="-1" aria-labelledby="settings-drawer-label">
-  <div id="settings-head" class="top-0 sticky bg-white border-b-2 pt-4 mb-4">
+  <div id="settings-head" class="top-0 sticky bg-white border-b-2 py-4 mb-4">
     <h5 id="settings-drawer-label" class="inline-flex items-center mb-4 text-3xl space-x-2 font-semibold text-gray-500 dark:text-gray-400">
       <span>Settings</span>
     </h5>
+
+    <!-- <div id="quick-jump" class="flex flex-row space-x-2">
+      <span>Jump: </span>
+      <div>
+        <a href="#display-settings-block" class={labelPillElement}>Display</a>
+        <a href="#font-settings-block" class={labelPillElement}>Font</a>
+        <a href="#translation-settings-block" class={labelPillElement}>Translation</a>
+        <a href="#audio-settings-block" class={labelPillElement}>Audio</a>
+      </div>
+    </div> -->
 
     <button type="button" data-drawer-hide="settings-drawer" aria-controls="settings-drawer" class="text-gray-400 bg-transparent hover:bg-[#ebebeb] hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-4 right-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white">
       <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -25,8 +35,8 @@
     </button>
   </div>
 
-  <!-- display -->
-  <div class="py-5 border-gray-200">
+  <!-- display-settings-block -->
+  <div id="display-settings-block" class="py-5">
     <h3 class="block mb-2 font-medium text-xl text-gray-500 dark:text-slate-400">Display</h3>
 
     <div class="flex flex-col flex-wrap text-base">
@@ -43,6 +53,52 @@
         <p class="mb-6 text-sm text-gray-500 dark:text-gray-400">An assortment of website themes to please your vision.</p>
       </div>
 
+      <!-- display-type-setting -->
+      <div id="display-type-setting" class={settingsBlockClasses}>
+        <div class="flex flex-row justify-between items-center">
+          <label for="display-style-list" class="block text-gray-900 dark:text-slate-400">Display Type</label>
+          <select id="display-style-list" bind:value={$displayTypeStore} on:change={(event) => updateSettings({ type: "displayType", value: +event.target.selectedIndex + 1 })} class="w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            {#each Object.entries(displayOptions) as [id, displayOption]}
+              <option disabled={$currentPageStore !== "chapter" && displayOption.displayID > 2 && "true"} value={displayOption.displayID}>{displayOption.displayName}</option>
+            {/each}
+          </select>
+        </div>
+        <p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Different verse layouts that you can choose from.</p>
+      </div>
+
+      <!-- word-translation-toggle-setting -->
+      <div id="word-translation-toggle-setting" class={settingsBlockClasses}>
+        <div class="flex flex-row justify-between items-center">
+          <span class="block text-gray-900 dark:text-slate-400">Word Translation</span>
+          <div class="inline-flex rounded-md shadow-sm {$wordTransliterationEnabledStore === false && disabledElement}" role="group">
+            <button type="button" on:click={() => updateSettings({ type: "wordTranslationEnabled", value: !$wordTranslationEnabledStore })} class="w-32 border text-center border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              {$wordTranslationEnabledStore === true ? "Shown" : "Hidden"}
+            </button>
+          </div>
+        </div>
+        <p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Select whether you would like to show or hide word translations which is shown below the Arabic word.</p>
+      </div>
+
+      <!-- word-transliteration-toggle-setting -->
+      <div id="word-transliteration-toggle-setting" class="{settingsBlockClasses} border-b-0">
+        <div class="flex flex-row justify-between items-center">
+          <span class="block text-gray-900 dark:text-slate-400">Word Transliteration</span>
+          <div class="inline-flex rounded-md shadow-sm {$wordTranslationEnabledStore === false && disabledElement}" role="group">
+            <button type="button" on:click={() => updateSettings({ type: "wordTransliterationEnabled", value: !$wordTransliterationEnabledStore })} class="w-32 border text-center border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              {$wordTransliterationEnabledStore === true ? "Shown" : "Hidden"}
+            </button>
+          </div>
+        </div>
+        <p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Select whether you would like to show or hide word transliterations which is shown below the Arabic word.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- font-settings-block -->
+  <div id="font-settings-block" class="py-5 border-t-2 border-gray-200">
+    <h3 class="block mb-2 font-medium text-xl text-gray-500 dark:text-slate-400">Font</h3>
+
+    <div class="flex flex-col flex-wrap text-base">
       <!-- quran-font-setting -->
       <div id="quran-font-setting" class={settingsBlockClasses}>
         <div class="flex flex-row justify-between items-center">
@@ -59,19 +115,6 @@
         {#if $wordTypeStore === 2}
           <p class="mb-6 text-sm text-gray-500 dark:text-gray-400"><b>Note:</b> The Uthmanic Hafs Mushaf font type is still under development and may contain errors and we are aware of them. In case you find any issues, please use a different font type.</p>
         {/if}
-      </div>
-
-      <!-- display-type-setting -->
-      <div id="display-type-setting" class={settingsBlockClasses}>
-        <div class="flex flex-row justify-between items-center">
-          <label for="display-style-list" class="block text-gray-900 dark:text-slate-400">Display Type</label>
-          <select id="display-style-list" bind:value={$displayTypeStore} on:change={(event) => updateSettings({ type: "displayType", value: +event.target.selectedIndex + 1 })} class="w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            {#each Object.entries(displayOptions) as [id, displayOption]}
-              <option disabled={$currentPageStore !== "chapter" && displayOption.displayID > 2 && "true"} value={displayOption.displayID}>{displayOption.displayName}</option>
-            {/each}
-          </select>
-        </div>
-        <p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Different verse layouts that you can choose from.</p>
       </div>
 
       <!-- arabic-word-size-setting -->
@@ -115,7 +158,7 @@
       </div>
 
       <!-- verse-translation-size-setting -->
-      <div id="verse-translation-size-setting" class={settingsBlockClasses}>
+      <div id="verse-translation-size-setting" class="{settingsBlockClasses} border-b-0">
         <div class="flex flex-row justify-between items-center">
           <span class="block text-gray-900 dark:text-slate-400">Verse Tr/Tl Size ({fontSizeCodes.verseTranslationText.split("-")[1]})</span>
           <div class="inline-flex rounded-md shadow-sm" role="group">
@@ -133,38 +176,12 @@
         </div>
         <p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Font size for verse translation and transliteration.</p>
       </div>
-
-      <!-- word-translation-toggle-setting -->
-      <div id="word-translation-toggle-setting" class={settingsBlockClasses}>
-        <div class="flex flex-row justify-between items-center">
-          <span class="block text-gray-900 dark:text-slate-400">Word Translation</span>
-          <div class="inline-flex rounded-md shadow-sm {$wordTransliterationEnabledStore === false && disabledElement}" role="group">
-            <button type="button" on:click={() => updateSettings({ type: "wordTranslationEnabled", value: !$wordTranslationEnabledStore })} class="w-32 border text-center border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
-              {$wordTranslationEnabledStore === true ? "Shown" : "Hidden"}
-            </button>
-          </div>
-        </div>
-        <p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Select whether you would like to show or hide word translations which is shown below the Arabic word.</p>
-      </div>
-
-      <!-- word-transliteration-toggle-setting -->
-      <div id="word-transliteration-toggle-setting" class="{settingsBlockClasses} border-b-0">
-        <div class="flex flex-row justify-between items-center">
-          <span class="block text-gray-900 dark:text-slate-400">Word Transliteration</span>
-          <div class="inline-flex rounded-md shadow-sm {$wordTranslationEnabledStore === false && disabledElement}" role="group">
-            <button type="button" on:click={() => updateSettings({ type: "wordTransliterationEnabled", value: !$wordTransliterationEnabledStore })} class="w-32 border text-center border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
-              {$wordTransliterationEnabledStore === true ? "Shown" : "Hidden"}
-            </button>
-          </div>
-        </div>
-        <p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Select whether you would like to show or hide word transliterations which is shown below the Arabic word.</p>
-      </div>
     </div>
   </div>
 
-  <!-- translations -->
-  <div class="py-5 border-t-2 border-gray-200">
-    <h3 class="block mb-2 font-medium text-xl text-gray-500 dark:text-slate-400">Translations</h3>
+  <!-- translation-settings-block -->
+  <div id="translation-settings-block" class="py-5 border-t-2 border-gray-200">
+    <h3 class="block mb-2 font-medium text-xl text-gray-500 dark:text-slate-400">Translation</h3>
 
     <div class="flex flex-col flex-wrap text-base">
       <!-- word-translation-setting -->
@@ -219,9 +236,9 @@
     </div>
   </div>
 
-  <!-- audio -->
-  <div class="py-5 border-t-2 border-gray-200">
-    <h3 class="block mb-2 font-medium text-xl text-gray-500 dark:text-slate-400">Audios</h3>
+  <!-- audio-settings-block -->
+  <div id="audio-settings-block" class="py-5 border-t-2 border-gray-200">
+    <h3 class="block mb-2 font-medium text-xl text-gray-500 dark:text-slate-400">Audio</h3>
 
     <div class="flex flex-col flex-wrap text-base">
       <!-- verse-reciter-setting -->

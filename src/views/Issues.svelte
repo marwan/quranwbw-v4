@@ -4,7 +4,7 @@
   import { websiteURL } from "$data/websiteSettings";
   import { currentPageStore } from "$utils/stores";
   import { timeAgo } from "$utils/timeAgo";
-  import { linkElement } from "$utils/commonStyles";
+  import { linkElement, labelPillElement } from "$utils/commonStyles";
 
   let fetchData;
 
@@ -45,7 +45,7 @@
             <!-- labels -->
             <div class="inline-flex ml-2 space-x-2">
               {#each Object.entries(value.labels) as [id, label]}
-                <span class="bg-gray-300 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full grayscale">{label.name}</span>
+                <span class={labelPillElement}>{label.name}</span>
               {/each}
             </div>
             <div>
