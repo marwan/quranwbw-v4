@@ -46,7 +46,7 @@
     <TajweedRulingModal />
     <BottomNavbar />
 
-    <!-- components will be rendered in this div -->
+    <!-- views will be rendered in this div -->
     <div>
       <Route path="/" component={Home} />
       <Route path="/supplications" component={Supplications} />

@@ -70,27 +70,32 @@
       <div id="word-translation-toggle-setting" class={settingsBlockClasses}>
         <div class="flex flex-row justify-between items-center">
           <span class="block text-gray-900 dark:text-slate-400">Word Translation</span>
-          <div class="inline-flex rounded-md shadow-sm {$wordTransliterationEnabledStore === false && disabledElement}" role="group">
-            <button type="button" on:click={() => updateSettings({ type: "wordTranslationEnabled", value: !$wordTranslationEnabledStore })} class="w-32 border text-center border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
-              {$wordTranslationEnabledStore === true ? "Shown" : "Hidden"}
-            </button>
-          </div>
+
+          <label class="inline-flex items-center cursor-pointer {$wordTransliterationEnabledStore === false && disabledElement}">
+            <input type="checkbox" value="" class="sr-only peer" checked={$wordTranslationEnabledStore} on:click={(event) => updateSettings({ type: "wordTranslationEnabled", value: event.target.checked })} />
+            <div class="relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+          </label>
         </div>
-        <p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Select whether you would like to show or hide word translations which is shown below the Arabic word.</p>
+        <p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Toggle the word translation which is shown below the Arabic word.</p>
       </div>
 
       <!-- word-transliteration-toggle-setting -->
       <div id="word-transliteration-toggle-setting" class="{settingsBlockClasses} border-b-0">
         <div class="flex flex-row justify-between items-center">
           <span class="block text-gray-900 dark:text-slate-400">Word Transliteration</span>
-          <div class="inline-flex rounded-md shadow-sm {$wordTranslationEnabledStore === false && disabledElement}" role="group">
-            <button type="button" on:click={() => updateSettings({ type: "wordTransliterationEnabled", value: !$wordTransliterationEnabledStore })} class="w-32 border text-center border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
-              {$wordTransliterationEnabledStore === true ? "Shown" : "Hidden"}
-            </button>
-          </div>
+
+          <label class="inline-flex items-center cursor-pointer {$wordTranslationEnabledStore === false && disabledElement}">
+            <input type="checkbox" value="" class="sr-only peer" checked={$wordTransliterationEnabledStore} on:click={(event) => updateSettings({ type: "wordTransliterationEnabled", value: event.target.checked })} />
+            <div class="relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+          </label>
         </div>
-        <p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Select whether you would like to show or hide word transliterations which is shown below the Arabic word.</p>
+        <p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Toggle the word transliteration which is shown below the Arabic word.</p>
       </div>
+
+      <!-- <label class="inline-flex items-center cursor-pointer">
+        <input type="checkbox" value="" class="sr-only peer" on:click={(event) => console.log(event.target.checked)} />
+        <div class="relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+      </label> -->
     </div>
   </div>
 
