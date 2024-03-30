@@ -7,7 +7,6 @@
   import Bismillah from "$svgs/Bismillah.svelte";
   import Spinner from "$svgs/Spinner.svelte";
   import { parseURL } from "$utils/parseURL";
-  import { websiteURL } from "$data/websiteSettings";
   import { fetchChapterData } from "$utils/fetchChapterData";
   import { quranMetaData } from "$data/quranMeta";
   import { currentPageStore, chapterNumberStore, displayTypeStore, wordTypeStore, wordTranslationStore, verseTranslationsStore, pageURLStore } from "$utils/stores";

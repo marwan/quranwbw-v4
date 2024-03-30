@@ -29,14 +29,14 @@ export function updateSettings(props) {
 
     // for word translation view
     case "wordTranslationEnabled":
-      wordTranslationEnabledStore.set(!userSettings.displaySettings.wordTranslationEnabled);
-      userSettings.displaySettings.wordTranslationEnabled = !userSettings.displaySettings.wordTranslationEnabled;
+      wordTranslationEnabledStore.set(props.value);
+      userSettings.displaySettings.wordTranslationEnabled = props.value;
       break;
 
     // for word transliteration view
     case "wordTransliterationEnabled":
-      wordTransliterationEnabledStore.set(!userSettings.displaySettings.wordTransliterationEnabled);
-      userSettings.displaySettings.wordTransliterationEnabled = !userSettings.displaySettings.wordTransliterationEnabled;
+      wordTransliterationEnabledStore.set(props.value);
+      userSettings.displaySettings.wordTransliterationEnabled = props.value;
       break;
 
     // for word translation
@@ -61,6 +61,9 @@ export function updateSettings(props) {
           console.error(error);
         }
       }
+
+      // if the value is an array
+      if (props.value instanceof Array) verseTranslationsArray = props.value;
 
       verseTranslationsStore.set(verseTranslationsArray);
       userSettings.translations.verse = verseTranslationsArray;
@@ -120,10 +123,12 @@ export function updateSettings(props) {
 
         // set the new index and size
         const newIndex = props.action === "increase" ? currentIndex + 1 : currentIndex - 1;
-        const newSize = fontSizePresets[newIndex];
+        let newSize = fontSizePresets[newIndex];
 
         // perform the action
         if (newSize !== undefined) {
+          if (props.value !== undefined) newSize = props.value;
+
           // remove the current class
           element.classList.remove(currentSize);
 
