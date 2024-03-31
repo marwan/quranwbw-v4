@@ -27,10 +27,10 @@ export function playAudio(props) {
   // making the file name and getting the repeat times from localStorage
   if (props.type === "word") {
     // generate mp3 file names for current word
-    const fileName = `${props.chapter}/${`00${props.chapter}`.slice(-3)}_${`00${props.verse}`.slice(-3)}_${`00${props.firstToPlay}`.slice(-3)}.mp3`;
+    const currentWordFileName = `${props.chapter}/${`00${props.chapter}`.slice(-3)}_${`00${props.verse}`.slice(-3)}_${`00${props.firstToPlay}`.slice(-3)}.mp3`;
 
     // assign to source
-    audio.src = `${wordsAudioURL}/${fileName}`;
+    audio.src = `${wordsAudioURL}/${currentWordFileName}`;
 
     // update the playing key
     audioSettings.playingKey = `${props.chapter}:${props.verse}`;
@@ -47,6 +47,10 @@ export function playAudio(props) {
 
     // generate mp3 file names for current and next verse
     const currentVerseFileName = `${`00${props.chapter}`.slice(-3)}${`00${props.firstToPlay}`.slice(-3)}.mp3`;
+    const nextVerseFileName = `${`00${props.chapter}`.slice(-3)}${`00${props.firstToPlay + 1}`.slice(-3)}.mp3`;
+
+    // fetch the next verse audio in advance
+    fetch(`${reciterAudioUrl}/${nextVerseFileName}`);
 
     // assign to source
     audio.src = `${reciterAudioUrl}/${currentVerseFileName}`;
@@ -268,9 +272,9 @@ export function resetAudioSettings() {
   audio.pause();
   audio.currentTime = 0;
   audioSettings.isPlaying = false;
-  __audioSettings.set(audioSettings);
+  audioSettings.playingWordKey = null;
 
-  // verseTranslationPlayed = false;
+  __audioSettings.set(audioSettings);
 
   // remove word highlight
   document.querySelectorAll(".word").forEach((element) => {
