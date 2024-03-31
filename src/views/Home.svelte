@@ -2,14 +2,14 @@
   import PageMeta from "$components/PageMeta.svelte";
   import { Link } from "svelte-routing";
   import { websiteTagline, websiteTitle } from "$data/websiteSettings";
-  import { currentPageStore, lastReadStore } from "$utils/stores";
+  import { __currentPage, __lastRead } from "$utils/stores";
   import Logo from "$svgs/Logo.svelte";
 
   import HomepageTabs from "$ui/HomepageTabs.svelte";
 
   const linkStyles = "py-2 px-2 text-xs cursor-pointer focus:outline-none focus:ring-4 focus:ring-gray-200 rounded-lg hover:bg-[#ebebeb] dark:hover:bg-slate-700";
 
-  currentPageStore.set("home");
+  __currentPage.set("home");
 </script>
 
 <PageMeta title={`Quran ${websiteTagline}`} />
@@ -25,7 +25,7 @@
   <div class="flex flex-wrap flex-col md:flex-col mt-12 justify-center text-xs font-bold text-gray-400 space-y-4">
     <!-- last read link -->
     <!-- <div id="last-read-block" class="flex justify-center items-center block">
-      <Link to="/{$lastReadStore.split(':')[0]}/{$lastReadStore.split(':')[1]}" id="last-read-link" class={linkStyles}>Last Read ({$lastReadStore})</Link>
+      <Link to="/{$__lastRead.split(':')[0]}/{$__lastRead.split(':')[1]}" id="last-read-link" class={linkStyles}>Last Read ({$__lastRead})</Link>
     </div> -->
 
     <div class="flex flex-row flex-wrap space-x-1 md:space-x-2 justify-center">

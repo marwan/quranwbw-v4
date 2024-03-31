@@ -1,6 +1,6 @@
 import { get } from "svelte/store";
 import { quranMetaData } from "$data/quranMeta";
-import { displayTypeStore, reciterStore, playbackSpeedStore, audioSettingsStore } from "$utils/stores";
+import { __displayType, __reciter, __playbackSpeed, __audioSettings } from "$utils/stores";
 import { toggleModal } from "$utils/toggleModal";
 import { wordsAudioURL } from "$data/websiteSettings";
 import { displayOptions, selectableReciters, selectablePlaybackSpeeds } from "$data/options";
@@ -10,7 +10,7 @@ import { scrollSmoothly } from "$utils/scrollSmoothly";
 window.audio = document.querySelector("#player");
 
 // set global audio settings
-const audioSettings = get(audioSettingsStore);
+const audioSettings = get(__audioSettings);
 
 let verseTranslationPlayed = false;
 
@@ -40,7 +40,7 @@ export function playAudio(props) {
   // making the file name and getting the repeat times from localStorage
   else if (props.type === "verse") {
     // get the reciter URL from selectableReciters
-    let reciterAudioUrl = selectableReciters[get(reciterStore)].url;
+    let reciterAudioUrl = selectableReciters[get(__reciter)].url;
 
     // or if the user has opted to play the translation after arabic audio, the URL would have to be updated
     if (props.playTranslation === true) reciterAudioUrl = "https://everyayah.com/data/English/Sahih_Intnl_Ibrahim_Walk_192kbps/";
@@ -58,7 +58,7 @@ export function playAudio(props) {
   // load and play the audio
   audio.currentTime = 0;
   audio.load();
-  audio.playbackRate = selectablePlaybackSpeeds[get(playbackSpeedStore)].speed;
+  audio.playbackRate = selectablePlaybackSpeeds[get(__playbackSpeed)].speed;
   audio.play();
 
   // update the audio settings
@@ -137,7 +137,7 @@ export function playAudio(props) {
   };
 
   // update the audio settings
-  audioSettingsStore.set(audioSettings);
+  __audioSettings.set(audioSettings);
 }
 
 export function initializeAudio() {
@@ -157,7 +157,7 @@ export function initializeAudio() {
     audioSettings.endVerse = quranMetaData[audioSettings.playingChapter].verses;
   }
 
-  audioSettingsStore.set(audioSettings);
+  __audioSettings.set(audioSettings);
 
   playAudio({
     type: audioSettings.audioType === undefined ? "verse" : audioSettings.audioType,
@@ -224,7 +224,7 @@ export function updateAudioSettings(event) {
   }
 
   // 3. update the global audio settings
-  audioSettingsStore.set(audioSettings);
+  __audioSettings.set(audioSettings);
 
   // console.table(audioSettings);
 }
@@ -234,7 +234,7 @@ export function initializeAudioSettings(key) {
   audioSettings.playingKey = key;
   audioSettings.playingChapter = +audioSettings.playingKey.split(":")[0];
   audioSettings.playingVerse = +audioSettings.playingKey.split(":")[1];
-  audioSettingsStore.set(audioSettings);
+  __audioSettings.set(audioSettings);
 
   const chapterTotalVerses = quranMetaData[audioSettings.playingChapter].verses;
 
@@ -268,7 +268,7 @@ export function resetAudioSettings() {
   audio.pause();
   audio.currentTime = 0;
   audioSettings.isPlaying = false;
-  audioSettingsStore.set(audioSettings);
+  __audioSettings.set(audioSettings);
 
   // verseTranslationPlayed = false;
 
@@ -300,7 +300,7 @@ export function wordAudioController(props) {
   }
 
   // show audio modal for continuous display types
-  if (displayOptions[`${get(displayTypeStore)}`].continuous === true) {
+  if (displayOptions[`${get(__displayType)}`].continuous === true) {
     showAudioModal(`${props.chapter}:${props.verse}`);
   }
 
@@ -334,7 +334,7 @@ function wordHighlighter() {
   }
 
   // update the audio settings
-  audioSettingsStore.set(audioSettings);
+  __audioSettings.set(audioSettings);
 }
 
 function convertTime(time) {

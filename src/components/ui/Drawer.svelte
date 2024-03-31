@@ -1,5 +1,5 @@
 <script>
-  import { currentPageStore, wordTypeStore, displayTypeStore, websiteThemeStore, wordTranslationStore, wordTranslationEnabledStore, wordTransliterationEnabledStore, verseTranslationsStore, reciterStore, playbackSpeedStore, userSettingsStore } from "$utils/stores";
+  import { __currentPage, __wordType, __displayType, __websiteTheme, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __verseTranslations, __reciter, __playbackSpeed, __userSettings } from "$utils/stores";
   import { displayOptions, selectableFontTypes, selectableThemes, selectableVerseTranslations, verseTranslationsLanguages, selectableWordTranslations, selectableReciters, selectablePlaybackSpeeds } from "$data/options";
   import { updateSettings } from "$utils/updateSettings";
   import { resetSettings } from "$utils/resetSettings";
@@ -7,11 +7,11 @@
 
   const settingsBlockClasses = "space-y-2 py-6 border-b";
 
-  $: fontSizeCodes = JSON.parse($userSettingsStore).displaySettings.fontSizes;
+  $: fontSizeCodes = JSON.parse($__userSettings).displaySettings.fontSizes;
 </script>
 
 <!-- drawer component -->
-<div id="settings-drawer" class="fixed top-0 right-0 z-40 h-screen p-4 pt-0 pb-16 overflow-y-auto transition-transform rounded-tl-xl rounded-bl-xl translate-x-full bg-white grayscale w-full md:w-1/2 lg:w-[430px] dark:bg-gray-800" tabindex="-1" aria-labelledby="settings-drawer-label">
+<div id="settings-drawer" class="fixed top-0 right-0 z-40 h-screen p-4 pt-0 pb-16 overflow-y-auto transition-transform md:rounded-tl-xl md:rounded-bl-xl translate-x-full bg-white grayscale w-full md:w-1/2 lg:w-[430px] dark:bg-gray-800" tabindex="-1" aria-labelledby="settings-drawer-label">
   <div id="settings-head" class="z-30 top-0 sticky bg-white border-b-2 py-4 mb-4">
     <h5 id="settings-drawer-label" class="inline-flex items-center mb-4 text-3xl space-x-2 font-semibold text-gray-500 dark:text-gray-400">
       <span>Settings</span>
@@ -44,7 +44,7 @@
       <div id="website-theme-setting" class={settingsBlockClasses}>
         <div class="flex flex-row justify-between items-center">
           <label for="website-theme-list" class="block text-gray-900 dark:text-slate-400">Theme</label>
-          <select id="website-theme-list" on:change={(event) => updateSettings({ type: "websiteTheme", value: +event.target.value })} bind:value={$websiteThemeStore} class="w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          <select id="website-theme-list" on:change={(event) => updateSettings({ type: "websiteTheme", value: +event.target.value })} bind:value={$__websiteTheme} class="w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
             {#each Object.entries(selectableThemes) as [id, theme]}
               <option value={theme.id}>{theme.name}</option>
             {/each}
@@ -57,9 +57,9 @@
       <div id="display-type-setting" class={settingsBlockClasses}>
         <div class="flex flex-row justify-between items-center">
           <label for="display-style-list" class="block text-gray-900 dark:text-slate-400">Display Type</label>
-          <select id="display-style-list" bind:value={$displayTypeStore} on:change={(event) => updateSettings({ type: "displayType", value: +event.target.selectedIndex + 1 })} class="w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          <select id="display-style-list" bind:value={$__displayType} on:change={(event) => updateSettings({ type: "displayType", value: +event.target.selectedIndex + 1 })} class="w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
             {#each Object.entries(displayOptions) as [id, displayOption]}
-              <option disabled={$currentPageStore !== "chapter" && displayOption.displayID > 2 && "true"} value={displayOption.displayID}>{displayOption.displayName}</option>
+              <option disabled={$__currentPage !== "chapter" && displayOption.displayID > 2 && "true"} value={displayOption.displayID}>{displayOption.displayName}</option>
             {/each}
           </select>
         </div>
@@ -71,8 +71,8 @@
         <div class="flex flex-row justify-between items-center">
           <span class="block text-gray-900 dark:text-slate-400">Word Translation</span>
 
-          <label class="inline-flex items-center cursor-pointer {$wordTransliterationEnabledStore === false && disabledElement}">
-            <input type="checkbox" value="" class="sr-only peer" checked={$wordTranslationEnabledStore} on:click={(event) => updateSettings({ type: "wordTranslationEnabled", value: event.target.checked })} />
+          <label class="inline-flex items-center cursor-pointer {$__wordTransliterationEnabled === false && disabledElement}">
+            <input type="checkbox" value="" class="sr-only peer" checked={$__wordTranslationEnabled} on:click={(event) => updateSettings({ type: "wordTranslationEnabled", value: event.target.checked })} />
             <div class="relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
           </label>
         </div>
@@ -84,8 +84,8 @@
         <div class="flex flex-row justify-between items-center">
           <span class="block text-gray-900 dark:text-slate-400">Word Transliteration</span>
 
-          <label class="inline-flex items-center cursor-pointer {$wordTranslationEnabledStore === false && disabledElement}">
-            <input type="checkbox" value="" class="sr-only peer" checked={$wordTransliterationEnabledStore} on:click={(event) => updateSettings({ type: "wordTransliterationEnabled", value: event.target.checked })} />
+          <label class="inline-flex items-center cursor-pointer {$__wordTranslationEnabled === false && disabledElement}">
+            <input type="checkbox" value="" class="sr-only peer" checked={$__wordTransliterationEnabled} on:click={(event) => updateSettings({ type: "wordTransliterationEnabled", value: event.target.checked })} />
             <div class="relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
           </label>
         </div>
@@ -103,7 +103,7 @@
       <div id="quran-font-setting" class={settingsBlockClasses}>
         <div class="flex flex-row justify-between items-center">
           <label for="quran-font-list" class="block text-gray-900 dark:text-slate-400">Quran Font</label>
-          <select id="quran-font-list" on:change={(event) => updateSettings({ type: "wordType", value: +event.target.value })} bind:value={$wordTypeStore} class="w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          <select id="quran-font-list" on:change={(event) => updateSettings({ type: "wordType", value: +event.target.value })} bind:value={$__wordType} class="w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
             {#each Object.entries(selectableFontTypes) as [id, font]}
               <option value={font.id}>{font.font}</option>
             {/each}
@@ -112,7 +112,7 @@
         <p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Multiple Quranic fonts to choose from depending on your Mushaf or region preference.</p>
 
         <!-- note for Uthmanic Hafs Mushaf -->
-        {#if $wordTypeStore === 2}
+        {#if $__wordType === 2}
           <p class="mb-6 text-sm text-gray-500 dark:text-gray-400"><b>Note:</b> The Uthmanic Hafs Mushaf font type is still under development and may contain errors and we are aware of them. In case you find any issues, please use a different font type.</p>
         {/if}
       </div>
@@ -188,7 +188,7 @@
       <div id="word-translation-setting" class={settingsBlockClasses}>
         <div class="flex flex-row justify-between items-center">
           <label for="word-translations-list" class="block text-gray-900 dark:text-slate-400">Word</label>
-          <select id="word-translations-list" bind:value={$wordTranslationStore} on:change={(event) => updateSettings({ type: "wordTranslation", value: +event.target.value })} class="w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          <select id="word-translations-list" bind:value={$__wordTranslation} on:change={(event) => updateSettings({ type: "wordTranslation", value: +event.target.value })} class="w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
             {#each Object.entries(selectableWordTranslations) as [id, translation]}
               <option value={translation.id}>{translation.language}</option>
             {/each}
@@ -201,12 +201,12 @@
       <div id="verse-translation-setting" class="{settingsBlockClasses} border-b-0">
         <div class="flex flex-row justify-between items-center">
           <label for="verse-translations-list" class="block text-gray-900 dark:text-slate-400">Verse</label>
-          <button id="dropdownCheckboxButton" data-dropdown-toggle="verse-translation-checkbox" class="w-32 border text-left border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" type="button"> {$verseTranslationsStore.toString()} </button>
+          <button id="dropdownCheckboxButton" data-dropdown-toggle="verse-translation-checkbox" class="w-32 border text-left border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" type="button"> {$__verseTranslations.toString()} </button>
         </div>
         <p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Verse translations from multiple authors and languages.</p>
 
         <!-- verse-translation dropdown menu -->
-        <div id="verse-translation-checkbox" class="z-10 hidden w-56 bg-white divide-y divide-gray-100 rounded-lg border border-gray-200 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700">
+        <div id="verse-translation-checkbox" class="z-10 hidden w-fit bg-white shadow-md rounded-lg border border-gray-200">
           <ul id="verse-translations-list" class="max-h-56 overflow-y-scroll p-3 space-y-4 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownCheckboxButton">
             {#each Object.entries(verseTranslationsLanguages) as [id, language]}
               <div class="space-y-2">
@@ -217,7 +217,7 @@
                       <li>
                         <div class="flex items-center">
                           <!-- using else-if block to add the "checked" attribute because for some reason the inline check is not working in Svelte as compared to regular javascript -->
-                          {#if $verseTranslationsStore.includes(translation.id)}
+                          {#if $__verseTranslations.includes(translation.id)}
                             <input id="verseTranslationCheckbox-{translation.id}" on:click={() => updateSettings({ type: "verseTranslation", value: translation.id })} checked type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-slate-700" />
                           {:else}
                             <input id="verseTranslationCheckbox-{translation.id}" on:click={() => updateSettings({ type: "verseTranslation", value: translation.id })} type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-slate-700" />
@@ -245,7 +245,7 @@
       <div id="verse-reciter-setting" class={settingsBlockClasses}>
         <div class="flex flex-row justify-between items-center">
           <label for="reciter-list" class="block text-gray-900 dark:text-slate-400">Verse Reciter</label>
-          <select id="reciter-list" bind:value={$reciterStore} on:change={(event) => updateSettings({ type: "reciter", value: +event.target.selectedIndex + 1 })} class="w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          <select id="reciter-list" bind:value={$__reciter} on:change={(event) => updateSettings({ type: "reciter", value: +event.target.selectedIndex + 1 })} class="w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
             {#each Object.entries(selectableReciters) as [id, reciter]}
               <option value={reciter.id}>{reciter.reciter}</option>
             {/each}
@@ -258,7 +258,7 @@
       <div id="playback-speed-setting" class="{settingsBlockClasses} border-b-0">
         <div class="flex flex-row justify-between items-center">
           <label for="speed-list" class="block text-gray-900 dark:text-slate-400">Playback Speed</label>
-          <select id="speed-list" bind:value={$playbackSpeedStore} on:change={(event) => updateSettings({ type: "playbackSpeed", value: +event.target.selectedIndex + 1 })} class="w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          <select id="speed-list" bind:value={$__playbackSpeed} on:change={(event) => updateSettings({ type: "playbackSpeed", value: +event.target.selectedIndex + 1 })} class="w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
             {#each Object.entries(selectablePlaybackSpeeds) as [id, speed]}
               <option value={speed.id}>x{speed.speed}</option>
             {/each}

@@ -35,6 +35,9 @@
   // user bookmarks
   if (userSettings.userBookmarks === undefined) userSettings.userBookmarks = [];
 
+  // favourite chapters
+  if (userSettings.favouriteChapters === undefined) userSettings.favouriteChapters = [1, 5, 18];
+
   // Initial Setup
   if (userSettings.initialSetupCompleted === undefined) userSettings.initialSetupCompleted = false;
 

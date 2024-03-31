@@ -5,7 +5,7 @@
   import { Link } from "svelte-routing";
   import VersesWords from "$verses/VersesWords.svelte";
   import Spinner from "$svgs/Spinner.svelte";
-  import { currentPageStore, wordTypeStore } from "$utils/stores";
+  import { __currentPage, __wordType } from "$utils/stores";
   import { updateSettings } from "$utils/updateSettings";
   import { quranMetaData } from "$data/quranMeta";
   import { tabPillElement, disabledElement } from "$utils/commonStyles";
@@ -33,7 +33,7 @@
     fetchData = (async () => {
       // const apiHost = "http://localhost:7500";
       const apiHost = "https://api.quranwbw.com";
-      const apiURL = `${apiHost}/v1/page?page=${page}&word_type=${$wordTypeStore}&word_translation=1`;
+      const apiURL = `${apiHost}/v1/page?page=${page}&word_type=${$__wordType}&word_translation=1`;
       const response = await fetch(apiURL);
       const data = await response.json();
       const apiData = data.data.verses;
@@ -80,7 +80,7 @@
     console.log(centeredPageLines[+page]);
   }
 
-  currentPageStore.set("page");
+  __currentPage.set("page");
 </script>
 
 <PageMeta title={`Page ${page}`} />
@@ -107,7 +107,7 @@
           </div>
         {/if}
 
-        <div class="line {line} px-2 arabic-font-{$wordTypeStore} {+page > 2 && centeredPageLines[+page] === undefined ? 'flex justify-between' : ''} {centeredPageLines[+page] !== undefined && centeredPageLines[+page].includes(line) ? 'flex justify-center' : ''}">
+        <div class="line {line} px-2 arabic-font-{$__wordType} {+page > 2 && centeredPageLines[+page] === undefined ? 'flex justify-between' : ''} {centeredPageLines[+page] !== undefined && centeredPageLines[+page].includes(line) ? 'flex justify-center' : ''}">
           {#each Object.entries(JSON.parse(localStorage.getItem("pageData"))) as [key, value]}
             <VersesWords {key} {value} {line} />
           {/each}

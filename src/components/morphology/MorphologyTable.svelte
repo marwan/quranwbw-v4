@@ -2,7 +2,7 @@
   export let wordData, tableType;
 
   import { Link } from "svelte-routing";
-  import { wordTypeStore } from "$utils/stores";
+  import { __wordType } from "$utils/stores";
   import { buttonElement } from "$utils/commonStyles";
 
   const tableTitles = {
@@ -43,7 +43,7 @@
             {#each Array.from(Array(lastWordToLoad + 1).keys()).slice(1) as word}
               <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                 <td class="px-6 py-4"> {word} </td>
-                <td class="px-6 py-4 arabic-font-{$wordTypeStore} text-xl md:text-2xl"> {wordData[word - 1].arabic} </td>
+                <td class="px-6 py-4 arabic-font-{$__wordType} text-xl md:text-2xl"> {wordData[word - 1].arabic} </td>
                 <td class="px-6 py-4"> {wordData[word - 1].translation} </td>
                 <td class="px-6 py-4"> {wordData[word - 1].transliteration} </td>
                 <td class="px-6 py-4"> <Link to="/{wordData[word - 1].key.split(':')[0]}/{wordData[word - 1].key.split(':')[1]}">{wordData[word - 1].key.split(":")[0]}:{wordData[word - 1].key.split(":")[1]}</Link> </td>

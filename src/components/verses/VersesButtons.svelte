@@ -6,7 +6,7 @@
 
   import { Link } from "svelte-routing";
   import { showAudioModal } from "$utils/audioController";
-  import { currentPageStore, userSettingsStore, audioSettingsStore } from "$utils/stores";
+  import { __currentPage, __userSettings, __audioSettings } from "$utils/stores";
   import { updateSettings } from "$utils/updateSettings";
   import { downloadVerseImage } from "$utils/downloadVerseImage";
 
@@ -17,8 +17,8 @@
   import Pause from "$svgs/Pause.svelte";
   import DotsVertical from "$svgs/DotsVertical.svelte";
 
-  // update userBookmarks whenever the userSettingsStore changes
-  $: userBookmarks = JSON.parse($userSettingsStore).userBookmarks;
+  // update userBookmarks whenever the __userSettings changes
+  $: userBookmarks = JSON.parse($__userSettings).userBookmarks;
 
   const buttonClasses = "inline-flex items-center justify-center w-10 h-10 text-gray-400 transition-colors duration-150 rounded-lg focus:shadow-outline bg-[#ebebeb] hover:bg-gray-200 print:hidden dark:bg-slate-800 dark:hover:bg-slate-700";
 
@@ -36,13 +36,13 @@
 </script>
 
 <div class="verseButtons flex flex-row space-x-4 text-gray-400 text-xs grayscale">
-  <Link to={$currentPageStore === "chapter" ? "./#" : `/${chapter}/${verse}`} class={buttonClasses}>{key}</Link>
+  <Link to={$__currentPage === "chapter" ? "./#" : `/${chapter}/${verse}`} class={buttonClasses}>{key}</Link>
 
   <button on:click={() => updateSettings({ type: "userBookmarks", key })} class={buttonClasses}>
     <svelte:component this={userBookmarks.includes(key) ? Bookmarked : Bookmark} />
   </button>
   <button on:click={() => showAudioModal(key)} class={buttonClasses}>
-    <svelte:component this={$audioSettingsStore.isPlaying === true && $audioSettingsStore.playingKey === key ? Pause : Play} />
+    <svelte:component this={$__audioSettings.isPlaying === true && $__audioSettings.playingKey === key ? Pause : Play} />
   </button>
 
   <!-- verses option dropdown -->

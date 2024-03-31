@@ -1,4 +1,4 @@
-import { userSettingsStore, wordTypeStore, displayTypeStore, websiteThemeStore, wordTranslationStore, verseTranslationsStore, wordTranslationEnabledStore, wordTransliterationEnabledStore, reciterStore, playbackSpeedStore, lastReadStore } from "$utils/stores";
+import { __userSettings, __wordType, __displayType, __websiteTheme, __wordTranslation, __verseTranslations, __wordTranslationEnabled, __wordTransliterationEnabled, __reciter, __playbackSpeed, __lastRead } from "$utils/stores";
 import { selectableVerseTranslations } from "$data/options";
 
 // function to update website settings
@@ -9,19 +9,19 @@ export function updateSettings(props) {
   switch (props.type) {
     // for word types
     case "wordType":
-      wordTypeStore.set(props.value);
+      __wordType.set(props.value);
       userSettings.displaySettings.wordType = props.value;
       break;
 
     // for display types
     case "displayType":
-      displayTypeStore.set(props.value);
+      __displayType.set(props.value);
       userSettings.displaySettings.displayType = props.value;
       break;
 
     // for website theme
     case "websiteTheme":
-      websiteThemeStore.set(props.value);
+      __websiteTheme.set(props.value);
       userSettings.displaySettings.websiteTheme = props.value;
       document.documentElement.classList = "";
       document.documentElement.classList = `theme-${props.value}`;
@@ -29,19 +29,19 @@ export function updateSettings(props) {
 
     // for word translation view
     case "wordTranslationEnabled":
-      wordTranslationEnabledStore.set(props.value);
+      __wordTranslationEnabled.set(props.value);
       userSettings.displaySettings.wordTranslationEnabled = props.value;
       break;
 
     // for word transliteration view
     case "wordTransliterationEnabled":
-      wordTransliterationEnabledStore.set(props.value);
+      __wordTransliterationEnabled.set(props.value);
       userSettings.displaySettings.wordTransliterationEnabled = props.value;
       break;
 
     // for word translation
     case "wordTranslation":
-      wordTranslationStore.set(props.value);
+      __wordTranslation.set(props.value);
       userSettings.translations.word = props.value;
       break;
 
@@ -65,19 +65,19 @@ export function updateSettings(props) {
       // if the value is an array
       if (props.value instanceof Array) verseTranslationsArray = props.value;
 
-      verseTranslationsStore.set(verseTranslationsArray);
+      __verseTranslations.set(verseTranslationsArray);
       userSettings.translations.verse = verseTranslationsArray;
       break;
 
     // for verse reciter
     case "reciter":
-      reciterStore.set(props.value);
+      __reciter.set(props.value);
       userSettings.audioSettings.reciter = props.value;
       break;
 
     // for playback speed
     case "playbackSpeed":
-      playbackSpeedStore.set(props.value);
+      __playbackSpeed.set(props.value);
       userSettings.audioSettings.playbackSpeed = props.value;
       break;
 
@@ -105,7 +105,7 @@ export function updateSettings(props) {
 
     // for last read
     case "lastRead":
-      lastReadStore.set(props.value);
+      __lastRead.set(props.value);
       userSettings.lastRead = props.value;
       break;
 
@@ -147,6 +147,6 @@ export function updateSettings(props) {
   }
 
   // update the settings back into localStorage and global store
-  userSettingsStore.set(JSON.stringify(userSettings));
+  __userSettings.set(JSON.stringify(userSettings));
   localStorage.setItem("userSettings", JSON.stringify(userSettings));
 }

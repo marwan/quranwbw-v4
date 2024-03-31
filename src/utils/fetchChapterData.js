@@ -1,5 +1,5 @@
 import { get } from "svelte/store";
-import { currentPageStore, wordTypeStore, chapterDataStore, wordTranslationStore, verseTranslationsStore } from "$utils/stores";
+import { __currentPage, __wordType, __chapterData, __wordTranslation, __verseTranslations } from "$utils/stores";
 import { apiEndpoint } from "$data/websiteSettings";
 import { quranMetaData } from "$data/quranMeta";
 
@@ -13,14 +13,14 @@ export async function fetchChapterData(chapter) {
     apiEndpoint +
     new URLSearchParams({
       verses: `${chapter}:1,${chapter}:${quranMetaData[chapter].verses}`,
-      word_type: get(wordTypeStore),
-      word_translation: get(wordTranslationStore),
-      verse_translation: get(verseTranslationsStore).toString(),
+      word_type: get(__wordType),
+      word_translation: get(__wordTranslation),
+      verse_translation: get(__verseTranslations).toString(),
       between: true,
     });
 
   // if the user is on homepage, just fetch the chapter data
-  if (get(currentPageStore) === "home") {
+  if (get(__currentPage) === "home") {
     fetch(apiURL);
   }
 
@@ -28,6 +28,6 @@ export async function fetchChapterData(chapter) {
   else {
     const response = await fetch(apiURL);
     const data = await response.json();
-    chapterDataStore.set(data.data.verses);
+    __chapterData.set(data.data.verses);
   }
 }

@@ -10,7 +10,7 @@
   import ContinuousNormalDisplay from "$displays/ContinuousNormalDisplay.svelte";
   import SideBySideDisplay from "$displays/SideBySideDisplay.svelte";
   import { quranMetaData } from "$data/quranMeta";
-  import { displayTypeStore, chapterNumberStore, chapterDataStore } from "$utils/stores";
+  import { __displayType, __chapterNumber, __chapterData } from "$utils/stores";
   import { buttonElement } from "$utils/commonStyles";
 
   // load button click options
@@ -27,7 +27,7 @@
     5: { displayID: 5, displayComponent: SideBySideDisplay },
   };
 
-  const chapterTotalVerses = quranMetaData[$chapterNumberStore].verses;
+  const chapterTotalVerses = quranMetaData[$__chapterNumber].verses;
 
   let ChapterVerses; // for the "ChapterVerses" component
 
@@ -112,7 +112,7 @@
 {/if} -->
 
 {#each Array.from(Array(endVerse + 1).keys()).slice(startVerse) as verse}
-  <svelte:component this={displayComponents[`${$displayTypeStore}`].displayComponent} key={`${$chapterNumberStore}:${verse}`} value={$chapterDataStore[`${$chapterNumberStore}:${verse}`]} />
+  <svelte:component this={displayComponents[`${$__displayType}`].displayComponent} key={`${$__chapterNumber}:${verse}`} value={$__chapterData[`${$__chapterNumber}:${verse}`]} />
 {/each}
 
 <!-- if the verses are being shown to the user in a modal/drawer, then do not show the loadNextVersesButton -->

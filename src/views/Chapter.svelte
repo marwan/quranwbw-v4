@@ -9,7 +9,7 @@
   import { parseURL } from "$utils/parseURL";
   import { fetchChapterData } from "$utils/fetchChapterData";
   import { quranMetaData } from "$data/quranMeta";
-  import { currentPageStore, chapterNumberStore, displayTypeStore, wordTypeStore, wordTranslationStore, verseTranslationsStore, pageURLStore } from "$utils/stores";
+  import { __currentPage, __chapterNumber, __displayType, __wordType, __wordTranslation, __verseTranslations, __pageURL } from "$utils/stores";
   import { debounce } from "$utils/debounce";
   import { toggleNavbar } from "$utils/toggleNavbar";
 
@@ -21,11 +21,11 @@
   // fetch verses whenever there's a change
   $: {
     // updating the reactive chapter number
-    chapterNumberStore.set(+chapter);
+    __chapterNumber.set(+chapter);
 
-    const chapterTotalVerses = quranMetaData[$chapterNumberStore].verses;
+    const chapterTotalVerses = quranMetaData[$__chapterNumber].verses;
 
-    chapterData = fetchChapterData($chapterNumberStore);
+    chapterData = fetchChapterData($__chapterNumber);
 
     // getting start and end range incase we need to load specific verses
     (startVerse = parseURL()[0]), (endVerse = parseURL()[1]);
@@ -38,7 +38,7 @@
     }
 
     // logging these for now to re-run the block on URL change
-    console.log($pageURLStore, $displayTypeStore, $wordTypeStore, $wordTranslationStore, $verseTranslationsStore);
+    console.log($__pageURL, $__displayType, $__wordType, $__wordTranslation, $__verseTranslations);
   }
 
   // toggle bottom nav on scroll
@@ -46,7 +46,7 @@
     "scroll",
     () => {
       // toggle the navbars based on the scroll direction
-      debounce(toggleNavbar, 100);
+      debounce(toggleNavbar, 0);
     },
     {
       capture: true,
@@ -54,22 +54,22 @@
     }
   );
 
-  currentPageStore.set("chapter");
+  __currentPage.set("chapter");
 </script>
 
-<PageMeta title={`${quranMetaData[$chapterNumberStore].transliteration} (${$chapterNumberStore})`} />
+<PageMeta title={`${quranMetaData[$__chapterNumber].transliteration} (${$__chapterNumber})`} />
 
 <div>
   {#await chapterData}
     <Spinner height="screen" margin="-mt-20" />
   {:then}
     <!-- show Bismillah if chapter is not 1st or 9th -->
-    {#if ![1, 9].includes($chapterNumberStore)}
+    {#if ![1, 9].includes($__chapterNumber)}
       <Bismillah />
     {/if}
 
     <!-- need custom stylings if display type is 3 or 4 - continuous -->
-    <div id="verses-block" style={[3, 4].includes($displayTypeStore) && "text-align: center; direction: rtl;"}>
+    <div id="verses-block" style={[3, 4].includes($__displayType) && "text-align: center; direction: rtl;"}>
       <ChapterVerses {startVerse} {endVerse} />
     </div>
   {:catch error}

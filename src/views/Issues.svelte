@@ -2,7 +2,7 @@
   import PageMeta from "$components/PageMeta.svelte";
   import Spinner from "$svgs/Spinner.svelte";
   import { websiteURL } from "$data/websiteSettings";
-  import { currentPageStore } from "$utils/stores";
+  import { __currentPage } from "$utils/stores";
   import { timeAgo } from "$utils/timeAgo";
   import { linkElement, labelPillElement } from "$utils/commonStyles";
 
@@ -17,7 +17,7 @@
     })();
   }
 
-  currentPageStore.set("issues");
+  __currentPage.set("issues");
 </script>
 
 <PageMeta title={"Issues"} />

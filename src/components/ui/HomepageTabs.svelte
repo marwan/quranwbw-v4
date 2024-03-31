@@ -2,7 +2,7 @@
   import { Link } from "svelte-routing";
   import { quranMetaData, mostRead } from "$data/quranMeta";
   import { fetchChapterData } from "$utils/fetchChapterData";
-  import { lastReadStore } from "$utils/stores";
+  import { __lastRead, __favouriteChapters } from "$utils/stores";
 
   import { inview } from "svelte-inview";
 
@@ -33,7 +33,7 @@
         <button on:click={() => (activeTab = 2)} class="{homepageTabsStyles.tabStyle} {activeTab === 2 ? `${homepageTabsStyles.activeTab}` : ''}" id="most-read-tab" data-tabs-target="#most-read-tab-panel" type="button" role="tab" aria-controls="most-read-tab-panel" aria-selected="false">Most Read</button>
       </li>
       <li>
-        <Link to="/{$lastReadStore.split(':')[0]}/{$lastReadStore.split(':')[1]}" class={homepageTabsStyles.tabStyle} id="last-read-tab" data-tabs-target="#most-read-tab-panel" type="button" role="tab" aria-controls="most-read-tab-panel" aria-selected="false">Last Read ({$lastReadStore})</Link>
+        <Link to="/{$__lastRead.split(':')[0]}/{$__lastRead.split(':')[1]}" class={homepageTabsStyles.tabStyle} id="last-read-tab" data-tabs-target="#most-read-tab-panel" type="button" role="tab" aria-controls="most-read-tab-panel" aria-selected="false">Last Read ({$__lastRead})</Link>
       </li>
     </ul>
   </div>
@@ -58,16 +58,31 @@
     </div>
 
     <!-- most read tab -->
-    <div class="homepage-tab-panels {activeTab === 2 ? 'block' : 'hidden'}" id="most-read-tab-panel" role="tabpanel" aria-labelledby="most-read-tab">
-      <div class={homepageTabsStyles.cardGridStyle}>
-        {#each Object.entries(mostRead) as [id, item]}
-          <Link to={item.url} class={homepageTabsStyles.cardInnerStyle}>
-            <div class="">
-              <span class="text-sm">{quranMetaData[item.chapter].transliteration} ({item.verses})</span>
-              <div class="block text-xs text-gray-400">{item.title}</div>
-            </div>
-          </Link>
-        {/each}
+    <div class="homepage-tab-panels space-y-12 {activeTab === 2 ? 'block' : 'hidden'}" id="most-read-tab-panel" role="tabpanel" aria-labelledby="most-read-tab">
+      <!-- <div id="favourite-chapters" class="flex flex-col space-y-4">
+        <div class="text-sm text-center font-medium">Your Favourites</div>
+        <div class={homepageTabsStyles.cardGridStyle}>
+          {#each $__favouriteChapters as chapter, index}
+            <Link to="/{chapter}" class={homepageTabsStyles.cardInnerStyle}>
+              <div class="">
+                <span class="text-sm">{quranMetaData[chapter].transliteration}</span>
+              </div>
+            </Link>
+          {/each}
+        </div>
+      </div> -->
+      <div id="most-read-chapters" class="flex flex-col space-y-4">
+        <!-- <div class="text-sm text-center font-medium">Recommended by QuranWBW</div> -->
+        <div class={homepageTabsStyles.cardGridStyle}>
+          {#each Object.entries(mostRead) as [id, item]}
+            <Link to={item.url} class={homepageTabsStyles.cardInnerStyle}>
+              <div class="">
+                <span class="text-sm">{quranMetaData[item.chapter].transliteration} ({item.verses})</span>
+                <div class="block text-xs text-gray-400">{item.title}</div>
+              </div>
+            </Link>
+          {/each}
+        </div>
       </div>
     </div>
   </div>

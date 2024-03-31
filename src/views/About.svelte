@@ -1,10 +1,10 @@
 <script>
   import PageMeta from "$components/PageMeta.svelte";
   import { websiteURL } from "$data/websiteSettings";
-  import { currentPageStore } from "$utils/stores";
+  import { __currentPage } from "$utils/stores";
   import { linkElement } from "$utils/commonStyles";
 
-  currentPageStore.set("about");
+  __currentPage.set("about");
 </script>
 
 <PageMeta title={"About"} />

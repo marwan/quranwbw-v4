@@ -3,7 +3,7 @@
   import IndividualVerses from "$verses/IndividualVerses.svelte";
   import Spinner from "$svgs/Spinner.svelte";
   import { websiteURL, apiEndpoint } from "$data/websiteSettings";
-  import { currentPageStore, wordTypeStore, displayTypeStore, wordTranslationStore, verseTranslationsStore } from "$utils/stores";
+  import { __currentPage, __wordType, __displayType, __wordTranslation, __verseTranslations } from "$utils/stores";
   import { getSupplicationKeys } from "$utils/getSupplicationKeys";
 
   let fetchData;
@@ -15,9 +15,9 @@
         apiEndpoint +
         new URLSearchParams({
           verses: getSupplicationKeys(),
-          word_type: $wordTypeStore,
-          word_translation: $wordTranslationStore,
-          verse_translation: $verseTranslationsStore.toString(),
+          word_type: $__wordType,
+          word_translation: $__wordTranslation,
+          verse_translation: $__verseTranslations.toString(),
         });
 
       const response = await fetch(apiURL);
@@ -26,10 +26,10 @@
     })();
 
     // logging these for now to re-run the block on URL change
-    console.log($displayTypeStore, $wordTranslationStore, $verseTranslationsStore);
+    console.log($__displayType, $__wordTranslation, $__verseTranslations);
   }
 
-  currentPageStore.set("supplications");
+  __currentPage.set("supplications");
 </script>
 
 <PageMeta title={"Supplications From Quran"} />

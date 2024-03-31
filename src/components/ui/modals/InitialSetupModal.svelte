@@ -1,6 +1,6 @@
 <script>
   import ChapterVerses from "$verses/ChapterVerses.svelte";
-  import { currentPageStore, chapterDataStore, wordTypeStore, displayTypeStore } from "$utils/stores";
+  import { __currentPage, __chapterData, __wordType, __displayType } from "$utils/stores";
   import { displayOptions, selectableFontTypes } from "$data/options";
   import { updateSettings } from "$utils/updateSettings";
   import { toggleModal } from "$utils/toggleModal";
@@ -8,7 +8,7 @@
 
   // show the setup modal on first visit except on the home page
   $: {
-    if ($currentPageStore === "chapter") {
+    if ($__currentPage === "chapter") {
       const userSettings = JSON.parse(localStorage.getItem("userSettings"));
 
       // // if the setup was not already done
@@ -45,7 +45,7 @@
         <div class="flex flex-row space-x-6">
           <div class="flex flex-col">
             <label for="quran-font-list" class="block mb-2 text-sm font-medium text-gray-900">Quran Font</label>
-            <select id="quran-font-list" on:change={(event) => updateSettings({ type: "wordType", value: +event.target.value })} bind:value={$wordTypeStore} class="w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <select id="quran-font-list" on:change={(event) => updateSettings({ type: "wordType", value: +event.target.value })} bind:value={$__wordType} class="w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
               {#each Object.entries(selectableFontTypes) as [id, font]}
                 <option value={font.id}>{font.font}</option>
               {/each}
@@ -54,7 +54,7 @@
 
           <div class="flex flex-col">
             <label for="display-style-list" class="block mb-2 text-sm font-medium text-gray-900">Display Style</label>
-            <select id="display-style-list" bind:value={$displayTypeStore} on:change={(event) => updateSettings({ type: "displayType", value: +event.target.selectedIndex + 1 })} class="w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <select id="display-style-list" bind:value={$__displayType} on:change={(event) => updateSettings({ type: "displayType", value: +event.target.selectedIndex + 1 })} class="w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
               {#each Object.entries(displayOptions) as [id, displayOption]}
                 <option value={displayOption.displayID}>{displayOption.displayName}</option>
               {/each}
@@ -63,11 +63,11 @@
         </div>
 
         <!-- example verse -->
-        {#key $chapterDataStore}
-          {#if $chapterDataStore !== null}
+        {#key $__chapterData}
+          {#if $__chapterData !== null}
             <div class="flex flex-col pt-8 space-y-4">
               <span class="text-center text-xs">Example Verse:</span>
-              <div id="exampleVerse" style="zoom: 60%; {displayOptions[`${$displayTypeStore}`].continuous === true ? 'text-align: center; direction: rtl;' : ''}">
+              <div id="exampleVerse" style="zoom: 60%; {displayOptions[`${$__displayType}`].continuous === true ? 'text-align: center; direction: rtl;' : ''}">
                 <ChapterVerses startVerse={1} endVerse={1} isExampleVerse={true} />
               </div>
             </div>

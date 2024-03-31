@@ -5,7 +5,7 @@
   import { websiteURL } from "$data/websiteSettings";
   import { searchableTranslations } from "$data/searchableTranslations";
   import { quranMetaData } from "$data/quranMeta";
-  import { currentPageStore } from "$utils/stores";
+  import { __currentPage } from "$utils/stores";
   import { linkElement } from "$utils/commonStyles";
 
   let fetchData;
@@ -38,7 +38,7 @@
     return verseText.replace(pattern, "<b>$1</b>");
   }
 
-  currentPageStore.set("search");
+  __currentPage.set("search");
 </script>
 
 <PageMeta title={"Search"} />

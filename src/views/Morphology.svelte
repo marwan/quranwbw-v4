@@ -8,7 +8,7 @@
   import MorphologyTable from "$morphology/MorphologyTable.svelte";
   import { quranMetaData } from "$data/quranMeta";
   import { websiteTitle, apiEndpoint } from "$data/websiteSettings";
-  import { currentPageStore, wordTypeStore, wordTranslationStore, verseTranslationsStore, morphologyKey } from "$utils/stores";
+  import { __currentPage, __wordType, __wordTranslation, __verseTranslations, __morphologyKey } from "$utils/stores";
   import { tabPillElement } from "$utils/commonStyles";
 
   let fetchData, fetchWordsData, fetchWordSummary;
@@ -22,7 +22,7 @@
 
     if (isNaN(word)) word = 1;
 
-    morphologyKey.set(`${chapter}:${verse}:${word}`);
+    __morphologyKey.set(`${chapter}:${verse}:${word}`);
   }
 
   // fetch verses whenever there's a change
@@ -32,9 +32,9 @@
         apiEndpoint +
         new URLSearchParams({
           verses: `${chapter}:${verse}`,
-          word_type: $wordTypeStore,
-          word_translation: $wordTranslationStore,
-          verse_translation: $verseTranslationsStore.toString(),
+          word_type: $__wordType,
+          word_translation: $__wordTranslation,
+          verse_translation: $__verseTranslations.toString(),
         });
 
       const response = await fetch(apiURL);
@@ -46,7 +46,7 @@
   // fetch words
   $: {
     fetchWordsData = (async () => {
-      const response = await fetch(`https://api.quranwbw.com/v1/morphology?words=${$morphologyKey}`);
+      const response = await fetch(`https://api.quranwbw.com/v1/morphology?words=${$__morphologyKey}`);
       const data = await response.json();
       return data.data;
     })();
@@ -55,16 +55,16 @@
   // fetch word summary
   $: {
     fetchWordSummary = (async () => {
-      const response = await fetch(`https://api.quranwbw.com/v1/morphology/summary?word=${$morphologyKey}`);
+      const response = await fetch(`https://api.quranwbw.com/v1/morphology/summary?word=${$__morphologyKey}`);
       const data = await response.json();
       return data.data;
     })();
   }
 
-  currentPageStore.set("morphology");
+  __currentPage.set("morphology");
 </script>
 
-<PageMeta title={`Morphology (${$morphologyKey})`} />
+<PageMeta title={`Morphology (${$__morphologyKey})`} />
 
 <div class="space-y-12 my-8">
   <div id="verse-navigator" class="flex flex-row justify-center space-x-8">
@@ -119,7 +119,7 @@
                   {#if value !== null}
                     <div class="flex flex-col py-5 duration-300 transform bg-white border rounded-lg shadow-sm text-center hover:-translate-y-2">
                       <div class="flex items-center justify-center mb-2">
-                        <p id="verb-1" class="text-xl md:text-2xl pb-4 leading-5 arabic-font-{$wordTypeStore}">{value}</p>
+                        <p id="verb-1" class="text-xl md:text-2xl pb-4 leading-5 arabic-font-{$__wordType}">{value}</p>
                       </div>
                       <p class="text-xs text-gray-900">{key}</p>
                     </div>

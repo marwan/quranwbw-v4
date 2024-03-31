@@ -21,14 +21,14 @@ export const selectableThemes = {
 };
 
 export const verseTranslationsLanguages = {
-  1: { id: 1, language: "Arabic" },
-  2: { id: 2, language: "Bangla" },
-  3: { id: 3, language: "English" },
-  4: { id: 4, language: "Hindi" },
-  5: { id: 5, language: "Hindi Literal" },
-  6: { id: 6, language: "Indonesian" },
-  7: { id: 7, language: "Turkish" },
-  8: { id: 8, language: "Tamil" },
+  1: { id: 1, language: "Bangla" },
+  2: { id: 2, language: "English" },
+  3: { id: 3, language: "Hindi" },
+  4: { id: 4, language: "Hindi Literal" },
+  5: { id: 5, language: "Indonesian" },
+  6: { id: 6, language: "Tamil" },
+  7: { id: 7, language: "Transliteration" },
+  8: { id: 8, language: "Turkish" },
   9: { id: 9, language: "Urdu" },
   10: { id: 10, language: "Urdu Literal" },
 };
@@ -36,9 +36,15 @@ export const verseTranslationsLanguages = {
 export const selectableVerseTranslations = {
   1: {
     id: 1,
-    language: "Arabic",
-    author: "Transliteration (Tajweed)",
+    language: "Transliteration",
+    author: "Tajweed Transliteration",
     slug: "arb_transliteration_tajweed",
+  },
+  2: {
+    id: 2,
+    language: "Transliteration",
+    author: "Transliteration",
+    slug: "transliteration_normal",
   },
   10: {
     id: 10,

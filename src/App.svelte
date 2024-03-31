@@ -9,7 +9,7 @@
   import "$utils/checkURLParameters";
 
   import { Router, Route } from "svelte-routing";
-  import { currentPageStore } from "$utils/stores";
+  import { __currentPage } from "$utils/stores";
   import { checkOldBookmarks } from "$utils/checkOldBookmarks";
 
   // views
@@ -37,7 +37,7 @@
 </script>
 
 <Router>
-  <div class="max-w-screen-lg mx-auto pt-16 pb-24 select-none {$currentPageStore === 'page' ? 'px-0 md:px-4' : 'px-4'}">
+  <div class="max-w-screen-lg mx-auto pt-16 pb-24 select-none {$__currentPage === 'page' ? 'px-0 md:px-4' : 'px-4'}">
     <!-- include the UI elements -->
     <Navbar />
     <Drawer />

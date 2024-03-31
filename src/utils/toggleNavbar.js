@@ -1,27 +1,37 @@
 import { get } from "svelte/store";
-import { currentPageStore, topNavbarVisibleStore, bottomNavbarVisibleStore } from "$utils/stores";
+import { __currentPage, __topNavbarVisible, __bottomNavbarVisible } from "$utils/stores";
 
-let lastScrollTop = 0;
+let prevScrollpos = getCurrentScroll();
+let ticking = false;
 
 // function to toggle bottom navbar on scroll
 export function toggleNavbar() {
-  // only toggle the bottom navbar for chapter page
-  if (get(currentPageStore) === "chapter") {
-    // or window.addEventListener("scroll"....
-    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  if (get(__currentPage) === "chapter") {
+    let currentScrollPos = getCurrentScroll();
 
-    // scrolling down
-    if (scrollTop > lastScrollTop) {
-      topNavbarVisibleStore.set(false);
-      // bottomNavbarVisibleStore.set(false);
+    if (!ticking) {
+      window.requestAnimationFrame(function () {
+        // scrolling up
+        if (prevScrollpos > currentScrollPos) {
+          __topNavbarVisible.set(true);
+          __bottomNavbarVisible.set(true);
+        }
+
+        // scrolling down
+        else {
+          __topNavbarVisible.set(false);
+          __bottomNavbarVisible.set(false);
+        }
+
+        prevScrollpos = currentScrollPos;
+        ticking = false;
+      });
+
+      ticking = true;
     }
-
-    // scrolling up
-    else if (scrollTop < lastScrollTop) {
-      topNavbarVisibleStore.set(true);
-      // bottomNavbarVisibleStore.set(true);
-    }
-
-    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
   }
+}
+
+function getCurrentScroll() {
+  return window.pageYOffset || document.documentElement.scrollTop;
 }

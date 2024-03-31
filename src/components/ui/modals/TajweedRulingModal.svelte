@@ -3,7 +3,7 @@
   import { buttonElement, linkElement } from "$utils/commonStyles";
   import { tajweedRulings } from "$data/quranMeta";
   import { selectableThemes } from "$data/options";
-  import { websiteThemeStore } from "$utils/stores";
+  import { __websiteTheme } from "$utils/stores";
 </script>
 
 <!-- Main modal -->
@@ -36,7 +36,7 @@
             <tbody>
               {#each Object.entries(tajweedRulings) as [id, ruling]}
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                  <td class="px-6 py-4 tajweed-ruling text-2xl {selectableThemes[$websiteThemeStore].palette === 1 && 'v4dark'} font-filter"> {ruling.code} </td>
+                  <td class="px-6 py-4 tajweed-ruling text-2xl {selectableThemes[$__websiteTheme].palette === 1 && 'v4dark'} font-filter"> {ruling.code} </td>
                   <td class="px-6 py-4"> {ruling.description} </td>
                 </tr>
               {/each}
