@@ -12,6 +12,7 @@
   if (userSettings.displaySettings.wordType === undefined) userSettings.displaySettings.wordType = 1; // Uthmani
   if (userSettings.displaySettings.wordTranslationEnabled === undefined) userSettings.displaySettings.wordTranslationEnabled = true; // shown
   if (userSettings.displaySettings.wordTransliterationEnabled === undefined) userSettings.displaySettings.wordTransliterationEnabled = true; // shown
+  if (userSettings.displaySettings.tajweedEnabled === undefined) userSettings.displaySettings.tajweedEnabled = true; // shown
 
   // font size settings (child of display settings)
   if (userSettings.displaySettings.fontSizes === undefined) userSettings.displaySettings.fontSizes = {}; // parent

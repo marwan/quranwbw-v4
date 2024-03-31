@@ -53,12 +53,12 @@
 
 <nav id="navbar" class="{$__currentPage === 'home' ? 'hidden' : 'block'} bg-white fixed w-full z-20 top-0 left-0 border-b border-gray-200 text-black backdrop-filter backdrop-blur-lg bg-opacity-50 print:hidden dark:bg-slate-900 dark:text-slate-400 dark:border-slate-700 grayscale">
   <div id="top-nav" class="{$__topNavbarVisible === true ? 'block' : 'hidden'} flex flex-row items-center justify-between max-w-screen-lg mx-auto px-4 py-2">
-    <Link to="/" class="flex flex-row items-center p-2 cursor-pointer hover:bg-[#ebebeb] rounded-lg dark:hover:bg-slate-700">
+    <Link to="/" class="flex flex-row items-center p-3 cursor-pointer hover:bg-[#ebebeb] rounded-lg dark:hover:bg-slate-700">
       <Home />
       <span class="text-xs pl-2 hidden sm:block">Home</span>
     </Link>
 
-    <button id="navigationDropdownButton" data-dropdown-toggle="navigationDropdown" class="flex items-center py-2 px-3 text-sm border-gray-200 w-auto p-2 hover:bg-[#ebebeb] rounded-lg dark:hover:bg-slate-700">
+    <button id="navigationDropdownButton" data-dropdown-toggle="navigationDropdown" class="flex items-center p-3 text-sm border-gray-200 w-auto p-2 hover:bg-[#ebebeb] rounded-lg dark:hover:bg-slate-700">
       <span id="navbar-top-title">
         {#if $__currentPage === "chapter"}
           {navbarChapterName}
@@ -70,7 +70,7 @@
       <svg class="w-2.5 h-2.5 ml-2.5 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" /></svg>
     </button>
 
-    <div class="flex flex-row items-center p-2 cursor-pointer hover:bg-[#ebebeb] rounded-lg dark:hover:bg-slate-700" type="button" id="rightMenuDropdownButton" data-dropdown-toggle="rightMenuDropdown">
+    <div class="flex flex-row items-center p-3 cursor-pointer hover:bg-[#ebebeb] rounded-lg dark:hover:bg-slate-700" type="button" id="rightMenuDropdownButton" data-dropdown-toggle="rightMenuDropdown">
       <span class="text-xs pr-2 hidden sm:block">Menu</span>
       <Menu />
     </div>

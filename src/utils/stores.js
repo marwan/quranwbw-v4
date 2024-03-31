@@ -29,6 +29,9 @@ export const __wordTranslationEnabled = writable(localSettings.displaySettings.w
 // to store the word transliteration toggle
 export const __wordTransliterationEnabled = writable(localSettings.displaySettings.wordTransliterationEnabled);
 
+// to store the v4 font tajweed boolean
+export const __tajweedEnabled = writable(localSettings.displaySettings.tajweedEnabled);
+
 // to store reciter
 export const __reciter = writable(localSettings.audioSettings.reciter);
 

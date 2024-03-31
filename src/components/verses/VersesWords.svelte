@@ -3,9 +3,9 @@
 
   import { navigate } from "svelte-routing";
 
-  import { displayOptions, selectableThemes } from "$data/options";
+  import { displayOptions } from "$data/options";
   import { supplicationsFromQuran } from "$data/quranMeta";
-  import { __currentPage, __wordType, __displayType, __websiteTheme, __userSettings, __audioSettings, __wordTranslationEnabled, __wordTransliterationEnabled, __morphologyKey } from "$utils/stores";
+  import { __currentPage, __wordType, __displayType, __websiteTheme, __userSettings, __audioSettings, __wordTranslationEnabled, __wordTransliterationEnabled, __morphologyKey, __tajweedEnabled } from "$utils/stores";
   import { wordAudioController } from "$utils/audioController";
 
   const chapter = key.split(":")[0];
@@ -45,7 +45,7 @@
           {arabicSplit[word]}
           <!-- 2: Uthmanic Hafs Mushaf -->
         {:else if $__wordType === 2}
-          <span class="p{value.meta.page} {selectableThemes[$__websiteTheme].palette === 1 && 'v4dark'} font-filter">{arabicSplit[word]}</span>
+          <span class="p{value.meta.page} {$__tajweedEnabled === true ? 'theme-palette-tajweed' : 'theme-palette-normal'} font-filter">{arabicSplit[word]}</span>
         {/if}
       </span>
 
@@ -64,10 +64,12 @@
 {#if $__currentPage != "page" || ($__currentPage === "page" && value.words.end_line === line)}
   <div class="{$__displayType === 1 ? 'text-center flex flex-col' : 'inline-flex flex-col'} {wordClasses}">
     <span class="{`arabicText leading-normal arabic-font-${$__wordType} ${fontSizes.arabicText}`} {displayIsContinuous === true && 'inline-block group-hover:text-gray-500 dark:group-hover:text-slate-300'}" data-fontSize={fontSizes.arabicText}>
+      <!-- 1: Uthmanic Hafs Digital, 3: Indopak Madinah -->
       {#if $__wordType === 1 || $__wordType === 3}
         {value.words.end}
+        <!-- 2: Uthmanic Hafs Mushaf -->
       {:else if $__wordType === 2}
-        <span class="p{value.meta.page} {$__websiteTheme === 2 && 'v4dark'}">{value.words.end}</span>
+        <span class="p{value.meta.page} {$__tajweedEnabled === true ? 'theme-palette-tajweed' : 'theme-palette-normal'} font-filter">{value.words.end}</span>
       {/if}
     </span>
   </div>

@@ -1,5 +1,5 @@
 <script>
-  import { __currentPage, __wordType, __displayType, __websiteTheme, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __verseTranslations, __reciter, __playbackSpeed, __userSettings } from "$utils/stores";
+  import { __currentPage, __wordType, __displayType, __websiteTheme, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __verseTranslations, __reciter, __playbackSpeed, __userSettings, __tajweedEnabled } from "$utils/stores";
   import { displayOptions, selectableFontTypes, selectableThemes, selectableVerseTranslations, verseTranslationsLanguages, selectableWordTranslations, selectableReciters, selectablePlaybackSpeeds } from "$data/options";
   import { updateSettings } from "$utils/updateSettings";
   import { resetSettings } from "$utils/resetSettings";
@@ -115,6 +115,19 @@
         {#if $__wordType === 2}
           <p class="mb-6 text-sm text-gray-500 dark:text-gray-400"><b>Note:</b> The Uthmanic Hafs Mushaf font type is still under development and may contain errors and we are aware of them. In case you find any issues, please use a different font type.</p>
         {/if}
+      </div>
+
+      <!-- tajweed-toggle-setting -->
+      <div id="tajweed-toggle-setting" class="{settingsBlockClasses} {$__wordType !== 2 && disabledElement}">
+        <div class="flex flex-row justify-between items-center">
+          <span class="block text-gray-900 dark:text-slate-400">Colored Fonts</span>
+
+          <label class="inline-flex items-center cursor-pointer">
+            <input type="checkbox" value="" class="sr-only peer" checked={$__tajweedEnabled} on:click={(event) => updateSettings({ type: "tajweedEnabled", value: event.target.checked })} />
+            <div class="relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+          </label>
+        </div>
+        <p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Switch between the Tajweed colored fonts and the normal black & white.</p>
       </div>
 
       <!-- arabic-word-size-setting -->

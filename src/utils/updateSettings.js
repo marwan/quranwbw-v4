@@ -1,4 +1,4 @@
-import { __userSettings, __wordType, __displayType, __websiteTheme, __wordTranslation, __verseTranslations, __wordTranslationEnabled, __wordTransliterationEnabled, __reciter, __playbackSpeed, __lastRead } from "$utils/stores";
+import { __userSettings, __wordType, __displayType, __websiteTheme, __wordTranslation, __verseTranslations, __wordTranslationEnabled, __wordTransliterationEnabled, __reciter, __playbackSpeed, __lastRead, __tajweedEnabled } from "$utils/stores";
 import { selectableVerseTranslations } from "$data/options";
 
 // function to update website settings
@@ -37,6 +37,12 @@ export function updateSettings(props) {
     case "wordTransliterationEnabled":
       __wordTransliterationEnabled.set(props.value);
       userSettings.displaySettings.wordTransliterationEnabled = props.value;
+      break;
+
+    // for tajweed fonts
+    case "tajweedEnabled":
+      __tajweedEnabled.set(props.value);
+      userSettings.displaySettings.tajweedEnabled = props.value;
       break;
 
     // for word translation
