@@ -3,9 +3,9 @@
   import { displayOptions, selectableFontTypes, selectableThemes, selectableVerseTranslations, verseTranslationsLanguages, selectableWordTranslations, selectableReciters, selectablePlaybackSpeeds } from "$data/options";
   import { updateSettings } from "$utils/updateSettings";
   import { resetSettings } from "$utils/resetSettings";
-  import { disabledElement, buttonElement, labelPillElement } from "$utils/commonStyles";
+  import { disabledElement, buttonElement } from "$utils/commonStyles";
 
-  const settingsBlockClasses = "space-y-2 py-6 border-b";
+  const settingsBlockClasses = "space-y-2 py-6";
 
   $: fontSizeCodes = JSON.parse($__userSettings).displaySettings.fontSizes;
 </script>
@@ -53,6 +53,8 @@
         <p class="mb-6 text-sm text-gray-500 dark:text-gray-400">An assortment of website themes to please your vision.</p>
       </div>
 
+      <div class="border-b"></div>
+
       <!-- display-type-setting -->
       <div id="display-type-setting" class={settingsBlockClasses}>
         <div class="flex flex-row justify-between items-center">
@@ -65,6 +67,8 @@
         </div>
         <p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Different verse layouts that you can choose from.</p>
       </div>
+
+      <div class="border-b"></div>
 
       <!-- word-translation-toggle-setting -->
       <div id="word-translation-toggle-setting" class={settingsBlockClasses}>
@@ -79,8 +83,10 @@
         <p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Toggle the word translation which is shown below the Arabic word.</p>
       </div>
 
+      <div class="border-b"></div>
+
       <!-- word-transliteration-toggle-setting -->
-      <div id="word-transliteration-toggle-setting" class="{settingsBlockClasses} border-b-0">
+      <div id="word-transliteration-toggle-setting" class={settingsBlockClasses}>
         <div class="flex flex-row justify-between items-center">
           <span class="block text-gray-900 dark:text-slate-400">Word Transliteration</span>
 
@@ -117,6 +123,8 @@
         {/if}
       </div>
 
+      <div class="border-b"></div>
+
       <!-- tajweed-toggle-setting -->
       <div id="tajweed-toggle-setting" class="{settingsBlockClasses} {$__wordType !== 2 && disabledElement}">
         <div class="flex flex-row justify-between items-center">
@@ -129,6 +137,8 @@
         </div>
         <p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Switch between the Tajweed colored fonts and the normal black & white.</p>
       </div>
+
+      <div class="border-b"></div>
 
       <!-- arabic-word-size-setting -->
       <div id="arabic-word-size-setting" class={settingsBlockClasses}>
@@ -150,6 +160,8 @@
         <p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Font size for Arabic word text.</p>
       </div>
 
+      <div class="border-b"></div>
+
       <!-- word-translation-size-setting -->
       <div id="word-translation-size-setting" class={settingsBlockClasses}>
         <div class="flex flex-row justify-between items-center">
@@ -170,8 +182,10 @@
         <p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Font size for word translation and transliteration.</p>
       </div>
 
+      <div class="border-b"></div>
+
       <!-- verse-translation-size-setting -->
-      <div id="verse-translation-size-setting" class="{settingsBlockClasses} border-b-0">
+      <div id="verse-translation-size-setting" class={settingsBlockClasses}>
         <div class="flex flex-row justify-between items-center">
           <span class="block text-gray-900 dark:text-slate-400">Verse Tr/Tl Size ({fontSizeCodes.verseTranslationText.split("-")[1]})</span>
           <div class="inline-flex rounded-md shadow-sm" role="group">
@@ -210,8 +224,10 @@
         <p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Word translation which will be displaced under the Arabic word text.</p>
       </div>
 
+      <div class="border-b"></div>
+
       <!-- verse-translation-setting -->
-      <div id="verse-translation-setting" class="{settingsBlockClasses} border-b-0">
+      <div id="verse-translation-setting" class={settingsBlockClasses}>
         <div class="flex flex-row justify-between items-center">
           <label for="verse-translations-list" class="block text-gray-900 dark:text-slate-400">Verse</label>
           <button id="dropdownCheckboxButton" data-dropdown-toggle="verse-translation-checkbox" class="w-32 border text-left border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" type="button"> {$__verseTranslations.toString()} </button>
@@ -267,8 +283,10 @@
         <p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Desired reciter whose audio will be played when you choose to listen to a verse.</p>
       </div>
 
+      <div class="border-b"></div>
+
       <!-- playback-speed-setting -->
-      <div id="playback-speed-setting" class="{settingsBlockClasses} border-b-0">
+      <div id="playback-speed-setting" class={settingsBlockClasses}>
         <div class="flex flex-row justify-between items-center">
           <label for="speed-list" class="block text-gray-900 dark:text-slate-400">Playback Speed</label>
           <select id="speed-list" bind:value={$__playbackSpeed} on:change={(event) => updateSettings({ type: "playbackSpeed", value: +event.target.selectedIndex + 1 })} class="w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
