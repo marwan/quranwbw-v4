@@ -135,7 +135,7 @@
             <div class="relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
           </label>
         </div>
-        <p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Switch between the Tajweed colored fonts and the normal black & white.</p>
+        <p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Switch between the colored fonts with Tajweed rulings or the normal black & white.</p>
       </div>
 
       <div class="border-b"></div>

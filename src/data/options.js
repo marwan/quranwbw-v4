@@ -23,14 +23,15 @@ export const selectableThemes = {
 export const verseTranslationsLanguages = {
   1: { id: 1, language: "Bangla" },
   2: { id: 2, language: "English" },
-  3: { id: 3, language: "Hindi" },
-  4: { id: 4, language: "Hindi Literal" },
-  5: { id: 5, language: "Indonesian" },
-  6: { id: 6, language: "Tamil" },
-  7: { id: 7, language: "Transliteration" },
-  8: { id: 8, language: "Turkish" },
-  9: { id: 9, language: "Urdu" },
-  10: { id: 10, language: "Urdu Literal" },
+  3: { id: 3, language: "French" },
+  4: { id: 4, language: "Hindi" },
+  5: { id: 5, language: "Hindi Literal" },
+  6: { id: 6, language: "Indonesian" },
+  7: { id: 7, language: "Tamil" },
+  8: { id: 8, language: "Transliteration" },
+  9: { id: 9, language: "Turkish" },
+  10: { id: 10, language: "Urdu" },
+  11: { id: 11, language: "Urdu Literal" },
 };
 
 export const selectableVerseTranslations = {
@@ -184,16 +185,26 @@ export const selectableVerseTranslations = {
     author: "Jan Turst Foundation",
     slug: "tam_janturstfoundat",
   },
+  42: {
+    id: 42,
+    language: "French",
+    author: "Muhammad Hamidullah",
+    slug: "fr_hamidullah",
+  },
 };
 
 export const selectableWordTranslations = {
   1: { id: 5, language: "Bangla" },
   2: { id: 1, language: "English" },
-  3: { id: 3, language: "Hindi" },
-  4: { id: 4, language: "Indonesian" },
-  5: { id: 6, language: "Turkish" },
-  6: { id: 7, language: "Tamil" },
-  7: { id: 2, language: "Urdu" },
+  3: { id: 11, language: "French" },
+  4: { id: 8, language: "German" },
+  5: { id: 3, language: "Hindi" },
+  6: { id: 4, language: "Indonesian" },
+  7: { id: 10, language: "Ingush" },
+  8: { id: 9, language: "Russian" },
+  9: { id: 7, language: "Tamil" },
+  10: { id: 6, language: "Turkish" },
+  12: { id: 2, language: "Urdu" },
 };
 
 export const selectableReciters = {
@@ -223,27 +234,3 @@ export const selectablePlaybackSpeeds = {
   5: { id: 5, speed: 1.75 },
   6: { id: 6, speed: 2 },
 };
-
-// export const selectableSearchTranslations = {
-//   // english
-//   1: { id: 1, language: "English", author: "Ahmed Ali", code: "en.ahmedali" },
-//   2: { id: 2, language: "English", author: "Ahmed Raza Khan", code: "en.ahmedraza" },
-//   3: { id: 3, language: "English", author: "Arberry", code: "en.arberry" },
-//   4: { id: 4, language: "English", author: "Asad", code: "en.asad" },
-//   5: { id: 5, language: "English", author: "Daryabadi", code: "en.daryabadi" },
-//   6: { id: 6, language: "English", author: "Hilali & Khan", code: "en.hilali" },
-//   7: { id: 7, language: "English", author: "Pickthall", code: "en.pickthall" },
-//   8: { id: 8, language: "English", author: "Qaribullah & Darwish", code: "en.qaribullah" },
-//   9: { id: 9, language: "English", author: "Saheeh International", code: "en.sahih" },
-//   10: { id: 10, language: "English", author: "Sarwar", code: "en.sarwar" },
-//   11: { id: 11, language: "English", author: "Yusuf Ali", code: "en.yusufali" },
-//   12: { id: 12, language: "English", author: "Maududi", code: "en.maududi" },
-//   13: { id: 13, language: "English", author: "Shakir", code: "en.shakir" },
-//   14: { id: 14, language: "English", author: "Transliteration", code: "en.transliteration" },
-//   15: { id: 15, language: "English", author: "Ibrahim Walk", code: "en.walk" },
-//   16: { id: 16, language: "English", author: "Clear Qur'an - Talal Itani", code: "en.itani" },
-//   17: { id: 17, language: "English", author: "Mubarakpuri", code: "en.mubarakpuri" },
-//   18: { id: 18, language: "English", author: "Qarai", code: "en.qarai" },
-//   19: { id: 19, language: "English", author: "Wahiduddin Khan", code: "en.wahiduddin" },
-//   20: { id: 20, language: "English", author: "All English Translations", code: "en" },
-// };
