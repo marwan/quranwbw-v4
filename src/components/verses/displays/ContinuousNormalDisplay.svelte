@@ -22,7 +22,7 @@
   on:inview_enter={(event) => {
     updateSettings({ type: "lastRead", value: `${event.target.id}` });
   }}
-  class="inline py-2 group"
+  class="verse inline py-2 group"
 >
   <VersesWords {key} {value} />
 </div>

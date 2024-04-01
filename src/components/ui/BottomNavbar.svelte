@@ -23,7 +23,7 @@
         type: "verse",
         chapter: $__chapterNumber,
         verse: 1,
-        firstToPlay: +document.querySelector("#verses-block :nth-child(1)").id.split(":")[1], // first verse of page
+        firstToPlay: +document.getElementsByClassName("verse")[0].id.split(":")[1], // first verse of page
         lastToPlay: quranMetaData[$__chapterNumber].verses,
         timesToRepeat: 1,
         delay: 0,
