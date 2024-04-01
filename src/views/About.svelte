@@ -41,8 +41,7 @@
         <li><a class={linkElement} target="_blank" rel="noreferrer" href="https://www.soundvision.com/article/a-thematic-introduction-to-the-surahs-of-the-qur-an">SoundVision.com</a> for their thematic introduction to the surahs of the Quran.</li>
         <li><a class={linkElement} target="_blank" rel="noreferrer" href="http://www.tamililquran.com/">TamililQuran.com</a> for their Tamil word by word database orginally by <a class={linkElement} target="_blank" rel="noreferrer" href="https://www.darulhuda.net/">Darul Huda</a>.</li>
         <li><a class={linkElement} target="_blank" rel="noreferrer" href="https://alquran.cloud/">Al Quran Cloud</a> and <a class={linkElement} target="_blank" rel="noreferrer" href="https://github.com/fawazahmed0">Fawaz Ahmed</a> for their Quran translations API.</li>
-        <!-- svelte-ignore a11y-invalid-attribute -->
-        <li><a class={linkElement} target="_blank" rel="noreferrer" href="#">Dr. Usama Assad-Ullah Maurice Nonnenmacher</a> for the French word data.</li>
+        <li><a class={linkElement} target="_blank" rel="noreferrer" href="https://drusaman.github.io/">Dr. Usama Nonnenmacher</a> for his excellent work on the French word by word data.</li>
       </ul>
 
       <br /><br />

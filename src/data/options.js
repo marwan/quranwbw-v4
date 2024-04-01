@@ -1,9 +1,9 @@
 export const displayOptions = {
-  1: { displayID: 1, displayName: "WBW", displayComponent: "WBWDisplay", layout: "wbw", continuous: false },
-  2: { displayID: 2, displayName: "Normal", displayComponent: "NormalDisplay", layout: "normal", continuous: false },
-  3: { displayID: 3, displayName: "Continuous WBW", displayComponent: "ContinuousNormalDisplay", layout: "wbw", continuous: true },
-  4: { displayID: 4, displayName: "Continuous Normal", displayComponent: "ContinuousNormalDisplay", layout: "normal", continuous: true },
-  5: { displayID: 5, displayName: "Side By Side", displayComponent: "SideBySideDisplay", layout: "normal", continuous: false },
+  1: { displayID: 1, displayName: "WBW", displayComponent: "WBWDisplay", layout: "wbw", continuous: false, customStyle: "" },
+  2: { displayID: 2, displayName: "Normal", displayComponent: "NormalDisplay", layout: "normal", continuous: false, customStyle: "" },
+  3: { displayID: 3, displayName: "Continuous WBW", displayComponent: "ContinuousNormalDisplay", layout: "wbw", continuous: true, customStyle: "text-center direction-rtl" },
+  4: { displayID: 4, displayName: "Continuous Normal", displayComponent: "ContinuousNormalDisplay", layout: "normal", continuous: true, customStyle: "text-center direction-rtl" },
+  5: { displayID: 5, displayName: "Side By Side", displayComponent: "SideBySideDisplay", layout: "normal", continuous: false, customStyle: "" },
 };
 
 export const selectableFontTypes = {

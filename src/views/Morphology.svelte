@@ -86,7 +86,7 @@
     {#await fetchData}
       <Spinner />
     {:then fetchData}
-      <div style="direction: rtl;" class="flex flex-wrap justify-center">
+      <div class="flex flex-wrap justify-center direction-rtl">
         {#each Object.entries(fetchData) as [key, value]}
           <VersesWords {key} {value} />
         {/each}

@@ -51,7 +51,7 @@
 
       <!-- word translation and transliteration -->
       {#if $__displayType === 1 || $__displayType === 3}
-        <div class="wordTranslationText flex flex-col {fontSizes.wordTranslationText}" data-fontSize={fontSizes.wordTranslationText}>
+        <div class="wordTranslationText flex flex-col {fontSizes.wordTranslationText} {displayIsContinuous === true && 'direction-ltr'}" data-fontSize={fontSizes.wordTranslationText}>
           <span class="leading-normal {$__wordTransliterationEnabled === true ? 'block' : 'hidden'}">{transliterationSplit[word]}</span>
           <span class="leading-normal {$__wordTranslationEnabled === true ? 'block' : 'hidden'}">{translationSplit[word]}</span>
         </div>

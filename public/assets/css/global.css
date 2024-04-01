@@ -144,6 +144,14 @@ svg {
   font-family: "tajweed-ruling";
 }
 
+.direction-rtl {
+  direction: rtl;
+}
+
+.direction-ltr {
+  direction: ltr;
+}
+
 /* dark blue theme */
 
 .theme-2 {

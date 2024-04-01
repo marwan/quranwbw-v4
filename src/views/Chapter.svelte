@@ -9,6 +9,7 @@
   import { parseURL } from "$utils/parseURL";
   import { fetchChapterData } from "$utils/fetchChapterData";
   import { quranMetaData } from "$data/quranMeta";
+  import { displayOptions } from "$data/options";
   import { __currentPage, __chapterNumber, __displayType, __wordType, __wordTranslation, __verseTranslations, __pageURL } from "$utils/stores";
   import { debounce } from "$utils/debounce";
   import { toggleNavbar } from "$utils/toggleNavbar";
@@ -69,7 +70,7 @@
     {/if}
 
     <!-- need custom stylings if display type is 3 or 4 - continuous -->
-    <div id="verses-block" style={[3, 4].includes($__displayType) && "text-align: center; direction: rtl;"}>
+    <div id="verses-block" class={displayOptions[`${$__displayType}`].customStyle}>
       <ChapterVerses {startVerse} {endVerse} />
     </div>
   {:catch error}
