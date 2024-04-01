@@ -6,7 +6,8 @@ let ticking = false;
 
 // function to toggle bottom navbar on scroll
 export function toggleNavbar() {
-  if (get(__currentPage) === "chapter") {
+  // only when it's the chapter page and the settings drawer is hidden
+  if (get(__currentPage) === "chapter" && document.getElementById("settings-drawer").getAttribute("aria-hidden") === "true") {
     let currentScrollPos = getCurrentScroll();
 
     if (!ticking) {
