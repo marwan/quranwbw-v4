@@ -1,6 +1,6 @@
 <script>
+  import { Link } from "svelte-routing";
   import PageMeta from "$components/PageMeta.svelte";
-  import { websiteURL } from "$data/websiteSettings";
   import { __currentPage } from "$utils/stores";
   import { linkElement } from "$utils/commonStyles";
 
@@ -11,8 +11,14 @@
 
 <div class="">
   <div class="my-6 space-y-4 pb-4">
-    <h1 class="text-2xl">About</h1>
+    <!-- <h1 class="text-2xl">About</h1> -->
     <div class="text-sm">
+      <div class="text-center text-md md:text-xl font-medium opacity-60 italic w-4/5 mx-auto">
+        "Indeed, this (book) is a reminder, so he who wills may take to his Lord a way. And you do not will except that Allah wills. Indeed, Allah is ever Knowing and Wise."
+        <Link to="/76/29-30" class={linkElement}>(76:29-30)</Link>
+      </div>
+      <br /><br />
+
       <i>In the name of Allah and prayers & blessings be upon His messenger, Muhammad (<span style="font-style: initial; font-weight: normal;">ﷺ</span>).</i>
 
       <br /><br />

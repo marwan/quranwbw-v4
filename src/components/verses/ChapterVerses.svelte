@@ -118,7 +118,7 @@
 <!-- if the verses are being shown to the user in a modal/drawer, then do not show the loadNextVersesButton -->
 {#if isExampleVerse === undefined}
   <!-- only show the button when the last verse on page is less than total verses in chapter -->
-  {#if endVerse < chapterTotalVerses && document.getElementById("loadNextVersesButton") === null}
+  {#if endVerse < chapterTotalVerses && document.getElementById("loadVersesButton") === null}
     <div id="loadVersesButton" class="flex justify-center pt-6 pb-14" use:inview={loadButtonOptions} on:inview_enter={(event) => document.querySelector("#loadVersesButton > button").click()}>
       <button on:click={loadNextVerses} class="text-sm {buttonElement}"> Load Next Verses </button>
     </div>

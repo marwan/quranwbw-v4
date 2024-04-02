@@ -8,6 +8,7 @@
   // icons
   import Menu from "$svgs/Menu.svelte";
   import Home from "$svgs/Home.svelte";
+  import ExternalLink from "$svgs/ExternalLink.svelte";
 
   // classes
   const rightMenuDropdownClasses = "block w-full text-left px-4 py-2 hover:bg-[#ebebeb] dark:hover:bg-slate-700";
@@ -158,7 +159,7 @@
           <button class={rightMenuDropdownClasses}>About</button>
         </Link>
       </li>
-      <li>
+      <!-- <li>
         <Link to="/changelogs">
           <button class={rightMenuDropdownClasses}>Changelogs</button>
         </Link>
@@ -170,13 +171,31 @@
       </li>
       <li class={disabledElement}>
         <button class={rightMenuDropdownClasses}>Chapter Overview</button>
-      </li>
+      </li> -->
       <li>
         <button on:click={() => toggleModal("TajweedRulingModal", "show")} class={rightMenuDropdownClasses}>Tajweed Rulings</button>
       </li>
-      <li class={$__currentPage === "changelogs" || $__currentPage === "issues" || $__currentPage === "about" || $__currentPage === "search" ? disabledElement : ""}>
+      <!-- <li class={$__currentPage === "changelogs" || $__currentPage === "issues" || $__currentPage === "about" || $__currentPage === "search" ? disabledElement : ""}>
         <button on:click={() => toggleModal("InitialSetupModal", "show")} class={rightMenuDropdownClasses}>Initial Setup</button>
+      </li> -->
+      <li>
+        <a href="https://legacy.quranwbw.com/" target="_blank" class="flex flex-row items-center justify-between {rightMenuDropdownClasses}">
+          Legacy Website
+          <ExternalLink />
+        </a>
       </li>
+      <!-- <li>
+        <a href="https://status.quranwbw.com/" target="_blank" class="flex flex-row items-center justify-between {rightMenuDropdownClasses}">
+          Status
+          <ExternalLink />
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/marwan/quranwbw-svelte/" target="_blank" class="flex flex-row items-center justify-between {rightMenuDropdownClasses}">
+          GitHub
+          <ExternalLink />
+        </a>
+      </li> -->
     </ul>
   </div>
 </nav>

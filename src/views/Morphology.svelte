@@ -7,7 +7,7 @@
   import VersesWords from "$verses/VersesWords.svelte";
   import MorphologyTable from "$morphology/MorphologyTable.svelte";
   import { quranMetaData } from "$data/quranMeta";
-  import { websiteTitle, apiEndpoint } from "$data/websiteSettings";
+  import { apiEndpoint } from "$data/websiteSettings";
   import { __currentPage, __wordType, __wordTranslation, __verseTranslations, __morphologyKey } from "$utils/stores";
   import { tabPillElement } from "$utils/commonStyles";
 

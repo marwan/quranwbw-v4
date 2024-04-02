@@ -1,5 +1,5 @@
 <script>
-  import { __currentPage, __wordType, __displayType, __websiteTheme, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __verseTranslations, __reciter, __playbackSpeed, __userSettings, __tajweedEnabled } from "$utils/stores";
+  import { __currentPage, __chapterData, __chapterNumber, __wordType, __displayType, __websiteTheme, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __verseTranslations, __reciter, __playbackSpeed, __userSettings, __tajweedEnabled } from "$utils/stores";
   import { displayOptions, selectableFontTypes, selectableThemes, selectableVerseTranslations, verseTranslationsLanguages, selectableWordTranslations, selectableReciters, selectablePlaybackSpeeds } from "$data/options";
   import { updateSettings } from "$utils/updateSettings";
   import { resetSettings } from "$utils/resetSettings";
