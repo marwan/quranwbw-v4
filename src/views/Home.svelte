@@ -1,7 +1,7 @@
 <script>
   import PageMeta from "$components/PageMeta.svelte";
   import { Link } from "svelte-routing";
-  import { websiteTagline, websiteTitle } from "$data/websiteSettings";
+  import { websiteTagline } from "$data/websiteSettings";
   import { __currentPage, __lastRead } from "$utils/stores";
   import Logo from "$svgs/Logo.svelte";
 
