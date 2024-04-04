@@ -176,7 +176,7 @@
         <button on:click={() => toggleModal("TajweedRulingModal", "show")} class={rightMenuDropdownClasses}>Tajweed Rulings</button>
       </li>
       <li>
-        <button on:click={() => toggleModal("token-modal", "show")} class={rightMenuDropdownClasses}>Anonymous Login</button>
+        <button on:click={() => toggleModal("token-modal", "show")} class={rightMenuDropdownClasses}>Token Login</button>
       </li>
       <!-- <li class={$__currentPage === "changelogs" || $__currentPage === "issues" || $__currentPage === "about" || $__currentPage === "search" ? disabledElement : ""}>
         <button on:click={() => toggleModal("InitialSetupModal", "show")} class={rightMenuDropdownClasses}>Initial Setup</button>

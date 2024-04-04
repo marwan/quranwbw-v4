@@ -6,6 +6,8 @@
 
   // icons
   import Download from "$svgs/Download.svelte";
+  import CloudDownload from "$svgs/CloudDownload.svelte";
+  import CloudUpload from "$svgs/CloudUpload.svelte";
 
   let tokenTab = 0,
     tokenGenerated = false,
@@ -37,8 +39,9 @@
 
     // save the token
     if (tokenJSON.code === 200) {
-      tokenMessageInfo = "The token is valid, and has been saved.";
+      tokenMessageInfo = "Your token has been saved. Reloading the page...";
       saveToken(token);
+      location.reload(); // reload the page
     }
 
     // limit token generation
@@ -56,6 +59,10 @@
 
     const response = await fetch("https://api.quranwbw.com/v1/user/tokens/generate", {
       method: "POST",
+      headers: {
+        "user-agent": navigator.userAgent,
+        "Content-Type": "application/json",
+      },
     });
 
     const tokenJSON = await response.json();
@@ -163,9 +170,9 @@
         <span class="sr-only">Close modal</span>
       </button>
       <div class="px-6 py-6 space-y-8 lg:px-8">
-        <h3 id="token-modal-title" class="mb-8 text-xl font-medium text-gray-900 daaark:text-white">Anonymous Login</h3>
+        <h3 id="token-modal-title" class="mb-8 text-xl font-medium text-gray-900 daaark:text-white">Token Login</h3>
         <div id="token-info" class="flex flex-col space-y-4 text-sm">
-          <span>Anonymous Login allows you to save your settings in the cloud without the need of creating an account or providing any personal details. This is done by assigning a unique token to your browser, and the same is used to sync your settings. If you do not opt for this, your settings will only be saved locally.</span>
+          <span>Token Login allows you to save your settings in the cloud without the need of creating an account or providing any personal details. This is done by assigning a unique token to your browser, and the same is used to sync your settings. If you do not opt for this, your settings will only be saved locally.</span>
           <span>Once you generate a token, you can use it in a different browser to sync your settings from the cloud. Just make sure to save your token because there is no way to get it back if you lose access to it.</span>
           <span>Note that your settings are not automatically synced. You have to do it manually everytime. While this may be tedious, it prevents unnecessary data loss and conflicts.</span>
         </div>
@@ -224,11 +231,13 @@
               <!-- download / upload buttons -->
               <div class="flex flex-col space-y-2 md:flex-row md:space-x-2 md:space-y-0">
                 <button id="upload-settings" on:click={() => uploadSettings()} class="w-full {buttonElement} {settingsUploadInProcess === true && disabledElement}">
-                  <span> {settingsUploadInProcess === false ? "Upload Settings" : "Uploading settings..."} </span>
+                  <CloudUpload />
+                  <span> {settingsUploadInProcess === false ? "Backup Settings To Cloud" : "Uploading settings..."} </span>
                 </button>
 
                 <button id="download-settings" on:click={() => downloadSettings()} class="w-full {buttonElement} {settingsDownloadInProcess === true && disabledElement}">
-                  <span> {settingsDownloadInProcess === false ? "Download Settings" : "Downloading settings..."} </span>
+                  <CloudDownload />
+                  <span> {settingsDownloadInProcess === false ? "Restore Settings From Cloud" : "Downloading settings..."} </span>
                 </button>
               </div>
 
