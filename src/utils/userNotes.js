@@ -1,5 +1,6 @@
 import { get } from "svelte/store";
 import { __userToken, __notesData } from "$utils/stores";
+
 const userNotesEndpoint = "https://api.quranwbw.com/v1/user/notes";
 
 export async function updateNotes(key, notes) {

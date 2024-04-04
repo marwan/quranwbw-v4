@@ -110,7 +110,7 @@
         </div> -->
 
         <div>
-          <button on:click={initializeAudio} class="w-full inline-flex items-center justify-center mr-2 mt-6 space-x-2 {buttonElement}">
+          <button on:click={initializeAudio} class="w-full mr-2 mt-6 {buttonElement}">
             <Play />
 
             <span class="capitalize">Play {$__audioSettings.audioType}</span>

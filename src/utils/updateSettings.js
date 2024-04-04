@@ -2,6 +2,8 @@ import { get } from "svelte/store";
 import { __userToken, __userSettings, __wordType, __displayType, __websiteTheme, __wordTranslation, __verseTranslations, __wordTranslationEnabled, __wordTransliterationEnabled, __reciter, __playbackSpeed, __lastRead, __tajweedEnabled } from "$utils/stores";
 import { selectableVerseTranslations } from "$data/options";
 
+const userSettingsEndpoint = "https://api.quranwbw.com/v1/user/settings";
+
 // function to update website settings
 export function updateSettings(props) {
   // get the settings from localStorage
@@ -157,8 +159,10 @@ export function updateSettings(props) {
   __userSettings.set(JSON.stringify(userSettings));
   localStorage.setItem("userSettings", JSON.stringify(userSettings));
 
-  // push to cloud
-  // uploadSettings(JSON.stringify(userSettings));
+  // push to cloud if token exists
+  // if (get(__userToken)) {
+  //   uploadSettings(JSON.stringify(userSettings));
+  // }
 }
 
 function uploadSettings(settings) {
@@ -171,18 +175,3 @@ function uploadSettings(settings) {
     body: settings,
   });
 }
-
-async function downloadSettings(userToken) {
-  const response = await fetch("https://api.quranwbw.com/v1/user/settings", {
-    method: "GET",
-    headers: {
-      "user-token": get(__userToken),
-    },
-  });
-
-  const userSettings = await response.json();
-
-  console.log(userSettings);
-}
-
-window.downloadSettings = downloadSettings;
