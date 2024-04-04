@@ -1,19 +1,18 @@
 <script>
   import { buttonElement, disabledElement } from "$utils/commonStyles";
   import { toggleModal } from "$utils/toggleModal";
-  import { __userToken } from "$utils/stores";
+  import { __userToken, __userSettings } from "$utils/stores";
   import { downloadTextFile } from "$utils/downloadTextFile";
 
   // icons
   import Download from "$svgs/Download.svelte";
-  // import Sync from "$svgs/Sync.svelte";
-  // import Delete from "$svgs/Delete.svelte";
 
   let tokenTab = 0,
     tokenGenerated = false,
     tokenGenerationInProcess = false,
     tokenValidationInProcess = false,
     settingsDownloadInProcess = false,
+    settingsUploadInProcess = false,
     tokenMessageInfo;
 
   // validate the user provided token
@@ -75,6 +74,29 @@
     tokenGenerationInProcess = false;
   }
 
+  // upload user settings to cloud
+  async function uploadSettings() {
+    settingsUploadInProcess = true;
+    tokenMessageInfo = "Uploading your settings, please wait...";
+
+    const response = await fetch("https://api.quranwbw.com/v1/user/settings", {
+      method: "POST",
+      headers: {
+        "user-token": $__userToken,
+        "Content-Type": "application/json",
+      },
+      body: $__userSettings,
+    });
+
+    const userSettings = await response.json();
+
+    if (userSettings.code === 200) tokenMessageInfo = "Settings have been uploaded.";
+    // all other cases
+    else tokenMessageInfo = "There was an error while uploading your settings.";
+
+    settingsUploadInProcess = false;
+  }
+
   // download user settings from cloud
   async function downloadSettings() {
     settingsDownloadInProcess = true;
@@ -90,8 +112,9 @@
     const userSettings = await response.json();
 
     if (userSettings.code === 200) {
-      tokenMessageInfo = "Settings have been downloaded. Reload to see the changes.";
-      console.log(userSettings.data[0].user_settings);
+      tokenMessageInfo = "Settings have been downloaded. Reloading the page...";
+      localStorage.setItem("userSettings", JSON.stringify(userSettings.data[0].user_settings));
+      location.reload(); // reload the page
     }
 
     // when there's no settings
@@ -113,7 +136,7 @@
     localStorage.removeItem("userToken");
     __userToken.set(null);
 
-    // revert the layout
+    // collapse both tabs
     switchTabs(0);
   }
 
@@ -129,7 +152,7 @@
 </script>
 
 <!-- token modal -->
-<div id="token-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+<div id="token-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full text-sm p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full grayscale">
   <div class="relative w-full max-w-xl max-h-full">
     <!-- Modal content -->
     <div class="relative bg-white rounded-lg shadow daaark:bg-gray-700">
@@ -141,10 +164,10 @@
       </button>
       <div class="px-6 py-6 space-y-8 lg:px-8">
         <h3 id="token-modal-title" class="mb-8 text-xl font-medium text-gray-900 daaark:text-white">Anonymous Login</h3>
-        <div id="token-info" class="flex flex-col space-y-4">
-          <span> Anonymous Login allows you to save your settings in the cloud without the need of creating an account or providing any personal details. This is done by generating a token which is unique to your browser, and the same is used to sync your settings. If you do not opt for this, your settings will only be saved locally.</span>
-          <span>Once you generate a token, you can use it in a different browser to download your settings from the cloud. Just make sure to save it because if you lose it's access, you cannot get it back.</span>
-          <span>An important thing to note is that your settings are not automatically synced. You have to do it manually everytime. While this may be tedious, it prevents unnecessary data loss and conflicts.</span>
+        <div id="token-info" class="flex flex-col space-y-4 text-sm">
+          <span>Anonymous Login allows you to save your settings in the cloud without the need of creating an account or providing any personal details. This is done by assigning a unique token to your browser, and the same is used to sync your settings. If you do not opt for this, your settings will only be saved locally.</span>
+          <span>Once you generate a token, you can use it in a different browser to sync your settings from the cloud. Just make sure to save your token because there is no way to get it back if you lose access to it.</span>
+          <span>Note that your settings are not automatically synced. You have to do it manually everytime. While this may be tedious, it prevents unnecessary data loss and conflicts.</span>
         </div>
 
         <!-- tabs buttons -->
@@ -168,7 +191,7 @@
         <!-- I already have a token -->
         {#if tokenTab === 1 && $__userToken === null}
           <div id="already-have-a-token" class="flex flex-col space-y-4 justify-center">
-            <input id="token-value" type="text" class="rounded-md w-full text-center text-xs" placeholder="Your token here..." />
+            <input id="token-value" type="text" class="rounded-md w-full text-center text-xs" placeholder="Enter your token here..." />
             <button id="validate-token" on:click={() => validateToken()} class="w-full {buttonElement} {tokenValidationInProcess === true && disabledElement}">
               <span>{tokenValidationInProcess === false ? "Validate Token" : "Validating token..."}</span>
             </button>
@@ -197,14 +220,20 @@
               </button>
             </div>
 
-            <div class="flex flex-col space-y-2 md:flex-row md:space-x-2 md:space-y-0">
-              <button id="sync-settings" on:click={() => downloadSettings()} class="w-full {buttonElement} {settingsDownloadInProcess === true && disabledElement}">
-                <!-- <Sync /> -->
-                <span> {settingsDownloadInProcess === false ? "Sync Settings" : "Syncing settings..."} </span>
-              </button>
+            <div class="flex flex-col space-y-4">
+              <!-- download / upload buttons -->
+              <div class="flex flex-col space-y-2 md:flex-row md:space-x-2 md:space-y-0">
+                <button id="upload-settings" on:click={() => uploadSettings()} class="w-full {buttonElement} {settingsUploadInProcess === true && disabledElement}">
+                  <span> {settingsUploadInProcess === false ? "Upload Settings" : "Uploading settings..."} </span>
+                </button>
 
-              <button id="delete-token" on:click={() => deleteToken()} class="w-full bg-red-600 text-white hover:bg-red-700 {buttonElement}">
-                <!-- <Delete /> -->
+                <button id="download-settings" on:click={() => downloadSettings()} class="w-full {buttonElement} {settingsDownloadInProcess === true && disabledElement}">
+                  <span> {settingsDownloadInProcess === false ? "Download Settings" : "Downloading settings..."} </span>
+                </button>
+              </div>
+
+              <!-- delete token button -->
+              <button id="delete-token" on:click={() => deleteToken()} class="w-full bg-gray-600 text-white hover:bg-gray-700 {buttonElement}">
                 <span>Delete Token</span>
               </button>
             </div>
