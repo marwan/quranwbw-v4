@@ -6,16 +6,18 @@
 
   import { Link } from "svelte-routing";
   import { showAudioModal } from "$utils/audioController";
-  import { __currentPage, __userSettings, __audioSettings } from "$utils/stores";
+  import { __currentPage, __userSettings, __audioSettings, __verseKey } from "$utils/stores";
   import { updateSettings } from "$utils/updateSettings";
-  import { downloadVerseImage } from "$utils/downloadVerseImage";
+  import { toggleModal } from "$utils/toggleModal";
+  import { getNotes } from "$utils/userNotes";
+  // import { downloadVerseImage } from "$utils/downloadVerseImage";
 
   // icons
   import Bookmark from "$svgs/Bookmark.svelte";
   import Bookmarked from "$svgs/Bookmarked.svelte";
   import Play from "$svgs/Play.svelte";
   import Pause from "$svgs/Pause.svelte";
-  import DotsVertical from "$svgs/DotsVertical.svelte";
+  // import DotsVertical from "$svgs/DotsVertical.svelte";
 
   // update userBookmarks whenever the __userSettings changes
   $: userBookmarks = JSON.parse($__userSettings).userBookmarks;
@@ -33,6 +35,13 @@
 
     verseDropdownVisible = !verseDropdownVisible;
   }
+
+  // handle notes modal click
+  function showNotesModal() {
+    __verseKey.set(key);
+    getNotes(key);
+    toggleModal("notes-modal", "show");
+  }
 </script>
 
 <div class="verseButtons flex flex-row space-x-4 text-gray-400 text-xs grayscale">
@@ -44,6 +53,8 @@
   <button on:click={() => showAudioModal(key)} class={buttonClasses}>
     <svelte:component this={$__audioSettings.isPlaying === true && $__audioSettings.playingKey === key ? Pause : Play} />
   </button>
+
+  <!-- <button on:click={() => showNotesModal()} class={buttonClasses}> notes </button> -->
 
   <!-- verses option dropdown -->
   <!-- <div class="relative inline-block text-left" data-html2canvas-ignore>

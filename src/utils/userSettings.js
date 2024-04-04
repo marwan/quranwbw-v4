@@ -43,4 +43,7 @@
   if (userSettings.initialSetupCompleted === undefined) userSettings.initialSetupCompleted = false;
 
   localStorage.setItem("userSettings", JSON.stringify(userSettings));
+
+  // user token settings
+  // localStorage.setItem("userToken", "...");
 })();

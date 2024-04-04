@@ -1,4 +1,5 @@
-import { __userSettings, __wordType, __displayType, __websiteTheme, __wordTranslation, __verseTranslations, __wordTranslationEnabled, __wordTransliterationEnabled, __reciter, __playbackSpeed, __lastRead, __tajweedEnabled } from "$utils/stores";
+import { get } from "svelte/store";
+import { __userToken, __userSettings, __wordType, __displayType, __websiteTheme, __wordTranslation, __verseTranslations, __wordTranslationEnabled, __wordTransliterationEnabled, __reciter, __playbackSpeed, __lastRead, __tajweedEnabled } from "$utils/stores";
 import { selectableVerseTranslations } from "$data/options";
 
 // function to update website settings
@@ -155,4 +156,33 @@ export function updateSettings(props) {
   // update the settings back into localStorage and global store
   __userSettings.set(JSON.stringify(userSettings));
   localStorage.setItem("userSettings", JSON.stringify(userSettings));
+
+  // push to cloud
+  // uploadSettings(JSON.stringify(userSettings));
 }
+
+function uploadSettings(settings) {
+  fetch("https://api.quranwbw.com/v1/user/settings", {
+    method: "POST",
+    headers: {
+      "user-token": get(__userToken),
+      "Content-Type": "application/json",
+    },
+    body: settings,
+  });
+}
+
+async function downloadSettings(userToken) {
+  const response = await fetch("https://api.quranwbw.com/v1/user/settings", {
+    method: "GET",
+    headers: {
+      "user-token": get(__userToken),
+    },
+  });
+
+  const userSettings = await response.json();
+
+  console.log(userSettings);
+}
+
+window.downloadSettings = downloadSettings;

@@ -31,6 +31,7 @@
   import InitialSetupModal from "$modals/InitialSetupModal.svelte";
   import AudioModal from "$modals/AudioModal.svelte";
   import TajweedRulingModal from "$modals/TajweedRulingModal.svelte";
+  import NotesModal from "$modals/NotesModal.svelte";
 
   // check old bookmarks for v3 update
   checkOldBookmarks();
@@ -44,6 +45,7 @@
     <InitialSetupModal />
     <AudioModal />
     <TajweedRulingModal />
+    <NotesModal />
     <BottomNavbar />
 
     <!-- views will be rendered in this div -->

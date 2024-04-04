@@ -11,8 +11,17 @@ export const __chapterNumber = writable(1);
 // to store the chapter data fetched from the API
 export const __chapterData = writable(null);
 
+// to store the user notes data fetched from the API
+export const __notesData = writable(null);
+
+// to store the verse key
+export const __verseKey = writable("1:1");
+
 // to store the local user settings from LocalStorage
 export const __userSettings = writable(JSON.stringify(localSettings));
+
+// to store the token
+export const __userToken = writable(localStorage.getItem("userToken"));
 
 // to store the word type - Uthmani, IndoPak, etc...
 export const __wordType = writable(localSettings.displaySettings.wordType);

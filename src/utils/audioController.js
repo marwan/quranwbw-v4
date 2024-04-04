@@ -173,7 +173,7 @@ export function initializeAudio() {
     delay: audioSettings.delay,
   });
 
-  toggleModal("audioModal", "hide");
+  toggleModal("audio-modal", "hide");
 }
 
 export function updateAudioSettings(event) {
@@ -290,7 +290,7 @@ export function showAudioModal(key) {
   initializeAudioSettings(key);
 
   // show the modal
-  toggleModal("audioModal", "show");
+  toggleModal("audio-modal", "show");
 }
 
 export function wordAudioController(props) {

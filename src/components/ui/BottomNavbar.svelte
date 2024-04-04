@@ -2,7 +2,7 @@
   import { Link } from "svelte-routing";
   import { __audioSettings } from "$utils/stores";
   import { __chapterNumber, __displayType, __currentPage, __bottomNavbarVisible } from "$utils/stores";
-  import { resetAudioSettings, showAudioModal, playAudio } from "$utils/audioController";
+  import { resetAudioSettings, playAudio } from "$utils/audioController";
   import { quranMetaData } from "$data/quranMeta";
   import { disabledElement } from "$utils/commonStyles";
   import { updateSettings } from "$utils/updateSettings";
