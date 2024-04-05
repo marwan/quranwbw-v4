@@ -6,6 +6,7 @@
 
   // icons
   import Download from "$svgs/Download.svelte";
+  import Email from "$svgs/Email.svelte";
   import CloudDownload from "$svgs/CloudDownload.svelte";
   import CloudUpload from "$svgs/CloudUpload.svelte";
 
@@ -15,6 +16,9 @@
     tokenValidationInProcess = false,
     settingsDownloadInProcess = false,
     settingsUploadInProcess = false,
+    tokenEmailInProcess = false,
+    tokenEmailed = false,
+    tokenCloudControllerVisible = true,
     tokenMessageInfo;
 
   // validate the user provided token
@@ -65,16 +69,16 @@
       },
     });
 
-    const tokenJSON = await response.json();
+    const responseJSON = await response.json();
 
-    if (tokenJSON.code === 200) {
+    if (responseJSON.code === 200) {
       tokenGenerated = true;
       tokenMessageInfo = "A token has been generated and saved. Make sure to back it up.";
-      saveToken(tokenJSON.data[0].user_token);
+      saveToken(responseJSON.data[0].user_token);
     }
 
     // limit token generation
-    else if (tokenJSON.code === 429) tokenMessageInfo = "You have reached the limit of token generation. Try later.";
+    else if (responseJSON.code === 429) tokenMessageInfo = "You have reached the limit of token generation. Try later.";
     // all other cases
     else tokenMessageInfo = "There was an error generating a token.";
 
@@ -95,9 +99,11 @@
       body: $__userSettings,
     });
 
-    const userSettings = await response.json();
+    const responseJSON = await response.json();
 
-    if (userSettings.code === 200) tokenMessageInfo = "Settings have been uploaded.";
+    if (responseJSON.code === 200) tokenMessageInfo = "Settings have been uploaded.";
+    // too many attempts
+    // else if (responseJSON.code === 429) tokenMessageInfo = "Too many attempts. Please slow down.";
     // all other cases
     else tokenMessageInfo = "There was an error while uploading your settings.";
 
@@ -116,20 +122,50 @@
       },
     });
 
-    const userSettings = await response.json();
+    const responseJSON = await response.json();
 
-    if (userSettings.code === 200) {
+    if (responseJSON.code === 200) {
       tokenMessageInfo = "Settings have been downloaded. Reloading the page...";
-      localStorage.setItem("userSettings", JSON.stringify(userSettings.data[0].user_settings));
+      localStorage.setItem("userSettings", JSON.stringify(responseJSON.data[0].user_settings));
       location.reload(); // reload the page
     }
 
     // when there's no settings
-    else if (userSettings.code === 404) tokenMessageInfo = "No settings found in the cloud.";
+    else if (responseJSON.code === 404) tokenMessageInfo = "No settings found in the cloud.";
+    // too many attempts
+    else if (responseJSON.code === 429) tokenMessageInfo = "Too many attempts. Please slow down.";
     // all other cases
     else tokenMessageInfo = "There was an error while downloading your settings.";
 
     settingsDownloadInProcess = false;
+  }
+
+  // upload user settings to cloud
+  async function emailToken() {
+    const email = document.getElementById("user-email").value;
+
+    if (!validateEmail(email)) return (tokenMessageInfo = "That doesn't look like a proper email...");
+
+    tokenEmailInProcess = true;
+    tokenMessageInfo = "Email you the token, please wait...";
+
+    const response = await fetch("https://api.quranwbw.com/v1/user/email", {
+      method: "POST",
+      headers: {
+        "user-token": $__userToken,
+        "user-email": email,
+      },
+    });
+
+    const responseJSON = await response.json();
+
+    if (responseJSON.code === 200) tokenMessageInfo = `Token has been emailed on ${email}.`;
+    // all other cases
+    else tokenMessageInfo = "Some error occurred.";
+
+    tokenEmailed = true;
+    tokenEmailInProcess = false;
+    tokenCloudControllerVisible = true;
   }
 
   // to save the token in localStorage and store
@@ -152,9 +188,18 @@
     tokenTab = tab;
     tokenMessageInfo = "";
     tokenGenerated = false;
+    tokenEmailed = false;
 
     if (tab === 1) tokenMessageInfo = "Enter your token in the input box below to validate it.";
     else if (tab === 2) tokenMessageInfo = "Click the button below to generate your unique token.";
+    else if (tab === 3) {
+      tokenMessageInfo = "Enter your email in the input box below.";
+      tokenCloudControllerVisible = false;
+    }
+  }
+
+  function validateEmail(email) {
+    return email.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
   }
 </script>
 
@@ -195,6 +240,15 @@
           <div id="token-message" class="text-sm font-medium text-center">{tokenMessageInfo}</div>
         {/if}
 
+        <!-- email token -->
+        <!-- {#if tokenEmailed === false}
+          {#if tokenGenerated === true}
+            <div class="flex py-4">
+              <button on:click={() => switchTabs(3)} class="w-full {buttonElement}">Email Token</button>
+            </div>
+          {/if}
+        {/if} -->
+
         <!-- I already have a token -->
         {#if tokenTab === 1 && $__userToken === null}
           <div id="already-have-a-token" class="flex flex-col space-y-4 justify-center">
@@ -216,15 +270,35 @@
           </div>
         {/if}
 
+        <!-- email token -->
+        {#if tokenTab === 3 && $__userToken !== null && tokenEmailed === false}
+          <div id="email-token" class="flex flex-col space-y-2 justify-center">
+            <input id="user-email" type="email" class="rounded-md w-full text-center text-xs" placeholder="email@example.com" />
+            <button id="email-button" on:click={() => emailToken()} class="w-full {buttonElement}">
+              <Email />
+              <span>Email Token</span>
+            </button>
+          </div>
+        {/if}
+
         <!-- download token -->
         {#if $__userToken}
-          <div class="flex flex-col space-y-6">
+          <div id="token-cloud-controller" class="{tokenCloudControllerVisible === true ? 'block' : 'hidden'} flex flex-col space-y-6">
             <!-- input box and download button -->
             <div class="flex flex-row space-x-2">
               <input id="token-value" type="text" value={$__userToken} class="rounded-md w-full text-center text-xs" readonly="readonly" />
               <button id="download-token-file" on:click={() => downloadTextFile(`quranwbw-token-${$__userToken}`, $__userToken)} class="w-fit {buttonElement}">
                 <Download />
               </button>
+
+              <!-- email token -->
+              <!-- {#if tokenEmailed === false} -->
+              <!-- {#if tokenGenerated === true} -->
+              <button id="download-token-file" on:click={() => switchTabs(3)} class="w-fit {buttonElement}">
+                <Email />
+              </button>
+              <!-- {/if} -->
+              <!-- {/if} -->
             </div>
 
             <div class="flex flex-col space-y-4">

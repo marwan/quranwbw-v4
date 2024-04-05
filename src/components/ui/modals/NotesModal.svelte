@@ -1,6 +1,6 @@
 <script>
   import { quranMetaData } from "$data/quranMeta";
-  import { __currentPage, __chapterNumber, __audioSettings, __verseKey, __notesData } from "$utils/stores";
+  import { __currentPage, __chapterNumber, __audioSettings, __verseKey, __notesData, __userNotes } from "$utils/stores";
   import { buttonElement } from "$utils/commonStyles";
   import { toggleModal } from "$utils/toggleModal";
   import { updateNotes } from "$utils/userNotes";
@@ -9,35 +9,49 @@
   $: chapter = $__verseKey.split(":")[0];
   $: verse = $__verseKey.split(":")[1];
 
-  let verseNote, noteLastModified;
+  let verseNote, noteModifiedAt;
 
   // reset this value everytime the verseKey updates
   $: {
-    (verseNote = ""), (noteLastModified = "");
+    (verseNote = ""), (noteModifiedAt = "");
     console.log($__verseKey, verse);
   }
 
   // populate data
   $: {
-    if ($__notesData !== null) {
-      for (const [key, value] of Object.entries($__notesData.data)) {
-        if (value.verse_key === $__verseKey) {
-          verseNote = value.user_notes;
-          noteLastModified = timeAgo(value.modified_at);
-        }
-      }
-    }
+    // if ($__notesData !== null) {
+    //   for (const [key, value] of Object.entries($__notesData.data)) {
+    //     if (value.verse_key === $__verseKey) {
+    //       verseNote = value.user_notes;
+    //       noteModifiedAt = timeAgo(value.modified_at);
+    //     }
+    //   }
+    // }
+    // loop through the user notes
+    // for (const [key, value] of Object.entries($__userNotes)) {
+    //   if (key === $__verseKey) {
+    //     verseNote = value.note;
+    //     noteModifiedAt = timeAgo(value.modified_on);
+    //   }
+    // }
+  }
+
+  $: {
+    try {
+      verseNote = $__userNotes[$__verseKey].note;
+      noteModifiedAt = timeAgo($__userNotes[$__verseKey].modified_at);
+    } catch (error) {}
   }
 
   function updateNotesHandler() {
     const notesValue = document.getElementById("notes-value").value;
 
     updateNotes($__verseKey, notesValue);
-    noteLastModified = "just now";
+    noteModifiedAt = "just now";
 
     // if (notesValue !== "") {
     //   updateNotes($__verseKey, notesValue);
-    //   noteLastModified = "just now";
+    //   noteModifiedAt = "just now";
     // }
   }
 </script>
@@ -59,8 +73,8 @@
           <textarea id="notes-value" rows="8" value={verseNote} class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-gray-500 focus:border-blue-500 daaark:bg-gray-700 daaark:border-gray-600 daaark:placeholder-gray-400 daaark:text-white daaark:focus:ring-gray-500 daaark:focus:border-blue-500" placeholder="Write your thoughts here..."></textarea>
         </div>
 
-        {#if noteLastModified !== ""}
-          <div id="notes-last-modified" class="text-xs">Last modified: {noteLastModified}</div>
+        {#if noteModifiedAt !== ""}
+          <div id="notes-last-modified" class="text-xs">Last modified: {noteModifiedAt}</div>
         {/if}
 
         <button id="notes-submit-button" on:click={() => updateNotesHandler()} class="w-full mr-2 mt-6 {buttonElement}">

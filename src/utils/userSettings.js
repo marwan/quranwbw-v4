@@ -43,4 +43,9 @@
   if (userSettings.initialSetupCompleted === undefined) userSettings.initialSetupCompleted = false;
 
   localStorage.setItem("userSettings", JSON.stringify(userSettings));
+
+  // user notes
+  let userNotes = JSON.parse(localStorage.getItem("userNotes"));
+  if (userNotes === undefined || userNotes === null || userNotes === "") userNotes = {};
+  localStorage.setItem("userNotes", JSON.stringify(userNotes));
 })();

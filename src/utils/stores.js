@@ -1,6 +1,6 @@
 import { writable } from "svelte/store";
 
-const localSettings = JSON.parse(localStorage.getItem("userSettings"));
+const userSettings = JSON.parse(localStorage.getItem("userSettings"));
 
 // to store the current page
 export const __currentPage = writable("home");
@@ -18,46 +18,49 @@ export const __notesData = writable(null);
 export const __verseKey = writable("1:1");
 
 // to store the local user settings from LocalStorage
-export const __userSettings = writable(JSON.stringify(localSettings));
+export const __userSettings = writable(JSON.stringify(userSettings));
+
+// to store the local user settings from LocalStorage
+export const __userNotes = writable(JSON.parse(localStorage.getItem("userNotes")));
 
 // to store the token
 export const __userToken = writable(localStorage.getItem("userToken"));
 
 // to store the word type - Uthmani, IndoPak, etc...
-export const __wordType = writable(localSettings.displaySettings.wordType);
+export const __wordType = writable(userSettings.displaySettings.wordType);
 
 // to store the word translation
-export const __wordTranslation = writable(localSettings.translations.word);
+export const __wordTranslation = writable(userSettings.translations.word);
 
 // to store the verse translations
-export const __verseTranslations = writable(localSettings.translations.verse);
+export const __verseTranslations = writable(userSettings.translations.verse);
 
 // to store the word translation toggle
-export const __wordTranslationEnabled = writable(localSettings.displaySettings.wordTranslationEnabled);
+export const __wordTranslationEnabled = writable(userSettings.displaySettings.wordTranslationEnabled);
 
 // to store the word transliteration toggle
-export const __wordTransliterationEnabled = writable(localSettings.displaySettings.wordTransliterationEnabled);
+export const __wordTransliterationEnabled = writable(userSettings.displaySettings.wordTransliterationEnabled);
 
 // to store the v4 font tajweed boolean
-export const __tajweedEnabled = writable(localSettings.displaySettings.tajweedEnabled);
+export const __tajweedEnabled = writable(userSettings.displaySettings.tajweedEnabled);
 
 // to store reciter
-export const __reciter = writable(localSettings.audioSettings.reciter);
+export const __reciter = writable(userSettings.audioSettings.reciter);
 
 // to store playback speed
-export const __playbackSpeed = writable(localSettings.audioSettings.playbackSpeed);
+export const __playbackSpeed = writable(userSettings.audioSettings.playbackSpeed);
 
 // to store the display type - WBW, Normal, Continuous, etc...
-export const __displayType = writable(localSettings.displaySettings.displayType);
+export const __displayType = writable(userSettings.displaySettings.displayType);
 
 // to store the website theme
-export const __websiteTheme = writable(localSettings.displaySettings.websiteTheme);
+export const __websiteTheme = writable(userSettings.displaySettings.websiteTheme);
 
 // to store the last read key
-export const __lastRead = writable(localSettings.lastRead);
+export const __lastRead = writable(userSettings.lastRead);
 
 // to store the user's favourite chapters
-export const __favouriteChapters = writable(localSettings.favouriteChapters);
+export const __favouriteChapters = writable(userSettings.favouriteChapters);
 
 // to store a random number (for now) when changing verses due to some issues while re-rendering the component (probably because I'm still learning Svelte)
 export const __pageURL = writable(null);
