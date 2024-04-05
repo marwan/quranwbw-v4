@@ -10,15 +10,16 @@
   import CloudDownload from "$svgs/CloudDownload.svelte";
   import CloudUpload from "$svgs/CloudUpload.svelte";
 
+  const userAPIEndpoint = "https://api.quranwbw.com/v1/user";
+
   let tokenTab = 0,
     tokenGenerated = false,
     tokenGenerationInProcess = false,
     tokenValidationInProcess = false,
     settingsDownloadInProcess = false,
     settingsUploadInProcess = false,
-    tokenEmailInProcess = false,
     tokenEmailed = false,
-    tokenCloudControllerVisible = true,
+    tokenCloudButtonsVisible = true,
     tokenMessageInfo;
 
   // validate the user provided token
@@ -32,7 +33,7 @@
     tokenValidationInProcess = true;
     tokenMessageInfo = "Validating your token, please wait...";
 
-    const response = await fetch("https://api.quranwbw.com/v1/user/tokens/check", {
+    const response = await fetch(`${userAPIEndpoint}/tokens/check`, {
       method: "GET",
       headers: {
         "user-token": token,
@@ -61,7 +62,7 @@
     tokenGenerationInProcess = true;
     tokenMessageInfo = "Generating a token, please wait...";
 
-    const response = await fetch("https://api.quranwbw.com/v1/user/tokens/generate", {
+    const response = await fetch(`${userAPIEndpoint}/tokens/generate`, {
       method: "POST",
       headers: {
         "user-agent": navigator.userAgent,
@@ -90,7 +91,7 @@
     settingsUploadInProcess = true;
     tokenMessageInfo = "Uploading your settings, please wait...";
 
-    const response = await fetch("https://api.quranwbw.com/v1/user/settings", {
+    const response = await fetch(`${userAPIEndpoint}/settings`, {
       method: "POST",
       headers: {
         "user-token": $__userToken,
@@ -115,7 +116,7 @@
     settingsDownloadInProcess = true;
     tokenMessageInfo = "Downloading your settings, please wait...";
 
-    const response = await fetch("https://api.quranwbw.com/v1/user/settings", {
+    const response = await fetch(`${userAPIEndpoint}/settings`, {
       method: "GET",
       headers: {
         "user-token": $__userToken,
@@ -140,16 +141,16 @@
     settingsDownloadInProcess = false;
   }
 
-  // upload user settings to cloud
+  // email the token to the email provided by the user
   async function emailToken() {
     const email = document.getElementById("user-email").value;
 
     if (!validateEmail(email)) return (tokenMessageInfo = "That doesn't look like a proper email...");
 
     tokenEmailInProcess = true;
-    tokenMessageInfo = "Email you the token, please wait...";
+    tokenMessageInfo = "Emailing you the token, please wait...";
 
-    const response = await fetch("https://api.quranwbw.com/v1/user/email", {
+    const response = await fetch(`${userAPIEndpoint}/email`, {
       method: "POST",
       headers: {
         "user-token": $__userToken,
@@ -165,7 +166,7 @@
 
     tokenEmailed = true;
     tokenEmailInProcess = false;
-    tokenCloudControllerVisible = true;
+    tokenCloudButtonsVisible = true;
   }
 
   // to save the token in localStorage and store
@@ -194,7 +195,7 @@
     else if (tab === 2) tokenMessageInfo = "Click the button below to generate your unique token.";
     else if (tab === 3) {
       tokenMessageInfo = "Enter your email in the input box below.";
-      tokenCloudControllerVisible = false;
+      tokenCloudButtonsVisible = false;
     }
   }
 
@@ -281,9 +282,9 @@
           </div>
         {/if}
 
-        <!-- download token -->
+        <!-- cloud upload/download/delete buttons -->
         {#if $__userToken}
-          <div id="token-cloud-controller" class="{tokenCloudControllerVisible === true ? 'block' : 'hidden'} flex flex-col space-y-6">
+          <div id="token-cloud-buttons" class="{tokenCloudButtonsVisible === true ? 'block' : 'hidden'} flex flex-col space-y-6">
             <!-- input box and download button -->
             <div class="flex flex-row space-x-2">
               <input id="token-value" type="text" value={$__userToken} class="rounded-md w-full text-center text-xs" readonly="readonly" />
