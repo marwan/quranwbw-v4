@@ -10,6 +10,10 @@
   import Copy from "$svgs/Copy.svelte";
   import CloudDownload from "$svgs/CloudDownload.svelte";
   import CloudUpload from "$svgs/CloudUpload.svelte";
+  import Info from "$svgs/Info.svelte";
+  import Cross from "$svgs/Cross.svelte";
+  import Check from "$svgs/Check.svelte";
+  import Cog from "$svgs/Cog.svelte";
 
   const userAPIEndpoint = "https://api.quranwbw.com/v1/user";
 
@@ -22,18 +26,27 @@
     tokenEmailInProcess = false,
     tokenEmailed = false,
     tokenCloudButtonsVisible = true,
-    tokenMessageInfo;
+    tokenMessageText,
+    tokenMessageType = 1;
+
+  // message icons
+  const messageTypeIcons = {
+    1: { icon: Check }, // success
+    2: { icon: Cross }, // error
+    3: { icon: Info }, // warning
+    4: { icon: Cog }, // loading
+  };
 
   // validate the user provided token
   async function validateToken() {
     const token = document.getElementById("token-value").value;
 
     // basic checks
-    if (token === "") return (tokenMessageInfo = "You have not entered anything.");
-    if (token.length !== 50) return (tokenMessageInfo = "Invalid token length.");
+    if (token === "") return showMessage(3, "You have not entered anything.");
+    if (token.length !== 50) return showMessage(2, "Invalid token length.");
 
     tokenValidationInProcess = true;
-    tokenMessageInfo = "Validating your token, please wait...";
+    showMessage(4, "Validating your token, please wait...");
 
     const response = await fetch(`${userAPIEndpoint}/tokens/check`, {
       method: "GET",
@@ -46,15 +59,15 @@
 
     // save the token
     if (tokenJSON.code === 200) {
-      tokenMessageInfo = "Your token has been saved. Reloading the page...";
+      showMessage(1, "Your token has been saved. Reloading the page...");
       saveToken(token);
       location.reload(); // reload the page
     }
 
     // limit token generation
-    else if (tokenJSON.code === 429) tokenMessageInfo = "You have reached the limit of token validation. Try later.";
+    else if (tokenJSON.code === 429) showMessage(2, "You have reached the limit of token validation. Try later.");
     // all other cases
-    else tokenMessageInfo = "The token is not valid.";
+    else showMessage(2, "The token is not valid.");
 
     tokenValidationInProcess = false;
   }
@@ -62,7 +75,7 @@
   // generate a new token
   async function generateToken() {
     tokenGenerationInProcess = true;
-    tokenMessageInfo = "Generating a token, please wait...";
+    showMessage(4, "Generating a token, please wait...");
 
     const response = await fetch(`${userAPIEndpoint}/tokens/generate`, {
       method: "POST",
@@ -76,14 +89,14 @@
 
     if (responseJSON.code === 200) {
       tokenGenerated = true;
-      tokenMessageInfo = "A token has been generated and saved. Make sure to back it up.";
+      showMessage(1, "A token has been generated and saved. Make sure to back it up.");
       saveToken(responseJSON.data[0].user_token);
     }
 
     // limit token generation
-    else if (responseJSON.code === 429) tokenMessageInfo = "You have reached the limit of token generation. Try later.";
+    else if (responseJSON.code === 429) showMessage(2, "You have reached the limit of token generation. Try later.");
     // all other cases
-    else tokenMessageInfo = "There was an error generating a token.";
+    else showMessage(2, "There was an error generating a token.");
 
     tokenGenerationInProcess = false;
   }
@@ -91,7 +104,7 @@
   // upload user settings to cloud
   async function uploadSettings() {
     settingsUploadInProcess = true;
-    tokenMessageInfo = "Uploading your settings, please wait...";
+    showMessage(4, "Uploading your settings, please wait...");
 
     const response = await fetch(`${userAPIEndpoint}/settings`, {
       method: "POST",
@@ -104,11 +117,11 @@
 
     const responseJSON = await response.json();
 
-    if (responseJSON.code === 200) tokenMessageInfo = "Settings have been uploaded.";
+    if (responseJSON.code === 200) showMessage(1, "Settings have been uploaded.");
     // too many attempts
-    // else if (responseJSON.code === 429) tokenMessageInfo = "Too many attempts. Please slow down.";
+    // else if (responseJSON.code === 429) tokenMessageText = "Too many attempts. Please slow down.";
     // all other cases
-    else tokenMessageInfo = "There was an error while uploading your settings.";
+    else showMessage(2, "There was an error while uploading your settings.");
 
     settingsUploadInProcess = false;
   }
@@ -116,7 +129,7 @@
   // download user settings from cloud
   async function downloadSettings() {
     settingsDownloadInProcess = true;
-    tokenMessageInfo = "Downloading your settings, please wait...";
+    showMessage(4, "Downloading your settings, please wait...");
 
     const response = await fetch(`${userAPIEndpoint}/settings`, {
       method: "GET",
@@ -128,17 +141,17 @@
     const responseJSON = await response.json();
 
     if (responseJSON.code === 200) {
-      tokenMessageInfo = "Settings have been downloaded. Reloading the page...";
+      showMessage(1, "Settings have been downloaded. Reloading the page...");
       localStorage.setItem("userSettings", JSON.stringify(responseJSON.data[0].user_settings));
       location.reload(); // reload the page
     }
 
     // when there's no settings
-    else if (responseJSON.code === 404) tokenMessageInfo = "No settings found in the cloud.";
+    else if (responseJSON.code === 404) showMessage(3, "No settings found in the cloud.");
     // too many attempts
-    else if (responseJSON.code === 429) tokenMessageInfo = "Too many attempts. Please slow down.";
+    else if (responseJSON.code === 429) showMessage(2, "Too many attempts. Please slow down.");
     // all other cases
-    else tokenMessageInfo = "There was an error while downloading your settings.";
+    else showMessage(2, "There was an error while downloading your settings.");
 
     settingsDownloadInProcess = false;
   }
@@ -147,10 +160,10 @@
   async function emailToken() {
     const email = document.getElementById("user-email").value;
 
-    if (!validateEmail(email)) return (tokenMessageInfo = "That doesn't look like a proper email...");
+    if (!validateEmail(email)) return showMessage(2, "That doesn't look like a proper email...");
 
     tokenEmailInProcess = true;
-    tokenMessageInfo = "Emailing you the token, please wait...";
+    showMessage(4, "Emailing you the token, please wait...");
 
     const response = await fetch(`${userAPIEndpoint}/email`, {
       method: "POST",
@@ -162,9 +175,9 @@
 
     const responseJSON = await response.json();
 
-    if (responseJSON.code === 200) tokenMessageInfo = `Token has been emailed on ${email}.`;
+    if (responseJSON.code === 200) showMessage(1, `Token has been emailed on ${email}.`);
     // all other cases
-    else tokenMessageInfo = "Some error occurred.";
+    else showMessage(3, "Some error occurred.");
 
     tokenEmailed = true;
     tokenEmailInProcess = false;
@@ -189,22 +202,27 @@
   // click to copy token
   function copyToken() {
     navigator.clipboard.writeText($__userToken);
-    tokenMessageInfo = "Token has been copied to clipboard.";
+    showMessage(1, "Token has been copied to clipboard.");
   }
 
   // switch tabs and clear the message
   function switchTabs(tab) {
     tokenTab = tab;
-    tokenMessageInfo = "";
+    tokenMessageText = "";
     tokenGenerated = false;
     tokenEmailed = false;
 
-    if (tab === 1) tokenMessageInfo = "Enter your token in the input box below to validate it.";
-    else if (tab === 2) tokenMessageInfo = "Click the button below to generate your unique token.";
+    if (tab === 1) showMessage(3, "Enter your token in the input box below to validate it.");
+    else if (tab === 2) showMessage(3, "Click the button below to generate your unique token.");
     else if (tab === 3) {
-      tokenMessageInfo = "Enter your email in the input box below.";
+      showMessage(3, "Enter your email in the input box below.");
       tokenCloudButtonsVisible = false;
     }
+  }
+
+  function showMessage(type, message) {
+    tokenMessageText = message;
+    tokenMessageType = type;
   }
 
   function validateEmail(email) {
@@ -245,8 +263,13 @@
         {/if}
 
         <!-- token messages -->
-        {#if tokenMessageInfo !== undefined && tokenMessageInfo !== ""}
-          <div id="token-message" class="text-sm font-medium text-center">{tokenMessageInfo}</div>
+        {#if tokenMessageText !== undefined && tokenMessageText !== ""}
+          <div id="token-message" class="text-sm font-medium text-center">
+            <div class="inline-flex items-center justify-center space-x-1">
+              <svelte:component this={messageTypeIcons[tokenMessageType].icon} />
+              <span>{tokenMessageText}</span>
+            </div>
+          </div>
         {/if}
 
         <!-- email token -->
@@ -295,22 +318,22 @@
           <div id="token-cloud-buttons" class="{tokenCloudButtonsVisible === true ? 'block' : 'hidden'} flex flex-col space-y-6">
             <!-- input box and download button -->
             <div class="flex flex-row space-x-2">
-              <input id="token-value" type="text" value={$__userToken} class="rounded-md w-full text-center text-xs" readonly="readonly" />
+              <input id="token-value" type="text" on:click={() => copyToken()} value={$__userToken} class="rounded-md w-full text-center text-xs" readonly="readonly" />
 
               <!-- download file -->
-              <button id="download-token-file" on:click={() => downloadTextFile(`quranwbw-token-${$__userToken}`, $__userToken)} class="w-fit {buttonElement}">
+              <button id="download-token-file" title="Download Token" on:click={() => downloadTextFile(`quranwbw-token-${$__userToken}`, $__userToken)} class="w-fit {buttonElement}">
                 <Download />
               </button>
 
               <!-- copy token -->
-              <button id="copy-token" on:click={() => copyToken()} class="w-fit {buttonElement}">
+              <button id="copy-token" title="Copy Token" on:click={() => copyToken()} class="w-fit {buttonElement}">
                 <Copy />
               </button>
 
               <!-- email token -->
               <!-- {#if tokenEmailed === false} -->
               <!-- {#if tokenGenerated === true} -->
-              <button id="download-token-file" on:click={() => switchTabs(3)} class="w-fit {buttonElement}">
+              <button id="download-token-file" title="Email Token" on:click={() => switchTabs(3)} class="w-fit {buttonElement}">
                 <Email />
               </button>
               <!-- {/if} -->
