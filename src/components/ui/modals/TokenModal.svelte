@@ -7,7 +7,7 @@
   // icons
   import Download from "$svgs/Download.svelte";
   import Email from "$svgs/Email.svelte";
-  import Copy from "$svgs/Copy.svelte";
+  import Share from "$svgs/Share.svelte";
   import CloudDownload from "$svgs/CloudDownload.svelte";
   import CloudUpload from "$svgs/CloudUpload.svelte";
   import Info from "$svgs/Info.svelte";
@@ -37,13 +37,13 @@
     4: { icon: Cog }, // loading
   };
 
-  // validate the user provided token
+  // validate the token provided by user
   async function validateToken() {
     const token = document.getElementById("token-value").value;
 
     // basic checks
     if (token === "") return showMessage(3, "You have not entered anything.");
-    if (token.length !== 50) return showMessage(2, "Invalid token length.");
+    if (token.length !== 10) return showMessage(2, "Invalid token length.");
 
     tokenValidationInProcess = true;
     showMessage(4, "Validating your token, please wait...");
@@ -72,7 +72,7 @@
     tokenValidationInProcess = false;
   }
 
-  // generate a new token
+  // generate a new token for user
   async function generateToken() {
     tokenGenerationInProcess = true;
     showMessage(4, "Generating a token, please wait...");
@@ -101,7 +101,7 @@
     tokenGenerationInProcess = false;
   }
 
-  // upload user settings to cloud
+  // upload user's settings to cloud
   async function uploadSettings() {
     settingsUploadInProcess = true;
     showMessage(4, "Uploading your settings, please wait...");
@@ -126,7 +126,7 @@
     settingsUploadInProcess = false;
   }
 
-  // download user settings from cloud
+  // download user's settings from cloud
   async function downloadSettings() {
     settingsDownloadInProcess = true;
     showMessage(4, "Downloading your settings, please wait...");
@@ -162,35 +162,39 @@
 
     if (!validateEmail(email)) return showMessage(2, "That doesn't look like a proper email...");
 
-    tokenEmailInProcess = true;
-    showMessage(4, "Emailing you the token, please wait...");
+    showMessage(1, "Success.");
 
-    const response = await fetch(`${userAPIEndpoint}/email`, {
-      method: "POST",
-      headers: {
-        "user-token": $__userToken,
-        "user-email": email,
-      },
-    });
+    window.location.href = `mailto:${email}?subject=QuranWBW%20Token&body=My%20login%20token%20is%${$__userToken}`;
 
-    const responseJSON = await response.json();
+    // tokenEmailInProcess = true;
+    // showMessage(4, "Emailing you the token, please wait...");
 
-    if (responseJSON.code === 200) showMessage(1, `Token has been emailed on ${email}.`);
-    // all other cases
-    else showMessage(3, "Some error occurred.");
+    // const response = await fetch(`${userAPIEndpoint}/email`, {
+    //   method: "POST",
+    //   headers: {
+    //     "user-token": $__userToken,
+    //     "user-email": email,
+    //   },
+    // });
 
-    tokenEmailed = true;
-    tokenEmailInProcess = false;
-    tokenCloudButtonsVisible = true;
+    // const responseJSON = await response.json();
+
+    // if (responseJSON.code === 200) showMessage(1, `Token has been emailed on ${email}.`);
+    // // all other cases
+    // else showMessage(3, "Some error occurred.");
+
+    // tokenEmailed = true;
+    // tokenEmailInProcess = false;
+    // tokenCloudButtonsVisible = true;
   }
 
-  // to save the token in localStorage and store
+  // save the token in localStorage and store
   function saveToken(token) {
     __userToken.set(token);
     localStorage.setItem("userToken", token);
   }
 
-  // delete token
+  // delete token from localStorage and store
   function deleteToken() {
     localStorage.removeItem("userToken");
     __userToken.set(null);
@@ -199,10 +203,23 @@
     switchTabs(0);
   }
 
-  // click to copy token
+  // copy token on click
   function copyToken() {
     navigator.clipboard.writeText($__userToken);
     showMessage(1, "Token has been copied to clipboard.");
+  }
+
+  // open share menu
+  function shareToken() {
+    if (navigator.share) {
+      navigator
+        .share({
+          title: "QuranWBW Login Token",
+          text: $__userToken,
+        })
+        .then(() => console.log("Successful share"))
+        .catch((error) => console.log("Error sharing", error));
+    }
   }
 
   // switch tabs and clear the message
@@ -220,11 +237,13 @@
     }
   }
 
+  // show message with its respective icon
   function showMessage(type, message) {
     tokenMessageText = message;
     tokenMessageType = type;
   }
 
+  // basic email validation
   function validateEmail(email) {
     return email.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
   }
@@ -318,26 +337,25 @@
           <div id="token-cloud-buttons" class="{tokenCloudButtonsVisible === true ? 'block' : 'hidden'} flex flex-col space-y-6">
             <!-- input box and download button -->
             <div class="flex flex-row space-x-2">
-              <input id="token-value" type="text" on:click={() => copyToken()} value={$__userToken} class="rounded-md w-full text-center text-xs" readonly="readonly" />
+              <input id="token-value" type="text" on:click={() => copyToken()} value={$__userToken} class="rounded-md w-full text-center text-xs cursor-pointer" readonly="readonly" />
 
-              <!-- download file -->
-              <button id="download-token-file" title="Download Token" on:click={() => downloadTextFile(`quranwbw-token-${$__userToken}`, $__userToken)} class="w-fit {buttonElement}">
-                <Download />
-              </button>
-
-              <!-- copy token -->
-              <button id="copy-token" title="Copy Token" on:click={() => copyToken()} class="w-fit {buttonElement}">
-                <Copy />
-              </button>
+              <!-- if browser supports web share api, show share button, else show download button -->
+              {#if navigator.share}
+                <!-- Share token -->
+                <button id="share-token" title="Share Token" on:click={() => shareToken()} class="w-fit {buttonElement}">
+                  <Share />
+                </button>
+              {:else}
+                <!-- download file -->
+                <button id="download-token-file" title="Download Token" on:click={() => downloadTextFile(`quranwbw-token-${$__userToken}`, $__userToken)} class="w-fit {buttonElement}">
+                  <Download />
+                </button>
+              {/if}
 
               <!-- email token -->
-              <!-- {#if tokenEmailed === false} -->
-              <!-- {#if tokenGenerated === true} -->
-              <button id="download-token-file" title="Email Token" on:click={() => switchTabs(3)} class="w-fit {buttonElement}">
+              <button id="email-token" title="Email Token" on:click={() => switchTabs(3)} class="w-fit {buttonElement}">
                 <Email />
               </button>
-              <!-- {/if} -->
-              <!-- {/if} -->
             </div>
 
             <div class="flex flex-col space-y-4">
