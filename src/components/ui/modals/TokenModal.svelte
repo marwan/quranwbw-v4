@@ -162,30 +162,26 @@
 
     if (!validateEmail(email)) return showMessage(2, "That doesn't look like a proper email...");
 
-    showMessage(1, "Success.");
+    tokenEmailInProcess = true;
+    showMessage(4, "Emailing you the token, please wait...");
 
-    window.location.href = `mailto:${email}?subject=QuranWBW%20Token&body=My%20login%20token%20is%20${$__userToken}`;
+    const response = await fetch(`${userAPIEndpoint}/email`, {
+      method: "POST",
+      headers: {
+        "user-token": $__userToken,
+        "user-email": email,
+      },
+    });
 
-    // tokenEmailInProcess = true;
-    // showMessage(4, "Emailing you the token, please wait...");
+    const responseJSON = await response.json();
 
-    // const response = await fetch(`${userAPIEndpoint}/email`, {
-    //   method: "POST",
-    //   headers: {
-    //     "user-token": $__userToken,
-    //     "user-email": email,
-    //   },
-    // });
+    if (responseJSON.code === 200) showMessage(1, `Token has been emailed on ${email}.`);
+    // all other cases
+    else showMessage(3, "Some error occurred.");
 
-    // const responseJSON = await response.json();
-
-    // if (responseJSON.code === 200) showMessage(1, `Token has been emailed on ${email}.`);
-    // // all other cases
-    // else showMessage(3, "Some error occurred.");
-
-    // tokenEmailed = true;
-    // tokenEmailInProcess = false;
-    // tokenCloudButtonsVisible = true;
+    tokenEmailed = true;
+    tokenEmailInProcess = false;
+    tokenCloudButtonsVisible = true;
   }
 
   // save the token in localStorage and store
@@ -353,9 +349,9 @@
               {/if}
 
               <!-- email token -->
-              <button id="email-token" title="Email Token" on:click={() => switchTabs(3)} class="w-fit {buttonElement}">
+              <!-- <button id="email-token" title="Email Token" on:click={() => emailToken()} class="w-fit {buttonElement}">
                 <Email />
-              </button>
+              </button> -->
             </div>
 
             <div class="flex flex-col space-y-4">
