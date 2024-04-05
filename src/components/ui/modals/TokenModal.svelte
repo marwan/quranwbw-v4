@@ -164,7 +164,7 @@
 
     showMessage(1, "Success.");
 
-    window.location.href = `mailto:${email}?subject=QuranWBW%20Token&body=My%20login%20token%20is%${$__userToken}`;
+    window.location.href = `mailto:${email}?subject=QuranWBW%20Token&body=My%20login%20token%20is%20${$__userToken}`;
 
     // tokenEmailInProcess = true;
     // showMessage(4, "Emailing you the token, please wait...");
