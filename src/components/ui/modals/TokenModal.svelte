@@ -7,6 +7,7 @@
   // icons
   import Download from "$svgs/Download.svelte";
   import Email from "$svgs/Email.svelte";
+  import Copy from "$svgs/Copy.svelte";
   import CloudDownload from "$svgs/CloudDownload.svelte";
   import CloudUpload from "$svgs/CloudUpload.svelte";
 
@@ -18,6 +19,7 @@
     tokenValidationInProcess = false,
     settingsDownloadInProcess = false,
     settingsUploadInProcess = false,
+    tokenEmailInProcess = false,
     tokenEmailed = false,
     tokenCloudButtonsVisible = true,
     tokenMessageInfo;
@@ -184,6 +186,12 @@
     switchTabs(0);
   }
 
+  // click to copy token
+  function copyToken() {
+    navigator.clipboard.writeText($__userToken);
+    tokenMessageInfo = "Token has been copied to clipboard.";
+  }
+
   // switch tabs and clear the message
   function switchTabs(tab) {
     tokenTab = tab;
@@ -275,9 +283,9 @@
         {#if tokenTab === 3 && $__userToken !== null && tokenEmailed === false}
           <div id="email-token" class="flex flex-col space-y-2 justify-center">
             <input id="user-email" type="email" class="rounded-md w-full text-center text-xs" placeholder="email@example.com" />
-            <button id="email-button" on:click={() => emailToken()} class="w-full {buttonElement}">
+            <button id="email-button" on:click={() => emailToken()} class="w-full {buttonElement} {tokenEmailInProcess === true && disabledElement}">
               <Email />
-              <span>Email Token</span>
+              <span> {tokenEmailInProcess === false ? "Email Token" : "Emailing..."} </span>
             </button>
           </div>
         {/if}
@@ -288,8 +296,15 @@
             <!-- input box and download button -->
             <div class="flex flex-row space-x-2">
               <input id="token-value" type="text" value={$__userToken} class="rounded-md w-full text-center text-xs" readonly="readonly" />
+
+              <!-- download file -->
               <button id="download-token-file" on:click={() => downloadTextFile(`quranwbw-token-${$__userToken}`, $__userToken)} class="w-fit {buttonElement}">
                 <Download />
+              </button>
+
+              <!-- copy token -->
+              <button id="copy-token" on:click={() => copyToken()} class="w-fit {buttonElement}">
+                <Copy />
               </button>
 
               <!-- email token -->
