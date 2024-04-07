@@ -6,7 +6,7 @@
   import PageMeta from "$components/PageMeta.svelte";
   import VersesWords from "$verses/VersesWords.svelte";
   import Spinner from "$svgs/Spinner.svelte";
-  import { __chapterNumber, __currentPage, __wordType } from "$utils/stores";
+  import { __chapterNumber, __currentPage, __wordType, __tajweedEnabled } from "$utils/stores";
   import { updateSettings } from "$utils/updateSettings";
   import { quranMetaData, chapterHeaderCodes, bismillahTypes } from "$data/quranMeta";
   import { tabPillElement, disabledElement } from "$utils/commonStyles";
@@ -127,9 +127,9 @@
         <!-- if it's the first verse of a chapter -->
         {#if chapters.length > 0 && lines.includes(line) && verses[lines.indexOf(line)] === 1}
           <div class="flex flex-col my-2">
-            <div class="chapter-header leading-base pt-10 pb-8 text-[{mushafSizes[1].header}] md:text-[{mushafSizes[2].header}] lg:text-[{mushafSizes[3].header}]">{chapterHeaderCodes[chapters[lines.indexOf(line)]]}</div>
+            <div class="chapter-header leading-base pt-10 pb-8 text-[{mushafSizes[1].header}] md:text-[{mushafSizes[2].header}] lg:text-[{mushafSizes[3].header}] {$__tajweedEnabled === true ? 'theme-palette-tajweed' : 'theme-palette-normal'} font-filter">{chapterHeaderCodes[chapters[lines.indexOf(line)]]}</div>
 
-            <div class="bismillah flex flex-col text-center leading-normal flex-wrap space-y-4 block md:mt-6 text-[{mushafSizes[1].bismillah}] md:text-[{mushafSizes[2].bismillah}] lg:text-[{mushafSizes[3].bismillah}]">
+            <div class="bismillah flex flex-col text-center leading-normal flex-wrap space-y-4 block md:mt-6 text-[{mushafSizes[1].bismillah}] md:text-[{mushafSizes[2].bismillah}] lg:text-[{mushafSizes[3].bismillah}] {$__tajweedEnabled === true ? 'theme-palette-tajweed' : 'theme-palette-normal'} font-filter">
               {#if chapters[lines.indexOf(line)] === 2}
                 {bismillahTypes[1]}
               {:else if ![1, 9, 2].includes(chapters[lines.indexOf(line)])}
