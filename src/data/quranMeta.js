@@ -935,3 +935,8 @@ export const chapterHeaderCodes = [
 	'ﯩ ',
 	'ﯫ'
 ];
+
+export const bismillahTypes = {
+	1: 'ﲚﲛﲞﲤ',
+	2: 'ﲪﲫﲮﲴ'
+};

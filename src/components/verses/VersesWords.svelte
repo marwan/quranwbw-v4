@@ -45,7 +45,7 @@
       data-timestamp={timestampSplit[word]}
       on:click={() => wordClickHandler(chapter, verse, word)}
     >
-      <span class="{`arabicText leading-normal arabic-font-${$__wordType} ${fontSizes.arabicText}`} {displayIsContinuous === true && 'inline-block group-hover:text-gray-500 dark:group-hover:text-slate-300'}" data-fontSize={fontSizes.arabicText}>
+      <span class="{`arabicText leading-normal arabic-font-${$__wordType} ${$__currentPage !== 'page' && fontSizes.arabicText}`} {displayIsContinuous === true && 'inline-block group-hover:text-gray-500 dark:group-hover:text-slate-300'}" data-fontSize={fontSizes.arabicText}>
         <!-- 1: Uthmanic Hafs Digital, 3: Indopak Madinah -->
         {#if $__wordType === 1 || $__wordType === 3}
           {arabicSplit[word]}
@@ -69,7 +69,7 @@
 <!-- end icon -->
 {#if $__currentPage != "page" || ($__currentPage === "page" && value.words.end_line === line)}
   <div class="{$__displayType === 1 ? 'text-center flex flex-col' : 'inline-flex flex-col'} {wordClasses}">
-    <span class="{`arabicText leading-normal arabic-font-${$__wordType} ${fontSizes.arabicText}`} {displayIsContinuous === true && 'inline-block group-hover:text-gray-500 dark:group-hover:text-slate-300'}" data-fontSize={fontSizes.arabicText}>
+    <span class="{`arabicText leading-normal arabic-font-${$__wordType} ${$__currentPage !== 'page' && fontSizes.arabicText}`} {displayIsContinuous === true && 'inline-block group-hover:text-gray-500 dark:group-hover:text-slate-300'}" data-fontSize={fontSizes.arabicText}>
       <!-- 1: Uthmanic Hafs Digital, 3: Indopak Madinah -->
       {#if $__wordType === 1 || $__wordType === 3}
         {value.words.end}

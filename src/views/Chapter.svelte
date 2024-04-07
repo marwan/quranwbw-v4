@@ -8,7 +8,7 @@
   import Spinner from "$svgs/Spinner.svelte";
   import { parseURL } from "$utils/parseURL";
   import { fetchChapterData } from "$utils/fetchChapterData";
-  import { quranMetaData } from "$data/quranMeta";
+  import { quranMetaData, bismillahTypes } from "$data/quranMeta";
   import { displayOptions } from "$data/options";
   import { __currentPage, __chapterNumber, __displayType, __wordType, __wordTranslation, __verseTranslations, __pageURL } from "$utils/stores";
   import { debounce } from "$utils/debounce";
@@ -64,10 +64,14 @@
   {#await chapterData}
     <Spinner height="screen" margin="-mt-20" />
   {:then}
-    <!-- show Bismillah if chapter is not 1st or 9th -->
-    {#if ![1, 9].includes($__chapterNumber)}
-      <Bismillah />
-    {/if}
+    <!-- we have different Bismillah for chapter 2 and the rest -->
+    <div class="bismillah flex flex-col text-center flex-wrap px-6 pt-14 space-y-4 text-xl md:text-3xl block">
+      {#if $__chapterNumber === 2}
+        {bismillahTypes[1]}
+      {:else if ![1, 9, 2].includes($__chapterNumber)}
+        {bismillahTypes[2]}
+      {/if}
+    </div>
 
     <!-- need custom stylings if display type is 3 or 4 - continuous -->
     <div id="verses-block" class={displayOptions[`${$__displayType}`].customStyle}>

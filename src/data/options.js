@@ -234,3 +234,9 @@ export const selectablePlaybackSpeeds = {
 	5: { id: 5, speed: 1.75 },
 	6: { id: 6, speed: 2 }
 };
+
+export const screenBreakpoints = {
+	sm: 640,
+	md: 768,
+	lg: 1024
+};

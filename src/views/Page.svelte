@@ -1,23 +1,47 @@
 <script>
   export let page;
 
+  import { beforeUpdate, tick } from "svelte";
   import { Link } from "svelte-routing";
   import PageMeta from "$components/PageMeta.svelte";
   import VersesWords from "$verses/VersesWords.svelte";
   import Spinner from "$svgs/Spinner.svelte";
   import { __chapterNumber, __currentPage, __wordType } from "$utils/stores";
   import { updateSettings } from "$utils/updateSettings";
-  import { quranMetaData, chapterHeaderCodes } from "$data/quranMeta";
+  import { quranMetaData, chapterHeaderCodes, bismillahTypes } from "$data/quranMeta";
   import { tabPillElement, disabledElement } from "$utils/commonStyles";
-  import BismillahMushaf from "$svgs/BismillahMushaf.svelte";
-
-  updateSettings({ type: "displayType", value: 4 });
+  // import BismillahMushaf from "$svgs/BismillahMushaf.svelte";
 
   let fetchData;
   let startingLine, endingLine;
   let chapters = [],
     verses = [],
     lines = [];
+
+  // font, header, bismillah sizes
+  const mushafSizes = {
+    // small screens
+    1: {
+      header: "29vw",
+      bismillah: "5vw",
+      words: "5vw",
+    },
+
+    // medium screens
+    2: {
+      // header: "23vw",
+      header: "220px",
+      bismillah: "32px",
+      words: "32px",
+    },
+
+    // large screens
+    3: {
+      header: "230px",
+      bismillah: "36px",
+      words: "36px",
+    },
+  };
 
   // pages and the lines for which we need to center the verse rathen than justify
   const centeredPageLines = {
@@ -80,32 +104,38 @@
     console.table({ chapters, verses, lines });
   }
 
+  // only allow continious normal mode
+  updateSettings({ type: "displayType", value: 4 });
+
+  // wait for the words to be rendered, then update the font size
+  beforeUpdate(async () => {
+    await tick();
+    // updateSettings({ type: "arabicText", value: "text-base" });
+  });
+
   __currentPage.set("page");
 </script>
 
 <PageMeta title={`Page ${page}`} />
 
-<div class="flex flex-row space-x-8 my-8 justify-center">
-  <Link to="/page/{+page - 1}" class="{tabPillElement} {+page === 1 && disabledElement}">{@html "&#x2190;"} Previous Page</Link>
-  <Link to="/page/{+page + 1}" class="{tabPillElement} {+page === 604 && disabledElement}">Next Page {@html "&#x2192;"}</Link>
-</div>
-
 <div class="text-center mt-8 text-xl">
   {#await fetchData}
     <Spinner />
   {:then}
-    <div class="max-w-3xl space-y-2 pb-2 mx-auto">
+    <div class="bg-gray-100 max-w-3xl space-y-2 pb-2 mx-auto text-[{mushafSizes[1].words}] md:text-[{mushafSizes[2].words}] lg:text-[{mushafSizes[3].words}]">
       {#each Array.from(Array(endingLine + 1).keys()).slice(startingLine) as line}
         <!-- if it's the first verse of a chapter -->
         {#if chapters.length > 0 && lines.includes(line) && verses[lines.indexOf(line)] === 1}
           <div class="flex flex-col my-2">
-            <div class="chapter-header text-8xl md:text-9xl">{chapterHeaderCodes[chapters[lines.indexOf(line)]]}</div>
+            <div class="chapter-header leading-base pt-10 pb-8 text-[{mushafSizes[1].header}] md:text-[{mushafSizes[2].header}] lg:text-[{mushafSizes[3].header}]">{chapterHeaderCodes[chapters[lines.indexOf(line)]]}</div>
 
-            {#if ![1, 9].includes(chapters[lines.indexOf(line)])}
-              <div id="bismillah" class="flex justify-center">
-                <div class="w-36 md:w-52 h-11"><BismillahMushaf /></div>
-              </div>
-            {/if}
+            <div class="bismillah flex flex-col text-center leading-normal flex-wrap space-y-4 block md:mt-6 text-[{mushafSizes[1].bismillah}] md:text-[{mushafSizes[2].bismillah}] lg:text-[{mushafSizes[3].bismillah}]">
+              {#if chapters[lines.indexOf(line)] === 2}
+                {bismillahTypes[1]}
+              {:else if ![1, 9, 2].includes(chapters[lines.indexOf(line)])}
+                {bismillahTypes[2]}
+              {/if}
+            </div>
           </div>
         {/if}
 
@@ -119,6 +149,11 @@
   {:catch error}
     <p>{error}</p>
   {/await}
+</div>
+
+<div class="flex flex-row space-x-8 my-8 justify-center">
+  <Link to="/page/{+page - 1}" class="{tabPillElement} {+page === 1 && disabledElement}">{@html "&#x2190;"} Previous Page</Link>
+  <Link to="/page/{+page + 1}" class="{tabPillElement} {+page === 604 && disabledElement}">Next Page {@html "&#x2192;"}</Link>
 </div>
 
 <style>

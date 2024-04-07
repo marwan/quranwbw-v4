@@ -61,7 +61,7 @@
       <div class="border-b"></div>
 
       <!-- display-type-setting -->
-      <div id="display-type-setting" class={settingsBlockClasses}>
+      <div id="display-type-setting" class="{settingsBlockClasses} {$__currentPage === 'page' && disabledElement}">
         <div class="flex flex-row justify-between items-center">
           <label for="display-style-list" class="block text-gray-900 dark:text-slate-400">Display Type</label>
           <select
@@ -162,7 +162,7 @@
       <div class="border-b"></div>
 
       <!-- arabic-word-size-setting -->
-      <div id="arabic-word-size-setting" class={settingsBlockClasses}>
+      <div id="arabic-word-size-setting" class="{settingsBlockClasses} {$__currentPage === 'page1' && disabledElement}">
         <div class="flex flex-row justify-between items-center">
           <span class="block text-gray-900 dark:text-slate-400">Arabic Word Size ({fontSizeCodes.arabicText.split("-")[1]})</span>
           <div class="inline-flex rounded-md shadow-sm" role="group">
