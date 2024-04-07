@@ -32,7 +32,7 @@
   }
 </script>
 
-{#if $__currentPage === "chapter"}
+<div class={$__currentPage === "chapter" ? "block" : "hidden"}>
   <div class="{$__bottomNavbarVisible === true ? 'block' : 'hidden'} fixed z-20 w-full h-16 max-w-xs md:max-w-lg shadow-sm -translate-x-1/2 bg-white border border-gray-200 rounded-full bottom-4 left-1/2 grayscale">
     <div class="grid h-full max-w-lg grid-cols-5 mx-auto">
       <!-- Previous Chapter -->
@@ -75,4 +75,4 @@
       </Link>
     </div>
   </div>
-{/if}
+</div>
