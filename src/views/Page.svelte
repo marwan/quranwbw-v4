@@ -24,7 +24,7 @@
     1: {
       header: "29vw",
       bismillah: "5vw",
-      words: "5vw",
+      words: "4.5vw",
     },
 
     // medium screens
@@ -127,7 +127,7 @@
         <!-- if it's the first verse of a chapter -->
         {#if chapters.length > 0 && lines.includes(line) && verses[lines.indexOf(line)] === 1}
           <div class="flex flex-col my-2">
-            <div class="chapter-header leading-base pt-10 pb-8 text-[{mushafSizes[1].header}] md:text-[{mushafSizes[2].header}] lg:text-[{mushafSizes[3].header}] {$__tajweedEnabled === true ? 'theme-palette-tajweed' : 'theme-palette-normal'} font-filter">{chapterHeaderCodes[chapters[lines.indexOf(line)]]}</div>
+            <div class="chapter-header leading-base pt-4 pb-8 text-[{mushafSizes[1].header}] md:text-[{mushafSizes[2].header}] lg:text-[{mushafSizes[3].header}] {$__tajweedEnabled === true ? 'theme-palette-tajweed' : 'theme-palette-normal'} font-filter">{chapterHeaderCodes[chapters[lines.indexOf(line)]]}</div>
 
             <div class="bismillah flex flex-col text-center leading-normal flex-wrap space-y-4 block md:mt-6 text-[{mushafSizes[1].bismillah}] md:text-[{mushafSizes[2].bismillah}] lg:text-[{mushafSizes[3].bismillah}] {$__tajweedEnabled === true ? 'theme-palette-tajweed' : 'theme-palette-normal'} font-filter">
               {#if chapters[lines.indexOf(line)] === 2}
@@ -155,6 +155,10 @@
   <Link to="/page/{+page - 1}" class="{tabPillElement} {+page === 1 && disabledElement}">{@html "&#x2190;"} Previous Page</Link>
   <Link to="/page/{+page + 1}" class="{tabPillElement} {+page === 604 && disabledElement}">Next Page {@html "&#x2192;"}</Link>
 </div>
+
+<!-- loading extra fonts -->
+<div class="p{+page - 1} invisible text-[0px]">.</div>
+<div class="p{+page + 1} invisible text-[0px]">.</div>
 
 <style>
   /* @font-face {
