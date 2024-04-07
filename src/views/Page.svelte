@@ -122,7 +122,7 @@
   {#await fetchData}
     <Spinner />
   {:then}
-    <div class="bg-gray-100 max-w-3xl space-y-2 pb-2 mx-auto text-[{mushafSizes[1].words}] md:text-[{mushafSizes[2].words}] lg:text-[{mushafSizes[3].words}]">
+    <div class="max-w-3xl space-y-2 pb-2 mx-auto text-[{mushafSizes[1].words}] md:text-[{mushafSizes[2].words}] lg:text-[{mushafSizes[3].words}]">
       {#each Array.from(Array(endingLine + 1).keys()).slice(startingLine) as line}
         <!-- if it's the first verse of a chapter -->
         {#if chapters.length > 0 && lines.includes(line) && verses[lines.indexOf(line)] === 1}
