@@ -257,7 +257,7 @@
         <div class="flex flex-row justify-between items-center">
           <label for="verse-translations-list" class="block text-gray-900 dark:text-slate-400">Verse</label>
           <button id="dropdownCheckboxButton" data-dropdown-toggle="verse-translation-checkbox" class="w-32 border text-left border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" type="button">
-            {$__verseTranslations.toString()}
+            {$__verseTranslations.length} selected
           </button>
         </div>
         <p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Verse translations from multiple authors and languages.</p>

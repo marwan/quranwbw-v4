@@ -29,7 +29,7 @@
     }
   }
 
-  $: wordClasses = `rounded-lg hover:cursor-pointer hover:bg-[#ebebeb] dark:hover:bg-slate-800 ${displayOptions[$__displayType].layout === "wbw" ? "p-3" : "p-1"}`;
+  $: wordClasses = `rounded-lg hover:cursor-pointer hover:bg-[#ebebeb] dark:hover:bg-slate-800 ${displayOptions[$__displayType].layout === "wbw" ? "p-3" : $__currentPage === "page" ? "p-0" : "p-1"}`;
 
   $: displayIsContinuous = displayOptions[$__displayType].continuous;
 </script>

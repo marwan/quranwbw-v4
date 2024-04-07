@@ -1,6 +1,6 @@
 <script>
   export let value;
-  import { __userSettings } from "$utils/stores";
+  import { __userSettings, __verseTranslations } from "$utils/stores";
   import { selectableVerseTranslations } from "$data/options";
   const fontSizes = JSON.parse($__userSettings).displaySettings.fontSizes;
 </script>
@@ -10,7 +10,9 @@
     {#each Object.entries(value.translations) as [verseTranslationID, verseTranslation]}
       <div class="flex flex-col">
         <span>{@html verseTranslation}</span>
-        <span class="text-gray-500">&mdash; {selectableVerseTranslations[verseTranslationID].author}</span>
+        {#if $__verseTranslations.length > 1}
+          <span class="text-gray-500">&mdash; {selectableVerseTranslations[verseTranslationID].author}</span>
+        {/if}
       </div>
     {/each}
   </div>

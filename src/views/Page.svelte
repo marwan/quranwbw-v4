@@ -1,13 +1,13 @@
 <script>
   export let page;
 
-  import PageMeta from "$components/PageMeta.svelte";
   import { Link } from "svelte-routing";
+  import PageMeta from "$components/PageMeta.svelte";
   import VersesWords from "$verses/VersesWords.svelte";
   import Spinner from "$svgs/Spinner.svelte";
-  import { __currentPage, __wordType } from "$utils/stores";
+  import { __chapterNumber, __currentPage, __wordType } from "$utils/stores";
   import { updateSettings } from "$utils/updateSettings";
-  import { quranMetaData } from "$data/quranMeta";
+  import { quranMetaData, chapterHeaderCodes } from "$data/quranMeta";
   import { tabPillElement, disabledElement } from "$utils/commonStyles";
   import BismillahMushaf from "$svgs/BismillahMushaf.svelte";
 
@@ -55,7 +55,7 @@
       }
 
       // get first verse of each chapters
-      if (chapters.length > 1) {
+      if (chapters.length > 0) {
         for (let chapter = 0; chapter <= chapters.length - 1; chapter++) {
           const chapterTotalVerses = quranMetaData[chapters[chapter]].verses;
           for (let verse = 1; verse <= chapterTotalVerses; verse++) {
@@ -68,7 +68,7 @@
       }
 
       // get line numbers for chapters
-      if (chapters.length > 1) {
+      if (chapters.length > 0) {
         for (let chapter = 0; chapter <= chapters.length - 1; chapter++) {
           lines.push(+apiData[`${chapters[chapter]}:${verses[chapter]}`].words.line.split("|")[0]);
         }
@@ -77,7 +77,7 @@
       return apiData;
     })();
 
-    console.log(centeredPageLines[+page]);
+    console.table({ chapters, verses, lines });
   }
 
   __currentPage.set("page");
@@ -97,13 +97,15 @@
     <div class="max-w-3xl space-y-2 pb-2 mx-auto">
       {#each Array.from(Array(endingLine + 1).keys()).slice(startingLine) as line}
         <!-- if it's the first verse of a chapter -->
-        {#if chapters.length > 1 && lines.includes(line) && verses[lines.indexOf(line)] === 1}
-          <div class="flex flex-col space-y-8 my-8">
-            <img class="" src="https://cdn.quranonline.net/wp-content/plugins/quran-learning-app/public/app/assets/images/surah-name-background.png" alt="surah name background" />
-            <div class="chapter-icons text-4xl" style="margin-top: -44px;">{@html `&#xE9${quranMetaData[chapters[lines.indexOf(line)]].icon};`} {@html `&#xE903;`}</div>
-            <div class="flex justify-center">
-              <div class="w-36 md:w-52 h-11"><BismillahMushaf /></div>
-            </div>
+        {#if chapters.length > 0 && lines.includes(line) && verses[lines.indexOf(line)] === 1}
+          <div class="flex flex-col my-2">
+            <div class="chapter-header text-8xl md:text-9xl">{chapterHeaderCodes[chapters[lines.indexOf(line)]]}</div>
+
+            {#if ![1, 9].includes(chapters[lines.indexOf(line)])}
+              <div id="bismillah" class="flex justify-center">
+                <div class="w-36 md:w-52 h-11"><BismillahMushaf /></div>
+              </div>
+            {/if}
           </div>
         {/if}
 
@@ -118,3 +120,19 @@
     <p>{error}</p>
   {/await}
 </div>
+
+<style>
+  /* @font-face {
+    font-family: "chapter-headers";
+    src:
+      url("../fonts/QCF_SurahHeader_COLOR-Regular.woff2") format("woff2"),
+      url("../fonts/QCF_SurahHeader_COLOR-Regular.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  .chapter-header {
+    font-family: "chapter-headers";
+  } */
+</style>

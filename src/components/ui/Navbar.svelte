@@ -52,7 +52,7 @@
   }
 </script>
 
-<nav id="navbar" class="{$__currentPage === 'home' ? 'hidden' : 'block'} bg-white fixed w-full z-20 top-0 left-0 border-b border-gray-200 text-black backdrop-filter backdrop-blur-lg bg-opacity-50 print:hidden dark:bg-slate-900 dark:text-slate-400 dark:border-slate-700 grayscale">
+<nav id="navbar" class="{$__currentPage === 'home' ? 'hidden' : 'block'} bg-white fixed w-full z-20 top-0 left-0 border-b border-gray-200 text-black print:hidden dark:bg-slate-900 dark:text-slate-400 dark:border-slate-700 grayscale">
   <div id="top-nav" class="{$__topNavbarVisible === true ? 'block' : 'hidden'} flex flex-row items-center justify-between max-w-screen-lg mx-auto px-4 py-2">
     <Link to="/" class="flex flex-row items-center p-3 cursor-pointer bg-[#ebebeb] md:bg-transparent hover:bg-[#ebebeb] rounded-lg dark:hover:bg-slate-700">
       <Home />
@@ -98,7 +98,7 @@
   {/if}
 
   <!-- navigation list -->
-  <div id="navigationDropdown" class="navbar-dropdown z-30 mt-1 border border-gray-200 rounded-lg shadow-sm bg-white border-y shadow-lg backdrop-filter backdrop-blur-lg bg-opacity-95 hidden dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700">
+  <div id="navigationDropdown" class="navbar-dropdown z-30 mt-1 border border-gray-200 rounded-lg shadow-sm bg-white border-y shadow-lg hidden dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700">
     <div class="flex flex-row space-x-4 justify-between max-h-80 max-w-screen-lg px-4 py-5 mx-auto text-gray-900 dark:text-slate-400 md:px-2">
       <!-- chapter selector -->
       <div class="flex flex-col space-y-2">
