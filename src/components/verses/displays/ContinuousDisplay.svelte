@@ -19,16 +19,6 @@
   </div>
 {/if}
 
-<div
-  id={key}
-  data-words={value.meta.words}
-  data-page={value.meta.page}
-  data-juz={value.meta.juz}
-  use:inview
-  on:inview_enter={(event) => {
-    updateSettings({ type: "lastRead", value: `${event.target.id}` });
-  }}
-  class="verse inline py-2 group"
->
+<div id={key} data-words={value.meta.words} data-page={value.meta.page} data-juz={value.meta.juz} use:inview on:inview_enter={(event) => updateSettings({ type: "lastRead", value: `${event.target.id}` })} class="verse inline py-2 group">
   <VersesWords {key} {value} />
 </div>

@@ -6,8 +6,7 @@
 
   import WBWDisplay from "$displays/WBWDisplay.svelte";
   import NormalDisplay from "$displays/NormalDisplay.svelte";
-  import ContinuousWBWDisplay from "$displays/ContinuousWBWDisplay.svelte";
-  import ContinuousNormalDisplay from "$displays/ContinuousNormalDisplay.svelte";
+  import ContinuousDisplay from "$displays/ContinuousDisplay.svelte";
   import SideBySideDisplay from "$displays/SideBySideDisplay.svelte";
   import { quranMetaData } from "$data/quranMeta";
   import { __displayType, __chapterNumber, __chapterData } from "$utils/stores";
@@ -20,11 +19,11 @@
   };
 
   const displayComponents = {
-    1: { displayID: 1, displayComponent: WBWDisplay },
-    2: { displayID: 2, displayComponent: NormalDisplay },
-    3: { displayID: 3, displayComponent: ContinuousWBWDisplay },
-    4: { displayID: 4, displayComponent: ContinuousNormalDisplay },
-    5: { displayID: 5, displayComponent: SideBySideDisplay },
+    1: { component: WBWDisplay },
+    2: { component: NormalDisplay },
+    3: { component: ContinuousDisplay },
+    4: { component: ContinuousDisplay },
+    5: { component: SideBySideDisplay },
   };
 
   const chapterTotalVerses = quranMetaData[$__chapterNumber].verses;
@@ -112,7 +111,7 @@
 {/if} -->
 
 {#each Array.from(Array(endVerse + 1).keys()).slice(startVerse) as verse}
-  <svelte:component this={displayComponents[`${$__displayType}`].displayComponent} key={`${$__chapterNumber}:${verse}`} value={$__chapterData[`${$__chapterNumber}:${verse}`]} />
+  <svelte:component this={displayComponents[$__displayType].component} key={`${$__chapterNumber}:${verse}`} value={$__chapterData[`${$__chapterNumber}:${verse}`]} />
 {/each}
 
 <!-- if the verses are being shown to the user in a modal/drawer, then do not show the loadNextVersesButton -->

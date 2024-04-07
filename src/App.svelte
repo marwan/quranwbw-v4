@@ -8,6 +8,9 @@
   // check and set user settings from URL parameters
   import "$utils/checkURLParameters";
 
+  // check for key presses
+  // import "$utils/keyDownHandler";
+
   import { Router, Route } from "svelte-routing";
   import { __currentPage } from "$utils/stores";
   import { checkOldBookmarks } from "$utils/checkOldBookmarks";
@@ -30,7 +33,7 @@
   import BottomNavbar from "$ui/BottomNavbar.svelte";
   import InitialSetupModal from "$modals/InitialSetupModal.svelte";
   import AudioModal from "$modals/AudioModal.svelte";
-  import TajweedRulingModal from "$modals/TajweedRulingModal.svelte";
+  import TajweedRulesModal from "$modals/TajweedRulesModal.svelte";
   import NotesModal from "$modals/NotesModal.svelte";
   import TokenModal from "$modals/TokenModal.svelte";
 
@@ -45,7 +48,7 @@
     <Drawer />
     <InitialSetupModal />
     <AudioModal />
-    <TajweedRulingModal />
+    <TajweedRulesModal />
     <NotesModal />
     <TokenModal />
     <BottomNavbar />

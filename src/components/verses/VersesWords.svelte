@@ -19,7 +19,7 @@
   const timestampSplit = value.words.timestamp.split("|");
 
   // handle what happens when a word is clicked depending on page type
-  function wordClickController(chapter, verse, word) {
+  function wordClickHandler(chapter, verse, word) {
     if ($__currentPage === "morphology") {
       const wordKey = `${chapter}:${verse}:${word + 1}`;
       __morphologyKey.set(wordKey);
@@ -29,16 +29,22 @@
     }
   }
 
-  $: wordClasses = `rounded-lg hover:cursor-pointer hover:bg-[#ebebeb] dark:hover:bg-slate-800 ${displayOptions[`${$__displayType}`].layout === "wbw" ? "p-3" : "p-1"}`;
+  $: wordClasses = `rounded-lg hover:cursor-pointer hover:bg-[#ebebeb] dark:hover:bg-slate-800 ${displayOptions[$__displayType].layout === "wbw" ? "p-3" : "p-1"}`;
 
-  $: displayIsContinuous = displayOptions[`${$__displayType}`].continuous;
+  $: displayIsContinuous = displayOptions[$__displayType].continuous;
 </script>
 
 <!-- words -->
 {#each { length: value.meta.words } as _, word}
   {#if $__currentPage != "page" || ($__currentPage === "page" && +value.words.line.split("|")[word] === line)}
     <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <div id={`${chapter}:${verse}:${word + 1}`} on:click={() => wordClickController(chapter, verse, word)} class="word {$__displayType === 1 ? 'text-center flex flex-col' : 'inline-flex flex-col'} {wordClasses} {$__audioSettings.playingWordKey === `${chapter}:${verse}:${word + 1}` || $__morphologyKey === `${chapter}:${verse}:${word + 1}` ? 'bg-[#ebebeb] dark:bg-slate-800' : ''}" style={$__currentPage === "supplications" && word + 1 < supplicationsFromQuran[key] && "opacity: 30%;"} data-timestamp={timestampSplit[word]}>
+    <div
+      id={`${chapter}:${verse}:${word + 1}`}
+      class="word {$__displayType === 1 ? 'text-center flex flex-col' : 'inline-flex flex-col'} {wordClasses} {$__audioSettings.playingWordKey === `${chapter}:${verse}:${word + 1}` || $__morphologyKey === `${chapter}:${verse}:${word + 1}` ? 'bg-[#ebebeb] dark:bg-slate-800' : ''}"
+      style={$__currentPage === "supplications" && word + 1 < supplicationsFromQuran[key] && "opacity: 30%;"}
+      data-timestamp={timestampSplit[word]}
+      on:click={() => wordClickHandler(chapter, verse, word)}
+    >
       <span class="{`arabicText leading-normal arabic-font-${$__wordType} ${fontSizes.arabicText}`} {displayIsContinuous === true && 'inline-block group-hover:text-gray-500 dark:group-hover:text-slate-300'}" data-fontSize={fontSizes.arabicText}>
         <!-- 1: Uthmanic Hafs Digital, 3: Indopak Madinah -->
         {#if $__wordType === 1 || $__wordType === 3}

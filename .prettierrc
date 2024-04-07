@@ -1,0 +1,8 @@
+{
+	"useTabs": true,
+	"singleQuote": true,
+	"trailingComma": "none",
+	"printWidth": 400,
+	"tabWidth": 2,
+	"overrides": [{ "files": "*.svelte", "options": { "parser": "svelte" } }]
+}

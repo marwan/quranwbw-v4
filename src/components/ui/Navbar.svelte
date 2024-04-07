@@ -54,9 +54,9 @@
 
 <nav id="navbar" class="{$__currentPage === 'home' ? 'hidden' : 'block'} bg-white fixed w-full z-20 top-0 left-0 border-b border-gray-200 text-black backdrop-filter backdrop-blur-lg bg-opacity-50 print:hidden dark:bg-slate-900 dark:text-slate-400 dark:border-slate-700 grayscale">
   <div id="top-nav" class="{$__topNavbarVisible === true ? 'block' : 'hidden'} flex flex-row items-center justify-between max-w-screen-lg mx-auto px-4 py-2">
-    <Link to="/" class="flex flex-row items-center p-3 cursor-pointer hover:bg-[#ebebeb] rounded-lg dark:hover:bg-slate-700">
+    <Link to="/" class="flex flex-row items-center p-3 cursor-pointer bg-[#ebebeb] md:bg-transparent hover:bg-[#ebebeb] rounded-lg dark:hover:bg-slate-700">
       <Home />
-      <span class="text-xs pl-2 hidden sm:block">Home</span>
+      <span class="text-xs pl-2 hidden md:block">Home</span>
     </Link>
 
     <button id="navigationDropdownButton" data-dropdown-toggle="navigationDropdown" class="flex items-center p-3 text-sm border-gray-200 w-auto p-2 hover:bg-[#ebebeb] rounded-lg dark:hover:bg-slate-700">
@@ -71,8 +71,8 @@
       <svg class="w-2.5 h-2.5 ml-2.5 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" /></svg>
     </button>
 
-    <div class="flex flex-row items-center p-3 cursor-pointer hover:bg-[#ebebeb] rounded-lg dark:hover:bg-slate-700" type="button" id="rightMenuDropdownButton" data-dropdown-toggle="rightMenuDropdown">
-      <span class="text-xs pr-2 hidden sm:block">Menu</span>
+    <div class="flex flex-row items-center p-3 cursor-pointer bg-[#ebebeb] md:bg-transparent hover:bg-[#ebebeb] rounded-lg dark:hover:bg-slate-700" type="button" id="rightMenuDropdownButton" data-dropdown-toggle="rightMenuDropdown">
+      <span class="text-xs pr-2 hidden md:block">Menu</span>
       <Menu />
     </div>
   </div>
@@ -126,7 +126,16 @@
           <div class="flex flex-col space-y-2">
             <div class="text-xs pb-2 border-b dark:border-slate-700">Go to Verse</div>
             <div class="flex flex-row space-x-2">
-              <input type="number" min="1" max={quranMetaData[$__chapterNumber].verses} id="gotoVerse" on:change={(event) => (gotoVerse = event.target.valueAsNumber)} aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-24 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="e.g. {Math.floor(Math.random() * (quranMetaData[$__chapterNumber].verses - 1 + 1)) + 1}" />
+              <input
+                type="number"
+                min="1"
+                max={quranMetaData[$__chapterNumber].verses}
+                id="gotoVerse"
+                on:change={(event) => (gotoVerse = event.target.valueAsNumber)}
+                aria-describedby="helper-text-explanation"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-24 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="e.g. {Math.floor(Math.random() * (quranMetaData[$__chapterNumber].verses - 1 + 1)) + 1}"
+              />
               <button on:click={() => toggleModal("navigationDropdown", "hide")}>
                 <Link to="/{$__chapterNumber}/{gotoVerse}" on:click={() => __pageURL.set(Math.random())} class={buttonElement}>Go</Link>
               </button>
@@ -136,7 +145,16 @@
           <div class="flex flex-col space-y-2">
             <div class="text-xs pb-2 border-b dark:border-slate-700">Go to Page</div>
             <div class="flex flex-row space-x-2">
-              <input type="number" min="1" max="604" id="gotoPage" on:change={(event) => pageSelector(event)} aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-24 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="e.g. {Math.floor(Math.random() * 604) + 1}" />
+              <input
+                type="number"
+                min="1"
+                max="604"
+                id="gotoPage"
+                on:change={(event) => pageSelector(event)}
+                aria-describedby="helper-text-explanation"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-24 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="e.g. {Math.floor(Math.random() * 604) + 1}"
+              />
               <button on:click={() => toggleModal("navigationDropdown", "hide")}>
                 <Link to="/{gotoPageChapter}/{gotoPageVerse}" on:click={() => __pageURL.set(Math.random())} class={buttonElement}>Go</Link>
               </button>
@@ -149,10 +167,10 @@
   </div>
 
   <!-- Dropdown menu -->
-  <div id="rightMenuDropdown" class="navbar-dropdown z-30 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-slate-800 dark:border-slate-700">
+  <div id="rightMenuDropdown" class="navbar-dropdown z-30 hidden bg-white divide-y divide-gray-100 rounded-lg shadow left-[-5%] w-44 dark:bg-slate-800 dark:border-slate-700">
     <ul class="py-2 text-sm text-gray-700 dark:text-slate-400" aria-labelledby="rightMenuDropdownButton">
       <li class={$__currentPage === "changelogs" || $__currentPage === "issues" || $__currentPage === "about" || $__currentPage === "search" ? disabledElement : ""}>
-        <button data-drawer-target="settings-drawer" data-drawer-show="settings-drawer" data-drawer-placement="right" aria-controls="settings-drawer" class={rightMenuDropdownClasses}>Settings</button>
+        <button id="settings-drawer-button" data-drawer-target="settings-drawer" data-drawer-show="settings-drawer" data-drawer-placement="right" aria-controls="settings-drawer" class={rightMenuDropdownClasses}>Settings</button>
       </li>
       <li>
         <Link to="/about">
@@ -173,13 +191,13 @@
         <button class={rightMenuDropdownClasses}>Chapter Overview</button>
       </li> -->
       <li>
-        <button on:click={() => toggleModal("TajweedRulingModal", "show")} class={rightMenuDropdownClasses}>Tajweed Rulings</button>
+        <button id="tajweed-modal-button" on:click={() => toggleModal("tajweed-rules-modal", "show")} class={rightMenuDropdownClasses}>Tajweed Rules</button>
       </li>
       <li>
         <button on:click={() => toggleModal("token-modal", "show")} class={rightMenuDropdownClasses}>Token Login</button>
       </li>
       <!-- <li class={$__currentPage === "changelogs" || $__currentPage === "issues" || $__currentPage === "about" || $__currentPage === "search" ? disabledElement : ""}>
-        <button on:click={() => toggleModal("InitialSetupModal", "show")} class={rightMenuDropdownClasses}>Initial Setup</button>
+        <button on:click={() => toggleModal("initial-setup-modal", "show")} class={rightMenuDropdownClasses}>Initial Setup</button>
       </li> -->
       <li>
         <a href="https://legacy.quranwbw.com/" target="_blank" class="flex flex-row items-center justify-between {rightMenuDropdownClasses}">
