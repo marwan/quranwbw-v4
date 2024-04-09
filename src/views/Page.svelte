@@ -20,7 +20,7 @@
     1: {
       header: "29vw",
       bismillah: "5vw",
-      words: "4.7vw",
+      words: "5vw",
     },
 
     // medium screens
@@ -52,6 +52,7 @@
 
     fetchData = (async () => {
       const apiHost = "https://api.quranwbw.com";
+      // const apiHost = "http://localhost:7500";
       const apiURL = `${apiHost}/v1/page?page=${page}&word_type=${$__wordType}&word_translation=1`;
       const response = await fetch(apiURL);
       const data = await response.json();

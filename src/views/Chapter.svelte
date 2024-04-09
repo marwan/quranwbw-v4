@@ -64,7 +64,7 @@
     <Spinner height="screen" margin="-mt-20" />
   {:then}
     <!-- we have different Bismillah for chapter 2 and the rest -->
-    <div class="bismillah flex flex-col text-center flex-wrap px-6 pt-14 space-y-4 text-xl md:text-3xl block">
+    <div class="bismillah flex flex-col text-center flex-wrap px-6 pt-14 space-y-4 text-xl md:text-2xl block theme-palette-normal opacity-70">
       {#if $__chapterNumber === 2}
         {bismillahTypes[1]}
       {:else if ![1, 9, 2].includes($__chapterNumber)}
