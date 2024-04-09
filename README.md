@@ -5,9 +5,9 @@
 
 # About
 
-I'm currently learning [Svelte](https://svelte.dev/) and what better way to do so by re-making [QuranWBW.com](https://quranwbw.com).
+The new version of [QuranWBW.com](https://quranwbw.com) is built with [Svelte](https://svelte.dev/).
 
-Checkout the live website at [svelte.quranwbw.com](https://svelte.quranwbw.com).
+Checkout the development website at [v4.quranwbw.com](https://v4.quranwbw.com).
 
 # Stack
 
