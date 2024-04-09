@@ -4,7 +4,6 @@
 
   import PageMeta from "$components/PageMeta.svelte";
   import ChapterVerses from "$verses/ChapterVerses.svelte";
-  import Bismillah from "$svgs/Bismillah.svelte";
   import Spinner from "$svgs/Spinner.svelte";
   import { parseURL } from "$utils/parseURL";
   import { fetchChapterData } from "$utils/fetchChapterData";

@@ -35,7 +35,7 @@
             <tbody>
               {#each Object.entries(tajweedRulings) as [id, ruling]}
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                  <td class="px-6 py-4 tajweed-ruling text-2xl theme-palette-tajweed font-filter"> {ruling.code} </td>
+                  <td class="px-6 py-4 tajweed-rules text-2xl theme-palette-tajweed font-filter"> {ruling.code} </td>
                   <td class="px-6 py-4 grayscale"> {ruling.description} </td>
                 </tr>
               {/each}

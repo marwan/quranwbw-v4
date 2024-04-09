@@ -1,12 +1,15 @@
-import { writable } from "svelte/store";
+import { writable } from 'svelte/store';
 
-const userSettings = JSON.parse(localStorage.getItem("userSettings"));
+const userSettings = JSON.parse(localStorage.getItem('userSettings'));
 
 // to store the current page
-export const __currentPage = writable("home");
+export const __currentPage = writable('home');
 
 // to store the chapter number
 export const __chapterNumber = writable(1);
+
+// to store the page number
+export const __pageNumber = writable(1);
 
 // to store the chapter data fetched from the API
 export const __chapterData = writable(null);
@@ -15,16 +18,16 @@ export const __chapterData = writable(null);
 export const __notesData = writable(null);
 
 // to store the verse key
-export const __verseKey = writable("1:1");
+export const __verseKey = writable('1:1');
 
 // to store the local user settings from LocalStorage
 export const __userSettings = writable(JSON.stringify(userSettings));
 
 // to store the local user settings from LocalStorage
-export const __userNotes = writable(JSON.parse(localStorage.getItem("userNotes")));
+export const __userNotes = writable(JSON.parse(localStorage.getItem('userNotes')));
 
 // to store the token
-export const __userToken = writable(localStorage.getItem("userToken"));
+export const __userToken = writable(localStorage.getItem('userToken'));
 
 // to store the word type - Uthmani, IndoPak, etc...
 export const __wordType = writable(userSettings.displaySettings.wordType);
@@ -73,10 +76,10 @@ export const __bottomNavbarVisible = writable(true);
 
 // to store all the audio settings
 export const __audioSettings = writable({
-  isPlaying: false,
-  timesToRepeat: 1,
-  timesRepeated: 0,
-  delay: 0,
+	isPlaying: false,
+	timesToRepeat: 1,
+	timesRepeated: 0,
+	delay: 0
 });
 
 // to store the morphology verse/word key

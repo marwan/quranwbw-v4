@@ -1,7 +1,7 @@
 <script>
   import { Link } from "svelte-routing";
   import { quranMetaData, pageNumberKeys } from "$data/quranMeta";
-  import { __chapterNumber, __currentPage, __lastRead, __pageURL, __topNavbarVisible } from "$utils/stores";
+  import { __chapterNumber, __currentPage, __lastRead, __pageURL, __topNavbarVisible, __pageNumber } from "$utils/stores";
   import { toggleModal } from "$utils/toggleModal";
   import { disabledElement, buttonElement } from "$utils/commonStyles";
 
@@ -9,6 +9,7 @@
   import Menu from "$svgs/Menu.svelte";
   import Home from "$svgs/Home.svelte";
   import ExternalLink from "$svgs/ExternalLink.svelte";
+  import ChevronDown from "$svgs/ChevronDown.svelte";
 
   // classes
   const rightMenuDropdownClasses = "block w-full text-left px-4 py-2 hover:bg-[#ebebeb] dark:hover:bg-slate-700";
@@ -45,9 +46,10 @@
   $: {
     navbarChapterName = quranMetaData[$__chapterNumber].transliteration;
 
-    // chapters for which the Arabic and English names are same, the navbar should only show one
+    // chapters for which the Arabic and English names are same, the navbar should not show both
+    // quick fix using raw HTML for now, will improve later...
     if (quranMetaData[$__chapterNumber].transliteration !== quranMetaData[$__chapterNumber].translation) {
-      navbarChapterName += ` (${quranMetaData[$__chapterNumber].translation})`;
+      navbarChapterName += `<span class="hidden md:inline-block">&nbsp;(${quranMetaData[$__chapterNumber].translation})</span>`;
     }
   }
 </script>
@@ -59,16 +61,20 @@
       <span class="text-xs pl-2 hidden md:block">Home</span>
     </Link>
 
-    <button id="navigationDropdownButton" data-dropdown-toggle="navigationDropdown" class="flex items-center p-3 text-sm border-gray-200 w-auto p-2 hover:bg-[#ebebeb] rounded-lg dark:hover:bg-slate-700">
-      <span id="navbar-top-title">
-        {#if $__currentPage === "chapter"}
-          {navbarChapterName}
-        {:else}
-          <!-- capitalize the first letter of the current page and display it -->
-          {$__currentPage[0].toUpperCase() + $__currentPage.slice(1)}
-        {/if}
-      </span>
-      <svg class="w-2.5 h-2.5 ml-2.5 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" /></svg>
+    <!-- display the chapter name on chapter page -->
+    <button id="navigationDropdownButton" data-dropdown-toggle="navigationDropdown" class="{$__currentPage === 'chapter' ? 'block' : 'hidden'} flex items-center p-3 text-sm border-gray-200 w-auto p-2 hover:bg-[#ebebeb] rounded-lg dark:hover:bg-slate-700">
+      {@html navbarChapterName}
+      <ChevronDown />
+    </button>
+
+    <!-- display only the page name for non-chapter page -->
+    <button class="{$__currentPage !== 'chapter' ? 'block' : 'hidden'} flex items-center p-3 text-sm border-gray-200 w-auto p-2 hover:bg-[#ebebeb] rounded-lg dark:hover:bg-slate-700">
+      {$__currentPage[0].toUpperCase() + $__currentPage.slice(1)}
+
+      <!-- if it's the mushaf page, show page number as well -->
+      {#if $__currentPage === "page"}
+        {$__pageNumber}
+      {/if}
     </button>
 
     <div class="flex flex-row items-center p-3 cursor-pointer bg-[#ebebeb] md:bg-transparent hover:bg-[#ebebeb] rounded-lg dark:hover:bg-slate-700" type="button" id="rightMenuDropdownButton" data-dropdown-toggle="rightMenuDropdown">
@@ -81,7 +87,7 @@
     <div id="bottom-nav" class="flex flex-row items-center justify-between border-t text-xs max-w-screen-lg mx-auto px-6 dark:border-slate-700">
       <div id="navbar-bottom-chapter-revalation" class="flex flex-row items-center py-2">
         {#if $__topNavbarVisible === false}
-          <span>{navbarChapterName}</span>
+          <span>{@html navbarChapterName}</span>
         {:else}
           <span>{chapterRevelation === 1 ? "Meccan" : "Medinan"}</span>
         {/if}

@@ -36,16 +36,6 @@
 }
 
 @font-face {
-  font-family: "chapter-headers";
-  src:
-    url("../fonts/chapter-headers/QCF_SurahHeader_COLOR-Regular.woff2") format("woff2"),
-    url("../fonts/chapter-headers/QCF_SurahHeader_COLOR-Regular.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
   font-family: "bismillah";
   src: url("../fonts/bismillah/QCF_Bismillah_COLOR-Regular.woff2") format("woff2"), url("../fonts/bismillah/QCF_Bismillah_COLOR-Regular.woff") format("woff");
   font-weight: normal;
@@ -145,10 +135,6 @@ svg {
 
 .tajweed-rules {
   font-family: "tajweed-rules";
-}
-
-.chapter-header {
-  font-family: "chapter-headers";
 }
 
 .bismillah {

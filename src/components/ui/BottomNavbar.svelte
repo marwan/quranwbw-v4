@@ -1,7 +1,7 @@
 <script>
   import { Link } from "svelte-routing";
   import { __audioSettings } from "$utils/stores";
-  import { __chapterNumber, __displayType, __currentPage, __bottomNavbarVisible } from "$utils/stores";
+  import { __chapterNumber, __pageNumber, __displayType, __currentPage, __bottomNavbarVisible } from "$utils/stores";
   import { resetAudioSettings, playAudio } from "$utils/audioController";
   import { quranMetaData } from "$data/quranMeta";
   import { disabledElement } from "$utils/commonStyles";
@@ -30,19 +30,38 @@
       });
     }
   }
+
+  let previousNavigation, nextNavigation;
+  let previousNavigationDisabled = false,
+    nextNavigationDisabled = false;
+
+  // there has to be a better way...
+  $: {
+    (previousNavigationDisabled = false), (nextNavigationDisabled = false);
+
+    if ($__currentPage === "chapter") {
+      (previousNavigation = $__chapterNumber - 1), (nextNavigation = $__chapterNumber + 1);
+      if ($__chapterNumber === 1) previousNavigationDisabled = true;
+      if ($__chapterNumber === 114) nextNavigationDisabled = true;
+    } else {
+      (previousNavigation = `page/${$__pageNumber - 1}`), (nextNavigation = `page/${$__pageNumber + 1}`);
+      if ($__pageNumber === 1) previousNavigationDisabled = true;
+      if ($__pageNumber === 604) nextNavigationDisabled = true;
+    }
+  }
 </script>
 
-<div class={$__currentPage === "chapter" ? "block" : "hidden"}>
+<div class={$__currentPage === "chapter" || $__currentPage === "page" ? "block" : "hidden"}>
   <div class="{$__bottomNavbarVisible === true ? 'block' : 'hidden'} fixed z-20 w-full h-16 max-w-xs md:max-w-lg shadow-sm -translate-x-1/2 bg-white border border-gray-200 rounded-full bottom-4 left-1/2 grayscale">
     <div class="grid h-full max-w-lg grid-cols-5 mx-auto">
       <!-- Previous Chapter -->
-      <Link to="/{$__chapterNumber - 1}" title="Previous Chapter" class="{$__chapterNumber === 1 && disabledElement} inline-flex flex-col items-center justify-center px-5 rounded-s-full hover:bg-gray-200 dark:hover:bg-gray-800 group">
+      <Link to="/{previousNavigation}" title="Previous Chapter" class="{previousNavigationDisabled === true && disabledElement} inline-flex flex-col items-center justify-center px-5 rounded-s-full hover:bg-gray-200 dark:hover:bg-gray-800 group">
         <ChevronLeft />
         <span class="sr-only">Previous Chapter</span>
       </Link>
 
       <!-- 2nd icon -->
-      <button type="button" title="Change Display" on:click={() => updateSettings({ type: "displayType", value: $__displayType === 5 ? 1 : $__displayType + 1 })} class="opacity-70 inline-flex flex-col items-center justify-center px-5 relative inline-flex items-center hover:bg-gray-200 dark:hover:bg-gray-800 group">
+      <button type="button" title="Change Display" on:click={() => updateSettings({ type: "displayType", value: $__displayType === 5 ? 1 : $__displayType + 1 })} class="opacity-70 inline-flex flex-col items-center justify-center px-5 relative inline-flex items-center hover:bg-gray-200 dark:hover:bg-gray-800 group {$__currentPage === 'page' && disabledElement}">
         <Eye />
         <span class="sr-only">Display Type</span>
       </button>
@@ -69,7 +88,7 @@
       </button>
 
       <!-- Next Chapter -->
-      <Link to="/{$__chapterNumber + 1}" title="Next Chapter" class="{$__chapterNumber === 114 && disabledElement} inline-flex flex-col items-center justify-center px-5 rounded-e-full hover:bg-gray-200 dark:hover:bg-gray-800 group">
+      <Link to="/{nextNavigation}" title="Next Chapter" class="{nextNavigationDisabled === true && disabledElement} inline-flex flex-col items-center justify-center px-5 rounded-e-full hover:bg-gray-200 dark:hover:bg-gray-800 group">
         <ChevronRight />
         <span class="sr-only">Next Chapter</span>
       </Link>
