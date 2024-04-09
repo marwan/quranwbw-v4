@@ -20,7 +20,7 @@
     1: {
       header: "29vw",
       bismillah: "5vw",
-      words: "5vw",
+      words: "4.7vw",
     },
 
     // medium screens
