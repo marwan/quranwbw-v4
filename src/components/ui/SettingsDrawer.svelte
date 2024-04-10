@@ -4,16 +4,16 @@
 	import { updateSettings } from '$utils/updateSettings';
 	import { resetSettings } from '$utils/resetSettings';
 	import { disabledElement, buttonElement } from '$utils/commonStyles';
-	import Spinner from '$svgs/Spinner.svelte';
-	import VersesWords from '$verses/VersesWords.svelte';
-	import { fetchVersesData } from '$utils/fetchChapterData';
+	// import Spinner from '$svgs/Spinner.svelte';
+	// import VersesWords from '$verses/VersesWords.svelte';
+	// import { fetchVersesData } from '$utils/fetchChapterData';
 
 	const settingsBlockClasses = 'space-y-2 py-6';
 
 	$: fontSizeCodes = JSON.parse($__userSettings).displaySettings.fontSizes;
 
 	// fetching verse 1:1 for text preview
-	$: verseData = fetchVersesData('1:1', $__wordType, $__wordTranslation, '');
+	// $: verseData = fetchVersesData('1:1', $__wordType, $__wordTranslation, '');
 </script>
 
 <!-- drawer component -->
@@ -32,7 +32,7 @@
 	</div>
 
 	<!-- Text Preview -->
-	<div class="z-30 flex flex-col space-y-4 bg-white border-b-2 pt-2 sticky top-[10%]">
+	<!-- <div class="z-30 flex flex-col space-y-4 bg-white border-b-2 pt-2 sticky top-[10%]">
 		<span>Text Preview</span>
 		<div id="verse" class="flex h-fit max-h-28 py-2 overflow-y-scroll direction-rtl">
 			{#await verseData}
@@ -47,7 +47,7 @@
 				<p>{error}</p>
 			{/await}
 		</div>
-	</div>
+	</div> -->
 
 	<!-- display-settings-block -->
 	<div id="display-settings-block" class="py-5">
