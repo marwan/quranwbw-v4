@@ -31,6 +31,7 @@
 	import Navbar from '$ui/Navbar.svelte';
 	import SettingsDrawer from '$ui/SettingsDrawer.svelte';
 	import BottomNavbar from '$ui/BottomNavbar.svelte';
+	// import BottomAlert from '$ui/BottomAlert.svelte';
 	import InitialSetupModal from '$modals/InitialSetupModal.svelte';
 	import AudioModal from '$modals/AudioModal.svelte';
 	import TajweedRulesModal from '$modals/TajweedRulesModal.svelte';
@@ -54,6 +55,7 @@
 		<NotesModal />
 		<TokenModal />
 		<BottomNavbar />
+		<!-- <BottomAlert /> -->
 
 		<!-- views will be rendered in this div -->
 		<div>

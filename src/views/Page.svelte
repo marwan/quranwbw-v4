@@ -107,14 +107,14 @@
 	// only allow continious normal mode
 	updateSettings({ type: 'displayType', value: 4 });
 
-	// goto next page on left swipe
+	// goto previous page on left swipe
 	document.addEventListener('swiped-left', function (e) {
-		navigate(`/page/${page === 604 ? 604 : page + 1}`, { replace: true });
+		navigate(`/page/${page === 1 ? 1 : page - 1}`, { replace: true });
 	});
 
-	// goto previous page on right swipe
+	// goto next page on right swipe
 	document.addEventListener('swiped-right', function (e) {
-		navigate(`/page/${page === 1 ? 1 : page - 1}`, { replace: true });
+		navigate(`/page/${page === 604 ? 604 : page + 1}`, { replace: true });
 	});
 
 	__currentPage.set('page');

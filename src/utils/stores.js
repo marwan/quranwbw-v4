@@ -74,6 +74,12 @@ export const __topNavbarVisible = writable(true);
 // to store the toggle boolean for bottom navbar
 export const __bottomNavbarVisible = writable(true);
 
+// to store the bottom alert info
+export const __bottomAlert = writable({
+	visible: false,
+	message: '...'
+});
+
 // to store all the audio settings
 export const __audioSettings = writable({
 	isPlaying: false,

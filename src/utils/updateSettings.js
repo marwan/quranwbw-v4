@@ -1,7 +1,6 @@
 /* eslint-disable no-case-declarations */
-import { get } from 'svelte/store';
-import { __userToken, __userSettings, __wordType, __displayType, __websiteTheme, __wordTranslation, __verseTranslations, __wordTranslationEnabled, __wordTransliterationEnabled, __reciter, __playbackSpeed, __lastRead, __tajweedEnabled } from '$utils/stores';
-import { selectableVerseTranslations, screenBreakpoints } from '$data/options';
+import { __userSettings, __wordType, __displayType, __websiteTheme, __wordTranslation, __verseTranslations, __wordTranslationEnabled, __wordTransliterationEnabled, __reciter, __playbackSpeed, __lastRead, __tajweedEnabled } from '$utils/stores';
+import { selectableVerseTranslations } from '$data/options';
 
 // const userSettingsEndpoint = "https://api.quranwbw.com/v1/user/settings";
 

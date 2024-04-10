@@ -44,9 +44,9 @@
 			if ($__chapterNumber === 1) previousNavigationDisabled = true;
 			if ($__chapterNumber === 114) nextNavigationDisabled = true;
 		} else {
-			(previousNavigation = `page/${$__pageNumber - 1}`), (nextNavigation = `page/${$__pageNumber + 1}`);
-			if ($__pageNumber === 1) previousNavigationDisabled = true;
-			if ($__pageNumber === 604) nextNavigationDisabled = true;
+			(previousNavigation = `page/${$__pageNumber + 1}`), (nextNavigation = `page/${$__pageNumber - 1}`);
+			if ($__pageNumber === 1) nextNavigationDisabled = true;
+			if ($__pageNumber === 604) previousNavigationDisabled = true;
 		}
 	}
 </script>
