@@ -177,7 +177,7 @@ svg {
   -moz-filter: grayscale(0%) sepia(25%) brightness(100%) hue-rotate(50deg) saturate(30%) invert(100%);
 }
 
-.theme-2 .grayscale, .theme-3 .grayscale, .theme-4 .grayscale {
+.theme-2 .grayscale, .theme-3 .grayscale, .theme-4 .grayscale, .theme-3 .custom-backdrop {
   filter: grayscale(100%);
   -webkit-filter: grayscale(100%);
   -moz-filter:grayscale(100%);

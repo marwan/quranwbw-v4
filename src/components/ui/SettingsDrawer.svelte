@@ -23,7 +23,7 @@
 			<span>Settings</span>
 		</h5>
 
-		<button id="settings-drawer-close-button" type="button" data-drawer-hide="settings-drawer" aria-controls="settings-drawer" class="text-gray-400 bg-transparent hover:bg-[#ebebeb] hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-4 right-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white">
+		<button id="settings-drawer-close-button" type="button" data-drawer-hide="settings-drawer" aria-controls="settings-drawer" class="text-gray-400 bg-transparent hover:bg-[#ebebeb] hover:text-gray-900 rounded-3xl text-sm w-8 h-8 absolute top-4 right-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white">
 			<svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
 				<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
 			</svg>
@@ -62,7 +62,7 @@
 						id="website-theme-list"
 						on:change={(event) => updateSettings({ type: 'websiteTheme', value: +event.target.value })}
 						bind:value={$__websiteTheme}
-						class="w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+						class="w-32 border border-gray-300 text-gray-900 rounded-3xl focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
 					>
 						{#each Object.entries(selectableThemes) as [id, theme]}
 							<option value={theme.id}>{theme.name}</option>
@@ -82,7 +82,7 @@
 						id="display-style-list"
 						bind:value={$__displayType}
 						on:change={(event) => updateSettings({ type: 'displayType', value: +event.target.selectedIndex + 1 })}
-						class="w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+						class="w-32 border border-gray-300 text-gray-900 rounded-3xl focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
 					>
 						{#each Object.entries(displayOptions) as [id, displayOption]}
 							<option disabled={$__currentPage !== 'chapter' && displayOption.displayID > 2 && 'true'} value={displayOption.displayID}>{displayOption.displayName}</option>
@@ -141,7 +141,7 @@
 						id="quran-font-list"
 						on:change={(event) => updateSettings({ type: 'wordType', value: +event.target.value })}
 						bind:value={$__wordType}
-						class="w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+						class="w-32 border border-gray-300 text-gray-900 rounded-3xl focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
 					>
 						{#each Object.entries(selectableFontTypes) as [id, font]}
 							<option value={font.id}>{font.font}</option>
@@ -254,7 +254,7 @@
 						id="word-translations-list"
 						bind:value={$__wordTranslation}
 						on:change={(event) => updateSettings({ type: 'wordTranslation', value: +event.target.value })}
-						class="w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+						class="w-32 border border-gray-300 text-gray-900 rounded-3xl focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
 					>
 						{#each Object.entries(selectableWordTranslations) as [id, translation]}
 							<option value={translation.id}>{translation.language}</option>
@@ -270,14 +270,14 @@
 			<div id="verse-translation-setting" class={settingsBlockClasses}>
 				<div class="flex flex-row justify-between items-center">
 					<label for="verse-translations-list" class="block text-gray-900 dark:text-slate-400">Verse</label>
-					<button id="dropdownCheckboxButton" data-dropdown-toggle="verse-translation-checkbox" class="w-32 border text-left border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" type="button">
+					<button id="dropdownCheckboxButton" data-dropdown-toggle="verse-translation-checkbox" class="w-32 border text-left border-gray-300 text-gray-900 rounded-3xl focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" type="button">
 						{$__verseTranslations.length} selected
 					</button>
 				</div>
 				<p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Verse translations from multiple authors and languages.</p>
 
 				<!-- verse-translation dropdown menu -->
-				<div id="verse-translation-checkbox" class="z-10 hidden w-fit bg-white shadow-md rounded-lg border border-gray-200">
+				<div id="verse-translation-checkbox" class="z-10 hidden w-fit bg-white shadow-md rounded-3xl border border-gray-200">
 					<ul id="verse-translations-list" class="max-h-56 overflow-y-scroll p-3 space-y-4 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownCheckboxButton">
 						{#each Object.entries(verseTranslationsLanguages) as [id, language]}
 							<div class="space-y-2">
@@ -331,7 +331,7 @@
 						id="reciter-list"
 						bind:value={$__reciter}
 						on:change={(event) => updateSettings({ type: 'reciter', value: +event.target.selectedIndex + 1 })}
-						class="w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+						class="w-32 border border-gray-300 text-gray-900 rounded-3xl focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
 					>
 						{#each Object.entries(selectableReciters) as [id, reciter]}
 							<option value={reciter.id}>{reciter.reciter}</option>
@@ -351,7 +351,7 @@
 						id="speed-list"
 						bind:value={$__playbackSpeed}
 						on:change={(event) => updateSettings({ type: 'playbackSpeed', value: +event.target.selectedIndex + 1 })}
-						class="w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+						class="w-32 border border-gray-300 text-gray-900 rounded-3xl focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
 					>
 						{#each Object.entries(selectablePlaybackSpeeds) as [id, speed]}
 							<option value={speed.id}>x{speed.speed}</option>

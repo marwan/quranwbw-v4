@@ -39,10 +39,12 @@
 
 	// check old bookmarks for v3 update
 	checkOldBookmarks();
+
+	$: paddingX = $__currentPage === 'page' ? 'px-0 md:px-4' : $__currentPage === 'home' ? 'px-0' : 'px-4';
 </script>
 
 <Router>
-	<div class="max-w-screen-lg mx-auto pt-16 pb-24 select-none {$__currentPage === 'page' ? 'px-0 md:px-4' : 'px-4'}">
+	<div class="max-w-screen-lg mx-auto pt-16 pb-24 select-none {paddingX}">
 		<!-- include the UI elements -->
 		<Navbar />
 		<SettingsDrawer />
