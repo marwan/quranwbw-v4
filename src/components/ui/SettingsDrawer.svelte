@@ -13,7 +13,7 @@
 	$: fontSizeCodes = JSON.parse($__userSettings).displaySettings.fontSizes;
 
 	// fetching verse 1:1 for text preview
-	$: verseData = fetchVersesData('1:1', $__wordType, $__wordTranslation, $__verseTranslations.toString());
+	$: verseData = fetchVersesData('1:1', $__wordType, $__wordTranslation, '');
 </script>
 
 <!-- drawer component -->
