@@ -107,7 +107,7 @@
 		</div>
 	</div>
 
-	<!-- bottom nav for chapter page -->
+	<!-- mini nav for chapter page -->
 	{#if $__currentPage === 'chapter'}
 		<div id="bottom-nav" class="flex flex-row items-center justify-between border-t text-xs max-w-screen-lg mx-auto px-6 dark:border-slate-700">
 			<div id="navbar-bottom-chapter-revalation" class="flex flex-row items-center py-2">
@@ -127,15 +127,11 @@
 		<div id="chapter-progress-bar" class="fixed inset-x-0 z-20 h-1 bg-gray-300 transition-width transition-slowest ease dark:bg-slate-700" style="width: {chapterProgress}%" />
 	{/if}
 
-	<!-- bottom nav for mushaf page -->
+	<!-- mini nav for mushaf page -->
 	{#if $__currentPage === 'page'}
 		<div id="bottom-nav" class="flex flex-row items-center justify-between border-t text-xs max-w-screen-lg mx-auto px-6 dark:border-slate-700">
-			<div id="navbar-bottom-chapter-revalation" class="flex flex-row items-center py-2">
-				<span>{mushafChapter}</span>
-			</div>
-			<div class="flex flex-row items-center py-2">
-				<span>{mushafJuz}</span>
-			</div>
+			<div class="flex flex-row items-center py-2">{mushafChapter}</div>
+			<div class="flex flex-row items-center py-2">{mushafJuz}</div>
 		</div>
 	{/if}
 
