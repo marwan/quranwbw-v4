@@ -62,7 +62,7 @@
 						id="website-theme-list"
 						on:change={(event) => updateSettings({ type: 'websiteTheme', value: +event.target.value })}
 						bind:value={$__websiteTheme}
-						class="w-32 border border-gray-300 text-gray-900 rounded-3xl focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+						class="w-32 border border-gray-300 text-gray-900 rounded-3xl focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 truncate"
 					>
 						{#each Object.entries(selectableThemes) as [id, theme]}
 							<option value={theme.id}>{theme.name}</option>
@@ -82,7 +82,7 @@
 						id="display-style-list"
 						bind:value={$__displayType}
 						on:change={(event) => updateSettings({ type: 'displayType', value: +event.target.selectedIndex + 1 })}
-						class="w-32 border border-gray-300 text-gray-900 rounded-3xl focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+						class="w-32 border border-gray-300 text-gray-900 rounded-3xl focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 truncate"
 					>
 						{#each Object.entries(displayOptions) as [id, displayOption]}
 							<option disabled={$__currentPage !== 'chapter' && displayOption.displayID > 2 && 'true'} value={displayOption.displayID}>{displayOption.displayName}</option>
@@ -141,7 +141,7 @@
 						id="quran-font-list"
 						on:change={(event) => updateSettings({ type: 'wordType', value: +event.target.value })}
 						bind:value={$__wordType}
-						class="w-32 border border-gray-300 text-gray-900 rounded-3xl focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+						class="w-32 border border-gray-300 text-gray-900 rounded-3xl focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 truncate"
 					>
 						{#each Object.entries(selectableFontTypes) as [id, font]}
 							<option value={font.id}>{font.font}</option>
@@ -254,7 +254,7 @@
 						id="word-translations-list"
 						bind:value={$__wordTranslation}
 						on:change={(event) => updateSettings({ type: 'wordTranslation', value: +event.target.value })}
-						class="w-32 border border-gray-300 text-gray-900 rounded-3xl focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+						class="w-32 border border-gray-300 text-gray-900 rounded-3xl focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 truncate"
 					>
 						{#each Object.entries(selectableWordTranslations) as [id, translation]}
 							<option value={translation.id}>{translation.language}</option>
@@ -331,7 +331,7 @@
 						id="reciter-list"
 						bind:value={$__reciter}
 						on:change={(event) => updateSettings({ type: 'reciter', value: +event.target.selectedIndex + 1 })}
-						class="w-32 border border-gray-300 text-gray-900 rounded-3xl focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+						class="w-32 border border-gray-300 text-gray-900 rounded-3xl focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 truncate"
 					>
 						{#each Object.entries(selectableReciters) as [id, reciter]}
 							<option value={reciter.id}>{reciter.reciter}</option>
@@ -351,7 +351,7 @@
 						id="speed-list"
 						bind:value={$__playbackSpeed}
 						on:change={(event) => updateSettings({ type: 'playbackSpeed', value: +event.target.selectedIndex + 1 })}
-						class="w-32 border border-gray-300 text-gray-900 rounded-3xl focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+						class="w-32 border border-gray-300 text-gray-900 rounded-3xl focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 truncate"
 					>
 						{#each Object.entries(selectablePlaybackSpeeds) as [id, speed]}
 							<option value={speed.id}>x{speed.speed}</option>
