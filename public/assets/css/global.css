@@ -130,15 +130,18 @@ svg {
 .chapter-icons {
   font-family: chapter-icons !important;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale
+  -moz-osx-font-smoothing: grayscale;
+  font-display: block;
 }
 
 .tajweed-rules {
   font-family: "tajweed-rules";
+  font-display: block;
 }
 
 .bismillah {
   font-family: "bismillah";
+  font-display: block;
 }
 
 .direction-rtl {
