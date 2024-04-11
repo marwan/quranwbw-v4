@@ -10,6 +10,8 @@
 
 	const settingsBlockClasses = 'space-y-2 py-6';
 
+	const selectorClasses = 'w-32 border border-gray-300 text-gray-900 rounded-3xl focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 truncate';
+
 	$: fontSizeCodes = JSON.parse($__userSettings).displaySettings.fontSizes;
 
 	// fetching verse 1:1 for text preview
@@ -58,12 +60,7 @@
 			<div id="website-theme-setting" class={settingsBlockClasses}>
 				<div class="flex flex-row justify-between items-center">
 					<label for="website-theme-list" class="block text-gray-900 dark:text-slate-400">Theme</label>
-					<select
-						id="website-theme-list"
-						on:change={(event) => updateSettings({ type: 'websiteTheme', value: +event.target.value })}
-						bind:value={$__websiteTheme}
-						class="w-32 border border-gray-300 text-gray-900 rounded-3xl focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 truncate"
-					>
+					<select id="website-theme-list" on:change={(event) => updateSettings({ type: 'websiteTheme', value: +event.target.value })} bind:value={$__websiteTheme} class={selectorClasses}>
 						{#each Object.entries(selectableThemes) as [id, theme]}
 							<option value={theme.id}>{theme.name}</option>
 						{/each}
@@ -78,12 +75,7 @@
 			<div id="display-type-setting" class="{settingsBlockClasses} {$__currentPage === 'page' && disabledElement}">
 				<div class="flex flex-row justify-between items-center">
 					<label for="display-style-list" class="block text-gray-900 dark:text-slate-400">Display Type</label>
-					<select
-						id="display-style-list"
-						bind:value={$__displayType}
-						on:change={(event) => updateSettings({ type: 'displayType', value: +event.target.selectedIndex + 1 })}
-						class="w-32 border border-gray-300 text-gray-900 rounded-3xl focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 truncate"
-					>
+					<select id="display-style-list" bind:value={$__displayType} on:change={(event) => updateSettings({ type: 'displayType', value: +event.target.selectedIndex + 1 })} class={selectorClasses}>
 						{#each Object.entries(displayOptions) as [id, displayOption]}
 							<option disabled={$__currentPage !== 'chapter' && displayOption.displayID > 2 && 'true'} value={displayOption.displayID}>{displayOption.displayName}</option>
 						{/each}
@@ -137,12 +129,7 @@
 			<div id="quran-font-setting" class={settingsBlockClasses}>
 				<div class="flex flex-row justify-between items-center">
 					<label for="quran-font-list" class="block text-gray-900 dark:text-slate-400">Quran Font</label>
-					<select
-						id="quran-font-list"
-						on:change={(event) => updateSettings({ type: 'wordType', value: +event.target.value })}
-						bind:value={$__wordType}
-						class="w-32 border border-gray-300 text-gray-900 rounded-3xl focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 truncate"
-					>
+					<select id="quran-font-list" on:change={(event) => updateSettings({ type: 'wordType', value: +event.target.value })} bind:value={$__wordType} class={selectorClasses}>
 						{#each Object.entries(selectableFontTypes) as [id, font]}
 							<option value={font.id}>{font.font}</option>
 						{/each}
@@ -250,12 +237,7 @@
 			<div id="word-translation-setting" class={settingsBlockClasses}>
 				<div class="flex flex-row justify-between items-center">
 					<label for="word-translations-list" class="block text-gray-900 dark:text-slate-400">Word</label>
-					<select
-						id="word-translations-list"
-						bind:value={$__wordTranslation}
-						on:change={(event) => updateSettings({ type: 'wordTranslation', value: +event.target.value })}
-						class="w-32 border border-gray-300 text-gray-900 rounded-3xl focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 truncate"
-					>
+					<select id="word-translations-list" bind:value={$__wordTranslation} on:change={(event) => updateSettings({ type: 'wordTranslation', value: +event.target.value })} class={selectorClasses}>
 						{#each Object.entries(selectableWordTranslations) as [id, translation]}
 							<option value={translation.id}>{translation.language}</option>
 						{/each}
@@ -327,12 +309,7 @@
 			<div id="verse-reciter-setting" class={settingsBlockClasses}>
 				<div class="flex flex-row justify-between items-center">
 					<label for="reciter-list" class="block text-gray-900 dark:text-slate-400">Verse Reciter</label>
-					<select
-						id="reciter-list"
-						bind:value={$__reciter}
-						on:change={(event) => updateSettings({ type: 'reciter', value: +event.target.selectedIndex + 1 })}
-						class="w-32 border border-gray-300 text-gray-900 rounded-3xl focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 truncate"
-					>
+					<select id="reciter-list" bind:value={$__reciter} on:change={(event) => updateSettings({ type: 'reciter', value: +event.target.selectedIndex + 1 })} class={selectorClasses}>
 						{#each Object.entries(selectableReciters) as [id, reciter]}
 							<option value={reciter.id}>{reciter.reciter}</option>
 						{/each}
@@ -347,12 +324,7 @@
 			<div id="playback-speed-setting" class={settingsBlockClasses}>
 				<div class="flex flex-row justify-between items-center">
 					<label for="speed-list" class="block text-gray-900 dark:text-slate-400">Playback Speed</label>
-					<select
-						id="speed-list"
-						bind:value={$__playbackSpeed}
-						on:change={(event) => updateSettings({ type: 'playbackSpeed', value: +event.target.selectedIndex + 1 })}
-						class="w-32 border border-gray-300 text-gray-900 rounded-3xl focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 truncate"
-					>
+					<select id="speed-list" bind:value={$__playbackSpeed} on:change={(event) => updateSettings({ type: 'playbackSpeed', value: +event.target.selectedIndex + 1 })} class={selectorClasses}>
 						{#each Object.entries(selectablePlaybackSpeeds) as [id, speed]}
 							<option value={speed.id}>x{speed.speed}</option>
 						{/each}
