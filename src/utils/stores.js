@@ -74,6 +74,9 @@ export const __topNavbarVisible = writable(true);
 // to store the toggle boolean for bottom navbar
 export const __bottomNavbarVisible = writable(true);
 
+// to store the chapters and juz info of a mushaf page
+export const __mushafPageDivisions = writable(null);
+
 // to store the bottom alert info
 export const __bottomAlert = writable({
 	visible: false,

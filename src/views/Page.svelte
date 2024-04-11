@@ -7,12 +7,12 @@
 	import PageMeta from '$components/PageMeta.svelte';
 	import VersesWords from '$verses/VersesWords.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
-	import { __chapterNumber, __pageNumber, __currentPage, __wordType, __tajweedEnabled } from '$utils/stores';
+	import { __chapterNumber, __pageNumber, __currentPage, __wordType, __tajweedEnabled, __mushafPageDivisions } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';
 	import { quranMetaData, chapterHeaderCodes, bismillahTypes } from '$data/quranMeta';
 	import '$lib/swiped-events.min.js';
 
-	let fetchData;
+	let pageData;
 	let startingLine, endingLine;
 	let chapters = [],
 		verses = [],
@@ -54,7 +54,7 @@
 		// empty all the arrays
 		(chapters = []), (verses = []), (lines = []);
 
-		fetchData = (async () => {
+		pageData = (async () => {
 			const apiHost = 'https://api.quranwbw.com';
 			// const apiHost = "http://localhost:7500";
 			const apiURL = `${apiHost}/v1/page?page=${page}&word_type=${$__wordType}&word_translation=1`;
@@ -97,6 +97,12 @@
 				}
 			}
 
+			// set the mushaf page divisions
+			__mushafPageDivisions.set({
+				chapters: chapters,
+				juz: apiData[Object.keys(apiData)[0]].meta.juz
+			});
+
 			return apiData;
 		})();
 
@@ -122,8 +128,8 @@
 
 <PageMeta title={`Page ${page}`} />
 
-<div class="text-center mt-2 md:mt-6 text-xl">
-	{#await fetchData}
+<div class="text-center mt-8 text-xl">
+	{#await pageData}
 		<Spinner />
 	{:then}
 		<div class="space-y-2">

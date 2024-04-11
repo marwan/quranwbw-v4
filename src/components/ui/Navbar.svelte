@@ -1,7 +1,7 @@
 <script>
 	import { Link } from 'svelte-routing';
 	import { quranMetaData, pageNumberKeys } from '$data/quranMeta';
-	import { __chapterNumber, __currentPage, __lastRead, __pageURL, __topNavbarVisible, __pageNumber, __morphologyKey } from '$utils/stores';
+	import { __chapterNumber, __currentPage, __lastRead, __pageURL, __topNavbarVisible, __pageNumber, __morphologyKey, __mushafPageDivisions } from '$utils/stores';
 	import { toggleModal } from '$utils/toggleModal';
 	import { disabledElement, buttonElement } from '$utils/commonStyles';
 
@@ -52,6 +52,25 @@
 			navbarChapterName += `<span class="hidden md:inline-block">&nbsp;(${quranMetaData[$__chapterNumber].translation})</span>`;
 		}
 	}
+
+	// for mushaf page bottom nav
+	let mushafChapter = '...',
+		mushafJuz = '...';
+
+	$: {
+		try {
+			const chapters = $__mushafPageDivisions.chapters;
+			mushafChapter = '';
+
+			// join all the chapter names
+			for (const [key, value] of Object.entries(chapters)) {
+				mushafChapter += quranMetaData[value].transliteration;
+				if (key < Object.keys(chapters).length - 1) mushafChapter += ' / ';
+			}
+
+			mushafJuz = `Juz ${$__mushafPageDivisions.juz}`;
+		} catch (error) {}
+	}
 </script>
 
 <nav id="navbar" class="{$__currentPage === 'home' ? 'hidden' : 'block'} bg-white fixed w-full z-20 top-0 left-0 border-b border-gray-200 text-black print:hidden dark:bg-slate-900 dark:text-slate-400 dark:border-slate-700 grayscale">
@@ -88,6 +107,7 @@
 		</div>
 	</div>
 
+	<!-- bottom nav for chapter page -->
 	{#if $__currentPage === 'chapter'}
 		<div id="bottom-nav" class="flex flex-row items-center justify-between border-t text-xs max-w-screen-lg mx-auto px-6 dark:border-slate-700">
 			<div id="navbar-bottom-chapter-revalation" class="flex flex-row items-center py-2">
@@ -97,7 +117,6 @@
 					<span>{chapterRevelation === 1 ? 'Meccan' : 'Medinan'}</span>
 				{/if}
 			</div>
-			<!-- <div id="navbar-bottom-chapter-title" class="flex flex-row items-center py-2">{quranMetaData[$__chapterNumber].transliteration}</div> -->
 			<div class="flex flex-row items-center py-2">
 				<span>{lastReadPage !== undefined ? `Page ${lastReadPage}` : '...'}</span>
 				<span class="px-1 opacity-60">/</span>
@@ -106,6 +125,18 @@
 		</div>
 
 		<div id="chapter-progress-bar" class="fixed inset-x-0 z-20 h-1 bg-gray-300 transition-width transition-slowest ease dark:bg-slate-700" style="width: {chapterProgress}%" />
+	{/if}
+
+	<!-- bottom nav for mushaf page -->
+	{#if $__currentPage === 'page'}
+		<div id="bottom-nav" class="flex flex-row items-center justify-between border-t text-xs max-w-screen-lg mx-auto px-6 dark:border-slate-700">
+			<div id="navbar-bottom-chapter-revalation" class="flex flex-row items-center py-2">
+				<span>{mushafChapter}</span>
+			</div>
+			<div class="flex flex-row items-center py-2">
+				<span>{mushafJuz}</span>
+			</div>
+		</div>
 	{/if}
 
 	<!-- navigation list -->
