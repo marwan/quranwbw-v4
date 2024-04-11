@@ -30,6 +30,16 @@ export function toggleNavbar() {
 
 			ticking = true;
 		}
+
+		// hide dropdowns manually
+		try {
+			document.getElementById('navigationDropdown').classList.remove('block');
+			document.getElementById('navigationDropdown').classList.add('hidden');
+			document.getElementById('rightMenuDropdown').classList.remove('block');
+			document.getElementById('rightMenuDropdown').classList.add('hidden');
+		} catch (error) {
+			// ...
+		}
 	}
 
 	// for all other pages
