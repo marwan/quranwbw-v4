@@ -44,7 +44,7 @@
 
 <PageMeta title={'Search'} />
 
-<div class="grayscale space-y-8">
+<div class="theme-grayscale space-y-8">
 	<div class="my-6 space-y-4 pb-4 border-b-2 dark:border-slate-700">
 		<h1 class="text-2xl">Search the Quran</h1>
 		<div class="text-sm">

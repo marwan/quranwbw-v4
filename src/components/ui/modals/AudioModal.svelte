@@ -13,7 +13,7 @@
 </script>
 
 <!-- Audio modal -->
-<div id="audio-modal" data-chapter data-verse tabindex="-1" aria-hidden="true" class="flex fixed bottom-0 left-0 right-0 z-50 hidden w-full overflow-x-hidden overflow-y-auto md:inset-0 grayscale justify-center items-center">
+<div id="audio-modal" data-chapter data-verse tabindex="-1" aria-hidden="true" class="flex fixed bottom-0 left-0 right-0 z-50 hidden w-full overflow-x-hidden overflow-y-auto md:inset-0 theme-grayscale justify-center items-center">
 	<div class="relative w-full max-w-md max-h-full">
 		<!-- Modal content -->
 		<div class="relative bg-white rounded-b-none md:rounded-b-3xl rounded-3xl shadow dark:bg-slate-800">

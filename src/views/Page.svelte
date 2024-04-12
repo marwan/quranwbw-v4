@@ -130,7 +130,7 @@
 
 <div class="text-center mt-8 text-xl">
 	{#await pageData}
-		<Spinner />
+		<Spinner height="screen" margin="-mt-20" />
 	{:then}
 		<div class="space-y-2">
 			<div class="max-w-3xl space-y-2 pb-2 mx-auto text-[{mushafSizes[1].words}] md:text-[{mushafSizes[2].words}] lg:text-[{mushafSizes[3].words}]">

@@ -43,11 +43,12 @@
 		} catch (error) {}
 	}
 
+	$: if (noteModifiedAt === undefined) noteModifiedAt = 'just now';
+
 	function updateNotesHandler() {
 		const notesValue = document.getElementById('notes-value').value;
 
 		updateNotes($__verseKey, notesValue);
-		noteModifiedAt = 'just now';
 
 		// if (notesValue !== "") {
 		//   updateNotes($__verseKey, notesValue);

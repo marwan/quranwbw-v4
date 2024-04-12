@@ -19,7 +19,7 @@
 </script>
 
 <!-- drawer component -->
-<div id="settings-drawer" class="fixed top-0 right-0 z-40 h-screen p-4 pt-0 pb-16 overflow-y-auto transition-transform md:rounded-tl-xl md:rounded-bl-xl translate-x-full bg-white grayscale w-full md:w-1/2 lg:w-[430px] dark:bg-gray-800" tabindex="-1" aria-labelledby="settings-drawer-label">
+<div id="settings-drawer" class="fixed top-0 right-0 z-40 h-screen p-4 pt-0 pb-16 overflow-y-auto transition-transform md:rounded-tl-xl md:rounded-bl-xl translate-x-full bg-white theme-grayscale w-full md:w-1/2 lg:w-[430px] dark:bg-gray-800" tabindex="-1" aria-labelledby="settings-drawer-label">
 	<div id="settings-head" class="z-30 top-0 sticky bg-white border-b-2 py-4 mb-4">
 		<h5 id="settings-drawer-label" class="inline-flex items-center mb-4 text-3xl space-x-2 font-semibold text-gray-500 dark:text-gray-400">
 			<span>Settings</span>

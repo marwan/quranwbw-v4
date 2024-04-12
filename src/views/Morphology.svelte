@@ -97,7 +97,7 @@
 		{:then fetchWordsData}
 			{#if Object.keys(fetchWordsData[0].morphology.root.words_with_same_root).length > 0}
 				<div class="flex flex-col">
-					<div id="different-verbs" class="grayscale">
+					<div id="different-verbs" class="theme-grayscale">
 						<div class="mx-auto text-center">
 							<div class="relative grid gap-8 grid-cols-2 row-gap-5 md:row-gap-8 md:grid-cols-6">
 								{#each Object.entries(fetchWordsData[0].morphology.verbs) as [key, value]}

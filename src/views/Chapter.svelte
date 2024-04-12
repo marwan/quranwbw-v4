@@ -42,35 +42,37 @@
 	}
 
 	// toggle bottom nav on scroll
-	document.addEventListener(
-		'scroll',
-		() => {
-			// toggle the navbars based on the scroll direction
-			debounce(toggleNavbar, 0);
-		},
-		{
-			capture: true,
-			passive: true
-		}
-	);
+	// document.body.addEventListener(
+	// 	'scroll',
+	// 	() => {
+	// 		// toggle the navbars based on the scroll direction
+	// 		debounce(toggleNavbar, 0);
+	// 	},
+	// 	{
+	// 		capture: true,
+	// 		passive: true
+	// 	}
+	// );
 
 	__currentPage.set('chapter');
 </script>
 
 <PageMeta title={`${quranMetaData[$__chapterNumber].transliteration} (${$__chapterNumber})`} />
 
-<div>
+<div class="pt-8">
 	{#await chapterData}
 		<Spinner height="screen" margin="-mt-20" />
 	{:then}
 		<!-- we have different Bismillah for chapter 2 and the rest -->
-		<div class="bismillah flex flex-col text-center flex-wrap px-6 pt-14 space-y-4 text-xl md:text-2xl block theme-palette-normal font-filter opacity-70">
-			{#if $__chapterNumber === 2}
-				{bismillahTypes[1]}
-			{:else if ![1, 9, 2].includes($__chapterNumber)}
-				{bismillahTypes[2]}
-			{/if}
-		</div>
+		{#if ![1, 9].includes($__chapterNumber)}
+			<div class="bismillah flex flex-col text-center flex-wrap pt-4 px-6 space-y-4 text-xl md:text-2xl block theme-palette-normal font-filter opacity-60">
+				{#if $__chapterNumber === 2}
+					{bismillahTypes[1]}
+				{:else if ![1, 9, 2].includes($__chapterNumber)}
+					{bismillahTypes[2]}
+				{/if}
+			</div>
+		{/if}
 
 		<!-- need custom stylings if display type is 3 or 4 - continuous -->
 		<div id="verses-block" class={displayOptions[`${$__displayType}`].customStyle}>

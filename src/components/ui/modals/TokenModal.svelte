@@ -246,7 +246,7 @@
 </script>
 
 <!-- token modal -->
-<div id="token-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full text-sm p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full grayscale">
+<div id="token-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full text-sm p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full theme-grayscale">
 	<div class="relative w-full max-w-xl max-h-full">
 		<!-- Modal content -->
 		<div class="relative bg-white rounded-3xl shadow daaark:bg-gray-700">

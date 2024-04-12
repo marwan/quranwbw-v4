@@ -2,7 +2,6 @@
 	export let key, value, line;
 
 	import { navigate } from 'svelte-routing';
-
 	import { displayOptions } from '$data/options';
 	import { supplicationsFromQuran } from '$data/quranMeta';
 	import { __currentPage, __wordType, __displayType, __websiteTheme, __userSettings, __audioSettings, __wordTranslationEnabled, __wordTransliterationEnabled, __morphologyKey, __tajweedEnabled } from '$utils/stores';
@@ -29,7 +28,7 @@
 		}
 	}
 
-	$: wordClasses = `rounded-3xl hover:cursor-pointer hover:bg-[#ebebeb] dark:hover:bg-slate-800 ${displayOptions[$__displayType].layout === 'wbw' ? 'p-3' : $__currentPage === 'page' ? 'p-0' : 'p-1'}`;
+	$: wordClasses = `rounded-lg hover:cursor-pointer hover:bg-[#ebebeb] dark:hover:bg-slate-800 ${displayOptions[$__displayType].layout === 'wbw' ? 'p-3' : $__currentPage === 'page' ? 'p-0' : 'p-1'}`;
 
 	$: displayIsContinuous = displayOptions[$__displayType].continuous;
 </script>
@@ -45,7 +44,7 @@
 			data-timestamp={timestampSplit[word]}
 			on:click={() => wordClickHandler(chapter, verse, word)}
 		>
-			<span class="{`arabicText leading-normal arabic-font-${$__wordType} ${$__currentPage !== 'page' && fontSizes.arabicText}`} {displayIsContinuous === true && 'inline-block group-hover:text-gray-500 dark:group-hover:text-slate-300'}" data-fontSize={fontSizes.arabicText}>
+			<span class="{`arabicText leading-normal arabic-font-${$__wordType} ${$__currentPage !== 'page' && fontSizes.arabicText}`} {displayIsContinuous === true && 'inline-block'}" data-fontSize={fontSizes.arabicText}>
 				<!-- 1: Uthmanic Hafs Digital, 3: Indopak Madinah -->
 				{#if $__wordType === 1 || $__wordType === 3}
 					{arabicSplit[word]}
@@ -68,7 +67,8 @@
 
 <!-- end icon -->
 {#if $__currentPage != 'page' || ($__currentPage === 'page' && value.words.end_line === line)}
-	<div class="{$__displayType === 1 ? 'text-center flex flex-col' : 'inline-flex flex-col'} {wordClasses}">
+	<!-- svelte-ignore a11y-click-events-have-key-events -->
+	<div class="{$__displayType === 1 ? 'text-center flex flex-col' : 'inline-flex flex-col'} {wordClasses}" on:click={() => wordClickHandler(chapter, verse)}>
 		<span class="{`arabicText leading-normal arabic-font-${$__wordType} ${$__currentPage !== 'page' && fontSizes.arabicText}`} {displayIsContinuous === true && 'inline-block group-hover:text-gray-500 dark:group-hover:text-slate-300'}" data-fontSize={fontSizes.arabicText}>
 			<!-- 1: Uthmanic Hafs Digital, 3: Indopak Madinah -->
 			{#if $__wordType === 1 || $__wordType === 3}
