@@ -4,7 +4,7 @@
 	import { displayOptions, selectableFontTypes } from '$data/options';
 	import { updateSettings } from '$utils/updateSettings';
 	import { toggleModal } from '$utils/toggleModal';
-	import { buttonElement } from '$utils/commonStyles';
+	import { buttonElement } from '$data/commonStyles';
 
 	// show the setup modal on first visit except on the home page
 	$: {

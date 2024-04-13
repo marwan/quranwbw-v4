@@ -3,7 +3,7 @@
 	import { __currentPage, __chapterNumber, __audioSettings } from '$utils/stores';
 	import { initializeAudio, updateAudioSettings } from '$utils/audioController';
 	import { toggleModal } from '$utils/toggleModal';
-	import { disabledElement, buttonElement } from '$utils/commonStyles';
+	import { disabledElement, buttonElement } from '$data/commonStyles';
 
 	// icons
 	// import Info from "$svgs/Info.svelte";

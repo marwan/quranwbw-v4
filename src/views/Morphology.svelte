@@ -8,7 +8,7 @@
 	import MorphologyTable from '$morphology/MorphologyTable.svelte';
 	import { quranMetaData } from '$data/quranMeta';
 	import { __currentPage, __wordType, __wordTranslation, __verseTranslations, __morphologyKey } from '$utils/stores';
-	import { tabPillElement } from '$utils/commonStyles';
+	import { tabPillElement } from '$data/commonStyles';
 	import { fetchVersesData } from '$utils/fetchChapterData';
 
 	let fetchWordsData, fetchWordSummary;

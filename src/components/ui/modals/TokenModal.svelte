@@ -1,5 +1,5 @@
 <script>
-	import { buttonElement, disabledElement } from '$utils/commonStyles';
+	import { buttonElement, disabledElement } from '$data/commonStyles';
 	import { toggleModal } from '$utils/toggleModal';
 	import { __userToken, __userSettings } from '$utils/stores';
 	import { downloadTextFile } from '$utils/downloadTextFile';

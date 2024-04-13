@@ -3,7 +3,7 @@
 
 	import { Link } from 'svelte-routing';
 	import { __wordType } from '$utils/stores';
-	import { buttonElement } from '$utils/commonStyles';
+	import { buttonElement } from '$data/commonStyles';
 
 	const tableTitles = {
 		1: { title: 'Words in Quran having same root', error: 'Root data for this word is not available.' },

@@ -3,7 +3,7 @@
 	import { displayOptions, selectableFontTypes, selectableThemes, selectableVerseTranslations, verseTranslationsLanguages, selectableWordTranslations, selectableReciters, selectablePlaybackSpeeds } from '$data/options';
 	import { updateSettings } from '$utils/updateSettings';
 	import { resetSettings } from '$utils/resetSettings';
-	import { disabledElement, buttonElement } from '$utils/commonStyles';
+	import { disabledElement, buttonElement } from '$data/commonStyles';
 	// import Spinner from '$svgs/Spinner.svelte';
 	// import VersesWords from '$verses/VersesWords.svelte';
 	// import { fetchVersesData } from '$utils/fetchChapterData';

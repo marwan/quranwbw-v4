@@ -3,7 +3,7 @@
 	import { quranMetaData, pageNumberKeys } from '$data/quranMeta';
 	import { __chapterNumber, __currentPage, __lastRead, __pageURL, __topNavbarVisible, __pageNumber, __morphologyKey, __mushafPageDivisions } from '$utils/stores';
 	import { toggleModal } from '$utils/toggleModal';
-	import { disabledElement, buttonElement } from '$utils/commonStyles';
+	import { disabledElement, buttonElement } from '$data/commonStyles';
 
 	// icons
 	import Menu from '$svgs/Menu.svelte';

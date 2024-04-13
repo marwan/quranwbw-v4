@@ -1,7 +1,7 @@
 <script>
 	import { quranMetaData } from '$data/quranMeta';
 	import { __currentPage, __chapterNumber, __audioSettings, __verseKey, __notesData, __userNotes } from '$utils/stores';
-	import { buttonElement } from '$utils/commonStyles';
+	import { buttonElement } from '$data/commonStyles';
 	import { toggleModal } from '$utils/toggleModal';
 	import { updateNotes } from '$utils/userNotes';
 	import { timeAgo } from '$utils/timeAgo';

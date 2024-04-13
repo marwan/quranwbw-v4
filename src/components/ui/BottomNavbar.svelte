@@ -4,7 +4,7 @@
 	import { __chapterNumber, __pageNumber, __displayType, __currentPage, __bottomNavbarVisible } from '$utils/stores';
 	import { resetAudioSettings, playAudio } from '$utils/audioController';
 	import { quranMetaData } from '$data/quranMeta';
-	import { disabledElement } from '$utils/commonStyles';
+	import { disabledElement } from '$data/commonStyles';
 	import { updateSettings } from '$utils/updateSettings';
 
 	// icons

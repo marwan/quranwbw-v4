@@ -5,7 +5,7 @@
 	import { searchableTranslations } from '$data/searchableTranslations';
 	import { quranMetaData } from '$data/quranMeta';
 	import { __currentPage } from '$utils/stores';
-	import { linkElement } from '$utils/commonStyles';
+	import { linkElement } from '$data/commonStyles';
 
 	let searchResults;
 

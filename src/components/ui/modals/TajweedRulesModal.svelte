@@ -1,6 +1,6 @@
 <script>
 	import { toggleModal } from '$utils/toggleModal';
-	import { buttonElement, linkElement } from '$utils/commonStyles';
+	import { buttonElement, linkElement } from '$data/commonStyles';
 	import { tajweedRulings } from '$data/quranMeta';
 	import { __websiteTheme } from '$utils/stores';
 </script>
