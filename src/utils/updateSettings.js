@@ -1,5 +1,5 @@
 /* eslint-disable no-case-declarations */
-import { __userSettings, __wordType, __displayType, __websiteTheme, __wordTranslation, __verseTranslations, __wordTranslationEnabled, __wordTransliterationEnabled, __reciter, __playbackSpeed, __lastRead, __tajweedEnabled } from '$utils/stores';
+import { __userSettings, __wordType, __displayType, __websiteTheme, __wordTranslation, __verseTranslations, __wordTranslationEnabled, __wordTransliterationEnabled, __reciter, __playbackSpeed, __lastRead, __tajweedEnabled, __wordTooltip } from '$utils/stores';
 import { selectableVerseTranslations } from '$data/options';
 
 // const userSettingsEndpoint = "https://api.quranwbw.com/v1/user/settings";
@@ -20,6 +20,12 @@ export function updateSettings(props) {
 		case 'displayType':
 			__displayType.set(props.value);
 			userSettings.displaySettings.displayType = props.value;
+			break;
+
+		// for word tooltip
+		case 'wordTooltip':
+			__wordTooltip.set(props.value);
+			userSettings.displaySettings.wordTooltip = props.value;
 			break;
 
 		// for website theme

@@ -235,6 +235,13 @@ export const selectablePlaybackSpeeds = {
 	6: { id: 6, speed: 2 }
 };
 
+export const selectableTooltipOptions = {
+	1: { id: 1, name: 'None' },
+	2: { id: 2, name: 'Transliteration' },
+	3: { id: 3, name: 'Translation' },
+	4: { id: 4, name: 'Both' }
+};
+
 export const screenBreakpoints = {
 	sm: 640,
 	md: 768,

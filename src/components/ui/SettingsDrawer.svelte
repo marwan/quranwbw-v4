@@ -1,6 +1,6 @@
 <script>
-	import { __currentPage, __chapterData, __chapterNumber, __wordType, __displayType, __websiteTheme, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __verseTranslations, __reciter, __playbackSpeed, __userSettings, __tajweedEnabled } from '$utils/stores';
-	import { displayOptions, selectableFontTypes, selectableThemes, selectableVerseTranslations, verseTranslationsLanguages, selectableWordTranslations, selectableReciters, selectablePlaybackSpeeds } from '$data/options';
+	import { __currentPage, __chapterData, __chapterNumber, __wordType, __displayType, __websiteTheme, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __verseTranslations, __reciter, __playbackSpeed, __userSettings, __tajweedEnabled, __wordTooltip } from '$utils/stores';
+	import { displayOptions, selectableFontTypes, selectableThemes, selectableVerseTranslations, verseTranslationsLanguages, selectableWordTranslations, selectableReciters, selectablePlaybackSpeeds, selectableTooltipOptions } from '$data/options';
 	import { updateSettings } from '$utils/updateSettings';
 	import { resetSettings } from '$utils/resetSettings';
 	import { disabledElement, buttonElement } from '$data/commonStyles';
@@ -116,6 +116,21 @@
 					</label>
 				</div>
 				<p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Toggle the word transliteration which is shown below the Arabic word.</p>
+			</div>
+
+			<div class="border-b"></div>
+
+			<!-- word-tooltip-setting -->
+			<div id="word-tooltip-setting" class={settingsBlockClasses}>
+				<div class="flex flex-row justify-between items-center">
+					<label for="word-tooltip-list" class="block text-gray-900 dark:text-slate-400">Word Tooltip</label>
+					<select id="word-tooltip-list" bind:value={$__wordTooltip} on:change={(event) => updateSettings({ type: 'wordTooltip', value: +event.target.selectedIndex + 1 })} class={selectorClasses}>
+						{#each Object.entries(selectableTooltipOptions) as [id, options]}
+							<option value={options.id}>{options.name}</option>
+						{/each}
+					</select>
+				</div>
+				<p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Choose what is displayed when you hover a word.</p>
 			</div>
 		</div>
 	</div>

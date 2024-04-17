@@ -4,8 +4,9 @@
 	import { navigate } from 'svelte-routing';
 	import { displayOptions } from '$data/options';
 	import { supplicationsFromQuran } from '$data/quranMeta';
-	import { __currentPage, __wordType, __displayType, __websiteTheme, __userSettings, __audioSettings, __wordTranslationEnabled, __wordTransliterationEnabled, __morphologyKey, __tajweedEnabled } from '$utils/stores';
+	import { __currentPage, __wordType, __displayType, __websiteTheme, __userSettings, __audioSettings, __wordTranslationEnabled, __wordTransliterationEnabled, __morphologyKey, __tajweedEnabled, __wordTooltip } from '$utils/stores';
 	import { wordAudioController } from '$utils/audioController';
+	import { Tooltip } from 'flowbite-svelte';
 
 	const chapter = key.split(':')[0];
 	const verse = key.split(':')[1];
@@ -31,6 +32,9 @@
 	$: wordClasses = `rounded-lg hover:cursor-pointer hover:bg-[#ebebeb] dark:hover:bg-slate-800 ${displayOptions[$__displayType].layout === 'wbw' ? 'p-3' : $__currentPage === 'page' ? 'p-0' : 'p-1'}`;
 
 	$: displayIsContinuous = displayOptions[$__displayType].continuous;
+
+	// word tooltip
+	let wordTooltip;
 </script>
 
 <!-- words -->
@@ -62,6 +66,19 @@
 				</div>
 			{/if}
 		</div>
+
+		<!-- word tooltip -->
+		{#if $__wordTooltip > 1}
+			<Tooltip class="z-20 text-center theme-grayscale inline-flex" type="light">
+				{#if $__wordTooltip === 2}
+					{@html transliterationSplit[word]}
+				{:else if $__wordTooltip === 3}
+					{@html translationSplit[word]}
+				{:else if $__wordTooltip === 4}
+					{@html `${transliterationSplit[word]} <br /><br /> ${translationSplit[word]}`}
+				{/if}
+			</Tooltip>
+		{/if}
 	{/if}
 {/each}
 
@@ -79,4 +96,7 @@
 			{/if}
 		</span>
 	</div>
+
+	<!-- end icon tooltip -->
+	<Tooltip type="light" class="inline-flex">End of Verse {key}</Tooltip>
 {/if}

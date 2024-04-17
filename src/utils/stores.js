@@ -77,6 +77,9 @@ export const __bottomNavbarVisible = writable(true);
 // to store the chapters and juz info of a mushaf page
 export const __mushafPageDivisions = writable(null);
 
+// to store the word tooltip type
+export const __wordTooltip = writable(userSettings.displaySettings.wordTooltip);
+
 // to store the bottom alert info
 export const __bottomAlert = writable({
 	visible: false,

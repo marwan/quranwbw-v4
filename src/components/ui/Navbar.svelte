@@ -4,6 +4,7 @@
 	import { __chapterNumber, __currentPage, __lastRead, __pageURL, __topNavbarVisible, __pageNumber, __morphologyKey, __mushafPageDivisions } from '$utils/stores';
 	import { toggleModal } from '$utils/toggleModal';
 	import { disabledElement, buttonElement } from '$data/commonStyles';
+	import { Tooltip } from 'flowbite-svelte';
 
 	// icons
 	import Menu from '$svgs/Menu.svelte';
@@ -79,6 +80,7 @@
 			<Home />
 			<span class="text-xs pl-2 hidden md:block">Home</span>
 		</Link>
+		<Tooltip type="light">Home</Tooltip>
 
 		<!-- display the chapter name on chapter page -->
 		<button id="navigationDropdownButton" data-dropdown-toggle="navigationDropdown" class="{$__currentPage === 'chapter' ? 'block' : 'hidden'} flex items-center p-3 text-sm border-gray-200 w-auto p-2 hover:bg-[#ebebeb] rounded-3xl dark:hover:bg-slate-700">
@@ -105,6 +107,7 @@
 			<span class="text-xs pr-2 hidden md:block">Menu</span>
 			<Menu />
 		</div>
+		<Tooltip type="light">Menu</Tooltip>
 	</div>
 
 	<!-- mini nav for chapter page -->
