@@ -62,7 +62,7 @@
 	}
 </script>
 
-<div class="verseButtons flex flex-row space-x-2 text-gray-400 text-xs theme-grayscale">
+<div class="verseButtons flex flex-row space-x-2 z-10 text-gray-400 text-xs theme-grayscale">
 	<Link to={$__currentPage === 'chapter' ? './#' : `/${chapter}/${verse}`} class={buttonClasses} data-html2canvas-ignore>{key}</Link>
 
 	<!-- <button on:click={() => updateSettings({ type: 'userBookmarks', key })} class={buttonClasses}>
