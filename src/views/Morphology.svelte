@@ -102,7 +102,7 @@
 							<div class="relative grid gap-8 grid-cols-2 row-gap-5 md:row-gap-8 md:grid-cols-6">
 								{#each Object.entries(fetchWordsData[0].morphology.verbs) as [key, value]}
 									{#if value !== null}
-										<div class="flex flex-col py-5 duration-300 transform bg-white border rounded-3xl shadow-sm text-center hover:-translate-y-2">
+										<div class="flex flex-col py-5 duration-300 transform bg-white border rounded-lg shadow-sm text-center hover:-translate-y-2">
 											<div class="flex items-center justify-center mb-2">
 												<p id="verb-1" class="text-xl md:text-2xl pb-4 leading-5 arabic-font-{$__wordType}">{value}</p>
 											</div>

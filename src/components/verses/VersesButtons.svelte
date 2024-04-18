@@ -28,18 +28,22 @@
 	// update userBookmarks whenever the __userSettings changes
 	$: userBookmarks = JSON.parse($__userSettings).userBookmarks;
 
-	const buttonClasses = 'inline-flex items-center justify-center w-10 h-10 text-gray-400 transition-colors duration-150 rounded-3xl focus:shadow-outline bg-[#ebebeb] hover:bg-gray-200 print:hidden dark:bg-slate-800 dark:hover:bg-slate-700';
+	const buttonClasses = 'inline-flex items-center justify-center w-10 h-10 text-gray-400 transition-colors duration-150 rounded-lg focus:shadow-outline bg-[#ebebeb] hover:bg-gray-200 print:hidden dark:bg-slate-800 dark:hover:bg-slate-700';
 
 	let dropdownOpen = false;
 
 	$: {
-		// remove z-index from all button blocks and to button block of that specific verse
-		if (dropdownOpen === true) {
-			document.querySelectorAll('.verseButtons').forEach((element) => {
-				element.classList.remove('z-10');
-			});
+		try {
+			// remove z-index from all button blocks and to button block of that specific verse
+			if (dropdownOpen === true) {
+				document.querySelectorAll('.verseButtons').forEach((element) => {
+					element.classList.remove('z-10');
+				});
 
-			document.getElementsByClassName('verseButtons')[key.split(':')[1]].classList.add('z-10');
+				document.getElementsByClassName('verseButtons')[key.split(':')[1]].classList.add('z-10');
+			}
+		} catch (error) {
+			// error
 		}
 	}
 
@@ -73,35 +77,39 @@
 		<DotsVertical />
 	</button>
 
-	<Dropdown bind:open={dropdownOpen} class="rounded-3xl">
+	<Dropdown bind:open={dropdownOpen}>
 		<!-- play verse button -->
-		<DropdownItem class="w-full text-left">
-			<button on:click={() => showAudioModal(key)}>
-				<div class="flex flex-row items-center">
-					<svelte:component this={$__audioSettings.isPlaying === true && $__audioSettings.playingKey === key ? Pause : Play} />
-					<span class="text-xs pl-2">{$__audioSettings.isPlaying === true && $__audioSettings.playingKey === key ? 'Stop Playing' : 'Play Verse'}</span>
-				</div>
-			</button>
+		<DropdownItem
+			on:click={() => {
+				showAudioModal(key);
+				dropdownOpen = false;
+			}}
+		>
+			<div class="flex flex-row items-center">
+				<svelte:component this={$__audioSettings.isPlaying === true && $__audioSettings.playingKey === key ? Pause : Play} />
+				<span class="text-xs pl-2">{$__audioSettings.isPlaying === true && $__audioSettings.playingKey === key ? 'Stop Playing' : 'Play Verse'}</span>
+			</div>
 		</DropdownItem>
 
 		<!-- bookmark/unbookmark button -->
-		<DropdownItem>
-			<button on:click={() => updateSettings({ type: 'userBookmarks', key })}>
-				<div class="flex flex-row items-center">
-					<svelte:component this={userBookmarks.includes(key) ? Bookmarked : Bookmark} />
-					<span class="text-xs pl-2">{userBookmarks.includes(key) ? 'Remove Bookmark' : 'Bookmark Verse'}</span>
-				</div>
-			</button>
+		<DropdownItem on:click={() => updateSettings({ type: 'userBookmarks', key })}>
+			<div class="flex flex-row items-center">
+				<svelte:component this={userBookmarks.includes(key) ? Bookmarked : Bookmark} />
+				<span class="text-xs pl-2">{userBookmarks.includes(key) ? 'Remove Bookmark' : 'Bookmark Verse'}</span>
+			</div>
 		</DropdownItem>
 
 		<!-- verse notes button -->
-		<DropdownItem>
-			<button on:click={() => showNotesModal()}>
-				<div class="flex flex-row items-center">
-					<Notes />
-					<span class="text-xs pl-2">Verse Notes</span>
-				</div>
-			</button>
+		<DropdownItem
+			on:click={() => {
+				showNotesModal();
+				dropdownOpen = false;
+			}}
+		>
+			<div class="flex flex-row items-center">
+				<Notes />
+				<span class="text-xs pl-2">Verse Notes</span>
+			</div>
 		</DropdownItem>
 
 		<!-- verse morphology button -->
@@ -115,23 +123,19 @@
 		</DropdownItem>
 
 		<!-- share verse button -->
-		<DropdownItem>
-			<button on:click={() => shareVerse()}>
-				<div class="flex flex-row items-center">
-					<ShareOutline />
-					<span class="text-xs pl-2">Share Verse</span>
-				</div>
-			</button>
+		<DropdownItem on:click={() => shareVerse()}>
+			<div class="flex flex-row items-center">
+				<ShareOutline />
+				<span class="text-xs pl-2">Share Verse</span>
+			</div>
 		</DropdownItem>
 
 		<!-- Verse screenshot button -->
-		<DropdownItem>
-			<button on:click={() => downloadVerseImage(key)}>
-				<div class="flex flex-row items-center">
-					<Photo />
-					<span class="text-xs pl-2">Verse Screenshot</span>
-				</div>
-			</button>
+		<DropdownItem on:click={() => downloadVerseImage(key)}>
+			<div class="flex flex-row items-center">
+				<Photo />
+				<span class="text-xs pl-2">Verse Screenshot</span>
+			</div>
 		</DropdownItem>
 	</Dropdown>
 </div>

@@ -1,5 +1,7 @@
 <script>
-	export let key, value, line;
+	export let key,
+		value,
+		line = null;
 
 	import { navigate } from 'svelte-routing';
 	import { displayOptions } from '$data/options';
@@ -69,7 +71,7 @@
 
 		<!-- word tooltip -->
 		{#if $__wordTooltip > 1}
-			<Tooltip class="z-20 text-center theme-grayscale inline-flex" type="light">
+			<Tooltip class="z-30 text-center inline-flex theme-grayscale" type="light">
 				{#if $__wordTooltip === 2}
 					{@html transliterationSplit[word]}
 				{:else if $__wordTooltip === 3}
@@ -98,5 +100,5 @@
 	</div>
 
 	<!-- end icon tooltip -->
-	<Tooltip type="light" class="inline-flex">End of Verse {key}</Tooltip>
+	<Tooltip type="light" class="z-30 inline-flex theme-grayscale">End of Verse {key}</Tooltip>
 {/if}

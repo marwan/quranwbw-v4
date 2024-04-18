@@ -72,7 +72,7 @@
 			<!-- 3rd icon -->
 			<!-- play/pause button -->
 			<div class="flex items-center justify-center">
-				<button type="button" title="Play/Pause" on:click={() => audioController()} class="inline-flex flex-col items-center justify-center w-10 h-10 font-medium bg-[#ebebeb] hover:bg-gray-200 rounded-full group focus:ring-2 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800">
+				<button type="button" title="Play/Pause" on:click={() => audioController()} class="inline-flex flex-col items-center justify-center w-10 h-10 font-medium bg-[#ebebeb] hover:bg-gray-200 rounded-full group focus:ring-2 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-800">
 					<svelte:component this={$__audioSettings.isPlaying === true ? Pause : PlaySolid} />
 
 					<span class="sr-only">Play/Pause</span>

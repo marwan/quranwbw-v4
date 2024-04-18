@@ -1,23 +1,24 @@
-import { updateSettings } from "$utils/updateSettings";
+import { updateSettings } from '$utils/updateSettings';
 
 export function resetSettings() {
-  // display settings
-  updateSettings({ type: "websiteTheme", value: 1 });
-  updateSettings({ type: "wordType", value: 1 });
-  updateSettings({ type: "displayType", value: 1 });
-  updateSettings({ type: "wordTranslationEnabled", value: true });
-  updateSettings({ type: "wordTransliterationEnabled", value: true });
+	// display settings
+	updateSettings({ type: 'websiteTheme', value: 1 });
+	updateSettings({ type: 'wordType', value: 1 });
+	updateSettings({ type: 'displayType', value: 1 });
+	updateSettings({ type: 'wordTranslationEnabled', value: true });
+	updateSettings({ type: 'wordTransliterationEnabled', value: true });
+	updateSettings({ type: 'wordTooltip', value: 1 });
 
-  // font size settings
-  updateSettings({ type: "arabicText", value: "text-4xl" });
-  updateSettings({ type: "wordTranslationText", value: "text-sm" });
-  updateSettings({ type: "verseTranslationText", value: "text-sm" });
+	// font size settings
+	updateSettings({ type: 'arabicText', value: 'text-4xl' });
+	updateSettings({ type: 'wordTranslationText', value: 'text-sm' });
+	updateSettings({ type: 'verseTranslationText', value: 'text-sm' });
 
-  // translation settings
-  updateSettings({ type: "wordTranslation", value: 1 });
-  updateSettings({ type: "verseTranslation", value: [1, 15] });
+	// translation settings
+	updateSettings({ type: 'wordTranslation', value: 1 });
+	updateSettings({ type: 'verseTranslation', value: [1, 15] });
 
-  // audio settings
-  updateSettings({ type: "reciter", value: 10 });
-  updateSettings({ type: "playbackSpeed", value: 3 });
+	// audio settings
+	updateSettings({ type: 'reciter', value: 10 });
+	updateSettings({ type: 'playbackSpeed', value: 3 });
 }

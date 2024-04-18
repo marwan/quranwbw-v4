@@ -16,7 +16,7 @@
 
 <div>
 	{#await fetchData}
-		<Spinner />
+		<Spinner height="screen" margin="-mt-20" />
 	{:then chapterData}
 		<div>
 			{#each Object.entries(chapterData) as [key, value]}

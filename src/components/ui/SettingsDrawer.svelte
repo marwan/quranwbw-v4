@@ -10,7 +10,7 @@
 
 	const settingsBlockClasses = 'space-y-2 py-6';
 
-	const selectorClasses = 'w-32 border border-gray-300 text-gray-900 rounded-3xl focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 truncate';
+	const selectorClasses = 'w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-gray-500 dark:focus:border-gray-500 truncate';
 
 	$: fontSizeCodes = JSON.parse($__userSettings).displaySettings.fontSizes;
 
@@ -25,7 +25,7 @@
 			<span>Settings</span>
 		</h5>
 
-		<button id="settings-drawer-close-button" type="button" data-drawer-hide="settings-drawer" aria-controls="settings-drawer" class="text-gray-400 bg-transparent hover:bg-[#ebebeb] hover:text-gray-900 rounded-3xl text-sm w-8 h-8 absolute top-4 right-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white">
+		<button id="settings-drawer-close-button" type="button" data-drawer-hide="settings-drawer" aria-controls="settings-drawer" class="text-gray-400 bg-transparent hover:bg-[#ebebeb] hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-4 right-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white">
 			<svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
 				<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
 			</svg>
@@ -94,7 +94,7 @@
 					<label class="inline-flex items-center cursor-pointer {$__wordTransliterationEnabled === false && disabledElement}">
 						<input type="checkbox" value="" class="sr-only peer" checked={$__wordTranslationEnabled} on:click={(event) => updateSettings({ type: 'wordTranslationEnabled', value: event.target.checked })} />
 						<div
-							class="relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"
+							class="relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-300 dark:peer-focus:ring-gray-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-gray-600"
 						></div>
 					</label>
 				</div>
@@ -111,7 +111,7 @@
 					<label class="inline-flex items-center cursor-pointer {$__wordTranslationEnabled === false && disabledElement}">
 						<input type="checkbox" value="" class="sr-only peer" checked={$__wordTransliterationEnabled} on:click={(event) => updateSettings({ type: 'wordTransliterationEnabled', value: event.target.checked })} />
 						<div
-							class="relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"
+							class="relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-300 dark:peer-focus:ring-gray-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-gray-600"
 						></div>
 					</label>
 				</div>
@@ -168,7 +168,7 @@
 					<label class="inline-flex items-center cursor-pointer">
 						<input type="checkbox" value="" class="sr-only peer" checked={$__tajweedEnabled} on:click={(event) => updateSettings({ type: 'tajweedEnabled', value: event.target.checked })} />
 						<div
-							class="relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"
+							class="relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-300 dark:peer-focus:ring-gray-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-gray-600"
 						></div>
 					</label>
 				</div>
@@ -182,12 +182,12 @@
 				<div class="flex flex-row justify-between items-center">
 					<span class="block text-gray-900 dark:text-slate-400">Arabic Word Size ({fontSizeCodes.arabicText.split('-')[1]})</span>
 					<div class="inline-flex rounded-md shadow-sm" role="group">
-						<button type="button" on:click={() => updateSettings({ type: 'arabicText', action: 'increase' })} class="w-16 border px-6 border-gray-300 text-gray-900 rounded-l-3xl focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
+						<button type="button" on:click={() => updateSettings({ type: 'arabicText', action: 'increase' })} class="w-16 border px-6 border-gray-300 text-gray-900 rounded-l-lg focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-gray-500 dark:focus:border-gray-500">
 							<svg class="w-3 h-3 text-gray-800 dark:text-slate-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
 								<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
 							</svg>
 						</button>
-						<button type="button" on:click={() => updateSettings({ type: 'arabicText', action: 'decrease' })} class="w-16 border px-6 text-center border-gray-300 text-gray-900 rounded-r-3xl focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
+						<button type="button" on:click={() => updateSettings({ type: 'arabicText', action: 'decrease' })} class="w-16 border px-6 text-center border-gray-300 text-gray-900 rounded-r-lg focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-gray-500 dark:focus:border-gray-500">
 							<svg class="w-3 h-3 text-gray-800 dark:text-slate-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
 								<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
 							</svg>
@@ -204,12 +204,12 @@
 				<div class="flex flex-row justify-between items-center">
 					<span class="block text-gray-900 dark:text-slate-400">Word Tr/Tl Size ({fontSizeCodes.wordTranslationText.split('-')[1]})</span>
 					<div class="inline-flex rounded-md shadow-sm" role="group">
-						<button type="button" on:click={() => updateSettings({ type: 'wordTranslationText', action: 'increase' })} class="w-16 border px-6 border-gray-300 text-gray-900 rounded-l-3xl focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
+						<button type="button" on:click={() => updateSettings({ type: 'wordTranslationText', action: 'increase' })} class="w-16 border px-6 border-gray-300 text-gray-900 rounded-l-lg focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-gray-500 dark:focus:border-gray-500">
 							<svg class="w-3 h-3 text-gray-800 dark:text-slate-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
 								<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
 							</svg>
 						</button>
-						<button type="button" on:click={() => updateSettings({ type: 'wordTranslationText', action: 'decrease' })} class="w-16 border px-6 text-center border-gray-300 text-gray-900 rounded-r-3xl focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
+						<button type="button" on:click={() => updateSettings({ type: 'wordTranslationText', action: 'decrease' })} class="w-16 border px-6 text-center border-gray-300 text-gray-900 rounded-r-lg focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-gray-500 dark:focus:border-gray-500">
 							<svg class="w-3 h-3 text-gray-800 dark:text-slate-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
 								<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
 							</svg>
@@ -226,12 +226,12 @@
 				<div class="flex flex-row justify-between items-center">
 					<span class="block text-gray-900 dark:text-slate-400">Verse Tr/Tl Size ({fontSizeCodes.verseTranslationText.split('-')[1]})</span>
 					<div class="inline-flex rounded-md shadow-sm" role="group">
-						<button type="button" on:click={() => updateSettings({ type: 'verseTranslationText', action: 'increase' })} class="w-16 border px-6 border-gray-300 text-gray-900 rounded-l-3xl focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
+						<button type="button" on:click={() => updateSettings({ type: 'verseTranslationText', action: 'increase' })} class="w-16 border px-6 border-gray-300 text-gray-900 rounded-l-lg focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-gray-500 dark:focus:border-gray-500">
 							<svg class="w-3 h-3 text-gray-800 dark:text-slate-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
 								<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
 							</svg>
 						</button>
-						<button type="button" on:click={() => updateSettings({ type: 'verseTranslationText', action: 'decrease' })} class="w-16 border px-6 text-center border-gray-300 text-gray-900 rounded-r-3xl focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
+						<button type="button" on:click={() => updateSettings({ type: 'verseTranslationText', action: 'decrease' })} class="w-16 border px-6 text-center border-gray-300 text-gray-900 rounded-r-lg focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-gray-500 dark:focus:border-gray-500">
 							<svg class="w-3 h-3 text-gray-800 dark:text-slate-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
 								<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
 							</svg>
@@ -267,14 +267,14 @@
 			<div id="verse-translation-setting" class={settingsBlockClasses}>
 				<div class="flex flex-row justify-between items-center">
 					<label for="verse-translations-list" class="block text-gray-900 dark:text-slate-400">Verse</label>
-					<button id="dropdownCheckboxButton" data-dropdown-toggle="verse-translation-checkbox" class="w-32 border text-left border-gray-300 text-gray-900 rounded-3xl focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" type="button">
+					<button id="dropdownCheckboxButton" data-dropdown-toggle="verse-translation-checkbox" class="w-32 border text-left border-gray-300 text-gray-900 rounded-lg focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-gray-500 dark:focus:border-gray-500" type="button">
 						{$__verseTranslations.length} selected
 					</button>
 				</div>
 				<p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Verse translations from multiple authors and languages.</p>
 
 				<!-- verse-translation dropdown menu -->
-				<div id="verse-translation-checkbox" class="z-10 hidden w-fit bg-white shadow-md rounded-3xl border border-gray-200">
+				<div id="verse-translation-checkbox" class="z-10 hidden w-fit bg-white shadow-md rounded-lg border border-gray-200">
 					<ul id="verse-translations-list" class="max-h-56 overflow-y-scroll p-3 space-y-4 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownCheckboxButton">
 						{#each Object.entries(verseTranslationsLanguages) as [id, language]}
 							<div class="space-y-2">
@@ -291,14 +291,14 @@
 															on:click={() => updateSettings({ type: 'verseTranslation', value: translation.id })}
 															checked
 															type="checkbox"
-															class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-slate-700"
+															class="w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 rounded focus:ring-gray-500 dark:focus:ring-gray-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-slate-700"
 														/>
 													{:else}
 														<input
 															id="verseTranslationCheckbox-{translation.id}"
 															on:click={() => updateSettings({ type: 'verseTranslation', value: translation.id })}
 															type="checkbox"
-															class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-slate-700"
+															class="w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 rounded focus:ring-gray-500 dark:focus:ring-gray-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-slate-700"
 														/>
 													{/if}
 													<label for="verseTranslationCheckbox-{translation.id}" class="ml-2 text-sm text-gray-900 dark:text-gray-300">{translation.author}</label>

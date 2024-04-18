@@ -27,7 +27,7 @@
 		<div class="flex items-center justify-center pt-28">You currently do not have any bookmarked verses.</div>
 	{:else}
 		{#await fetchData}
-			<Spinner />
+			<Spinner height="screen" margin="-mt-20" />
 		{:then chapterData}
 			<div>
 				{#each Object.entries(chapterData) as [key, value]}

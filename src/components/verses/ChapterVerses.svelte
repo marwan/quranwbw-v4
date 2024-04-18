@@ -1,6 +1,8 @@
 <!-- component to load verses from a SINGLE chapter, unlike supplications and bookmarks which are random -->
 <script>
-	export let startVerse, endVerse, isExampleVerse;
+	export let startVerse,
+		endVerse,
+		isExampleVerse = false;
 
 	import { inview } from 'svelte-inview';
 
