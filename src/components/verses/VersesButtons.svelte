@@ -30,18 +30,17 @@
 
 	const buttonClasses = 'inline-flex items-center justify-center w-10 h-10 text-gray-400 transition-colors duration-150 rounded-3xl focus:shadow-outline bg-[#ebebeb] hover:bg-gray-200 print:hidden dark:bg-slate-800 dark:hover:bg-slate-700';
 
-	let verseDropdownVisible = false;
-
 	let dropdownOpen = false;
 
-	// hide all other dropdown and show the current one
-	function verseDropdownToggle() {
-		document.querySelectorAll('.verse-dropdown').forEach((element) => {
-			element.classList.remove('block');
-			element.classList.add('hidden');
-		});
+	$: {
+		// remove z-index from all button blocks and to button block of that specific verse
+		if (dropdownOpen === true) {
+			document.querySelectorAll('.verseButtons').forEach((element) => {
+				element.classList.remove('z-10');
+			});
 
-		verseDropdownVisible = !verseDropdownVisible;
+			document.getElementsByClassName('verseButtons')[key.split(':')[1]].classList.add('z-10');
+		}
 	}
 
 	// handle notes modal click
@@ -70,7 +69,7 @@
 	<Tooltip type="light" placement="right">Verse {key}</Tooltip>
 
 	<!-- verses option dropdown -->
-	<button id="verse-{key}" data-dropdown-toggle="dropdown" class={buttonClasses}>
+	<button id="verse-{key}" class={buttonClasses}>
 		<DotsVertical />
 	</button>
 
