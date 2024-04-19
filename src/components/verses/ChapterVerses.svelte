@@ -2,7 +2,7 @@
 <script>
 	export let startVerse,
 		endVerse,
-		isExampleVerse = false;
+		isExampleVerse = undefined;
 
 	import { inview } from 'svelte-inview';
 
