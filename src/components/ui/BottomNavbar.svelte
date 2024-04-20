@@ -1,7 +1,7 @@
 <script>
 	import { Link } from 'svelte-routing';
 	import { __audioSettings } from '$utils/stores';
-	import { __chapterNumber, __pageNumber, __displayType, __currentPage, __bottomNavbarVisible } from '$utils/stores';
+	import { __chapterNumber, __pageNumber, __displayType, __currentPage, __bottomNavbarVisible, __settingsDrawerHidden } from '$utils/stores';
 	import { resetAudioSettings, playAudio } from '$utils/audioController';
 	import { quranMetaData } from '$data/quranMeta';
 	import { disabledElement } from '$data/commonStyles';
@@ -86,7 +86,7 @@
 			<Tooltip type="light">Play/Pause</Tooltip>
 
 			<!-- 4th icon -->
-			<button type="button" title="Settings" data-drawer-target="settings-drawer" data-drawer-show="settings-drawer" data-drawer-placement="right" aria-controls="settings-drawer" class="opacity-70 inline-flex flex-col items-center justify-center px-5 hover:bg-gray-200 dark:hover:bg-gray-800 group">
+			<button type="button" title="Settings" on:click={() => ($__settingsDrawerHidden = false)} class="opacity-70 inline-flex flex-col items-center justify-center px-5 hover:bg-gray-200 dark:hover:bg-gray-800 group">
 				<Settings />
 				<span class="sr-only">Settings</span>
 			</button>

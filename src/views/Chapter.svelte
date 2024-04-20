@@ -65,7 +65,7 @@
 	{:then}
 		<!-- we have different Bismillah for chapter 2 and the rest -->
 		{#if ![1, 9].includes($__chapterNumber)}
-			<div class="bismillah flex flex-col text-center flex-wrap pt-4 px-6 space-y-4 text-xl md:text-2xl block theme-palette-normal font-filter opacity-60">
+			<div class="invisible bismillah flex flex-col text-center flex-wrap pt-4 px-6 space-y-4 text-xl md:text-2xl block theme-palette-normal font-filter opacity-60">
 				{#if $__chapterNumber === 2}
 					{bismillahTypes[1]}
 				{:else if ![1, 9, 2].includes($__chapterNumber)}

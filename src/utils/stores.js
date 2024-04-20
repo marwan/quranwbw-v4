@@ -68,6 +68,9 @@ export const __favouriteChapters = writable(userSettings.favouriteChapters);
 // to store a random number (for now) when changing verses due to some issues while re-rendering the component (probably because I'm still learning Svelte)
 export const __pageURL = writable(null);
 
+// to store the toggle boolean settings drawer
+export const __settingsDrawerHidden = writable(true);
+
 // to store the toggle boolean for top navbar,
 export const __topNavbarVisible = writable(true);
 

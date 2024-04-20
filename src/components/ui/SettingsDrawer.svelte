@@ -1,55 +1,30 @@
 <script>
-	import { __currentPage, __chapterData, __chapterNumber, __wordType, __displayType, __websiteTheme, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __verseTranslations, __reciter, __playbackSpeed, __userSettings, __tajweedEnabled, __wordTooltip } from '$utils/stores';
+	import { __currentPage, __chapterData, __chapterNumber, __wordType, __displayType, __websiteTheme, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __verseTranslations, __reciter, __playbackSpeed, __userSettings, __tajweedEnabled, __wordTooltip, __settingsDrawerHidden } from '$utils/stores';
 	import { displayOptions, selectableFontTypes, selectableThemes, selectableVerseTranslations, verseTranslationsLanguages, selectableWordTranslations, selectableReciters, selectablePlaybackSpeeds, selectableTooltipOptions } from '$data/options';
 	import { updateSettings } from '$utils/updateSettings';
 	import { resetSettings } from '$utils/resetSettings';
 	import { disabledElement, buttonElement } from '$data/commonStyles';
-	// import Spinner from '$svgs/Spinner.svelte';
-	// import VersesWords from '$verses/VersesWords.svelte';
-	// import { fetchVersesData } from '$utils/fetchChapterData';
+	import { Drawer, CloseButton } from 'flowbite-svelte';
+	import { sineIn } from 'svelte/easing';
+
+	const transitionParamsRight = {
+		x: 320,
+		duration: 200,
+		easing: sineIn
+	};
 
 	const settingsBlockClasses = 'space-y-2 py-6';
-
-	const selectorClasses = 'w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-gray-500 dark:focus:border-gray-500 truncate';
+	const selectorClasses = 'w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-gray-500 focus:border-gray-500 block p-2.5 truncate';
 
 	$: fontSizeCodes = JSON.parse($__userSettings).displaySettings.fontSizes;
-
-	// fetching verse 1:1 for text preview
-	// $: verseData = fetchVersesData('1:1', $__wordType, $__wordTranslation, '');
 </script>
 
-<!-- drawer component -->
-<div id="settings-drawer" class="fixed top-0 right-0 z-40 h-screen p-4 pt-0 pb-16 overflow-y-auto transition-transform md:rounded-tl-xl md:rounded-bl-xl translate-x-full bg-white theme-grayscale w-full md:w-1/2 lg:w-[430px] dark:bg-gray-800" tabindex="-1" aria-labelledby="settings-drawer-label">
-	<div id="settings-head" class="z-30 top-0 sticky bg-white border-b-2 py-4 mb-4">
-		<h5 id="settings-drawer-label" class="inline-flex items-center mb-4 text-3xl space-x-2 font-semibold text-gray-500 dark:text-gray-400">
-			<span>Settings</span>
-		</h5>
-
-		<button id="settings-drawer-close-button" type="button" data-drawer-hide="settings-drawer" aria-controls="settings-drawer" class="text-gray-400 bg-transparent hover:bg-[#ebebeb] hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-4 right-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white">
-			<svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-				<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-			</svg>
-			<span class="sr-only">Close menu</span>
-		</button>
+<!-- settings drawer -->
+<Drawer placement="right" transitionType="fly" transitionParams={transitionParamsRight} bind:hidden={$__settingsDrawerHidden} class="theme-grayscale w-full md:w-1/2 lg:w-[430px] md:rounded-tl-xl md:rounded-bl-xl pt-0" id="settings-drawer">
+	<div class="flex z-30 top-0 sticky bg-white border-b-2 py-4 mb-4">
+		<h5 id="drawer-label" class="inline-flex items-center mb-4 text-3xl font-semibold text-gray-500">Settings</h5>
+		<CloseButton on:click={() => ($__settingsDrawerHidden = true)} class="mb-4" />
 	</div>
-
-	<!-- Text Preview -->
-	<!-- <div class="z-30 flex flex-col space-y-4 bg-white border-b-2 pt-2 sticky top-[10%]">
-		<span>Text Preview</span>
-		<div id="verse" class="flex h-fit max-h-28 py-2 overflow-y-scroll direction-rtl">
-			{#await verseData}
-				<Spinner />
-			{:then verseData}
-				<div class="flex flex-wrap justify-center direction-rtl">
-					{#each Object.entries(verseData) as [key, value]}
-						<VersesWords {key} {value} />
-					{/each}
-				</div>
-			{:catch error}
-				<p>{error}</p>
-			{/await}
-		</div>
-	</div> -->
 
 	<!-- display-settings-block -->
 	<div id="display-settings-block" class="py-5">
@@ -355,4 +330,4 @@
 		<button on:click={() => resetSettings()} class="text-sm {buttonElement}">Reset Settings</button>
 		<p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Resetting the options will not affect your bookmarks or last read location.</p>
 	</div>
-</div>
+</Drawer>

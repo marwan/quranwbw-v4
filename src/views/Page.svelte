@@ -123,6 +123,13 @@
 		navigate(`/page/${page === 604 ? 604 : page + 1}`, { replace: true });
 	});
 
+	// remove the "invisible" class from chapter-header once fonts are loaded so blank icon doesn't show up
+	// document.fonts.ready.then(function () {
+	// 	document.querySelectorAll('.chapter-header').forEach((element) => {
+	// 		element.classList.remove('invisible');
+	// 	});
+	// });
+
 	__currentPage.set('page');
 </script>
 
@@ -138,9 +145,9 @@
 					<!-- if it's the first verse of a chapter -->
 					{#if chapters.length > 0 && lines.includes(line) && verses[lines.indexOf(line)] === 1}
 						<div class="flex flex-col my-2">
-							<div class="chapter-header leading-base pt-4 md:pt-8 pb-6 text-[{mushafSizes[1].header}] md:text-[{mushafSizes[2].header}] lg:text-[{mushafSizes[3].header}] {$__tajweedEnabled === true ? 'theme-palette-tajweed' : 'theme-palette-normal'} font-filter">{chapterHeaderCodes[chapters[lines.indexOf(line)]]}</div>
+							<div class="invisible chapter-header leading-base pt-4 md:pt-8 pb-6 text-[{mushafSizes[1].header}] md:text-[{mushafSizes[2].header}] lg:text-[{mushafSizes[3].header}] {$__tajweedEnabled === true ? 'theme-palette-tajweed' : 'theme-palette-normal'} font-filter">{chapterHeaderCodes[chapters[lines.indexOf(line)]]}</div>
 
-							<div class="bismillah flex flex-col text-center leading-normal flex-wrap space-y-4 block md:mt-6 text-[{mushafSizes[1].bismillah}] md:text-[{mushafSizes[2].bismillah}] lg:text-[{mushafSizes[3].bismillah}] {$__tajweedEnabled === true ? 'theme-palette-tajweed' : 'theme-palette-normal'} font-filter">
+							<div class="invisible bismillah flex flex-col text-center leading-normal flex-wrap space-y-4 block md:mt-6 text-[{mushafSizes[1].bismillah}] md:text-[{mushafSizes[2].bismillah}] lg:text-[{mushafSizes[3].bismillah}] {$__tajweedEnabled === true ? 'theme-palette-tajweed' : 'theme-palette-normal'} font-filter">
 								{#if chapters[lines.indexOf(line)] === 2}
 									{bismillahTypes[1]}
 								{:else if ![1, 9, 2].includes(chapters[lines.indexOf(line)])}

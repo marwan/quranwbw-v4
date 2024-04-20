@@ -35,8 +35,24 @@
 
 	$: displayIsContinuous = displayOptions[$__displayType].continuous;
 
-	// word tooltip
-	let wordTooltip;
+	// remove the "invisible" class
+	// document.fonts.load(``).then(() => {
+	// 	$('i').addClass('loaded');
+	// })
+
+	document.fonts.ready.then(function () {
+		document.querySelectorAll('.arabicText').forEach((element) => {
+			element.classList.remove('invisible');
+		});
+
+		document.querySelectorAll('.chapter-header').forEach((element) => {
+			element.classList.remove('invisible');
+		});
+
+		document.querySelectorAll('.bismillah').forEach((element) => {
+			element.classList.remove('invisible');
+		});
+	});
 </script>
 
 <!-- words -->
@@ -50,7 +66,7 @@
 			data-timestamp={timestampSplit[word]}
 			on:click={() => wordClickHandler(chapter, verse, word)}
 		>
-			<span class="{`arabicText leading-normal arabic-font-${$__wordType} ${$__currentPage !== 'page' && fontSizes.arabicText}`} {displayIsContinuous === true && 'inline-block'}" data-fontSize={fontSizes.arabicText}>
+			<span class="invisible arabicText leading-normal arabic-font-{$__wordType} {$__currentPage !== 'page' && fontSizes.arabicText} {displayIsContinuous === true && 'inline-block'}" data-fontSize={fontSizes.arabicText}>
 				<!-- 1: Uthmanic Hafs Digital, 3: Indopak Madinah -->
 				{#if $__wordType === 1 || $__wordType === 3}
 					{arabicSplit[word]}
@@ -88,7 +104,7 @@
 {#if $__currentPage != 'page' || ($__currentPage === 'page' && value.words.end_line === line)}
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<div class="{$__displayType === 1 ? 'text-center flex flex-col' : 'inline-flex flex-col'} {wordClasses}" on:click={() => wordClickHandler(chapter, verse)}>
-		<span class="{`arabicText leading-normal arabic-font-${$__wordType} ${$__currentPage !== 'page' && fontSizes.arabicText}`} {displayIsContinuous === true && 'inline-block group-hover:text-gray-500 dark:group-hover:text-slate-300'}" data-fontSize={fontSizes.arabicText}>
+		<span class="invisible arabicText leading-normal arabic-font-{$__wordType} {$__currentPage !== 'page' && fontSizes.arabicText} {displayIsContinuous === true && 'inline-block group-hover:text-gray-500 dark:group-hover:text-slate-300'}" data-fontSize={fontSizes.arabicText}>
 			<!-- 1: Uthmanic Hafs Digital, 3: Indopak Madinah -->
 			{#if $__wordType === 1 || $__wordType === 3}
 				{value.words.end}

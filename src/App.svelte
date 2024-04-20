@@ -12,7 +12,7 @@
 	// import "$utils/keyDownHandler";
 
 	import { Router, Route } from 'svelte-routing';
-	import { __currentPage } from '$utils/stores';
+	import { __currentPage, __settingsDrawerHidden } from '$utils/stores';
 	import { checkOldBookmarks } from '$utils/checkOldBookmarks';
 
 	// views
@@ -41,7 +41,14 @@
 	// check old bookmarks for v3 update
 	checkOldBookmarks();
 
+	// custom padding depending on page
 	$: paddingX = $__currentPage === 'page' ? 'px-0 md:px-4' : $__currentPage === 'home' ? 'px-0' : 'px-4';
+
+	// if settings drawer is open, hide body scroll
+	$: {
+		if ($__settingsDrawerHidden === true) document.body.classList.remove('overflow-y-hidden');
+		else document.body.classList.add('overflow-y-hidden');
+	}
 </script>
 
 <Router>

@@ -21,6 +21,13 @@
 	};
 
 	let activeTab = 1; // chapters tab
+
+	// remove the "invisible" class from chapter-icons once fonts are loaded so blank icon doesn't show up
+	document.fonts.ready.then(function () {
+		document.querySelectorAll('.chapter-icons').forEach((element) => {
+			element.classList.remove('invisible');
+		});
+	});
 </script>
 
 <div id="homepage-tabs" class="pt-0">
@@ -51,7 +58,7 @@
 								{quranMetaData[chapter + 1].verses} Verses &bull; {quranMetaData[chapter + 1].revelation === 1 ? 'Meccan' : 'Medinan'}
 							</div>
 						</div>
-						<div class="chapter-icons justify-items-end text-gray-400 text-3xl mt-2">{@html `&#xE9${quranMetaData[chapter + 1].icon};`}</div>
+						<div class="invisible chapter-icons justify-items-end text-gray-400 text-3xl mt-2">{@html `&#xE9${quranMetaData[chapter + 1].icon};`}</div>
 					</Link>
 				{/each}
 			</div>
