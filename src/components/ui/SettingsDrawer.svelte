@@ -4,7 +4,9 @@
 	import { updateSettings } from '$utils/updateSettings';
 	import { resetSettings } from '$utils/resetSettings';
 	import { disabledElement, buttonElement } from '$data/commonStyles';
-	import { Drawer, CloseButton } from 'flowbite-svelte';
+
+	import Drawer from '$flowbiteSvelte/drawer/Drawer.svelte';
+	import { CloseButton, Button, Dropdown, Radio, Checkbox } from 'flowbite-svelte';
 	import { sineIn } from 'svelte/easing';
 
 	const transitionParamsRight = {
@@ -14,7 +16,8 @@
 	};
 
 	const settingsBlockClasses = 'space-y-2 py-6';
-	const selectorClasses = 'w-32 border border-gray-300 text-gray-900 rounded-lg focus:ring-gray-500 focus:border-gray-500 block p-2.5 truncate';
+	const selectorClasses = 'w-32 border border-gray-300 text-gray-900 text-left rounded-lg focus:ring-gray-500 focus:border-gray-500 focus-within:ring-2 block p-2.5 truncate font-normal';
+	const radioClasses = 'font-normal';
 
 	$: fontSizeCodes = JSON.parse($__userSettings).displaySettings.fontSizes;
 </script>
@@ -34,12 +37,13 @@
 			<!-- website-theme-setting -->
 			<div id="website-theme-setting" class={settingsBlockClasses}>
 				<div class="flex flex-row justify-between items-center">
-					<label for="website-theme-list" class="block text-gray-900 dark:text-slate-400">Theme</label>
-					<select id="website-theme-list" on:change={(event) => updateSettings({ type: 'websiteTheme', value: +event.target.value })} bind:value={$__websiteTheme} class={selectorClasses}>
+					<div class="block text-gray-900">Theme</div>
+					<Button class={selectorClasses}>{selectableThemes[$__websiteTheme].name}</Button>
+					<Dropdown class="w-52 p-3 space-y-3 text-sm">
 						{#each Object.entries(selectableThemes) as [id, theme]}
-							<option value={theme.id}>{theme.name}</option>
+							<li><Radio name="websiteTheme" bind:group={$__websiteTheme} value={theme.id} on:change={(event) => updateSettings({ type: 'websiteTheme', value: +event.target.value })} class={radioClasses}>{theme.name}</Radio></li>
 						{/each}
-					</select>
+					</Dropdown>
 				</div>
 				<p class="mb-6 text-sm text-gray-500 dark:text-gray-400">An assortment of website themes to please your vision.</p>
 			</div>
@@ -49,12 +53,13 @@
 			<!-- display-type-setting -->
 			<div id="display-type-setting" class="{settingsBlockClasses} {$__currentPage === 'page' && disabledElement}">
 				<div class="flex flex-row justify-between items-center">
-					<label for="display-style-list" class="block text-gray-900 dark:text-slate-400">Display Type</label>
-					<select id="display-style-list" bind:value={$__displayType} on:change={(event) => updateSettings({ type: 'displayType', value: +event.target.selectedIndex + 1 })} class={selectorClasses}>
+					<div class="block text-gray-900">Display Type</div>
+					<Button class={selectorClasses}>{displayOptions[$__displayType].displayName}</Button>
+					<Dropdown class="w-52 p-3 space-y-3 text-sm">
 						{#each Object.entries(displayOptions) as [id, displayOption]}
-							<option disabled={$__currentPage !== 'chapter' && displayOption.displayID > 2 && 'true'} value={displayOption.displayID}>{displayOption.displayName}</option>
+							<li><Radio name="displayType" bind:group={$__displayType} value={displayOption.displayID} on:change={(event) => updateSettings({ type: 'displayType', value: +event.target.value })} class={radioClasses}>{displayOption.displayName}</Radio></li>
 						{/each}
-					</select>
+					</Dropdown>
 				</div>
 				<p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Different verse layouts that you can choose from.</p>
 			</div>
@@ -82,7 +87,6 @@
 			<div id="word-transliteration-toggle-setting" class={settingsBlockClasses}>
 				<div class="flex flex-row justify-between items-center">
 					<span class="block text-gray-900 dark:text-slate-400">Word Transliteration</span>
-
 					<label class="inline-flex items-center cursor-pointer {$__wordTranslationEnabled === false && disabledElement}">
 						<input type="checkbox" value="" class="sr-only peer" checked={$__wordTransliterationEnabled} on:click={(event) => updateSettings({ type: 'wordTransliterationEnabled', value: event.target.checked })} />
 						<div
@@ -98,12 +102,13 @@
 			<!-- word-tooltip-setting -->
 			<div id="word-tooltip-setting" class={settingsBlockClasses}>
 				<div class="flex flex-row justify-between items-center">
-					<label for="word-tooltip-list" class="block text-gray-900 dark:text-slate-400">Word Tooltip</label>
-					<select id="word-tooltip-list" bind:value={$__wordTooltip} on:change={(event) => updateSettings({ type: 'wordTooltip', value: +event.target.selectedIndex + 1 })} class={selectorClasses}>
+					<div class="block text-gray-900">Word Tooltip</div>
+					<Button class={selectorClasses}>{selectableTooltipOptions[$__wordTooltip].name}</Button>
+					<Dropdown class="w-52 p-3 space-y-3 text-sm">
 						{#each Object.entries(selectableTooltipOptions) as [id, options]}
-							<option value={options.id}>{options.name}</option>
+							<li><Radio name="wordTooltip" bind:group={$__wordTooltip} value={options.id} on:change={(event) => updateSettings({ type: 'wordTooltip', value: +event.target.value })} class={radioClasses}>{options.name}</Radio></li>
 						{/each}
-					</select>
+					</Dropdown>
 				</div>
 				<p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Choose what is displayed when you hover a word.</p>
 			</div>
@@ -112,18 +117,19 @@
 
 	<!-- font-settings-block -->
 	<div id="font-settings-block" class="py-5 border-t-2 border-gray-200">
-		<h3 class="block mb-2 font-medium text-xl text-gray-500 dark:text-slate-400">Font</h3>
+		<h3 class="block mb-2 font-medium text-xl text-gray-500">Font</h3>
 
 		<div class="flex flex-col flex-wrap text-base">
 			<!-- quran-font-setting -->
 			<div id="quran-font-setting" class={settingsBlockClasses}>
 				<div class="flex flex-row justify-between items-center">
-					<label for="quran-font-list" class="block text-gray-900 dark:text-slate-400">Quran Font</label>
-					<select id="quran-font-list" on:change={(event) => updateSettings({ type: 'wordType', value: +event.target.value })} bind:value={$__wordType} class={selectorClasses}>
+					<div class="block text-gray-900">Quran Font</div>
+					<Button class={selectorClasses}>{selectableFontTypes[$__wordType].font}</Button>
+					<Dropdown class="w-52 p-3 space-y-3 text-sm">
 						{#each Object.entries(selectableFontTypes) as [id, font]}
-							<option value={font.id}>{font.font}</option>
+							<li><Radio name="wordType" bind:group={$__wordType} value={font.id} on:change={(event) => updateSettings({ type: 'wordType', value: +event.target.value })} class={radioClasses}>{font.font}</Radio></li>
 						{/each}
-					</select>
+					</Dropdown>
 				</div>
 				<p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Multiple Quranic fonts to choose from depending on your Mushaf or region preference.</p>
 
@@ -220,20 +226,21 @@
 
 	<!-- translation-settings-block -->
 	<div id="translation-settings-block" class="py-5 border-t-2 border-gray-200">
-		<h3 class="block mb-2 font-medium text-xl text-gray-500 dark:text-slate-400">Translation</h3>
+		<h3 class="block mb-2 font-medium text-xl text-gray-500">Translation</h3>
 
 		<div class="flex flex-col flex-wrap text-base">
 			<!-- word-translation-setting -->
 			<div id="word-translation-setting" class={settingsBlockClasses}>
 				<div class="flex flex-row justify-between items-center">
-					<label for="word-translations-list" class="block text-gray-900 dark:text-slate-400">Word</label>
-					<select id="word-translations-list" bind:value={$__wordTranslation} on:change={(event) => updateSettings({ type: 'wordTranslation', value: +event.target.value })} class={selectorClasses}>
+					<div class="block text-gray-900">Word</div>
+					<Button class={selectorClasses}>{selectableWordTranslations[$__wordTranslation].language}</Button>
+					<Dropdown class="w-52 max-h-64 overflow-y-scroll p-3 space-y-3 text-sm">
 						{#each Object.entries(selectableWordTranslations) as [id, translation]}
-							<option value={translation.id}>{translation.language}</option>
+							<li><Radio name="wordTranslation" bind:group={$__wordTranslation} value={translation.id} on:change={(event) => updateSettings({ type: 'wordTranslation', value: +event.target.value })} class={radioClasses}>{translation.language}</Radio></li>
 						{/each}
-					</select>
+					</Dropdown>
 				</div>
-				<p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Word translation which will be displaced under the Arabic word text.</p>
+				<p class="mb-6 text-sm text-gray-500">Word translation which will be displaced under the Arabic word text.</p>
 			</div>
 
 			<div class="border-b"></div>
@@ -241,16 +248,9 @@
 			<!-- verse-translation-setting -->
 			<div id="verse-translation-setting" class={settingsBlockClasses}>
 				<div class="flex flex-row justify-between items-center">
-					<label for="verse-translations-list" class="block text-gray-900 dark:text-slate-400">Verse</label>
-					<button id="dropdownCheckboxButton" data-dropdown-toggle="verse-translation-checkbox" class="w-32 border text-left border-gray-300 text-gray-900 rounded-lg focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-gray-500 dark:focus:border-gray-500" type="button">
-						{$__verseTranslations.length} selected
-					</button>
-				</div>
-				<p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Verse translations from multiple authors and languages.</p>
-
-				<!-- verse-translation dropdown menu -->
-				<div id="verse-translation-checkbox" class="z-10 hidden w-fit bg-white shadow-md rounded-lg border border-gray-200">
-					<ul id="verse-translations-list" class="max-h-56 overflow-y-scroll p-3 space-y-4 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownCheckboxButton">
+					<div class="block text-gray-900">Verse</div>
+					<Button class={selectorClasses}>{$__verseTranslations.length} selected</Button>
+					<Dropdown class="w-52 max-h-64 overflow-y-scroll p-3 space-y-4 text-sm">
 						{#each Object.entries(verseTranslationsLanguages) as [id, language]}
 							<div class="space-y-2">
 								<div id="translation-name" class="text-sm font-medium">{language.language}</div>
@@ -261,22 +261,10 @@
 												<div class="flex items-center">
 													<!-- using else-if block to add the "checked" attribute because for some reason the inline check is not working in Svelte as compared to regular javascript -->
 													{#if $__verseTranslations.includes(translation.id)}
-														<input
-															id="verseTranslationCheckbox-{translation.id}"
-															on:click={() => updateSettings({ type: 'verseTranslation', value: translation.id })}
-															checked
-															type="checkbox"
-															class="w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 rounded focus:ring-gray-500 dark:focus:ring-gray-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-slate-700"
-														/>
+														<Checkbox checked id="verseTranslationCheckbox-{translation.id}" on:click={() => updateSettings({ type: 'verseTranslation', value: translation.id })} class={radioClasses}>{translation.author}</Checkbox>
 													{:else}
-														<input
-															id="verseTranslationCheckbox-{translation.id}"
-															on:click={() => updateSettings({ type: 'verseTranslation', value: translation.id })}
-															type="checkbox"
-															class="w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 rounded focus:ring-gray-500 dark:focus:ring-gray-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-slate-700"
-														/>
+														<Checkbox id="verseTranslationCheckbox-{translation.id}" on:click={() => updateSettings({ type: 'verseTranslation', value: translation.id })} class={radioClasses}>{translation.author}</Checkbox>
 													{/if}
-													<label for="verseTranslationCheckbox-{translation.id}" class="ml-2 text-sm text-gray-900 dark:text-gray-300">{translation.author}</label>
 												</div>
 											</li>
 										{/if}
@@ -284,28 +272,30 @@
 								</div>
 							</div>
 						{/each}
-					</ul>
+					</Dropdown>
 				</div>
+				<p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Verse translations from multiple authors and languages.</p>
 			</div>
 		</div>
 	</div>
 
 	<!-- audio-settings-block -->
 	<div id="audio-settings-block" class="py-5 border-t-2 border-gray-200">
-		<h3 class="block mb-2 font-medium text-xl text-gray-500 dark:text-slate-400">Audio</h3>
+		<h3 class="block mb-2 font-medium text-xl text-gray-500">Audio</h3>
 
 		<div class="flex flex-col flex-wrap text-base">
 			<!-- verse-reciter-setting -->
 			<div id="verse-reciter-setting" class={settingsBlockClasses}>
 				<div class="flex flex-row justify-between items-center">
-					<label for="reciter-list" class="block text-gray-900 dark:text-slate-400">Verse Reciter</label>
-					<select id="reciter-list" bind:value={$__reciter} on:change={(event) => updateSettings({ type: 'reciter', value: +event.target.selectedIndex + 1 })} class={selectorClasses}>
+					<div class="block text-gray-900">Verse Reciter</div>
+					<Button class={selectorClasses}>{selectableReciters[$__reciter].reciter}</Button>
+					<Dropdown class="w-52 max-h-64 overflow-y-scroll p-3 space-y-3 text-sm">
 						{#each Object.entries(selectableReciters) as [id, reciter]}
-							<option value={reciter.id}>{reciter.reciter}</option>
+							<li><Radio name="reciter" bind:group={$__reciter} value={reciter.id} on:change={(event) => updateSettings({ type: 'reciter', value: +event.target.value })} class={radioClasses}>{reciter.reciter}</Radio></li>
 						{/each}
-					</select>
+					</Dropdown>
 				</div>
-				<p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Desired reciter whose audio will be played when you choose to listen to a verse.</p>
+				<p class="mb-6 text-sm text-gray-500">Desired reciter whose audio will be played when you choose to listen to a verse.</p>
 			</div>
 
 			<div class="border-b"></div>
@@ -313,14 +303,15 @@
 			<!-- playback-speed-setting -->
 			<div id="playback-speed-setting" class={settingsBlockClasses}>
 				<div class="flex flex-row justify-between items-center">
-					<label for="speed-list" class="block text-gray-900 dark:text-slate-400">Playback Speed</label>
-					<select id="speed-list" bind:value={$__playbackSpeed} on:change={(event) => updateSettings({ type: 'playbackSpeed', value: +event.target.selectedIndex + 1 })} class={selectorClasses}>
+					<div class="block text-gray-900">Playback Speed</div>
+					<Button class={selectorClasses}>x{selectablePlaybackSpeeds[$__playbackSpeed].speed}</Button>
+					<Dropdown class="w-52 p-3 space-y-3 text-sm">
 						{#each Object.entries(selectablePlaybackSpeeds) as [id, speed]}
-							<option value={speed.id}>x{speed.speed}</option>
+							<li><Radio name="playbackSpeed" bind:group={$__playbackSpeed} value={speed.id} on:change={(event) => updateSettings({ type: 'playbackSpeed', value: +event.target.value })} class={radioClasses}>x{speed.speed}</Radio></li>
 						{/each}
-					</select>
+					</Dropdown>
 				</div>
-				<p class="mb-6 text-sm text-gray-500 dark:text-gray-400">The playback speed at which the verse/word audio will be played.</p>
+				<p class="mb-6 text-sm text-gray-500">The playback speed at which the verse/word audio will be played.</p>
 			</div>
 		</div>
 	</div>

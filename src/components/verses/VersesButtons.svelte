@@ -28,7 +28,7 @@
 	// update userBookmarks whenever the __userSettings changes
 	$: userBookmarks = JSON.parse($__userSettings).userBookmarks;
 
-	const buttonClasses = 'inline-flex items-center justify-center w-10 h-10 text-gray-400 transition-colors duration-150 rounded-lg focus:shadow-outline bg-[#ebebeb] hover:bg-gray-200 print:hidden dark:bg-slate-800 dark:hover:bg-slate-700';
+	const buttonClasses = 'inline-flex items-center justify-center w-10 h-10 text-gray-600 transition-colors duration-150 rounded-lg focus:shadow-outline bg-gray-200 print:hidden';
 
 	let dropdownOpen = false;
 

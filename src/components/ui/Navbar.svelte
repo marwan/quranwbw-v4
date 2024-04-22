@@ -170,11 +170,6 @@
 			{/if}
 		</button>
 
-		<!-- <div class="flex flex-row items-center p-3 cursor-pointer hover:bg-[#ebebeb] rounded-lg dark:hover:bg-slate-700" type="button" id="rightMenuDropdownButton" data-dropdown-toggle="rightMenuDropdown">
-			<span class="text-xs pr-2 hidden md:block">Menu</span>
-			<Menu />
-		</div> -->
-
 		<button class="flex flex-row items-center p-3 cursor-pointer hover:bg-[#ebebeb] rounded-lg">
 			<span class="text-xs pr-2 hidden md:block">Menu</span>
 			<Menu />
@@ -182,7 +177,7 @@
 		<!-- <Tooltip type="light">Menu</Tooltip> -->
 
 		<!-- Dropdown menu -->
-		<Dropdown>
+		<Dropdown class="!shadow-none rounded-lg border border-[#ebebeb]">
 			<DropdownItem on:click={() => ($__settingsDrawerHidden = false)} class="{$__currentPage === 'changelogs' || $__currentPage === 'issues' || $__currentPage === 'about' || $__currentPage === 'search' ? disabledElement : ''} text-xs">Settings</DropdownItem>
 			<Link to="/about"><DropdownItem class="text-xs">About</DropdownItem></Link>
 			<DropdownItem on:click={() => toggleModal('tajweed-rules-modal', 'show')} class="text-xs">Tajweed Rules</DropdownItem>
