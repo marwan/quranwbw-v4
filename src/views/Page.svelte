@@ -56,7 +56,6 @@
 
 		pageData = (async () => {
 			const apiHost = 'https://api.quranwbw.com';
-			// const apiHost = "http://localhost:7500";
 			const apiURL = `${apiHost}/v1/page?page=${page}&word_type=${$__wordType}&word_translation=1`;
 			const response = await fetch(apiURL);
 			const data = await response.json();
@@ -178,11 +177,6 @@
 		<p>{error}</p>
 	{/await}
 </div>
-
-<!-- <div class="flex flex-row space-x-8 my-8 justify-center">
-  <Link to="/page/{+page - 1}" class="{tabPillElement} {+page === 1 && disabledElement}">{@html "&#x2190;"} Previous Page</Link>
-  <Link to="/page/{+page + 1}" class="{tabPillElement} {+page === 604 && disabledElement}">Next Page {@html "&#x2192;"}</Link>
-</div> -->
 
 <!-- loading extra fonts -->
 <div class="p{+page - 1} invisible text-[0px]">.</div>
