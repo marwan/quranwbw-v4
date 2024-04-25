@@ -20,6 +20,8 @@
 	const radioClasses = 'font-normal';
 
 	$: fontSizeCodes = JSON.parse($__userSettings).displaySettings.fontSizes;
+
+	$: wordTranslationKey = Object.keys(selectableWordTranslations).filter((item) => selectableWordTranslations[item].id === $__wordTranslation);
 </script>
 
 <!-- settings drawer -->
@@ -233,7 +235,7 @@
 			<div id="word-translation-setting" class={settingsBlockClasses}>
 				<div class="flex flex-row justify-between items-center">
 					<div class="block text-gray-900">Word</div>
-					<Button class={selectorClasses}>{selectableWordTranslations[$__wordTranslation].language}</Button>
+					<Button class={selectorClasses}>{selectableWordTranslations[wordTranslationKey].language}</Button>
 					<Dropdown class="w-52 max-h-64 overflow-y-scroll p-3 space-y-3 text-sm">
 						{#each Object.entries(selectableWordTranslations) as [id, translation]}
 							<li><Radio name="wordTranslation" bind:group={$__wordTranslation} value={translation.id} on:change={(event) => updateSettings({ type: 'wordTranslation', value: +event.target.value })} class={radioClasses}>{translation.language}</Radio></li>
