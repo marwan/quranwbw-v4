@@ -1,7 +1,7 @@
 <script>
 	import { Link } from 'svelte-routing';
 	import { quranMetaData, pageNumberKeys } from '$data/quranMeta';
-	import { __chapterNumber, __currentPage, __lastRead, __pageURL, __topNavbarVisible, __pageNumber, __morphologyKey, __mushafPageDivisions } from '$utils/stores';
+	import { __chapterNumber, __currentPage, __lastRead, __pageURL, __topNavbarVisible, __pageNumber, __morphologyKey, __mushafPageDivisions, __settingsDrawerHidden } from '$utils/stores';
 	import { toggleModal } from '$utils/toggleModal';
 	import { disabledElement, buttonElement } from '$data/commonStyles';
 	import { Tooltip } from 'flowbite-svelte';
@@ -107,7 +107,6 @@
 			<span class="text-xs pr-2 hidden md:block">Menu</span>
 			<Menu />
 		</div>
-		<Tooltip type="light">Menu</Tooltip>
 	</div>
 
 	<!-- mini nav for chapter page -->
@@ -210,8 +209,9 @@
 	<!-- Dropdown menu -->
 	<div id="rightMenuDropdown" class="navbar-dropdown z-30 hidden bg-white divide-y divide-gray-100 rounded-lg shadow left-[-5%] w-44 dark:bg-slate-800 dark:border-slate-700">
 		<ul class="py-2 text-sm text-gray-700 dark:text-slate-400" aria-labelledby="rightMenuDropdownButton">
-			<li class={$__currentPage === 'changelogs' || $__currentPage === 'issues' || $__currentPage === 'about' || $__currentPage === 'search' ? disabledElement : ''}>
-				<button id="settings-drawer-button" data-drawer-target="settings-drawer" data-drawer-show="settings-drawer" data-drawer-placement="right" aria-controls="settings-drawer" class={rightMenuDropdownClasses}>Settings</button>
+			<!-- svelte-ignore a11y-click-events-have-key-events -->
+			<li on:click={() => ($__settingsDrawerHidden = false)} class={$__currentPage === 'changelogs' || $__currentPage === 'issues' || $__currentPage === 'about' || $__currentPage === 'search' ? disabledElement : ''}>
+				<button id="settings-drawer-button" data-drawer-placement="right" aria-controls="settings-drawer" class={rightMenuDropdownClasses}>Settings</button>
 			</li>
 			<li>
 				<Link to="/about">
