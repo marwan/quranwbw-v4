@@ -15,6 +15,29 @@
 	const cardInnerStyle = 'w-28 flex flex-col items-center justify-center border space-y-2 border-gray-200 transition text-sm bg-gray-50 rounded-3xl p-5 hover:cursor-pointer hover:bg-[#ebebeb]';
 	const cardIconStyles = 'text-md md:text-xl';
 
+	const homepageLinks = {
+		1: {
+			title: 'Supplications',
+			icon: '🤲',
+			link: '/supplications'
+		},
+		2: {
+			title: 'Bookmarks',
+			icon: '📘',
+			link: '/bookmarks'
+		},
+		3: {
+			title: 'Morphology',
+			icon: '🧬',
+			link: '/morphology/1:1'
+		},
+		4: {
+			title: 'Search',
+			icon: '🔎',
+			link: '/search'
+		}
+	};
+
 	__currentPage.set('home');
 </script>
 
@@ -34,30 +57,14 @@
 			<Link to="/{lastReadChapter}/{lastReadVerse}" class={linkStyles}>Continue Reading: {quranMetaData[lastReadChapter].transliteration}, {lastReadChapter}:{lastReadVerse} {@html '&#10230'}</Link>
 		</div>
 
+		<!-- homepage links -->
 		<div class="w-fit mx-auto grid grid-cols-2 md:grid-cols-4 gap-3 justify-items-center">
-			<!-- Supplications from Quran page -->
-			<Link to="/supplications" id="supplications-link" class={cardInnerStyle}>
-				<div class={cardIconStyles}>🤲</div>
-				<div class="{linkStyles} ">Supplications</div>
-			</Link>
-
-			<!-- bookmarks page -->
-			<Link to="/bookmarks" id="bookmarks-link" class={cardInnerStyle}>
-				<div class={cardIconStyles}>📘</div>
-				<div class="{linkStyles} ">Bookmarks</div>
-			</Link>
-
-			<!-- morphology page -->
-			<Link to="/morphology/1:1" id="morphology-link" class={cardInnerStyle}>
-				<div class={cardIconStyles}>🧬</div>
-				<div class="{linkStyles} ">Morphology</div>
-			</Link>
-
-			<!-- search page -->
-			<Link to="/search" id="search-link" class={cardInnerStyle}>
-				<div class={cardIconStyles}>🔎</div>
-				<div class="{linkStyles} ">Search</div>
-			</Link>
+			{#each Object.entries(homepageLinks) as [id, link]}
+				<Link to={link.link} class={cardInnerStyle}>
+					<div class={cardIconStyles}>{link.icon}</div>
+					<div class="{linkStyles} ">{link.title}</div>
+				</Link>
+			{/each}
 		</div>
 	</div>
 
