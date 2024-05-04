@@ -8,10 +8,12 @@
 
 	import HomepageTabs from '$ui/HomepageTabs.svelte';
 
-	const linkStyles = 'py-2 px-2 text-xs cursor-pointer focus:outline-none focus:ring-4 focus:ring-gray-200 rounded-3xl hover:bg-[#ebebeb] dark:hover:bg-slate-700';
-
 	$: lastReadChapter = $__lastRead.split(':')[0];
 	$: lastReadVerse = $__lastRead.split(':')[1];
+
+	const linkStyles = 'text-xs font-normal';
+	const cardInnerStyle = 'w-28 flex flex-col items-center justify-center border space-y-2 border-gray-200 transition text-sm bg-gray-50 rounded-3xl p-5 hover:cursor-pointer hover:bg-[#ebebeb]';
+	const cardIconStyles = 'text-md md:text-xl';
 
 	__currentPage.set('home');
 </script>
@@ -26,32 +28,36 @@
 		<div class="text-xs text-center text-gray-400">{websiteTagline}</div>
 	</div>
 
-	<div class="flex flex-wrap flex-col md:flex-col mt-12 justify-center text-xs text-gray-400 space-y-4">
+	<div class="flex flex-wrap flex-col md:flex-col mt-12 justify-center text-xs text-gray-400 space-y-8">
 		<!-- last read link -->
-		<div id="last-read" class="flex justify-center items-center block">
+		<div id="last-read" class="flex justify-center items-center block pt-4">
 			<Link to="/{lastReadChapter}/{lastReadVerse}" class={linkStyles}>Continue Reading: {quranMetaData[lastReadChapter].transliteration}, {lastReadChapter}:{lastReadVerse} {@html '&#10230'}</Link>
 		</div>
 
-		<div class="flex flex-row flex-wrap font-bold space-x-1 md:space-x-2 justify-center">
+		<div class="w-fit mx-auto grid grid-cols-2 md:grid-cols-4 gap-3 justify-items-center">
 			<!-- Supplications from Quran page -->
-			<div id="supplications-link" class="flex justify-center items-center block">
-				<Link to="/supplications" class={linkStyles}>Supplications</Link>
-			</div>
+			<Link to="/supplications" id="supplications-link" class={cardInnerStyle}>
+				<div class={cardIconStyles}>🤲</div>
+				<div class="{linkStyles} ">Supplications</div>
+			</Link>
 
 			<!-- bookmarks page -->
-			<div id="bookmarks-link" class="flex justify-center items-center block">
-				<Link to="/bookmarks" class={linkStyles}>Bookmarks</Link>
-			</div>
+			<Link to="/bookmarks" id="bookmarks-link" class={cardInnerStyle}>
+				<div class={cardIconStyles}>📘</div>
+				<div class="{linkStyles} ">Bookmarks</div>
+			</Link>
 
 			<!-- morphology page -->
-			<div id="morphology-link" class="flex justify-center items-center block">
-				<Link to="/morphology/1:1" class={linkStyles}>Morphology</Link>
-			</div>
+			<Link to="/morphology/1:1" id="morphology-link" class={cardInnerStyle}>
+				<div class={cardIconStyles}>🧬</div>
+				<div class="{linkStyles} ">Morphology</div>
+			</Link>
 
 			<!-- search page -->
-			<div id="search-link" class="flex justify-center items-center block">
-				<Link to="/search" class={linkStyles}>Search</Link>
-			</div>
+			<Link to="/search" id="search-link" class={cardInnerStyle}>
+				<div class={cardIconStyles}>🔎</div>
+				<div class="{linkStyles} ">Search</div>
+			</Link>
 		</div>
 	</div>
 
