@@ -4,21 +4,30 @@
 		line = null;
 
 	import { navigate } from 'svelte-routing';
-	import { displayOptions } from '$data/options';
+	import { displayOptions, mushafFontLinks } from '$data/options';
 	import { supplicationsFromQuran } from '$data/quranMeta';
 	import { __currentPage, __wordType, __displayType, __websiteTheme, __userSettings, __audioSettings, __wordTranslationEnabled, __wordTransliterationEnabled, __morphologyKey, __tajweedEnabled, __wordTooltip } from '$utils/stores';
 	import { wordAudioController } from '$utils/audioController';
+	import { loadFont } from '$utils/loadFont';
 	import { Tooltip } from 'flowbite-svelte';
 
 	const chapter = key.split(':')[0];
 	const verse = key.split(':')[1];
-
 	const fontSizes = JSON.parse($__userSettings).displaySettings.fontSizes;
-
 	const arabicSplit = value.words.arabic.split('|');
 	const transliterationSplit = value.words.transliteration.split('|');
 	const translationSplit = value.words.translation.split('|');
 	const timestampSplit = value.words.timestamp.split('|');
+
+	// if mushaf fonts are selected, then dynamically load the fonts
+	if ($__wordType === 2) {
+		loadFont(`p${value.meta.page}`, `${mushafFontLinks.COLRv1}/QCF4${`00${value.meta.page}`.slice(-3)}_COLOR-Regular.woff`).then(() => {
+			// we can by default hide the v4 words and show when the font is loaded...
+			document.querySelectorAll(`.p${value.meta.page}`).forEach((element) => {
+				element.classList.remove('invisible');
+			});
+		});
+	}
 
 	// handle what happens when a word is clicked depending on page type
 	function wordClickHandler(chapter, verse, word) {
@@ -31,21 +40,12 @@
 		}
 	}
 
-	$: wordClasses = `rounded-lg hover:cursor-pointer hover:bg-[#ebebeb] dark:hover:bg-slate-800 ${displayOptions[$__displayType].layout === 'wbw' ? 'p-3' : $__currentPage === 'page' ? 'p-0' : 'p-1'}`;
-
+	$: wordClasses = `rounded-lg hover:cursor-pointer hover:bg-[#ebebeb] ${displayOptions[$__displayType].layout === 'wbw' ? 'p-3' : $__currentPage === 'page' ? 'p-0' : 'p-1'}`;
 	$: displayIsContinuous = displayOptions[$__displayType].continuous;
 
-	// remove the "invisible" class
-	// document.fonts.load(``).then(() => {
-	// 	$('i').addClass('loaded');
-	// })
-
+	// remove the invisibility class once all the fonts are loaded
 	document.fonts.ready.then(function () {
-		document.querySelectorAll('.arabicText').forEach((element) => {
-			element.classList.remove('invisible');
-		});
-
-		document.querySelectorAll('.chapter-header').forEach((element) => {
+		document.querySelectorAll('.chapter-headers').forEach((element) => {
 			element.classList.remove('invisible');
 		});
 
@@ -66,13 +66,13 @@
 			data-timestamp={timestampSplit[word]}
 			on:click={() => wordClickHandler(chapter, verse, word)}
 		>
-			<span class="invisible arabicText leading-normal arabic-font-{$__wordType} {$__currentPage !== 'page' && fontSizes.arabicText} {displayIsContinuous === true && 'inline-block'}" data-fontSize={fontSizes.arabicText}>
+			<span class="arabicText leading-normal arabic-font-{$__wordType} {$__currentPage !== 'page' && fontSizes.arabicText} {displayIsContinuous === true && 'inline-block'}" data-fontSize={fontSizes.arabicText}>
 				<!-- 1: Uthmanic Hafs Digital, 3: Indopak Madinah -->
 				{#if $__wordType === 1 || $__wordType === 3}
 					{arabicSplit[word]}
 					<!-- 2: Uthmanic Hafs Mushaf -->
 				{:else if $__wordType === 2}
-					<span class="p{value.meta.page} {$__tajweedEnabled === true ? 'theme-palette-tajweed' : 'theme-palette-normal'} font-filter">{arabicSplit[word]}</span>
+					<span style="font-family: p{value.meta.page}" class="p{value.meta.page} invisible {$__tajweedEnabled === true ? 'theme-palette-tajweed' : 'theme-palette-normal'} font-filter">{arabicSplit[word]}</span>
 				{/if}
 			</span>
 
@@ -104,13 +104,13 @@
 {#if $__currentPage != 'page' || ($__currentPage === 'page' && value.words.end_line === line)}
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<div class="{$__displayType === 1 ? 'text-center flex flex-col' : 'inline-flex flex-col'} {wordClasses}" on:click={() => wordClickHandler(chapter, verse)}>
-		<span class="invisible arabicText leading-normal arabic-font-{$__wordType} {$__currentPage !== 'page' && fontSizes.arabicText} {displayIsContinuous === true && 'inline-block group-hover:text-gray-500 dark:group-hover:text-slate-300'}" data-fontSize={fontSizes.arabicText}>
+		<span class="arabicText leading-normal arabic-font-{$__wordType} {$__currentPage !== 'page' && fontSizes.arabicText} {displayIsContinuous === true && 'inline-block group-hover:text-gray-500 dark:group-hover:text-slate-300'}" data-fontSize={fontSizes.arabicText}>
 			<!-- 1: Uthmanic Hafs Digital, 3: Indopak Madinah -->
 			{#if $__wordType === 1 || $__wordType === 3}
 				{value.words.end}
 				<!-- 2: Uthmanic Hafs Mushaf -->
 			{:else if $__wordType === 2}
-				<span class="p{value.meta.page} {$__tajweedEnabled === true ? 'theme-palette-tajweed' : 'theme-palette-normal'} font-filter">{value.words.end}</span>
+				<span style="font-family: p{value.meta.page}" class="p{value.meta.page} invisible {$__tajweedEnabled === true ? 'theme-palette-tajweed' : 'theme-palette-normal'} font-filter">{value.words.end}</span>
 			{/if}
 		</span>
 	</div>

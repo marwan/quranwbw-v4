@@ -10,7 +10,7 @@
 </script>
 
 <div id={key} data-words={value.meta.words} data-page={value.meta.page} data-juz={value.meta.juz} use:inview on:inview_enter={(event) => updateSettings({ type: 'lastRead', value: `${event.target.id}` })} class="verse flex flex-col py-8 space-y-8 dark:border-slate-700">
-	<VersesButtons {key} />
+	<VersesButtons {key} {value} />
 
 	<!-- words -->
 	<div class="flex flex-row-reverse flex-wrap">

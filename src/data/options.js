@@ -247,3 +247,11 @@ export const screenBreakpoints = {
 	md: 768,
 	lg: 1024
 };
+
+export const mushafFontLinks = {
+	COLRv1: 'https://fonts.quranwbw.com/Hafs/KFGQPC-v4/COLRv1',
+	'OT-SVG-TAJWEED-LIGHT': 'https://fonts.quranwbw.com/Hafs/KFGQPC-v4/OT-SVG/OT-SVG - TAJWEED-TEXT - LIGHT',
+	'OT-SVG-TAJWEED-DARK': 'https://fonts.quranwbw.com/Hafs/KFGQPC-v4/OT-SVG/OT-SVG - TAJWEED-TEXT - DARK',
+	'OT-SVG-BLACK-LIGHT': 'https://fonts.quranwbw.com/Hafs/KFGQPC-v4/OT-SVG/OT-SVG - BLACK-TEXT - LIGHT',
+	'OT-SVG-BLACK-DARK': 'https://fonts.quranwbw.com/Hafs/KFGQPC-v4/OT-SVG/OT-SVG - TAJWEED-TEXT - DARK'
+};

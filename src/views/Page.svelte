@@ -10,6 +10,7 @@
 	import { __chapterNumber, __pageNumber, __currentPage, __wordType, __tajweedEnabled, __mushafPageDivisions } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';
 	import { quranMetaData, chapterHeaderCodes, bismillahTypes } from '$data/quranMeta';
+	import { mushafFontLinks } from '$data/options';
 	import '$lib/swiped-events.min.js';
 
 	let pageData;
@@ -45,10 +46,20 @@
 
 	// pages and the lines for which we need to center the verse rathen than justify
 	const centeredPageLines = {
+		528: [9],
 		602: [5, 15],
 		603: [10, 15],
 		604: [4, 9, 14, 15]
 	};
+
+	// load some previous and next pages fonts for v4
+	$: {
+		if ($__wordType === 2) {
+			for (let thisPage = +page - 1; thisPage <= +page + 1; thisPage++) {
+				fetch(`${mushafFontLinks.COLRv1}/QCF4${`00${thisPage}`.slice(-3)}_COLOR-Regular.woff`);
+			}
+		}
+	}
 
 	$: {
 		// empty all the arrays
@@ -123,11 +134,11 @@
 	});
 
 	// remove the "invisible" class from chapter-header once fonts are loaded so blank icon doesn't show up
-	// document.fonts.ready.then(function () {
-	// 	document.querySelectorAll('.chapter-header').forEach((element) => {
-	// 		element.classList.remove('invisible');
-	// 	});
-	// });
+	document.fonts.ready.then(function () {
+		document.querySelectorAll('.chapter-headers').forEach((element) => {
+			element.classList.remove('invisible');
+		});
+	});
 
 	__currentPage.set('page');
 </script>
@@ -144,7 +155,7 @@
 					<!-- if it's the first verse of a chapter -->
 					{#if chapters.length > 0 && lines.includes(line) && verses[lines.indexOf(line)] === 1}
 						<div class="flex flex-col my-2">
-							<div class="invisible chapter-header leading-base pt-4 md:pt-8 pb-6 text-[{mushafSizes[1].header}] md:text-[{mushafSizes[2].header}] lg:text-[{mushafSizes[3].header}] {$__tajweedEnabled === true ? 'theme-palette-tajweed' : 'theme-palette-normal'} font-filter">{chapterHeaderCodes[chapters[lines.indexOf(line)]]}</div>
+							<div class="invisible chapter-headers leading-base pt-4 md:pt-8 pb-6 text-[{mushafSizes[1].header}] md:text-[{mushafSizes[2].header}] lg:text-[{mushafSizes[3].header}] {$__tajweedEnabled === true ? 'theme-palette-tajweed' : 'theme-palette-normal'} font-filter">{chapterHeaderCodes[chapters[lines.indexOf(line)]]}</div>
 
 							<div class="invisible bismillah flex flex-col text-center leading-normal flex-wrap space-y-4 block md:mt-6 text-[{mushafSizes[1].bismillah}] md:text-[{mushafSizes[2].bismillah}] lg:text-[{mushafSizes[3].bismillah}] {$__tajweedEnabled === true ? 'theme-palette-tajweed' : 'theme-palette-normal'} font-filter">
 								{#if chapters[lines.indexOf(line)] === 2}
@@ -177,7 +188,3 @@
 		<p>{error}</p>
 	{/await}
 </div>
-
-<!-- loading extra fonts -->
-<div class="p{+page - 1} invisible text-[0px]">.</div>
-<div class="p{+page + 1} invisible text-[0px]">.</div>

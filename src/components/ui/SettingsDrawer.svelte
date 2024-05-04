@@ -16,7 +16,7 @@
 	};
 
 	const settingsBlockClasses = 'space-y-2 py-6';
-	const selectorClasses = 'w-32 border border-gray-300 text-gray-900 text-left rounded-lg focus:ring-gray-500 focus:border-gray-500 focus-within:ring-2 block p-2.5 truncate font-normal';
+	const selectorClasses = 'w-32 border border-gray-300 text-gray-900 text-left rounded-3xl focus:ring-gray-500 focus:border-gray-500 focus-within:ring-2 block p-2.5 truncate font-normal';
 	const radioClasses = 'font-normal';
 
 	$: fontSizeCodes = JSON.parse($__userSettings).displaySettings.fontSizes;
@@ -25,10 +25,10 @@
 </script>
 
 <!-- settings drawer -->
-<Drawer placement="right" transitionType="fly" transitionParams={transitionParamsRight} bind:hidden={$__settingsDrawerHidden} class="theme-grayscale w-full md:w-1/2 lg:w-[430px] md:rounded-tl-xl md:rounded-bl-xl pt-0" id="settings-drawer">
+<Drawer placement="right" transitionType="fly" transitionParams={transitionParamsRight} bind:hidden={$__settingsDrawerHidden} class="theme-grayscale w-full md:w-1/2 lg:w-[430px] md:rounded-tl-3xl md:rounded-bl-3xl pt-0" id="settings-drawer">
 	<div class="flex z-30 top-0 sticky bg-white border-b-2 py-4 mb-4">
 		<h5 id="drawer-label" class="inline-flex items-center mb-4 text-3xl font-semibold text-gray-500">Settings</h5>
-		<CloseButton on:click={() => ($__settingsDrawerHidden = true)} class="mb-4" />
+		<CloseButton on:click={() => ($__settingsDrawerHidden = true)} class="mb-4 rounded-3xl" />
 	</div>
 
 	<!-- display-settings-block -->
@@ -68,6 +68,22 @@
 
 			<div class="border-b"></div>
 
+			<!-- word-tooltip-setting -->
+			<div id="word-tooltip-setting" class={settingsBlockClasses}>
+				<div class="flex flex-row justify-between items-center">
+					<div class="block text-gray-900">Word Tooltip</div>
+					<Button class={selectorClasses}>{selectableTooltipOptions[$__wordTooltip].name}</Button>
+					<Dropdown class="w-52 p-3 space-y-3 text-sm">
+						{#each Object.entries(selectableTooltipOptions) as [id, options]}
+							<li><Radio name="wordTooltip" bind:group={$__wordTooltip} value={options.id} on:change={(event) => updateSettings({ type: 'wordTooltip', value: +event.target.value })} class={radioClasses}>{options.name}</Radio></li>
+						{/each}
+					</Dropdown>
+				</div>
+				<p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Choose what is displayed when you hover a word.</p>
+			</div>
+
+			<div class="border-b"></div>
+
 			<!-- word-translation-toggle-setting -->
 			<div id="word-translation-toggle-setting" class={settingsBlockClasses}>
 				<div class="flex flex-row justify-between items-center">
@@ -97,22 +113,6 @@
 					</label>
 				</div>
 				<p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Toggle the word transliteration which is shown below the Arabic word.</p>
-			</div>
-
-			<div class="border-b"></div>
-
-			<!-- word-tooltip-setting -->
-			<div id="word-tooltip-setting" class={settingsBlockClasses}>
-				<div class="flex flex-row justify-between items-center">
-					<div class="block text-gray-900">Word Tooltip</div>
-					<Button class={selectorClasses}>{selectableTooltipOptions[$__wordTooltip].name}</Button>
-					<Dropdown class="w-52 p-3 space-y-3 text-sm">
-						{#each Object.entries(selectableTooltipOptions) as [id, options]}
-							<li><Radio name="wordTooltip" bind:group={$__wordTooltip} value={options.id} on:change={(event) => updateSettings({ type: 'wordTooltip', value: +event.target.value })} class={radioClasses}>{options.name}</Radio></li>
-						{/each}
-					</Dropdown>
-				</div>
-				<p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Choose what is displayed when you hover a word.</p>
 			</div>
 		</div>
 	</div>
@@ -165,12 +165,12 @@
 				<div class="flex flex-row justify-between items-center">
 					<span class="block text-gray-900 dark:text-slate-400">Arabic Word Size ({fontSizeCodes.arabicText.split('-')[1]})</span>
 					<div class="inline-flex rounded-md shadow-sm" role="group">
-						<button type="button" on:click={() => updateSettings({ type: 'arabicText', action: 'increase' })} class="w-16 border px-6 border-gray-300 text-gray-900 rounded-l-lg focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-gray-500 dark:focus:border-gray-500">
+						<button type="button" on:click={() => updateSettings({ type: 'arabicText', action: 'increase' })} class="w-16 border px-6 border-gray-300 text-gray-900 rounded-l-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-gray-500 dark:focus:border-gray-500">
 							<svg class="w-3 h-3 text-gray-800 dark:text-slate-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
 								<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
 							</svg>
 						</button>
-						<button type="button" on:click={() => updateSettings({ type: 'arabicText', action: 'decrease' })} class="w-16 border px-6 text-center border-gray-300 text-gray-900 rounded-r-lg focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-gray-500 dark:focus:border-gray-500">
+						<button type="button" on:click={() => updateSettings({ type: 'arabicText', action: 'decrease' })} class="w-16 border px-6 text-center border-gray-300 text-gray-900 rounded-r-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-gray-500 dark:focus:border-gray-500">
 							<svg class="w-3 h-3 text-gray-800 dark:text-slate-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
 								<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
 							</svg>
@@ -187,12 +187,12 @@
 				<div class="flex flex-row justify-between items-center">
 					<span class="block text-gray-900 dark:text-slate-400">Word Tr/Tl Size ({fontSizeCodes.wordTranslationText.split('-')[1]})</span>
 					<div class="inline-flex rounded-md shadow-sm" role="group">
-						<button type="button" on:click={() => updateSettings({ type: 'wordTranslationText', action: 'increase' })} class="w-16 border px-6 border-gray-300 text-gray-900 rounded-l-lg focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-gray-500 dark:focus:border-gray-500">
+						<button type="button" on:click={() => updateSettings({ type: 'wordTranslationText', action: 'increase' })} class="w-16 border px-6 border-gray-300 text-gray-900 rounded-l-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-gray-500 dark:focus:border-gray-500">
 							<svg class="w-3 h-3 text-gray-800 dark:text-slate-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
 								<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
 							</svg>
 						</button>
-						<button type="button" on:click={() => updateSettings({ type: 'wordTranslationText', action: 'decrease' })} class="w-16 border px-6 text-center border-gray-300 text-gray-900 rounded-r-lg focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-gray-500 dark:focus:border-gray-500">
+						<button type="button" on:click={() => updateSettings({ type: 'wordTranslationText', action: 'decrease' })} class="w-16 border px-6 text-center border-gray-300 text-gray-900 rounded-r-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-gray-500 dark:focus:border-gray-500">
 							<svg class="w-3 h-3 text-gray-800 dark:text-slate-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
 								<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
 							</svg>
@@ -209,12 +209,12 @@
 				<div class="flex flex-row justify-between items-center">
 					<span class="block text-gray-900 dark:text-slate-400">Verse Tr/Tl Size ({fontSizeCodes.verseTranslationText.split('-')[1]})</span>
 					<div class="inline-flex rounded-md shadow-sm" role="group">
-						<button type="button" on:click={() => updateSettings({ type: 'verseTranslationText', action: 'increase' })} class="w-16 border px-6 border-gray-300 text-gray-900 rounded-l-lg focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-gray-500 dark:focus:border-gray-500">
+						<button type="button" on:click={() => updateSettings({ type: 'verseTranslationText', action: 'increase' })} class="w-16 border px-6 border-gray-300 text-gray-900 rounded-l-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-gray-500 dark:focus:border-gray-500">
 							<svg class="w-3 h-3 text-gray-800 dark:text-slate-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
 								<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
 							</svg>
 						</button>
-						<button type="button" on:click={() => updateSettings({ type: 'verseTranslationText', action: 'decrease' })} class="w-16 border px-6 text-center border-gray-300 text-gray-900 rounded-r-lg focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-gray-500 dark:focus:border-gray-500">
+						<button type="button" on:click={() => updateSettings({ type: 'verseTranslationText', action: 'decrease' })} class="w-16 border px-6 text-center border-gray-300 text-gray-900 rounded-r-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-gray-500 dark:focus:border-gray-500">
 							<svg class="w-3 h-3 text-gray-800 dark:text-slate-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
 								<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
 							</svg>

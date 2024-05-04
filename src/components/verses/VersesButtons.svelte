@@ -1,5 +1,5 @@
 <script>
-	export let key;
+	export let key, value;
 
 	const chapter = +key.split(':')[0];
 	const verse = +key.split(':')[1];
@@ -11,7 +11,7 @@
 	import { updateSettings } from '$utils/updateSettings';
 	import { toggleModal } from '$utils/toggleModal';
 	import { getNotes } from '$utils/userNotes';
-	import { downloadVerseImage } from '$utils/downloadVerseImage';
+	// import { downloadVerseImage } from '$utils/downloadVerseImage';
 	import { Tooltip, Dropdown, DropdownItem } from 'flowbite-svelte';
 
 	// icons
@@ -23,12 +23,13 @@
 	import Play from '$svgs/Play.svelte';
 	import Pause from '$svgs/Pause.svelte';
 	import ShareOutline from '$svgs/ShareOutline.svelte';
-	import DotsVertical from '$svgs/DotsVertical.svelte';
+	import DotsHorizontal from '$svgs/DotsHorizontal.svelte';
+	// import DotsVertical from '$svgs/DotsVertical.svelte';
 
 	// update userBookmarks whenever the __userSettings changes
 	$: userBookmarks = JSON.parse($__userSettings).userBookmarks;
 
-	const buttonClasses = 'inline-flex items-center justify-center w-10 h-10 text-gray-600 transition-colors duration-150 rounded-lg focus:shadow-outline bg-gray-200 print:hidden';
+	const buttonClasses = 'inline-flex items-center justify-center w-10 h-10 transition-colors duration-150 rounded-3xl focus:shadow-outline hover:bg-[#ebebeb] print:hidden';
 
 	let dropdownOpen = false;
 
@@ -68,37 +69,36 @@
 	}
 </script>
 
-<div class="verseButtons flex flex-row space-x-2 z-10 text-gray-400 text-xs theme-grayscale">
-	<Link to={$__currentPage === 'chapter' ? './#' : `/${chapter}/${verse}`} class={buttonClasses} data-html2canvas-ignore>{key}</Link>
-	<Tooltip type="light" placement="right">Verse {key}</Tooltip>
+<div class="verseButtons flex flex-row space-x-2 z-10 text-xs theme-grayscale">
+	<Link to={$__currentPage === 'chapter' ? './#' : `/${chapter}/${verse}`} class="{buttonClasses} font-bold" data-html2canvas-ignore>
+		<div class="opacity-50">{key}</div>
+	</Link>
+	<Tooltip type="light" placement="right" class="z-30">Verse {key}</Tooltip>
+
+	<!-- play verse button -->
+	<button on:click={() => showAudioModal(key)} class={buttonClasses}>
+		<div class="opacity-50">
+			<svelte:component this={$__audioSettings.isPlaying === true && $__audioSettings.playingKey === key ? Pause : Play} />
+		</div>
+	</button>
+	<Tooltip type="light" placement="right" class="z-30">Play</Tooltip>
+
+	<!-- bookmark/unbookmark button -->
+	<button on:click={() => updateSettings({ type: 'userBookmarks', key })} class={buttonClasses}>
+		<div class="opacity-50">
+			<svelte:component this={userBookmarks.includes(key) ? Bookmarked : Bookmark} />
+		</div>
+	</button>
+	<Tooltip type="light" placement="right" class="z-30">Bookmark</Tooltip>
 
 	<!-- verses option dropdown -->
 	<button id="verse-{key}" class={buttonClasses}>
-		<DotsVertical />
+		<div class="opacity-50">
+			<DotsHorizontal />
+		</div>
 	</button>
 
-	<Dropdown bind:open={dropdownOpen}>
-		<!-- play verse button -->
-		<DropdownItem
-			on:click={() => {
-				showAudioModal(key);
-				dropdownOpen = false;
-			}}
-		>
-			<div class="flex flex-row items-center">
-				<svelte:component this={$__audioSettings.isPlaying === true && $__audioSettings.playingKey === key ? Pause : Play} />
-				<span class="text-xs pl-2">{$__audioSettings.isPlaying === true && $__audioSettings.playingKey === key ? 'Stop Playing' : 'Play Verse'}</span>
-			</div>
-		</DropdownItem>
-
-		<!-- bookmark/unbookmark button -->
-		<DropdownItem on:click={() => updateSettings({ type: 'userBookmarks', key })}>
-			<div class="flex flex-row items-center">
-				<svelte:component this={userBookmarks.includes(key) ? Bookmarked : Bookmark} />
-				<span class="text-xs pl-2">{userBookmarks.includes(key) ? 'Remove Bookmark' : 'Bookmark Verse'}</span>
-			</div>
-		</DropdownItem>
-
+	<Dropdown bind:open={dropdownOpen} class="rounded-3xl">
 		<!-- verse notes button -->
 		<DropdownItem
 			on:click={() => {
@@ -110,6 +110,16 @@
 				<Notes />
 				<span class="text-xs pl-2">Verse Notes</span>
 			</div>
+		</DropdownItem>
+
+		<!-- verse page button -->
+		<DropdownItem>
+			<Link to="/page/{value.meta.page}">
+				<div class="flex flex-row items-center">
+					<Book />
+					<span class="text-xs pl-2">Go to Page {value.meta.page}</span>
+				</div>
+			</Link>
 		</DropdownItem>
 
 		<!-- verse morphology button -->
@@ -131,11 +141,11 @@
 		</DropdownItem>
 
 		<!-- Verse screenshot button -->
-		<DropdownItem on:click={() => downloadVerseImage(key)}>
+		<!-- <DropdownItem on:click={() => downloadVerseImage(key)}>
 			<div class="flex flex-row items-center">
 				<Photo />
 				<span class="text-xs pl-2">Verse Screenshot</span>
 			</div>
-		</DropdownItem>
+		</DropdownItem> -->
 	</Dropdown>
 </div>
