@@ -8,7 +8,7 @@ import { quranMetaData } from '$data/quranMeta';
 // - the whole chapter and all its verses can be viewed without ever making another request to the API (eg: /2 or /2/255) unless there'a a change in settings
 // - offline capabilities
 // Other option would be to load the few initial verses on page load and then the complete data for faster loading times, might think about it later.
-export async function fetchChapterData(chapter) {
+export async function fetchChapterData(chapter, download = false) {
 	const apiURL =
 		apiEndpoint +
 		new URLSearchParams({
@@ -25,7 +25,9 @@ export async function fetchChapterData(chapter) {
 	// if the user is on the chapter page, fetch and set the data in store
 	const response = await fetch(apiURL);
 	const data = await response.json();
-	__chapterData.set(data.data.verses);
+
+	// download = true means that we are just fetching api data without updating the __chapterData store (for downloadData)
+	if (download === false) __chapterData.set(data.data.verses);
 }
 
 // function to fetch individual verses

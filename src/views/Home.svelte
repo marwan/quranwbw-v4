@@ -5,7 +5,6 @@
 	import { websiteTagline } from '$data/websiteSettings';
 	import { __currentPage, __lastRead } from '$utils/stores';
 	import Logo from '$svgs/Logo.svelte';
-
 	import HomepageTabs from '$ui/HomepageTabs.svelte';
 
 	$: lastReadChapter = $__lastRead.split(':')[0];

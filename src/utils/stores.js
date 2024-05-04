@@ -99,3 +99,9 @@ export const __audioSettings = writable({
 
 // to store the morphology verse/word key
 export const __morphologyKey = writable(null);
+
+// to store all the offline data settings
+export const __downloadedDataSettings = writable({
+	allChaptersDownloaded: false,
+	downloadedChapters: []
+});

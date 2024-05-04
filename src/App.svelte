@@ -14,6 +14,7 @@
 	import { Router, Route } from 'svelte-routing';
 	import { __currentPage, __settingsDrawerHidden } from '$utils/stores';
 	import { checkOldBookmarks } from '$utils/checkOldBookmarks';
+	import { downloadData } from '$utils/downloadData';
 
 	// views
 	import Home from '$views/Home.svelte';
@@ -37,6 +38,7 @@
 	import TajweedRulesModal from '$modals/TajweedRulesModal.svelte';
 	import NotesModal from '$modals/NotesModal.svelte';
 	import TokenModal from '$modals/TokenModal.svelte';
+	import DownloadModal from '$modals/DownloadModal.svelte';
 
 	// check old bookmarks for v3 update
 	checkOldBookmarks();
@@ -61,6 +63,7 @@
 		<TajweedRulesModal />
 		<NotesModal />
 		<TokenModal />
+		<DownloadModal />
 		<BottomNavbar />
 		<!-- <BottomAlert /> -->
 

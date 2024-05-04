@@ -10,8 +10,8 @@
 	import { quranMetaData, bismillahTypes } from '$data/quranMeta';
 	import { displayOptions } from '$data/options';
 	import { __currentPage, __chapterNumber, __displayType, __wordType, __wordTranslation, __verseTranslations, __pageURL } from '$utils/stores';
-	import { debounce } from '$utils/debounce';
-	import { toggleNavbar } from '$utils/toggleNavbar';
+	// import { debounce } from '$utils/debounce';
+	// import { toggleNavbar } from '$utils/toggleNavbar';
 
 	// max verses to load if total verses in chapter are more than this
 	const maxVersesThreshold = 10;
