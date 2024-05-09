@@ -9,7 +9,7 @@
 	// fetch the FAQ from our API
 	$: {
 		fetchData = (async () => {
-			const response = await fetch('http://localhost:7500/faq.json');
+			const response = await fetch('https://api.quranwbw.com/faq.json');
 			const data = await response.json();
 			return data;
 		})();
