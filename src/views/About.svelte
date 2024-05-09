@@ -51,7 +51,7 @@
 			</ul>
 
 			<br /><br />
-			Do note, this website is just a hobby project and is not being worked on full-time. If you'd like to report an issue, have any suggestions, or would like to contribute, please visit Quranwbw.com's <a class={linkElement} target="_blank" rel="noreferrer" href="https://github.com/marwan/quranwbw-svelte">repo on GitHub</a>, or contact us on
+			Do note, this website is just a hobby project and is not being worked on full-time. If you'd like to report an issue, have any suggestions, or would like to contribute, please visit Quranwbw.com's <a class={linkElement} target="_blank" rel="noreferrer" href="https://github.com/marwan/quranwbw-v4">repo on GitHub</a>, or contact us on
 			<a class={linkElement} href="mailto:contact@quranwbw.com">contact@quranwbw.com</a>.
 
 			<br /><br />

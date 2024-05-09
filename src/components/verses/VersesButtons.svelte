@@ -5,7 +5,7 @@
 	const verse = +key.split(':')[1];
 
 	import { Link } from 'svelte-routing';
-	import { showAudioModal } from '$utils/audioController';
+	import { showAudioModal, quickPlayAudio } from '$utils/audioController';
 	import { quranMetaData } from '$data/quranMeta';
 	import { __currentPage, __userSettings, __audioSettings, __verseKey } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';
@@ -18,7 +18,6 @@
 	import Bookmark from '$svgs/Bookmark.svelte';
 	import Bookmarked from '$svgs/Bookmarked.svelte';
 	import Book from '$svgs/Book.svelte';
-	import Photo from '$svgs/Photo.svelte';
 	import Notes from '$svgs/Notes.svelte';
 	import Play from '$svgs/Play.svelte';
 	import Pause from '$svgs/Pause.svelte';
@@ -76,7 +75,7 @@
 	<Tooltip type="light" placement="right" class="z-30">Verse {key}</Tooltip>
 
 	<!-- play verse button -->
-	<button on:click={() => showAudioModal(key)} class={buttonClasses}>
+	<button on:click={() => quickPlayAudio(chapter, verse, verse)} class={buttonClasses}>
 		<div class="opacity-50">
 			<svelte:component this={$__audioSettings.isPlaying === true && $__audioSettings.playingKey === key ? Pause : Play} />
 		</div>
@@ -99,6 +98,21 @@
 	</button>
 
 	<Dropdown bind:open={dropdownOpen} class="rounded-3xl">
+		<!-- play verse button -->
+		<DropdownItem
+			on:click={() => {
+				showAudioModal(key);
+				dropdownOpen = false;
+			}}
+		>
+			<div class="flex flex-row items-center">
+				<div class="opacity-50">
+					<svelte:component this={$__audioSettings.isPlaying === true && $__audioSettings.playingKey === key ? Pause : Play} />
+				</div>
+				<span class="text-xs pl-2">Advanced Play</span>
+			</div>
+		</DropdownItem>
+
 		<!-- verse notes button -->
 		<DropdownItem
 			on:click={() => {

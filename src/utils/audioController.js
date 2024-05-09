@@ -328,6 +328,23 @@ export function wordAudioController(props) {
 	}
 }
 
+// function to quickly play verse audio, to be used by the play buttons
+export function quickPlayAudio(chapter, startVerse, endVerse) {
+	if (audioSettings.isPlaying === true) {
+		resetAudioSettings();
+	} else {
+		playAudio({
+			type: 'verse',
+			chapter: chapter,
+			verse: 1,
+			firstToPlay: startVerse,
+			lastToPlay: endVerse,
+			timesToRepeat: 1,
+			delay: 0
+		});
+	}
+}
+
 function wordHighlighter() {
 	// get the total number of words in the ayah
 	const wordsInVerse = document.getElementById(audioSettings.playingKey).getAttribute('data-words');

@@ -80,7 +80,6 @@
 			<Home />
 			<span class="text-xs pl-2 hidden md:block">Home</span>
 		</Link>
-		<Tooltip type="light">Home</Tooltip>
 
 		<!-- display the chapter name on chapter page -->
 		<button id="navigationDropdownButton" data-dropdown-toggle="navigationDropdown" class="{$__currentPage === 'chapter' ? 'block' : 'hidden'} flex items-center p-3 text-sm border-gray-200 w-auto p-2 hover:bg-[#ebebeb] rounded-3xl dark:hover:bg-slate-700">

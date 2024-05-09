@@ -11,8 +11,8 @@
 	$: lastReadVerse = $__lastRead.split(':')[1];
 
 	const linkStyles = 'text-xs font-normal';
-	const cardInnerStyle = 'w-28 flex flex-col items-center justify-center border space-y-2 border-gray-200 transition text-sm bg-gray-50 rounded-3xl p-5 hover:cursor-pointer hover:bg-[#ebebeb]';
-	const cardIconStyles = 'text-md md:text-xl';
+	const cardInnerStyle = 'w-24 flex flex-col items-center justify-center space-y-2 transition text-xs md:text-sm p-2 rounded-3xl hover:cursor-pointer hover:bg-[#ebebeb]';
+	const cardIconStyles = 'text-sm md:text-lg';
 
 	const homepageLinks = {
 		1: {
@@ -26,14 +26,14 @@
 			link: '/bookmarks'
 		},
 		3: {
-			title: 'Morphology',
-			icon: '🧬',
-			link: '/morphology/1:1'
-		},
-		4: {
 			title: 'Search',
 			icon: '🔎',
 			link: '/search'
+		},
+		4: {
+			title: 'Morphology',
+			icon: '🧬',
+			link: '/morphology/1:1'
 		}
 	};
 
@@ -57,7 +57,7 @@
 		</div>
 
 		<!-- homepage links -->
-		<div class="w-fit mx-auto grid grid-cols-2 md:grid-cols-4 gap-3 justify-items-center">
+		<div class="w-fit mx-auto grid grid-cols-4 gap-2 justify-items-center">
 			{#each Object.entries(homepageLinks) as [id, link]}
 				<Link to={link.link} class={cardInnerStyle}>
 					<div class={cardIconStyles}>{link.icon}</div>

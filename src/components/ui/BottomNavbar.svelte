@@ -2,7 +2,7 @@
 	import { Link } from 'svelte-routing';
 	import { __audioSettings } from '$utils/stores';
 	import { __chapterNumber, __pageNumber, __displayType, __currentPage, __bottomNavbarVisible, __settingsDrawerHidden } from '$utils/stores';
-	import { resetAudioSettings, playAudio } from '$utils/audioController';
+	import { quickPlayAudio } from '$utils/audioController';
 	import { quranMetaData } from '$data/quranMeta';
 	import { disabledElement } from '$data/commonStyles';
 	import { updateSettings } from '$utils/updateSettings';
@@ -16,20 +16,9 @@
 	import Settings from '$svgs/Settings.svelte';
 	import Eye from '$svgs/Eye.svelte';
 
-	function audioController() {
-		if ($__audioSettings.isPlaying === true) {
-			resetAudioSettings();
-		} else {
-			playAudio({
-				type: 'verse',
-				chapter: $__chapterNumber,
-				verse: 1,
-				firstToPlay: +document.getElementsByClassName('verse')[0].id.split(':')[1], // first verse of page
-				lastToPlay: quranMetaData[$__chapterNumber].verses,
-				timesToRepeat: 1,
-				delay: 0
-			});
-		}
+	// quick play from first verse of page till the max chapter verses
+	function audioHandler() {
+		quickPlayAudio($__chapterNumber, +document.getElementsByClassName('verse')[0].id.split(':')[1], quranMetaData[$__chapterNumber].verses);
 	}
 
 	let previousNavigation, nextNavigation;
@@ -72,7 +61,7 @@
 			<!-- 3rd icon -->
 			<!-- play/pause button -->
 			<div class="flex items-center justify-center">
-				<button type="button" title="Play/Pause" on:click={() => audioController()} class="inline-flex flex-col items-center justify-center w-10 h-10 font-medium bg-[#ebebeb] hover:bg-[#ebebeb] rounded-full group focus:ring-2 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-800">
+				<button type="button" title="Play/Pause" on:click={() => audioHandler()} class="inline-flex flex-col items-center justify-center w-10 h-10 font-medium bg-[#ebebeb] hover:bg-[#ebebeb] rounded-full group focus:ring-2 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-800">
 					<svelte:component this={$__audioSettings.isPlaying === true ? Pause : PlaySolid} />
 
 					<span class="sr-only">Play/Pause</span>
