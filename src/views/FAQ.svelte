@@ -29,7 +29,7 @@
 <PageMeta title={'FAQ'} />
 
 <div class="">
-	<div class="my-6 space-y-4 pb-4 border-b-2 dark:border-slate-700">
+	<div class="my-6 space-y-4 pb-4 border-b-2">
 		<h1 class="text-2xl">Frequently Asked Questions</h1>
 	</div>
 
@@ -38,7 +38,7 @@
 	{:then fetchData}
 		<div class="text-sm">
 			{#each Object.entries(fetchData) as [key, value]}
-				<div id={+key + 1} class="py-6 space-y-2 border-b dark:border-slate-700">
+				<div id={+key + 1} class="py-6 space-y-2 border-b">
 					<div class="flex flex-col space-y-2">
 						<div class="font-medium">#{+key + 1}: {value.question}</div>
 						<div>{@html linkMarkdown(value.answer)}</div>

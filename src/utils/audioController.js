@@ -47,10 +47,9 @@ export function playAudio(props) {
 
 		// generate mp3 file names for current and next verse
 		const currentVerseFileName = `${`00${props.chapter}`.slice(-3)}${`00${props.firstToPlay}`.slice(-3)}.mp3`;
-		const nextVerseFileName = `${`00${props.chapter}`.slice(-3)}${`00${props.firstToPlay + 1}`.slice(-3)}.mp3`;
 
 		// fetch the next verse audio in advance
-		fetch(`${reciterAudioUrl}/${nextVerseFileName}`);
+		fetch(`${reciterAudioUrl}/${`00${props.chapter}`.slice(-3)}${`00${props.firstToPlay + 1}`.slice(-3)}.mp3`);
 
 		// assign to source
 		audio.src = `${reciterAudioUrl}/${currentVerseFileName}`;
@@ -363,61 +362,3 @@ function wordHighlighter() {
 	// update the audio settings
 	__audioSettings.set(audioSettings);
 }
-
-// function convertTime(time) {
-//   let mins = Math.floor(time / 60);
-//   let secs = Math.floor(time % 60);
-
-//   if (mins < 10) {
-//     mins = "0" + String(mins);
-//   }
-
-//   if (secs < 10) {
-//     secs = "0" + String(secs);
-//   }
-
-//   return mins + ":" + secs;
-// }
-
-// // Countdown
-// audio.addEventListener(
-//   "timeupdate",
-//   function () {
-//     let duration = parseInt(audio.duration),
-//       currentTime = parseInt(audio.currentTime),
-//       timeLeft = duration - currentTime,
-//       seconds,
-//       minutes;
-
-//     seconds = timeLeft % 60;
-//     minutes = Math.floor(timeLeft / 60) % 60;
-
-//     seconds = seconds < 10 ? "0" + seconds : seconds;
-//     minutes = minutes < 10 ? "0" + minutes : minutes;
-
-//     // timeleft.innerHTML = m + ":" + s;
-
-//     // $("#audio-time-remaining").text(`${minutes}:${seconds}`);
-//     $("#audio-time-remaining").text(convertTime(audio.duration));
-
-//     // console.log(minutes + ":" + seconds);
-
-//     let percentageCompleted = ((audio.currentTime / audio.duration) * 100).toFixed(2);
-
-//     $(".audio-progress-bar").attr("style", `width: ${percentageCompleted}%`);
-//   },
-//   false
-// );
-
-// // Countup
-// audio.addEventListener(
-//   "timeupdate",
-//   function () {
-//     let timeline = document.getElementById("duration");
-//     let seconds = parseInt(audio.currentTime % 60);
-//     let minutes = parseInt((audio.currentTime / 60) % 60);
-
-//     seconds < 10 ? $("#audio-time-lapsed").text(`${minutes}:0${seconds}`) : $("#audio-time-lapsed").text(`${minutes}:${seconds}`);
-//   },
-//   false
-// );

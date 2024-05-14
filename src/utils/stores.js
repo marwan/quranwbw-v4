@@ -26,6 +26,9 @@ export const __userSettings = writable(JSON.stringify(userSettings));
 // to store the local user settings from LocalStorage
 export const __userNotes = writable(JSON.parse(localStorage.getItem('userNotes')));
 
+// to store the user bookmarks
+export const __userBookmarks = writable(userSettings.userBookmarks);
+
 // to store the token
 export const __userToken = writable(localStorage.getItem('userToken'));
 

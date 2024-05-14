@@ -11,31 +11,8 @@
 	$: lastReadVerse = $__lastRead.split(':')[1];
 
 	const linkStyles = 'text-xs font-normal';
-	const cardInnerStyle = 'w-24 flex flex-col items-center justify-center space-y-2 transition text-xs md:text-sm p-2 rounded-3xl hover:cursor-pointer hover:bg-[#ebebeb]';
-	const cardIconStyles = 'text-sm md:text-lg';
-
-	const homepageLinks = {
-		1: {
-			title: 'Supplications',
-			icon: '🤲',
-			link: '/supplications'
-		},
-		2: {
-			title: 'Bookmarks',
-			icon: '📘',
-			link: '/bookmarks'
-		},
-		3: {
-			title: 'Search',
-			icon: '🔎',
-			link: '/search'
-		},
-		4: {
-			title: 'Morphology',
-			icon: '🧬',
-			link: '/morphology/1:1'
-		}
-	};
+	// const cardInnerStyle = 'w-24 flex flex-col items-center justify-center space-y-2 transition text-xs md:text-sm p-2 rounded-3xl hover:cursor-pointer hover:bg-[#ebebeb]';
+	// const cardIconStyles = 'text-sm md:text-lg';
 
 	__currentPage.set('home');
 </script>
@@ -57,14 +34,14 @@
 		</div>
 
 		<!-- homepage links -->
-		<div class="w-fit mx-auto grid grid-cols-4 gap-2 justify-items-center">
+		<!-- <div class="grid grid-cols-4 gap-2 {cardInnerStyle1}">
 			{#each Object.entries(homepageLinks) as [id, link]}
 				<Link to={link.link} class={cardInnerStyle}>
 					<div class={cardIconStyles}>{link.icon}</div>
 					<div class="{linkStyles} ">{link.title}</div>
 				</Link>
 			{/each}
-		</div>
+		</div> -->
 	</div>
 
 	<!-- chapter and most read tabs -->
