@@ -3,17 +3,13 @@
 	import { quranMetaData, pageNumberKeys } from '$data/quranMeta';
 	import { __chapterNumber, __currentPage, __lastRead, __pageURL, __topNavbarVisible, __pageNumber, __morphologyKey, __mushafPageDivisions, __settingsDrawerHidden } from '$utils/stores';
 	import { toggleModal } from '$utils/toggleModal';
-	import { disabledElement, buttonElement } from '$data/commonStyles';
-	import { Tooltip } from 'flowbite-svelte';
+	import { buttonElement } from '$data/commonStyles';
+	import NavigationDropdown from '$ui/NavigationDropdown.svelte';
 
 	// icons
 	import Menu from '$svgs/Menu.svelte';
 	import Home from '$svgs/Home.svelte';
-	import ExternalLink from '$svgs/ExternalLink.svelte';
 	import ChevronDown from '$svgs/ChevronDown.svelte';
-
-	// classes
-	const rightMenuDropdownClasses = 'block w-full text-left px-4 py-2 hover:bg-[#ebebeb] dark:hover:bg-slate-700';
 
 	let gotoVerse = 1,
 		gotoPageChapter = 1,
@@ -88,7 +84,7 @@
 		</button>
 
 		<!-- display only the page name for non-chapter page -->
-		<button class="{$__currentPage !== 'chapter' ? 'block' : 'hidden'} flex items-center p-3 text-sm border-gray-200 w-auto p-2 hover:bg-[#ebebeb] rounded-3xl dark:hover:bg-slate-700">
+		<button class="{$__currentPage !== 'chapter' ? 'block' : 'hidden'} flex items-center p-3 text-sm border-gray-200 w-auto p-2 hover:bg-[#ebebeb] rounded-3xl">
 			{$__currentPage[0].toUpperCase() + $__currentPage.slice(1)}
 
 			<!-- if it's the mushaf page, show page number as well -->
@@ -102,10 +98,11 @@
 			{/if}
 		</button>
 
-		<div class="flex flex-row items-center p-3 cursor-pointer hover:bg-[#ebebeb] rounded-3xl dark:hover:bg-slate-700" type="button" id="rightMenuDropdownButton" data-dropdown-toggle="rightMenuDropdown">
+		<button class="flex flex-row items-center p-3 cursor-pointer hover:bg-[#ebebeb] rounded-3xl" type="button" id="rightMenuDropdownButton1" data-dropdown-toggle="rightMenuDropdown1">
 			<span class="text-xs pr-2 hidden md:block">Menu</span>
 			<Menu />
-		</div>
+		</button>
+		<NavigationDropdown />
 	</div>
 
 	<!-- mini nav for chapter page -->
@@ -203,63 +200,5 @@
 				</div>
 			{/if}
 		</div>
-	</div>
-
-	<!-- Dropdown menu -->
-	<div id="rightMenuDropdown" class="navbar-dropdown z-30 hidden bg-white divide-y divide-gray-100 rounded-3xl shadow left-[-5%] w-44 dark:bg-slate-800 dark:border-slate-700">
-		<ul class="py-2 text-sm text-gray-700 dark:text-slate-400" aria-labelledby="rightMenuDropdownButton">
-			<!-- svelte-ignore a11y-click-events-have-key-events -->
-			<li on:click={() => ($__settingsDrawerHidden = false)} class={$__currentPage === 'changelogs' || $__currentPage === 'issues' || $__currentPage === 'about' || $__currentPage === 'search' ? disabledElement : ''}>
-				<button id="settings-drawer-button" data-drawer-placement="right" aria-controls="settings-drawer" class={rightMenuDropdownClasses}>Settings</button>
-			</li>
-			<li>
-				<Link to="/about">
-					<button class={rightMenuDropdownClasses}>About</button>
-				</Link>
-			</li>
-			<!-- <li>
-        <Link to="/changelogs">
-          <button class={rightMenuDropdownClasses}>Changelogs</button>
-        </Link>
-      </li>
-      <li>
-        <Link to="/issues">
-          <button class={rightMenuDropdownClasses}>Issues</button>
-        </Link>
-      </li>
-      <li class={disabledElement}>
-        <button class={rightMenuDropdownClasses}>Chapter Overview</button>
-      </li> -->
-			<li>
-				<button id="tajweed-modal-button" on:click={() => toggleModal('tajweed-rules-modal', 'show')} class={rightMenuDropdownClasses}>Tajweed Rules</button>
-			</li>
-			<li>
-				<button on:click={() => toggleModal('token-modal', 'show')} class={rightMenuDropdownClasses}>Token Login</button>
-			</li>
-			<!-- <li>
-				<button on:click={() => toggleModal('download-modal', 'show')} class={rightMenuDropdownClasses}>Download Data</button>
-			</li> -->
-			<!-- <li class={$__currentPage === "changelogs" || $__currentPage === "issues" || $__currentPage === "about" || $__currentPage === "search" ? disabledElement : ""}>
-        <button on:click={() => toggleModal("initial-setup-modal", "show")} class={rightMenuDropdownClasses}>Initial Setup</button>
-      </li> -->
-			<li>
-				<a href="https://legacy.quranwbw.com/" target="_blank" class="flex flex-row items-center justify-between {rightMenuDropdownClasses}">
-					Legacy Website
-					<ExternalLink />
-				</a>
-			</li>
-			<!-- <li>
-        <a href="https://status.quranwbw.com/" target="_blank" class="flex flex-row items-center justify-between {rightMenuDropdownClasses}">
-          Status
-          <ExternalLink />
-        </a>
-      </li>
-      <li>
-        <a href="https://github.com/marwan/quranwbw-svelte/" target="_blank" class="flex flex-row items-center justify-between {rightMenuDropdownClasses}">
-          GitHub
-          <ExternalLink />
-        </a>
-      </li> -->
-		</ul>
 	</div>
 </nav>

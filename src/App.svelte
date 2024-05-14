@@ -45,6 +45,7 @@
 	checkOldBookmarks();
 
 	// custom padding depending on page
+	$: paddingTop = $__currentPage === 'home' ? 'pt-12' : 'pt-16';
 	$: paddingX = $__currentPage === 'page' ? 'px-0 md:px-4' : $__currentPage === 'home' ? 'px-0' : 'px-4';
 
 	// if settings drawer is open, hide body scroll
@@ -55,7 +56,7 @@
 </script>
 
 <Router>
-	<div class="max-w-screen-lg mx-auto pt-16 pb-24 select-none {paddingX}">
+	<div class="max-w-screen-lg mx-auto {paddingTop} pb-24 select-none {paddingX}">
 		<!-- include the UI elements -->
 		<Navbar />
 		<SettingsDrawer />

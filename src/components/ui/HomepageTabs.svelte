@@ -5,38 +5,18 @@
 	import { fetchChapterData } from '$utils/fetchChapterData';
 	import { __lastRead, __favouriteChapters, __userBookmarks } from '$utils/stores';
 	import { buttonElement } from '$data/commonStyles';
-	import { Dropdown, DropdownItem, Tooltip } from 'flowbite-svelte';
+	import NavigationDropdown from '$ui/NavigationDropdown.svelte';
+	import { Tooltip } from 'flowbite-svelte';
 	import { inview } from 'svelte-inview';
 
 	// icons
 	import Mecca from '$svgs/Mecca.svelte';
 	import Madinah from '$svgs/Madinah.svelte';
 	import Cross from '$svgs/Cross.svelte';
+	import Menu from '$svgs/Menu.svelte';
+	// import Star from '$svgs/Star.svelte';
 
 	let gotoVisible = false;
-
-	const homepageLinks = {
-		1: {
-			title: 'Supplications',
-			link: '/supplications'
-		},
-		2: {
-			title: 'Bookmarks',
-			link: '/bookmarks'
-		},
-		3: {
-			title: 'Search',
-			link: '/search'
-		},
-		4: {
-			title: 'Morphology',
-			link: '/morphology/1:1'
-		},
-		5: {
-			title: 'FAQs',
-			link: '/faq'
-		}
-	};
 
 	// chapter data fetch options
 	const fetchOptions = {
@@ -81,14 +61,10 @@
 
 		<!-- menu for links on right -->
 		<div>
-			<button class={homepageTabsStyles.tabStyle} id="naviagte-tab" type="button">Navigate</button>
-			<Dropdown class="max-w-min">
-				{#each Object.entries(homepageLinks) as [id, link]}
-					<Link to={link.link}>
-						<DropdownItem>{link.title}</DropdownItem>
-					</Link>
-				{/each}
-			</Dropdown>
+			<button class="flex flex-row items-center bg-[#ebebeb] rounded-3xl {homepageTabsStyles.tabStyle} p-3" title="Menu">
+				<span class="text-black opacity-50"><Menu /></span>
+			</button>
+			<NavigationDropdown />
 		</div>
 	</div>
 
@@ -143,6 +119,8 @@
 						</div>
 						<div class="invisible chapter-icons justify-items-end text-gray-400 text-3xl md:mt-2">{@html `&#xE9${quranMetaData[chapter + 1].icon};`}</div>
 					</Link>
+
+					<!-- <button class="pointer h-7 w-7 opacity-50 hover:opacity-70" style="margin-left: -30px; margin-right: -30px; margin-top: -5px;" title="Fav"><Star width={7} height={7} /></button> -->
 				{/each}
 			</div>
 		</div>
