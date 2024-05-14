@@ -4,6 +4,7 @@
 	import { quranMetaData, mostRead } from '$data/quranMeta';
 	import { fetchChapterData } from '$utils/fetchChapterData';
 	import { __lastRead, __favouriteChapters, __userBookmarks } from '$utils/stores';
+	import { buttonElement } from '$data/commonStyles';
 	import { Dropdown, DropdownItem, Tooltip } from 'flowbite-svelte';
 	import { inview } from 'svelte-inview';
 
@@ -11,6 +12,8 @@
 	import Mecca from '$svgs/Mecca.svelte';
 	import Madinah from '$svgs/Madinah.svelte';
 	import Cross from '$svgs/Cross.svelte';
+
+	let gotoVisible = false;
 
 	const homepageLinks = {
 		1: {
@@ -92,6 +95,31 @@
 	<div id="content-tab" class="my-6 px-2">
 		<!-- chapters tab -->
 		<div class="homepage-tab-panels {activeTab === 1 ? 'block' : 'hidden'}" id="chapters-tab-panel" role="tabpanel" aria-labelledby="chapters-tab">
+			{#if gotoVisible === false}
+				<div id="navigatation-handler" class="flex mb-4">
+					<button class="{buttonElement} text-xs" on:click={() => (gotoVisible = !gotoVisible)}>Go to...</button>
+				</div>
+			{/if}
+
+			{#if gotoVisible === true}
+				<div id="navigatation-inputs" class="flex flex-col space-y-2 md:flex-row md:space-x-4 md:space-y-0 mb-4">
+					<div class="flex flex-row">
+						<input type="number" min="1" max="114" id="gotoPage" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-l-3xl focus:ring-gray-500 focus:border-gray-500 block w-24 p-2.5" placeholder="e.g. {Math.floor(Math.random() * 114) + 1}" />
+						<button class="{buttonElement} text-xs rounded-l-none">Go to Chapter {@html '&#10230'}</button>
+					</div>
+
+					<div class="flex flex-row">
+						<input type="number" min="1" max="604" id="gotoPage" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-l-3xl focus:ring-gray-500 focus:border-gray-500 block w-24 p-2.5" placeholder="e.g. {Math.floor(Math.random() * 604) + 1}" />
+						<button class="{buttonElement} text-xs rounded-l-none">Go to Page {@html '&#10230'}</button>
+					</div>
+
+					<div class="flex flex-row">
+						<input type="number" min="1" max="30" id="gotoPage" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-l-3xl focus:ring-gray-500 focus:border-gray-500 block w-24 p-2.5" placeholder="e.g. {Math.floor(Math.random() * 30) + 1}" />
+						<button class="{buttonElement} text-xs rounded-l-none">Go to Juz {@html '&#10230'}</button>
+					</div>
+				</div>
+			{/if}
+
 			<div class="{homepageTabsStyles.cardGridStyle} grid-cols-2">
 				{#each { length: 114 } as _, chapter}
 					<Link to="/{chapter + 1}" class="{homepageTabsStyles.cardInnerStyle} flex-col-reverse md:flex-row text-center items-center">
@@ -113,7 +141,7 @@
 								{quranMetaData[chapter + 1].verses} Verses
 							</div>
 						</div>
-						<div class="invisible chapter-icons justify-items-end text-gray-400 text-3xl mt-2">{@html `&#xE9${quranMetaData[chapter + 1].icon};`}</div>
+						<div class="invisible chapter-icons justify-items-end text-gray-400 text-3xl md:mt-2">{@html `&#xE9${quranMetaData[chapter + 1].icon};`}</div>
 					</Link>
 				{/each}
 			</div>
