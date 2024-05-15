@@ -28,6 +28,7 @@
 	// update userBookmarks whenever the __userSettings changes
 	$: userBookmarks = JSON.parse($__userSettings).userBookmarks;
 
+	const dropdownItemClasses = 'font-normal rounded-3xl';
 	const buttonClasses = 'inline-flex items-center justify-center w-10 h-10 transition-colors duration-150 rounded-3xl focus:shadow-outline hover:bg-[#ebebeb] print:hidden';
 
 	let dropdownOpen = false;
@@ -97,62 +98,43 @@
 		</div>
 	</button>
 
-	<Dropdown bind:open={dropdownOpen} class="rounded-3xl">
+	<Dropdown bind:open={dropdownOpen} class="px-2 mr-2 my-2 w-fit">
 		<!-- play verse button -->
 		<DropdownItem
+			class={dropdownItemClasses}
 			on:click={() => {
 				showAudioModal(key);
 				dropdownOpen = false;
 			}}
 		>
-			<div class="flex flex-row items-center">
-				<div class="opacity-50">
-					<svelte:component this={$__audioSettings.isPlaying === true && $__audioSettings.playingKey === key ? Pause : Play} />
-				</div>
-				<span class="text-xs pl-2">Advanced Play</span>
-			</div>
+			Advanced Play
 		</DropdownItem>
 
 		<!-- verse notes button -->
 		<DropdownItem
+			class={dropdownItemClasses}
 			on:click={() => {
 				showNotesModal();
 				dropdownOpen = false;
 			}}
 		>
-			<div class="flex flex-row items-center">
-				<Notes />
-				<span class="text-xs pl-2">Verse Notes</span>
-			</div>
+			Verse Notes
 		</DropdownItem>
 
 		<!-- verse page button -->
-		<DropdownItem>
+		<DropdownItem class={dropdownItemClasses}>
 			<Link to="/page/{value.meta.page}">
-				<div class="flex flex-row items-center">
-					<Book />
-					<span class="text-xs pl-2">Go to Page {value.meta.page}</span>
-				</div>
+				Go to Page {value.meta.page}
 			</Link>
 		</DropdownItem>
 
 		<!-- verse morphology button -->
-		<DropdownItem>
-			<Link to="/morphology/{chapter}:{verse}">
-				<div class="flex flex-row items-center">
-					<Book />
-					<span class="text-xs pl-2">Verse Morphology</span>
-				</div>
-			</Link>
+		<DropdownItem class={dropdownItemClasses}>
+			<Link to="/morphology/{chapter}:{verse}">Verse Morphology</Link>
 		</DropdownItem>
 
 		<!-- share verse button -->
-		<DropdownItem on:click={() => shareVerse()}>
-			<div class="flex flex-row items-center">
-				<ShareOutline />
-				<span class="text-xs pl-2">Share Verse</span>
-			</div>
-		</DropdownItem>
+		<DropdownItem class={dropdownItemClasses} on:click={() => shareVerse()}>Share Verse</DropdownItem>
 
 		<!-- Verse screenshot button -->
 		<!-- <DropdownItem on:click={() => downloadVerseImage(key)}>

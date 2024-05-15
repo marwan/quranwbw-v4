@@ -22,7 +22,7 @@
 	$: {
 		if (searchText.length > 0) {
 			// update the params
-			navigate(`/search?text=${searchText}&translation=${selectedTranslation}`, { replace: true });
+			navigate(`/search?text=${searchText}&translation=${selectedTranslation}`, { replace: false });
 
 			searchResults = (async () => {
 				const response = await fetch(`https://api.alquran.cloud/v1/search/${searchText}/all/${searchableTranslations[selectedTranslation].identifier}`);

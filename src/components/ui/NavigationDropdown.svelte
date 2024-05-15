@@ -7,6 +7,8 @@
 	// icons
 	import ExternalLink from '$svgs/ExternalLink.svelte';
 
+	let dropdownOpen = false;
+
 	const internalLinks = {
 		1: {
 			title: 'Supplications',
@@ -45,11 +47,29 @@
 	const dropdownItemClasses = 'font-normal rounded-3xl';
 </script>
 
-<Dropdown class="px-2 mr-2 my-2 w-[180px] max-w-xs max-h-52 md:max-h-64 overflow-y-scroll">
+<Dropdown class="px-2 mr-2 my-2 w-[180px] max-w-xs max-h-52 md:max-h-64 overflow-y-scroll" bind:open={dropdownOpen}>
 	<!-- drawers / modals -->
-	<DropdownItem class={dropdownItemClasses} on:click={() => ($__settingsDrawerHidden = false)}>Settings</DropdownItem>
-	<DropdownItem class={dropdownItemClasses} on:click={() => toggleModal('tajweed-rules-modal', 'show')}>Tajweed Rules</DropdownItem>
-	<DropdownItem class={dropdownItemClasses} on:click={() => toggleModal('token-modal', 'show')}>Token Login</DropdownItem>
+	<DropdownItem
+		class={dropdownItemClasses}
+		on:click={() => {
+			$__settingsDrawerHidden = false;
+			dropdownOpen = false;
+		}}>Settings</DropdownItem
+	>
+	<DropdownItem
+		class={dropdownItemClasses}
+		on:click={() => {
+			toggleModal('tajweed-rules-modal', 'show');
+			dropdownOpen = false;
+		}}>Tajweed Rules</DropdownItem
+	>
+	<DropdownItem
+		class={dropdownItemClasses}
+		on:click={() => {
+			toggleModal('token-modal', 'show');
+			dropdownOpen = false;
+		}}>Token Login</DropdownItem
+	>
 	<!-- <DropdownItem class={dropdownItemClasses} on:click={() => toggleModal('download-modal', 'show')}>Download Data</DropdownItem> -->
 
 	<!-- internal links -->

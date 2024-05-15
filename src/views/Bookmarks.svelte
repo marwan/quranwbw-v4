@@ -32,7 +32,7 @@
 				{/each}
 			</div>
 		{:catch error}
-			<p>{error}</p>
+			<p>{errorLoadingDataMessage}</p>
 		{/await}
 	{/if}
 </div>

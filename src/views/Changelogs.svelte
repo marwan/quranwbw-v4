@@ -1,7 +1,7 @@
 <script>
 	import PageMeta from '$components/PageMeta.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
-	import { websiteURL } from '$data/websiteSettings';
+	import { errorLoadingDataMessage } from '$data/websiteSettings';
 	import { __currentPage } from '$utils/stores';
 	import { timeAgo } from '$utils/timeAgo';
 	import { linkElement } from '$data/commonStyles';
@@ -50,6 +50,6 @@
 			{/each}
 		</div>
 	{:catch error}
-		<p>{error}</p>
+		<p>{errorLoadingDataMessage}</p>
 	{/await}
 </div>

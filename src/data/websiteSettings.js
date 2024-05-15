@@ -55,3 +55,5 @@ export const websiteTitle = `Quran ${websiteTagline} - ${websiteURL}`;
 export const apiEndpoint = 'https://api.quranwbw.com/v1/verses?';
 
 export const wordsAudioURL = 'https://audios.quranwbw.com/words/';
+
+export const errorLoadingDataMessage = 'Sorry, there was an error while loading the data. Please refresh the page and try again.';

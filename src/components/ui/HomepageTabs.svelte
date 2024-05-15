@@ -43,7 +43,7 @@
 	});
 </script>
 
-<div id="homepage-tabs" class="pt-4" style="margin-top: 15px;">
+<div id="homepage-tabs" style="margin-top: 15px;">
 	<div class="flex flex-row justify-center mb-4 text-gray-400 px-4">
 		<!-- main tabs on left -->
 		<div id="tab-buttons">

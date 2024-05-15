@@ -9,6 +9,7 @@
 	import { fetchChapterData } from '$utils/fetchChapterData';
 	import { quranMetaData, bismillahTypes } from '$data/quranMeta';
 	import { displayOptions } from '$data/options';
+	import { errorLoadingDataMessage } from '$data/websiteSettings';
 	import { __currentPage, __chapterNumber, __displayType, __wordType, __wordTranslation, __verseTranslations, __pageURL } from '$utils/stores';
 	// import { debounce } from '$utils/debounce';
 	// import { toggleNavbar } from '$utils/toggleNavbar';
@@ -79,6 +80,6 @@
 			<ChapterVerses {startVerse} {endVerse} />
 		</div>
 	{:catch error}
-		<p>{error}</p>
+		<p>{errorLoadingDataMessage}</p>
 	{/await}
 </div>

@@ -5,6 +5,7 @@
 	import { __currentPage, __wordType, __displayType, __wordTranslation, __verseTranslations } from '$utils/stores';
 	import { getSupplicationKeys } from '$utils/getSupplicationKeys';
 	import { fetchVersesData } from '$utils/fetchChapterData';
+	import { errorLoadingDataMessage } from '$data/websiteSettings';
 
 	// fetch supplication verses
 	$: fetchData = fetchVersesData(getSupplicationKeys(), $__wordType, $__wordTranslation, $__verseTranslations.toString());
@@ -24,6 +25,6 @@
 			{/each}
 		</div>
 	{:catch error}
-		<p>{error}</p>
+		<p>{errorLoadingDataMessage}</p>
 	{/await}
 </div>

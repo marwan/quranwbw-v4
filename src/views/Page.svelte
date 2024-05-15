@@ -9,6 +9,7 @@
 	import Spinner from '$svgs/Spinner.svelte';
 	import { __chapterNumber, __pageNumber, __currentPage, __wordType, __tajweedEnabled, __mushafPageDivisions } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';
+	import { errorLoadingDataMessage } from '$data/websiteSettings';
 	import { quranMetaData, chapterHeaderCodes, bismillahTypes } from '$data/quranMeta';
 	import { mushafFontLinks } from '$data/options';
 	import '$lib/swiped-events.min.js';
@@ -125,12 +126,12 @@
 
 	// goto previous page on left swipe
 	document.addEventListener('swiped-left', function (e) {
-		navigate(`/page/${page === 1 ? 1 : page - 1}`, { replace: true });
+		navigate(`/page/${page === 1 ? 1 : page - 1}`, { replace: false });
 	});
 
 	// goto next page on right swipe
 	document.addEventListener('swiped-right', function (e) {
-		navigate(`/page/${page === 604 ? 604 : page + 1}`, { replace: true });
+		navigate(`/page/${page === 604 ? 604 : page + 1}`, { replace: false });
 	});
 
 	// remove the "invisible" class from chapter-header once fonts are loaded so blank icon doesn't show up
@@ -185,6 +186,6 @@
 			</div>
 		</div>
 	{:catch error}
-		<p>{error}</p>
+		<p>{errorLoadingDataMessage}</p>
 	{/await}
 </div>

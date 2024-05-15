@@ -2,7 +2,7 @@
 	import PageMeta from '$components/PageMeta.svelte';
 	import { Link } from 'svelte-routing';
 	import { websiteTagline } from '$data/websiteSettings';
-	import { __currentPage, __lastRead } from '$utils/stores';
+	import { __currentPage } from '$utils/stores';
 	import Logo from '$svgs/Logo.svelte';
 	import HomepageTabs from '$ui/HomepageTabs.svelte';
 
@@ -46,7 +46,7 @@
 		<div class="text-xs text-center text-gray-400">{websiteTagline}</div>
 	</div>
 
-	<!-- <div class="w-full flex flex-col justify-center mt-12 text-xs text-gray-400 space-y-8 scale-75 md:scale-90">
+	<div class="w-full flex flex-col justify-center mt-12 text-xs text-gray-400 space-y-8 scale-[0.80]">
 		<div class="flex flex-row space-x-4 justify-center">
 			{#each Object.entries(homepageLinks) as [id, link]}
 				<Link to={link.link} class={cardInnerStyle}>
@@ -56,8 +56,6 @@
 			{/each}
 		</div>
 	</div>
-
-	<div class="border-t-2"></div> -->
 
 	<!-- chapter and most read tabs -->
 	<HomepageTabs />

@@ -34,7 +34,7 @@
 		if ($__currentPage === 'morphology') {
 			const wordKey = `${chapter}:${verse}:${word + 1}`;
 			__morphologyKey.set(wordKey);
-			navigate(`/morphology/${wordKey}`, { replace: true });
+			navigate(`/morphology/${wordKey}`, { replace: false });
 		} else {
 			wordAudioController({ chapter, verse, word });
 		}

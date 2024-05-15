@@ -61,23 +61,23 @@
 
 		switch (selectedNavigation) {
 			case 1:
-				navigate(`/${waypoint}`, { replace: true });
+				navigate(`/${waypoint}`, { replace: false });
 				break;
 
 			case 2:
 				const pageKey = pageNumberKeys[waypoint - 1].split(':');
-				navigate(`/${+pageKey[0]}/${+pageKey[1]}`, { replace: true });
+				navigate(`/${+pageKey[0]}/${+pageKey[1]}`, { replace: false });
 				break;
 
 			case 3:
 				const juzKey = juzNumberKeys[waypoint - 1].split(':');
-				navigate(`/${+juzKey[0]}/${+juzKey[1]}`, { replace: true });
+				navigate(`/${+juzKey[0]}/${+juzKey[1]}`, { replace: false });
 				break;
 
 			case 4:
 				const chapter = waypoint.split(':')[0],
 					verse = waypoint.split(':')[1];
-				navigate(`/${+chapter}/${+verse}`, { replace: true });
+				navigate(`/${+chapter}/${+verse}`, { replace: false });
 				break;
 		}
 	}

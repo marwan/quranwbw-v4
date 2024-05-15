@@ -7,6 +7,7 @@
 	import VersesWords from '$verses/VersesWords.svelte';
 	import MorphologyTable from '$morphology/MorphologyTable.svelte';
 	import { quranMetaData } from '$data/quranMeta';
+	import { errorLoadingDataMessage } from '$data/websiteSettings';
 	import { __currentPage, __wordType, __wordTranslation, __verseTranslations, __morphologyKey } from '$utils/stores';
 	import { tabPillElement } from '$data/commonStyles';
 	import { fetchVersesData } from '$utils/fetchChapterData';
@@ -77,7 +78,7 @@
 				{/each}
 			</div>
 		{:catch error}
-			<p>{error}</p>
+			<p>{errorLoadingDataMessage}</p>
 		{/await}
 	</div>
 
@@ -87,7 +88,7 @@
 		{:then fetchWordSummary}
 			<span>{fetchWordSummary.summary}</span>
 		{:catch error}
-			<p>{error}</p>
+			<p>{errorLoadingDataMessage}</p>
 		{/await}
 	</div>
 
@@ -118,7 +119,7 @@
 				<div class="text-center my-8 text-sm opacity-70">Root data for this word is not available.</div>
 			{/if}
 		{:catch error}
-			<p>{error}</p>
+			<p>{errorLoadingDataMessage}</p>
 		{/await}
 	</div>
 
@@ -128,7 +129,7 @@
 		{:then fetchWordsData}
 			<MorphologyTable wordData={fetchWordsData[0].morphology.root.words_with_same_root} tableType={1} />
 		{:catch error}
-			<p>{error}</p>
+			<p>{errorLoadingDataMessage}</p>
 		{/await}
 	</div>
 
@@ -138,7 +139,7 @@
 		{:then fetchWordsData}
 			<MorphologyTable wordData={fetchWordsData[0].morphology.exact_words_in_quran} tableType={2} />
 		{:catch error}
-			<p>{error}</p>
+			<p>{errorLoadingDataMessage}</p>
 		{/await}
 	</div>
 </div>
