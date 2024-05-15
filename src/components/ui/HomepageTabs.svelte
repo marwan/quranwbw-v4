@@ -6,6 +6,7 @@
 	import { __lastRead, __favouriteChapters, __userBookmarks } from '$utils/stores';
 	import NavigationDropdown from '$ui/NavigationDropdown.svelte';
 	import PointNavigationSelector from '$ui/PointNavigationSelector.svelte';
+	import { buttonElement } from '$data/commonStyles';
 	import { Tooltip } from 'flowbite-svelte';
 	import { inview } from 'svelte-inview';
 
@@ -14,6 +15,9 @@
 	import Madinah from '$svgs/Madinah.svelte';
 	import Cross from '$svgs/Cross.svelte';
 	import Menu from '$svgs/Menu.svelte';
+
+	$: lastReadChapter = $__lastRead.split(':')[0];
+	$: lastReadVerse = $__lastRead.split(':')[1];
 
 	// chapter data fetch options
 	const fetchOptions = {
@@ -25,7 +29,7 @@
 	const homepageTabsStyles = {
 		cardGridStyle: 'grid md:grid-cols-2 lg:grid-cols-3 gap-3',
 		cardInnerStyle: 'flex justify-between md:text-left border border-gray-200 transition text-sm bg-gray-50 rounded-3xl p-5 hover:cursor-pointer hover:bg-[#ebebeb]',
-		tabStyle: 'p-2 md:p-4 text-xs md:text-md cursor-pointer border-b-0',
+		tabStyle: 'p-2 md:p-3 text-xs md:text-md cursor-pointer border-b-0',
 		activeTab: 'border-b-4'
 	};
 
@@ -39,8 +43,8 @@
 	});
 </script>
 
-<div id="homepage-tabs" class="pt-0">
-	<div class="flex flex-row justify-between mb-4 text-gray-400 px-4">
+<div id="homepage-tabs" class="pt-4" style="margin-top: 15px;">
+	<div class="flex flex-row justify-center mb-4 text-gray-400 px-4">
 		<!-- main tabs on left -->
 		<div id="tab-buttons">
 			<ul class="flex text-sm font-medium text-center justify-center space-x-2 md:space-x-4">
@@ -57,7 +61,7 @@
 		</div>
 
 		<!-- menu for links on right -->
-		<div>
+		<div class="ml-2">
 			<button class="flex flex-row items-center bg-[#ebebeb] rounded-3xl {homepageTabsStyles.tabStyle} p-3" title="Menu">
 				<span class="text-black opacity-50"><Menu /></span>
 			</button>
@@ -69,33 +73,40 @@
 		<!-- chapters tab -->
 		<div class="homepage-tab-panels {activeTab === 1 ? 'block' : 'hidden'}" id="chapters-tab-panel" role="tabpanel" aria-labelledby="chapters-tab">
 			<!-- chapter / page etc... selector -->
-			<PointNavigationSelector />
+			<div class="flex flex-col md:flex-row justify-between">
+				<PointNavigationSelector width="full" />
+				<div>
+					<Link to="/{lastReadChapter}/{lastReadVerse}" class="py-2.5 {buttonElement} text-xs w-full mb-4 md:mb-0">Continue Reading: {quranMetaData[lastReadChapter].transliteration}, {lastReadChapter}:{lastReadVerse} {@html '&#10230'}</Link>
+				</div>
+			</div>
 
 			<div class="{homepageTabsStyles.cardGridStyle} grid-cols-2">
 				{#each { length: 114 } as _, chapter}
-					<Link to="/{chapter + 1}" class="{homepageTabsStyles.cardInnerStyle} flex-col-reverse md:flex-row text-center items-center">
-						<div class="" use:inview={fetchOptions} on:inview_enter={(event) => fetchChapterData(+chapter + 1)}>
-							<!-- chapter name and icon -->
-							<div class="flex flex-row items-center space-x-1 justify-center truncate">
-								<div>{chapter + 1}. {quranMetaData[chapter + 1].transliteration}</div>
-								<div class="opacity-50"><svelte:component this={quranMetaData[chapter + 1].revelation === 1 ? Mecca : Madinah} /></div>
-								<Tooltip type="light" placement="right" class="z-30">{quranMetaData[chapter + 1].revelation === 1 ? 'Meccan' : 'Medinan'} revelation</Tooltip>
-							</div>
+					<Link to="/{chapter + 1}">
+						<!-- <button class="pointer h-7 w-7 rounded-full bg-gray-300 text-xs">{chapter + 1}</button> -->
 
-							<!-- chapter translation -->
-							<div class="block text-xs text-gray-400 truncate">
-								{quranMetaData[chapter + 1].translation}
-							</div>
+						<div class="{homepageTabsStyles.cardInnerStyle} flex-col-reverse md:flex-row text-center items-center">
+							<div class="" use:inview={fetchOptions} on:inview_enter={(event) => fetchChapterData(+chapter + 1)}>
+								<!-- chapter name and icon -->
+								<div class="flex flex-row items-center space-x-1 justify-center truncate">
+									<div>{chapter + 1}. {quranMetaData[chapter + 1].transliteration}</div>
+									<div class="opacity-50"><svelte:component this={quranMetaData[chapter + 1].revelation === 1 ? Mecca : Madinah} /></div>
+									<Tooltip type="light" placement="right" class="z-30">{quranMetaData[chapter + 1].revelation === 1 ? 'Meccan' : 'Medinan'} revelation</Tooltip>
+								</div>
 
-							<!-- chapter verses -->
-							<div class="block text-xs text-gray-400">
-								{quranMetaData[chapter + 1].verses} Verses
+								<!-- chapter translation -->
+								<div class="block text-xs text-gray-400 truncate">
+									{quranMetaData[chapter + 1].translation}
+								</div>
+
+								<!-- chapter verses -->
+								<div class="block text-xs text-gray-400">
+									{quranMetaData[chapter + 1].verses} Verses
+								</div>
 							</div>
+							<div class="invisible chapter-icons justify-items-end text-gray-400 text-3xl md:mt-2">{@html `&#xE9${quranMetaData[chapter + 1].icon};`}</div>
 						</div>
-						<div class="invisible chapter-icons justify-items-end text-gray-400 text-3xl md:mt-2">{@html `&#xE9${quranMetaData[chapter + 1].icon};`}</div>
 					</Link>
-
-					<!-- <button class="pointer h-7 w-7 opacity-50 hover:opacity-70" style="margin-left: -30px; margin-right: -30px; margin-top: -5px;" title="Fav"><Star width={7} height={7} /></button> -->
 				{/each}
 			</div>
 		</div>

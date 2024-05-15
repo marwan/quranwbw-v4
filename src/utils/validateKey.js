@@ -27,5 +27,3 @@ export function validateKey(key) {
 
 	return true;
 }
-
-window.validateKey = validateKey;
