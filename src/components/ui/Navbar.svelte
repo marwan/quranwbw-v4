@@ -1,31 +1,20 @@
 <script>
 	import { Link } from 'svelte-routing';
-	import { quranMetaData, pageNumberKeys } from '$data/quranMeta';
+	import { quranMetaData } from '$data/quranMeta';
 	import { __chapterNumber, __currentPage, __lastRead, __pageURL, __topNavbarVisible, __pageNumber, __morphologyKey, __mushafPageDivisions, __settingsDrawerHidden } from '$utils/stores';
 	import { toggleModal } from '$utils/toggleModal';
-	import { buttonElement } from '$data/commonStyles';
 	import NavigationDropdown from '$ui/NavigationDropdown.svelte';
+	import PointNavigationSelector from '$ui/PointNavigationSelector.svelte';
 
 	// icons
 	import Menu from '$svgs/Menu.svelte';
 	import Home from '$svgs/Home.svelte';
 	import ChevronDown from '$svgs/ChevronDown.svelte';
 
-	let gotoVerse = 1,
-		gotoPageChapter = 1,
-		gotoPageVerse = 1;
-
-	function pageSelector(event) {
-		const pageKey = pageNumberKeys[event.target.valueAsNumber - 1].split(':');
-		(gotoPageChapter = +pageKey[0]), (gotoPageVerse = +pageKey[1]);
-	}
-
 	// updating the page, juz... when the last read location updates
 	let lastReadPage, lastReadJuz;
 
 	$: {
-		// window.HSStaticMethods.autoInit();
-
 		try {
 			lastReadPage = document.getElementById($__lastRead).getAttribute('data-page');
 			lastReadJuz = document.getElementById($__lastRead).getAttribute('data-juz');
@@ -122,83 +111,61 @@
 			</div>
 		</div>
 
-		<div id="chapter-progress-bar" class="fixed inset-x-0 z-20 h-1 bg-gray-300 transition-width transition-slowest ease dark:bg-slate-700" style="width: {chapterProgress}%" />
+		<div id="chapter-progress-bar" class="fixed inset-x-0 z-20 h-1 bg-gray-300 transition-width transition-slowest ease" style="width: {chapterProgress}%" />
 	{/if}
 
 	<!-- mini nav for mushaf page -->
 	{#if $__currentPage === 'page'}
-		<div id="bottom-nav" class="flex flex-row items-center justify-between border-t text-xs max-w-screen-lg mx-auto px-6 dark:border-slate-700">
+		<div id="bottom-nav" class="flex flex-row items-center justify-between border-t text-xs max-w-screen-lg mx-auto px-6">
 			<div class="flex flex-row items-center py-2">{mushafChapter}</div>
 			<div class="flex flex-row items-center py-2">{mushafJuz}</div>
 		</div>
 	{/if}
 
 	<!-- navigation list -->
-	<div id="navigationDropdown" class="navbar-dropdown z-30 mt-1 border border-gray-200 rounded-3xl shadow-sm bg-white border-y shadow-lg hidden dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700">
-		<div class="flex flex-row space-x-4 justify-between max-h-80 max-w-screen-lg px-4 py-5 mx-auto text-gray-900 dark:text-slate-400 md:px-2">
-			<!-- chapter selector -->
-			<div class="flex flex-col space-y-2">
-				<div class="mx-4 text-xs pb-2 border-b dark:border-slate-700">Chapters</div>
-				<ul id="navbar-chapter-list" class="grow basis-1/2 px-2 overflow-y-scroll md:min-w-fit">
-					{#each { length: 114 } as _, chapter}
-						<li>
-							<button on:click={() => toggleModal('navigationDropdown', 'hide')} class="w-full text-left">
-								<Link to="/{chapter + 1}" class="block p-3 rounded-3xl hover:bg-[#ebebeb] dark:hover:bg-slate-700 {$__chapterNumber === chapter + 1 && 'bg-[#ebebeb] dark:bg-slate-700'}">
-									<span class="text-sm text-gray-500 dark:text-slate-400">
-										{chapter + 1}. {quranMetaData[chapter + 1].transliteration}
-										<span class="hidden md:inline-block">({quranMetaData[chapter + 1].translation})</span>
-									</span>
-								</Link>
-							</button>
-						</li>
-					{/each}
-				</ul>
+	<div id="navigationDropdown" class="navbar-dropdown z-30 mt-1 border border-gray-200 rounded-3xl shadow-sm bg-white border-y shadow-lg hidden">
+		<div class="flex flex-col space-y-4 justify-between max-w-screen-lg px-4 py-5 mx-auto text-gray-900 md:px-2">
+			<div class="mx-2">
+				<PointNavigationSelector width="full" />
 			</div>
 
-			<!-- verses selector -->
-			{#if $__currentPage === 'chapter'}
-				<div class="flex flex-col space-y-6">
-					<!-- goto verse -->
-					<div class="flex flex-col space-y-2">
-						<div class="text-xs pb-2 border-b dark:border-slate-700">Go to Verse</div>
-						<div class="flex flex-row space-x-2">
-							<input
-								type="number"
-								min="1"
-								max={quranMetaData[$__chapterNumber].verses}
-								id="gotoVerse"
-								on:change={(event) => (gotoVerse = event.target.valueAsNumber)}
-								aria-describedby="helper-text-explanation"
-								class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-3xl focus:ring-gray-500 focus:border-gray-500 block w-24 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-gray-500 dark:focus:border-gray-500"
-								placeholder="e.g. {Math.floor(Math.random() * (quranMetaData[$__chapterNumber].verses - 1 + 1)) + 1}"
-							/>
-							<button on:click={() => toggleModal('navigationDropdown', 'hide')}>
-								<Link to="/{$__chapterNumber}/{gotoVerse}" on:click={() => __pageURL.set(Math.random())} class={buttonElement}>Go</Link>
-							</button>
-						</div>
-					</div>
-					<!-- goto page -->
-					<div class="flex flex-col space-y-2">
-						<div class="text-xs pb-2 border-b dark:border-slate-700">Go to Page</div>
-						<div class="flex flex-row space-x-2">
-							<input
-								type="number"
-								min="1"
-								max="604"
-								id="gotoPage"
-								on:change={(event) => pageSelector(event)}
-								aria-describedby="helper-text-explanation"
-								class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-3xl focus:ring-gray-500 focus:border-gray-500 block w-24 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-gray-500 dark:focus:border-gray-500"
-								placeholder="e.g. {Math.floor(Math.random() * 604) + 1}"
-							/>
-							<button on:click={() => toggleModal('navigationDropdown', 'hide')}>
-								<Link to="/{gotoPageChapter}/{gotoPageVerse}" on:click={() => __pageURL.set(Math.random())} class={buttonElement}>Go</Link>
-							</button>
-						</div>
-						<div class="flex flex-col text-xs opacity-50">{quranMetaData[gotoPageChapter].transliteration}, {gotoPageChapter}:{gotoPageVerse}</div>
-					</div>
+			<!-- chapter and verse selectors -->
+			<div class="flex flex-row space-x-4 max-h-80">
+				<!-- chapter selector -->
+				<div class="flex flex-col space-y-2 w-full">
+					<div class="mx-4 text-xs pb-2 border-b">Chapters</div>
+					<ul id="navbar-chapter-list" class="grow basis-1/2 px-2 overflow-y-scroll">
+						{#each { length: 114 } as _, chapter}
+							<li>
+								<button on:click={() => toggleModal('navigationDropdown', 'hide')} class="w-full text-left">
+									<Link to="/{chapter + 1}" class="block p-3 rounded-3xl hover:bg-[#ebebeb] {$__chapterNumber === chapter + 1 && 'bg-[#ebebeb]'}">
+										<span class="text-sm text-gray-500">
+											{chapter + 1}. {quranMetaData[chapter + 1].transliteration}
+											<span class="hidden md:inline-block">({quranMetaData[chapter + 1].translation})</span>
+										</span>
+									</Link>
+								</button>
+							</li>
+						{/each}
+					</ul>
 				</div>
-			{/if}
+
+				<!-- verse selector -->
+				<div class="flex flex-col space-y-2 w-44">
+					<div class="mx-4 text-xs pb-2 border-b">Verse</div>
+					<ul id="navbar-verse-list" class="grow basis-1/2 px-2 overflow-y-scroll">
+						{#each { length: quranMetaData[$__chapterNumber].verses } as _, verse}
+							<li>
+								<button on:click={() => toggleModal('navigationDropdown', 'hide')} class="w-full text-left">
+									<Link to="/{$__chapterNumber}/{verse + 1}" on:click={() => __pageURL.set(Math.random())} class="block p-3 rounded-3xl hover:bg-[#ebebeb]">
+										<span class="text-sm text-gray-500">Verse {verse + 1}</span>
+									</Link>
+								</button>
+							</li>
+						{/each}
+					</ul>
+				</div>
+			</div>
 		</div>
 	</div>
 </nav>

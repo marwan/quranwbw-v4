@@ -794,6 +794,8 @@ export const pageNumberKeys = [
 	'112:1'
 ];
 
+export const juzNumberKeys = ['1:1', '2:142', '2:253', '3:93', '4:24', '4:148', '5:82', '6:111', '7:88', '8:41', '9:93', '11:6', '12:53', '15:1', '17:1', '18:75', '21:1', '23:1', '25:21', '27:56', '29:46', '33:31', '36:28', '39:32', '41:47', '46:1', '51:31', '58:1', '67:1', '78:1'];
+
 export const mostRead = [
 	{ id: 1, chapter: 2, verses: 'Verse 255', title: "Whoever recites the 'verse of the Throne' after every prescribed prayer, there will be nothing standing between him and entry into Paradise but his death.", url: '/2/255' },
 	{ id: 2, chapter: 2, verses: 'Verses 285-286', title: 'If anyone recited two verses from the last of Surah al-Baqarah at night, they will be sufficient for him.', url: '/2/285-286' },

@@ -73,6 +73,7 @@
 		<div>
 			<Route path="/" component={Home} />
 			<Route path="/supplications" component={Supplications} />
+			<Route path="/duas" component={Supplications} />
 			<Route path="/bookmarks" component={Bookmarks} />
 			<Route path="/changelogs" component={Changelogs} />
 			<Route path="/issues" component={Issues} />
