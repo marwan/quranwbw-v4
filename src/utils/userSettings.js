@@ -14,6 +14,7 @@
 	if (userSettings.displaySettings.wordTransliterationEnabled === undefined) userSettings.displaySettings.wordTransliterationEnabled = true; // shown
 	if (userSettings.displaySettings.tajweedEnabled === undefined) userSettings.displaySettings.tajweedEnabled = true; // shown
 	if (userSettings.displaySettings.wordTooltip === undefined) userSettings.displaySettings.wordTooltip = 1; // none
+	if (userSettings.displaySettings.autoScrollSpeed === undefined) userSettings.displaySettings.autoScrollSpeed = 40; // x1
 
 	// font size settings (child of display settings)
 	if (userSettings.displaySettings.fontSizes === undefined) userSettings.displaySettings.fontSizes = {}; // parent

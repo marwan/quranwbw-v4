@@ -108,3 +108,6 @@ export const __downloadedDataSettings = writable({
 	allChaptersDownloaded: false,
 	downloadedChapters: []
 });
+
+// to store the auto scroll speed
+export const __autoScrollSpeed = writable(userSettings.displaySettings.autoScrollSpeed);

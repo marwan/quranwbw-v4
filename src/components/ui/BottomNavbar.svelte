@@ -1,12 +1,13 @@
 <script>
 	import { Link } from 'svelte-routing';
 	import { __audioSettings } from '$utils/stores';
-	import { __chapterNumber, __pageNumber, __displayType, __currentPage, __bottomNavbarVisible, __settingsDrawerHidden } from '$utils/stores';
+	import { __chapterNumber, __pageNumber, __displayType, __currentPage, __bottomNavbarVisible, __settingsDrawerHidden, __autoScrollSpeed } from '$utils/stores';
 	import { quickPlayAudio } from '$utils/audioController';
 	import { quranMetaData } from '$data/quranMeta';
 	import { disabledElement } from '$data/commonStyles';
 	import { updateSettings } from '$utils/updateSettings';
 	import { Tooltip } from 'flowbite-svelte';
+	import { taphold } from 'svelte-taphold';
 
 	// icons
 	import PlaySolid from '$svgs/PlaySolid.svelte';
@@ -15,11 +16,15 @@
 	import ChevronRight from '$svgs/ChevronRight.svelte';
 	import Settings from '$svgs/Settings.svelte';
 	import Eye from '$svgs/Eye.svelte';
+	import Plus from '$svgs/Plus.svelte';
+	import Minus from '$svgs/Minus.svelte';
+	import CrossOutline from '$svgs/CrossOutline.svelte';
+	import ScrollDown from '$svgs/ScrollDown.svelte';
 
-	// quick play from first verse of page till the max chapter verses
-	function audioHandler() {
-		quickPlayAudio($__chapterNumber, +document.getElementsByClassName('verse')[0].id.split(':')[1], quranMetaData[$__chapterNumber].verses);
-	}
+	const holdInterval = 100;
+
+	let scrollModeEnabled = false;
+	let scrollEnabled = false;
 
 	let previousNavigation, nextNavigation;
 	let previousNavigationDisabled = false,
@@ -39,11 +44,78 @@
 			if ($__pageNumber === 604) previousNavigationDisabled = true;
 		}
 	}
+
+	// quick play from first verse of page till the max chapter verses
+	function audioHandler() {
+		quickPlayAudio($__chapterNumber, +document.getElementsByClassName('verse')[0].id.split(':')[1], quranMetaData[$__chapterNumber].verses);
+	}
+
+	// ====================================
+	// scroll stuff
+
+	const scrollSpeeds = {
+		0: 'x5',
+		10: 'x4',
+		20: 'x3',
+		30: 'x2',
+		40: 'x1'
+	};
+
+	// start/stop scroll
+	$: {
+		if (scrollEnabled) {
+			pageScroll($__autoScrollSpeed);
+		} else {
+			clearAllIntervals();
+		}
+	}
+
+	function pageScroll(speed) {
+		window.scrollBy(0, 1);
+		setTimeout(`pageScroll(${speed})`, speed);
+	}
+
+	// need this to re-run the function
+	window.pageScroll = pageScroll;
+
+	function clearAllIntervals() {
+		for (let i = 1; i < 99999; i++) window.clearInterval(i);
+	}
+
+	function updateScrollSpeed(action) {
+		if (scrollEnabled) {
+			// stop all scrolls
+			clearAllIntervals();
+
+			// milliseconds
+			const minSpeed = 40;
+			const maxSpeed = 0;
+
+			const interval = 10; // minimum change
+			let updatedSpeed;
+
+			// decreasing the scroll speed by adding time
+			if (action === 'decrease') {
+				updatedSpeed = $__autoScrollSpeed + interval > minSpeed ? minSpeed : $__autoScrollSpeed + interval;
+			}
+
+			// increasing the scroll speed by subtracting time
+			else if (action === 'increase') {
+				updatedSpeed = $__autoScrollSpeed - interval < maxSpeed ? maxSpeed : $__autoScrollSpeed - interval;
+			}
+
+			// update value in store
+			updateSettings({ type: 'autoScrollSpeed', value: updatedSpeed });
+
+			// scroll the page with new speed
+			pageScroll(updatedSpeed);
+		}
+	}
 </script>
 
 <div class={$__currentPage === 'chapter' || $__currentPage === 'page' ? 'block' : 'hidden'}>
 	<div class="{$__bottomNavbarVisible ? 'block' : 'hidden'} fixed z-20 w-full h-16 max-w-xs md:max-w-lg shadow-sm -translate-x-1/2 bg-white border border-gray-200 rounded-full bottom-4 left-1/2 theme-grayscale">
-		<div class="grid h-full max-w-lg grid-cols-5 mx-auto">
+		<div class="grid h-full max-w-lg grid-cols-5 mx-auto text-gray-400">
 			<!-- Previous Chapter -->
 			<Link to="/{previousNavigation}" class="{previousNavigationDisabled === true && disabledElement} inline-flex flex-col items-center justify-center px-5 rounded-s-full hover:bg-[#ebebeb] dark:hover:bg-[#ebebeb] group">
 				<ChevronLeft />
@@ -51,35 +123,89 @@
 			</Link>
 			<!-- <Tooltip type="light">Previous {$__currentPage}</Tooltip> -->
 
-			<!-- 2nd icon -->
-			<button type="button" title="Change Display" on:click={() => updateSettings({ type: 'displayType', value: $__displayType === 5 ? 1 : $__displayType + 1 })} class="opacity-70 inline-flex flex-col items-center justify-center px-5 relative inline-flex items-center hover:bg-[#ebebeb] dark:hover:bg-[#ebebeb] group {$__currentPage === 'page' && disabledElement}">
-				<Eye />
-				<span class="sr-only">Display Type</span>
-			</button>
-			<Tooltip type="light">Display Type</Tooltip>
-
-			<!-- 3rd icon -->
-			<!-- play/pause button -->
-			<div class="flex items-center justify-center">
-				<button type="button" title="Play/Pause" on:click={() => audioHandler()} class="inline-flex flex-col items-center justify-center w-10 h-10 font-medium bg-[#ebebeb] hover:bg-[#ebebeb] rounded-full group focus:ring-2 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-800">
-					<svelte:component this={$__audioSettings.isPlaying ? Pause : PlaySolid} />
-
-					<span class="sr-only">Play/Pause</span>
-
-					<!-- show badge when a verse is playing -->
-					{#if $__audioSettings.isPlaying && $__audioSettings.audioType === 'verse'}
-						<div class="absolute inline-flex items-center justify-center z-30 text-xs px-2 text-white bg-gray-500 border-2 border-white rounded-md -top-3 dark:border-gray-900">{$__audioSettings.playingKey}</div>
-					{/if}
+			<!-- normal / non-scroll mode -->
+			{#if !scrollModeEnabled}
+				<!-- 2nd icon -->
+				<!-- <button type="button" title="Change Display" on:click={() => updateSettings({ type: 'displayType', value: $__displayType === 5 ? 1 : $__displayType + 1 })} class="inline-flex flex-col items-center justify-center px-5 relative inline-flex items-center hover:bg-[#ebebeb] dark:hover:bg-[#ebebeb] group {$__currentPage === 'page' && disabledElement}">
+					<Eye />
+					<span class="sr-only">Display Type</span>
 				</button>
-			</div>
-			<Tooltip type="light">Play/Pause</Tooltip>
+				<Tooltip type="light">Display Type</Tooltip> -->
 
-			<!-- 4th icon -->
-			<button type="button" title="Settings" on:click={() => ($__settingsDrawerHidden = false)} class="opacity-70 inline-flex flex-col items-center justify-center px-5 hover:bg-[#ebebeb] dark:hover:bg-[#ebebeb] group">
-				<Settings />
-				<span class="sr-only">Settings</span>
-			</button>
-			<Tooltip type="light">Settings</Tooltip>
+				<!-- scroll button (temp) -->
+				<button
+					type="button"
+					title="Auto Scroll"
+					on:click={() => {
+						scrollEnabled = !scrollEnabled;
+						scrollModeEnabled = !scrollModeEnabled;
+					}}
+					class="inline-flex flex-col items-center justify-center px-5 relative inline-flex items-center hover:bg-[#ebebeb] dark:hover:bg-[#ebebeb] group {$__currentPage === 'page' && disabledElement}"
+				>
+					<svelte:component this={!scrollEnabled ? ScrollDown : CrossOutline} size={6} />
+					<span class="sr-only">Scroll</span>
+				</button>
+
+				<!-- 3rd icon -->
+				<!-- play/pause button -->
+				<div class="flex items-center justify-center">
+					<button type="button" title="Play/Pause" on:click={() => audioHandler()} class="inline-flex flex-col items-center justify-center w-10 h-10 font-medium bg-[#ebebeb] hover:bg-[#ebebeb] rounded-full group focus:ring-2 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-800">
+						<svelte:component this={$__audioSettings.isPlaying ? Pause : PlaySolid} />
+						<span class="sr-only">Play/Pause</span>
+
+						<!-- show badge when a verse is playing -->
+						{#if $__audioSettings.isPlaying && $__audioSettings.audioType === 'verse'}
+							<div class="absolute inline-flex items-center justify-center z-30 text-xs px-2 text-white bg-gray-500 border-2 border-white rounded-md -top-3 dark:border-gray-900">{$__audioSettings.playingKey}</div>
+						{/if}
+					</button>
+				</div>
+				<Tooltip type="light">Play/Pause</Tooltip>
+
+				<!-- 4th icon -->
+				<button type="button" title="Settings" on:click={() => ($__settingsDrawerHidden = false)} class="inline-flex flex-col items-center justify-center px-5 hover:bg-[#ebebeb] dark:hover:bg-[#ebebeb] group">
+					<Settings />
+					<span class="sr-only">Settings</span>
+				</button>
+				<Tooltip type="light">Settings</Tooltip>
+			{/if}
+
+			<!-- ====================================================================== -->
+			<!-- scroll mode -->
+			{#if scrollModeEnabled}
+				<!-- 2nd icon -->
+				<button on:click={() => updateScrollSpeed('decrease')} type="button" title="Decrease Speed" class="{scrollEnabled === false && disabledElement} inline-flex flex-col items-center justify-center px-5 relative inline-flex items-center hover:bg-[#ebebeb] dark:hover:bg-[#ebebeb] group {$__currentPage === 'page' && disabledElement}">
+					<Minus size={5} />
+				</button>
+
+				<!-- use:taphold={holdInterval}
+				on:taphold={() => (scrollEnabled = true)} -->
+
+				<!-- 3rd icon -->
+				<div class="flex items-center justify-center">
+					<button
+						on:click={() => {
+							scrollEnabled = !scrollEnabled;
+							scrollModeEnabled = !scrollModeEnabled;
+						}}
+						type="button"
+						title={!scrollEnabled ? 'Start Scroll' : 'Stop Scroll'}
+						class="inline-flex flex-col items-center justify-center w-10 h-10 font-medium bg-[#ebebeb] hover:bg-[#ebebeb] rounded-full group focus:ring-2 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-800"
+					>
+						<svelte:component this={!scrollEnabled ? ScrollDown : CrossOutline} size={6} />
+						<span class="sr-only">Scroll</span>
+
+						<!-- show badge when scroll is enabled -->
+						{#if scrollEnabled}
+							<div class="absolute inline-flex items-center justify-center z-30 text-xs px-2 text-white bg-gray-500 border-2 border-white rounded-md -top-3 dark:border-gray-900">{scrollSpeeds[$__autoScrollSpeed]}</div>
+						{/if}
+					</button>
+				</div>
+
+				<!-- 4th icon -->
+				<button on:click={() => updateScrollSpeed('increase')} type="button" title="Increase Speed" class="{scrollEnabled === false && disabledElement} inline-flex flex-col items-center justify-center px-5 hover:bg-[#ebebeb] dark:hover:bg-[#ebebeb] group">
+					<Plus size={5} />
+				</button>
+			{/if}
 
 			<!-- Next Chapter -->
 			<Link to="/{nextNavigation}" class="{nextNavigationDisabled === true && disabledElement} inline-flex flex-col items-center justify-center px-5 rounded-e-full hover:bg-[#ebebeb] dark:hover:bg-[#ebebeb] group">
