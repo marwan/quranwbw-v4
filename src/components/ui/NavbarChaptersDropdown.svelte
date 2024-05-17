@@ -12,12 +12,14 @@
 	let maxChaptersLoaded = false;
 	let maxVersesLoaded = false;
 	let maxChaptersToLoad = 10;
-	let maxVersesToLoad = quranMetaData[localStorage.getItem('chapter')].verses > 10 ? 10 : quranMetaData[localStorage.getItem('chapter')].verses;
+	let maxVersesToLoad = 1;
 
 	$: {
 		if (!dropdownOpen) {
+			let chapter = JSON.parse(localStorage.getItem('userSettings')).chapter;
+
 			(maxChaptersLoaded = false), (maxVersesLoaded = false);
-			maxVersesToLoad = quranMetaData[localStorage.getItem('chapter')].verses > 10 ? 10 : quranMetaData[localStorage.getItem('chapter')].verses;
+			maxVersesToLoad = quranMetaData[chapter].verses > 10 ? 10 : quranMetaData[chapter].verses;
 			maxChaptersToLoad = 10;
 		}
 
@@ -33,7 +35,7 @@
 
 	function loadMaxVerses() {
 		if (!maxVersesLoaded) {
-			maxVersesToLoad = quranMetaData[localStorage.getItem('chapter')].verses;
+			maxVersesToLoad = quranMetaData[JSON.parse(localStorage.getItem('userSettings')).chapter].verses;
 			maxVersesLoaded = true;
 		}
 	}
@@ -76,7 +78,7 @@
 				<ul id="navbar-verse-list" class="grow basis-1/2 px-2 overflow-y-scroll">
 					{#each { length: maxVersesToLoad } as _, verse}
 						<li>
-							<Link to="/{localStorage.getItem('chapter')}/{verse + 1}" on:click={() => __pageURL.set(Math.random())}>
+							<Link to="/{JSON.parse(localStorage.getItem('userSettings')).chapter}/{verse + 1}" on:click={() => __pageURL.set(Math.random())}>
 								<DropdownItem class={dropdownItemClasses}>Verse {verse + 1}</DropdownItem>
 							</Link>
 						</li>

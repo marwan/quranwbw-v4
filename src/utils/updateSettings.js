@@ -10,6 +10,11 @@ export function updateSettings(props) {
 	const userSettings = JSON.parse(localStorage.getItem('userSettings'));
 
 	switch (props.type) {
+		// for chapter number
+		case 'chapter':
+			userSettings.chapter = props.value;
+			break;
+
 		// for word types
 		case 'wordType':
 			__wordType.set(props.value);

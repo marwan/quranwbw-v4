@@ -43,6 +43,9 @@
 	// Initial Setup
 	if (userSettings.initialSetupCompleted === undefined) userSettings.initialSetupCompleted = false;
 
+	// chapter number
+	if (userSettings.chapter === undefined) userSettings.chapter = 1;
+
 	localStorage.setItem('userSettings', JSON.stringify(userSettings));
 
 	// user notes
