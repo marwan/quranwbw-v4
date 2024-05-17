@@ -36,7 +36,7 @@
 	$: {
 		try {
 			// remove z-index from all button blocks and to button block of that specific verse
-			if (dropdownOpen === true) {
+			if (dropdownOpen) {
 				document.querySelectorAll('.verseButtons').forEach((element) => {
 					element.classList.remove('z-10');
 				});
@@ -78,7 +78,7 @@
 	<!-- play verse button -->
 	<button on:click={() => quickPlayAudio(chapter, verse, verse)} class={buttonClasses}>
 		<div class="opacity-50">
-			<svelte:component this={$__audioSettings.isPlaying === true && $__audioSettings.playingKey === key ? Pause : Play} />
+			<svelte:component this={$__audioSettings.isPlaying && $__audioSettings.playingKey === key ? Pause : Play} />
 		</div>
 	</button>
 	<Tooltip type="light" placement="right" class="z-30">Play</Tooltip>

@@ -6,7 +6,7 @@ export function validateKey(key) {
 	if (key === null || key === undefined || key === '') return false;
 
 	// key should not be a number
-	if (isNaN(key) === false) return false;
+	if (!isNaN(key)) return false;
 
 	const keySplit = key.split(':');
 

@@ -72,15 +72,15 @@
 					{arabicSplit[word]}
 					<!-- 2: Uthmanic Hafs Mushaf -->
 				{:else if $__wordType === 2}
-					<span style="font-family: p{value.meta.page}" class="p{value.meta.page} invisible {$__tajweedEnabled === true ? 'theme-palette-tajweed' : 'theme-palette-normal'} font-filter">{arabicSplit[word]}</span>
+					<span style="font-family: p{value.meta.page}" class="p{value.meta.page} invisible {$__tajweedEnabled ? 'theme-palette-tajweed' : 'theme-palette-normal'} font-filter">{arabicSplit[word]}</span>
 				{/if}
 			</span>
 
 			<!-- word translation and transliteration -->
 			{#if $__displayType === 1 || $__displayType === 3}
 				<div class="wordTranslationText flex flex-col {fontSizes.wordTranslationText} {displayIsContinuous === true && 'direction-ltr'}" data-fontSize={fontSizes.wordTranslationText}>
-					<span class="leading-normal {$__wordTransliterationEnabled === true ? 'block' : 'hidden'}">{transliterationSplit[word]}</span>
-					<span class="leading-normal {$__wordTranslationEnabled === true ? 'block' : 'hidden'}">{translationSplit[word]}</span>
+					<span class="leading-normal {$__wordTransliterationEnabled ? 'block' : 'hidden'}">{transliterationSplit[word]}</span>
+					<span class="leading-normal {$__wordTranslationEnabled ? 'block' : 'hidden'}">{translationSplit[word]}</span>
 				</div>
 			{/if}
 		</div>

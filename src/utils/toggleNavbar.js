@@ -7,7 +7,7 @@ let ticking = false;
 // function to toggle bottom navbar on scroll
 export function toggleNavbar() {
 	// only when it's the chapter page and any scrollable elements are not open
-	if (get(__currentPage) === 'chapter' && elementsHidden() === true) {
+	if (get(__currentPage) === 'chapter' && elementsHidden()) {
 		let currentScrollPos = getCurrentScroll();
 
 		if (!ticking) {

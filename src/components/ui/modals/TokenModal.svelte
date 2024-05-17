@@ -301,7 +301,7 @@
 					<div id="already-have-a-token" class="flex flex-col space-y-4 justify-center">
 						<input id="token-value" type="text" class="rounded-md w-full text-center text-xs" placeholder="Enter your token here..." />
 						<button id="validate-token" on:click={() => validateToken()} class="w-full {buttonElement} {tokenValidationInProcess === true && disabledElement}">
-							<span>{tokenValidationInProcess === false ? 'Validate Token' : 'Validating token...'}</span>
+							<span>{!tokenValidationInProcess ? 'Validate Token' : 'Validating token...'}</span>
 						</button>
 					</div>
 				{/if}
@@ -309,28 +309,28 @@
 				<!-- I want a new token -->
 				{#if tokenTab === 2 && $__userToken === null}
 					<div id="want-to-generate-token" class="flex flex-col justify-center">
-						{#if tokenGenerated === false}
+						{#if !tokenGenerated}
 							<button id="generate-token" on:click={() => generateToken()} class="w-full {buttonElement} {tokenGenerationInProcess === true && disabledElement}">
-								<span>{tokenGenerationInProcess === false ? 'Generate Token' : 'Generating token...'}</span>
+								<span>{!tokenGenerationInProcess ? 'Generate Token' : 'Generating token...'}</span>
 							</button>
 						{/if}
 					</div>
 				{/if}
 
 				<!-- email token -->
-				{#if tokenTab === 3 && $__userToken !== null && tokenEmailed === false}
+				{#if tokenTab === 3 && $__userToken !== null && !tokenEmailed}
 					<div id="email-token" class="flex flex-col space-y-2 justify-center">
 						<input id="user-email" type="email" class="rounded-md w-full text-center text-xs" placeholder="email@example.com" />
 						<button id="email-button" on:click={() => emailToken()} class="w-full {buttonElement} {tokenEmailInProcess === true && disabledElement}">
 							<Email />
-							<span> {tokenEmailInProcess === false ? 'Email Token' : 'Emailing...'} </span>
+							<span> {!tokenEmailInProcess ? 'Email Token' : 'Emailing...'} </span>
 						</button>
 					</div>
 				{/if}
 
 				<!-- cloud upload/download/delete buttons -->
 				{#if $__userToken}
-					<div id="token-cloud-buttons" class="{tokenCloudButtonsVisible === true ? 'block' : 'hidden'} flex flex-col space-y-6">
+					<div id="token-cloud-buttons" class="{tokenCloudButtonsVisible ? 'block' : 'hidden'} flex flex-col space-y-6">
 						<!-- input box and download button -->
 						<div class="flex flex-row space-x-2">
 							<input id="token-value" type="text" on:click={() => copyToken()} value={$__userToken} class="rounded-md w-full text-center text-xs cursor-pointer" readonly="readonly" />
@@ -359,12 +359,12 @@
 							<div class="flex flex-col space-y-2 md:flex-row md:space-x-2 md:space-y-0">
 								<button id="upload-settings" on:click={() => uploadSettings()} class="w-full {buttonElement} {settingsUploadInProcess === true && disabledElement}">
 									<CloudUpload />
-									<span> {settingsUploadInProcess === false ? 'Backup Settings To Cloud' : 'Uploading settings...'} </span>
+									<span> {!settingsUploadInProcess ? 'Backup Settings To Cloud' : 'Uploading settings...'} </span>
 								</button>
 
 								<button id="download-settings" on:click={() => downloadSettings()} class="w-full {buttonElement} {settingsDownloadInProcess === true && disabledElement}">
 									<CloudDownload />
-									<span> {settingsDownloadInProcess === false ? 'Restore Settings From Cloud' : 'Downloading settings...'} </span>
+									<span> {!settingsDownloadInProcess ? 'Restore Settings From Cloud' : 'Downloading settings...'} </span>
 								</button>
 							</div>
 

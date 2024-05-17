@@ -21,8 +21,9 @@
 
 	// fetch verses whenever there's a change
 	$: {
-		// updating the reactive chapter number
+		// updating the chapter number in store and in localStorage (for chapter navigation)
 		__chapterNumber.set(+chapter);
+		localStorage.setItem('chapter', +chapter);
 
 		const chapterTotalVerses = quranMetaData[$__chapterNumber].verses;
 

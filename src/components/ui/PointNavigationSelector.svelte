@@ -1,13 +1,10 @@
 <script>
-	export let width = '2/4';
-
 	import { navigate } from 'svelte-routing';
 	import { pageNumberKeys, juzNumberKeys } from '$data/quranMeta';
 	import { __pageURL } from '$utils/stores';
 	import { buttonElement, disabledElement } from '$data/commonStyles';
 	import { Select } from 'flowbite-svelte';
 	import { validateKey } from '$utils/validateKey';
-	import { toggleModal } from '$utils/toggleModal';
 
 	let waypoint = '',
 		placeholder = 'chapter, page, juz or key',
@@ -44,7 +41,7 @@
 					break;
 
 				case 4:
-					incorrectValue = validateKey(waypoint) === false ? true : false;
+					incorrectValue = !validateKey(waypoint) ? true : false;
 					placeholder = `e.g. 18:10`;
 					break;
 			}
@@ -55,8 +52,6 @@
 	}
 
 	function navigateToPoint() {
-		toggleModal('navigationDropdown', 'hide');
-
 		__pageURL.set(Math.random());
 
 		switch (selectedNavigation) {
@@ -84,9 +79,9 @@
 </script>
 
 <div id="navigatation-inputs" class="flex mb-4 justify-start theme-grayscale">
-	<div class="flex flex-row w-full md:w-{width}">
+	<div class="flex flex-row w-full">
 		<Select class="w-fit rounded-l-3xl rounded-r-none focus:border-gray-500 text-xs" items={navigationPoints} bind:value={selectedNavigation} placeholder="Go to..." />
-		<input type="text" bind:value={waypoint} id="navigationInput" aria-describedby="helper-text-explanation" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-l-none focus:ring-gray-500 focus:border-gray-500 block w-24 p-2.5" {placeholder} />
+		<input type="text" bind:value={waypoint} id="navigationInput" aria-describedby="helper-text-explanation" class="w-[inherit] bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-l-none focus:ring-gray-500 focus:border-gray-500 block w-24 p-2.5" {placeholder} />
 		<button class="{buttonElement} text-xs rounded-l-none min-w-fit border border-gray-300 {incorrectValue === true && disabledElement}" on:click={() => navigateToPoint()}>Go {@html '&#10230'}</button>
 	</div>
 </div>

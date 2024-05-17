@@ -13,7 +13,7 @@
 	const params = new URLSearchParams(window.location.search);
 	const loadAll = params.get('load_all') === 'true';
 	const totalAvailableWords = Object.keys(wordData).length;
-	let lastWordToLoad = loadAll === true ? totalAvailableWords : totalAvailableWords > 10 ? 10 : totalAvailableWords;
+	let lastWordToLoad = loadAll ? totalAvailableWords : totalAvailableWords > 10 ? 10 : totalAvailableWords;
 
 	function updateLastWordToLoad() {
 		lastWordToLoad = lastWordToLoad + 50;

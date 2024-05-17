@@ -50,7 +50,7 @@
 
 	// if settings drawer is open, hide body scroll
 	$: {
-		if ($__settingsDrawerHidden === true) document.body.classList.remove('overflow-y-hidden');
+		if ($__settingsDrawerHidden) document.body.classList.remove('overflow-y-hidden');
 		else document.body.classList.add('overflow-y-hidden');
 	}
 </script>

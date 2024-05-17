@@ -42,7 +42,7 @@
 </script>
 
 <div class={$__currentPage === 'chapter' || $__currentPage === 'page' ? 'block' : 'hidden'}>
-	<div class="{$__bottomNavbarVisible === true ? 'block' : 'hidden'} fixed z-20 w-full h-16 max-w-xs md:max-w-lg shadow-sm -translate-x-1/2 bg-white border border-gray-200 rounded-full bottom-4 left-1/2 theme-grayscale">
+	<div class="{$__bottomNavbarVisible ? 'block' : 'hidden'} fixed z-20 w-full h-16 max-w-xs md:max-w-lg shadow-sm -translate-x-1/2 bg-white border border-gray-200 rounded-full bottom-4 left-1/2 theme-grayscale">
 		<div class="grid h-full max-w-lg grid-cols-5 mx-auto">
 			<!-- Previous Chapter -->
 			<Link to="/{previousNavigation}" class="{previousNavigationDisabled === true && disabledElement} inline-flex flex-col items-center justify-center px-5 rounded-s-full hover:bg-[#ebebeb] dark:hover:bg-[#ebebeb] group">
@@ -62,12 +62,12 @@
 			<!-- play/pause button -->
 			<div class="flex items-center justify-center">
 				<button type="button" title="Play/Pause" on:click={() => audioHandler()} class="inline-flex flex-col items-center justify-center w-10 h-10 font-medium bg-[#ebebeb] hover:bg-[#ebebeb] rounded-full group focus:ring-2 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-800">
-					<svelte:component this={$__audioSettings.isPlaying === true ? Pause : PlaySolid} />
+					<svelte:component this={$__audioSettings.isPlaying ? Pause : PlaySolid} />
 
 					<span class="sr-only">Play/Pause</span>
 
 					<!-- show badge when a verse is playing -->
-					{#if $__audioSettings.isPlaying === true && $__audioSettings.audioType === 'verse'}
+					{#if $__audioSettings.isPlaying && $__audioSettings.audioType === 'verse'}
 						<div class="absolute inline-flex items-center justify-center z-30 text-xs px-2 text-white bg-gray-500 border-2 border-white rounded-md -top-3 dark:border-gray-900">{$__audioSettings.playingKey}</div>
 					{/if}
 				</button>

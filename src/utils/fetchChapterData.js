@@ -1,6 +1,6 @@
 import { get } from 'svelte/store';
 import { __currentPage, __wordType, __chapterData, __wordTranslation, __verseTranslations } from '$utils/stores';
-import { apiEndpoint } from '$data/websiteSettings';
+import { apiEndpoint, staticEndpoint } from '$data/websiteSettings';
 import { quranMetaData } from '$data/quranMeta';
 
 // QuranWBW.com always loads the complete chapter data rather than verses on demand (like Quran.com)
@@ -9,15 +9,24 @@ import { quranMetaData } from '$data/quranMeta';
 // - offline capabilities
 // Other option would be to load the few initial verses on page load and then the complete data for faster loading times, might think about it later.
 export async function fetchChapterData(chapter, download = false) {
-	const apiURL =
+	const wordType = get(__wordType);
+	const wordTranslation = get(__wordTranslation);
+	const verseTranslations = get(__verseTranslations).toString();
+
+	let apiURL =
 		apiEndpoint +
 		new URLSearchParams({
 			verses: `${chapter}:1,${chapter}:${quranMetaData[chapter].verses}`,
-			word_type: get(__wordType),
-			word_translation: get(__wordTranslation),
-			verse_translation: get(__verseTranslations).toString(),
+			word_type: wordType,
+			word_translation: wordTranslation,
+			verse_translation: verseTranslations,
 			between: true
 		});
+
+	// if the word type, word/verse translations are default (or user's first visit for example), load static chapter data instead
+	if (wordType === 1 && wordTranslation === 1 && verseTranslations === '1,15') {
+		apiURL = `${staticEndpoint}/${chapter}.json`;
+	}
 
 	// if the user is on homepage, just fetch the chapter data
 	if (get(__currentPage) === 'home') return fetch(apiURL);
@@ -27,7 +36,7 @@ export async function fetchChapterData(chapter, download = false) {
 	const data = await response.json();
 
 	// download = true means that we are just fetching api data without updating the __chapterData store (for downloadData)
-	if (download === false) __chapterData.set(data.data.verses);
+	if (!download) __chapterData.set(data.data.verses);
 }
 
 // function to fetch individual verses

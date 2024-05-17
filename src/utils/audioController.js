@@ -43,7 +43,7 @@ export function playAudio(props) {
 		let reciterAudioUrl = selectableReciters[get(__reciter)].url;
 
 		// or if the user has opted to play the translation after arabic audio, the URL would have to be updated
-		if (props.playTranslation === true) reciterAudioUrl = 'https://everyayah.com/data/English/Sahih_Intnl_Ibrahim_Walk_192kbps/';
+		if (props.playTranslation) reciterAudioUrl = 'https://everyayah.com/data/English/Sahih_Intnl_Ibrahim_Walk_192kbps/';
 
 		// generate mp3 file names for current and next verse
 		const currentVerseFileName = `${`00${props.chapter}`.slice(-3)}${`00${props.firstToPlay}`.slice(-3)}.mp3`;
@@ -80,8 +80,8 @@ export function playAudio(props) {
 		audio.removeEventListener('timeupdate', wordHighlighter);
 
 		// play verse translation after arabic audio if opted by the user
-		if (audioSettings.playTranslation === true) {
-			if (verseTranslationPlayed === false) {
+		if (audioSettings.playTranslation) {
+			if (!verseTranslationPlayed) {
 				verseTranslationPlayed = true;
 
 				return playAudio({
@@ -155,13 +155,13 @@ export function initializeAudio() {
 	resetAudioSettings();
 
 	// play this verse
-	if (document.getElementById('playThisVerse').checked === true) {
+	if (document.getElementById('playThisVerse').checked) {
 		audioSettings.startVerse = audioSettings.playingVerse;
 		audioSettings.endVerse = audioSettings.playingVerse;
 	}
 
 	// play from here
-	if (document.getElementById('playFromHere').checked === true) {
+	if (document.getElementById('playFromHere').checked) {
 		audioSettings.startVerse = audioSettings.playingVerse;
 		audioSettings.endVerse = quranMetaData[audioSettings.playingChapter].verses;
 	}
@@ -303,13 +303,13 @@ export function showAudioModal(key) {
 export function wordAudioController(props) {
 	// if verse audio is already playing, a set the verse audio timestamp same as word timestamp
 	// ...this is incase the user would like to start from a certain section of the verse
-	if (audioSettings.isPlaying === true && audioSettings.audioType === 'verse') {
+	if (audioSettings.isPlaying && audioSettings.audioType === 'verse') {
 		// set the verse audio time same as word timestamp
 		return (audio.currentTime = document.getElementById(`${props.chapter}:${props.verse}:${props.word + 1}`).getAttribute('data-timestamp'));
 	}
 
 	// show audio modal for continuous display types
-	if (displayOptions[`${get(__displayType)}`].continuous === true) {
+	if (displayOptions[`${get(__displayType)}`].continuous) {
 		showAudioModal(`${props.chapter}:${props.verse}`);
 	}
 
@@ -329,7 +329,7 @@ export function wordAudioController(props) {
 
 // function to quickly play verse audio, to be used by the play buttons
 export function quickPlayAudio(chapter, startVerse, endVerse) {
-	if (audioSettings.isPlaying === true) {
+	if (audioSettings.isPlaying) {
 		resetAudioSettings();
 	} else {
 		playAudio({

@@ -74,7 +74,7 @@
 		<div class="homepage-tab-panels {activeTab === 1 ? 'block' : 'hidden'}" id="chapters-tab-panel" role="tabpanel" aria-labelledby="chapters-tab">
 			<!-- chapter / page etc... selector -->
 			<div class="flex flex-col md:flex-row justify-between">
-				<PointNavigationSelector width="full" />
+				<PointNavigationSelector />
 				<div>
 					<Link to="/{lastReadChapter}/{lastReadVerse}" class="py-2.5 {buttonElement} text-xs w-full mb-4 md:mb-0">Continue Reading: {quranMetaData[lastReadChapter].transliteration}, {lastReadChapter}:{lastReadVerse} {@html '&#10230'}</Link>
 				</div>
@@ -88,7 +88,7 @@
 						<div class="{homepageTabsStyles.cardInnerStyle} flex-col-reverse md:flex-row text-center items-center">
 							<div class="" use:inview={fetchOptions} on:inview_enter={(event) => fetchChapterData(+chapter + 1)}>
 								<!-- chapter name and icon -->
-								<div class="flex flex-row items-center space-x-1 justify-center truncate">
+								<div class="flex flex-row items-center space-x-1 justify-center md:justify-start truncate">
 									<div>{chapter + 1}. {quranMetaData[chapter + 1].transliteration}</div>
 									<div class="opacity-50"><svelte:component this={quranMetaData[chapter + 1].revelation === 1 ? Mecca : Madinah} /></div>
 									<Tooltip type="light" placement="right" class="z-30">{quranMetaData[chapter + 1].revelation === 1 ? 'Meccan' : 'Medinan'} revelation</Tooltip>
