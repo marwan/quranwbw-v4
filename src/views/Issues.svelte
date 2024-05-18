@@ -26,10 +26,7 @@
 	<div class="my-6 space-y-4 pb-4 border-b-2 dark:border-slate-700">
 		<h1 class="text-2xl">Issues</h1>
 		<div class="text-sm">
-			This page contains all the active issues raised on the Quranwbw.com's <a href="https://github.com/marwan/quranwbw-svelte" target="_blank" class={linkElement}>GitHub repo</a>.
-
-			<br /><br />
-			<a href="https://github.com/marwan/quranwbw-svelte/issues" target="_blank" class={linkElement}>https://github.com/marwan/quranwbw-svelte/issues</a>
+			This page contains all the active issues raised on the Quranwbw.com's <a href="https://github.com/marwan/quranwbw-v4" target="_blank" class={linkElement}>GitHub repo</a>.
 		</div>
 	</div>
 

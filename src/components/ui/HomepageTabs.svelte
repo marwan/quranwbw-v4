@@ -55,7 +55,12 @@
 					<button on:click={() => (activeTab = 2)} class="{homepageTabsStyles.tabStyle} {activeTab === 2 ? `${homepageTabsStyles.activeTab}` : ''}" id="most-read-tab" data-tabs-target="#most-read-tab-panel" type="button" role="tab" aria-controls="most-read-tab-panel" aria-selected="false">Suggested</button>
 				</li>
 				<li>
-					<button on:click={() => (activeTab = 3)} class="{homepageTabsStyles.tabStyle} {activeTab === 3 ? `${homepageTabsStyles.activeTab}` : ''}" id="bookmarks-tab" data-tabs-target="#bookmarks-tab-panel" type="button" role="tab" aria-controls="bookmarks-tab-panel" aria-selected="false">Bookmarks</button>
+					<button on:click={() => (activeTab = 3)} class="{homepageTabsStyles.tabStyle} {activeTab === 3 ? `${homepageTabsStyles.activeTab}` : ''}" id="bookmarks-tab" data-tabs-target="#bookmarks-tab-panel" type="button" role="tab" aria-controls="bookmarks-tab-panel" aria-selected="false">
+						Bookmarks
+						{#if $__userBookmarks.length > 0}
+							({$__userBookmarks.length})
+						{/if}
+					</button>
 				</li>
 			</ul>
 		</div>
