@@ -30,13 +30,13 @@
 	}
 
 	// handle what happens when a word is clicked depending on page type
-	function wordClickHandler(chapter, verse, word) {
+	function wordClickHandler(props) {
 		if ($__currentPage === 'morphology') {
 			const wordKey = `${chapter}:${verse}:${word + 1}`;
 			__morphologyKey.set(wordKey);
 			navigate(`/morphology/${wordKey}`, { replace: false });
 		} else {
-			wordAudioController({ chapter, verse, word });
+			wordAudioController(props);
 		}
 	}
 
@@ -64,7 +64,7 @@
 			class="word {$__displayType === 1 ? 'text-center flex flex-col' : 'inline-flex flex-col'} {wordClasses} {$__audioSettings.playingWordKey === `${chapter}:${verse}:${word + 1}` || $__morphologyKey === `${chapter}:${verse}:${word + 1}` ? 'bg-[#ebebeb] dark:bg-slate-800' : ''}"
 			style={$__currentPage === 'supplications' && word + 1 < supplicationsFromQuran[key] && 'opacity: 30%;'}
 			data-timestamp={timestampSplit[word]}
-			on:click={() => wordClickHandler(chapter, verse, word)}
+			on:click={() => wordClickHandler({ chapter, verse, word, type: 'word' })}
 		>
 			<span class="arabicText leading-normal arabic-font-{$__wordType} {$__currentPage !== 'page' && fontSizes.arabicText} {displayIsContinuous === true && 'inline-block'}" data-fontSize={fontSizes.arabicText}>
 				<!-- 1: Uthmanic Hafs Digital, 3: Indopak Madinah -->
@@ -103,7 +103,7 @@
 <!-- end icon -->
 {#if $__currentPage != 'page' || ($__currentPage === 'page' && value.words.end_line === line)}
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
-	<div class="{$__displayType === 1 ? 'text-center flex flex-col' : 'inline-flex flex-col'} {wordClasses}" on:click={() => wordClickHandler(chapter, verse)}>
+	<div class="{$__displayType === 1 ? 'text-center flex flex-col' : 'inline-flex flex-col'} {wordClasses}" on:click={() => wordClickHandler({ chapter, verse, type: 'end' })}>
 		<span class="arabicText leading-normal arabic-font-{$__wordType} {$__currentPage !== 'page' && fontSizes.arabicText} {displayIsContinuous === true && 'inline-block group-hover:text-gray-500 dark:group-hover:text-slate-300'}" data-fontSize={fontSizes.arabicText}>
 			<!-- 1: Uthmanic Hafs Digital, 3: Indopak Madinah -->
 			{#if $__wordType === 1 || $__wordType === 3}

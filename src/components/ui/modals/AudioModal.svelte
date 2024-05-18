@@ -1,15 +1,18 @@
 <script>
 	import { quranMetaData } from '$data/quranMeta';
-	import { __currentPage, __chapterNumber, __audioSettings } from '$utils/stores';
+	import { __currentPage, __chapterNumber, __audioSettings, __userSettings } from '$utils/stores';
 	import { initializeAudio, updateAudioSettings } from '$utils/audioController';
 	import { toggleModal } from '$utils/toggleModal';
 	import { disabledElement, buttonElement } from '$data/commonStyles';
+	import { updateSettings } from '$utils/updateSettings';
 
 	// icons
-	// import Info from "$svgs/Info.svelte";
 	import Play from '$svgs/Play.svelte';
+	import Bookmark from '$svgs/Bookmark.svelte';
+	import Bookmarked from '$svgs/Bookmarked.svelte';
 
-	// fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full grayscale
+	// update userBookmarks whenever the __userSettings changes
+	$: userBookmarks = JSON.parse($__userSettings).userBookmarks;
 </script>
 
 <!-- Audio modal -->
@@ -24,7 +27,16 @@
 				<span class="sr-only">Close modal</span>
 			</button>
 			<div class="px-6 py-6 lg:px-8">
-				<h3 id="audio-modal-title" class="mb-4 text-xl font-medium text-gray-900 dark:text-slate-400">{quranMetaData[$__audioSettings.playingChapter || 1].transliteration}, {$__audioSettings.playingKey}</h3>
+				<div class="flex flex-row space-x-4 mb-4 text-xl">
+					<h3 id="audio-modal-title" class="font-medium text-gray-900">{quranMetaData[$__audioSettings.playingChapter || 1].transliteration}, {$__audioSettings.playingKey}</h3>
+
+					<!-- bookmark/unbookmark button -->
+					<button on:click={() => updateSettings({ type: 'userBookmarks', key: $__audioSettings.playingKey })} class="mt-1">
+						<div class="opacity-50">
+							<svelte:component this={userBookmarks.includes($__audioSettings.playingKey) ? Bookmarked : Bookmark} />
+						</div>
+					</button>
+				</div>
 				<div class="flex flex-col">
 					<!-- verse or words -->
 					<div class="flex flex-col space-y-4 py-4">

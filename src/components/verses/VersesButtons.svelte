@@ -17,11 +17,8 @@
 	// icons
 	import Bookmark from '$svgs/Bookmark.svelte';
 	import Bookmarked from '$svgs/Bookmarked.svelte';
-	import Book from '$svgs/Book.svelte';
-	import Notes from '$svgs/Notes.svelte';
 	import Play from '$svgs/Play.svelte';
 	import Pause from '$svgs/Pause.svelte';
-	import ShareOutline from '$svgs/ShareOutline.svelte';
 	import DotsHorizontal from '$svgs/DotsHorizontal.svelte';
 	// import DotsVertical from '$svgs/DotsVertical.svelte';
 

@@ -1,9 +1,9 @@
 import { get } from 'svelte/store';
 import { quranMetaData } from '$data/quranMeta';
-import { __displayType, __reciter, __playbackSpeed, __audioSettings } from '$utils/stores';
+import { __reciter, __playbackSpeed, __audioSettings } from '$utils/stores';
 import { toggleModal } from '$utils/toggleModal';
 import { wordsAudioURL } from '$data/websiteSettings';
-import { displayOptions, selectableReciters, selectablePlaybackSpeeds } from '$data/options';
+import { selectableReciters, selectablePlaybackSpeeds } from '$data/options';
 import { scrollSmoothly } from '$utils/scrollSmoothly';
 
 // getting the audio element
@@ -308,12 +308,9 @@ export function wordAudioController(props) {
 		return (audio.currentTime = document.getElementById(`${props.chapter}:${props.verse}:${props.word + 1}`).getAttribute('data-timestamp'));
 	}
 
-	// show audio modal for continuous display types
-	if (displayOptions[`${get(__displayType)}`].continuous) {
-		showAudioModal(`${props.chapter}:${props.verse}`);
-	}
-
-	// play word audio directly for non-continuous display types
+	// show audio modal only when the end icon was clicked
+	if (props.type === 'end') showAudioModal(`${props.chapter}:${props.verse}`);
+	// else play word audio directly
 	else {
 		playAudio({
 			type: 'word',
