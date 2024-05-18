@@ -47,7 +47,7 @@
 
 	// quick play from first verse of page till the max chapter verses
 	function audioHandler() {
-		quickPlayAudio($__chapterNumber, +document.getElementsByClassName('verse')[0].id.split(':')[1], quranMetaData[$__chapterNumber].verses);
+		quickPlayAudio($__chapterNumber, +document.getElementById('verses-block').firstChild.id.split(':')[1], quranMetaData[$__chapterNumber].verses);
 	}
 
 	// ====================================
