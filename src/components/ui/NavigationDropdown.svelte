@@ -37,10 +37,6 @@
 		7: {
 			title: 'Changelogs',
 			link: '/changelogs'
-		},
-		8: {
-			title: 'Issues',
-			link: '/issues'
 		}
 	};
 

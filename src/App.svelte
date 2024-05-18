@@ -23,7 +23,6 @@
 	import Supplications from '$views/Supplications.svelte';
 	import Bookmarks from '$views/Bookmarks.svelte';
 	import Changelogs from '$views/Changelogs.svelte';
-	import Issues from '$views/Issues.svelte';
 	import About from '$views/About.svelte';
 	import Morphology from '$views/Morphology.svelte';
 	import Search from '$views/Search.svelte';
@@ -76,7 +75,6 @@
 			<Route path="/duas" component={Supplications} />
 			<Route path="/bookmarks" component={Bookmarks} />
 			<Route path="/changelogs" component={Changelogs} />
-			<Route path="/issues" component={Issues} />
 			<Route path="/about" component={About} />
 			<Route path="/search" component={Search} />
 			<Route path="/faq" component={FAQ} />

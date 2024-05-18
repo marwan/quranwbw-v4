@@ -4,7 +4,7 @@ export const buttonElement = 'inline-flex items-center justify-center space-x-2 
 
 export const tabPillElement = 'py-2 px-4 text-xs cursor-pointer rounded-3xl hover:bg-[#ebebeb] dark:hover:bg-slate-700 bg-[#ebebeb] dark:bg-slate-700';
 
-export const labelPillElement = 'bg-gray-300 text-gray-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded-full grayscale';
+export const labelPillElement = 'bg-gray-300 text-gray-800 text-sm font-normal me-2 px-2.5 py-0.5 rounded-full grayscale';
 
 export const linkElement = 'font-semibold hover:underline';
 
