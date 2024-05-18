@@ -4,7 +4,7 @@
 	import Spinner from '$svgs/Spinner.svelte';
 	import { __currentPage, __wordType, __displayType, __wordTranslation, __verseTranslations } from '$utils/stores';
 	import { getSupplicationKeys } from '$utils/getSupplicationKeys';
-	import { fetchVersesData } from '$utils/fetchChapterData';
+	import { fetchVersesData } from '$utils/fetchData';
 	import { errorLoadingDataMessage } from '$data/websiteSettings';
 
 	// fetch supplication verses

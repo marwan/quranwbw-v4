@@ -6,7 +6,7 @@
 	import { navigate } from 'svelte-routing';
 	import { displayOptions, mushafFontLinks } from '$data/options';
 	import { supplicationsFromQuran } from '$data/quranMeta';
-	import { __currentPage, __wordType, __displayType, __websiteTheme, __userSettings, __audioSettings, __wordTranslationEnabled, __wordTransliterationEnabled, __morphologyKey, __tajweedEnabled, __wordTooltip } from '$utils/stores';
+	import { __currentPage, __wordType, __displayType, __websiteTheme, __userSettings, __audioSettings, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __morphologyKey, __tajweedEnabled, __wordTooltip } from '$utils/stores';
 	import { wordAudioController } from '$utils/audioController';
 	import { loadFont } from '$utils/loadFont';
 	import { Tooltip } from 'flowbite-svelte';
@@ -80,7 +80,7 @@
 			{#if $__displayType === 1 || $__displayType === 3}
 				<div class="wordTranslationText flex flex-col {fontSizes.wordTranslationText} {displayIsContinuous === true && 'direction-ltr'}" data-fontSize={fontSizes.wordTranslationText}>
 					<span class="leading-normal {$__wordTransliterationEnabled ? 'block' : 'hidden'}">{transliterationSplit[word]}</span>
-					<span class="leading-normal {$__wordTranslationEnabled ? 'block' : 'hidden'}">{translationSplit[word]}</span>
+					<span class="leading-normal {$__wordTranslation === 2 && 'font-Urdu'} {$__wordTranslationEnabled ? 'block' : 'hidden'}">{translationSplit[word]}</span>
 				</div>
 			{/if}
 		</div>

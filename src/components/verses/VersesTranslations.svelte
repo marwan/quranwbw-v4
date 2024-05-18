@@ -9,7 +9,7 @@
 	<div class="verseTranslationText flex flex-col space-y-4 leading-normal {fontSizes.verseTranslationText}" data-fontSize={fontSizes.verseTranslationText}>
 		{#each Object.entries(value.translations) as [verseTranslationID, verseTranslation]}
 			<div class="flex flex-col">
-				<span>{@html verseTranslation}</span>
+				<span class={selectableVerseTranslations[verseTranslationID].language === 'Urdu' ? 'font-Urdu direction-rtl' : 'direction-ltr'}>{@html verseTranslation}</span>
 				{#if $__verseTranslations.length > 1}
 					<span class="opacity-70">&mdash; {selectableVerseTranslations[verseTranslationID].author}</span>
 				{/if}

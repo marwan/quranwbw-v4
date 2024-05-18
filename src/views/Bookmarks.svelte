@@ -3,7 +3,7 @@
 	import IndividualVerses from '$verses/IndividualVerses.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
 	import { __currentPage, __wordType, __displayType, __wordTranslation, __verseTranslations, __userBookmarks } from '$utils/stores';
-	import { fetchVersesData } from '$utils/fetchChapterData';
+	import { fetchVersesData } from '$utils/fetchData';
 	import { errorLoadingDataMessage } from '$data/websiteSettings';
 
 	let fetchData;

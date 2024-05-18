@@ -10,7 +10,7 @@
 	import { errorLoadingDataMessage } from '$data/websiteSettings';
 	import { __currentPage, __wordType, __wordTranslation, __verseTranslations, __morphologyKey } from '$utils/stores';
 	import { tabPillElement } from '$data/commonStyles';
-	import { fetchVersesData } from '$utils/fetchChapterData';
+	import { fetchVersesData } from '$utils/fetchData';
 
 	let fetchWordsData, fetchWordSummary;
 

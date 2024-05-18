@@ -6,7 +6,7 @@
 	import ChapterVerses from '$verses/ChapterVerses.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
 	import { parseURL } from '$utils/parseURL';
-	import { fetchChapterData } from '$utils/fetchChapterData';
+	import { fetchChapterData } from '$utils/fetchData';
 	import { quranMetaData, bismillahTypes } from '$data/quranMeta';
 	import { displayOptions } from '$data/options';
 	import { errorLoadingDataMessage } from '$data/websiteSettings';

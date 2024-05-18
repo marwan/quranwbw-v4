@@ -1,5 +1,5 @@
 import { __downloadedDataSettings } from '$utils/stores';
-import { fetchChapterData } from '$utils/fetchChapterData';
+import { fetchChapterData } from '$utils/fetchData';
 
 const chaptersToDownload = 5;
 

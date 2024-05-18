@@ -53,6 +53,13 @@
   font-display: block;
 }
 
+@font-face {
+  font-family: "urdu";
+  src: url("../fonts/languages/Mehr-Nastaliq.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
 ::-webkit-scrollbar {
   width: 10px;
@@ -153,6 +160,10 @@ svg {
 .bismillah {
   font-family: "bismillah";
   font-display: block;
+}
+
+.font-Urdu {
+  font-family: "urdu";
 }
 
 .direction-rtl {

@@ -2,7 +2,7 @@
 	import { Link } from 'svelte-routing';
 	import { updateSettings } from '$utils/updateSettings';
 	import { quranMetaData, mostRead } from '$data/quranMeta';
-	import { fetchChapterData } from '$utils/fetchChapterData';
+	import { fetchChapterData } from '$utils/fetchData';
 	import { __lastRead, __favouriteChapters, __userBookmarks } from '$utils/stores';
 	import NavigationDropdown from '$ui/NavigationDropdown.svelte';
 	import PointNavigationSelector from '$ui/PointNavigationSelector.svelte';
