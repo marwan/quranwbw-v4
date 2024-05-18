@@ -1,7 +1,7 @@
 <script>
 	export let title;
 
-	import { websiteTagline, websiteTitle, websiteURL } from '$data/websiteSettings';
+	import { websiteTagline, websiteTitle, websiteURL, wbwLanguages } from '$data/websiteSettings';
 	import { __wordType } from '$utils/stores';
 
 	// detect URL change and update it in meta
@@ -19,9 +19,9 @@
 
 <svelte:head>
 	<title>{title} - {websiteURL}</title>
-	<meta name="description" content="{title} - {websiteTagline} - {websiteURL}" />
+	<meta name="description" content="{title} - {websiteTagline} in {wbwLanguages} - {websiteURL}" />
 	<meta name="og:site_name" content={websiteTitle} />
-	<meta name="og:title" content="{title} - {websiteTagline} - {websiteURL}" />
+	<meta name="og:title" content="{title} - {websiteTagline} in {wbwLanguages} - {websiteURL}" />
 	<meta name="og:image" content="" />
 	<meta name="og:url" content={pageURL} />
 

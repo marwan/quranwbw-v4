@@ -204,7 +204,7 @@ export const selectableWordTranslations = {
 	8: { id: 9, language: 'Russian' },
 	9: { id: 7, language: 'Tamil' },
 	10: { id: 6, language: 'Turkish' },
-	12: { id: 2, language: 'Urdu' }
+	11: { id: 2, language: 'Urdu' }
 };
 
 export const selectableReciters = {

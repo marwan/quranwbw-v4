@@ -52,6 +52,8 @@ export const websiteTagline = 'Word By Word Translation, Transliteration And Mor
 
 export const websiteTitle = `Quran ${websiteTagline} - ${websiteURL}`;
 
+export const wbwLanguages = 'English, Urdu, Hindi, Indonesian, Bangla, Turkish, Tamil, French, German, Russian and Ingush';
+
 export const apiEndpoint = 'https://api.quranwbw.com/v1/verses?';
 
 export const staticEndpoint = 'https://static-chapters.quranwbw.com/data';
