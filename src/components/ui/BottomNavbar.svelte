@@ -1,7 +1,7 @@
 <script>
 	import { Link } from 'svelte-routing';
 	import { __audioSettings } from '$utils/stores';
-	import { __chapterNumber, __pageNumber, __displayType, __currentPage, __bottomNavbarVisible, __settingsDrawerHidden, __autoScrollSpeed } from '$utils/stores';
+	import { __chapterNumber, __pageNumber, __displayType, __currentPage, __bottomNavbarVisible, __settingsDrawerHidden, __autoScrollSpeed, __firstVerseOnPage } from '$utils/stores';
 	import { quickPlayAudio } from '$utils/audioController';
 	import { quranMetaData } from '$data/quranMeta';
 	import { disabledElement } from '$data/commonStyles';
@@ -47,7 +47,7 @@
 
 	// quick play from first verse of page till the max chapter verses
 	function audioHandler() {
-		quickPlayAudio($__chapterNumber, +document.getElementById('verses-block').firstChild.id.split(':')[1], quranMetaData[$__chapterNumber].verses);
+		quickPlayAudio($__chapterNumber, $__firstVerseOnPage, quranMetaData[$__chapterNumber].verses);
 	}
 
 	// ====================================
@@ -130,7 +130,7 @@
 					<Eye />
 					<span class="sr-only">Display Type</span>
 				</button>
-				<Tooltip type="light">Display Type</Tooltip> -->
+				<Tooltip type="light" class="hidden md:block font-filter">Display Type</Tooltip> -->
 
 				<!-- scroll button (temp) -->
 				<button
@@ -145,13 +145,14 @@
 					<svelte:component this={!scrollEnabled ? ScrollDown : CrossOutline} size={6} />
 					<span class="sr-only">Scroll</span>
 				</button>
+				<Tooltip type="light" class="hidden md:block font-filter">Auto Scroll</Tooltip>
 
 				<!-- 3rd icon -->
 				<!-- play/pause button -->
 				<div class="flex items-center justify-center">
-					<button type="button" title="Play/Pause" on:click={() => audioHandler()} class="inline-flex flex-col items-center justify-center w-10 h-10 font-medium bg-[#ebebeb] hover:bg-[#ebebeb] rounded-full group focus:ring-2 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-800">
+					<button type="button" title={$__audioSettings.isPlaying ? 'Pause' : 'Play'} on:click={() => audioHandler()} class="inline-flex flex-col items-center justify-center w-10 h-10 font-medium bg-[#ebebeb] hover:bg-[#ebebeb] rounded-full group focus:ring-2 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-800">
 						<svelte:component this={$__audioSettings.isPlaying ? Pause : PlaySolid} />
-						<span class="sr-only">Play/Pause</span>
+						<span class="sr-only">{$__audioSettings.isPlaying ? 'Pause' : 'Play'}</span>
 
 						<!-- show badge when a verse is playing -->
 						{#if $__audioSettings.isPlaying && $__audioSettings.audioType === 'verse'}
@@ -159,14 +160,14 @@
 						{/if}
 					</button>
 				</div>
-				<Tooltip type="light">Play/Pause</Tooltip>
+				<Tooltip type="light" class="hidden md:block font-filter">{$__audioSettings.isPlaying ? 'Pause' : 'Play'}</Tooltip>
 
 				<!-- 4th icon -->
 				<button type="button" title="Settings" on:click={() => ($__settingsDrawerHidden = false)} class="inline-flex flex-col items-center justify-center px-5 hover:bg-[#ebebeb] dark:hover:bg-[#ebebeb] group">
 					<Settings />
 					<span class="sr-only">Settings</span>
 				</button>
-				<Tooltip type="light">Settings</Tooltip>
+				<Tooltip type="light" class="hidden md:block font-filter">Settings</Tooltip>
 			{/if}
 
 			<!-- ====================================================================== -->

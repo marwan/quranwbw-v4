@@ -116,5 +116,5 @@
 	</div>
 
 	<!-- end icon tooltip -->
-	<Tooltip type="light" class="z-30 inline-flex theme-grayscale">End of Verse {key}</Tooltip>
+	<Tooltip type="light" class="z-30 inline-flex theme-grayscale font-filter">End of Verse {key}</Tooltip>
 {/if}

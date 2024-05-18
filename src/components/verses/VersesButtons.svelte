@@ -73,7 +73,7 @@
 	<Link to={$__currentPage === 'chapter' ? './#' : `/${chapter}/${verse}`} class="{buttonClasses} font-bold" data-html2canvas-ignore>
 		<div class="opacity-50">{key}</div>
 	</Link>
-	<Tooltip type="light" placement="right" class="z-30">Verse {key}</Tooltip>
+	<Tooltip type="light" placement="right" class="z-30 hidden md:block font-filter">Verse {key}</Tooltip>
 
 	<!-- play verse button -->
 	<button on:click={() => quickPlayAudio(chapter, verse, verse)} class={buttonClasses}>
@@ -81,7 +81,7 @@
 			<svelte:component this={$__audioSettings.isPlaying && $__audioSettings.playingKey === key ? Pause : Play} />
 		</div>
 	</button>
-	<Tooltip type="light" placement="right" class="z-30">Play</Tooltip>
+	<Tooltip type="light" placement="right" class="z-30 hidden md:block font-filter">Play</Tooltip>
 
 	<!-- bookmark/unbookmark button -->
 	<button on:click={() => updateSettings({ type: 'userBookmarks', key })} class={buttonClasses}>
@@ -89,7 +89,7 @@
 			<svelte:component this={userBookmarks.includes(key) ? Bookmarked : Bookmark} />
 		</div>
 	</button>
-	<Tooltip type="light" placement="right" class="z-30">Bookmark</Tooltip>
+	<Tooltip type="light" placement="right" class="z-30 hidden md:block font-filter">Bookmark</Tooltip>
 
 	<!-- verses option dropdown -->
 	<button id="verse-{key}" class={buttonClasses}>

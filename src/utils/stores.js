@@ -111,3 +111,6 @@ export const __downloadedDataSettings = writable({
 
 // to store the auto scroll speed
 export const __autoScrollSpeed = writable(userSettings.displaySettings.autoScrollSpeed);
+
+// to store the first verse on page
+export const __firstVerseOnPage = writable(1);

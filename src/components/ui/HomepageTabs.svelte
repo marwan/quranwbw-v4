@@ -91,7 +91,7 @@
 								<div class="flex flex-row items-center space-x-1 justify-center md:justify-start truncate">
 									<div>{chapter + 1}. {quranMetaData[chapter + 1].transliteration}</div>
 									<div class="opacity-50"><svelte:component this={quranMetaData[chapter + 1].revelation === 1 ? Mecca : Madinah} /></div>
-									<Tooltip type="light" placement="right" class="z-30">{quranMetaData[chapter + 1].revelation === 1 ? 'Meccan' : 'Medinan'} revelation</Tooltip>
+									<Tooltip type="light" placement="right" class="z-30 hidden md:block font-filter">{quranMetaData[chapter + 1].revelation === 1 ? 'Meccan' : 'Medinan'} revelation</Tooltip>
 								</div>
 
 								<!-- chapter translation -->

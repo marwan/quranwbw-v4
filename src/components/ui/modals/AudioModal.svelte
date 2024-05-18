@@ -52,7 +52,7 @@
 
 					<!-- single or range -->
 					<div id="single-or-range-block" class="flex flex-col space-y-4 py-4 border-t dark:border-slate-700 {$__audioSettings.audioType === 'word' ? 'hidden' : ''}">
-						<span class="text-xs text-gray-500 dark:text-gray-400">The playing range that you prefer.</span>
+						<span class="text-xs text-gray-500 dark:text-gray-400">Your preferred range.</span>
 						<div class="flex flex-row space-x-4">
 							<!-- play this verse -->
 							<div class="flex items-center">

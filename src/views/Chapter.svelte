@@ -11,7 +11,7 @@
 	import { displayOptions } from '$data/options';
 	import { errorLoadingDataMessage } from '$data/websiteSettings';
 	import { updateSettings } from '$utils/updateSettings';
-	import { __currentPage, __chapterNumber, __displayType, __wordType, __wordTranslation, __verseTranslations, __pageURL } from '$utils/stores';
+	import { __currentPage, __chapterNumber, __displayType, __wordType, __wordTranslation, __verseTranslations, __pageURL, __firstVerseOnPage } from '$utils/stores';
 	// import { debounce } from '$utils/debounce';
 	// import { toggleNavbar } from '$utils/toggleNavbar';
 
@@ -39,6 +39,9 @@
 		if (startVerse === 1 && endVerse === chapterTotalVerses) {
 			(startVerse = 1), (endVerse = chapterTotalVerses > maxVersesThreshold ? maxVersesThreshold : chapterTotalVerses);
 		}
+
+		// update the first verse on page
+		__firstVerseOnPage.set(startVerse);
 
 		// logging these for now to re-run the block on URL change
 		console.log($__pageURL, $__displayType, $__wordType, $__wordTranslation, $__verseTranslations);
