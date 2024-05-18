@@ -6,25 +6,25 @@
 	import Logo from '$svgs/Logo.svelte';
 	import HomepageTabs from '$ui/HomepageTabs.svelte';
 
+	// icons
+	import Supplication from '$svgs/Supplication.svelte';
+	import Morphology from '$svgs/Morphology.svelte';
+	import Search from '$svgs/Search.svelte';
+
 	const homepageLinks = {
 		1: {
 			title: 'Supplications',
-			icon: '🤲',
+			icon: Supplication,
 			link: '/supplications'
 		},
-		// 2: {
-		// 	title: 'Bookmarks',
-		// 	icon: '📘',
-		// 	link: '/bookmarks'
-		// },
 		3: {
 			title: 'Morphology',
-			icon: '🧬',
+			icon: Morphology,
 			link: '/morphology/1:1'
 		},
 		4: {
 			title: 'Search',
-			icon: '🔎',
+			icon: Search,
 			link: '/search'
 		}
 	};
@@ -50,7 +50,9 @@
 		<div class="flex flex-row space-x-4 justify-center">
 			{#each Object.entries(homepageLinks) as [id, link]}
 				<Link to={link.link} class={cardInnerStyle}>
-					<div class={cardIconStyles}>{link.icon}</div>
+					<div class={cardIconStyles}>
+						<svelte:component this={link.icon} size={7} />
+					</div>
 					<div class="{linkStyles} ">{link.title}</div>
 				</Link>
 			{/each}

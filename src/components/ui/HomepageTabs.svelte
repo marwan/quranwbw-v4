@@ -139,7 +139,7 @@
 									<div class="invisible chapter-icons justify-items-end text-gray-400 text-3xl mt-2">{@html `&#xE9${quranMetaData[bookmark.split(':')[0]].icon};`}</div>
 								</Link>
 
-								<button on:click={() => updateSettings({ type: 'userBookmarks', key: bookmark })} class="pointer h-7 w-7 opacity-50 hover:opacity-70" style="margin-left: -20px; margin-top: -5px;" title="Remove bookmark"><Cross width={7} height={7} /></button>
+								<button on:click={() => updateSettings({ type: 'userBookmarks', key: bookmark })} class="pointer h-7 w-7 opacity-50 hover:opacity-70" style="margin-left: -20px; margin-top: -5px;" title="Remove bookmark"><Cross size={7} /></button>
 							</div>
 						{/each}
 					</div>
