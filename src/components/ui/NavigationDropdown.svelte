@@ -1,7 +1,6 @@
 <script>
 	import { Link } from 'svelte-routing';
-	import { __settingsDrawerHidden } from '$utils/stores';
-	import { toggleModal } from '$utils/toggleModal';
+	import { __settingsDrawerHidden, __tajweedRulesModalVisible, __tokenModalVisible } from '$utils/stores';
 	import { Dropdown, DropdownItem } from 'flowbite-svelte';
 
 	// icons
@@ -55,14 +54,16 @@
 	<DropdownItem
 		class={dropdownItemClasses}
 		on:click={() => {
-			toggleModal('tajweed-rules-modal', 'show');
+			// toggleModal('tajweed-rules-modal', 'show');
+			__tajweedRulesModalVisible.set(true);
 			dropdownOpen = false;
 		}}>Tajweed Rules</DropdownItem
 	>
 	<DropdownItem
 		class={dropdownItemClasses}
 		on:click={() => {
-			toggleModal('token-modal', 'show');
+			// toggleModal('token-modal', 'show');
+			__tokenModalVisible.set(true);
 			dropdownOpen = false;
 		}}>Token Login</DropdownItem
 	>

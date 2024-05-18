@@ -53,7 +53,7 @@
 	</div>
 
 	<div class="flex max-w-2xl mx-auto">
-		<div id="dropdown" class="z-10 bg-white divide-y divide-gray-100 rounded-3xl shadow w-44 dark:bg-gray-700">
+		<div id="dropdown" class="z-10 w-44">
 			<select
 				id="dropdown"
 				bind:value={selectedTranslation}
@@ -70,7 +70,7 @@
 			<div class="relative w-full">
 				<input type="search" id="search-input" value={searchText} class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 border-s-gray-50 border-s-2 border border-gray-300" placeholder="Search Abraham, Mary, Noah, Paradise..." required />
 			</div>
-			<button on:click={(event) => (searchText = document.getElementById('search-input').value)} class="p-2.5 text-sm font-medium text-white bg-gray-500 rounded-r-3xl border border-gray-500">
+			<button on:click={(event) => (searchText = document.getElementById('search-input').value)} class="p-2.5 text-sm font-medium text-white bg-gray-500 rounded-r-3xl border border-gray-500 mt-[-7px]">
 				<svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
 					<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
 				</svg>

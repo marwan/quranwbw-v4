@@ -30,7 +30,7 @@
 	};
 
 	const linkStyles = 'text-xs font-normal';
-	const cardInnerStyle = 'min-w-28 flex flex-col items-center justify-center border space-y-2 border-gray-200 transition text-sm bg-gray-50 rounded-3xl p-5 hover:cursor-pointer hover:bg-[#ebebeb]';
+	const cardInnerStyle = 'min-w-28 flex flex-col items-center justify-center border space-y-2 border-gray-200 transition text-sm bg-gray-50 rounded-3xl p-5 hover:cursor-pointer hover:bg-lightGray';
 	const cardIconStyles = 'text-sm md:text-lg';
 
 	__currentPage.set('home');

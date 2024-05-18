@@ -1,7 +1,4 @@
 <script>
-	// Flowbite JS
-	import '$lib/flowbite.min.js';
-
 	// default user settings
 	import '$utils/userSettings';
 

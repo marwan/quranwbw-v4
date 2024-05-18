@@ -81,7 +81,7 @@
 <div id="navigatation-inputs" class="flex mb-4 justify-start theme-grayscale">
 	<div class="flex flex-row w-full">
 		<Select class="w-fit rounded-l-3xl rounded-r-none focus:border-gray-500 text-xs" items={navigationPoints} bind:value={selectedNavigation} placeholder="Go to..." />
-		<input type="text" bind:value={waypoint} id="navigationInput" aria-describedby="helper-text-explanation" class="w-[inherit] bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-l-none focus:ring-gray-500 focus:border-gray-500 block w-24 p-2.5" {placeholder} />
-		<button class="{buttonElement} text-xs rounded-l-none min-w-fit border border-gray-300 {incorrectValue === true && disabledElement}" on:click={() => navigateToPoint()}>Go {@html '&#10230'}</button>
+		<input type="text" bind:value={waypoint} id="navigationInput" aria-describedby="helper-text-explanation" class="w-[inherit] bg-gray-50 border border-gray-300 border-l-0 border-r-0 text-gray-900 text-xs rounded-l-none focus:ring-gray-500 focus:border-gray-500 block w-24 p-2.5" {placeholder} />
+		<button class="{buttonElement} h-[86%] text-xs rounded-l-none min-w-fit border border-gray-300 {incorrectValue === true && disabledElement}" on:click={() => navigateToPoint()}>Go {@html '&#10230'}</button>
 	</div>
 </div>

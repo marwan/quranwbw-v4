@@ -1,7 +1,6 @@
 import { get } from 'svelte/store';
 import { quranMetaData } from '$data/quranMeta';
-import { __reciter, __playbackSpeed, __audioSettings } from '$utils/stores';
-import { toggleModal } from '$utils/toggleModal';
+import { __reciter, __playbackSpeed, __audioSettings, __audioModalVisible } from '$utils/stores';
 import { wordsAudioURL } from '$data/websiteSettings';
 import { selectableReciters, selectablePlaybackSpeeds } from '$data/options';
 import { scrollSmoothly } from '$utils/scrollSmoothly';
@@ -178,7 +177,7 @@ export function initializeAudio() {
 		delay: audioSettings.delay
 	});
 
-	toggleModal('audio-modal', 'hide');
+	__audioModalVisible.set(false);
 }
 
 export function updateAudioSettings(event) {
@@ -285,7 +284,7 @@ export function resetAudioSettings() {
 
 	// remove word highlight
 	document.querySelectorAll('.word').forEach((element) => {
-		element.classList.remove('bg-[#ebebeb]');
+		element.classList.remove('bg-lightGray');
 	});
 }
 
@@ -297,7 +296,7 @@ export function showAudioModal(key) {
 	initializeAudioSettings(key);
 
 	// show the modal
-	toggleModal('audio-modal', 'show');
+	__audioModalVisible.set(true);
 }
 
 export function wordAudioController(props) {

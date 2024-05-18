@@ -28,7 +28,7 @@
 	// chapter cards, tab styles
 	const homepageTabsStyles = {
 		cardGridStyle: 'grid md:grid-cols-2 lg:grid-cols-3 gap-3',
-		cardInnerStyle: 'flex justify-between md:text-left border border-gray-200 transition text-sm bg-gray-50 rounded-3xl p-5 hover:cursor-pointer hover:bg-[#ebebeb]',
+		cardInnerStyle: 'flex justify-between md:text-left border border-gray-200 transition text-sm bg-gray-50 rounded-3xl p-5 hover:cursor-pointer hover:bg-lightGray',
 		tabStyle: 'p-2 md:p-3 text-xs md:text-md cursor-pointer border-b-0',
 		activeTab: 'border-b-4'
 	};
@@ -67,7 +67,7 @@
 
 		<!-- menu for links on right -->
 		<div class="ml-2">
-			<button class="flex flex-row items-center bg-[#ebebeb] rounded-3xl {homepageTabsStyles.tabStyle} p-3" title="Menu">
+			<button class="flex flex-row items-center bg-lightGray rounded-3xl {homepageTabsStyles.tabStyle} p-3" title="Menu">
 				<span class="text-black opacity-50"><Menu /></span>
 			</button>
 			<NavigationDropdown />

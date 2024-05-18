@@ -7,9 +7,8 @@
 	import { Link } from 'svelte-routing';
 	import { showAudioModal, quickPlayAudio } from '$utils/audioController';
 	import { quranMetaData } from '$data/quranMeta';
-	import { __currentPage, __userSettings, __audioSettings, __verseKey } from '$utils/stores';
+	import { __currentPage, __userSettings, __audioSettings, __verseKey, __notesModalVisible } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';
-	import { toggleModal } from '$utils/toggleModal';
 	import { getNotes } from '$utils/userNotes';
 	// import { downloadVerseImage } from '$utils/downloadVerseImage';
 	import { Tooltip, Dropdown, DropdownItem } from 'flowbite-svelte';
@@ -26,7 +25,7 @@
 	$: userBookmarks = JSON.parse($__userSettings).userBookmarks;
 
 	const dropdownItemClasses = 'font-normal rounded-3xl';
-	const buttonClasses = 'inline-flex items-center justify-center w-10 h-10 transition-colors duration-150 rounded-3xl focus:shadow-outline hover:bg-[#ebebeb] print:hidden';
+	const buttonClasses = 'inline-flex items-center justify-center w-10 h-10 transition-colors duration-150 rounded-3xl focus:shadow-outline hover:bg-lightGray print:hidden';
 
 	let dropdownOpen = false;
 
@@ -49,7 +48,7 @@
 	function showNotesModal() {
 		__verseKey.set(key);
 		getNotes(key);
-		toggleModal('notes-modal', 'show');
+		__notesModalVisible.set(true);
 	}
 
 	// open share menu

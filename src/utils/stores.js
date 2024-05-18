@@ -114,3 +114,9 @@ export const __autoScrollSpeed = writable(userSettings.displaySettings.autoScrol
 
 // to store the first verse on page
 export const __firstVerseOnPage = writable(1);
+
+// modals ===============
+export const __audioModalVisible = writable(false);
+export const __notesModalVisible = writable(false);
+export const __tajweedRulesModalVisible = writable(false);
+export const __tokenModalVisible = writable(false);

@@ -40,7 +40,7 @@
 		}
 	}
 
-	$: wordClasses = `rounded-lg hover:cursor-pointer hover:bg-[#ebebeb] ${displayOptions[$__displayType].layout === 'wbw' ? 'p-3' : $__currentPage === 'page' ? 'p-0' : 'p-1'}`;
+	$: wordClasses = `rounded-lg hover:cursor-pointer hover:bg-lightGray ${displayOptions[$__displayType].layout === 'wbw' ? 'p-3' : $__currentPage === 'page' ? 'p-0' : 'p-1'}`;
 	$: displayIsContinuous = displayOptions[$__displayType].continuous;
 
 	// remove the invisibility class once all the fonts are loaded
@@ -61,7 +61,7 @@
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<div
 			id={`${chapter}:${verse}:${word + 1}`}
-			class="word {$__displayType === 1 ? 'text-center flex flex-col' : 'inline-flex flex-col'} {wordClasses} {$__audioSettings.playingWordKey === `${chapter}:${verse}:${word + 1}` || $__morphologyKey === `${chapter}:${verse}:${word + 1}` ? 'bg-[#ebebeb] dark:bg-slate-800' : ''}"
+			class="word {$__displayType === 1 ? 'text-center flex flex-col' : 'inline-flex flex-col'} {wordClasses} {$__audioSettings.playingWordKey === `${chapter}:${verse}:${word + 1}` || $__morphologyKey === `${chapter}:${verse}:${word + 1}` ? 'bg-lightGray dark:bg-slate-800' : ''}"
 			style={$__currentPage === 'supplications' && word + 1 < supplicationsFromQuran[key] && 'opacity: 30%;'}
 			data-timestamp={timestampSplit[word]}
 			on:click={() => wordClickHandler({ chapter, verse, word, type: 'word' })}

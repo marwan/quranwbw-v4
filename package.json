@@ -7,7 +7,7 @@
     "dev": "rollup -c -w",
     "start": "sirv public --single",
     "public": "sirv public --host",
-    "css": "npx tailwindcss -i ./src/main.css -o ./public/global.css --watch"
+    "css": "npx tailwindcss -i ./src/main.css -o ./public/assets/css/global.css --watch"
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^5.0.1",
