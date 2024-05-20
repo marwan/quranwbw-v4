@@ -19,6 +19,13 @@
 	const translationSplit = value.words.translation.split('|');
 	const timestampSplit = value.words.timestamp.split('|');
 
+	// fix for Ba'da Ma Ja'aka for page 254
+	// since it's just a cosmetic change, there's no use of changing it at database level
+	const fixedMushafWords = {
+		'13:37:8': 'ﱿ', // 6th line last word - Ba'da
+		'13:37:9': 'ﲀﲁ' // 7th line first word - Ma Ja'aka
+	};
+
 	// if mushaf fonts are selected, then dynamically load the fonts
 	if ($__wordType === 2) {
 		loadFont(`p${value.meta.page}`, `${mushafFontLinks.COLRv1}/QCF4${`00${value.meta.page}`.slice(-3)}_COLOR-Regular.woff`).then(() => {
@@ -73,7 +80,14 @@
 					{arabicSplit[word]}
 					<!-- 2: Uthmanic Hafs Mushaf -->
 				{:else if $__wordType === 2}
-					<span style="font-family: p{value.meta.page}" class="p{value.meta.page} invisible {$__tajweedEnabled ? 'theme-palette-tajweed' : 'theme-palette-normal'} font-filter">{arabicSplit[word]}</span>
+					<span style="font-family: p{value.meta.page}" class="p{value.meta.page} invisible {$__tajweedEnabled ? 'theme-palette-tajweed' : 'theme-palette-normal'} font-filter">
+						<!-- word fix, see fixedMushafWords -->
+						{#if fixedMushafWords.hasOwnProperty(`${chapter}:${verse}:${word + 1}`)}
+							{fixedMushafWords[`${chapter}:${verse}:${word + 1}`]}
+						{:else}
+							{arabicSplit[word]}
+						{/if}
+					</span>
 				{/if}
 			</span>
 

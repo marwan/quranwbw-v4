@@ -8,7 +8,7 @@
 		"preview": "vite preview",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
-		"css": "npx tailwindcss -i ./src/app.css -o ./static/css/global.css --watch"
+		"css": "npx tailwindcss -i ./src/app.css -c ./tailwind.config.js -o ./static/css/global.css --watch"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.0.0",
@@ -33,7 +33,6 @@
 	"type": "module",
 	"dependencies": {
 		"@macfja/svelte-persistent-store": "^2.4.1",
-		"svelte-inview": "^4.0.2",
-		"svelte-routing": "^2.13.0"
+		"svelte-inview": "^4.0.2"
 	}
 }
