@@ -1,5 +1,5 @@
 <script>
-	import PageMeta from '$components/PageMeta.svelte';
+	import PageHead from '$components/PageHead.svelte';
 	import { websiteTagline } from '$data/websiteSettings';
 	import { __currentPage } from '$utils/stores';
 	import Logo from '$svgs/Logo.svelte';
@@ -35,7 +35,7 @@
 	__currentPage.set('home');
 </script>
 
-<PageMeta title={`Quran ${websiteTagline}`} />
+<PageHead title={`Quran ${websiteTagline}`} />
 
 <div class="max-w-4xl mx-auto flex flex-col space-y-8 md:px-4 theme-grayscale">
 	<div class="flex flex-col mt-4">

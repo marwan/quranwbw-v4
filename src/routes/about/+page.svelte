@@ -1,12 +1,12 @@
 <script>
-	import PageMeta from '$components/PageMeta.svelte';
+	import PageHead from '$components/PageHead.svelte';
 	import { __currentPage } from '$utils/stores';
 	import { linkElement } from '$data/commonStyles';
 
 	__currentPage.set('about');
 </script>
 
-<PageMeta title={'About'} />
+<PageHead title={'About'} />
 
 <div class="">
 	<div class="my-6 space-y-4 pb-4">

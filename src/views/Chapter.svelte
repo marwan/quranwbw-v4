@@ -3,7 +3,7 @@
 	// props from router
 	export let data, startVerse, endVerse;
 
-	import PageMeta from '$components/PageMeta.svelte';
+	import PageHead from '$components/PageHead.svelte';
 	import ChapterVerses from '$verses/ChapterVerses.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
 	import { parseURL } from '$utils/parseURL';
@@ -66,7 +66,7 @@
 	__currentPage.set('chapter');
 </script>
 
-<PageMeta title={`${quranMetaData[$__chapterNumber].transliteration} (${$__chapterNumber})`} />
+<PageHead title={`${quranMetaData[$__chapterNumber].transliteration} (${$__chapterNumber})`} />
 
 <div class="pt-8">
 	{#await chapterData}

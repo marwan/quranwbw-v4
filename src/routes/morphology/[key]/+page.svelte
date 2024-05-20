@@ -1,7 +1,7 @@
 <script>
 	export let data;
 
-	import PageMeta from '$components/PageMeta.svelte';
+	import PageHead from '$components/PageHead.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
 	import VersesWords from '$verses/VersesWords.svelte';
 	import MorphologyTable from '$morphology/MorphologyTable.svelte';
@@ -47,7 +47,7 @@
 	__currentPage.set('morphology');
 </script>
 
-<PageMeta title={`Morphology (${$__morphologyKey})`} />
+<PageHead title={`Morphology (${$__morphologyKey})`} />
 
 <div class="space-y-12 my-8">
 	<div id="verse-navigator" class="flex flex-row justify-center space-x-8">

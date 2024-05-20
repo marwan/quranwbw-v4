@@ -1,5 +1,5 @@
 <script>
-	import PageMeta from '$components/PageMeta.svelte';
+	import PageHead from '$components/PageHead.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
 	import { __currentPage } from '$utils/stores';
 	import { linkElement } from '$data/commonStyles';
@@ -27,7 +27,7 @@
 	__currentPage.set('faq');
 </script>
 
-<PageMeta title={'FAQ'} />
+<PageHead title={'FAQ'} />
 
 <div class="">
 	<div class="my-6 space-y-4 pb-4 border-b-2">

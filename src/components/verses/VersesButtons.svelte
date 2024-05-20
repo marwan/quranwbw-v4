@@ -71,7 +71,7 @@
 	<Tooltip type="light" placement="right" class="z-30 hidden md:block font-filter">Verse {key}</Tooltip>
 
 	<!-- play verse button -->
-	<button on:click={() => quickPlayAudio(chapter, verse, verse)} class={buttonClasses}>
+	<button on:click={() => quickPlayAudio(chapter, verse, verse)} class={buttonClasses} aria-label="Play">
 		<div class="opacity-50">
 			<svelte:component this={$__audioSettings.isPlaying && $__audioSettings.playingKey === key ? Pause : Play} />
 		</div>
@@ -79,7 +79,7 @@
 	<Tooltip type="light" placement="right" class="z-30 hidden md:block font-filter">Play</Tooltip>
 
 	<!-- bookmark/unbookmark button -->
-	<button on:click={() => updateSettings({ type: 'userBookmarks', key })} class={buttonClasses}>
+	<button on:click={() => updateSettings({ type: 'userBookmarks', key })} class={buttonClasses} aria-label="Bookmark">
 		<div class="opacity-50">
 			<svelte:component this={userBookmarks.includes(key) ? Bookmarked : Bookmark} />
 		</div>
@@ -87,7 +87,7 @@
 	<Tooltip type="light" placement="right" class="z-30 hidden md:block font-filter">Bookmark</Tooltip>
 
 	<!-- verses option dropdown -->
-	<button id="verse-{key}" class={buttonClasses}>
+	<button id="verse-{key}" class={buttonClasses} aria-label="Options">
 		<div class="opacity-50">
 			<DotsHorizontal />
 		</div>

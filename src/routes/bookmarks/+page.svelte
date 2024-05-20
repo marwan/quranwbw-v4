@@ -1,5 +1,5 @@
 <script>
-	import PageMeta from '$components/PageMeta.svelte';
+	import PageHead from '$components/PageHead.svelte';
 	import IndividualVerses from '$verses/IndividualVerses.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
 	import { __currentPage, __wordType, __displayType, __wordTranslation, __verseTranslations, __userBookmarks } from '$utils/stores';
@@ -18,7 +18,7 @@
 	__currentPage.set('bookmarks');
 </script>
 
-<PageMeta title={'Bookmarks'} />
+<PageHead title={'Bookmarks'} />
 
 <div class="">
 	{#if $__userBookmarks.length === 0}

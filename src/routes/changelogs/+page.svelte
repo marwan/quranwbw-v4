@@ -1,5 +1,5 @@
 <script>
-	import PageMeta from '$components/PageMeta.svelte';
+	import PageHead from '$components/PageHead.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
 	import { errorLoadingDataMessage } from '$data/websiteSettings';
 	import { __currentPage } from '$utils/stores';
@@ -29,7 +29,7 @@
 	__currentPage.set('changelogs');
 </script>
 
-<PageMeta title={'Changelogs'} />
+<PageHead title={'Changelogs'} />
 
 <div class="flex flex-col space-y-6 text-sm">
 	<div class="flex flex-row space-x-4 items-center mt-6">

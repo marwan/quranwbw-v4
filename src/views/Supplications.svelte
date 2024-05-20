@@ -1,6 +1,6 @@
 <!-- for supplications and duas routes -->
 <script>
-	import PageMeta from '$components/PageMeta.svelte';
+	import PageHead from '$components/PageHead.svelte';
 	import IndividualVerses from '$verses/IndividualVerses.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
 	import { __currentPage, __wordType, __displayType, __wordTranslation, __verseTranslations } from '$utils/stores';
@@ -14,7 +14,7 @@
 	__currentPage.set('supplications');
 </script>
 
-<PageMeta title={'Supplications From Quran'} />
+<PageHead title={'Supplications From Quran'} />
 
 <div>
 	{#await fetchData}

@@ -1,6 +1,6 @@
 <script>
 	import { goto } from '$app/navigation';
-	import PageMeta from '$components/PageMeta.svelte';
+	import PageHead from '$components/PageHead.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
 	import { searchableTranslations } from '$data/searchableTranslations';
 	import { quranMetaData } from '$data/quranMeta';
@@ -42,7 +42,7 @@
 	__currentPage.set('search');
 </script>
 
-<PageMeta title={'Search'} />
+<PageHead title={'Search'} />
 
 <div class="theme-grayscale space-y-8">
 	<div class="my-6 space-y-4 pb-4 border-b-2 dark:border-slate-700">

@@ -4,7 +4,7 @@
 	$: page = +data.page;
 
 	import { goto } from '$app/navigation';
-	import PageMeta from '$components/PageMeta.svelte';
+	import PageHead from '$components/PageHead.svelte';
 	import VersesWords from '$verses/VersesWords.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
 	import { __chapterNumber, __pageNumber, __currentPage, __wordType, __tajweedEnabled, __mushafPageDivisions } from '$utils/stores';
@@ -119,7 +119,7 @@
 	__currentPage.set('page');
 </script>
 
-<PageMeta title={`Page ${page}`} />
+<PageHead title={`Page ${page}`} />
 
 <div class="text-center mt-8 text-xl">
 	{#await pageData}
