@@ -1,7 +1,6 @@
 <script>
 	export let wordData, tableType;
 
-	import { Link } from 'svelte-routing';
 	import { __wordType } from '$utils/stores';
 	import { buttonElement } from '$data/commonStyles';
 
@@ -46,8 +45,8 @@
 								<td class="px-6 py-4 arabic-font-{$__wordType} text-xl md:text-2xl"> {wordData[word - 1].arabic} </td>
 								<td class="px-6 py-4"> {wordData[word - 1].translation} </td>
 								<td class="px-6 py-4"> {wordData[word - 1].transliteration} </td>
-								<td class="px-6 py-4"> <Link class="underline" to="/{wordData[word - 1].key.split(':')[0]}/{wordData[word - 1].key.split(':')[1]}">{wordData[word - 1].key.split(':')[0]}:{wordData[word - 1].key.split(':')[1]}</Link> </td>
-								<td class="px-6 py-4"> <Link class="underline" to="/morphology/{wordData[word - 1].key}">{wordData[word - 1].key}</Link> </td>
+								<td class="px-6 py-4"> <a class="underline" href="/{wordData[word - 1].key.split(':')[0]}/{wordData[word - 1].key.split(':')[1]}">{wordData[word - 1].key.split(':')[0]}:{wordData[word - 1].key.split(':')[1]}</a> </td>
+								<td class="px-6 py-4"> <a class="underline" href="/morphology/{wordData[word - 1].key}">{wordData[word - 1].key}</a> </td>
 							</tr>
 						{/each}
 					</tbody>

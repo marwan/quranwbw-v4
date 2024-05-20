@@ -1,3 +1,4 @@
+<!-- for supplications and duas routes -->
 <script>
 	import PageMeta from '$components/PageMeta.svelte';
 	import IndividualVerses from '$verses/IndividualVerses.svelte';

@@ -3,7 +3,7 @@
 		value,
 		line = null;
 
-	import { navigate } from 'svelte-routing';
+	import { goto } from '$app/navigation';
 	import { displayOptions, mushafFontLinks } from '$data/options';
 	import { supplicationsFromQuran } from '$data/quranMeta';
 	import { __currentPage, __wordType, __displayType, __websiteTheme, __userSettings, __audioSettings, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __morphologyKey, __tajweedEnabled, __wordTooltip } from '$utils/stores';
@@ -32,9 +32,9 @@
 	// handle what happens when a word is clicked depending on page type
 	function wordClickHandler(props) {
 		if ($__currentPage === 'morphology') {
-			const wordKey = `${chapter}:${verse}:${word + 1}`;
+			const wordKey = `${props.chapter}:${props.verse}:${props.word + 1}`;
 			__morphologyKey.set(wordKey);
-			navigate(`/morphology/${wordKey}`, { replace: false });
+			goto(`/morphology/${wordKey}`, { replaceState: false });
 		} else {
 			wordAudioController(props);
 		}
@@ -59,6 +59,7 @@
 {#each { length: value.meta.words } as _, word}
 	{#if $__currentPage != 'page' || ($__currentPage === 'page' && +value.words.line.split('|')[word] === line)}
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
 		<div
 			id={`${chapter}:${verse}:${word + 1}`}
 			class="word {$__displayType === 1 ? 'text-center flex flex-col' : 'inline-flex flex-col'} {wordClasses} {$__audioSettings.playingWordKey === `${chapter}:${verse}:${word + 1}` || $__morphologyKey === `${chapter}:${verse}:${word + 1}` ? 'bg-lightGray dark:bg-slate-800' : ''}"
@@ -103,6 +104,7 @@
 <!-- end icon -->
 {#if $__currentPage != 'page' || ($__currentPage === 'page' && value.words.end_line === line)}
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
+	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<div class="{$__displayType === 1 ? 'text-center flex flex-col' : 'inline-flex flex-col'} {wordClasses}" on:click={() => wordClickHandler({ chapter, verse, type: 'end' })}>
 		<span class="arabicText leading-normal arabic-font-{$__wordType} {$__currentPage !== 'page' && fontSizes.arabicText} {displayIsContinuous === true && 'inline-block group-hover:text-gray-500 dark:group-hover:text-slate-300'}" data-fontSize={fontSizes.arabicText}>
 			<!-- 1: Uthmanic Hafs Digital, 3: Indopak Madinah -->

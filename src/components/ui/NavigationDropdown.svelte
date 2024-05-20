@@ -1,5 +1,4 @@
 <script>
-	import { Link } from 'svelte-routing';
 	import { __settingsDrawerHidden, __tajweedRulesModalVisible, __tokenModalVisible } from '$utils/stores';
 	import { Dropdown, DropdownItem } from 'flowbite-svelte';
 
@@ -71,9 +70,9 @@
 
 	<!-- internal links -->
 	{#each Object.entries(internalLinks) as [id, link]}
-		<Link to={link.link}>
+		<a href={link.link}>
 			<DropdownItem class={dropdownItemClasses}>{link.title}</DropdownItem>
-		</Link>
+		</a>
 	{/each}
 
 	<!-- external links -->

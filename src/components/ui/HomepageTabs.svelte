@@ -1,5 +1,4 @@
 <script>
-	import { Link } from 'svelte-routing';
 	import { updateSettings } from '$utils/updateSettings';
 	import { quranMetaData, mostRead } from '$data/quranMeta';
 	import { fetchChapterData } from '$utils/fetchData';
@@ -81,17 +80,17 @@
 			<div class="flex flex-col md:flex-row justify-between">
 				<PointNavigationSelector />
 				<div>
-					<Link to="/{lastReadChapter}/{lastReadVerse}" class="py-2.5 {buttonElement} text-xs w-full mb-4 md:mb-0">Continue Reading: {quranMetaData[lastReadChapter].transliteration}, {lastReadChapter}:{lastReadVerse} {@html '&#10230'}</Link>
+					<a href="/{lastReadChapter}/{lastReadVerse}" class="py-2.5 {buttonElement} text-xs w-full mb-4 md:mb-0">Continue Reading: {quranMetaData[lastReadChapter].transliteration}, {lastReadChapter}:{lastReadVerse} {@html '&#10230'}</a>
 				</div>
 			</div>
 
 			<div class="{homepageTabsStyles.cardGridStyle} grid-cols-2">
 				{#each { length: 114 } as _, chapter}
-					<Link to="/{chapter + 1}">
+					<a href="/{chapter + 1}">
 						<!-- <button class="pointer h-7 w-7 rounded-full bg-gray-300 text-xs">{chapter + 1}</button> -->
 
 						<div class="{homepageTabsStyles.cardInnerStyle} flex-col-reverse md:flex-row text-center items-center">
-							<div class="" use:inview={fetchOptions} on:inview_enter={(event) => fetchChapterData(+chapter + 1)}>
+							<div class="">
 								<!-- chapter name and icon -->
 								<div class="flex flex-row items-center space-x-1 justify-center md:justify-start truncate">
 									<div>{chapter + 1}. {quranMetaData[chapter + 1].transliteration}</div>
@@ -111,7 +110,7 @@
 							</div>
 							<div class="invisible chapter-icons justify-items-end text-gray-400 text-3xl md:mt-2">{@html `&#xE9${quranMetaData[chapter + 1].icon};`}</div>
 						</div>
-					</Link>
+					</a>
 				{/each}
 			</div>
 		</div>
@@ -121,10 +120,10 @@
 			<div id="most-read-chapters" class="flex flex-col space-y-4">
 				<div class="{homepageTabsStyles.cardGridStyle} grid-cols-1">
 					{#each Object.entries(mostRead) as [id, item]}
-						<Link to={item.url} class="{homepageTabsStyles.cardInnerStyle} flex-col">
+						<a href={item.url} class="{homepageTabsStyles.cardInnerStyle} flex-col">
 							<span class="text-sm">{quranMetaData[item.chapter].transliteration} ({item.verses})</span>
 							<div class="block text-xs text-gray-400">{item.title}</div>
-						</Link>
+						</a>
 					{/each}
 				</div>
 			</div>
@@ -139,10 +138,10 @@
 					<div class="{homepageTabsStyles.cardGridStyle} grid-cols-1">
 						{#each $__userBookmarks as bookmark}
 							<div class="flex flex-row space-x-2">
-								<Link to="{bookmark.split(':')[0]}/{bookmark.split(':')[1]}" class="{homepageTabsStyles.cardInnerStyle} flex-row items-center w-full">
+								<a href="{bookmark.split(':')[0]}/{bookmark.split(':')[1]}" class="{homepageTabsStyles.cardInnerStyle} flex-row items-center w-full">
 									<div class="text-sm">{quranMetaData[bookmark.split(':')[0]].transliteration}, Verse {bookmark}</div>
 									<div class="invisible chapter-icons justify-items-end text-gray-400 text-3xl mt-2">{@html `&#xE9${quranMetaData[bookmark.split(':')[0]].icon};`}</div>
-								</Link>
+								</a>
 
 								<button on:click={() => updateSettings({ type: 'userBookmarks', key: bookmark })} class="pointer h-7 w-7 opacity-50 hover:opacity-70" style="margin-left: -20px; margin-top: -5px;" title="Remove bookmark"><Cross size={7} /></button>
 							</div>

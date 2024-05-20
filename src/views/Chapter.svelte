@@ -1,6 +1,7 @@
+<!-- for chapter and verse routes -->
 <script>
 	// props from router
-	export let chapter, startVerse, endVerse;
+	export let data, startVerse, endVerse;
 
 	import PageMeta from '$components/PageMeta.svelte';
 	import ChapterVerses from '$verses/ChapterVerses.svelte';
@@ -23,8 +24,10 @@
 	// fetch verses whenever there's a change
 	$: {
 		// updating the chapter number in store and in window (for chapter navigation)
-		__chapterNumber.set(+chapter);
-		window.chapter = +chapter;
+		__chapterNumber.set(+data.chapter);
+		window.chapter = +data.chapter;
+
+		console.log($__chapterNumber);
 
 		const chapterTotalVerses = quranMetaData[$__chapterNumber].verses;
 

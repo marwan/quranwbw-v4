@@ -1,5 +1,4 @@
 <script>
-	import { Link } from 'svelte-routing';
 	import { __audioSettings } from '$utils/stores';
 	import { __chapterNumber, __pageNumber, __displayType, __currentPage, __bottomNavbarVisible, __settingsDrawerHidden, __autoScrollSpeed, __firstVerseOnPage } from '$utils/stores';
 	import { quickPlayAudio } from '$utils/audioController';
@@ -79,7 +78,7 @@
 	window.pageScroll = pageScroll;
 
 	function clearAllIntervals() {
-		for (let i = 1; i < 99999; i++) window.clearInterval(i);
+		// for (let i = 1; i < 99999; i++) window.clearInterval(i);
 	}
 
 	function updateScrollSpeed(action) {
@@ -117,23 +116,23 @@
 	<div class="{$__bottomNavbarVisible ? 'block' : 'hidden'} fixed z-20 w-full h-16 max-w-xs md:max-w-lg shadow-sm -translate-x-1/2 bg-white border border-gray-200 rounded-full bottom-4 left-1/2 theme-grayscale">
 		<div class="grid h-full max-w-lg grid-cols-5 mx-auto text-gray-400">
 			<!-- Previous Chapter -->
-			<Link to="/{previousNavigation}" class="{previousNavigationDisabled === true && disabledElement} inline-flex flex-col items-center justify-center px-5 rounded-s-full hover:bg-lightGray dark:hover:bg-lightGray group">
+			<a href="/{previousNavigation}" class="{previousNavigationDisabled === true && disabledElement} inline-flex flex-col items-center justify-center px-5 rounded-s-full hover:bg-lightGray dark:hover:bg-lightGray group">
 				<ChevronLeft />
 				<span class="sr-only">Previous {$__currentPage}</span>
-			</Link>
+			</a>
 			<!-- <Tooltip type="light">Previous {$__currentPage}</Tooltip> -->
 
 			<!-- normal / non-scroll mode -->
 			{#if !scrollModeEnabled}
 				<!-- 2nd icon -->
-				<!-- <button type="button" title="Change Display" on:click={() => updateSettings({ type: 'displayType', value: $__displayType === 5 ? 1 : $__displayType + 1 })} class="inline-flex flex-col items-center justify-center px-5 relative inline-flex items-center hover:bg-lightGray dark:hover:bg-lightGray group {$__currentPage === 'page' && disabledElement}">
+				<button type="button" title="Change Display" on:click={() => updateSettings({ type: 'displayType', value: $__displayType === 5 ? 1 : $__displayType + 1 })} class="inline-flex flex-col items-center justify-center px-5 relative inline-flex items-center hover:bg-lightGray dark:hover:bg-lightGray group {$__currentPage === 'page' && disabledElement}">
 					<Eye />
 					<span class="sr-only">Display Type</span>
 				</button>
-				<Tooltip type="light" class="hidden md:block font-filter">Display Type</Tooltip> -->
+				<Tooltip type="light" class="hidden md:block font-filter">Display Type</Tooltip>
 
 				<!-- scroll button (temp) -->
-				<button
+				<!-- <button
 					type="button"
 					title="Auto Scroll"
 					on:click={() => {
@@ -145,7 +144,7 @@
 					<svelte:component this={!scrollEnabled ? ScrollDown : CrossOutline} size={6} />
 					<span class="sr-only">Scroll</span>
 				</button>
-				<Tooltip type="light" class="hidden md:block font-filter">Auto Scroll</Tooltip>
+				<Tooltip type="light" class="hidden md:block font-filter">Auto Scroll</Tooltip> -->
 
 				<!-- 3rd icon -->
 				<!-- play/pause button -->
@@ -209,10 +208,10 @@
 			{/if}
 
 			<!-- Next Chapter -->
-			<Link to="/{nextNavigation}" class="{nextNavigationDisabled === true && disabledElement} inline-flex flex-col items-center justify-center px-5 rounded-e-full hover:bg-lightGray dark:hover:bg-lightGray group">
+			<a href="/{nextNavigation}" class="{nextNavigationDisabled === true && disabledElement} inline-flex flex-col items-center justify-center px-5 rounded-e-full hover:bg-lightGray dark:hover:bg-lightGray group">
 				<ChevronRight />
 				<span class="sr-only">Next {$__currentPage}</span>
-			</Link>
+			</a>
 			<!-- <Tooltip type="light">Next {$__currentPage}</Tooltip> -->
 		</div>
 	</div>

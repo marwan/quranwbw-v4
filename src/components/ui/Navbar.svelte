@@ -1,5 +1,4 @@
 <script>
-	import { Link } from 'svelte-routing';
 	import { quranMetaData } from '$data/quranMeta';
 	import { __chapterNumber, __currentPage, __lastRead, __pageURL, __topNavbarVisible, __pageNumber, __morphologyKey, __mushafPageDivisions, __settingsDrawerHidden } from '$utils/stores';
 	import NavigationDropdown from '$ui/NavigationDropdown.svelte';
@@ -60,10 +59,10 @@
 
 <nav id="navbar" class="{$__currentPage === 'home' ? 'hidden' : 'block'} bg-white fixed w-full z-20 top-0 left-0 border-b border-gray-200 text-black print:hidden dark:bg-slate-900 dark:text-slate-400 dark:border-slate-700 theme-grayscale">
 	<div id="top-nav" class="{$__topNavbarVisible ? 'block' : 'hidden'} flex flex-row items-center justify-between max-w-screen-lg mx-auto px-4 py-2">
-		<Link to="/" class="flex flex-row items-center p-3 cursor-pointer hover:bg-lightGray rounded-3xl dark:hover:bg-slate-700">
+		<a href="/" class="flex flex-row items-center p-3 cursor-pointer hover:bg-lightGray rounded-3xl dark:hover:bg-slate-700">
 			<Home />
 			<span class="text-xs pl-2 hidden md:block">Home</span>
-		</Link>
+		</a>
 
 		<!-- display the chapter name on chapter page -->
 		<button class="{$__currentPage === 'chapter' ? 'block' : 'hidden'} flex items-center p-3 text-sm border-gray-200 w-auto p-2 hover:bg-lightGray rounded-3xl">

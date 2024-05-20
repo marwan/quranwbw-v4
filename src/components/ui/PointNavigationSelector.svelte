@@ -1,5 +1,5 @@
 <script>
-	import { navigate } from 'svelte-routing';
+	import { goto } from '$app/navigation';
 	import { pageNumberKeys, juzNumberKeys } from '$data/quranMeta';
 	import { __pageURL } from '$utils/stores';
 	import { buttonElement, disabledElement } from '$data/commonStyles';
@@ -56,23 +56,23 @@
 
 		switch (selectedNavigation) {
 			case 1:
-				navigate(`/${waypoint}`, { replace: false });
+				goto(`/${waypoint}`, { replaceState: false });
 				break;
 
 			case 2:
 				const pageKey = pageNumberKeys[waypoint - 1].split(':');
-				navigate(`/${+pageKey[0]}/${+pageKey[1]}`, { replace: false });
+				goto(`/${+pageKey[0]}/${+pageKey[1]}`, { replaceState: false });
 				break;
 
 			case 3:
 				const juzKey = juzNumberKeys[waypoint - 1].split(':');
-				navigate(`/${+juzKey[0]}/${+juzKey[1]}`, { replace: false });
+				goto(`/${+juzKey[0]}/${+juzKey[1]}`, { replaceState: false });
 				break;
 
 			case 4:
 				const chapter = waypoint.split(':')[0],
 					verse = waypoint.split(':')[1];
-				navigate(`/${+chapter}/${+verse}`, { replace: false });
+				goto(`/${+chapter}/${+verse}`, { replaceState: false });
 				break;
 		}
 	}

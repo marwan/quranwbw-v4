@@ -1,5 +1,4 @@
 <script>
-	import { Link } from 'svelte-routing';
 	import { quranMetaData } from '$data/quranMeta';
 	import { __chapterNumber, __pageURL } from '$utils/stores';
 	import { Dropdown, DropdownItem } from 'flowbite-svelte';
@@ -66,12 +65,12 @@
 				<ul id="navbar-chapter-list" class="grow basis-1/2 px-2 overflow-y-scroll">
 					{#each { length: maxChaptersToLoad } as _, chapter}
 						<li>
-							<Link to="/{chapter + 1}">
+							<a href="/{chapter + 1}">
 								<DropdownItem class={dropdownItemClasses}>
 									{chapter + 1}. {quranMetaData[chapter + 1].transliteration}
 									<span class="hidden md:inline-block">({quranMetaData[chapter + 1].translation})</span>
 								</DropdownItem>
-							</Link>
+							</a>
 						</li>
 					{/each}
 					{#if !maxChaptersLoaded}
@@ -87,9 +86,9 @@
 				<ul id="navbar-verse-list" class="grow basis-1/2 px-2 overflow-y-scroll">
 					{#each { length: maxVersesToLoad } as _, verse}
 						<li>
-							<Link to="/{window.chapter}/{verse + 1}" on:click={() => __pageURL.set(Math.random())}>
+							<a href="/{window.chapter}/{verse + 1}" on:click={() => __pageURL.set(Math.random())}>
 								<DropdownItem class={dropdownItemClasses}>Verse {verse + 1}</DropdownItem>
-							</Link>
+							</a>
 						</li>
 					{/each}
 					{#if !maxVersesLoaded}

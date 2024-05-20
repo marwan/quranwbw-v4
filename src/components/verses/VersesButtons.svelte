@@ -4,7 +4,6 @@
 	const chapter = +key.split(':')[0];
 	const verse = +key.split(':')[1];
 
-	import { Link } from 'svelte-routing';
 	import { showAudioModal, quickPlayAudio } from '$utils/audioController';
 	import { quranMetaData } from '$data/quranMeta';
 	import { __currentPage, __userSettings, __audioSettings, __verseKey, __notesModalVisible } from '$utils/stores';
@@ -66,9 +65,9 @@
 </script>
 
 <div class="verseButtons flex flex-row space-x-2 z-10 text-xs theme-grayscale">
-	<Link to={$__currentPage === 'chapter' ? './#' : `/${chapter}/${verse}`} class="{buttonClasses} font-bold" data-html2canvas-ignore>
+	<a href={$__currentPage === 'chapter' ? './#' : `/${chapter}/${verse}`} class="{buttonClasses} font-bold" data-html2canvas-ignore>
 		<div class="opacity-50">{key}</div>
-	</Link>
+	</a>
 	<Tooltip type="light" placement="right" class="z-30 hidden md:block font-filter">Verse {key}</Tooltip>
 
 	<!-- play verse button -->
@@ -119,14 +118,14 @@
 
 		<!-- verse page button -->
 		<DropdownItem class={dropdownItemClasses}>
-			<Link to="/page/{value.meta.page}">
+			<a href="/page/{value.meta.page}">
 				Go to Page {value.meta.page}
-			</Link>
+			</a>
 		</DropdownItem>
 
 		<!-- verse morphology button -->
 		<DropdownItem class={dropdownItemClasses}>
-			<Link to="/morphology/{chapter}:{verse}">Verse Morphology</Link>
+			<a href="/morphology/{chapter}:{verse}">Verse Morphology</a>
 		</DropdownItem>
 
 		<!-- share verse button -->

@@ -1,41 +1,39 @@
 {
-  "name": "quranwbw.com",
-  "version": "v4",
-  "private": true,
-  "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
-    "start": "sirv public --single",
-    "public": "sirv public --host",
-    "css": "npx tailwindcss -i ./src/main.css -o ./public/assets/css/global.css --watch"
-  },
-  "devDependencies": {
-    "@rollup/plugin-alias": "^5.0.1",
-    "@rollup/plugin-babel": "^6.0.4",
-    "@rollup/plugin-commonjs": "^17.0.0",
-    "@rollup/plugin-node-resolve": "^11.0.0",
-    "eslint": "^8.57.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-svelte": "^2.35.1",
-    "flowbite": "^1.8.1",
-    "flowbite-svelte": "^0.45.0",
-    "rollup": "^2.3.4",
-    "rollup-plugin-css-only": "^3.1.0",
-    "rollup-plugin-livereload": "^2.0.0",
-    "rollup-plugin-svelte": "^7.0.0",
-    "rollup-plugin-terser": "^7.0.0",
-    "svelte": "^3.0.0",
-    "svelte-taphold": "^1.0.3-remake",
-    "tailwindcss": "^3.4.1"
-  },
-  "dependencies": {
-    "@babel/core": "^7.24.0",
-    "@babel/preset-env": "^7.24.0",
-    "fontfaceobserver": "^2.3.0",
-    "rollup-plugin-babel": "^4.4.0",
-    "sirv-cli": "^1.0.0",
-    "svelte-inview": "^4.0.2",
-    "svelte-navigator": "^3.1.5",
-    "svelte-routing": "^2.5.0"
-  }
+	"name": "quranwbw.com",
+	"version": "4",
+	"private": true,
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"lint": "prettier --check . && eslint .",
+		"format": "prettier --write .",
+		"css": "npx tailwindcss -i ./src/app.css -o ./static/css/global.css --watch"
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-auto": "^3.0.0",
+		"@sveltejs/adapter-static": "^3.0.1",
+		"@sveltejs/kit": "^2.0.0",
+		"@sveltejs/vite-plugin-svelte": "^3.0.0",
+		"@types/eslint": "^8.56.0",
+		"autoprefixer": "^10.4.19",
+		"eslint": "^8.56.0",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-plugin-svelte": "^2.35.1",
+		"flowbite": "^2.3.0",
+		"flowbite-svelte": "^0.46.1",
+		"postcss": "^8.4.38",
+		"prettier": "^3.1.1",
+		"prettier-plugin-svelte": "^3.1.2",
+		"svelte": "^4.2.7",
+		"svelte-taphold": "^1.0.3-remake",
+		"tailwindcss": "^3.4.1",
+		"vite": "^5.0.3"
+	},
+	"type": "module",
+	"dependencies": {
+		"@macfja/svelte-persistent-store": "^2.4.1",
+		"svelte-inview": "^4.0.2",
+		"svelte-routing": "^2.13.0"
+	}
 }

@@ -1,8 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 const colors = require('tailwindcss/colors');
 
-module.exports = {
-	content: ['./src/**/*.{html,js,svelte}', './public/**/*.{html,js,svelte}', 'node_modules/preline/dist/*.js'],
+export default {
+	content: ['./src/**/*.{html,js,svelte,ts}'],
 	darkMode: 'selector',
 	theme: {
 		extend: {
@@ -12,5 +12,5 @@ module.exports = {
 			}
 		}
 	},
-	plugins: [require('flowbite/plugin')]
+	plugins: []
 };
