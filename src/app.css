@@ -71,6 +71,16 @@
   border-radius: 15px;
 }
 
+/* for some reason, Tailwind applies bottom-right padding to the below elements, so have to manually reset them */
+input, select, textarea {
+  margin: 0 0 0 0 !important;
+}
+
+/* setting custom margin for some elements */
+#settings-drawer input, #audioModal input {
+  margin: 0 0.5rem 0 0 !important;
+}
+
 html, body {
   position: relative;
   width: 100%;

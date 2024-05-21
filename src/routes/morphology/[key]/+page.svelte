@@ -18,7 +18,7 @@
 		const keySplit = data.key.split(':');
 		chapter = +keySplit[0];
 		verse = +keySplit[1];
-		word = keySplit.length === 2 ? +keySplit[0] : +keySplit[2];
+		word = keySplit.length === 2 ? 1 : +keySplit[2];
 
 		if (isNaN(word)) word = 1;
 

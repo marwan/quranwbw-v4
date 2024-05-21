@@ -47,7 +47,7 @@
 		none: ''
 	};
 	const textColors = {
-		gray: 'text-gray-800 dark:text-gray-300',
+		gray: 'text-gray-800 ',
 		red: 'text-red-800 dark:text-red-400',
 		yellow: 'text-yellow-800 dark:text-yellow-300',
 		green: 'text-green-800 dark:text-green-400',
@@ -55,13 +55,13 @@
 		purple: 'text-purple-800 dark:text-purple-400',
 		pink: 'text-pink-800 dark:text-pink-400',
 		blue: 'text-blue-800 dark:text-blue-400',
-		light: 'text-gray-700 dark:text-gray-300',
-		dark: 'text-gray-700 dark:text-gray-300',
-		default: 'text-gray-500 dark:text-gray-400',
-		dropdown: 'text-gray-700 dark:text-gray-200',
-		navbar: 'text-gray-700 dark:text-gray-200',
-		navbarUl: 'text-gray-700 dark:text-gray-400',
-		form: 'text-gray-900 dark:text-white',
+		light: 'text-gray-700 ',
+		dark: 'text-gray-700 ',
+		default: 'text-gray-500 ',
+		dropdown: 'text-gray-700 ',
+		navbar: 'text-gray-700 ',
+		navbarUl: 'text-gray-700 ',
+		form: 'text-gray-900 ',
 		primary: 'text-primary-800 dark:text-primary-400',
 		orange: 'text-orange-800 dark:text-orange-400',
 		none: ''

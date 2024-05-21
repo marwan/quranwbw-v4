@@ -36,7 +36,7 @@
 
 	<!-- display-settings-block -->
 	<div id="display-settings-block" class="py-5">
-		<h3 class="block mb-2 font-medium text-xl text-gray-500 dark:text-slate-400">Display</h3>
+		<h3 class="block mb-2 font-medium text-xl text-gray-500">Display</h3>
 
 		<div class="flex flex-col flex-wrap text-base">
 			<!-- website-theme-setting -->
@@ -50,7 +50,7 @@
 						{/each}
 					</Dropdown>
 				</div>
-				<p class="mb-6 text-sm text-gray-500 dark:text-gray-400">An assortment of website themes to please your vision.</p>
+				<p class="mb-6 text-sm text-gray-500">An assortment of website themes to please your vision.</p>
 			</div>
 
 			<div class="border-b"></div>
@@ -66,7 +66,7 @@
 						{/each}
 					</Dropdown>
 				</div>
-				<p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Different verse layouts that you can choose from.</p>
+				<p class="mb-6 text-sm text-gray-500">Different verse layouts that you can choose from.</p>
 			</div>
 
 			<div class="border-b"></div>
@@ -82,7 +82,7 @@
 						{/each}
 					</Dropdown>
 				</div>
-				<p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Choose what is displayed when you hover a word.</p>
+				<p class="mb-6 text-sm text-gray-500">Choose what is displayed when you hover a word.</p>
 			</div>
 
 			<div class="border-b"></div>
@@ -90,7 +90,7 @@
 			<!-- word-translation-toggle-setting -->
 			<div id="word-translation-toggle-setting" class={settingsBlockClasses}>
 				<div class="flex flex-row justify-between items-center">
-					<span class="block text-gray-900 dark:text-slate-400">Word Translation</span>
+					<span class="block text-gray-900">Word Translation</span>
 
 					<label class="inline-flex items-center cursor-pointer {$__wordTransliterationEnabled === false && disabledElement}">
 						<input type="checkbox" value="" class="sr-only peer" checked={$__wordTranslationEnabled} on:click={(event) => updateSettings({ type: 'wordTranslationEnabled', value: event.target.checked })} />
@@ -99,7 +99,7 @@
 						></div>
 					</label>
 				</div>
-				<p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Toggle the word translation which is shown below the Arabic word.</p>
+				<p class="mb-6 text-sm text-gray-500">Toggle the word translation which is shown below the Arabic word.</p>
 			</div>
 
 			<div class="border-b"></div>
@@ -107,7 +107,7 @@
 			<!-- word-transliteration-toggle-setting -->
 			<div id="word-transliteration-toggle-setting" class={settingsBlockClasses}>
 				<div class="flex flex-row justify-between items-center">
-					<span class="block text-gray-900 dark:text-slate-400">Word Transliteration</span>
+					<span class="block text-gray-900">Word Transliteration</span>
 					<label class="inline-flex items-center cursor-pointer {$__wordTranslationEnabled === false && disabledElement}">
 						<input type="checkbox" value="" class="sr-only peer" checked={$__wordTransliterationEnabled} on:click={(event) => updateSettings({ type: 'wordTransliterationEnabled', value: event.target.checked })} />
 						<div
@@ -115,7 +115,7 @@
 						></div>
 					</label>
 				</div>
-				<p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Toggle the word transliteration which is shown below the Arabic word.</p>
+				<p class="mb-6 text-sm text-gray-500">Toggle the word transliteration which is shown below the Arabic word.</p>
 			</div>
 		</div>
 	</div>
@@ -136,11 +136,11 @@
 						{/each}
 					</Dropdown>
 				</div>
-				<p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Multiple Quranic fonts to choose from depending on your Mushaf or region preference.</p>
+				<p class="mb-6 text-sm text-gray-500">Multiple Quranic fonts to choose from depending on your Mushaf or region preference.</p>
 
 				<!-- note for Uthmanic Hafs Mushaf -->
 				{#if $__wordType === 2}
-					<p class="mb-6 text-sm text-gray-500 dark:text-gray-400"><b>Note:</b> The Uthmanic Hafs Mushaf font type is still under development and may contain errors and we are aware of them. In case you find any issues, please use a different font type.</p>
+					<p class="mb-6 text-sm text-gray-500"><b>Note:</b> The Uthmanic Hafs Mushaf font type is still under development and may contain errors and we are aware of them. In case you find any issues, please use a different font type.</p>
 				{/if}
 			</div>
 
@@ -149,7 +149,7 @@
 			<!-- tajweed-toggle-setting -->
 			<div id="tajweed-toggle-setting" class="{settingsBlockClasses} {$__wordType !== 2 && disabledElement}">
 				<div class="flex flex-row justify-between items-center">
-					<span class="block text-gray-900 dark:text-slate-400">Colored Fonts</span>
+					<span class="block text-gray-900">Colored Fonts</span>
 
 					<label class="inline-flex items-center cursor-pointer">
 						<input type="checkbox" value="" class="sr-only peer" checked={$__tajweedEnabled} on:click={(event) => updateSettings({ type: 'tajweedEnabled', value: event.target.checked })} />
@@ -158,7 +158,7 @@
 						></div>
 					</label>
 				</div>
-				<p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Switch between the colored fonts with Tajweed rulings or the normal black & white.</p>
+				<p class="mb-6 text-sm text-gray-500">Switch between the colored fonts with Tajweed rulings or the normal black & white.</p>
 			</div>
 
 			<div class="border-b"></div>
@@ -166,7 +166,7 @@
 			<!-- arabic-word-size-setting -->
 			<div id="arabic-word-size-setting" class="{settingsBlockClasses} {$__currentPage === 'page' && disabledElement}">
 				<div class="flex flex-row justify-between items-center">
-					<span class="block text-gray-900 dark:text-slate-400">Arabic Word Size ({fontSizeCodes.arabicText.split('-')[1]})</span>
+					<span class="block text-gray-900">Arabic Word Size ({fontSizeCodes.arabicText.split('-')[1]})</span>
 					<div class="inline-flex rounded-md shadow-sm" role="group">
 						<button type="button" on:click={() => updateSettings({ type: 'arabicText', action: 'increase' })} class="w-16 border px-6 border-gray-300 text-gray-900 rounded-l-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5">
 							<Plus size={3} />
@@ -176,7 +176,7 @@
 						</button>
 					</div>
 				</div>
-				<p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Font size for Arabic word text.</p>
+				<p class="mb-6 text-sm text-gray-500">Font size for Arabic word text.</p>
 			</div>
 
 			<div class="border-b"></div>
@@ -184,17 +184,17 @@
 			<!-- word-translation-size-setting -->
 			<div id="word-translation-size-setting" class={settingsBlockClasses}>
 				<div class="flex flex-row justify-between items-center">
-					<span class="block text-gray-900 dark:text-slate-400">Word Tr/Tl Size ({fontSizeCodes.wordTranslationText.split('-')[1]})</span>
+					<span class="block text-gray-900">Word Tr/Tl Size ({fontSizeCodes.wordTranslationText.split('-')[1]})</span>
 					<div class="inline-flex rounded-md shadow-sm" role="group">
-						<button type="button" on:click={() => updateSettings({ type: 'wordTranslationText', action: 'increase' })} class="w-16 border px-6 border-gray-300 text-gray-900 rounded-l-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-gray-500 dark:focus:border-gray-500">
+						<button type="button" on:click={() => updateSettings({ type: 'wordTranslationText', action: 'increase' })} class="w-16 border px-6 border-gray-300 text-gray-900 rounded-l-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:focus:ring-gray-500 dark:focus:border-gray-500">
 							<Plus size={3} />
 						</button>
-						<button type="button" on:click={() => updateSettings({ type: 'wordTranslationText', action: 'decrease' })} class="w-16 border px-6 text-center border-gray-300 text-gray-900 rounded-r-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-gray-500 dark:focus:border-gray-500">
+						<button type="button" on:click={() => updateSettings({ type: 'wordTranslationText', action: 'decrease' })} class="w-16 border px-6 text-center border-gray-300 text-gray-900 rounded-r-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:focus:ring-gray-500 dark:focus:border-gray-500">
 							<Minus size={3} />
 						</button>
 					</div>
 				</div>
-				<p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Font size for word translation and transliteration.</p>
+				<p class="mb-6 text-sm text-gray-500">Font size for word translation and transliteration.</p>
 			</div>
 
 			<div class="border-b"></div>
@@ -202,17 +202,17 @@
 			<!-- verse-translation-size-setting -->
 			<div id="verse-translation-size-setting" class={settingsBlockClasses}>
 				<div class="flex flex-row justify-between items-center">
-					<span class="block text-gray-900 dark:text-slate-400">Verse Tr/Tl Size ({fontSizeCodes.verseTranslationText.split('-')[1]})</span>
+					<span class="block text-gray-900">Verse Tr/Tl Size ({fontSizeCodes.verseTranslationText.split('-')[1]})</span>
 					<div class="inline-flex rounded-md shadow-sm" role="group">
-						<button type="button" on:click={() => updateSettings({ type: 'verseTranslationText', action: 'increase' })} class="w-16 border px-6 border-gray-300 text-gray-900 rounded-l-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-gray-500 dark:focus:border-gray-500">
+						<button type="button" on:click={() => updateSettings({ type: 'verseTranslationText', action: 'increase' })} class="w-16 border px-6 border-gray-300 text-gray-900 rounded-l-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:focus:ring-gray-500 dark:focus:border-gray-500">
 							<Plus size={3} />
 						</button>
-						<button type="button" on:click={() => updateSettings({ type: 'verseTranslationText', action: 'decrease' })} class="w-16 border px-6 text-center border-gray-300 text-gray-900 rounded-r-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:text-slate-400 dark:focus:ring-gray-500 dark:focus:border-gray-500">
+						<button type="button" on:click={() => updateSettings({ type: 'verseTranslationText', action: 'decrease' })} class="w-16 border px-6 text-center border-gray-300 text-gray-900 rounded-r-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:focus:ring-gray-500 dark:focus:border-gray-500">
 							<Minus size={3} />
 						</button>
 					</div>
 				</div>
-				<p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Font size for verse translation and transliteration.</p>
+				<p class="mb-6 text-sm text-gray-500">Font size for verse translation and transliteration.</p>
 			</div>
 		</div>
 	</div>
@@ -267,7 +267,7 @@
 						{/each}
 					</Dropdown>
 				</div>
-				<p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Verse translations from multiple authors and languages.</p>
+				<p class="mb-6 text-sm text-gray-500">Verse translations from multiple authors and languages.</p>
 			</div>
 		</div>
 	</div>
@@ -312,6 +312,6 @@
 	<!-- reset settings button -->
 	<div class="flex flex-col justify-center border-t border-gray-200 py-6 space-y-4">
 		<button on:click={() => resetSettings()} class="text-sm {buttonElement}">Reset Settings</button>
-		<p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Resetting the options will not affect your bookmarks or last read location.</p>
+		<p class="mb-6 text-sm text-gray-500">Resetting the options will not affect your bookmarks or last read location.</p>
 	</div>
 </Drawer>

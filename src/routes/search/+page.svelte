@@ -58,7 +58,7 @@
 				id="dropdown"
 				bind:value={selectedTranslation}
 				on:change={(event) => (selectedTranslation = +event.target.value)}
-				class="truncate bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-3xl rounded-r-none focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500"
+				class="truncate bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-3xl rounded-r-none focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-gray-500 dark:focus:border-gray-500"
 			>
 				{#each Object.entries(searchableTranslations) as [id, translation]}
 					<option value={+id}>{translation.language.toUpperCase()} - {translation.name} ({translation.englishName})</option>
@@ -70,7 +70,7 @@
 			<div class="relative w-full">
 				<input type="search" id="search-input" value={searchText} class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 border-s-gray-50 border-s-2 border border-gray-300" placeholder="Search Abraham, Mary, Noah, Paradise..." required />
 			</div>
-			<button on:click={(event) => (searchText = document.getElementById('search-input').value)} class="p-2.5 text-sm font-medium text-white bg-gray-500 rounded-r-3xl border border-gray-500 mt-[-7px]">
+			<button on:click={(event) => (searchText = document.getElementById('search-input').value)} class="p-2.5 text-sm font-medium text-white bg-gray-500 rounded-r-3xl border border-gray-500">
 				<svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
 					<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
 				</svg>

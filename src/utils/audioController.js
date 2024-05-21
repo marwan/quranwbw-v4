@@ -70,7 +70,7 @@ export function playAudio(props) {
 	// attach the word highlighter function
 	if (props.type === 'verse' && props.playTranslation !== true) {
 		audio.addEventListener('timeupdate', wordHighlighter);
-		scrollSmoothly(document.getElementById(`${audioSettings.playingKey}`).offsetTop - 100, 500);
+		scrollSmoothly(document.getElementById(`${audioSettings.playingKey}`).offsetTop - 200, 500);
 	}
 
 	// things to do when the audio has ended
@@ -235,8 +235,6 @@ export function updateAudioSettings(event) {
 
 	// 3. update the global audio settings
 	__audioSettings.set(audioSettings);
-
-	// console.table(audioSettings);
 }
 
 export function initializeAudioSettings(key) {

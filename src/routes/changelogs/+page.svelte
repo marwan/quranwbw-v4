@@ -6,7 +6,9 @@
 	import { timeAgo } from '$utils/timeAgo';
 	import { buttonElement, linkElement, labelPillElement } from '$data/commonStyles';
 
-	let fetchCommitsData, fetchIssuesData;
+	let fetchCommitsData,
+		fetchIssuesData,
+		issuesCount = '...';
 
 	// fetch the commits from our API
 	$: {
@@ -22,6 +24,7 @@
 		fetchIssuesData = (async () => {
 			const response = await fetch('https://api.quranwbw.com/v1/repo/issues');
 			const data = await response.json();
+			issuesCount = Object.keys(data.data).length;
 			return data.data;
 		})();
 	}
@@ -41,7 +44,7 @@
 	<!-- issues -->
 	<div id="issues">
 		<div class="mt-6 mb-2 space-y-4 pb-4 border-b-2">
-			<h1 class="text-2xl">Issues</h1>
+			<h1 class="text-2xl">Issues ({issuesCount})</h1>
 			<div class="text-sm">
 				The following list contains all the issues currently active on the Quranwbw.com's <a href="https://github.com/marwan/quranwbw-v4" target="_blank" class={linkElement}>GitHub repo</a>.
 			</div>
@@ -57,7 +60,7 @@
 								<a href={value.html_url} target="_blank" class={linkElement}>Issue #{value.number}: {value.title}</a>
 
 								<!-- labels -->
-								<div class="inline-flex ml-2 space-x-2">
+								<div class="inline-flex flex-wrap ml-2 space-x-2">
 									{#each Object.entries(value.labels) as [id, label]}
 										<span class={labelPillElement}>{label.name}</span>
 									{/each}

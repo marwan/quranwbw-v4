@@ -1546,10 +1546,6 @@ input[type="range"].range-lg::-moz-range-thumb {
   margin-top: 2rem;
 }
 
-.mt-\[-7px\] {
-  margin-top: -7px;
-}
-
 .block {
   display: block;
 }
@@ -1768,10 +1764,6 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .h-\[64px\] {
   height: 64px;
-}
-
-.h-\[86\%\] {
-  height: 86%;
 }
 
 .h-\[calc\(100\%-1rem\)\] {
@@ -4618,6 +4610,12 @@ input[type="range"].range-lg::-moz-range-thumb {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
+.backdrop-blur-xl {
+  --tw-backdrop-blur: blur(24px);
+  -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+          backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+}
+
 .transition {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
@@ -4756,6 +4754,18 @@ input[type="range"].range-lg::-moz-range-thumb {
   background: #d1d5db;
   height: 70px;
   border-radius: 15px;
+}
+
+/* for some reason, Tailwind applies bottom-right padding to the below elements, so have to manually reset them */
+
+input, select, textarea {
+  margin: 0 0 0 0 !important;
+}
+
+/* setting custom margin for some elements */
+
+#settings-drawer input, #audioModal input {
+  margin: 0 0.5rem 0 0 !important;
 }
 
 html, body {
@@ -6950,11 +6960,6 @@ svg {
   background-color: rgb(30 41 59 / var(--tw-bg-opacity));
 }
 
-.dark\:bg-slate-900:where(.dark, .dark *) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(15 23 42 / var(--tw-bg-opacity));
-}
-
 .dark\:bg-transparent:where(.dark, .dark *) {
   background-color: transparent;
 }
@@ -7170,11 +7175,6 @@ svg {
 .dark\:text-red-500:where(.dark, .dark *) {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity));
-}
-
-.dark\:text-slate-400:where(.dark, .dark *) {
-  --tw-text-opacity: 1;
-  color: rgb(148 163 184 / var(--tw-text-opacity));
 }
 
 .dark\:text-white:where(.dark, .dark *) {
@@ -7843,11 +7843,6 @@ svg {
 
   .md\:dark\:bg-transparent:where(.dark, .dark *) {
     background-color: transparent;
-  }
-
-  .md\:dark\:text-gray-500:where(.dark, .dark *) {
-    --tw-text-opacity: 1;
-    color: rgb(107 114 128 / var(--tw-text-opacity));
   }
 
   .md\:dark\:text-white:where(.dark, .dark *) {

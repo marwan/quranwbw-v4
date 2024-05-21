@@ -1,7 +1,7 @@
 export const displayOptions = {
-	1: { displayID: 1, displayName: 'WBW', displayComponent: 'WBWDisplay', layout: 'wbw', continuous: false, customStyle: '' },
+	1: { displayID: 1, displayName: 'Word by Word', displayComponent: 'WBWDisplay', layout: 'wbw', continuous: false, customStyle: '' },
 	2: { displayID: 2, displayName: 'Normal', displayComponent: 'NormalDisplay', layout: 'normal', continuous: false, customStyle: '' },
-	3: { displayID: 3, displayName: 'Continuous WBW', displayComponent: 'ContinuousDisplay', layout: 'wbw', continuous: true, customStyle: 'text-center direction-rtl' },
+	3: { displayID: 3, displayName: 'Continuous Word by Word', displayComponent: 'ContinuousDisplay', layout: 'wbw', continuous: true, customStyle: 'text-center direction-rtl' },
 	4: { displayID: 4, displayName: 'Continuous Normal', displayComponent: 'ContinuousDisplay', layout: 'normal', continuous: true, customStyle: 'text-center direction-rtl' },
 	5: { displayID: 5, displayName: 'Side By Side', displayComponent: 'SideBySideDisplay', layout: 'normal', continuous: false, customStyle: '' }
 };

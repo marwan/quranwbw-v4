@@ -57,7 +57,7 @@
 	}
 </script>
 
-<nav id="navbar" class="{$__currentPage === 'home' ? 'hidden' : 'block'} bg-white fixed w-full z-20 top-0 left-0 border-b border-gray-200 text-black print:hidden dark:bg-slate-900 dark:text-slate-400 dark:border-slate-700 theme-grayscale">
+<nav id="navbar" class="{$__currentPage === 'home' ? 'hidden' : 'block'} bg-white/30 fixed w-full z-20 top-0 left-0 border-b border-gray-200 text-black print:hidden backdrop-blur-xl theme-grayscale">
 	<div id="top-nav" class="{$__topNavbarVisible ? 'block' : 'hidden'} flex flex-row items-center justify-between max-w-screen-lg mx-auto px-4 py-2" aria-label="Home">
 		<a href="/" class="flex flex-row items-center p-3 cursor-pointer hover:bg-lightGray rounded-3xl dark:hover:bg-slate-700">
 			<Home />
@@ -95,7 +95,7 @@
 
 	<!-- mini nav for chapter page -->
 	{#if $__currentPage === 'chapter'}
-		<div id="bottom-nav" class="flex flex-row items-center justify-between border-t text-xs max-w-screen-lg mx-auto px-6 dark:border-slate-700">
+		<div id="bottom-nav" class="flex flex-row items-center justify-between border-t text-xs max-w-screen-lg mx-auto px-6">
 			<div id="navbar-bottom-chapter-revalation" class="flex flex-row items-center py-2">
 				{#if !$__topNavbarVisible}
 					<span>{@html navbarChapterName}</span>
@@ -110,7 +110,7 @@
 			</div>
 		</div>
 
-		<div id="chapter-progress-bar" class="fixed inset-x-0 z-20 h-1 bg-gray-300 transition-width transition-slowest ease" style="width: {chapterProgress}%" />
+		<div id="chapter-progress-bar" class="fixed inset-x-0 z-20 h-1 bg-gray-300 transition transition-width transition-slowest ease" style="width: {chapterProgress}%" />
 	{/if}
 
 	<!-- mini nav for mushaf page -->
