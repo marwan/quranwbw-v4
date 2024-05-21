@@ -11,7 +11,6 @@
 	import { quranMetaData, bismillahTypes } from '$data/quranMeta';
 	import { displayOptions } from '$data/options';
 	import { errorLoadingDataMessage } from '$data/websiteSettings';
-	import { updateSettings } from '$utils/updateSettings';
 	import { __currentPage, __chapterNumber, __displayType, __wordType, __wordTranslation, __verseTranslations, __pageURL, __firstVerseOnPage } from '$utils/stores';
 	// import { debounce } from '$utils/debounce';
 	// import { toggleNavbar } from '$utils/toggleNavbar';
@@ -26,8 +25,6 @@
 		// updating the chapter number in store and in window (for chapter navigation)
 		__chapterNumber.set(+data.chapter);
 		window.chapter = +data.chapter;
-
-		console.log($__chapterNumber);
 
 		const chapterTotalVerses = quranMetaData[$__chapterNumber].verses;
 
