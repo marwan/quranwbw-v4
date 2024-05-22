@@ -1,5 +1,5 @@
 /* eslint-disable no-case-declarations */
-import { __userSettings, __wordType, __displayType, __websiteTheme, __wordTranslation, __verseTranslations, __wordTranslationEnabled, __wordTransliterationEnabled, __reciter, __playbackSpeed, __lastRead, __tajweedEnabled, __wordTooltip, __userBookmarks, __autoScrollSpeed } from '$utils/stores';
+import { __userSettings, __wordType, __displayType, __websiteTheme, __wordTranslation, __verseTranslations, __wordTranslationEnabled, __wordTransliterationEnabled, __reciter, __playbackSpeed, __lastRead, __tajweedEnabled, __wordTooltip, __userBookmarks, __autoScrollSpeed, __wakeLockEnabled } from '$utils/stores';
 import { selectableVerseTranslations } from '$data/options';
 
 // const userSettingsEndpoint = "https://api.quranwbw.com/v1/user/settings";
@@ -134,6 +134,12 @@ export function updateSettings(props) {
 		case 'autoScrollSpeed':
 			__autoScrollSpeed.set(props.value);
 			userSettings.displaySettings.autoScrollSpeed = props.value;
+			break;
+
+		// for toggling wakeLock
+		case 'wakeLockEnabled':
+			__wakeLockEnabled.set(props.value);
+			userSettings.displaySettings.wakeLockEnabled = props.value;
 			break;
 
 		// for increasing/decreasing font sizes

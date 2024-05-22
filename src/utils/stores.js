@@ -38,7 +38,8 @@ let __currentPage,
 	__audioModalVisible,
 	__notesModalVisible,
 	__tajweedRulesModalVisible,
-	__tokenModalVisible;
+	__tokenModalVisible,
+	__wakeLockEnabled;
 
 if (browser) {
 	const userSettings = JSON.parse(localStorage.getItem('userSettings'));
@@ -161,6 +162,8 @@ if (browser) {
 	__notesModalVisible = writable(false);
 	__tajweedRulesModalVisible = writable(false);
 	__tokenModalVisible = writable(false);
+
+	__wakeLockEnabled = writable(userSettings.displaySettings.wakeLockEnabled);
 }
 
 export {
@@ -201,5 +204,6 @@ export {
 	__audioModalVisible,
 	__notesModalVisible,
 	__tajweedRulesModalVisible,
-	__tokenModalVisible
+	__tokenModalVisible,
+	__wakeLockEnabled
 };

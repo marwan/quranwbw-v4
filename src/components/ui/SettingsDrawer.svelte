@@ -1,5 +1,5 @@
 <script>
-	import { __currentPage, __chapterData, __chapterNumber, __wordType, __displayType, __websiteTheme, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __verseTranslations, __reciter, __playbackSpeed, __userSettings, __tajweedEnabled, __wordTooltip, __settingsDrawerHidden } from '$utils/stores';
+	import { __currentPage, __chapterData, __chapterNumber, __wordType, __displayType, __websiteTheme, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __verseTranslations, __reciter, __playbackSpeed, __userSettings, __tajweedEnabled, __wordTooltip, __settingsDrawerHidden, __wakeLockEnabled } from '$utils/stores';
 	import { displayOptions, selectableFontTypes, selectableThemes, selectableVerseTranslations, verseTranslationsLanguages, selectableWordTranslations, selectableReciters, selectablePlaybackSpeeds, selectableTooltipOptions } from '$data/options';
 	import { updateSettings } from '$utils/updateSettings';
 	import { resetSettings } from '$utils/resetSettings';
@@ -117,6 +117,25 @@
 				</div>
 				<p class="mb-6 text-sm text-gray-500">Toggle the word transliteration which is shown below the Arabic word.</p>
 			</div>
+
+			<!-- prevent sleep toggle, only show if the browser supports it  -->
+			{#if 'wakeLock' in navigator}
+				<div class="border-b"></div>
+
+				<!-- prevent-sleep-toggle-setting -->
+				<div id="prevent-sleep-toggle-setting" class={settingsBlockClasses}>
+					<div class="flex flex-row justify-between items-center">
+						<span class="block text-gray-900">Prevent Sleep</span>
+						<label class="inline-flex items-center cursor-pointer">
+							<input type="checkbox" value="" class="sr-only peer" checked={$__wakeLockEnabled} on:click={(event) => updateSettings({ type: 'wakeLockEnabled', value: event.target.checked })} />
+							<div
+								class="relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-300 dark:peer-focus:ring-gray-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-gray-600"
+							></div>
+						</label>
+					</div>
+					<p class="mb-6 text-sm text-gray-500">Enabling this option would stop your screen from dimming/sleeping.</p>
+				</div>
+			{/if}
 		</div>
 	</div>
 

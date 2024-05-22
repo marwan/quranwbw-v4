@@ -5,9 +5,9 @@
 	// check for key presses
 	// import "$utils/keyDownHandler";
 
-	import { __currentPage, __settingsDrawerHidden } from '$utils/stores';
+	import { __currentPage, __settingsDrawerHidden, __wakeLockEnabled } from '$utils/stores';
 	import { checkOldBookmarks } from '$utils/checkOldBookmarks';
-	import { downloadData } from '$utils/downloadData';
+	// import { downloadData } from '$utils/downloadData';
 
 	// ui
 	import Navbar from '$ui/Navbar.svelte';
@@ -32,6 +32,34 @@
 	$: {
 		if ($__settingsDrawerHidden) document.body.classList.remove('overflow-y-hidden');
 		else document.body.classList.add('overflow-y-hidden');
+	}
+
+	// Create a reference for the Wake Lock.
+	let wakeLock = null;
+
+	$: {
+		// enabled wakeLock
+		if ($__wakeLockEnabled === true) {
+			if (wakeLock === null) {
+				(async function () {
+					try {
+						wakeLock = await navigator.wakeLock.request('screen');
+						console.log('wake lock enabled');
+					} catch (err) {
+						console.log(err);
+					}
+				})();
+			}
+		}
+		// disable wakeLock
+		else {
+			if (wakeLock !== null) {
+				wakeLock.release().then(() => {
+					wakeLock = null;
+					console.log('wake lock disabled');
+				});
+			}
+		}
 	}
 </script>
 

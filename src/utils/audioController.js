@@ -69,7 +69,9 @@ export function playAudio(props) {
 
 	// attach the word highlighter function
 	if (props.type === 'verse' && props.playTranslation !== true) {
-		audio.addEventListener('timeupdate', wordHighlighter);
+		// enable wbw highlighting only if the reciter is Mishary Rashid Alafasy
+		if (selectableReciters[get(__reciter)].id === 10) audio.addEventListener('timeupdate', wordHighlighter);
+
 		scrollSmoothly(document.getElementById(`${audioSettings.playingKey}`).offsetTop - 200, 500);
 	}
 

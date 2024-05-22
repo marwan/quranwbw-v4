@@ -65,26 +65,30 @@
 		</a>
 
 		<!-- display the chapter name on chapter page -->
-		<button class="{$__currentPage === 'chapter' ? 'block' : 'hidden'} flex items-center p-3 text-sm border-gray-200 w-auto p-2 hover:bg-lightGray rounded-3xl">
-			{@html navbarChapterName}
-			<ChevronDown />
-		</button>
-		<NavbarChaptersDropdown />
+		{#if $__currentPage === 'chapter'}
+			<button class="flex items-center p-3 text-sm border-gray-200 w-auto p-2 hover:bg-lightGray rounded-3xl">
+				{@html navbarChapterName}
+				<ChevronDown />
+			</button>
+			<NavbarChaptersDropdown />
+		{/if}
 
 		<!-- display only the page name for non-chapter page -->
-		<button class="{$__currentPage !== 'chapter' ? 'block' : 'hidden'} flex items-center p-3 text-sm border-gray-200 w-auto p-2 hover:bg-lightGray rounded-3xl">
-			{$__currentPage[0].toUpperCase() + $__currentPage.slice(1)}
+		{#if $__currentPage !== 'chapter'}
+			<button class="flex items-center p-3 text-sm border-gray-200 w-auto p-2 hover:bg-lightGray rounded-3xl">
+				{$__currentPage[0].toUpperCase() + $__currentPage.slice(1)}
 
-			<!-- if it's the mushaf page, show page number as well -->
-			{#if $__currentPage === 'page'}
-				{$__pageNumber}
-			{/if}
+				<!-- if it's the mushaf page, show page number as well -->
+				{#if $__currentPage === 'page'}
+					{$__pageNumber}
+				{/if}
 
-			<!-- if it's the morphology page, show morphology key as well -->
-			{#if $__currentPage === 'morphology'}
-				{$__morphologyKey}
-			{/if}
-		</button>
+				<!-- if it's the morphology page, show morphology key as well -->
+				{#if $__currentPage === 'morphology'}
+					{$__morphologyKey}
+				{/if}
+			</button>
+		{/if}
 
 		<button class="flex flex-row items-center p-3 cursor-pointer hover:bg-lightGray rounded-3xl" type="button" aria-label="Menu">
 			<span class="text-xs pr-2 hidden md:block">Menu</span>
