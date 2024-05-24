@@ -13,18 +13,10 @@
 		indopakType: '﷽'
 	};
 
-	const bismillahFontClass = {
-		1: 'bismillah text-xl md:text-2xl',
-		2: 'bismillah text-xl md:text-2xl',
-		3: 'arabic-font-3 text-2xl md:text-3xl'
-	};
-
 	// dynamically load bismillah fonts for uthmani fonts
 	if ($__wordType === 1 || $__wordType === 2) {
 		loadFont('bismillah', mushafFontLinks.bismillah).then(() => {
 			// we can by default hide the bismillah and show when the font is loaded...
-			// document.getElementById('bismillah-uthmani').classList.remove('invisible');
-
 			document.querySelectorAll('.bismillah-uthmani').forEach((element) => {
 				element.classList.remove('invisible');
 			});
@@ -35,9 +27,9 @@
 <!-- chapter page -->
 {#if $__currentPage === 'chapter'}
 	{#if ![1, 9].includes($__chapterNumber)}
-		<div class="flex flex-col text-center flex-wrap block font-filter py-4 {$__tajweedEnabled ? 'theme-palette-tajweed' : 'theme-palette-normal'} {bismillahFontClass[$__wordType]}">
+		<div class="flex flex-col text-center flex-wrap block py-4 text-2xl md:text-3xl {$__wordType === 3 ? 'arabic-font-3' : 'bismillah'}">
 			{#if $__wordType === 1 || $__wordType === 2}
-				<span style="font-family: bismillah;" class="invisible bismillah-uthmani">
+				<span style="font-family: bismillah;" class="invisible bismillah-uthmani font-filter {$__tajweedEnabled ? 'theme-palette-tajweed' : 'theme-palette-normal'}">
 					{#if $__chapterNumber === 2}
 						{bismillahTypes.uthmaniType1}
 					{:else if ![1, 9, 2].includes($__chapterNumber)}

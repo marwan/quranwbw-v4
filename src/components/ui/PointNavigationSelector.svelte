@@ -26,26 +26,30 @@
 					incorrectValue = waypoint < 1 || waypoint > 114 ? true : false;
 					placeholder = `e.g. ${Math.floor(Math.random() * 114) + 1}`;
 					if (isNaN(waypoint)) incorrectValue = true;
+					if (waypoint === '') incorrectValue = true;
 					break;
 
 				case 2:
 					incorrectValue = waypoint < 1 || waypoint > 604 ? true : false;
 					placeholder = `e.g. ${Math.floor(Math.random() * 604) + 1}`;
 					if (isNaN(waypoint)) incorrectValue = true;
+					if (waypoint === '') incorrectValue = true;
 					break;
 
 				case 3:
 					incorrectValue = waypoint < 1 || waypoint > 30 ? true : false;
 					placeholder = `e.g. ${Math.floor(Math.random() * 30) + 1}`;
 					if (isNaN(waypoint)) incorrectValue = true;
+					if (waypoint === '') incorrectValue = true;
 					break;
 
 				case 4:
 					incorrectValue = !validateKey(waypoint) ? true : false;
 					placeholder = `e.g. 18:10`;
+					if (waypoint === '') incorrectValue = true;
 					break;
 			}
-			if (waypoint === '') incorrectValue = true;
+			// if (waypoint === '') incorrectValue = true;
 		} catch (error) {
 			// ...
 		}
@@ -81,7 +85,9 @@
 <div id="navigatation-inputs" class="flex mb-4 justify-start theme-grayscale">
 	<div class="flex flex-row w-full">
 		<Select class="w-fit rounded-l-3xl rounded-r-none focus:border-gray-500 text-xs" items={navigationPoints} bind:value={selectedNavigation} placeholder="Go to..." />
-		<input type="text" bind:value={waypoint} id="navigationInput" aria-describedby="helper-text-explanation" class="w-[inherit] bg-gray-50 border border-gray-300 border-l-0 border-r-0 text-gray-900 text-xs rounded-l-none focus:ring-gray-500 focus:border-gray-500 block w-24 p-2.5" {placeholder} />
-		<button class="{buttonElement} text-xs rounded-l-none min-w-fit border border-gray-300 {incorrectValue === true && disabledElement}" on:click={() => navigateToPoint()}>Go {@html '&#10230'}</button>
+		<form on:submit|preventDefault={navigateToPoint} class="flex flex-row w-full">
+			<input type="text" bind:value={waypoint} id="navigationInput" aria-describedby="helper-text-explanation" class="w-[inherit] bg-gray-50 border border-gray-300 border-l-0 border-r-0 text-gray-900 text-xs rounded-l-none focus:ring-gray-500 focus:border-gray-500 block w-24 p-2.5" {placeholder} />
+			<button type="submit" class="{buttonElement} text-xs rounded-l-none min-w-fit border border-gray-300 {incorrectValue === true && disabledElement}">Go {@html '&#10230'}</button>
+		</form>
 	</div>
 </div>
