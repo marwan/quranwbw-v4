@@ -5,7 +5,6 @@
 		isExampleVerse = undefined;
 
 	import { inview } from 'svelte-inview';
-
 	import WBWDisplay from '$displays/WBWDisplay.svelte';
 	import NormalDisplay from '$displays/NormalDisplay.svelte';
 	import ContinuousDisplay from '$displays/ContinuousDisplay.svelte';
@@ -102,14 +101,14 @@
 </script>
 
 <!-- move the load button to Chapter component -->
-<!-- {#if startVerse > 1 && document.getElementById("loadPreviousVersesButton") === null}
-  <div id="loadPreviousVersesButton" class="flex justify-center pt-8 pb-6">
-    <button on:click={loadPreviousVerses} class="text-sm {buttonElement}"> Load Previous Verses </button>
-  </div>
-{/if}
+<!-- {#if startVerse > 1 && document.getElementById('loadPreviousVersesButton') === null}
+	<div id="loadPreviousVersesButton" class="flex justify-center pt-8 pb-6">
+		<button on:click={loadPreviousVerses} class="text-sm {buttonElement}"> Load Previous Verses </button>
+	</div>
+{/if} -->
 
-{#if versesLoadType === "previous"}
-  <svelte:component this={ChapterVerses} {...previousVersesProps} />
+<!-- {#if versesLoadType === 'previous'}
+	<svelte:component this={ChapterVerses} {...previousVersesProps} />
 {/if} -->
 
 {#each Array.from(Array(endVerse + 1).keys()).slice(startVerse) as verse}
@@ -120,7 +119,7 @@
 {#if isExampleVerse === undefined}
 	<!-- only show the button when the last verse on page is less than total verses in chapter -->
 	{#if endVerse < chapterTotalVerses && document.getElementById('loadVersesButton') === null}
-		<div id="loadVersesButton" class="flex justify-center pt-6 pb-14" use:inview={loadButtonOptions} on:inview_enter={(event) => document.querySelector('#loadVersesButton > button').click()}>
+		<div id="loadVersesButton" class="flex justify-center pt-6 pb-18" use:inview={loadButtonOptions} on:inview_enter={(event) => document.querySelector('#loadVersesButton > button').click()}>
 			<button on:click={loadNextVerses} class="text-sm {buttonElement}"> Load Next Verses </button>
 		</div>
 	{/if}

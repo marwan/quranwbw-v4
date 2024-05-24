@@ -56,8 +56,8 @@ export const wbwLanguages = 'English, Urdu, Hindi, Indonesian, Bangla, Turkish, 
 
 export const apiEndpoint = 'https://api.quranwbw.com/v1/verses?';
 
-export const staticEndpoint = 'https://static-chapters.quranwbw.com/data';
+export const staticEndpoint = 'https://static.quranwbw.com/data/v4';
 
-export const wordsAudioURL = 'https://audios.quranwbw.com/words/';
+export const wordsAudioURL = 'https://audios.quranwbw.com/words';
 
 export const errorLoadingDataMessage = 'Sorry, there was an error while loading the data. Please refresh the page and try again.';

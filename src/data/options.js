@@ -250,9 +250,13 @@ export const screenBreakpoints = {
 };
 
 export const mushafFontLinks = {
+	// normal word fonts
 	COLRv1: 'https://fonts.quranwbw.com/Hafs/KFGQPC-v4/COLRv1',
-	'OT-SVG-TAJWEED-LIGHT': 'https://fonts.quranwbw.com/Hafs/KFGQPC-v4/OT-SVG/OT-SVG - TAJWEED-TEXT - LIGHT',
-	'OT-SVG-TAJWEED-DARK': 'https://fonts.quranwbw.com/Hafs/KFGQPC-v4/OT-SVG/OT-SVG - TAJWEED-TEXT - DARK',
-	'OT-SVG-BLACK-LIGHT': 'https://fonts.quranwbw.com/Hafs/KFGQPC-v4/OT-SVG/OT-SVG - BLACK-TEXT - LIGHT',
-	'OT-SVG-BLACK-DARK': 'https://fonts.quranwbw.com/Hafs/KFGQPC-v4/OT-SVG/OT-SVG - TAJWEED-TEXT - DARK'
+
+	// bismillah fonts
+	bismillah: 'https://fonts.quranwbw.com/Extras/BISMILLAH%20COLOR/COLRv1/QCF_Bismillah_COLOR-Regular.woff',
+
+	// chapter header fonts
+	// header: 'https://fonts.quranwbw.com/Extras/MUSHAF%20SURAH%20HEADER%20COLOR/COLRv1'
+	header: 'https://v4.quranwbw.com/fonts/chapter-headers/QCF_SurahHeader_COLOR-Regular.woff2'
 };

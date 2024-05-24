@@ -1,5 +1,5 @@
 <script>
-	import { buttonElement, disabledElement } from '$data/commonStyles';
+	import { buttonElement, disabledElement, linkElement } from '$data/commonStyles';
 	import { __userToken, __userSettings, __tokenModalVisible } from '$utils/stores';
 	import { downloadTextFile } from '$utils/downloadTextFile';
 	import { Modal } from 'flowbite-svelte';
@@ -156,34 +156,6 @@
 		settingsDownloadInProcess = false;
 	}
 
-	// email the token to the email provided by the user
-	async function emailToken() {
-		const email = document.getElementById('user-email').value;
-
-		if (!validateEmail(email)) return showMessage(2, "That doesn't look like a proper email...");
-
-		tokenEmailInProcess = true;
-		showMessage(4, 'Emailing you the token, please wait...');
-
-		const response = await fetch(`${userAPIEndpoint}/email`, {
-			method: 'POST',
-			headers: {
-				'user-token': $__userToken,
-				'user-email': email
-			}
-		});
-
-		const responseJSON = await response.json();
-
-		if (responseJSON.code === 200) showMessage(1, `Token has been emailed on ${email}.`);
-		// all other cases
-		else showMessage(3, 'Some error occurred.');
-
-		tokenEmailed = true;
-		tokenEmailInProcess = false;
-		tokenCloudButtonsVisible = true;
-	}
-
 	// save the token in localStorage and store
 	function saveToken(token) {
 		__userToken.set(token);
@@ -238,18 +210,12 @@
 		tokenMessageText = message;
 		tokenMessageType = type;
 	}
-
-	// basic email validation
-	function validateEmail(email) {
-		return email.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-	}
 </script>
 
 <Modal title="Token Login" id="tokenModal" bind:open={$__tokenModalVisible} class="rounded-3xl theme-grayscale" bodyClass="p-6 space-y-4 flex-1 overflow-y-auto overscroll-contain" headerClass="flex justify-between items-center p-6 rounded-t-3xl" center outsideclose>
 	<div id="token-info" class="flex flex-col space-y-4 text-sm">
-		<span>Token Login allows you to save your settings in the cloud without the need of creating an account or providing any personal details. This is done by assigning a unique token to your browser, and the same is used to sync your settings. If you do not opt for this, your settings will only be saved locally.</span>
-		<span>Once you generate a token, you can use it in a different browser to sync your settings from the cloud. Just make sure to save your token because there is no way to get it back if you lose access to it.</span>
-		<span>Note that your settings are not automatically synced. You have to do it manually everytime. While this may be tedious, it prevents unnecessary data loss and conflicts.</span>
+		<span>Token Login allows you to save your settings in the cloud without the need of creating an account or providing any personal details.</span>
+		<a href="/faq#11" class={linkElement} on:click={() => __tokenModalVisible.set(false)}>You can read more about it on our FAQs page (#11).</a>
 	</div>
 
 	<!-- tabs buttons -->
@@ -269,20 +235,11 @@
 	{#if tokenMessageText !== undefined && tokenMessageText !== ''}
 		<div id="token-message" class="text-sm font-medium text-center">
 			<div class="inline-flex items-center justify-center space-x-1">
-				<svelte:component this={messageTypeIcons[tokenMessageType].icon} />
+				<!-- <svelte:component this={messageTypeIcons[tokenMessageType].icon} /> -->
 				<span>{tokenMessageText}</span>
 			</div>
 		</div>
 	{/if}
-
-	<!-- email token -->
-	<!-- {#if tokenEmailed === false}
-          {#if tokenGenerated === true}
-            <div class="flex py-4">
-              <button on:click={() => switchTabs(3)} class="w-full {buttonElement}">Email Token</button>
-            </div>
-          {/if}
-        {/if} -->
 
 	<!-- I already have a token -->
 	{#if tokenTab === 1 && $__userToken === null}
@@ -305,17 +262,6 @@
 		</div>
 	{/if}
 
-	<!-- email token -->
-	{#if tokenTab === 3 && $__userToken !== null && !tokenEmailed}
-		<div id="email-token" class="flex flex-col space-y-2 justify-center">
-			<input id="user-email" type="email" class="rounded-md w-full text-center text-xs" placeholder="email@example.com" />
-			<button id="email-button" on:click={() => emailToken()} class="w-full {buttonElement} {tokenEmailInProcess === true && disabledElement}">
-				<Email />
-				<span> {!tokenEmailInProcess ? 'Email Token' : 'Emailing...'} </span>
-			</button>
-		</div>
-	{/if}
-
 	<!-- cloud upload/download/delete buttons -->
 	{#if $__userToken}
 		<div id="token-cloud-buttons" class="{tokenCloudButtonsVisible ? 'block' : 'hidden'} flex flex-col space-y-6">
@@ -335,29 +281,24 @@
 						<Download />
 					</button>
 				{/if}
-
-				<!-- email token -->
-				<!-- <button id="email-token" title="Email Token" on:click={() => emailToken()} class="w-fit {buttonElement}">
-                <Email />
-              </button> -->
 			</div>
 
 			<div class="flex flex-col space-y-4">
 				<!-- download / upload buttons -->
-				<div class="flex flex-col space-y-2 md:flex-row md:space-x-2 md:space-y-0">
-					<button id="upload-settings" on:click={() => uploadSettings()} class="w-full {buttonElement} {settingsUploadInProcess === true && disabledElement}">
+				<div class="flex flex-row space-x-2 space-y-0">
+					<button id="upload-settings" on:click={() => uploadSettings()} class="w-full {buttonElement} {settingsUploadInProcess || settingsDownloadInProcess ? disabledElement : ''}">
 						<CloudUpload />
-						<span> {!settingsUploadInProcess ? 'Backup Settings To Cloud' : 'Uploading settings...'} </span>
+						<span> {!settingsUploadInProcess ? 'Backup' : 'Uploading...'} </span>
 					</button>
 
-					<button id="download-settings" on:click={() => downloadSettings()} class="w-full {buttonElement} {settingsDownloadInProcess === true && disabledElement}">
+					<button id="download-settings" on:click={() => downloadSettings()} class="w-full {buttonElement} {settingsUploadInProcess || settingsDownloadInProcess ? disabledElement : ''}">
 						<CloudDownload />
-						<span> {!settingsDownloadInProcess ? 'Restore Settings From Cloud' : 'Downloading settings...'} </span>
+						<span> {!settingsDownloadInProcess ? 'Restore' : 'Downloading...'} </span>
 					</button>
 				</div>
 
 				<!-- delete token button -->
-				<button id="delete-token" on:click={() => deleteToken()} class="{buttonElement} w-full bg-gray-600 hover:bg-lightGray">
+				<button id="delete-token" on:click={() => deleteToken()} class="{buttonElement} w-full bg-gray-600 hover:bg-lightGray {settingsUploadInProcess || settingsDownloadInProcess ? disabledElement : ''}">
 					<span>Delete Token</span>
 				</button>
 			</div>

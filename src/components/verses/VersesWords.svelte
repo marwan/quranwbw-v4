@@ -49,17 +49,6 @@
 
 	$: wordClasses = `rounded-lg hover:cursor-pointer hover:bg-lightGray ${displayOptions[$__displayType].layout === 'wbw' ? 'p-3' : $__currentPage === 'page' ? 'p-0' : 'p-1'}`;
 	$: displayIsContinuous = displayOptions[$__displayType].continuous;
-
-	// remove the invisibility class once all the fonts are loaded
-	document.fonts.ready.then(function () {
-		document.querySelectorAll('.chapter-headers').forEach((element) => {
-			element.classList.remove('invisible');
-		});
-
-		document.querySelectorAll('.bismillah').forEach((element) => {
-			element.classList.remove('invisible');
-		});
-	});
 </script>
 
 <!-- words -->
@@ -80,7 +69,7 @@
 					{arabicSplit[word]}
 					<!-- 2: Uthmanic Hafs Mushaf -->
 				{:else if $__wordType === 2}
-					<span style="font-family: p{value.meta.page}" class="p{value.meta.page} invisible {$__tajweedEnabled ? 'theme-palette-tajweed' : 'theme-palette-normal'} font-filter">
+					<span style="font-family: p{value.meta.page}" class="invisible v4-words p{value.meta.page} {$__tajweedEnabled ? 'theme-palette-tajweed' : 'theme-palette-normal'} font-filter">
 						<!-- word fix, see fixedMushafWords -->
 						{#if fixedMushafWords.hasOwnProperty(`${chapter}:${verse}:${word + 1}`)}
 							{fixedMushafWords[`${chapter}:${verse}:${word + 1}`]}
@@ -126,7 +115,7 @@
 				{value.words.end}
 				<!-- 2: Uthmanic Hafs Mushaf -->
 			{:else if $__wordType === 2}
-				<span style="font-family: p{value.meta.page}" class="p{value.meta.page} invisible {$__tajweedEnabled === true ? 'theme-palette-tajweed' : 'theme-palette-normal'} font-filter">{value.words.end}</span>
+				<span style="font-family: p{value.meta.page}" class="invisible v4-words p{value.meta.page} {$__tajweedEnabled === true ? 'theme-palette-tajweed' : 'theme-palette-normal'} font-filter">{value.words.end}</span>
 			{/if}
 		</span>
 	</div>

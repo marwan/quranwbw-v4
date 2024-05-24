@@ -4,14 +4,16 @@
 	$: page = +data.page;
 
 	import { goto } from '$app/navigation';
+	import Bismillah from '$components/Bismillah.svelte';
 	import PageHead from '$components/PageHead.svelte';
 	import VersesWords from '$verses/VersesWords.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
 	import { __chapterNumber, __pageNumber, __currentPage, __wordType, __tajweedEnabled, __mushafPageDivisions } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';
 	import { errorLoadingDataMessage } from '$data/websiteSettings';
-	import { quranMetaData, chapterHeaderCodes, bismillahTypes } from '$data/quranMeta';
+	import { quranMetaData, chapterHeaderCodes } from '$data/quranMeta';
 	import { mushafFontLinks } from '$data/options';
+	import { loadFont } from '$utils/loadFont';
 	import '$lib/swiped-events.min.js';
 
 	let pageData;
@@ -20,13 +22,8 @@
 		verses = [],
 		lines = [];
 
-	// pages and the lines for which we need to center the verse rathen than justify
-	const centeredPageLines = {
-		528: [9],
-		602: [5, 15],
-		603: [10, 15],
-		604: [4, 9, 14, 15]
-	};
+	// page:line for which we need to center the verse rathen than justify
+	const centeredPageLines = ['528:9', '594:5', '602:5', '602:15', '603:10', '603:15', '604:4', '604:9', '604:14', '604:15'];
 
 	// load some previous and next pages fonts for v4
 	$: {
@@ -109,11 +106,10 @@
 		goto(`/page/${page === 604 ? 604 : page + 1}`, { replaceState: false });
 	});
 
-	// remove the "invisible" class from chapter-header once fonts are loaded so blank icon doesn't show up
-	document.fonts.ready.then(function () {
-		document.querySelectorAll('.chapter-headers').forEach((element) => {
-			element.classList.remove('invisible');
-		});
+	// dynamically load header font
+	loadFont('chapter-header', mushafFontLinks.header).then(() => {
+		document.getElementById('header').classList.remove('invisible');
+		console.log('loaded');
 	});
 
 	__currentPage.set('page');
@@ -121,29 +117,23 @@
 
 <PageHead title={`Page ${page}`} />
 
-<div class="text-center mt-8 text-xl">
+<div id="page-block" class="text-center text-xl mt-6 overflow-x-hidden">
 	{#await pageData}
 		<Spinner height="screen" margin="-mt-20" />
 	{:then}
 		<div class="space-y-2">
-			<div class="max-w-3xl space-y-2 pb-2 mx-auto text-[5vw] md:text-[32px] lg:text-[36px]">
+			<div class="max-w-3xl space-y-2 pb-2 mx-auto text-[5.4vw] md:text-[42px] lg:text-[36px]">
 				{#each Array.from(Array(endingLine + 1).keys()).slice(startingLine) as line}
 					<!-- if it's the first verse of a chapter -->
 					{#if chapters.length > 0 && lines.includes(line) && verses[lines.indexOf(line)] === 1}
 						<div class="flex flex-col my-2">
-							<div class="invisible chapter-headers leading-base pt-4 md:pt-8 pb-6 text-[29vw] md:text-[220px] lg:text-[230px] {$__tajweedEnabled ? 'theme-palette-tajweed' : 'theme-palette-normal'} font-filter">{chapterHeaderCodes[chapters[lines.indexOf(line)]]}</div>
+							<div id="header" style="font-family: chapter-header" class="leading-base pt-4 md:pt-8 pb-6 text-[28vw] md:text-[220px] lg:text-[230px] font-filter {$__tajweedEnabled ? 'theme-palette-tajweed' : 'theme-palette-normal'}">{chapterHeaderCodes[chapters[lines.indexOf(line)]]}</div>
 
-							<div class="invisible bismillah flex flex-col text-center leading-normal flex-wrap space-y-4 block md:mt-6 text-[5vw] md:text-[32px] lg:text-[36px] {$__tajweedEnabled ? 'theme-palette-tajweed' : 'theme-palette-normal'} font-filter">
-								{#if chapters[lines.indexOf(line)] === 2}
-									{bismillahTypes[1]}
-								{:else if ![1, 9, 2].includes(chapters[lines.indexOf(line)])}
-									{bismillahTypes[2]}
-								{/if}
-							</div>
+							<Bismillah {chapters} {lines} {line} />
 						</div>
 					{/if}
 
-					<div class="line {line} px-2 arabic-font-{$__wordType} {+page > 2 && centeredPageLines[+page] === undefined ? 'flex justify-between' : ''} {centeredPageLines[+page] !== undefined && centeredPageLines[+page].includes(line) ? 'flex justify-center' : ''}">
+					<div class="line {line} flex px-2 arabic-font-{$__wordType} {+page < 3 || centeredPageLines.includes(`${+page}:${line}`) ? 'justify-center' : null} {+page > 2 && !centeredPageLines.includes(`${+page}:${line}`) ? 'justify-between' : null}">
 						{#each Object.entries(JSON.parse(localStorage.getItem('pageData'))) as [key, value]}
 							<VersesWords {key} {value} {line} />
 						{/each}

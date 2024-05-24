@@ -65,7 +65,7 @@
 </script>
 
 <div class="verseButtons flex flex-row space-x-2 z-10 text-xs theme-grayscale">
-	<a href={$__currentPage === 'chapter' ? './#' : `/${chapter}/${verse}`} class="{buttonClasses} font-bold" data-html2canvas-ignore>
+	<a href={$__currentPage === 'chapter' ? `#${chapter}:${verse}` : `/${chapter}/${verse}`} class="{buttonClasses} font-bold" data-html2canvas-ignore>
 		<div class="opacity-50">{key}</div>
 	</a>
 	<Tooltip type="light" placement="right" class="z-30 hidden md:block font-filter">Verse {key}</Tooltip>

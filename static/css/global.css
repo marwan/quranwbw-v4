@@ -1542,10 +1542,6 @@ input[type="range"].range-lg::-moz-range-thumb {
   margin-top: 1.5rem;
 }
 
-.mt-8 {
-  margin-top: 2rem;
-}
-
 .block {
   display: block;
 }
@@ -2422,6 +2418,12 @@ input[type="range"].range-lg::-moz-range-thumb {
   --tw-space-x-reverse: 0;
   margin-right: calc(2rem * var(--tw-space-x-reverse));
   margin-left: calc(2rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.space-y-0 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0px * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0px * var(--tw-space-y-reverse));
 }
 
 .space-y-1 > :not([hidden]) ~ :not([hidden]) {
@@ -3333,6 +3335,10 @@ input[type="range"].range-lg::-moz-range-thumb {
   background-color: rgb(255 255 255 / 0.3);
 }
 
+.bg-white\/60 {
+  background-color: rgb(255 255 255 / 0.6);
+}
+
 .bg-yellow-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(254 249 195 / var(--tw-bg-opacity));
@@ -3780,10 +3786,6 @@ input[type="range"].range-lg::-moz-range-thumb {
   padding-bottom: 0.375rem;
 }
 
-.pb-14 {
-  padding-bottom: 3.5rem;
-}
-
 .pb-2 {
   padding-bottom: 0.5rem;
 }
@@ -3999,6 +4001,14 @@ input[type="range"].range-lg::-moz-range-thumb {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
+}
+
+.text-\[5\.4vw\] {
+  font-size: 5.4vw;
+}
+
+.text-\[28vw\] {
+  font-size: 28vw;
 }
 
 .font-black {
@@ -4709,32 +4719,6 @@ input[type="range"].range-lg::-moz-range-thumb {
 }
 
 @font-face {
-  font-family: "bismillah";
-
-  src: url("../fonts/bismillah/QCF_Bismillah_COLOR-Regular.woff2") format("woff2"), url("../fonts/bismillah/QCF_Bismillah_COLOR-Regular.woff") format("woff");
-
-  font-weight: normal;
-
-  font-style: normal;
-
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "chapter-headers";
-
-  src:
-    url("../fonts/chapter-headers/QCF_SurahHeader_COLOR-Regular.woff2") format("woff2"),
-    url("../fonts/chapter-headers/QCF_SurahHeader_COLOR-Regular.woff") format("woff");
-
-  font-weight: normal;
-
-  font-style: normal;
-
-  font-display: block;
-}
-
-@font-face {
   font-family: "urdu";
 
   src: url("../fonts/languages/Mehr-Nastaliq.ttf") format("truetype");
@@ -4858,11 +4842,6 @@ svg {
   font-display: block;
 }
 
-.bismillah {
-  font-family: "bismillah";
-  font-display: block;
-}
-
 .font-Urdu {
   font-family: "urdu";
 }
@@ -4933,13 +4912,6 @@ svg {
   filter: brightness(70%) contrast(100%) saturate(100%) sepia(35%);
   -webkit-filter: brightness(70%) contrast(100%) saturate(100%) sepia(35%);
   -moz-filter: brightness(70%) contrast(100%) saturate(100%) sepia(35%);
-}
-
-/* chapter headers */
-
-.chapter-headers {
-  font-family: "chapter-headers";
-  font-display: block;
 }
 
 .first-letter\:float-left::first-letter {
@@ -6446,6 +6418,11 @@ svg {
     line-height: 2rem;
   }
 
+  .md\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+
   .md\:text-\[220px\] {
     font-size: 220px;
   }
@@ -6467,6 +6444,10 @@ svg {
   .md\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
+  }
+
+  .md\:text-\[42px\] {
+    font-size: 42px;
   }
 
   .md\:font-medium {
@@ -7870,4 +7851,3 @@ svg {
     display: none;
   }
 }
-

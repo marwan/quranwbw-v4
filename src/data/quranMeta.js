@@ -938,11 +938,6 @@ export const chapterHeaderCodes = [
 	'ﯫ'
 ];
 
-export const bismillahTypes = {
-	1: 'ﲚﲛﲞﲤ',
-	2: 'ﲪﲫﲮﲴ'
-};
-
 // export const chapterSlugs = {
 // 	'al-fatihah': 1,
 // 	fatihah: 1

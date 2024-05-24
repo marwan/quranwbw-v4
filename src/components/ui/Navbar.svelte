@@ -57,7 +57,7 @@
 	}
 </script>
 
-<nav id="navbar" class="{$__currentPage === 'home' ? 'hidden' : 'block'} bg-white/30 fixed w-full z-20 top-0 left-0 border-b border-gray-200 text-black print:hidden backdrop-blur-xl theme-grayscale">
+<nav id="navbar" class="bg-white/60 fixed w-full z-20 top-0 left-0 border-b border-gray-200 text-black print:hidden backdrop-blur-xl theme-grayscale {$__currentPage === 'home' ? 'hidden' : 'block'}">
 	<div id="top-nav" class="{$__topNavbarVisible ? 'block' : 'hidden'} flex flex-row items-center justify-between max-w-screen-lg mx-auto px-4 py-2" aria-label="Home">
 		<a href="/" class="flex flex-row items-center p-3 cursor-pointer hover:bg-lightGray rounded-3xl dark:hover:bg-slate-700">
 			<Home />
@@ -125,3 +125,5 @@
 		</div>
 	{/if}
 </nav>
+
+<div class="{$__currentPage === 'chapter' ? 'pb-8' : 'pb-4'} {$__currentPage === 'home' ? 'hidden' : 'block'}"></div>

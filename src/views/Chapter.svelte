@@ -4,11 +4,12 @@
 	export let data, startVerse, endVerse;
 
 	import PageHead from '$components/PageHead.svelte';
+	import Bismillah from '$components/Bismillah.svelte';
 	import ChapterVerses from '$verses/ChapterVerses.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
 	import { parseURL } from '$utils/parseURL';
 	import { fetchChapterData } from '$utils/fetchData';
-	import { quranMetaData, bismillahTypes } from '$data/quranMeta';
+	import { quranMetaData } from '$data/quranMeta';
 	import { displayOptions } from '$data/options';
 	import { errorLoadingDataMessage } from '$data/websiteSettings';
 	import { __currentPage, __chapterNumber, __displayType, __wordType, __wordTranslation, __verseTranslations, __pageURL, __firstVerseOnPage } from '$utils/stores';
@@ -65,20 +66,11 @@
 
 <PageHead title={`${quranMetaData[$__chapterNumber].transliteration} (${$__chapterNumber})`} />
 
-<div class="pt-8">
+<div id="chapter-block">
 	{#await chapterData}
 		<Spinner height="screen" margin="-mt-20" />
 	{:then}
-		<!-- we have different Bismillah for chapter 2 and the rest -->
-		{#if ![1, 9].includes($__chapterNumber)}
-			<div class="invisible bismillah flex flex-col text-center flex-wrap pt-4 px-6 space-y-4 text-xl md:text-2xl block theme-palette-normal font-filter opacity-60">
-				{#if $__chapterNumber === 2}
-					{bismillahTypes[1]}
-				{:else if ![1, 9, 2].includes($__chapterNumber)}
-					{bismillahTypes[2]}
-				{/if}
-			</div>
-		{/if}
+		<Bismillah />
 
 		<!-- need custom stylings if display type is 3 or 4 - continuous -->
 		<div id="verses-block" class={displayOptions[`${$__displayType}`].customStyle}>

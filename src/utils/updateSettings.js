@@ -57,6 +57,13 @@ export function updateSettings(props) {
 		case 'tajweedEnabled':
 			__tajweedEnabled.set(props.value);
 			userSettings.displaySettings.tajweedEnabled = props.value;
+
+			// remove invisibility after 10 milliseconds from all v4 words because for some reason doing it directly doesn't work
+			setTimeout(function () {
+				document.querySelectorAll('.v4-words').forEach((element) => {
+					element.classList.remove('invisible');
+				});
+			}, 10);
 			break;
 
 		// for word translation
