@@ -27,7 +27,7 @@
 <!-- chapter page -->
 {#if $__currentPage === 'chapter'}
 	{#if ![1, 9].includes($__chapterNumber)}
-		<div class="flex flex-col text-center flex-wrap block py-4 text-2xl md:text-3xl {$__wordType === 3 ? 'arabic-font-3' : 'bismillah'}">
+		<div class="flex flex-col text-center flex-wrap block pt-6 pb-4 text-2xl md:text-3xl {$__wordType === 3 ? 'arabic-font-3' : 'bismillah'}">
 			{#if $__wordType === 1 || $__wordType === 2}
 				<span style="font-family: bismillah;" class="invisible bismillah-uthmani font-filter {$__tajweedEnabled ? 'theme-palette-tajweed' : 'theme-palette-normal'}">
 					{#if $__chapterNumber === 2}

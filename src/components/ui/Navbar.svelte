@@ -57,7 +57,7 @@
 	}
 </script>
 
-<nav id="navbar" class="bg-white/60 fixed w-full z-20 top-0 left-0 border-b border-gray-200 text-black print:hidden backdrop-blur-xl theme-grayscale {$__currentPage === 'home' ? 'hidden' : 'block'}">
+<nav id="navbar" class="bg-white fixed w-full z-20 top-0 left-0 border-b border-gray-200 text-black print:hidden theme-grayscale {$__currentPage === 'home' ? 'hidden' : 'block'}">
 	<div id="top-nav" class="{$__topNavbarVisible ? 'block' : 'hidden'} flex flex-row items-center justify-between max-w-screen-lg mx-auto px-4 py-2" aria-label="Home">
 		<a href="/" class="flex flex-row items-center p-3 cursor-pointer hover:bg-lightGray rounded-3xl dark:hover:bg-slate-700">
 			<Home />

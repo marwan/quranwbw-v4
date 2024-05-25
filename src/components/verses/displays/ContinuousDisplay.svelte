@@ -2,7 +2,6 @@
 	export let key, value;
 
 	import { inview } from 'svelte-inview';
-
 	import VersesWords from '$verses/VersesWords.svelte';
 	import { pageNumberKeys } from '$data/quranMeta';
 	import { updateSettings } from '$utils/updateSettings';
