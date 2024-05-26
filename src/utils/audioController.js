@@ -156,13 +156,13 @@ export function initializeAudio() {
 	resetAudioSettings();
 
 	// play this verse
-	if (document.getElementById('playThisVerse').checked) {
+	if (audioSettings.audioRange === 'playThisVerse') {
 		audioSettings.startVerse = audioSettings.playingVerse;
 		audioSettings.endVerse = audioSettings.playingVerse;
 	}
 
 	// play from here
-	if (document.getElementById('playFromHere').checked) {
+	if (audioSettings.audioRange === 'playFromHere') {
 		audioSettings.startVerse = audioSettings.playingVerse;
 		audioSettings.endVerse = quranMetaData[audioSettings.playingChapter].verses;
 	}
@@ -189,13 +189,15 @@ export function updateAudioSettings(event) {
 	try {
 		switch (event.target.id) {
 			case 'playVerse':
-				// WIP...
 				audioSettings.audioType = 'verse';
 				break;
 
 			case 'playWord':
-				// WIP...
 				audioSettings.audioType = 'word';
+				break;
+
+			case 'playTranslation':
+				audioSettings.playTranslation = true;
 				break;
 
 			case 'playThisVerse':

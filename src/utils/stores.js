@@ -65,8 +65,8 @@ if (browser) {
 	// to store the local user settings from LocalStorage
 	__userSettings = writable(JSON.stringify(userSettings));
 
-	// to store the local user settings from LocalStorage
-	__userNotes = writable(JSON.parse(localStorage.getItem('userNotes')));
+	// to store the user notes
+	__userNotes = writable(userSettings.userNotes);
 
 	// to store the user bookmarks
 	__userBookmarks = writable(userSettings.userBookmarks);

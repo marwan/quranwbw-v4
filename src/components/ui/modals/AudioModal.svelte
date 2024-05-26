@@ -52,7 +52,7 @@
 		</div>
 
 		<!-- single or range -->
-		<div id="single-or-range-block" class="flex flex-col space-y-4 py-4 border-t dark:border-slate-700 {$__audioSettings.audioType === 'word' ? 'hidden' : ''}">
+		<div id="single-or-range-block" class="flex flex-col space-y-4 py-4 border-t dark:border-slate-700 {$__audioSettings.audioType === 'word' ? 'hidden' : null}">
 			<span class="text-xs text-gray-500">Your preferred range.</span>
 			<div class="flex flex-row space-x-4">
 				<!-- play this verse -->
@@ -103,7 +103,7 @@
 		</div>
 	</div>
 
-	<div>
+	<div class="mt-4">
 		<button on:click={initializeAudio} class="w-full mr-2 {buttonElement}">
 			<Play />
 

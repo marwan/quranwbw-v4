@@ -7,19 +7,17 @@
 
 	import { __currentPage, __settingsDrawerHidden, __wakeLockEnabled } from '$utils/stores';
 	import { checkOldBookmarks } from '$utils/checkOldBookmarks';
-	// import { downloadData } from '$utils/downloadData';
-
-	// ui
 	import Navbar from '$ui/Navbar.svelte';
 	import SettingsDrawer from '$ui/SettingsDrawer.svelte';
 	import BottomNavbar from '$ui/BottomNavbar.svelte';
-	// import BottomAlert from '$ui/BottomAlert.svelte';
 	import InitialSetupModal from '$modals/InitialSetupModal.svelte';
 	import AudioModal from '$modals/AudioModal.svelte';
 	import TajweedRulesModal from '$modals/TajweedRulesModal.svelte';
 	import NotesModal from '$modals/NotesModal.svelte';
 	import TokenModal from '$modals/TokenModal.svelte';
 	import DownloadModal from '$modals/DownloadModal.svelte';
+	import { debounce } from '$utils/debounce';
+	import { toggleNavbar } from '$utils/toggleNavbar';
 
 	// check old bookmarks for v3 update
 	checkOldBookmarks();
@@ -61,6 +59,11 @@
 			}
 		}
 	}
+
+	// toggle bottom nav on scroll
+	document.getElementsByTagName('body')[0].onscroll = () => {
+		debounce(toggleNavbar, 0);
+	};
 </script>
 
 <div class="max-w-screen-lg mx-auto {paddingTop} pb-24 select-none {paddingX}">

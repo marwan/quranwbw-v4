@@ -1,6 +1,11 @@
 import { updateSettings } from '$utils/updateSettings';
 
 export function resetSettings() {
+	let arabicTextSize;
+
+	// for larger screens, make 4xl the default for arabic word, else make 2xl the default
+	if (window.matchMedia('(min-width: 1280px)').matches || window.matchMedia('(min-width: 1024px)').matches || window.matchMedia('(min-width: 768px)').matches) arabicTextSize = 'text-4xl';
+
 	// display settings
 	updateSettings({ type: 'websiteTheme', value: 1 });
 	updateSettings({ type: 'wordType', value: 1 });
@@ -10,7 +15,7 @@ export function resetSettings() {
 	updateSettings({ type: 'wordTooltip', value: 1 });
 
 	// font size settings
-	updateSettings({ type: 'arabicText', value: 'text-4xl' });
+	updateSettings({ type: 'arabicText', value: arabicTextSize });
 	updateSettings({ type: 'wordTranslationText', value: 'text-sm' });
 	updateSettings({ type: 'verseTranslationText', value: 'text-sm' });
 

@@ -6,8 +6,8 @@ let ticking = false;
 
 // function to toggle bottom navbar on scroll
 export function toggleNavbar() {
-	// only when it's the chapter page and any scrollable elements are not open
-	if (get(__currentPage) === 'chapter' && elementsHidden()) {
+	// only when it's the chapter or mushaf page
+	if (['chapter', 'page'].includes(get(__currentPage))) {
 		let currentScrollPos = getCurrentScroll();
 
 		if (!ticking) {
@@ -30,32 +30,10 @@ export function toggleNavbar() {
 
 			ticking = true;
 		}
-
-		// hide dropdowns manually
-		try {
-			document.getElementById('navigationDropdown').classList.remove('block');
-			document.getElementById('navigationDropdown').classList.add('hidden');
-			document.getElementById('rightMenuDropdown').classList.remove('block');
-			document.getElementById('rightMenuDropdown').classList.add('hidden');
-		} catch (error) {
-			// ...
-		}
 	}
 
 	// for all other pages
 	else __topNavbarVisible.set(true);
-}
-
-function elementsHidden() {
-	if (
-		document.getElementById('settings-drawer').getAttribute('aria-hidden') === 'true' &&
-		document.getElementById('tajweed-rules-modal').getAttribute('aria-hidden') === 'true' &&
-		document.getElementById('notes-modal').getAttribute('aria-hidden') === 'true' &&
-		document.getElementById('audio-modal').getAttribute('aria-hidden') === 'true' &&
-		document.getElementById('token-modal').getAttribute('aria-hidden') === 'true'
-	) {
-		return true;
-	} else return false;
 }
 
 function getCurrentScroll() {

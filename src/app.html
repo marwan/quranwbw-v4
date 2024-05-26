@@ -16,6 +16,12 @@
 		<!-- setting default user settings in localStorage -->
 		<script>
 			(async function () {
+				let arabicTextSize;
+
+				// for larger screens, make 4xl the default for arabic word, else make 2xl the default
+				if (window.matchMedia('(min-width: 1280px)').matches || window.matchMedia('(min-width: 1024px)').matches || window.matchMedia('(min-width: 768px)').matches) arabicTextSize = 'text-4xl';
+				else arabicTextSize = 'text-2xl';
+
 				let userSettings = JSON.parse(localStorage.getItem('userSettings'));
 
 				// init if not set
@@ -35,7 +41,7 @@
 
 				// font size settings (child of display settings)
 				if (userSettings.displaySettings.fontSizes === undefined) userSettings.displaySettings.fontSizes = {}; // parent
-				if (userSettings.displaySettings.fontSizes.arabicText === undefined) userSettings.displaySettings.fontSizes.arabicText = 'text-4xl';
+				if (userSettings.displaySettings.fontSizes.arabicText === undefined) userSettings.displaySettings.fontSizes.arabicText = arabicTextSize;
 				if (userSettings.displaySettings.fontSizes.wordTranslationText === undefined) userSettings.displaySettings.fontSizes.wordTranslationText = 'text-sm';
 				if (userSettings.displaySettings.fontSizes.verseTranslationText === undefined) userSettings.displaySettings.fontSizes.verseTranslationText = 'text-sm';
 
@@ -55,6 +61,9 @@
 				// user bookmarks
 				if (userSettings.userBookmarks === undefined) userSettings.userBookmarks = [];
 
+				// user bookmarks
+				if (userSettings.userNotes === undefined) userSettings.userNotes = {};
+
 				// favourite chapters
 				if (userSettings.favouriteChapters === undefined) userSettings.favouriteChapters = [1, 5, 18];
 
@@ -65,11 +74,6 @@
 				if (userSettings.chapter === undefined) userSettings.chapter = 1;
 
 				localStorage.setItem('userSettings', JSON.stringify(userSettings));
-
-				// user notes
-				let userNotes = JSON.parse(localStorage.getItem('userNotes'));
-				if (userNotes === undefined || userNotes === null || userNotes === '') userNotes = {};
-				localStorage.setItem('userNotes', JSON.stringify(userNotes));
 			})();
 		</script>
 
@@ -81,7 +85,7 @@
 		</script>
 		%sveltekit.head%
 	</head>
-	<body data-sveltekit-preload-data="hover" class="bg-[#f3f3f3]">
+	<body data-sveltekit-preload-data="hover" class="bg-[#f9f9f9]">
 		<div style="display: contents">%sveltekit.body%</div>
 		<!-- global audio player -->
 		<audio id="player"></audio>

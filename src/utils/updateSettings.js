@@ -1,5 +1,5 @@
 /* eslint-disable no-case-declarations */
-import { __userSettings, __wordType, __displayType, __websiteTheme, __wordTranslation, __verseTranslations, __wordTranslationEnabled, __wordTransliterationEnabled, __reciter, __playbackSpeed, __lastRead, __tajweedEnabled, __wordTooltip, __userBookmarks, __autoScrollSpeed, __wakeLockEnabled } from '$utils/stores';
+import { __userSettings, __wordType, __displayType, __websiteTheme, __wordTranslation, __verseTranslations, __wordTranslationEnabled, __wordTransliterationEnabled, __reciter, __playbackSpeed, __lastRead, __tajweedEnabled, __wordTooltip, __userBookmarks, __autoScrollSpeed, __wakeLockEnabled, __userNotes } from '$utils/stores';
 import { selectableVerseTranslations } from '$data/options';
 
 // const userSettingsEndpoint = "https://api.quranwbw.com/v1/user/settings";
@@ -133,6 +133,27 @@ export function updateSettings(props) {
 			// update the bookmarks
 			userSettings.userBookmarks = userBookmarks;
 			__userBookmarks.set(userBookmarks);
+			break;
+
+		case 'userNotes':
+			const value = props.value;
+			const notes_key = props.key;
+			const isWhitespaceString = (str) => !str.replace(/\s/g, '').length;
+			let userNotes = userSettings['userNotes'];
+
+			// we only save the note if it's not just only whitespace
+			if (!isWhitespaceString(value)) {
+				userNotes[notes_key] = {
+					note: value,
+					modified_at: new Date().toISOString()
+				};
+			} else if (value.length === 0) {
+				if (Object.prototype.hasOwnProperty.call(userNotes, notes_key)) delete userNotes[notes_key];
+			}
+
+			// update the notes
+			userSettings.userNotes = userNotes;
+			__userNotes.set(userNotes);
 			break;
 
 		// for last read

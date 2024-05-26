@@ -220,7 +220,7 @@
 
 	<!-- tabs buttons -->
 	{#if $__userToken === null}
-		<div class="flex flex-col space-y-2 md:flex-row md:space-x-2 md:space-y-0">
+		<div class="flex flex-col space-y-2 mt-4 md:flex-row md:space-x-2 md:space-y-0">
 			<button on:click={() => switchTabs(1)} class="w-full {buttonElement}">I have a token</button>
 			<button on:click={() => switchTabs(2)} class="w-full {buttonElement}">I want a token</button>
 		</div>
@@ -286,19 +286,19 @@
 			<div class="flex flex-col space-y-4">
 				<!-- download / upload buttons -->
 				<div class="flex flex-row space-x-2 space-y-0">
-					<button id="upload-settings" on:click={() => uploadSettings()} class="w-full {buttonElement} {settingsUploadInProcess || settingsDownloadInProcess ? disabledElement : ''}">
+					<button id="upload-settings" on:click={() => uploadSettings()} class="w-full {buttonElement} {settingsUploadInProcess || settingsDownloadInProcess ? disabledElement : null}">
 						<CloudUpload />
 						<span> {!settingsUploadInProcess ? 'Backup' : 'Uploading...'} </span>
 					</button>
 
-					<button id="download-settings" on:click={() => downloadSettings()} class="w-full {buttonElement} {settingsUploadInProcess || settingsDownloadInProcess ? disabledElement : ''}">
+					<button id="download-settings" on:click={() => downloadSettings()} class="w-full {buttonElement} {settingsUploadInProcess || settingsDownloadInProcess ? disabledElement : null}">
 						<CloudDownload />
 						<span> {!settingsDownloadInProcess ? 'Restore' : 'Downloading...'} </span>
 					</button>
 				</div>
 
 				<!-- delete token button -->
-				<button id="delete-token" on:click={() => deleteToken()} class="{buttonElement} w-full bg-gray-600 hover:bg-lightGray {settingsUploadInProcess || settingsDownloadInProcess ? disabledElement : ''}">
+				<button id="delete-token" on:click={() => deleteToken()} class="{buttonElement} w-full bg-gray-600 hover:bg-lightGray {settingsUploadInProcess || settingsDownloadInProcess ? disabledElement : null}">
 					<span>Delete Token</span>
 				</button>
 			</div>

@@ -1363,11 +1363,6 @@ input[type="range"].range-lg::-moz-range-thumb {
   margin-bottom: 0.5rem;
 }
 
-.my-4 {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
 .my-6 {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
@@ -1526,6 +1521,10 @@ input[type="range"].range-lg::-moz-range-thumb {
   margin-top: 3rem;
 }
 
+.mt-14 {
+  margin-top: 3.5rem;
+}
+
 .mt-2 {
   margin-top: 0.5rem;
 }
@@ -1540,14 +1539,6 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .mt-6 {
   margin-top: 1.5rem;
-}
-
-.mt-8 {
-  margin-top: 2rem;
-}
-
-.mt-14 {
-  margin-top: 3.5rem;
 }
 
 .block {
@@ -3051,14 +3042,9 @@ input[type="range"].range-lg::-moz-range-thumb {
   border-inline-start-color: rgb(249 250 251 / var(--tw-border-opacity));
 }
 
-.bg-\[\#ebebeb\] {
+.bg-\[\#f9f9f9\] {
   --tw-bg-opacity: 1;
-  background-color: rgb(235 235 235 / var(--tw-bg-opacity));
-}
-
-.bg-\[\#f3f3f3\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(243 243 243 / var(--tw-bg-opacity));
+  background-color: rgb(249 249 249 / var(--tw-bg-opacity));
 }
 
 .bg-blue-100 {

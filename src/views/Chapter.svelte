@@ -13,8 +13,6 @@
 	import { displayOptions } from '$data/options';
 	import { errorLoadingDataMessage } from '$data/websiteSettings';
 	import { __currentPage, __chapterNumber, __displayType, __wordType, __wordTranslation, __verseTranslations, __pageURL, __firstVerseOnPage } from '$utils/stores';
-	// import { debounce } from '$utils/debounce';
-	// import { toggleNavbar } from '$utils/toggleNavbar';
 
 	// max verses to load if total verses in chapter are more than this
 	const maxVersesThreshold = 10;
@@ -47,19 +45,6 @@
 		// logging these for now to re-run the block on URL change
 		console.log($__pageURL, $__displayType, $__wordType, $__wordTranslation, $__verseTranslations);
 	}
-
-	// toggle bottom nav on scroll
-	// document.body.addEventListener(
-	// 	'scroll',
-	// 	() => {
-	// 		// toggle the navbars based on the scroll direction
-	// 		debounce(toggleNavbar, 0);
-	// 	},
-	// 	{
-	// 		capture: true,
-	// 		passive: true
-	// 	}
-	// );
 
 	__currentPage.set('chapter');
 </script>

@@ -13,6 +13,7 @@
 	import { errorLoadingDataMessage } from '$data/websiteSettings';
 	import { quranMetaData, chapterHeaderCodes } from '$data/quranMeta';
 	import { mushafFontLinks } from '$data/options';
+	import { tabPillElement } from '$data/commonStyles';
 	import { loadFont } from '$utils/loadFont';
 	import '$lib/swiped-events.min.js';
 
@@ -148,6 +149,19 @@
 					<span class="px-3">{page}</span>
 					<div class="flex-1 border-t-2 border-gray-200"></div>
 				</div>
+			</div>
+
+			<!-- page navigator -->
+			<div id="page-navigator" class="flex flex-row justify-center space-x-8 pt-6">
+				<!-- next page -->
+				{#if page < 604}
+					<a href="/page/{+page + 1}" class={tabPillElement}>{@html '&#x2190;'} Page {+page + 1}</a>
+				{/if}
+
+				<!-- previous page -->
+				{#if page > 1}
+					<a href="/page/{+page - 1}" class={tabPillElement}>Page {+page - 1} {@html '&#x2192;'}</a>
+				{/if}
 			</div>
 		</div>
 	{:catch error}
