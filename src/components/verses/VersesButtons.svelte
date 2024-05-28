@@ -85,7 +85,7 @@
 	<Tooltip type="light" placement="right" class="z-30 hidden md:block font-filter">Bookmark</Tooltip>
 
 	<!-- verses option dropdown -->
-	<button id="verse-{key}" class={buttonClasses} aria-label="Options">
+	<button class={buttonClasses} aria-label="Options">
 		<div class="opacity-70">
 			<DotsHorizontal size={6} />
 		</div>

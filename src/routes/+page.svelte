@@ -39,7 +39,7 @@
 
 <div class="max-w-4xl mx-auto flex flex-col space-y-8 md:px-4 theme-grayscale">
 	<div class="flex flex-col mt-4">
-		<a href="/" class="flex justify-center">
+		<a href="/" class="flex justify-center" aria-label="Home">
 			<Logo width="52" />
 		</a>
 		<div class="text-xs text-center text-gray-400">{websiteTagline}</div>
