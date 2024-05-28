@@ -8,7 +8,6 @@
 	import { quranMetaData } from '$data/quranMeta';
 	import { __currentPage, __userSettings, __audioSettings, __verseKey, __notesModalVisible } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';
-	import { getNotes } from '$utils/userNotes';
 	// import { downloadVerseImage } from '$utils/downloadVerseImage';
 	import { Tooltip, Dropdown, DropdownItem } from 'flowbite-svelte';
 
@@ -46,7 +45,6 @@
 	// handle notes modal click
 	function showNotesModal() {
 		__verseKey.set(key);
-		getNotes(key);
 		__notesModalVisible.set(true);
 	}
 
@@ -64,32 +62,32 @@
 	}
 </script>
 
-<div class="verseButtons flex flex-row space-x-2 z-10 text-xs theme-grayscale">
-	<a href={$__currentPage === 'chapter' ? `#${chapter}:${verse}` : `/${chapter}/${verse}`} class="{buttonClasses} font-bold" data-html2canvas-ignore>
-		<div class="opacity-50">{key}</div>
+<div class="verseButtons flex flex-row space-x-2 z-10 theme-grayscale">
+	<a href={$__currentPage === 'chapter' ? `#${chapter}:${verse}` : `/${chapter}/${verse}`} class="{buttonClasses} font-semibold" data-html2canvas-ignore>
+		<div class="opacity-70">{key}</div>
 	</a>
 	<Tooltip type="light" placement="right" class="z-30 hidden md:block font-filter">Verse {key}</Tooltip>
 
 	<!-- play verse button -->
 	<button on:click={() => quickPlayAudio(chapter, verse, verse)} class={buttonClasses} aria-label="Play">
-		<div class="opacity-50">
-			<svelte:component this={$__audioSettings.isPlaying && $__audioSettings.playingKey === key ? Pause : Play} />
+		<div class="opacity-70">
+			<svelte:component this={$__audioSettings.isPlaying && $__audioSettings.playingKey === key ? Pause : Play} size={3.5} />
 		</div>
 	</button>
 	<Tooltip type="light" placement="right" class="z-30 hidden md:block font-filter">Play</Tooltip>
 
 	<!-- bookmark/unbookmark button -->
-	<button on:click={() => updateSettings({ type: 'userBookmarks', key })} class={buttonClasses} aria-label="Bookmark">
-		<div class="opacity-50">
-			<svelte:component this={userBookmarks.includes(key) ? Bookmarked : Bookmark} />
+	<button on:click={() => updateSettings({ type: 'userBookmarks', key, set: true })} class={buttonClasses} aria-label="Bookmark">
+		<div class="opacity-70">
+			<svelte:component this={userBookmarks.includes(key) ? Bookmarked : Bookmark} size={3.5} />
 		</div>
 	</button>
 	<Tooltip type="light" placement="right" class="z-30 hidden md:block font-filter">Bookmark</Tooltip>
 
 	<!-- verses option dropdown -->
 	<button id="verse-{key}" class={buttonClasses} aria-label="Options">
-		<div class="opacity-50">
-			<DotsHorizontal />
+		<div class="opacity-70">
+			<DotsHorizontal size={6} />
 		</div>
 	</button>
 

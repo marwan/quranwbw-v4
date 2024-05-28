@@ -14,7 +14,7 @@ export async function fetchChapterData(chapter, download = false) {
 	const verseTranslations = get(__verseTranslations).toString();
 
 	let apiURL =
-		apiEndpoint +
+		`${apiEndpoint}/verses?` +
 		new URLSearchParams({
 			verses: `${chapter}:1,${chapter}:${quranMetaData[chapter].verses}`,
 			word_type: wordType,
@@ -42,7 +42,7 @@ export async function fetchChapterData(chapter, download = false) {
 // function to fetch individual verses
 export async function fetchVersesData(verses, wordType, wordTranslation, verseTranslations) {
 	const apiURL =
-		apiEndpoint +
+		`${apiEndpoint}/verses?` +
 		new URLSearchParams({
 			verses: verses,
 			word_type: wordType,

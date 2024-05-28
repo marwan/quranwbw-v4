@@ -98,19 +98,25 @@
 	updateSettings({ type: 'displayType', value: 4 });
 
 	// goto previous page on left swipe
-	document.addEventListener('swiped-left', function (e) {
-		goto(`/page/${page === 1 ? 1 : page - 1}`, { replaceState: false });
-	});
+	try {
+		if ($__currentPage === 'page') {
+			document.addEventListener('swiped-left', function (e) {
+				goto(`/page/${page === 1 ? 1 : page - 1}`, { replaceState: false });
+			});
 
-	// goto next page on right swipe
-	document.addEventListener('swiped-right', function (e) {
-		goto(`/page/${page === 604 ? 604 : page + 1}`, { replaceState: false });
-	});
+			// goto next page on right swipe
+			document.addEventListener('swiped-right', function (e) {
+				goto(`/page/${page === 604 ? 604 : page + 1}`, { replaceState: false });
+			});
+		}
+	} catch (error) {
+		// ...
+		console.log(error);
+	}
 
 	// dynamically load header font
 	loadFont('chapter-header', mushafFontLinks.header).then(() => {
 		document.getElementById('header').classList.remove('invisible');
-		console.log('loaded');
 	});
 
 	__currentPage.set('page');

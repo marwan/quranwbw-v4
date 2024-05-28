@@ -13,15 +13,11 @@
 	let maxChaptersToLoad = 10;
 	let maxVersesToLoad = 1;
 
-	window.chapter = 1;
-
 	// when dropdown opens
 	$: {
 		if (dropdownOpen) {
 			maxVersesLoaded = false;
 			maxVersesToLoad = quranMetaData[window.chapter].verses > 10 ? 10 : quranMetaData[window.chapter].verses;
-
-			// if (maxVersesToLoad < 10) maxVersesLoaded = true;
 		}
 	}
 

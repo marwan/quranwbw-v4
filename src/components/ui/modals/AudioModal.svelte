@@ -14,7 +14,7 @@
 	// update userBookmarks whenever the __userSettings changes
 	$: userBookmarks = JSON.parse($__userSettings).userBookmarks;
 
-	$: console.table($__audioSettings);
+	// $: console.table($__audioSettings);
 </script>
 
 <Modal id="audioModal" bind:open={$__audioModalVisible} size="xs" class="rounded-3xl theme-grayscale" bodyClass="p-6" placement="center" autoclose outsideclose>
@@ -22,9 +22,9 @@
 	<div class="flex flex-row space-x-4 mb-4 text-xl" style="margin-top: 0px;">
 		<h3 id="audio-modal-title" class="font-medium text-gray-900">{quranMetaData[$__audioSettings.playingChapter || 1].transliteration}, {$__audioSettings.playingKey}</h3>
 
-		<button on:click={() => updateSettings({ type: 'userBookmarks', key: $__audioSettings.playingKey })} class="mt-1">
-			<div class="opacity-50">
-				<svelte:component this={userBookmarks.includes($__audioSettings.playingKey) ? Bookmarked : Bookmark} />
+		<button on:click={() => updateSettings({ type: 'userBookmarks', key: $__audioSettings.playingKey, set: true })} class="mt-1">
+			<div class="opacity-70">
+				<svelte:component this={userBookmarks.includes($__audioSettings.playingKey) ? Bookmarked : Bookmark} size={3.5} />
 			</div>
 		</button>
 	</div>

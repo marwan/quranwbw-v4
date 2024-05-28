@@ -5,7 +5,7 @@
 	// check for key presses
 	// import "$utils/keyDownHandler";
 
-	import { __currentPage, __settingsDrawerHidden, __wakeLockEnabled } from '$utils/stores';
+	import { __websiteOnline, __currentPage, __chapterNumber, __settingsDrawerHidden, __wakeLockEnabled, __userToken } from '$utils/stores';
 	import { checkOldBookmarks } from '$utils/checkOldBookmarks';
 	import Navbar from '$ui/Navbar.svelte';
 	import SettingsDrawer from '$ui/SettingsDrawer.svelte';
@@ -18,6 +18,7 @@
 	import DownloadModal from '$modals/DownloadModal.svelte';
 	import { debounce } from '$utils/debounce';
 	import { toggleNavbar } from '$utils/toggleNavbar';
+	import { downloadSettingsFromCloud } from '$utils/cloudSettings';
 
 	// check old bookmarks for v3 update
 	checkOldBookmarks();
@@ -32,7 +33,7 @@
 		else document.body.classList.add('overflow-y-hidden');
 	}
 
-	// Create a reference for the Wake Lock.
+	// wakelock / screen sleep settings
 	let wakeLock = null;
 
 	$: {
@@ -60,13 +61,26 @@
 		}
 	}
 
+	// fetch settings from cloud whenever there's a change in chapter or page
+	// $: if ($__currentPage && $__chapterNumber) downloadSettingsFromCloud();
+
 	// toggle bottom nav on scroll
 	document.getElementsByTagName('body')[0].onscroll = () => {
 		debounce(toggleNavbar, 0);
 	};
+
+	// if website is online
+	window.addEventListener('online', function () {
+		__websiteOnline.set(true);
+	});
+
+	// if website is offline
+	window.addEventListener('offline', function () {
+		__websiteOnline.set(false);
+	});
 </script>
 
-<div class="max-w-screen-lg mx-auto {paddingTop} pb-24 select-none {paddingX}">
+<div class="max-w-screen-lg mx-auto select-none pb-24 {paddingTop} {paddingX}">
 	<!-- include the UI elements -->
 	<Navbar />
 	<SettingsDrawer />

@@ -1,13 +1,13 @@
 /* eslint-disable no-case-declarations */
 import { __userSettings, __wordType, __displayType, __websiteTheme, __wordTranslation, __verseTranslations, __wordTranslationEnabled, __wordTransliterationEnabled, __reciter, __playbackSpeed, __lastRead, __tajweedEnabled, __wordTooltip, __userBookmarks, __autoScrollSpeed, __wakeLockEnabled, __userNotes } from '$utils/stores';
 import { selectableVerseTranslations } from '$data/options';
-
-// const userSettingsEndpoint = "https://api.quranwbw.com/v1/user/settings";
+import { uploadSettingsToCloud } from '$utils/cloudSettings';
 
 // function to update website settings
 export function updateSettings(props) {
 	// get the settings from localStorage
 	const userSettings = JSON.parse(localStorage.getItem('userSettings'));
+	let uploadSettings = false;
 
 	switch (props.type) {
 		// for chapter number
@@ -121,18 +121,30 @@ export function updateSettings(props) {
 			const key = props.key;
 			let userBookmarks = userSettings['userBookmarks'];
 
-			// for old imports, only push if bookmark doesn't exist
-			if (props.oldCheck) {
-				if (!userBookmarks.includes(key)) userBookmarks.push(key);
+			// if overide key was set, then just set the value key in localStorage
+			if (props.overide) {
+				userSettings.userBookmarks = key;
 			}
 
-			// for existing bookmarks...
-			// if the bookmark (key) already exists, then remove it, else add it
-			else userBookmarks.includes(key) ? (userBookmarks = userBookmarks.filter((x) => x !== key)) : userBookmarks.push(key);
+			// else just set what was provided as key invidually post validation
+			else {
+				// for old imports, only push if bookmark doesn't exist
+				if (props.oldCheck) {
+					if (!userBookmarks.includes(key)) userBookmarks.push(key);
+				}
 
-			// update the bookmarks
-			userSettings.userBookmarks = userBookmarks;
+				// for existing bookmarks...
+				// if the bookmark (key) already exists, then remove it, else add it
+				else userBookmarks.includes(key) ? (userBookmarks = userBookmarks.filter((x) => x !== key)) : userBookmarks.push(key);
+
+				// update the bookmarks
+				userSettings.userBookmarks = userBookmarks;
+			}
+
 			__userBookmarks.set(userBookmarks);
+
+			// upload settings to cloud on every update
+			if (props.set === true) uploadSettings = true;
 			break;
 
 		case 'userNotes':
@@ -141,19 +153,31 @@ export function updateSettings(props) {
 			const isWhitespaceString = (str) => !str.replace(/\s/g, '').length;
 			let userNotes = userSettings['userNotes'];
 
-			// we only save the note if it's not just only whitespace
-			if (!isWhitespaceString(value)) {
-				userNotes[notes_key] = {
-					note: value,
-					modified_at: new Date().toISOString()
-				};
-			} else if (value.length === 0) {
-				if (Object.prototype.hasOwnProperty.call(userNotes, notes_key)) delete userNotes[notes_key];
+			// if overide key was set, then just set the value key in localStorage
+			if (props.overide) {
+				userSettings.userNotes = notes_key;
 			}
 
-			// update the notes
-			userSettings.userNotes = userNotes;
+			// else just set what was provided as key invidually post validation
+			else {
+				// we only save the note if it's not just only whitespace
+				if (!isWhitespaceString(value)) {
+					userNotes[notes_key] = {
+						note: value,
+						modified_at: new Date().toISOString()
+					};
+				} else if (value.length === 0) {
+					if (Object.prototype.hasOwnProperty.call(userNotes, notes_key)) delete userNotes[notes_key];
+				}
+
+				// update the notes
+				userSettings.userNotes = userNotes;
+			}
+
 			__userNotes.set(userNotes);
+
+			// upload settings to cloud on every update
+			if (props.set === true) uploadSettings = true;
 			break;
 
 		// for last read
@@ -216,21 +240,6 @@ export function updateSettings(props) {
 	__userSettings.set(JSON.stringify(userSettings));
 	localStorage.setItem('userSettings', JSON.stringify(userSettings));
 
-	// push to cloud if token exists
-	// if (get(__userToken)) {
-	//   uploadSettings(JSON.stringify(userSettings));
-	// }
+	// upload settings to cloud if uploadSettings was set to true, which we only do for bookmarks and notes at the moment
+	// if (uploadSettings === true) uploadSettingsToCloud();
 }
-
-// function uploadSettings(settings) {
-// 	fetch('https://api.quranwbw.com/v1/user/settings', {
-// 		method: 'POST',
-// 		headers: {
-// 			'user-token': get(__userToken),
-// 			'Content-Type': 'application/json'
-// 		},
-// 		body: settings
-// 	});
-// }
-
-window.updateSettings = updateSettings;

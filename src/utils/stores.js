@@ -1,7 +1,8 @@
 import { browser } from '$app/environment';
 import { writable } from 'svelte/store';
 
-let __currentPage,
+let __websiteOnline,
+	__currentPage,
 	__chapterNumber,
 	__pageNumber,
 	__chapterData,
@@ -43,6 +44,9 @@ let __currentPage,
 
 if (browser) {
 	const userSettings = JSON.parse(localStorage.getItem('userSettings'));
+
+	// to store network status of website
+	__websiteOnline = writable(true);
 
 	// to store the current page
 	__currentPage = writable('home');
@@ -167,6 +171,7 @@ if (browser) {
 }
 
 export {
+	__websiteOnline,
 	__currentPage,
 	__chapterNumber,
 	__pageNumber,

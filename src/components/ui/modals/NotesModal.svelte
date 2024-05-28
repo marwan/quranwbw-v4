@@ -25,7 +25,7 @@
 
 	function updateNotesHandler() {
 		const notesValue = document.getElementById('notes-value').value;
-		updateSettings({ type: 'userNotes', key: $__verseKey, value: notesValue });
+		updateSettings({ type: 'userNotes', key: $__verseKey, value: notesValue, set: true });
 	}
 </script>
 

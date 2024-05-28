@@ -1,21 +1,16 @@
 <script>
 	import { buttonElement, disabledElement, linkElement } from '$data/commonStyles';
 	import { __userToken, __userSettings, __tokenModalVisible } from '$utils/stores';
+	import { apiEndpoint } from '$data/websiteSettings';
 	import { downloadTextFile } from '$utils/downloadTextFile';
 	import { Modal } from 'flowbite-svelte';
+	import { downloadSettingsFromCloud, uploadSettingsToCloud } from '$utils/cloudSettings';
 
 	// icons
 	import Download from '$svgs/Download.svelte';
-	import Email from '$svgs/Email.svelte';
 	import Share from '$svgs/Share.svelte';
 	import CloudDownload from '$svgs/CloudDownload.svelte';
 	import CloudUpload from '$svgs/CloudUpload.svelte';
-	import Info from '$svgs/Info.svelte';
-	import Cross from '$svgs/Cross.svelte';
-	import Check from '$svgs/Check.svelte';
-	import Cog from '$svgs/Cog.svelte';
-
-	const userAPIEndpoint = 'https://api.quranwbw.com/v1/user';
 
 	let tokenTab = 0,
 		tokenGenerated = false,
@@ -23,32 +18,21 @@
 		tokenValidationInProcess = false,
 		settingsDownloadInProcess = false,
 		settingsUploadInProcess = false,
-		tokenEmailInProcess = false,
-		tokenEmailed = false,
 		tokenCloudButtonsVisible = true,
-		tokenMessageText,
-		tokenMessageType = 1;
-
-	// message icons
-	const messageTypeIcons = {
-		1: { icon: Check }, // success
-		2: { icon: Cross }, // error
-		3: { icon: Info }, // warning
-		4: { icon: Cog } // loading
-	};
+		tokenMessageText;
 
 	// validate the token provided by user
 	async function validateToken() {
 		const token = document.getElementById('token-value').value;
 
 		// basic checks
-		if (token === '') return showMessage(3, 'You have not entered anything.');
-		if (token.length !== 10) return showMessage(2, 'Invalid token length.');
+		if (token === '') return (tokenMessageText = 'You have not entered anything.');
+		if (token.length !== 10) return (tokenMessageText = 'Invalid token length.');
 
 		tokenValidationInProcess = true;
-		showMessage(4, 'Validating your token, please wait...');
+		tokenMessageText = 'Validating your token, please wait...';
 
-		const response = await fetch(`${userAPIEndpoint}/tokens/check`, {
+		const response = await fetch(`${apiEndpoint}/user/tokens/check`, {
 			method: 'GET',
 			headers: {
 				'user-token': token
@@ -59,15 +43,15 @@
 
 		// save the token
 		if (tokenJSON.code === 200) {
-			showMessage(1, 'Your token has been saved. Reloading the page...');
+			tokenMessageText = 'Your token has been saved.';
 			saveToken(token);
-			location.reload(); // reload the page
+			// location.reload(); // reload the page
 		}
 
 		// limit token generation
-		else if (tokenJSON.code === 429) showMessage(2, 'You have reached the limit of token validation. Try later.');
+		else if (tokenJSON.code === 429) tokenMessageText = 'You have reached the limit of token validation. Try later.';
 		// all other cases
-		else showMessage(2, 'The token is not valid.');
+		else tokenMessageText = 'The token is not valid.';
 
 		tokenValidationInProcess = false;
 	}
@@ -75,9 +59,9 @@
 	// generate a new token for user
 	async function generateToken() {
 		tokenGenerationInProcess = true;
-		showMessage(4, 'Generating a token, please wait...');
+		tokenMessageText = 'Generating a token, please wait...';
 
-		const response = await fetch(`${userAPIEndpoint}/tokens/generate`, {
+		const response = await fetch(`${apiEndpoint}/user/tokens/generate`, {
 			method: 'POST',
 			headers: {
 				'user-agent': navigator.userAgent,
@@ -89,14 +73,14 @@
 
 		if (responseJSON.code === 200) {
 			tokenGenerated = true;
-			showMessage(1, 'A token has been generated and saved. Make sure to back it up.');
+			tokenMessageText = 'A token has been generated and saved. Make sure to back it up.';
 			saveToken(responseJSON.data[0].user_token);
 		}
 
 		// limit token generation
-		else if (responseJSON.code === 429) showMessage(2, 'You have reached the limit of token generation. Try later.');
+		else if (responseJSON.code === 429) tokenMessageText = 'You have reached the limit of token generation. Try later.';
 		// all other cases
-		else showMessage(2, 'There was an error generating a token.');
+		else tokenMessageText = 'There was an error generating a token.';
 
 		tokenGenerationInProcess = false;
 	}
@@ -104,24 +88,15 @@
 	// upload user's settings to cloud
 	async function uploadSettings() {
 		settingsUploadInProcess = true;
-		showMessage(4, 'Uploading your settings, please wait...');
+		tokenMessageText = 'Uploading your settings, please wait...';
 
-		const response = await fetch(`${userAPIEndpoint}/settings`, {
-			method: 'POST',
-			headers: {
-				'user-token': $__userToken,
-				'Content-Type': 'application/json'
-			},
-			body: $__userSettings
-		});
+		const responseJSON = await uploadSettingsToCloud();
 
-		const responseJSON = await response.json();
-
-		if (responseJSON.code === 200) showMessage(1, 'Settings have been uploaded.');
+		if (responseJSON.code === 200) tokenMessageText = 'Settings have been uploaded.';
 		// too many attempts
-		// else if (responseJSON.code === 429) tokenMessageText = "Too many attempts. Please slow down.";
+		else if (responseJSON.code === 429) tokenMessageText = 'Too many attempts. Please slow down.';
 		// all other cases
-		else showMessage(2, 'There was an error while uploading your settings.');
+		else tokenMessageText = 'There was an error while uploading your settings.';
 
 		settingsUploadInProcess = false;
 	}
@@ -129,29 +104,22 @@
 	// download user's settings from cloud
 	async function downloadSettings() {
 		settingsDownloadInProcess = true;
-		showMessage(4, 'Downloading your settings, please wait...');
+		tokenMessageText = 'Downloading your settings, please wait...';
 
-		const response = await fetch(`${userAPIEndpoint}/settings`, {
-			method: 'GET',
-			headers: {
-				'user-token': $__userToken
-			}
-		});
-
-		const responseJSON = await response.json();
+		const responseJSON = await downloadSettingsFromCloud();
 
 		if (responseJSON.code === 200) {
-			showMessage(1, 'Settings have been downloaded. Reloading the page...');
-			localStorage.setItem('userSettings', JSON.stringify(responseJSON.data[0].user_settings));
-			location.reload(); // reload the page
+			tokenMessageText = 'Settings have been downloaded.';
+			// localStorage.setItem('userSettings', JSON.stringify(responseJSON.data[0].user_settings));
+			// location.reload(); // reload the page
 		}
 
 		// when there's no settings
-		else if (responseJSON.code === 404) showMessage(3, 'No settings found in the cloud.');
+		else if (responseJSON.code === 404) tokenMessageText = 'No settings found in the cloud.';
 		// too many attempts
-		else if (responseJSON.code === 429) showMessage(2, 'Too many attempts. Please slow down.');
+		else if (responseJSON.code === 429) tokenMessageText = 'Too many attempts. Please slow down.';
 		// all other cases
-		else showMessage(2, 'There was an error while downloading your settings.');
+		else tokenMessageText = 'There was an error while downloading your settings.';
 
 		settingsDownloadInProcess = false;
 	}
@@ -174,7 +142,7 @@
 	// copy token on click
 	function copyToken() {
 		navigator.clipboard.writeText($__userToken);
-		showMessage(1, 'Token has been copied to clipboard.');
+		tokenMessageText = 'Token has been copied to clipboard.';
 	}
 
 	// open share menu
@@ -195,26 +163,19 @@
 		tokenTab = tab;
 		tokenMessageText = '';
 		tokenGenerated = false;
-		tokenEmailed = false;
 
-		if (tab === 1) showMessage(3, 'Enter your token in the input box below to validate it.');
-		else if (tab === 2) showMessage(3, 'Click the button below to generate your unique token.');
+		if (tab === 1) tokenMessageText = 'Enter your token in the input box below to validate it.';
+		else if (tab === 2) tokenMessageText = 'Click the button below to generate your unique token.';
 		else if (tab === 3) {
-			showMessage(3, 'Enter your email in the input box below.');
+			tokenMessageText = 'Enter your email in the input box below.';
 			tokenCloudButtonsVisible = false;
 		}
-	}
-
-	// show message with its respective icon
-	function showMessage(type, message) {
-		tokenMessageText = message;
-		tokenMessageType = type;
 	}
 </script>
 
 <Modal title="Token Login" id="tokenModal" bind:open={$__tokenModalVisible} class="rounded-3xl theme-grayscale" bodyClass="p-6 space-y-4 flex-1 overflow-y-auto overscroll-contain" headerClass="flex justify-between items-center p-6 rounded-t-3xl" center outsideclose>
 	<div id="token-info" class="flex flex-col space-y-4 text-sm">
-		<span>Token Login allows you to save your settings in the cloud without the need of creating an account or providing any personal details.</span>
+		<span>Token Login allows you to save your settings (bookmarks & notes for now) in the cloud without the need of creating an account or providing any personal details.</span>
 		<a href="/faq#11" class={linkElement} on:click={() => __tokenModalVisible.set(false)}>You can read more about it on our FAQs page (#11).</a>
 	</div>
 
