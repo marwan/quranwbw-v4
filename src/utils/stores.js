@@ -40,7 +40,9 @@ let __websiteOnline,
 	__notesModalVisible,
 	__tajweedRulesModalVisible,
 	__tokenModalVisible,
-	__wakeLockEnabled;
+	__wakeLockEnabled,
+	__quizCorrectAnswers,
+	__quizWrongAnswers;
 
 if (browser) {
 	const userSettings = JSON.parse(localStorage.getItem('userSettings'));
@@ -167,7 +169,12 @@ if (browser) {
 	__tajweedRulesModalVisible = writable(false);
 	__tokenModalVisible = writable(false);
 
+	// wake lock settings
 	__wakeLockEnabled = writable(userSettings.displaySettings.wakeLockEnabled);
+
+	// quiz settings
+	__quizCorrectAnswers = writable(userSettings.quiz.correctAnswers);
+	__quizWrongAnswers = writable(userSettings.quiz.wrongAnswers);
 }
 
 export {
@@ -210,5 +217,7 @@ export {
 	__notesModalVisible,
 	__tajweedRulesModalVisible,
 	__tokenModalVisible,
-	__wakeLockEnabled
+	__wakeLockEnabled,
+	__quizCorrectAnswers,
+	__quizWrongAnswers
 };

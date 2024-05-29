@@ -1,7 +1,7 @@
 <script>
 	import PageHead from '$components/PageHead.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
-	import { errorLoadingDataMessage } from '$data/websiteSettings';
+	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
 	import { __currentPage } from '$utils/stores';
 	import { timeAgo } from '$utils/timeAgo';
 	import { buttonElement, linkElement, labelPillElement } from '$data/commonStyles';
@@ -13,7 +13,7 @@
 	// fetch the commits from our API
 	$: {
 		fetchCommitsData = (async () => {
-			const response = await fetch('https://api.quranwbw.com/v1/repo/commits');
+			const response = await fetch(`${apiEndpoint}/repo/commits`);
 			const data = await response.json();
 			return data.data;
 		})();
@@ -22,7 +22,7 @@
 	// fetch the issues from our API
 	$: {
 		fetchIssuesData = (async () => {
-			const response = await fetch('https://api.quranwbw.com/v1/repo/issues');
+			const response = await fetch(`${apiEndpoint}/repo/issues`);
 			const data = await response.json();
 			issuesCount = Object.keys(data.data).length;
 			return data.data;

@@ -1,5 +1,5 @@
 /* eslint-disable no-case-declarations */
-import { __userSettings, __wordType, __displayType, __websiteTheme, __wordTranslation, __verseTranslations, __wordTranslationEnabled, __wordTransliterationEnabled, __reciter, __playbackSpeed, __lastRead, __tajweedEnabled, __wordTooltip, __userBookmarks, __autoScrollSpeed, __wakeLockEnabled, __userNotes } from '$utils/stores';
+import { __userSettings, __wordType, __displayType, __websiteTheme, __wordTranslation, __verseTranslations, __wordTranslationEnabled, __wordTransliterationEnabled, __reciter, __playbackSpeed, __lastRead, __tajweedEnabled, __wordTooltip, __userBookmarks, __autoScrollSpeed, __wakeLockEnabled, __userNotes, __quizCorrectAnswers, __quizWrongAnswers } from '$utils/stores';
 import { selectableVerseTranslations } from '$data/options';
 import { uploadSettingsToCloud } from '$utils/cloudSettings';
 
@@ -196,6 +196,18 @@ export function updateSettings(props) {
 		case 'wakeLockEnabled':
 			__wakeLockEnabled.set(props.value);
 			userSettings.displaySettings.wakeLockEnabled = props.value;
+			break;
+
+		// for quiz correct answers
+		case 'quizCorrectAnswers':
+			__quizCorrectAnswers.set(props.value);
+			userSettings.quiz.correctAnswers = props.value;
+			break;
+
+		// for quiz wrong answers
+		case 'quizWrongAnswers':
+			__quizWrongAnswers.set(props.value);
+			userSettings.quiz.wrongAnswers = props.value;
 			break;
 
 		// for increasing/decreasing font sizes

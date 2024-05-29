@@ -6,7 +6,7 @@
 	import VersesWords from '$verses/VersesWords.svelte';
 	import MorphologyTable from '$morphology/MorphologyTable.svelte';
 	import { quranMetaData } from '$data/quranMeta';
-	import { errorLoadingDataMessage } from '$data/websiteSettings';
+	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
 	import { __currentPage, __wordType, __wordTranslation, __verseTranslations, __morphologyKey, __pageURL } from '$utils/stores';
 	import { tabPillElement } from '$data/commonStyles';
 	import { fetchVersesData } from '$utils/fetchData';
@@ -31,14 +31,14 @@
 	// fetch words
 	$: {
 		fetchWordsData = (async () => {
-			const response = await fetch(`https://api.quranwbw.com/v1/morphology?words=${$__morphologyKey}`);
+			const response = await fetch(`${apiEndpoint}/morphology?words=${$__morphologyKey}`);
 			const data = await response.json();
 			return data.data;
 		})();
 
 		// fetch word summary
 		fetchWordSummary = (async () => {
-			const response = await fetch(`https://api.quranwbw.com/v1/morphology/summary?word=${$__morphologyKey}`);
+			const response = await fetch(`${apiEndpoint}/morphology/summary?word=${$__morphologyKey}`);
 			const data = await response.json();
 			return data.data;
 		})();
