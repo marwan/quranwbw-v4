@@ -81,9 +81,9 @@
 						<button class={buttonElement} on:click={() => checkAnswer()}>Check Anwser</button>
 					</div>
 
-					<!-- random-word-button -->
-					<div id="random-word-button">
-						<button class={buttonElement} on:click={() => setRandomWord()}>Random Word</button>
+					<!-- skip-word-button -->
+					<div id="skip-word-button">
+						<button class={buttonElement} on:click={() => setRandomWord()}>Skip</button>
 					</div>
 				</div>
 
