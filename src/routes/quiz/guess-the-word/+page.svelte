@@ -58,7 +58,7 @@
 					<p class="mb-5 text-sm">Guess the correct translation:</p>
 					<div class="grid gap-4 md:gap-6 w-full md:grid-cols-2">
 						{#each Object.entries(fetchData) as [key, value]}
-							<div class="rounded border border-gray-200">
+							<div class="rounded border border-gray-200 {selection === +key ? 'border-gray-400' : null}">
 								<Radio name="bordered" bind:group={selection} value={+key} class="w-full p-4 font-normal">{@html '&nbsp;'} {fetchData[key].word_english}</Radio>
 							</div>
 						{/each}
