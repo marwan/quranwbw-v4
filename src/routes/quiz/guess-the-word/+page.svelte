@@ -83,7 +83,7 @@
 
 					<!-- skip-word-button -->
 					<div id="skip-word-button">
-						<button class={buttonElement} on:click={() => setRandomWord()}>Skip</button>
+						<button class={buttonElement} on:click={() => setRandomWord()}>{answerChecked ? 'Next' : 'Skip'}</button>
 					</div>
 				</div>
 
