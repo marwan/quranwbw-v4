@@ -1,13 +1,11 @@
 <script>
 	import { updateSettings } from '$utils/updateSettings';
 	import { quranMetaData, mostRead } from '$data/quranMeta';
-	import { fetchChapterData } from '$utils/fetchData';
 	import { __lastRead, __favouriteChapters, __userBookmarks } from '$utils/stores';
 	import NavigationDropdown from '$ui/NavigationDropdown.svelte';
 	import PointNavigationSelector from '$ui/PointNavigationSelector.svelte';
 	import { buttonElement } from '$data/commonStyles';
 	import { Tooltip } from 'flowbite-svelte';
-	import { inview } from 'svelte-inview';
 
 	// icons
 	import Mecca from '$svgs/Mecca.svelte';

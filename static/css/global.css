@@ -3372,10 +3372,6 @@ input[type="range"].range-lg::-moz-range-thumb {
   --tw-bg-opacity: 0.5;
 }
 
-.bg-opacity-60 {
-  --tw-bg-opacity: 0.6;
-}
-
 .bg-opacity-75 {
   --tw-bg-opacity: 0.75;
 }
@@ -4664,7 +4660,9 @@ input[type="range"].range-lg::-moz-range-thumb {
 @font-face {
   font-family: "Uthmani-Hafs";
 
-  src: url("../fonts/hafs/Uthmani-Hafs.woff2") format("woff2"), url("../fonts/hafs/Uthmani-Hafs.woff") format("woff");
+  src: url("../fonts/hafs/uthmanic_hafs_v22.woff2") format("woff2"), 
+      url("../fonts/hafs/uthmanic_hafs_v22.woff") format("woff"), 
+      url("../fonts/hafs/uthmanic_hafs_v22.ttf") format("truetype");
 
   font-weight: normal;
 
@@ -4687,8 +4685,6 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 @font-face {
   font-family: "chapter-icons";
-
-  /* src: url("../fonts/chapter-icons/QCF_SurahHome-Regular.woff2") format("woff2"), url("../fonts/chapter-icons/QCF_SurahHome-Regular.woff") format("woff");*/
 
   src: url("../fonts/chapter-icons/chapter-icons.woff") format("woff");
 
