@@ -3,7 +3,7 @@
 	import { __currentPage, __chapterNumber, __audioSettings, __verseKey, __notesData, __userNotes, __notesModalVisible } from '$utils/stores';
 	import { buttonElement } from '$data/commonStyles';
 	import { timeAgo } from '$utils/timeAgo';
-	import { Modal } from 'flowbite-svelte';
+	import Modal from '$flowbiteSvelte/modal/Modal.svelte';
 	import { updateSettings } from '$utils/updateSettings';
 
 	let verseNote, noteModifiedAt;

@@ -33,6 +33,7 @@
 	"type": "module",
 	"dependencies": {
 		"@macfja/svelte-persistent-store": "^2.4.1",
+		"party-js": "^2.2.0",
 		"svelte-inview": "^4.0.2"
 	}
 }

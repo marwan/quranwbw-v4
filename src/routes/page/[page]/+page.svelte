@@ -10,7 +10,7 @@
 	import Spinner from '$svgs/Spinner.svelte';
 	import { __chapterNumber, __pageNumber, __currentPage, __wordType, __tajweedEnabled, __mushafPageDivisions } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';
-	import { errorLoadingDataMessage } from '$data/websiteSettings';
+	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
 	import { quranMetaData, chapterHeaderCodes } from '$data/quranMeta';
 	import { mushafFontLinks } from '$data/options';
 	import { tabPillElement } from '$data/commonStyles';
@@ -40,8 +40,7 @@
 		(chapters = []), (verses = []), (lines = []);
 
 		pageData = (async () => {
-			const apiHost = 'https://api.quranwbw.com';
-			const apiURL = `${apiHost}/v1/page?page=${page}&word_type=${$__wordType}&word_translation=1`;
+			const apiURL = `${apiEndpoint}/page?page=${page}&word_type=${$__wordType}&word_translation=1`;
 			const response = await fetch(apiURL);
 			const data = await response.json();
 			const apiData = data.data.verses;
@@ -87,6 +86,16 @@
 				juz: apiData[Object.keys(apiData)[0]].meta.juz
 			});
 
+			// goto previous page on left swipe
+			document.getElementById('page-block').addEventListener('swiped-left', function (e) {
+				goto(`/page/${page === 1 ? 1 : page - 1}`, { replaceState: false });
+			});
+
+			// goto next page on right swipe
+			document.getElementById('page-block').addEventListener('swiped-right', function (e) {
+				goto(`/page/${page === 604 ? 604 : page + 1}`, { replaceState: false });
+			});
+
 			return apiData;
 		})();
 
@@ -96,23 +105,6 @@
 
 	// only allow continious normal mode
 	updateSettings({ type: 'displayType', value: 4 });
-
-	// goto previous page on left swipe
-	try {
-		if ($__currentPage === 'page') {
-			document.addEventListener('swiped-left', function (e) {
-				goto(`/page/${page === 1 ? 1 : page - 1}`, { replaceState: false });
-			});
-
-			// goto next page on right swipe
-			document.addEventListener('swiped-right', function (e) {
-				goto(`/page/${page === 604 ? 604 : page + 1}`, { replaceState: false });
-			});
-		}
-	} catch (error) {
-		// ...
-		console.log(error);
-	}
 
 	// dynamically load header font
 	loadFont('chapter-header', mushafFontLinks.header).then(() => {

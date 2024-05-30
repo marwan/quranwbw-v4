@@ -4,7 +4,8 @@
 	import { initializeAudio, updateAudioSettings } from '$utils/audioController';
 	import { disabledElement, buttonElement } from '$data/commonStyles';
 	import { updateSettings } from '$utils/updateSettings';
-	import { Modal, Radio } from 'flowbite-svelte';
+	import Modal from '$flowbiteSvelte/modal/Modal.svelte';
+	import { Radio } from 'flowbite-svelte';
 
 	// icons
 	import Play from '$svgs/Play.svelte';

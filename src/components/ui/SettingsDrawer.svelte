@@ -156,11 +156,6 @@
 					</Dropdown>
 				</div>
 				<p class="mb-6 text-sm text-gray-500">Multiple Quranic fonts to choose from depending on your Mushaf or region preference.</p>
-
-				<!-- note for Uthmanic Hafs Mushaf -->
-				{#if $__wordType === 2}
-					<p class="mb-6 text-sm text-gray-500"><b>Note:</b> The Uthmanic Hafs Mushaf font type is still under development and may contain errors and we are aware of them. In case you find any issues, please use a different font type.</p>
-				{/if}
 			</div>
 
 			<div class="border-b"></div>

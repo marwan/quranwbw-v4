@@ -1,7 +1,7 @@
 <script>
 	import { tajweedRulings } from '$data/quranMeta';
 	import { __websiteTheme, __tajweedRulesModalVisible } from '$utils/stores';
-	import { Modal } from 'flowbite-svelte';
+	import Modal from '$flowbiteSvelte/modal/Modal.svelte';
 </script>
 
 <Modal title="Tajweed Rules" id="tajeedRulesModal" bind:open={$__tajweedRulesModalVisible} class="rounded-3xl theme-grayscale" bodyClass="p-6 space-y-4 flex-1 overflow-y-auto overscroll-contain" headerClass="flex justify-between items-center p-6 rounded-t-3xl" center outsideclose>

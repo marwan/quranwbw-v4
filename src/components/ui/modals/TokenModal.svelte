@@ -3,7 +3,7 @@
 	import { __userToken, __userSettings, __tokenModalVisible } from '$utils/stores';
 	import { apiEndpoint } from '$data/websiteSettings';
 	import { downloadTextFile } from '$utils/downloadTextFile';
-	import { Modal } from 'flowbite-svelte';
+	import Modal from '$flowbiteSvelte/modal/Modal.svelte';
 	import { downloadSettingsFromCloud, uploadSettingsToCloud } from '$utils/cloudSettings';
 
 	// icons

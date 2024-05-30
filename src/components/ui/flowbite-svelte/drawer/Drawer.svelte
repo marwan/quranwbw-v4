@@ -11,11 +11,11 @@
 	export let bottomOffset = 'inset-x-0 bottom-0';
 	export let width = 'w-80';
 	export let backdrop = true;
-	export let bgColor = 'bg-gray-400';
+	export let bgColor = 'bg-gray-200';
 	export let bgOpacity = 'bg-opacity-75';
 	export let placement = 'left';
 	export let id = 'drawer-example';
-	export let divClass = 'overflow-y-auto z-50 p-4 bg-white dark:bg-gray-800';
+	export let divClass = 'overflow-y-auto z-50 p-4 bg-white';
 	export let transitionParams = {};
 	export let transitionType = 'fly';
 	function multiple(node, params) {
