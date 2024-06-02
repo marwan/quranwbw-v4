@@ -5,8 +5,7 @@
 @font-face {
   font-family: "Uthmani-Hafs";
   src: url("../fonts/hafs/uthmanic_hafs_v22.woff2") format("woff2"), 
-      url("../fonts/hafs/uthmanic_hafs_v22.woff") format("woff"), 
-      url("../fonts/hafs/uthmanic_hafs_v22.ttf") format("truetype");
+      url("../fonts/hafs/uthmanic_hafs_v22.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;

@@ -2194,9 +2194,9 @@ input[type="range"].range-lg::-moz-range-thumb {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-.scale-\[0\.80\] {
-  --tw-scale-x: 0.80;
-  --tw-scale-y: 0.80;
+.scale-\[0\.85\] {
+  --tw-scale-x: 0.85;
+  --tw-scale-y: 0.85;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -4661,8 +4661,7 @@ input[type="range"].range-lg::-moz-range-thumb {
   font-family: "Uthmani-Hafs";
 
   src: url("../fonts/hafs/uthmanic_hafs_v22.woff2") format("woff2"), 
-      url("../fonts/hafs/uthmanic_hafs_v22.woff") format("woff"), 
-      url("../fonts/hafs/uthmanic_hafs_v22.ttf") format("truetype");
+      url("../fonts/hafs/uthmanic_hafs_v22.woff") format("woff");
 
   font-weight: normal;
 

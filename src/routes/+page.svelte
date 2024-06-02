@@ -28,10 +28,6 @@
 		}
 	};
 
-	const linkStyles = 'text-xs font-normal';
-	const cardInnerStyle = 'min-w-28 flex flex-col items-center justify-center border space-y-2 border-gray-200 transition text-sm bg-gray-50 rounded-3xl p-5 hover:cursor-pointer hover:bg-lightGray';
-	const cardIconStyles = 'text-sm md:text-lg';
-
 	__currentPage.set('home');
 </script>
 
@@ -42,17 +38,19 @@
 		<a href="/" class="flex justify-center" aria-label="Home">
 			<Logo width="52" />
 		</a>
-		<div class="text-xs text-center text-gray-400">{websiteTagline}</div>
+		<div class="text-xs text-center opacity-70">{websiteTagline}</div>
 	</div>
 
-	<div class="w-full flex flex-col justify-center mt-12 text-xs text-gray-400 space-y-8 scale-[0.80]">
+	<div class="w-full flex flex-col justify-center mt-12 text-xs space-y-8 scale-[0.85]">
 		<div class="flex flex-row space-x-4 justify-center">
 			{#each Object.entries(homepageLinks) as [id, link]}
-				<a href={link.link} class={cardInnerStyle}>
-					<div class={cardIconStyles}>
-						<svelte:component this={link.icon} size={7} />
+				<a href={link.link} class="min-w-28 border border-gray-200 transition text-sm bg-gray-100 rounded-3xl p-5 hover:cursor-pointer hover:bg-lightGray">
+					<div class="flex flex-col items-center justify-center space-y-2">
+						<div class="text-sm md:text-lg opacity-70">
+							<svelte:component this={link.icon} size={7} />
+						</div>
+						<div class="text-sm font-normal">{link.title}</div>
 					</div>
-					<div class="{linkStyles} ">{link.title}</div>
 				</a>
 			{/each}
 		</div>

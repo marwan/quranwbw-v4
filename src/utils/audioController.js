@@ -4,6 +4,7 @@ import { __reciter, __playbackSpeed, __audioSettings, __audioModalVisible } from
 import { wordsAudioURL } from '$data/websiteSettings';
 import { selectableReciters, selectablePlaybackSpeeds } from '$data/options';
 import { scrollSmoothly } from '$utils/scrollSmoothly';
+// import { wordsCount } from '$data/wordsCount';
 
 // getting the audio element
 let audio = document.querySelector('#player');
@@ -345,6 +346,7 @@ export function quickPlayAudio(chapter, startVerse, endVerse) {
 function wordHighlighter() {
 	// get the total number of words in the ayah
 	const wordsInVerse = document.getElementById(audioSettings.playingKey).getAttribute('data-words');
+	// const wordsInVerse = wordsCount[audioSettings.playingKey];
 
 	// loop through all the words
 	for (let word = 0; word <= wordsInVerse - 1; word++) {

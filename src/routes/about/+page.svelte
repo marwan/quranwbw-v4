@@ -29,7 +29,7 @@
 			<ul class="list-disc ml-5 space-y-2">
 				<li><a class={linkElement} target="_blank" rel="noreferrer" href="http://emuslim.com/Quran/Translation_English.asp">Dr. Shehnaz Shaikh, Ms. Kausar Khatri</a> for their English and <a class={linkElement} target="_blank" rel="noreferrer" href="https://www.farhathashmi.com">Dr. Farhat Hashmi</a> for her Urdu word by word compilation.</li>
 				<li><a class={linkElement} target="_blank" rel="noreferrer" href="https://quran.com">Quran.com</a> for their API.</li>
-				<li><a class={linkElement} target="_blank" rel="noreferrer" href="http://recitequran.com">ReciteQuran.com </a> for their word by word audio files orginally recited by <a class={linkElement} target="_blank" rel="noreferrer" href="https://www.almaghrib.org/instructors/wisam-sharieff/">Imam Wisam Sharieff</a>.</li>
+				<li><a class={linkElement} target="_blank" rel="noreferrer" href="http://recitequran.com">ReciteQuran.com </a> for their word by word audio files orginally recited by <a class={linkElement} target="_blank" rel="noreferrer" href="https://twitter.com/WisamSharieff/">Imam Wisam Sharieff</a>.</li>
 				<li><a class={linkElement} target="_blank" rel="noreferrer" href="http://qurancomplex.gov.sa/">King Fahd Glorious Quran Printing Complex</a> for their Quran text.</li>
 				<li><a class={linkElement} target="_blank" rel="noreferrer" href="http://tanzil.net/trans/">Tanzil.net</a> for their collection of Quranic resources.</li>
 				<li><a class={linkElement} target="_blank" rel="noreferrer" href="http://everyayah.com">EveryAyah.com</a>, <a class={linkElement} href="https://qurancentral.com">QuranCentral.com</a> and <a class={linkElement} href="https://quranicaudio.com">QuranicAudio.com</a> for their collection of Quranic audios.</li>

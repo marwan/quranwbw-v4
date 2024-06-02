@@ -7,36 +7,40 @@
 
 	let dropdownOpen = false;
 
-	const internalLinks = {
-		1: {
+	const internalLinks = [
+		{
 			title: 'Supplications',
 			link: '/supplications'
 		},
-		2: {
+		{
 			title: 'Bookmarks',
 			link: '/bookmarks'
 		},
-		3: {
+		{
 			title: 'Search',
 			link: '/search'
 		},
-		4: {
+		{
 			title: 'Morphology',
 			link: '/morphology/1:1'
 		},
-		5: {
+		{
+			title: 'Guess The Word',
+			link: '/quiz/guess-the-word'
+		},
+		{
 			title: 'FAQs',
 			link: '/faq'
 		},
-		6: {
+		{
 			title: 'About',
 			link: '/about'
 		},
-		7: {
+		{
 			title: 'Changelogs',
 			link: '/changelogs'
 		}
-	};
+	];
 
 	const dropdownItemClasses = 'font-normal rounded-3xl';
 </script>

@@ -40,7 +40,7 @@
 		(chapters = []), (verses = []), (lines = []);
 
 		pageData = (async () => {
-			const apiURL = `${apiEndpoint}/page?page=${page}&word_type=${$__wordType}&word_translation=1`;
+			const apiURL = `${apiEndpoint}/page?page=${page}&word_type=${$__wordType}&word_translation=1&v=11`;
 			const response = await fetch(apiURL);
 			const data = await response.json();
 			const apiData = data.data.verses;
