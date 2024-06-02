@@ -1481,6 +1481,10 @@ input[type="range"].range-lg::-moz-range-thumb {
   margin-right: 0.75rem;
 }
 
+.mr-auto {
+  margin-right: auto;
+}
+
 .ms-1 {
   margin-inline-start: 0.25rem;
 }
@@ -1539,6 +1543,18 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .mt-8 {
   margin-top: 2rem;
+}
+
+.-mt-\[8\] {
+  margin-top: -8;
+}
+
+.-mt-8 {
+  margin-top: -2rem;
+}
+
+.-mt-6 {
+  margin-top: -1.5rem;
 }
 
 .block {
@@ -6195,6 +6211,11 @@ svg {
 
   .md\:order-1 {
     order: 1;
+  }
+
+  .md\:my-8 {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
   }
 
   .md\:mb-0 {

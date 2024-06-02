@@ -38,7 +38,7 @@
 
 	// handle what happens when a word is clicked depending on page type
 	function wordClickHandler(props) {
-		if ($__currentPage === 'morphology') {
+		if ($__currentPage === 'morphology' && props.type !== 'end') {
 			const wordKey = `${props.chapter}:${props.verse}:${props.word + 1}`;
 			__morphologyKey.set(wordKey);
 			goto(`/morphology/${wordKey}`, { replaceState: false });

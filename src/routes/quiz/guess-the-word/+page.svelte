@@ -8,6 +8,10 @@
 	import { Radio } from 'flowbite-svelte';
 	import party from 'party-js';
 
+	// icons
+	import Check from '$svgs/Check.svelte';
+	import Cross from '$svgs/Cross.svelte';
+
 	let randomID = 1;
 	let fetchData;
 	let selection = null;
@@ -53,7 +57,7 @@
 
 <PageHead title={'Guess The Word'} />
 
-<div class="space-y-12 my-8">
+<div class="space-y-12 my-6 md:my-8">
 	<div id="word">
 		{#await fetchData}
 			<Spinner />
@@ -70,8 +74,17 @@
 					<p class="mb-5 text-sm">Guess the correct translation:</p>
 					<div class="grid gap-4 md:gap-6 w-full md:grid-cols-2">
 						{#each Object.entries(fetchData) as [key, value]}
-							<div class="rounded border border-gray-200 {selection === +key ? 'border-gray-400' : null}">
-								<Radio name="bordered" bind:group={selection} value={+key} class="w-full p-4 font-normal cursor-pointer">{@html '&nbsp;'} {fetchData[key].word_english}</Radio>
+							<div class="rounded border border-gray-200 {selection === +key ? 'border-gray-400' : null} {answerChecked === true && selection !== +key ? disabledElement : null}">
+								<Radio name="bordered" bind:group={selection} value={+key} class="w-full p-4 flex flex-row font-normal cursor-pointer">
+									<div class="flex flex-row mr-auto ml-2">{fetchData[key].word_english}</div>
+
+									<!-- check / cross icon -->
+									{#if answerChecked === true && selection === +key}
+										<div class="justify-end">
+											<svelte:component this={selection === randomWord ? Check : Cross} size={6} />
+										</div>
+									{/if}
+								</Radio>
 							</div>
 						{/each}
 					</div>
@@ -88,10 +101,10 @@
 
 				<!-- buttons -->
 				<div id="buttons" class="flex flex-col space-y-8 justify-center w-full">
-					<!-- check-answer-button -->
+					<!-- confirm-button -->
 					{#if !answerChecked}
-						<div id="check-answer-button" class="{selection === null || answerChecked === true ? disabledElement : null} w-full">
-							<button class="{buttonElement} w-full" on:click={() => checkAnswer()}>Check Anwser</button>
+						<div id="confirm-button" class="{selection === null || answerChecked === true ? disabledElement : null} w-full">
+							<button class="{buttonElement} w-full" on:click={() => checkAnswer()}>Confirm</button>
 						</div>
 					{/if}
 
