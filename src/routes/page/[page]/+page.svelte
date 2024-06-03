@@ -40,7 +40,7 @@
 		(chapters = []), (verses = []), (lines = []);
 
 		pageData = (async () => {
-			const apiURL = `${apiEndpoint}/page?page=${page}&word_type=${$__wordType}&word_translation=1&v=11`;
+			const apiURL = `${apiEndpoint}/page?page=${page}&word_type=${$__wordType}&word_translation=1&v=92827326`;
 			const response = await fetch(apiURL);
 			const data = await response.json();
 			const apiData = data.data.verses;
@@ -104,7 +104,7 @@
 	}
 
 	// only allow continious normal mode
-	updateSettings({ type: 'displayType', value: 4 });
+	updateSettings({ type: 'displayType', value: 4, skipSave: true });
 
 	// dynamically load header font
 	loadFont('chapter-header', mushafFontLinks.header).then(() => {

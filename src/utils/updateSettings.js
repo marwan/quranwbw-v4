@@ -24,6 +24,7 @@ export function updateSettings(props) {
 		// for display types
 		case 'displayType':
 			__displayType.set(props.value);
+			if (props.skipSave) return;
 			userSettings.displaySettings.displayType = props.value;
 			break;
 
