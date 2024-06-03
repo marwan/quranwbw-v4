@@ -6,9 +6,9 @@
 	import { goto } from '$app/navigation';
 	import { displayOptions, mushafFontLinks } from '$data/options';
 	import { supplicationsFromQuran } from '$data/quranMeta';
-	import { __currentPage, __wordType, __displayType, __websiteTheme, __userSettings, __audioSettings, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __morphologyKey, __tajweedEnabled, __wordTooltip } from '$utils/stores';
-	import { wordAudioController } from '$utils/audioController';
+	import { __currentPage, __wordType, __displayType, __websiteTheme, __userSettings, __audioSettings, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __morphologyKey, __tajweedEnabled, __wordTooltip, __verseKey } from '$utils/stores';
 	import { loadFont } from '$utils/loadFont';
+	import VersesOptionsDropdown from '$verses/VersesOptionsDropdown.svelte';
 	import { Tooltip } from 'flowbite-svelte';
 
 	const chapter = key.split(':')[0];
@@ -43,7 +43,7 @@
 			__morphologyKey.set(wordKey);
 			goto(`/morphology/${wordKey}`, { replaceState: false });
 		} else {
-			wordAudioController(props);
+			__verseKey.set(`${props.chapter}:${props.verse}`);
 		}
 	}
 
@@ -91,7 +91,7 @@
 
 		<!-- word tooltip -->
 		{#if $__wordTooltip > 1}
-			<Tooltip class="z-30 text-center inline-flex theme-grayscale" type="light">
+			<Tooltip class="z-30 text-center inline-flex theme-grayscale font-sans" type="light">
 				{#if $__wordTooltip === 2}
 					{@html transliterationSplit[word]}
 				{:else if $__wordTooltip === 3}
@@ -119,6 +119,7 @@
 			{/if}
 		</span>
 	</div>
+	<VersesOptionsDropdown page={value.meta.page} />
 
 	<!-- end icon tooltip -->
 	<Tooltip type="light" class="z-30 inline-flex font-filter">End of {key}</Tooltip>

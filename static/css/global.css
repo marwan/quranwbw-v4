@@ -1545,18 +1545,6 @@ input[type="range"].range-lg::-moz-range-thumb {
   margin-top: 2rem;
 }
 
-.-mt-\[8\] {
-  margin-top: -8;
-}
-
-.-mt-8 {
-  margin-top: -2rem;
-}
-
-.-mt-6 {
-  margin-top: -1.5rem;
-}
-
 .block {
   display: block;
 }
@@ -3943,6 +3931,10 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .text-justify {
   text-align: justify;
+}
+
+.font-sans {
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 .text-2xl {

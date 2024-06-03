@@ -4,12 +4,11 @@
 	const chapter = +key.split(':')[0];
 	const verse = +key.split(':')[1];
 
-	import { showAudioModal, quickPlayAudio } from '$utils/audioController';
-	import { quranMetaData } from '$data/quranMeta';
-	import { __currentPage, __userSettings, __audioSettings, __verseKey, __notesModalVisible } from '$utils/stores';
+	import { quickPlayAudio } from '$utils/audioController';
+	import { __currentPage, __userSettings, __audioSettings, __verseKey } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';
-	// import { downloadVerseImage } from '$utils/downloadVerseImage';
-	import { Tooltip, Dropdown, DropdownItem } from 'flowbite-svelte';
+	import VersesOptionsDropdown from '$verses/VersesOptionsDropdown.svelte';
+	import { Tooltip } from 'flowbite-svelte';
 
 	// icons
 	import Bookmark from '$svgs/Bookmark.svelte';
@@ -17,12 +16,10 @@
 	import Play from '$svgs/Play.svelte';
 	import Pause from '$svgs/Pause.svelte';
 	import DotsHorizontal from '$svgs/DotsHorizontal.svelte';
-	// import DotsVertical from '$svgs/DotsVertical.svelte';
 
 	// update userBookmarks whenever the __userSettings changes
 	$: userBookmarks = JSON.parse($__userSettings).userBookmarks;
 
-	const dropdownItemClasses = 'font-normal rounded-3xl';
 	const buttonClasses = 'inline-flex items-center justify-center w-10 h-10 transition-colors duration-150 rounded-3xl focus:shadow-outline hover:bg-lightGray print:hidden';
 
 	let dropdownOpen = false;
@@ -39,25 +36,6 @@
 			}
 		} catch (error) {
 			// error
-		}
-	}
-
-	// handle notes modal click
-	function showNotesModal() {
-		__verseKey.set(key);
-		__notesModalVisible.set(true);
-	}
-
-	// open share menu
-	function shareVerse() {
-		if (navigator.share) {
-			navigator
-				.share({
-					title: `${quranMetaData[chapter].transliteration}, Verse ${verse}`,
-					url: `https://quranwbw.com/${chapter}/${verse}`
-				})
-				.then(() => console.log('Successful share'))
-				.catch((error) => console.log('Error sharing', error));
 		}
 	}
 </script>
@@ -85,56 +63,10 @@
 	<Tooltip type="light" placement="right" class="z-30 hidden md:block font-filter">Bookmark</Tooltip>
 
 	<!-- verses option dropdown -->
-	<button class={buttonClasses} aria-label="Options">
+	<button class={buttonClasses} aria-label="Options" on:click={() => __verseKey.set(key)}>
 		<div class="opacity-70">
 			<DotsHorizontal size={6} />
 		</div>
 	</button>
-
-	<Dropdown bind:open={dropdownOpen} class="px-2 mr-2 my-2 w-fit">
-		<!-- play verse button -->
-		<DropdownItem
-			class={dropdownItemClasses}
-			on:click={() => {
-				showAudioModal(key);
-				dropdownOpen = false;
-			}}
-		>
-			Advanced Play
-		</DropdownItem>
-
-		<!-- verse notes button -->
-		<DropdownItem
-			class={dropdownItemClasses}
-			on:click={() => {
-				showNotesModal();
-				dropdownOpen = false;
-			}}
-		>
-			Verse Notes
-		</DropdownItem>
-
-		<!-- verse page button -->
-		<DropdownItem class={dropdownItemClasses}>
-			<a href="/page/{value.meta.page}">
-				Go to Page {value.meta.page}
-			</a>
-		</DropdownItem>
-
-		<!-- verse morphology button -->
-		<DropdownItem class={dropdownItemClasses}>
-			<a href="/morphology/{chapter}:{verse}">Verse Morphology</a>
-		</DropdownItem>
-
-		<!-- share verse button -->
-		<DropdownItem class={dropdownItemClasses} on:click={() => shareVerse()}>Share Verse</DropdownItem>
-
-		<!-- Verse screenshot button -->
-		<!-- <DropdownItem on:click={() => downloadVerseImage(key)}>
-			<div class="flex flex-row items-center">
-				<Photo />
-				<span class="text-xs pl-2">Verse Screenshot</span>
-			</div>
-		</DropdownItem> -->
-	</Dropdown>
+	<VersesOptionsDropdown page={value.meta.page} />
 </div>

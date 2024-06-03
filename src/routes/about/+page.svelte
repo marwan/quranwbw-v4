@@ -11,7 +11,7 @@
 <div class="">
 	<div class="my-6 space-y-4 pb-4">
 		<div class="text-sm">
-			<div class="text-center text-md md:text-xl font-medium opacity-60 italic w-4/5 mx-auto">
+			<div class="text-center text-md md:text-xl font-medium opacity-70 italic w-4/5 mx-auto">
 				"Indeed, this (book) is a reminder, so he who wills may take to his Lord a way. And you do not will except that Allah wills. Indeed, Allah is ever Knowing and Wise."
 				<a href="/76/29-30" class={linkElement}>(76:29-30)</a>
 			</div>
