@@ -37,6 +37,7 @@
 				<li><a class={linkElement} target="_blank" rel="noreferrer" href="https://github.com/cpfair">Collin Fair</a> for his word timestamps for Quranic audios.</li>
 				<li><a class={linkElement} target="_blank" rel="noreferrer" href="https://play.google.com/store/apps/details?id=com.atq.quranemajeedapp.org.islamone&hl=en">Usman Pervez (IslamOne android app)</a> for the Urdu words database.</li>
 				<li><a class={linkElement} target="_blank" rel="noreferrer" href="https://gtaf.org">Greentech Apps (Al Quran Tafsir & by Word app)</a> for their English, Indonesian & Bangla words and corpus database.</li>
+				<li><a class={linkElement} target="_blank" rel="noreferrer" href="https://github.com/kaisdukes">Dr. Kais Dukes</a> for his morphological description of the Quranic words.</li>
 				<li><a class={linkElement} target="_blank" rel="noreferrer" href="https://www.typemybook.com/download/complete-quran-kareem-text/">Ata Rafi</a> for sharing the IndoPak text originally by <a class={linkElement} target="_blank" rel="noreferrer" href="http://inpage.com/">InPage™</a>.</li>
 				<li><a class={linkElement} target="_blank" rel="noreferrer" href="https://apps.apple.com/us/app/quran-word-by-word/id588198510">Azrul Azwar (Quran WbW iOS app)</a> for the words databases in many different languages.</li>
 				<li><a class={linkElement} target="_blank" rel="noreferrer" href="http://csalt.itu.edu.pk/urdufont/index.html">CSALT</a> for their Mehr Nastaliq Urdu font.</li>
@@ -49,7 +50,7 @@
 			</ul>
 
 			<br /><br />
-			Do note, this website is just a hobby project and is not being worked on full-time. If you'd like to report an issue, have any suggestions, or would like to contribute, please visit Quranwbw.com's <a class={linkElement} target="_blank" rel="noreferrer" href="https://github.com/marwan/quranwbw-v4">repo on GitHub</a>, or contact us on
+			Do note, this website is just a hobby project and is not being worked on full-time. If you'd like to report an issue, have any suggestions, or would like to contribute, please visit Quranwbw.com's <a class={linkElement} target="_blank" rel="noreferrer" href="https://github.com/marwan/quranwbw-v4">repository on GitHub</a>, or contact us on
 			<a class={linkElement} href="mailto:contact@quranwbw.com">contact@quranwbw.com</a>.
 
 			<br /><br />
