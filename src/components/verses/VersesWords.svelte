@@ -8,6 +8,7 @@
 	import { supplicationsFromQuran } from '$data/quranMeta';
 	import { __currentPage, __wordType, __displayType, __websiteTheme, __userSettings, __audioSettings, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __morphologyKey, __tajweedEnabled, __wordTooltip, __verseKey } from '$utils/stores';
 	import { loadFont } from '$utils/loadFont';
+	import { wordAudioController } from '$utils/audioController';
 	import VersesOptionsDropdown from '$verses/VersesOptionsDropdown.svelte';
 	import { Tooltip } from 'flowbite-svelte';
 
@@ -43,7 +44,10 @@
 			__morphologyKey.set(wordKey);
 			goto(`/morphology/${wordKey}`, { replaceState: false });
 		} else {
-			__verseKey.set(`${props.chapter}:${props.verse}`);
+			// if end icon was clicked, show options
+			if (props.type === 'end') __verseKey.set(`${props.chapter}:${props.verse}`);
+			// else if word was clicked, play it
+			else wordAudioController(props);
 		}
 	}
 
