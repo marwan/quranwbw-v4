@@ -1,9 +1,7 @@
 <script>
+	import ExternalLink from '$svgs/ExternalLink.svelte';
 	import { __settingsDrawerHidden, __tajweedRulesModalVisible, __tokenModalVisible } from '$utils/stores';
 	import { Dropdown, DropdownItem } from 'flowbite-svelte';
-
-	// icons
-	import ExternalLink from '$svgs/ExternalLink.svelte';
 
 	let dropdownOpen = false;
 
@@ -50,7 +48,7 @@
 	<DropdownItem
 		class={dropdownItemClasses}
 		on:click={() => {
-			$__settingsDrawerHidden = false;
+			__settingsDrawerHidden.set(false);
 			dropdownOpen = false;
 		}}>Settings</DropdownItem
 	>
@@ -70,7 +68,7 @@
 			dropdownOpen = false;
 		}}>Token Login</DropdownItem
 	>
-	<!-- <DropdownItem class={dropdownItemClasses} on:click={() => toggleModal('download-modal', 'show')}>Download Data</DropdownItem> -->
+	<!-- <DropdownItem class={dropdownItemClasses} on:click={() => toggleModal('downloadModal', 'show')}>Download Data</DropdownItem> -->
 
 	<!-- internal links -->
 	{#each Object.entries(internalLinks) as [id, link]}
@@ -83,7 +81,7 @@
 	<a href="https://legacy.quranwbw.com/" target="_blank">
 		<DropdownItem class="{dropdownItemClasses} flex flex-row items-center justify-between">
 			Legacy Website
-			<ExternalLink />
+			<ExternalLink size={3} />
 		</DropdownItem>
 	</a>
 </Dropdown>

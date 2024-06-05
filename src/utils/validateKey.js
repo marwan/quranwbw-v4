@@ -1,6 +1,6 @@
 import { quranMetaData } from '$data/quranMeta';
 
-// function for basic key validation
+// function for basic key (chapter:verse) validation
 export function validateKey(key) {
 	// basic
 	if (key === null || key === undefined || key === '') return false;

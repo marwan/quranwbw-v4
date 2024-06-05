@@ -2780,6 +2780,11 @@ input[type="range"].range-lg::-moz-range-thumb {
   border-top-right-radius: 0.75rem;
 }
 
+.rounded-l-full {
+  border-top-left-radius: 9999px;
+  border-bottom-left-radius: 9999px;
+}
+
 .\!border-0 {
   border-width: 0px !important;
 }
@@ -4976,27 +4981,15 @@ svg {
   font-palette: --palette0;
 }
 
-/* bismillahs */
+/* chapter header */
 
-/* .theme-1 .bismillah {
+.theme-1 #header, .theme-5 #header {
   font-palette: --palette3;
 }
 
-.theme-2 .bismillah {
-  font-palette: --palette4;
+.theme-2 #header, .theme-3 #header, .theme-4 #header {
+  font-palette: --palette1;
 }
-
-.theme-3 .bismillah {
-  font-palette: --palette5;
-}
-
-.theme-4 .bismillah {
-  font-palette: --palette4;
-}
-
-.theme-5 .bismillah {
-  font-palette: --palette5;
-} */
 
 .first-letter\:float-left::first-letter {
   float: left;
@@ -6201,10 +6194,6 @@ svg {
     inset: 0px;
   }
 
-  .md\:order-1 {
-    order: 1;
-  }
-
   .md\:my-8 {
     margin-top: 2rem;
     margin-bottom: 2rem;
@@ -6457,11 +6446,6 @@ svg {
     background-color: transparent;
   }
 
-  .md\:bg-white {
-    --tw-bg-opacity: 1;
-    background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-  }
-
   .md\:p-0 {
     padding: 0px;
   }
@@ -6552,18 +6536,8 @@ svg {
     font-weight: 500;
   }
 
-  .md\:text-gray-700 {
-    --tw-text-opacity: 1;
-    color: rgb(55 65 81 / var(--tw-text-opacity));
-  }
-
   .md\:hover\:bg-transparent:hover {
     background-color: transparent;
-  }
-
-  .md\:hover\:text-gray-700:hover {
-    --tw-text-opacity: 1;
-    color: rgb(55 65 81 / var(--tw-text-opacity));
   }
 }
 
@@ -7027,16 +7001,6 @@ svg {
 .dark\:bg-red-900:where(.dark, .dark *) {
   --tw-bg-opacity: 1;
   background-color: rgb(127 29 29 / var(--tw-bg-opacity));
-}
-
-.dark\:bg-slate-700:where(.dark, .dark *) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(51 65 85 / var(--tw-bg-opacity));
-}
-
-.dark\:bg-slate-800:where(.dark, .dark *) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(30 41 59 / var(--tw-bg-opacity));
 }
 
 .dark\:bg-transparent:where(.dark, .dark *) {
@@ -7651,11 +7615,6 @@ svg {
   background-color: rgb(153 27 27 / var(--tw-bg-opacity));
 }
 
-.dark\:hover\:bg-slate-700:hover:where(.dark, .dark *) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(51 65 85 / var(--tw-bg-opacity));
-}
-
 .dark\:hover\:bg-yellow-400:hover:where(.dark, .dark *) {
   --tw-bg-opacity: 1;
   background-color: rgb(250 204 21 / var(--tw-bg-opacity));
@@ -7669,6 +7628,11 @@ svg {
 .hover\:dark\:bg-gray-800:where(.dark, .dark *):hover {
   --tw-bg-opacity: 1;
   background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+}
+
+.dark\:dark\:hover\:text-white:hover:where(.dark, .dark *):where(.dark, .dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .dark\:hover\:text-blue-300:hover:where(.dark, .dark *) {
@@ -7766,11 +7730,6 @@ svg {
   --tw-ring-color: rgb(107 114 128 / var(--tw-ring-opacity));
 }
 
-.dark\:focus\:ring-gray-600:focus:where(.dark, .dark *) {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(75 85 99 / var(--tw-ring-opacity));
-}
-
 .dark\:focus\:ring-gray-800:focus:where(.dark, .dark *) {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(31 41 55 / var(--tw-ring-opacity));
@@ -7865,11 +7824,6 @@ svg {
   background-color: rgb(31 41 55 / 0.6);
 }
 
-.group:hover .dark\:group-hover\:text-slate-300:where(.dark, .dark *) {
-  --tw-text-opacity: 1;
-  color: rgb(203 213 225 / var(--tw-text-opacity));
-}
-
 .group:focus .dark\:group-focus\:ring-gray-800\/70:where(.dark, .dark *) {
   --tw-ring-color: rgb(31 41 55 / 0.7);
 }
@@ -7915,11 +7869,6 @@ svg {
 }
 
 @media (min-width: 768px) {
-  .md\:dark\:bg-gray-900:where(.dark, .dark *) {
-    --tw-bg-opacity: 1;
-    background-color: rgb(17 24 39 / var(--tw-bg-opacity));
-  }
-
   .md\:dark\:bg-transparent:where(.dark, .dark *) {
     background-color: transparent;
   }
@@ -7933,11 +7882,6 @@ svg {
     background-color: transparent;
   }
 
-  .md\:dark\:hover\:text-gray-500:hover:where(.dark, .dark *) {
-    --tw-text-opacity: 1;
-    color: rgb(107 114 128 / var(--tw-text-opacity));
-  }
-
   .md\:dark\:hover\:text-white:hover:where(.dark, .dark *) {
     --tw-text-opacity: 1;
     color: rgb(255 255 255 / var(--tw-text-opacity));
@@ -7949,5 +7893,4 @@ svg {
     display: none;
   }
 }
-
 

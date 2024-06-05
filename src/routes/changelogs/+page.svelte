@@ -1,10 +1,10 @@
 <script>
-	import PageHead from '$components/PageHead.svelte';
+	import PageHead from '$misc/PageHead.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
 	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
 	import { __currentPage } from '$utils/stores';
 	import { timeAgo } from '$utils/timeAgo';
-	import { buttonElement, linkElement, labelPillElement } from '$data/commonStyles';
+	import { buttonClasses, linkClasses, labelPillClasses } from '$data/commonClasses';
 
 	let fetchCommitsData,
 		fetchIssuesData,
@@ -37,8 +37,8 @@
 <div class="flex flex-col space-y-6 text-sm">
 	<div class="flex flex-row space-x-4 items-center mt-6">
 		<span>Go to:</span>
-		<a href="#issues" class={buttonElement}>Issues</a>
-		<a href="#commits" class={buttonElement}>Commits</a>
+		<a href="#issues" class={buttonClasses}>Issues</a>
+		<a href="#commits" class={buttonClasses}>Commits</a>
 	</div>
 
 	<!-- issues -->
@@ -46,7 +46,7 @@
 		<div class="mt-6 mb-2 space-y-4 pb-4 border-b-2">
 			<h1 class="text-2xl">Issues ({issuesCount})</h1>
 			<div class="text-sm">
-				The following list contains all the issues currently active on the Quranwbw.com's <a href="https://github.com/marwan/quranwbw-v4" target="_blank" class={linkElement}>GitHub repo</a>.
+				The following list contains all the issues currently active on the Quranwbw.com's <a href="https://github.com/marwan/quranwbw-v4" target="_blank" class={linkClasses}>GitHub repository</a>.
 			</div>
 		</div>
 		<div id="issues-list">
@@ -57,12 +57,12 @@
 					{#each Object.entries(fetchIssuesData) as [key, value]}
 						<div class="py-6 space-y-2 border-b">
 							<div class="space-y-2">
-								<a href={value.html_url} target="_blank" class={linkElement}>Issue #{value.number}: {value.title}</a>
+								<a href={value.html_url} target="_blank" class={linkClasses}>Issue #{value.number}: {value.title}</a>
 
 								<!-- labels -->
 								<div class="inline-flex flex-wrap ml-2 space-x-2">
 									{#each Object.entries(value.labels) as [id, label]}
-										<span class={labelPillElement}>{label.name}</span>
+										<span class={labelPillClasses}>{label.name}</span>
 									{/each}
 								</div>
 								<div>
@@ -84,7 +84,7 @@
 		<div class="mt-6 mb-2 space-y-4 pb-4 border-b-2">
 			<h1 class="text-2xl">Commits</h1>
 			<div class="text-sm">
-				The following list contains the latest 100 commits made to the Quranwbw.com's <a href="https://github.com/marwan/quranwbw-v4" target="_blank" class={linkElement}>GitHub repo</a>.
+				The following list contains the latest 100 commits made to the Quranwbw.com's <a href="https://github.com/marwan/quranwbw-v4" target="_blank" class={linkClasses}>GitHub repository</a>.
 			</div>
 		</div>
 		<div id="commits-list">
@@ -95,7 +95,7 @@
 					{#each Object.entries(fetchCommitsData) as [key, value]}
 						<div class="py-6 space-y-2 border-b dark:border-slate-700">
 							<div class="space-y-2">
-								<div><a href={value.html_url} target="_blank" class={linkElement}>{value.commit.message}</a></div>
+								<div><a href={value.html_url} target="_blank" class={linkClasses}>{value.commit.message}</a></div>
 								<div>
 									<img class="rounded-full inline-flex w-5 h-5" src={value.author.avatar_url} alt={value.author.login} />
 									{value.author.login} commited {timeAgo(value.commit.committer.date)} <span class="hidden md:inline-block">({value.sha.substring(0, 7)})</span>

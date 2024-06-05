@@ -3,17 +3,17 @@
 
 	$: page = +data.page;
 
-	import { goto } from '$app/navigation';
-	import Bismillah from '$components/Bismillah.svelte';
-	import PageHead from '$components/PageHead.svelte';
-	import VersesWords from '$verses/VersesWords.svelte';
+	import Bismillah from '$display/Bismillah.svelte';
+	import PageHead from '$misc/PageHead.svelte';
+	import WordsBlock from '$display/verses/WordsBlock.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
+	import { goto } from '$app/navigation';
 	import { __chapterNumber, __pageNumber, __currentPage, __wordType, __tajweedEnabled, __mushafPageDivisions } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';
 	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
 	import { quranMetaData, chapterHeaderCodes } from '$data/quranMeta';
 	import { mushafFontLinks } from '$data/options';
-	import { tabPillElement } from '$data/commonStyles';
+	import { buttonClasses, tabPillClasses } from '$data/commonClasses';
 	import { loadFont } from '$utils/loadFont';
 	import '$lib/swiped-events.min.js';
 
@@ -103,7 +103,7 @@
 		__pageNumber.set(page);
 	}
 
-	// only allow continious normal mode
+	// only allow continious normal mode and don't save the layout in settings
 	updateSettings({ type: 'displayType', value: 4, skipSave: true });
 
 	// dynamically load header font
@@ -126,7 +126,7 @@
 					<!-- if it's the first verse of a chapter -->
 					{#if chapters.length > 0 && lines.includes(line) && verses[lines.indexOf(line)] === 1}
 						<div class="flex flex-col my-2">
-							<div id="header" style="font-family: chapter-header" class="leading-base pt-4 md:pt-8 pb-6 text-[28vw] md:text-[220px] lg:text-[230px] font-filter {$__tajweedEnabled ? 'theme-palette-tajweed' : 'theme-palette-normal'}">{chapterHeaderCodes[chapters[lines.indexOf(line)]]}</div>
+							<div id="header" style="font-family: chapter-header" class="leading-base pt-4 md:pt-8 pb-6 text-[28vw] md:text-[220px] lg:text-[230px]">{chapterHeaderCodes[chapters[lines.indexOf(line)]]}</div>
 
 							<Bismillah {chapters} {lines} {line} />
 						</div>
@@ -134,7 +134,7 @@
 
 					<div class="line {line} flex px-2 arabic-font-{$__wordType} {+page < 3 || centeredPageLines.includes(`${+page}:${line}`) ? 'justify-center' : null} {+page > 2 && !centeredPageLines.includes(`${+page}:${line}`) ? 'justify-between' : null}">
 						{#each Object.entries(JSON.parse(localStorage.getItem('pageData'))) as [key, value]}
-							<VersesWords {key} {value} {line} />
+							<WordsBlock {key} {value} {line} />
 						{/each}
 					</div>
 				{/each}
@@ -150,15 +150,15 @@
 			</div>
 
 			<!-- page navigator -->
-			<div id="page-navigator" class="flex flex-row justify-center space-x-8 pt-6">
+			<div id="page-navigator" class="flex flex-row justify-center space-x-8 pt-6 text-sm">
 				<!-- next page -->
 				{#if page < 604}
-					<a href="/page/{+page + 1}" class={tabPillElement}>{@html '&#x2190;'} Page {+page + 1}</a>
+					<a href="/page/{+page + 1}" class={buttonClasses}>{@html '&#x2190;'} Page {+page + 1}</a>
 				{/if}
 
 				<!-- previous page -->
 				{#if page > 1}
-					<a href="/page/{+page - 1}" class={tabPillElement}>Page {+page - 1} {@html '&#x2192;'}</a>
+					<a href="/page/{+page - 1}" class={buttonClasses}>Page {+page - 1} {@html '&#x2192;'}</a>
 				{/if}
 			</div>
 		</div>

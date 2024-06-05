@@ -1,14 +1,12 @@
 <script>
-	import PageHead from '$components/PageHead.svelte';
-	import { websiteTagline } from '$data/websiteSettings';
-	import { __currentPage } from '$utils/stores';
-	import Logo from '$svgs/Logo.svelte';
+	import PageHead from '$misc/PageHead.svelte';
 	import HomepageTabs from '$ui/HomepageTabs.svelte';
-
-	// icons
+	import Logo from '$svgs/Logo.svelte';
 	import Supplication from '$svgs/Supplication.svelte';
 	import Morphology from '$svgs/Morphology.svelte';
 	import Search from '$svgs/Search.svelte';
+	import { websiteTagline } from '$data/websiteSettings';
+	import { __currentPage } from '$utils/stores';
 
 	const homepageLinks = {
 		1: {

@@ -4,18 +4,17 @@
 	const chapter = +key.split(':')[0];
 	const verse = +key.split(':')[1];
 
-	import { quickPlayAudio } from '$utils/audioController';
-	import { __currentPage, __userSettings, __audioSettings, __verseKey } from '$utils/stores';
-	import { updateSettings } from '$utils/updateSettings';
-	import VersesOptionsDropdown from '$verses/VersesOptionsDropdown.svelte';
-	import { Tooltip } from 'flowbite-svelte';
-
-	// icons
+	import OptionsDropdown from '$display/verses/OptionsDropdown.svelte';
 	import Bookmark from '$svgs/Bookmark.svelte';
 	import Bookmarked from '$svgs/Bookmarked.svelte';
 	import Play from '$svgs/Play.svelte';
 	import Pause from '$svgs/Pause.svelte';
+	import Notes from '$svgs/Notes.svelte';
 	import DotsHorizontal from '$svgs/DotsHorizontal.svelte';
+	import { quickPlayAudio } from '$utils/audioController';
+	import { __currentPage, __userSettings, __audioSettings, __verseKey, __userNotes, __notesModalVisible } from '$utils/stores';
+	import { updateSettings } from '$utils/updateSettings';
+	import { Tooltip } from 'flowbite-svelte';
 
 	// update userBookmarks whenever the __userSettings changes
 	$: userBookmarks = JSON.parse($__userSettings).userBookmarks;
@@ -54,13 +53,32 @@
 	</button>
 	<Tooltip type="light" placement="right" class="z-30 hidden md:block font-filter">Play</Tooltip>
 
+	<!-- notes button -->
+	{#if $__userNotes.hasOwnProperty(key)}
+		<button
+			on:click={() => {
+				__verseKey.set(key);
+				__notesModalVisible.set(true);
+			}}
+			class={buttonClasses}
+			aria-label="Note"
+		>
+			<div class="opacity-70">
+				<Notes size={'[18px]'} />
+			</div>
+		</button>
+		<Tooltip type="light" placement="right" class="z-30 hidden md:block font-filter">Your Notes</Tooltip>
+	{/if}
+
 	<!-- bookmark/unbookmark button -->
-	<button on:click={() => updateSettings({ type: 'userBookmarks', key, set: true })} class={buttonClasses} aria-label="Bookmark">
-		<div class="opacity-70">
-			<svelte:component this={userBookmarks.includes(key) ? Bookmarked : Bookmark} size={3.5} />
-		</div>
-	</button>
-	<Tooltip type="light" placement="right" class="z-30 hidden md:block font-filter">Bookmark</Tooltip>
+	{#if userBookmarks.includes(key)}
+		<button on:click={() => updateSettings({ type: 'userBookmarks', key, set: true })} class={buttonClasses} aria-label="Bookmark">
+			<div class="opacity-70">
+				<svelte:component this={userBookmarks.includes(key) ? Bookmarked : Bookmark} size={3.5} />
+			</div>
+		</button>
+		<Tooltip type="light" placement="right" class="z-30 hidden md:block font-filter">Bookmark</Tooltip>
+	{/if}
 
 	<!-- verses option dropdown -->
 	<button class={buttonClasses} aria-label="Options" on:click={() => __verseKey.set(key)}>
@@ -68,5 +86,5 @@
 			<DotsHorizontal size={6} />
 		</div>
 	</button>
-	<VersesOptionsDropdown page={value.meta.page} />
+	<OptionsDropdown page={value.meta.page} />
 </div>

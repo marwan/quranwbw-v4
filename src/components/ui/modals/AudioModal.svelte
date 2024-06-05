@@ -1,33 +1,16 @@
 <script>
+	import Modal from '$ui/flowbite-svelte/modal/Modal.svelte';
+	import Radio from '$ui/flowbite-svelte/forms/Radio.svelte';
 	import { quranMetaData } from '$data/quranMeta';
 	import { __currentPage, __chapterNumber, __audioSettings, __userSettings, __audioModalVisible } from '$utils/stores';
 	import { initializeAudio, updateAudioSettings } from '$utils/audioController';
-	import { disabledElement, buttonElement } from '$data/commonStyles';
-	import { updateSettings } from '$utils/updateSettings';
-	import Modal from '$flowbiteSvelte/modal/Modal.svelte';
-	import { Radio } from 'flowbite-svelte';
-
-	// icons
-	import Play from '$svgs/Play.svelte';
-	import Bookmark from '$svgs/Bookmark.svelte';
-	import Bookmarked from '$svgs/Bookmarked.svelte';
-
-	// update userBookmarks whenever the __userSettings changes
-	$: userBookmarks = JSON.parse($__userSettings).userBookmarks;
-
-	// $: console.table($__audioSettings);
+	import { disabledClasses, buttonClasses } from '$data/commonClasses';
 </script>
 
 <Modal id="audioModal" bind:open={$__audioModalVisible} size="xs" class="rounded-3xl theme-grayscale" bodyClass="p-6" placement="center" autoclose outsideclose>
 	<!-- Modal content -->
 	<div class="flex flex-row space-x-4 mb-4 text-xl" style="margin-top: 0px;">
 		<h3 id="audio-modal-title" class="font-medium text-gray-900">{quranMetaData[$__audioSettings.playingChapter || 1].transliteration}, {$__audioSettings.playingKey}</h3>
-
-		<button on:click={() => updateSettings({ type: 'userBookmarks', key: $__audioSettings.playingKey, set: true })} class="mt-1">
-			<div class="opacity-70">
-				<svelte:component this={userBookmarks.includes($__audioSettings.playingKey) ? Bookmarked : Bookmark} size={3.5} />
-			</div>
-		</button>
 	</div>
 	<div class="flex flex-col">
 		<!-- verse or words -->
@@ -61,11 +44,11 @@
 					<Radio bind:group={$__audioSettings.audioRange} value="playThisVerse" on:change={(event) => updateAudioSettings}>This Verse</Radio>
 				</div>
 				<!-- play from here -->
-				<div class="flex items-center {$__currentPage !== 'chapter' && disabledElement}">
+				<div class="flex items-center {$__currentPage !== 'chapter' && disabledClasses}">
 					<Radio bind:group={$__audioSettings.audioRange} value="playFromHere" on:change={(event) => updateAudioSettings}>From Here</Radio>
 				</div>
 				<!-- play range -->
-				<div class="flex items-center {$__currentPage !== 'chapter' && disabledElement}">
+				<div class="flex items-center {$__currentPage !== 'chapter' && disabledClasses}">
 					<Radio bind:group={$__audioSettings.audioRange} value="playRange" on:change={(event) => updateAudioSettings}>Verses Range</Radio>
 				</div>
 			</div>
@@ -105,9 +88,7 @@
 	</div>
 
 	<div class="mt-4">
-		<button on:click={initializeAudio} class="w-full mr-2 {buttonElement}">
-			<Play />
-
+		<button on:click={initializeAudio} class="w-full mr-2 {buttonClasses}">
 			<span class="capitalize">Play</span>
 			<div class="hidden">
 				{#if $__audioSettings.startVerse !== null}

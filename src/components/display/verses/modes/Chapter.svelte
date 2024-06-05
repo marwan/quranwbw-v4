@@ -4,14 +4,14 @@
 		endVerse,
 		isExampleVerse = undefined;
 
+	import WordByWord from '$display/layouts/WordByWord.svelte';
+	import Normal from '$display/layouts/Normal.svelte';
+	import Continuous from '$display/layouts/Continuous.svelte';
+	import SideBySide from '$display/layouts/SideBySide.svelte';
 	import { inview } from 'svelte-inview';
-	import WBWDisplay from '$displays/WBWDisplay.svelte';
-	import NormalDisplay from '$displays/NormalDisplay.svelte';
-	import ContinuousDisplay from '$displays/ContinuousDisplay.svelte';
-	import SideBySideDisplay from '$displays/SideBySideDisplay.svelte';
 	import { quranMetaData } from '$data/quranMeta';
 	import { __userSettings, __displayType, __chapterNumber, __chapterData } from '$utils/stores';
-	import { buttonElement } from '$data/commonStyles';
+	import { buttonClasses } from '$data/commonClasses';
 
 	// load button click options
 	const loadButtonOptions = {
@@ -20,16 +20,16 @@
 	};
 
 	const displayComponents = {
-		1: { component: WBWDisplay },
-		2: { component: NormalDisplay },
-		3: { component: ContinuousDisplay },
-		4: { component: ContinuousDisplay },
-		5: { component: SideBySideDisplay }
+		1: { component: WordByWord },
+		2: { component: Normal },
+		3: { component: Continuous },
+		4: { component: Continuous },
+		5: { component: SideBySide }
 	};
 
 	const chapterTotalVerses = quranMetaData[$__chapterNumber].verses;
 
-	let ChapterVerses; // for the "ChapterVerses" component
+	let Chapter; // for the "Chapter" component
 
 	let versesLoadType; // previous/next
 
@@ -44,7 +44,7 @@
 		versesLoadType = 'previous';
 
 		// importing the same component to be re-used when the "Load Previous Verses" button is pressed
-		import('./ChapterVerses.svelte').then((res) => (ChapterVerses = res.default));
+		import('./Chapter.svelte').then((res) => (Chapter = res.default));
 
 		// get the last verse number from last prop value
 		const firstVerseOnPage = startVerse;
@@ -74,7 +74,7 @@
 		versesLoadType = 'next';
 
 		// importing the same component to be re-used when the "Load Next Verses" button is pressed
-		import('./ChapterVerses.svelte').then((res) => (ChapterVerses = res.default));
+		import('./Chapter.svelte').then((res) => (Chapter = res.default));
 
 		// max verses to load when the next set is requested
 		const versesToLoad = 10;
@@ -103,12 +103,12 @@
 <!-- move the load button to Chapter component -->
 <!-- {#if startVerse > 1 && document.getElementById('loadPreviousVersesButton') === null}
 	<div id="loadPreviousVersesButton" class="flex justify-center pt-8 pb-6">
-		<button on:click={loadPreviousVerses} class="text-sm {buttonElement}"> Load Previous Verses </button>
+		<button on:click={loadPreviousVerses} class="text-sm {buttonClasses}"> Load Previous Verses </button>
 	</div>
 {/if} -->
 
 <!-- {#if versesLoadType === 'previous'}
-	<svelte:component this={ChapterVerses} {...previousVersesProps} />
+	<svelte:component this={Chapter} {...previousVersesProps} />
 {/if} -->
 
 {#each Array.from(Array(endVerse + 1).keys()).slice(startVerse) as verse}
@@ -120,11 +120,11 @@
 	<!-- only show the button when the last verse on page is less than total verses in chapter -->
 	{#if endVerse < chapterTotalVerses && document.getElementById('loadVersesButton') === null}
 		<div id="loadVersesButton" class="flex justify-center pt-6 pb-18" use:inview={loadButtonOptions} on:inview_enter={(event) => document.querySelector('#loadVersesButton > button').click()}>
-			<button on:click={loadNextVerses} class="text-sm {buttonElement}"> Load Next Verses </button>
+			<button on:click={loadNextVerses} class="text-sm {buttonClasses}"> Load Next Verses </button>
 		</div>
 	{/if}
 {/if}
 
 {#if versesLoadType === 'next'}
-	<svelte:component this={ChapterVerses} {...nextVersesProps} />
+	<svelte:component this={Chapter} {...nextVersesProps} />
 {/if}

@@ -14,6 +14,21 @@
 
 	let dropdownOpen = false;
 
+	$: {
+		try {
+			// remove z-index from all button blocks and to button block of that specific verse
+			if (dropdownOpen) {
+				document.querySelectorAll('.verseButtons').forEach((element) => {
+					element.classList.remove('z-10');
+				});
+
+				document.getElementsByClassName('verseButtons')[$__verseKey.split(':')[1]].classList.add('z-10');
+			}
+		} catch (error) {
+			// error
+		}
+	}
+
 	// open share menu
 	function shareVerse() {
 		const chapter = +$__verseKey.split(':')[0];
@@ -28,7 +43,7 @@
 	}
 </script>
 
-<Dropdown bind:open={dropdownOpen} class="px-2 mr-2 my-2 w-fit font-sans">
+<Dropdown bind:open={dropdownOpen} class="px-2 mr-2 my-2 w-fit font-sans theme-grayscale">
 	<div class="py-2 px-4 text-xs font-semibold text-left">Verse {$__verseKey}</div>
 
 	<!-- play verse button -->
@@ -44,7 +59,7 @@
 
 	<!-- bookmark button -->
 	<DropdownItem class={dropdownItemClasses} on:click={() => updateSettings({ type: 'userBookmarks', key: $__verseKey, set: true })}>
-		{userBookmarks.includes($__verseKey) ? 'Unbookmark' : 'Bookmark'}
+		{userBookmarks.includes($__verseKey) ? 'Unbookmark  Verse' : 'Bookmark Verse'}
 	</DropdownItem>
 
 	<!-- verse notes button -->

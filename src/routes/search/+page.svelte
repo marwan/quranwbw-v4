@@ -1,11 +1,11 @@
 <script>
-	import { goto } from '$app/navigation';
-	import PageHead from '$components/PageHead.svelte';
+	import PageHead from '$misc/PageHead.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
+	import { goto } from '$app/navigation';
 	import { searchableTranslations } from '$data/searchableTranslations';
 	import { quranMetaData } from '$data/quranMeta';
 	import { __currentPage } from '$utils/stores';
-	import { linkElement } from '$data/commonStyles';
+	import { linkClasses } from '$data/commonClasses';
 
 	let searchResults;
 
@@ -48,7 +48,7 @@
 	<div class="my-6 space-y-4 pb-4 border-b-2 dark:border-slate-700">
 		<h1 class="text-2xl">Search the Quran</h1>
 		<div class="text-sm">
-			Search the Quran for any text in over 100+ translations. Powered by the <a href="https://alquran.cloud/api" target="_blank" class={linkElement}>Al Quran Cloud API</a>.
+			Search the Quran for any text in over 100+ translations. Powered by the <a href="https://alquran.cloud/api" target="_blank" class={linkClasses}>Al Quran Cloud API</a>.
 		</div>
 	</div>
 
@@ -83,7 +83,7 @@
 	<!-- search instructions -->
 	{#if searchText.length === 0}
 		<div id="how-to-search" class="flex flex-col text-sm space-y-2">
-			<span class="font-medium">Instructions:</span>
+			<span class="font-medium">Note:</span>
 			<ul class="list-disc ml-5 space-y-2">
 				<li>Avoid searching for extremely short phrases/words as it can fetch a lot of records causing slowness in your browser.</li>
 				<li>Phrases/words available in one translation may or may not be available in others. For example in Saheeh International, the word "Abraham" fetches 72 records but "Ibrahim" will fetch zero.</li>
@@ -105,14 +105,14 @@
 								<a href="/{value.surah.number}/{value.numberInSurah}">
 									<div class="py-6 space-y-2 border-b dark:border-slate-700">
 										<div>{@html highlightSearchedText(value.text)}</div>
-										<div class="text-gray-500">&mdash; {quranMetaData[value.surah.number].transliteration}, {value.surah.number}:{value.numberInSurah} ({value.edition.name})</div>
+										<div class="opacity-70">&mdash; {quranMetaData[value.surah.number].transliteration}, {value.surah.number}:{value.numberInSurah} ({value.edition.name})</div>
 									</div>
 								</a>
 							{/each}
 						</div>
 					</div>
 				{:else if searchResults.code === 404}
-					<div id="info" class="text-sm text-center pt-4">Could not find anything for "{searchText}" in {searchableTranslations[selectedTranslation].name}. Please try searching something else.</div>
+					<div id="info" class="text-sm text-center pt-4">Could not find anything for "{searchText}" in {searchableTranslations[selectedTranslation].name}. Try searching something else or switching the translation.</div>
 				{:else}
 					<div id="info" class="text-sm text-center pt-4">There was an error with your search. Please try again later.</div>
 				{/if}

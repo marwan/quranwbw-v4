@@ -1,20 +1,25 @@
 <script>
+	import NavigationDropdown from '$ui/NavigationDropdown.svelte';
+	import PointNavigationSelector from '$ui/PointNavigationSelector.svelte';
+	import Mecca from '$svgs/Mecca.svelte';
+	import Madinah from '$svgs/Madinah.svelte';
+	import CrossSolid from '$svgs/CrossSolid.svelte';
+	import Menu from '$svgs/Menu.svelte';
 	import { updateSettings } from '$utils/updateSettings';
 	import { quranMetaData, mostRead } from '$data/quranMeta';
 	import { __lastRead, __favouriteChapters, __userBookmarks } from '$utils/stores';
-	import NavigationDropdown from '$ui/NavigationDropdown.svelte';
-	import PointNavigationSelector from '$ui/PointNavigationSelector.svelte';
-	import { buttonElement } from '$data/commonStyles';
+	import { buttonClasses } from '$data/commonClasses';
 	import { Tooltip } from 'flowbite-svelte';
 
-	// icons
-	import Mecca from '$svgs/Mecca.svelte';
-	import Madinah from '$svgs/Madinah.svelte';
-	import Cross from '$svgs/Cross.svelte';
-	import Menu from '$svgs/Menu.svelte';
+	let lastReadChapter = 1;
+	let lastReadVerse = 1;
 
-	$: lastReadChapter = $__lastRead.split(':')[0];
-	$: lastReadVerse = $__lastRead.split(':')[1];
+	$: {
+		if ($__lastRead !== null) {
+			lastReadChapter = $__lastRead.split(':')[0];
+			lastReadVerse = $__lastRead.split(':')[1];
+		}
+	}
 
 	// chapter data fetch options
 	const fetchOptions = {
@@ -23,12 +28,10 @@
 	};
 
 	// chapter cards, tab styles
-	const homepageTabsStyles = {
-		cardGridStyle: 'grid md:grid-cols-2 lg:grid-cols-3 gap-3',
-		cardInnerStyle: 'flex justify-between md:text-left border border-gray-200 transition text-sm bg-gray-100 rounded-3xl p-5 hover:cursor-pointer hover:bg-lightGray',
-		tabStyle: 'p-2 md:p-3 text-xs md:text-md cursor-pointer border-b-0',
-		activeTab: 'border-b-4'
-	};
+	const cardGridClasses = 'grid md:grid-cols-2 lg:grid-cols-3 gap-3';
+	const cardInnerClasses = 'flex justify-between md:text-left border border-gray-200 transition text-sm bg-gray-100 rounded-3xl p-5 hover:cursor-pointer hover:bg-lightGray';
+	const tabClasses = 'p-2 md:p-3 text-xs md:text-md cursor-pointer border-b-0';
+	const activeTabClasses = 'border-b-4';
 
 	let activeTab = 1; // chapters tab
 
@@ -46,13 +49,13 @@
 		<div id="tab-buttons">
 			<ul class="flex text-sm font-medium text-center opacity-70 justify-center space-x-2 md:space-x-4">
 				<li>
-					<button on:click={() => (activeTab = 1)} class="{homepageTabsStyles.tabStyle} {activeTab === 1 ? `${homepageTabsStyles.activeTab}` : null}" id="chapters-tab" data-tabs-target="#chapters-tab-panel" type="button" role="tab" aria-controls="chapters-tab-panel" aria-selected="false">Chapters</button>
+					<button on:click={() => (activeTab = 1)} class="{tabClasses} {activeTab === 1 ? `${activeTabClasses}` : null}" id="chapters-tab" data-tabs-target="#chapters-tab-panel" type="button" role="tab" aria-controls="chapters-tab-panel" aria-selected="false">Chapters</button>
 				</li>
 				<li>
-					<button on:click={() => (activeTab = 2)} class="{homepageTabsStyles.tabStyle} {activeTab === 2 ? `${homepageTabsStyles.activeTab}` : null}" id="most-read-tab" data-tabs-target="#most-read-tab-panel" type="button" role="tab" aria-controls="most-read-tab-panel" aria-selected="false">Suggested</button>
+					<button on:click={() => (activeTab = 2)} class="{tabClasses} {activeTab === 2 ? `${activeTabClasses}` : null}" id="most-read-tab" data-tabs-target="#most-read-tab-panel" type="button" role="tab" aria-controls="most-read-tab-panel" aria-selected="false">Suggested</button>
 				</li>
 				<li>
-					<button on:click={() => (activeTab = 3)} class="{homepageTabsStyles.tabStyle} {activeTab === 3 ? `${homepageTabsStyles.activeTab}` : null}" id="bookmarks-tab" data-tabs-target="#bookmarks-tab-panel" type="button" role="tab" aria-controls="bookmarks-tab-panel" aria-selected="false">
+					<button on:click={() => (activeTab = 3)} class="{tabClasses} {activeTab === 3 ? `${activeTabClasses}` : null}" id="bookmarks-tab" data-tabs-target="#bookmarks-tab-panel" type="button" role="tab" aria-controls="bookmarks-tab-panel" aria-selected="false">
 						Bookmarks
 						{#if $__userBookmarks.length > 0}
 							({$__userBookmarks.length})
@@ -64,7 +67,7 @@
 
 		<!-- menu for links on right -->
 		<div class="ml-2">
-			<button class="flex flex-row items-center bg-lightGray rounded-3xl {homepageTabsStyles.tabStyle} p-3" title="Menu">
+			<button class="flex flex-row items-center bg-lightGray rounded-3xl p-3 {tabClasses}" title="Menu">
 				<span class="text-black opacity-70"><Menu /></span>
 			</button>
 			<NavigationDropdown />
@@ -77,17 +80,20 @@
 			<!-- chapter / page etc... selector -->
 			<div class="flex flex-col md:flex-row justify-between">
 				<PointNavigationSelector />
-				<div>
-					<a href="/{lastReadChapter}/{lastReadVerse}" class="py-2.5 {buttonElement} text-xs w-full mb-4 md:mb-0">Continue Reading: {quranMetaData[lastReadChapter].transliteration}, {lastReadChapter}:{lastReadVerse} {@html '&#10230'}</a>
-				</div>
+
+				{#if $__lastRead !== null}
+					<div>
+						<a href="/{lastReadChapter}/{lastReadVerse}" class="py-2.5 text-xs w-full mb-4 md:mb-0 {buttonClasses}">Continue Reading: {quranMetaData[lastReadChapter].transliteration}, {lastReadChapter}:{lastReadVerse} {@html '&#10230'}</a>
+					</div>
+				{/if}
 			</div>
 
-			<div class="{homepageTabsStyles.cardGridStyle} grid-cols-2">
+			<div class="{cardGridClasses} grid-cols-2">
 				{#each { length: 114 } as _, chapter}
 					<a href="/{chapter + 1}">
 						<!-- <button class="pointer h-7 w-7 rounded-full bg-gray-300 text-xs">{chapter + 1}</button> -->
 
-						<div class="{homepageTabsStyles.cardInnerStyle} flex-col-reverse md:flex-row text-center items-center">
+						<div class="{cardInnerClasses} flex-col-reverse md:flex-row text-center items-center">
 							<div class="">
 								<!-- chapter name and icon -->
 								<div class="flex flex-row items-center space-x-1 justify-center md:justify-start truncate">
@@ -116,9 +122,9 @@
 		<!-- most read tab -->
 		<div class="homepage-tab-panels space-y-12 {activeTab === 2 ? 'block' : 'hidden'}" id="most-read-tab-panel" role="tabpanel" aria-labelledby="most-read-tab">
 			<div id="most-read-chapters" class="flex flex-col space-y-4">
-				<div class="{homepageTabsStyles.cardGridStyle} grid-cols-1">
+				<div class="{cardGridClasses} grid-cols-1">
 					{#each Object.entries(mostRead) as [id, item]}
-						<a href={item.url} class="{homepageTabsStyles.cardInnerStyle} flex-col">
+						<a href={item.url} class="{cardInnerClasses} flex-col">
 							<span class="text-sm">{quranMetaData[item.chapter].transliteration} ({item.verses})</span>
 							<div class="block text-xs opacity-70">{item.title}</div>
 						</a>
@@ -133,15 +139,15 @@
 				{#if $__userBookmarks.length === 0}
 					<div class="flex items-center justify-center text-sm opacity-70">You currently do not have any bookmarked verses.</div>
 				{:else}
-					<div class="{homepageTabsStyles.cardGridStyle} grid-cols-1">
+					<div class="{cardGridClasses} grid-cols-1">
 						{#each $__userBookmarks as bookmark}
 							<div class="flex flex-row space-x-2">
-								<a href="{bookmark.split(':')[0]}/{bookmark.split(':')[1]}" class="{homepageTabsStyles.cardInnerStyle} flex-row items-center w-full">
+								<a href="{bookmark.split(':')[0]}/{bookmark.split(':')[1]}" class="{cardInnerClasses} flex-row items-center w-full">
 									<div class="text-sm">{quranMetaData[bookmark.split(':')[0]].transliteration}, Verse {bookmark}</div>
 									<div class="invisible chapter-icons justify-items-end opacity-70 text-3xl mt-2">{@html `&#xE9${quranMetaData[bookmark.split(':')[0]].icon};`}</div>
 								</a>
 
-								<button on:click={() => updateSettings({ type: 'userBookmarks', key: bookmark })} class="pointer h-7 w-7 opacity-50 hover:opacity-70" style="margin-left: -20px; margin-top: -5px;" title="Remove bookmark"><Cross size={7} /></button>
+								<button on:click={() => updateSettings({ type: 'userBookmarks', key: bookmark })} class="pointer h-7 w-7 opacity-50 hover:opacity-70" style="margin-left: -20px; margin-top: -5px;" title="Remove bookmark"><CrossSolid size={7} /></button>
 							</div>
 						{/each}
 					</div>

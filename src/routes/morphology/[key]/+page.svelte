@@ -1,14 +1,14 @@
 <script>
 	export let data;
 
-	import PageHead from '$components/PageHead.svelte';
+	import PageHead from '$misc/PageHead.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
-	import VersesWords from '$verses/VersesWords.svelte';
-	import MorphologyTable from '$morphology/MorphologyTable.svelte';
+	import WordsBlock from '$display/verses/WordsBlock.svelte';
+	import Table from '$display/morphology/Table.svelte';
 	import { quranMetaData } from '$data/quranMeta';
 	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
 	import { __currentPage, __wordType, __wordTranslation, __verseTranslations, __morphologyKey, __pageURL } from '$utils/stores';
-	import { tabPillElement } from '$data/commonStyles';
+	import { tabPillClasses } from '$data/commonClasses';
 	import { fetchVersesData } from '$utils/fetchData';
 
 	let fetchWordsData, fetchWordSummary;
@@ -53,15 +53,15 @@
 	<div id="verse-navigator" class="flex flex-row justify-center space-x-8">
 		<!-- previous chapter -->
 		{#if verse === 1 && chapter > 1}
-			<a href="/morphology/{+chapter - 1}:1" class={tabPillElement}>{@html '&#x2190;'} Chapter {+chapter - 1}</a>
+			<a href="/morphology/{+chapter - 1}:1" class={tabPillClasses}>{@html '&#x2190;'} Chapter {+chapter - 1}</a>
 		{/if}
 
-		<a href="/morphology/{chapter}:{+verse - 1}" class="{tabPillElement} {verse === 1 && 'hidden'}">{@html '&#x2190;'} Verse {chapter}:{+verse - 1}</a>
-		<a href="/morphology/{chapter}:{+verse + 1}" class="{tabPillElement} {verse === quranMetaData[chapter].verses && 'hidden'}">Verse {chapter}:{+verse + 1} {@html '&#x2192;'}</a>
+		<a href="/morphology/{chapter}:{+verse - 1}" class="{tabPillClasses} {verse === 1 && 'hidden'}">{@html '&#x2190;'} Verse {chapter}:{+verse - 1}</a>
+		<a href="/morphology/{chapter}:{+verse + 1}" class="{tabPillClasses} {verse === quranMetaData[chapter].verses && 'hidden'}">Verse {chapter}:{+verse + 1} {@html '&#x2192;'}</a>
 
 		<!-- next chapter -->
 		{#if verse === quranMetaData[chapter].verses && chapter < 114}
-			<a href="/morphology/{+chapter + 1}:1" class={tabPillElement}>Chapter {+chapter + 1} {@html '&#x2192;'}</a>
+			<a href="/morphology/{+chapter + 1}:1" class={tabPillClasses}>Chapter {+chapter + 1} {@html '&#x2192;'}</a>
 		{/if}
 	</div>
 
@@ -71,7 +71,7 @@
 		{:then fetchData}
 			<div class="flex flex-wrap justify-center direction-rtl">
 				{#each Object.entries(fetchData) as [key, value]}
-					<VersesWords {key} {value} />
+					<WordsBlock {key} {value} />
 				{/each}
 			</div>
 		{:catch error}
@@ -124,7 +124,7 @@
 		{#await fetchWordsData}
 			<Spinner />
 		{:then fetchWordsData}
-			<MorphologyTable wordData={fetchWordsData[0].morphology.root.words_with_same_root} tableType={1} />
+			<Table wordData={fetchWordsData[0].morphology.root.words_with_same_root} tableType={1} />
 		{:catch error}
 			<p>{errorLoadingDataMessage}</p>
 		{/await}
@@ -134,7 +134,7 @@
 		{#await fetchWordsData}
 			<Spinner />
 		{:then fetchWordsData}
-			<MorphologyTable wordData={fetchWordsData[0].morphology.exact_words_in_quran} tableType={2} />
+			<Table wordData={fetchWordsData[0].morphology.exact_words_in_quran} tableType={2} />
 		{:catch error}
 			<p>{errorLoadingDataMessage}</p>
 		{/await}

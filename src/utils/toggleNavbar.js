@@ -1,5 +1,5 @@
 import { get } from 'svelte/store';
-import { __currentPage, __topNavbarVisible, __bottomNavbarVisible } from '$utils/stores';
+import { __currentPage, __topNavbarVisible, __bottomToolbarVisible } from '$utils/stores';
 
 let prevScrollpos = getCurrentScroll();
 let ticking = false;
@@ -15,13 +15,13 @@ export function toggleNavbar() {
 				// scrolling up
 				if (prevScrollpos > currentScrollPos) {
 					__topNavbarVisible.set(true);
-					__bottomNavbarVisible.set(true);
+					__bottomToolbarVisible.set(true);
 				}
 
 				// scrolling down
 				else {
 					__topNavbarVisible.set(false);
-					__bottomNavbarVisible.set(false);
+					__bottomToolbarVisible.set(false);
 				}
 
 				prevScrollpos = currentScrollPos;

@@ -1,16 +1,14 @@
 <script>
-	import PageHead from '$components/PageHead.svelte';
+	import PageHead from '$misc/PageHead.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
-	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
-	import { __currentPage, __wordType, __quizCorrectAnswers, __quizWrongAnswers } from '$utils/stores';
-	import { buttonElement, disabledElement } from '$data/commonStyles';
-	import { updateSettings } from '$utils/updateSettings';
-	import { Radio } from 'flowbite-svelte';
 	import party from 'party-js';
-
-	// icons
 	import Check from '$svgs/Check.svelte';
 	import Cross from '$svgs/Cross.svelte';
+	import Radio from '$ui/flowbite-svelte/forms/Radio.svelte';
+	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
+	import { __currentPage, __wordType, __quizCorrectAnswers, __quizWrongAnswers } from '$utils/stores';
+	import { buttonClasses, disabledClasses } from '$data/commonClasses';
+	import { updateSettings } from '$utils/updateSettings';
 
 	let randomID = 1;
 	let fetchData;
@@ -74,14 +72,14 @@
 					<p class="mb-5 text-sm">Guess the correct translation:</p>
 					<div class="grid gap-4 md:gap-6 w-full md:grid-cols-2">
 						{#each Object.entries(fetchData) as [key, value]}
-							<div class="rounded border border-gray-200 {selection === +key ? 'border-gray-400' : null} {answerChecked === true && selection !== +key ? disabledElement : null}">
+							<div class="rounded border border-gray-200 {selection === +key ? 'border-gray-400' : null} {answerChecked === true && selection !== +key ? disabledClasses : null}">
 								<Radio name="bordered" bind:group={selection} value={+key} class="w-full p-4 flex flex-row font-normal cursor-pointer">
 									<div class="flex flex-row mr-auto ml-2">{fetchData[key].word_english}</div>
 
 									<!-- check / cross icon -->
 									{#if answerChecked === true && selection === +key}
 										<div class="justify-end">
-											<svelte:component this={selection === randomWord ? Check : Cross} size={6} />
+											<svelte:component this={selection === randomWord ? Check : Cross} size={7} />
 										</div>
 									{/if}
 								</Radio>
@@ -103,8 +101,8 @@
 				<div id="buttons" class="flex flex-col space-y-8 justify-center w-full">
 					<!-- confirm-button -->
 					{#if !answerChecked}
-						<div id="confirm-button" class="{selection === null || answerChecked === true ? disabledElement : null} w-full">
-							<button class="{buttonElement} w-full" on:click={() => checkAnswer()}>Confirm</button>
+						<div id="confirm-button" class="{selection === null || answerChecked === true ? disabledClasses : null} w-full">
+							<button class="{buttonClasses} w-full" on:click={() => checkAnswer()}>Confirm</button>
 						</div>
 					{/if}
 

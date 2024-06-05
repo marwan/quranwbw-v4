@@ -5,17 +5,17 @@
 	// check for key presses
 	// import "$utils/keyDownHandler";
 
-	import { __websiteOnline, __currentPage, __chapterNumber, __settingsDrawerHidden, __wakeLockEnabled, __userToken } from '$utils/stores';
-	import { checkOldBookmarks } from '$utils/checkOldBookmarks';
 	import Navbar from '$ui/Navbar.svelte';
 	import SettingsDrawer from '$ui/SettingsDrawer.svelte';
-	import BottomNavbar from '$ui/BottomNavbar.svelte';
-	import InitialSetupModal from '$modals/InitialSetupModal.svelte';
-	import AudioModal from '$modals/AudioModal.svelte';
-	import TajweedRulesModal from '$modals/TajweedRulesModal.svelte';
-	import NotesModal from '$modals/NotesModal.svelte';
-	import TokenModal from '$modals/TokenModal.svelte';
-	import DownloadModal from '$modals/DownloadModal.svelte';
+	import BottomToolbar from '$ui/BottomToolbar.svelte';
+	import InitialSetupModal from '$ui/modals/InitialSetupModal.svelte';
+	import AudioModal from '$ui/modals/AudioModal.svelte';
+	import TajweedRulesModal from '$ui/modals/TajweedRulesModal.svelte';
+	import NotesModal from '$ui/modals/NotesModal.svelte';
+	import TokenModal from '$ui/modals/TokenModal.svelte';
+	import DownloadModal from '$ui/modals/DownloadModal.svelte';
+	import { __websiteOnline, __currentPage, __chapterNumber, __settingsDrawerHidden, __wakeLockEnabled, __userToken } from '$utils/stores';
+	import { checkOldBookmarks } from '$utils/checkOldBookmarks';
 	import { debounce } from '$utils/debounce';
 	import { toggleNavbar } from '$utils/toggleNavbar';
 	import { downloadSettingsFromCloud } from '$utils/cloudSettings';
@@ -90,7 +90,7 @@
 	<NotesModal />
 	<TokenModal />
 	<DownloadModal />
-	<BottomNavbar />
+	<BottomToolbar />
 
 	<slot />
 </div>

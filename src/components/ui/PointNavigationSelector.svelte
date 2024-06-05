@@ -2,7 +2,7 @@
 	import { goto } from '$app/navigation';
 	import { pageNumberKeys, juzNumberKeys } from '$data/quranMeta';
 	import { __pageURL } from '$utils/stores';
-	import { buttonElement, disabledElement } from '$data/commonStyles';
+	import { buttonClasses, disabledClasses } from '$data/commonClasses';
 	import { Select } from 'flowbite-svelte';
 	import { validateKey } from '$utils/validateKey';
 
@@ -49,7 +49,7 @@
 					if (waypoint === '') incorrectValue = true;
 					break;
 			}
-			// if (waypoint === '') incorrectValue = true;
+			if (waypoint === '') incorrectValue = true;
 		} catch (error) {
 			// ...
 		}
@@ -87,7 +87,7 @@
 		<Select class="w-fit rounded-l-3xl rounded-r-none focus:border-gray-500 text-xs" items={navigationPoints} bind:value={selectedNavigation} placeholder="Go to..." />
 		<form on:submit|preventDefault={navigateToPoint} class="flex flex-row w-full">
 			<input type="text" bind:value={waypoint} id="navigationInput" aria-describedby="helper-text-explanation" class="w-[inherit] bg-gray-50 border border-gray-300 border-l-0 border-r-0 text-gray-900 text-xs rounded-l-none focus:ring-gray-500 focus:border-gray-500 block w-24 p-2.5" {placeholder} />
-			<button type="submit" class="{buttonElement} text-xs rounded-l-none min-w-fit border border-gray-300 {incorrectValue === true && disabledElement}">Go {@html '&#10230'}</button>
+			<button type="submit" class="{buttonClasses} text-xs rounded-l-none min-w-fit border border-gray-500 {incorrectValue === true && disabledClasses}">Go {@html '&#10230'}</button>
 		</form>
 	</div>
 </div>

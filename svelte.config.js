@@ -10,18 +10,14 @@ const config = {
 		// See https://kit.svelte.dev/docs/adapters for more information about adapters.
 		adapter: adapter(),
 		alias: {
-			$ui: path.resolve('./src/components/ui'),
-			$modals: path.resolve('./src/components/ui/modals'),
-			$components: path.resolve('./src/components'),
-			$verses: path.resolve('./src/components/verses'),
-			$displays: path.resolve('./src/components/verses/displays'),
-			$svgs: path.resolve('./src/components/svgs'),
 			$utils: path.resolve('./src/utils'),
 			$views: path.resolve('./src/views'),
 			$data: path.resolve('./src/data'),
 			$lib: path.resolve('./src/lib'),
-			$morphology: path.resolve('./src/components/morphology'),
-			$flowbiteSvelte: path.resolve('./src/components/ui/flowbite-svelte')
+			$ui: path.resolve('./src/components/ui'),
+			$svgs: path.resolve('./src/components/svgs'),
+			$display: path.resolve('./src/components/display'),
+			$misc: path.resolve('./src/components/misc')
 		}
 	},
 	preprocess: vitePreprocess()

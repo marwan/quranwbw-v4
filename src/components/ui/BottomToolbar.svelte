@@ -1,14 +1,4 @@
 <script>
-	import { __audioSettings } from '$utils/stores';
-	import { __chapterNumber, __displayType, __currentPage, __bottomNavbarVisible, __settingsDrawerHidden, __autoScrollSpeed, __firstVerseOnPage } from '$utils/stores';
-	import { quickPlayAudio } from '$utils/audioController';
-	import { quranMetaData } from '$data/quranMeta';
-	import { disabledElement } from '$data/commonStyles';
-	import { updateSettings } from '$utils/updateSettings';
-	import { Tooltip } from 'flowbite-svelte';
-	// import { taphold } from 'svelte-taphold';
-
-	// icons
 	import PlaySolid from '$svgs/PlaySolid.svelte';
 	import Pause from '$svgs/Pause.svelte';
 	import ChevronLeft from '$svgs/ChevronLeft.svelte';
@@ -17,8 +7,16 @@
 	import Eye from '$svgs/Eye.svelte';
 	import Plus from '$svgs/Plus.svelte';
 	import Minus from '$svgs/Minus.svelte';
-	import CrossOutline from '$svgs/CrossOutline.svelte';
+	import Cross from '$svgs/Cross.svelte';
 	import ScrollDown from '$svgs/ScrollDown.svelte';
+	import { __audioSettings } from '$utils/stores';
+	import { __chapterNumber, __displayType, __currentPage, __bottomToolbarVisible, __settingsDrawerHidden, __autoScrollSpeed, __firstVerseOnPage } from '$utils/stores';
+	import { quickPlayAudio } from '$utils/audioController';
+	import { quranMetaData } from '$data/quranMeta';
+	import { disabledClasses } from '$data/commonClasses';
+	import { updateSettings } from '$utils/updateSettings';
+	import { Tooltip } from 'flowbite-svelte';
+	// import { taphold } from 'svelte-taphold';
 
 	const holdInterval = 100;
 
@@ -94,10 +92,10 @@
 </script>
 
 <div class={$__currentPage === 'chapter' ? 'block' : 'hidden'}>
-	<div class="{$__bottomNavbarVisible ? 'block' : 'hidden'} fixed z-20 w-full h-16 max-w-xs md:max-w-lg shadow-sm -translate-x-1/2 bg-white border border-gray-200 rounded-full bottom-4 left-1/2 theme-grayscale">
+	<div class="{$__bottomToolbarVisible ? 'block' : 'hidden'} fixed z-20 w-full h-16 max-w-xs md:max-w-lg shadow-sm -translate-x-1/2 bg-white border border-gray-200 rounded-full bottom-4 left-1/2 theme-grayscale">
 		<div class="grid h-full max-w-lg grid-cols-5 mx-auto opacity-70">
 			<!-- Previous Chapter -->
-			<a href="/{$__chapterNumber - 1}" class="inline-flex flex-col items-center justify-center px-5 rounded-s-full hover:bg-lightGray group {$__chapterNumber === 1 && disabledElement}">
+			<a href="/{$__chapterNumber - 1}" class="inline-flex flex-col items-center justify-center px-5 rounded-s-full hover:bg-lightGray group {$__chapterNumber === 1 && disabledClasses}">
 				<ChevronLeft />
 				<span class="sr-only">Previous {$__currentPage}</span>
 			</a>
@@ -106,7 +104,7 @@
 			<!-- normal / non-scroll mode -->
 			{#if !scrollModeEnabled}
 				<!-- 2nd icon -->
-				<button type="button" title="Change Display" on:click={() => updateSettings({ type: 'displayType', value: $__displayType === 5 ? 1 : $__displayType + 1 })} class="inline-flex flex-col items-center justify-center px-5 relative inline-flex items-center hover:bg-lightGray group {$__currentPage === 'page' && disabledElement}">
+				<button type="button" title="Change Display" on:click={() => updateSettings({ type: 'displayType', value: $__displayType === 5 ? 1 : $__displayType + 1 })} class="inline-flex flex-col items-center justify-center px-5 relative inline-flex items-center hover:bg-lightGray group {$__currentPage === 'page' && disabledClasses}">
 					<Eye />
 					<span class="sr-only">Display Type</span>
 				</button>
@@ -120,9 +118,9 @@
 						scrollEnabled = !scrollEnabled;
 						scrollModeEnabled = !scrollModeEnabled;
 					}}
-					class="inline-flex flex-col items-center justify-center px-5 relative inline-flex items-center hover:bg-lightGray {$__currentPage === 'page' && disabledElement}"
+					class="inline-flex flex-col items-center justify-center px-5 relative inline-flex items-center hover:bg-lightGray {$__currentPage === 'page' && disabledClasses}"
 				>
-					<svelte:component this={!scrollEnabled ? ScrollDown : CrossOutline} size={6} />
+					<svelte:component this={!scrollEnabled ? ScrollDown : Cross} size={6} />
 					<span class="sr-only">Scroll</span>
 				</button>
 				<Tooltip type="light" class="hidden md:block font-filter">Auto Scroll</Tooltip> -->
@@ -154,7 +152,7 @@
 			<!-- scroll mode -->
 			{#if scrollModeEnabled}
 				<!-- 2nd icon -->
-				<button on:click={() => updateScrollSpeed('decrease')} type="button" title="Decrease Speed" class="{scrollEnabled === false && disabledElement} inline-flex flex-col items-center justify-center px-5 relative inline-flex items-center hover:bg-lightGray group {$__currentPage === 'page' && disabledElement}">
+				<button on:click={() => updateScrollSpeed('decrease')} type="button" title="Decrease Speed" class="{scrollEnabled === false && disabledClasses} inline-flex flex-col items-center justify-center px-5 relative inline-flex items-center hover:bg-lightGray group {$__currentPage === 'page' && disabledClasses}">
 					<Minus size={5} />
 				</button>
 
@@ -172,7 +170,7 @@
 						title={!scrollEnabled ? 'Start Scroll' : 'Stop Scroll'}
 						class="inline-flex flex-col items-center justify-center w-10 h-10 font-medium bg-lightGray hover:bg-lightGray rounded-full group focus:ring-2 focus:ring-gray-300 focus:outline-none"
 					>
-						<svelte:component this={!scrollEnabled ? ScrollDown : CrossOutline} size={6} />
+						<svelte:component this={!scrollEnabled ? ScrollDown : Cross} size={6} />
 						<span class="sr-only">Scroll</span>
 
 						<!-- show badge when scroll is enabled -->
@@ -183,13 +181,13 @@
 				</div>
 
 				<!-- 4th icon -->
-				<button on:click={() => updateScrollSpeed('increase')} type="button" title="Increase Speed" class="{scrollEnabled === false && disabledElement} inline-flex flex-col items-center justify-center px-5 hover:bg-lightGray group">
+				<button on:click={() => updateScrollSpeed('increase')} type="button" title="Increase Speed" class="{scrollEnabled === false && disabledClasses} inline-flex flex-col items-center justify-center px-5 hover:bg-lightGray group">
 					<Plus size={5} />
 				</button>
 			{/if}
 
 			<!-- Next Chapter -->
-			<a href="/{$__chapterNumber + 1}" class="inline-flex flex-col items-center justify-center px-5 rounded-e-full hover:bg-lightGray group {$__chapterNumber === 114 && disabledElement}">
+			<a href="/{$__chapterNumber + 1}" class="inline-flex flex-col items-center justify-center px-5 rounded-e-full hover:bg-lightGray group {$__chapterNumber === 114 && disabledClasses}">
 				<ChevronRight />
 				<span class="sr-only">Next {$__currentPage}</span>
 			</a>

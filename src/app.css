@@ -281,25 +281,12 @@ svg {
   font-palette: --palette0;
 }
 
-/* bismillahs */
-/* .theme-1 .bismillah {
+/* chapter header */
+.theme-1 #header, .theme-5 #header {
   font-palette: --palette3;
 }
 
-.theme-2 .bismillah {
-  font-palette: --palette4;
+.theme-2 #header, .theme-3 #header, .theme-4 #header {
+  font-palette: --palette1;
 }
-
-.theme-3 .bismillah {
-  font-palette: --palette5;
-}
-
-.theme-4 .bismillah {
-  font-palette: --palette4;
-}
-
-.theme-5 .bismillah {
-  font-palette: --palette5;
-} */
-
 

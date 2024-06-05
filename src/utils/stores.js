@@ -27,7 +27,7 @@ let __websiteOnline,
 	__pageURL,
 	__settingsDrawerHidden,
 	__topNavbarVisible,
-	__bottomNavbarVisible,
+	__bottomToolbarVisible,
 	__mushafPageDivisions,
 	__wordTooltip,
 	__bottomAlert,
@@ -126,7 +126,7 @@ if (browser) {
 	__topNavbarVisible = writable(true);
 
 	// to store the toggle boolean for bottom navbar
-	__bottomNavbarVisible = writable(true);
+	__bottomToolbarVisible = writable(true);
 
 	// to store the chapters and juz info of a mushaf page
 	__mushafPageDivisions = writable(null);
@@ -204,7 +204,7 @@ export {
 	__pageURL,
 	__settingsDrawerHidden,
 	__topNavbarVisible,
-	__bottomNavbarVisible,
+	__bottomToolbarVisible,
 	__mushafPageDivisions,
 	__wordTooltip,
 	__bottomAlert,

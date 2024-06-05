@@ -1,6 +1,6 @@
 <script>
-	import PageHead from '$components/PageHead.svelte';
-	import IndividualVerses from '$verses/IndividualVerses.svelte';
+	import PageHead from '$misc/PageHead.svelte';
+	import Individual from '$display/verses/modes/Individual.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
 	import { __currentPage, __wordType, __displayType, __wordTranslation, __verseTranslations, __userBookmarks } from '$utils/stores';
 	import { fetchVersesData } from '$utils/fetchData';
@@ -29,7 +29,7 @@
 		{:then chapterData}
 			<div>
 				{#each Object.entries(chapterData) as [key, value]}
-					<IndividualVerses {key} {value} />
+					<Individual {key} {value} />
 				{/each}
 			</div>
 		{:catch error}

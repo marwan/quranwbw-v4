@@ -1,16 +1,14 @@
 <script>
-	import { buttonElement, disabledElement, linkElement } from '$data/commonStyles';
-	import { __userToken, __userSettings, __tokenModalVisible } from '$utils/stores';
-	import { apiEndpoint } from '$data/websiteSettings';
-	import { downloadTextFile } from '$utils/downloadTextFile';
-	import Modal from '$flowbiteSvelte/modal/Modal.svelte';
-	import { downloadSettingsFromCloud, uploadSettingsToCloud } from '$utils/cloudSettings';
-
-	// icons
+	import Modal from '$ui/flowbite-svelte/modal/Modal.svelte';
 	import Download from '$svgs/Download.svelte';
 	import Share from '$svgs/Share.svelte';
 	import CloudDownload from '$svgs/CloudDownload.svelte';
 	import CloudUpload from '$svgs/CloudUpload.svelte';
+	import { buttonClasses, disabledClasses, linkClasses } from '$data/commonClasses';
+	import { __userToken, __userSettings, __tokenModalVisible } from '$utils/stores';
+	import { apiEndpoint } from '$data/websiteSettings';
+	import { downloadTextFile } from '$utils/downloadTextFile';
+	import { downloadSettingsFromCloud, uploadSettingsToCloud } from '$utils/cloudSettings';
 
 	let tokenTab = 0,
 		tokenGenerated = false,
@@ -176,14 +174,14 @@
 <Modal title="Token Login" id="tokenModal" bind:open={$__tokenModalVisible} class="rounded-3xl theme-grayscale" bodyClass="p-6 space-y-4 flex-1 overflow-y-auto overscroll-contain" headerClass="flex justify-between items-center p-6 rounded-t-3xl" center outsideclose>
 	<div id="token-info" class="flex flex-col space-y-4 text-sm">
 		<span>Token Login allows you to save your settings (bookmarks & notes for now) in the cloud without the need of creating an account or providing any personal details.</span>
-		<a href="/faq#11" class={linkElement} on:click={() => __tokenModalVisible.set(false)}>You can read more about it on our FAQs page (#11).</a>
+		<a href="/faq#11" class={linkClasses} on:click={() => __tokenModalVisible.set(false)}>You can read more about it on our FAQs page (#11).</a>
 	</div>
 
 	<!-- tabs buttons -->
 	{#if $__userToken === null}
 		<div class="flex flex-col space-y-2 mt-4 md:flex-row md:space-x-2 md:space-y-0">
-			<button on:click={() => switchTabs(1)} class="w-full {buttonElement}">I have a token</button>
-			<button on:click={() => switchTabs(2)} class="w-full {buttonElement}">I want a token</button>
+			<button on:click={() => switchTabs(1)} class="w-full {buttonClasses}">I have a token</button>
+			<button on:click={() => switchTabs(2)} class="w-full {buttonClasses}">I want a token</button>
 		</div>
 	{/if}
 
@@ -204,9 +202,9 @@
 
 	<!-- I already have a token -->
 	{#if tokenTab === 1 && $__userToken === null}
-		<div id="already-have-a-token" class="flex flex-col space-y-4 justify-center">
-			<input id="token-value" type="text" class="rounded-md w-full text-center text-xs" placeholder="Enter your token here..." />
-			<button id="validate-token" on:click={() => validateToken()} class="w-full {buttonElement} {tokenValidationInProcess === true && disabledElement}">
+		<div id="already-have-a-token" class="flex flex-row justify-center">
+			<input id="token-value" type="text" class="rounded-l-full rounded-r-none w-full text-center text-xs" placeholder="Your token here..." />
+			<button id="validate-token" on:click={() => validateToken()} class="w-full {buttonClasses} rounded-l-none border-0 {tokenValidationInProcess === true && disabledClasses}">
 				<span>{!tokenValidationInProcess ? 'Validate Token' : 'Validating token...'}</span>
 			</button>
 		</div>
@@ -216,7 +214,7 @@
 	{#if tokenTab === 2 && $__userToken === null}
 		<div id="want-to-generate-token" class="flex flex-col justify-center">
 			{#if !tokenGenerated}
-				<button id="generate-token" on:click={() => generateToken()} class="w-full {buttonElement} {tokenGenerationInProcess === true && disabledElement}">
+				<button id="generate-token" on:click={() => generateToken()} class="w-full {buttonClasses} {tokenGenerationInProcess === true && disabledClasses}">
 					<span>{!tokenGenerationInProcess ? 'Generate Token' : 'Generating token...'}</span>
 				</button>
 			{/if}
@@ -233,12 +231,12 @@
 				<!-- if browser supports web share api, show share button, else show download button -->
 				{#if navigator.share}
 					<!-- Share token -->
-					<button id="share-token" title="Share Token" on:click={() => shareToken()} class="w-fit {buttonElement}">
+					<button id="share-token" title="Share Token" on:click={() => shareToken()} class="w-fit {buttonClasses}">
 						<Share />
 					</button>
 				{:else}
 					<!-- download file -->
-					<button id="download-token-file" title="Download Token" on:click={() => downloadTextFile(`quranwbw-token-${$__userToken}`, $__userToken)} class="w-fit {buttonElement}">
+					<button id="download-token-file" title="Download Token" on:click={() => downloadTextFile(`quranwbw-token-${$__userToken}`, $__userToken)} class="w-fit {buttonClasses}">
 						<Download />
 					</button>
 				{/if}
@@ -247,19 +245,19 @@
 			<div class="flex flex-col space-y-4">
 				<!-- download / upload buttons -->
 				<div class="flex flex-row space-x-2 space-y-0">
-					<button id="upload-settings" on:click={() => uploadSettings()} class="w-full {buttonElement} {settingsUploadInProcess || settingsDownloadInProcess ? disabledElement : null}">
+					<button id="upload-settings" on:click={() => uploadSettings()} class="w-full {buttonClasses} {settingsUploadInProcess || settingsDownloadInProcess ? disabledClasses : null}">
 						<CloudUpload />
 						<span> {!settingsUploadInProcess ? 'Backup' : 'Uploading...'} </span>
 					</button>
 
-					<button id="download-settings" on:click={() => downloadSettings()} class="w-full {buttonElement} {settingsUploadInProcess || settingsDownloadInProcess ? disabledElement : null}">
+					<button id="download-settings" on:click={() => downloadSettings()} class="w-full {buttonClasses} {settingsUploadInProcess || settingsDownloadInProcess ? disabledClasses : null}">
 						<CloudDownload />
 						<span> {!settingsDownloadInProcess ? 'Restore' : 'Downloading...'} </span>
 					</button>
 				</div>
 
 				<!-- delete token button -->
-				<button id="delete-token" on:click={() => deleteToken()} class="{buttonElement} w-full bg-gray-600 hover:bg-lightGray {settingsUploadInProcess || settingsDownloadInProcess ? disabledElement : null}">
+				<button id="delete-token" on:click={() => deleteToken()} class="{buttonClasses} w-full {settingsUploadInProcess || settingsDownloadInProcess ? disabledClasses : null}">
 					<span>Delete Token</span>
 				</button>
 			</div>

@@ -1,16 +1,16 @@
 <script>
+	import Drawer from '$ui/flowbite-svelte/drawer/Drawer.svelte';
+	import Radio from '$ui/flowbite-svelte/forms/Radio.svelte';
+	import Checkbox from '$ui/flowbite-svelte/forms/Checkbox.svelte';
+	import Plus from '$svgs/Plus.svelte';
+	import Minus from '$svgs/Minus.svelte';
 	import { __currentPage, __chapterData, __chapterNumber, __wordType, __displayType, __websiteTheme, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __verseTranslations, __reciter, __playbackSpeed, __userSettings, __tajweedEnabled, __wordTooltip, __settingsDrawerHidden, __wakeLockEnabled } from '$utils/stores';
 	import { displayOptions, selectableFontTypes, selectableThemes, selectableVerseTranslations, verseTranslationsLanguages, selectableWordTranslations, selectableReciters, selectablePlaybackSpeeds, selectableTooltipOptions } from '$data/options';
 	import { updateSettings } from '$utils/updateSettings';
 	import { resetSettings } from '$utils/resetSettings';
-	import { disabledElement, buttonElement } from '$data/commonStyles';
-	import Drawer from '$flowbiteSvelte/drawer/Drawer.svelte';
-	import { CloseButton, Button, Dropdown, Radio, Checkbox } from 'flowbite-svelte';
+	import { disabledClasses, buttonClasses } from '$data/commonClasses';
+	import { CloseButton, Button, Dropdown } from 'flowbite-svelte';
 	import { sineIn } from 'svelte/easing';
-
-	// icons
-	import Plus from '$svgs/Plus.svelte';
-	import Minus from '$svgs/Minus.svelte';
 
 	const transitionParamsRight = {
 		x: 320,
@@ -23,7 +23,6 @@
 	const radioClasses = 'font-normal';
 
 	$: fontSizeCodes = JSON.parse($__userSettings).displaySettings.fontSizes;
-
 	$: wordTranslationKey = Object.keys(selectableWordTranslations).filter((item) => selectableWordTranslations[item].id === $__wordTranslation);
 </script>
 
@@ -56,7 +55,7 @@
 			<div class="border-b"></div>
 
 			<!-- display-type-setting -->
-			<div id="display-type-setting" class="{settingsBlockClasses} {$__currentPage === 'page' && disabledElement}">
+			<div id="display-type-setting" class="{settingsBlockClasses} {$__currentPage === 'page' && disabledClasses}">
 				<div class="flex flex-row justify-between items-center">
 					<div class="block text-gray-900">Display Type</div>
 					<Button class={selectorClasses}>{displayOptions[$__displayType].displayName}</Button>
@@ -92,7 +91,7 @@
 				<div class="flex flex-row justify-between items-center">
 					<span class="block text-gray-900">Word Translation</span>
 
-					<label class="inline-flex items-center cursor-pointer {$__wordTransliterationEnabled === false && disabledElement}">
+					<label class="inline-flex items-center cursor-pointer {$__wordTransliterationEnabled === false && disabledClasses}">
 						<input type="checkbox" value="" class="sr-only peer" checked={$__wordTranslationEnabled} on:click={(event) => updateSettings({ type: 'wordTranslationEnabled', value: event.target.checked })} />
 						<div
 							class="relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-300 dark:peer-focus:ring-gray-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-gray-600"
@@ -108,7 +107,7 @@
 			<div id="word-transliteration-toggle-setting" class={settingsBlockClasses}>
 				<div class="flex flex-row justify-between items-center">
 					<span class="block text-gray-900">Word Transliteration</span>
-					<label class="inline-flex items-center cursor-pointer {$__wordTranslationEnabled === false && disabledElement}">
+					<label class="inline-flex items-center cursor-pointer {$__wordTranslationEnabled === false && disabledClasses}">
 						<input type="checkbox" value="" class="sr-only peer" checked={$__wordTransliterationEnabled} on:click={(event) => updateSettings({ type: 'wordTransliterationEnabled', value: event.target.checked })} />
 						<div
 							class="relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-300 dark:peer-focus:ring-gray-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-gray-600"
@@ -155,13 +154,13 @@
 						{/each}
 					</Dropdown>
 				</div>
-				<p class="mb-6 text-sm text-gray-500">Multiple Quranic fonts to choose from depending on your Mushaf or region preference.</p>
+				<p class="mb-6 text-sm text-gray-500">Multiple Quranic fonts to choose from depending on your mushaf or region preference.</p>
 			</div>
 
 			<div class="border-b"></div>
 
 			<!-- tajweed-toggle-setting -->
-			<div id="tajweed-toggle-setting" class="{settingsBlockClasses} {$__wordType !== 2 && disabledElement}">
+			<div id="tajweed-toggle-setting" class="{settingsBlockClasses} {$__wordType !== 2 && disabledClasses}">
 				<div class="flex flex-row justify-between items-center">
 					<span class="block text-gray-900">Colored Fonts</span>
 
@@ -178,7 +177,7 @@
 			<div class="border-b"></div>
 
 			<!-- arabic-word-size-setting -->
-			<div id="arabic-word-size-setting" class="{settingsBlockClasses} {$__currentPage === 'page' && disabledElement}">
+			<div id="arabic-word-size-setting" class="{settingsBlockClasses} {$__currentPage === 'page' && disabledClasses}">
 				<div class="flex flex-row justify-between items-center">
 					<span class="block text-gray-900">Arabic Word Size ({fontSizeCodes.arabicText.split('-')[1]})</span>
 					<div class="inline-flex rounded-md shadow-sm" role="group">
@@ -325,7 +324,7 @@
 
 	<!-- reset settings button -->
 	<div class="flex flex-col justify-center border-t border-gray-200 py-6 space-y-4">
-		<button on:click={() => resetSettings()} class="text-sm {buttonElement}">Reset Settings</button>
-		<p class="mb-6 text-sm text-gray-500">Resetting the options will not affect your bookmarks or last read location.</p>
+		<button on:click={() => resetSettings()} class="text-sm {buttonClasses}">Reset Settings</button>
+		<p class="mb-6 text-sm text-gray-500">Resetting the options will not erase your bookmarks, notes, and last read location.</p>
 	</div>
 </Drawer>

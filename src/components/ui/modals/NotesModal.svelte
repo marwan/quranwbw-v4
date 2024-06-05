@@ -1,9 +1,9 @@
 <script>
+	import Modal from '$ui/flowbite-svelte/modal/Modal.svelte';
 	import { quranMetaData } from '$data/quranMeta';
 	import { __currentPage, __chapterNumber, __audioSettings, __verseKey, __notesData, __userNotes, __notesModalVisible } from '$utils/stores';
-	import { buttonElement } from '$data/commonStyles';
+	import { buttonClasses } from '$data/commonClasses';
 	import { timeAgo } from '$utils/timeAgo';
-	import Modal from '$flowbiteSvelte/modal/Modal.svelte';
 	import { updateSettings } from '$utils/updateSettings';
 
 	let verseNote, noteModifiedAt;
@@ -38,7 +38,7 @@
 		<div id="notes-last-modified" class="text-xs mt-4">Last modified: {noteModifiedAt}</div>
 	{/if}
 
-	<button id="notes-submit-button" on:click={() => updateNotesHandler()} class="w-full mr-2 mt-6 {buttonElement}">
+	<button id="notes-submit-button" on:click={() => updateNotesHandler()} class="w-full mr-2 mt-6 {buttonClasses}">
 		<span>Update Note</span>
 	</button>
 </Modal>

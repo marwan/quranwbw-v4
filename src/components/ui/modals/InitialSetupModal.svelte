@@ -1,10 +1,10 @@
 <script>
-	import ChapterVerses from '$verses/ChapterVerses.svelte';
+	import Chapter from '$display/verses/modes/Chapter.svelte';
 	import { __currentPage, __chapterData, __wordType, __displayType } from '$utils/stores';
 	import { displayOptions, selectableFontTypes } from '$data/options';
 	import { updateSettings } from '$utils/updateSettings';
 	import { toggleModal } from '$utils/toggleModal';
-	import { buttonElement } from '$data/commonStyles';
+	import { buttonClasses } from '$data/commonClasses';
 
 	// show the setup modal on first visit except on the home page
 	$: {
@@ -13,7 +13,7 @@
 
 			// // if the setup was not already done
 			// if (userSettings.initialSetupCompleted === false) {
-			//   toggleModal("initial-setup-modal", "show");
+			//   toggleModal("initialSetupModal", "show");
 
 			//   // set initialSetupCompleted to true
 			//   updateSettings({ type: "initialSetupCompleted", value: true });
@@ -23,14 +23,14 @@
 </script>
 
 <!-- Main modal -->
-<div id="initial-setup-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full theme-grayscale">
+<div id="initialSetupModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full theme-grayscale">
 	<div class="relative w-full max-w-2xl max-h-full sm:mx-auto h-[calc(100%-3.5rem)] min-h-[calc(100%-3.5rem)] flex items-center">
 		<!-- Modal content -->
 		<div class="max-h-full overflow-hidden flex flex-col bg-white rounded-3xl shadow dark:bg-gray-700">
 			<!-- Modal header -->
 			<div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
 				<h3 class="text-xl font-semibold text-gray-900">Initial Setup</h3>
-				<button on:click={() => toggleModal('initial-setup-modal', 'hide')} type="button" class="text-gray-400 bg-transparent hover:bg-lightGray hover:text-gray-900 rounded-3xl text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-lightGray dark:hover:text-white">
+				<button on:click={() => toggleModal('initialSetupModal', 'hide')} type="button" class="bg-transparent hover:bg-lightGray hover:text-gray-900 rounded-3xl text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-lightGray dark:hover:text-white">
 					<svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
 						<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
 					</svg>
@@ -73,7 +73,7 @@
 						<div class="flex flex-col pt-8 space-y-4">
 							<span class="text-center text-xs">Example Verse:</span>
 							<div id="exampleVerse" style="zoom: 60%;" class={displayOptions[`${$__displayType}`].customStyle}>
-								<ChapterVerses startVerse={1} endVerse={1} isExampleVerse={true} />
+								<Chapter startVerse={1} endVerse={1} isExampleVerse={true} />
 							</div>
 						</div>
 					{/if}
@@ -81,7 +81,7 @@
 			</div>
 			<!-- Modal footer -->
 			<div class="flex justify-end p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-				<button on:click={() => toggleModal('initial-setup-modal', 'hide')} type="button" class={buttonElement}>Close</button>
+				<button on:click={() => toggleModal('initialSetupModal', 'hide')} type="button" class={buttonClasses}>Close</button>
 			</div>
 		</div>
 	</div>

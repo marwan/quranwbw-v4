@@ -3,9 +3,9 @@
 	// props from router
 	export let data, startVerse, endVerse;
 
-	import PageHead from '$components/PageHead.svelte';
-	import Bismillah from '$components/Bismillah.svelte';
-	import ChapterVerses from '$verses/ChapterVerses.svelte';
+	import PageHead from '$misc/PageHead.svelte';
+	import Bismillah from '$display/Bismillah.svelte';
+	import Chapter from '$display/verses/modes/Chapter.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
 	import { parseURL } from '$utils/parseURL';
 	import { fetchChapterData } from '$utils/fetchData';
@@ -59,7 +59,7 @@
 
 		<!-- need custom stylings if display type is 3 or 4 - continuous -->
 		<div id="verses-block" class={displayOptions[JSON.parse($__userSettings).displaySettings.displayType].customStyle}>
-			<ChapterVerses {startVerse} {endVerse} />
+			<Chapter {startVerse} {endVerse} />
 		</div>
 	{:catch error}
 		<p>{errorLoadingDataMessage}</p>

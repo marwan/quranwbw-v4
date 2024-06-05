@@ -1,14 +1,14 @@
 <script>
-	import PageHead from '$components/PageHead.svelte';
+	import PageHead from '$misc/PageHead.svelte';
 	import { __currentPage } from '$utils/stores';
-	import { linkElement } from '$data/commonStyles';
+	import { linkClasses } from '$data/commonClasses';
 	import { websiteFAQs } from '$data/faq';
 
 	// https://stackoverflow.com/a/59862556
 	function linkMarkdown(string) {
 		return string.replace(/\[.*?\]\(.*?\)/g, (text) => {
 			let [fullmatch, name, link] = /\[(.*?)\]\((.*?)\)/g.exec(text);
-			return `<a href="${link}" target="_blank" class="${linkElement}">${name}</a>`;
+			return `<a href="${link}" target="_blank" class="${linkClasses}">${name}</a>`;
 		});
 	}
 

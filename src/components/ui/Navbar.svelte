@@ -1,21 +1,27 @@
 <script>
-	import { quranMetaData } from '$data/quranMeta';
-	import { __chapterNumber, __currentPage, __lastRead, __pageURL, __topNavbarVisible, __pageNumber, __morphologyKey, __mushafPageDivisions, __settingsDrawerHidden } from '$utils/stores';
 	import NavigationDropdown from '$ui/NavigationDropdown.svelte';
 	import NavbarChaptersDropdown from '$ui/NavbarChaptersDropdown.svelte';
-
-	// icons
 	import Menu from '$svgs/Menu.svelte';
 	import Home from '$svgs/Home.svelte';
 	import ChevronDown from '$svgs/ChevronDown.svelte';
+	import { quranMetaData } from '$data/quranMeta';
+	import { __chapterNumber, __currentPage, __lastRead, __pageURL, __topNavbarVisible, __pageNumber, __morphologyKey, __mushafPageDivisions } from '$utils/stores';
 
 	// updating the page, juz... when the last read location updates
-	let lastReadPage, lastReadJuz;
+	let lastReadPage;
+	let lastReadJuz;
+	let lastReadChapter = 1;
+	let lastReadVerse = 1;
 
 	$: {
 		try {
 			lastReadPage = document.getElementById($__lastRead).getAttribute('data-page');
 			lastReadJuz = document.getElementById($__lastRead).getAttribute('data-juz');
+
+			if ($__lastRead !== null) {
+				lastReadChapter = $__lastRead.split(':')[0];
+				lastReadVerse = $__lastRead.split(':')[1];
+			}
 		} catch (error) {}
 	}
 
@@ -23,7 +29,7 @@
 	$: chapterRevelation = quranMetaData[$__chapterNumber].revelation;
 
 	// scroll percentage
-	$: chapterProgress = ($__lastRead.split(':')[1] / quranMetaData[$__chapterNumber].verses) * 100;
+	$: chapterProgress = (lastReadVerse / quranMetaData[lastReadChapter].verses) * 100;
 
 	let navbarChapterName;
 
@@ -38,8 +44,8 @@
 	}
 
 	// for mushaf page bottom nav
-	let mushafChapter = '...',
-		mushafJuz = '...';
+	let mushafChapter = '...';
+	let mushafJuz = '...';
 
 	$: {
 		try {

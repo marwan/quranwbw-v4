@@ -2,7 +2,7 @@
 	export let wordData, tableType;
 
 	import { __wordType } from '$utils/stores';
-	import { buttonElement } from '$data/commonStyles';
+	import { buttonClasses } from '$data/commonClasses';
 
 	const tableTitles = {
 		1: { title: 'Words in Quran having same root', error: 'Root data for this word is not available.' },
@@ -28,7 +28,7 @@
 			<h1 class="text-md md:text-2xl text-center opacity-70">{tableTitles[tableType].title} ({totalAvailableWords})</h1>
 			<div class="max-h-80 overflow-auto">
 				<table class="w-full text-sm text-left rtl:text-right text-gray-500">
-					<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700">
+					<thead class="text-xs text-gray-700 uppercase bg-lightGray">
 						<tr>
 							<th scope="col" class="px-6 py-3"> # </th>
 							<th scope="col" class="px-6 py-3"> Word </th>
@@ -56,7 +56,7 @@
 			<!-- button to load more words -->
 			{#if totalAvailableWords > 10}
 				<div class="text-center text-xs {lastWordToLoad === totalAvailableWords && 'hidden'}">
-					<button on:click={() => updateLastWordToLoad()} class={buttonElement}>Load more</button>
+					<button on:click={() => updateLastWordToLoad()} class={buttonClasses}>Load more</button>
 				</div>
 			{/if}
 		</div>
