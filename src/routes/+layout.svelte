@@ -24,7 +24,7 @@
 	checkOldBookmarks();
 
 	// custom padding depending on page
-	$: paddingTop = $__currentPage === 'home' ? 'pt-12' : 'pt-16';
+	$: paddingTop = $__currentPage === 'home' ? 'pt-10' : 'pt-16';
 	$: paddingX = $__currentPage === 'page' ? 'px-0 md:px-4' : $__currentPage === 'home' ? 'px-0' : 'px-4';
 
 	// if settings drawer is open, hide body scroll

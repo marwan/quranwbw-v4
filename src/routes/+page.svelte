@@ -2,6 +2,7 @@
 	import PageHead from '$misc/PageHead.svelte';
 	import HomepageTabs from '$ui/HomepageTabs.svelte';
 	import Logo from '$svgs/Logo.svelte';
+	import Quran from '$svgs/Quran.svelte';
 	import Supplication from '$svgs/Supplication.svelte';
 	import Morphology from '$svgs/Morphology.svelte';
 	import Search from '$svgs/Search.svelte';
@@ -33,8 +34,9 @@
 
 <div class="max-w-4xl mx-auto flex flex-col space-y-8 md:px-4 theme-grayscale">
 	<div class="flex flex-col mt-4">
-		<a href="/" class="flex justify-center" aria-label="Home">
-			<Logo width="52" />
+		<a href="/" class="flex flex-col items-center justify-center" aria-label="Home">
+			<Quran size={50} />
+			<Logo />
 		</a>
 		<div class="text-xs text-center opacity-70">{websiteTagline}</div>
 	</div>
