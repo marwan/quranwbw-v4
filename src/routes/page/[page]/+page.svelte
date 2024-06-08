@@ -46,10 +46,6 @@
 			const apiData = data.data.verses;
 			localStorage.setItem('pageData', JSON.stringify(apiData));
 
-			// !!!!!!!!!!!!!!!!!!!!!!!!!!!
-			// page 27: does not load because last verse icon is null
-			// page 36, 77: last word of first line is overflowing
-
 			startingLine = apiData[Object.keys(apiData)[0]].words.line.split('|')[0];
 			endingLine = apiData[Object.keys(apiData)[Object.keys(apiData).length - 1]].words.end_line;
 
