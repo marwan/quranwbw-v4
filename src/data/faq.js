@@ -27,7 +27,7 @@ export const websiteFAQs = [
 	{
 		id: 6,
 		question: 'I have a feature to suggest or an issue to report, how do I do it?',
-		answer: "We suggest you to raise it on our [GitHub repository](https://github.com/marwan/quranwbw-v4). In case you're not sure how to use it, drop us an email on [contact@quranwbw.com](mailto:contact@quranwbw.com)."
+		answer: "We suggest you to raise it on our [GitHub repository](https://github.com/marwan/quranwbw-v4). In case you're not sure how to use it, drop us an email on [quranwbw@gmail.com](mailto:quranwbw@gmail.com)."
 	},
 	{
 		id: 7,
@@ -42,7 +42,7 @@ export const websiteFAQs = [
 	{
 		id: 9,
 		question: 'I am looking for certain data which is available on QuranWBW.com, how do I get it?',
-		answer: "We suggest you to contact the original contributors directly. However depending on the type of data you are looking for, we can try helping you with it. Drop us an [email](mailto:contact@quranwbw.com) and we'll see."
+		answer: "We suggest you to contact the original contributors directly. However depending on the type of data you are looking for, we can try helping you with it. Drop us an [email](mailto:quranwbw@gmail.com) and we'll see."
 	},
 	{
 		id: 10,
@@ -58,6 +58,6 @@ export const websiteFAQs = [
 	{
 		id: 99999,
 		question: 'I have more questions which are not listed here, where can I ask them?',
-		answer: "We suggest you to raise it on our [GitHub repository](https://github.com/marwan/quranwbw-v4). In case you're not sure how to use it, drop us an email on [contact@quranwbw.com](mailto:contact@quranwbw.com)."
+		answer: "We suggest you to raise it on our [GitHub repository](https://github.com/marwan/quranwbw-v4). In case you're not sure how to use it, drop us an email on [quranwbw@gmail.com](mailto:quranwbw@gmail.com)."
 	}
 ];

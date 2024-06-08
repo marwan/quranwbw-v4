@@ -2,7 +2,8 @@
 	import PageHead from '$misc/PageHead.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
 	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
-	import { __currentPage } from '$utils/stores';
+	import { selectableThemes } from '$data/options';
+	import { __currentPage, __websiteTheme } from '$utils/stores';
 	import { timeAgo } from '$utils/timeAgo';
 	import { buttonClasses, linkClasses, labelPillClasses } from '$data/commonClasses';
 
@@ -28,6 +29,8 @@
 			return data.data;
 		})();
 	}
+
+	$: userAvatarClasses = `rounded-full inline-flex w-5 h-5 ${selectableThemes[$__websiteTheme].palette === 1 ? 'invert' : null}`;
 
 	__currentPage.set('changelogs');
 </script>
@@ -66,7 +69,7 @@
 									{/each}
 								</div>
 								<div>
-									<img class="rounded-full inline-flex w-5 h-5" src={value.user.avatar_url} alt={value.user.login} />
+									<img class={userAvatarClasses} src={value.user.avatar_url} alt={value.user.login} />
 									{value.user.login} opened {timeAgo(value.created_at)} (#{value.number})
 								</div>
 							</div>

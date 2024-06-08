@@ -1,28 +1,25 @@
 <script>
-	import { quranMetaData } from '$data/quranMeta';
-	import { __chapterNumber, __pageURL } from '$utils/stores';
-	import { Dropdown, DropdownItem } from 'flowbite-svelte';
 	import PointNavigationSelector from '$ui/PointNavigationSelector.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
+	import Dropdown from '$ui/flowbite-svelte/dropdown/Dropdown.svelte';
+	import DropdownItem from '$ui/flowbite-svelte/dropdown/DropdownItem.svelte';
+	import { quranMetaData } from '$data/quranMeta';
+	import { __chapterNumber, __pageURL } from '$utils/stores';
 	import { inview } from 'svelte-inview';
 
 	let dropdownOpen = false;
-
 	let maxChaptersLoaded = false;
 	let maxVersesLoaded = false;
 	let maxChaptersToLoad = 10;
 	let maxVersesToLoad = 1;
 
-	// when dropdown opens
+	// when dropdown is toggled
 	$: {
 		if (dropdownOpen) {
 			maxVersesLoaded = false;
 			maxVersesToLoad = quranMetaData[window.chapter].verses > 10 ? 10 : quranMetaData[window.chapter].verses;
 		}
-	}
 
-	// when dropdown closes
-	$: {
 		if (!dropdownOpen) {
 			(maxChaptersLoaded = false), (maxVersesLoaded = false);
 			maxVersesToLoad = quranMetaData[window.chapter].verses > 10 ? 10 : quranMetaData[window.chapter].verses;

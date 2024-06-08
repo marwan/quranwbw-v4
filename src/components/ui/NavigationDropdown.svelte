@@ -1,7 +1,8 @@
 <script>
 	import ExternalLink from '$svgs/ExternalLink.svelte';
+	import Dropdown from '$ui/flowbite-svelte/dropdown/Dropdown.svelte';
+	import DropdownItem from '$ui/flowbite-svelte/dropdown/DropdownItem.svelte';
 	import { __settingsDrawerHidden, __tajweedRulesModalVisible, __tokenModalVisible } from '$utils/stores';
-	import { Dropdown, DropdownItem } from 'flowbite-svelte';
 
 	let dropdownOpen = false;
 
@@ -24,7 +25,7 @@
 		},
 		{
 			title: 'Guess The Word',
-			link: '/quiz/guess-the-word'
+			link: '/games/guess-the-word'
 		},
 		{
 			title: 'FAQs',

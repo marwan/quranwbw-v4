@@ -51,7 +51,7 @@
 
 			<br /><br />
 			Do note, this website is just a hobby project and is not being worked on full-time. If you'd like to report an issue, have any suggestions, or would like to contribute, please visit Quranwbw.com's <a class={linkClasses} target="_blank" rel="noreferrer" href="https://github.com/marwan/quranwbw-v4">GitHub repository</a>, or contact us on
-			<a class={linkClasses} href="mailto:contact@quranwbw.com">contact@quranwbw.com</a>.
+			<a class={linkClasses} href="mailto:quranwbw@gmail.com">quranwbw@gmail.com</a>.
 
 			<br /><br />
 			All the data used on this website belongs to their respective owners/authors and copying them is not allowed.

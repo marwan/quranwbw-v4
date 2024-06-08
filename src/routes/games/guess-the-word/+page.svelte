@@ -79,7 +79,7 @@
 									<!-- check / cross icon -->
 									{#if answerChecked === true && selection === +key}
 										<div class="justify-end">
-											<svelte:component this={selection === randomWord ? Check : Cross} size={7} />
+											<svelte:component this={selection === randomWord ? Check : Cross} size={5} />
 										</div>
 									{/if}
 								</Radio>
@@ -90,9 +90,9 @@
 
 				<!-- answer-results -->
 				{#if answerChecked === true && isAnswerCorrect !== null}
-					<div id="answer-results" class="flex justify-center font-medium text-xl theme-grayscale">
+					<div id="answer-results" class="flex justify-center text-center font-medium text-md theme-grayscale">
 						<span>
-							{isAnswerCorrect ? 'Your answer was correct 😊' : 'Your answer was wrong 😢'}
+							{isAnswerCorrect ? 'Your answer was correct.' : `Sorry, the correct answer was "${fetchData[randomWord].word_english}".`}
 						</span>
 					</div>
 				{/if}

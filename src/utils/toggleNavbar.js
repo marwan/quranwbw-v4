@@ -20,8 +20,13 @@ export function toggleNavbar() {
 
 				// scrolling down
 				else {
-					__topNavbarVisible.set(false);
-					__bottomToolbarVisible.set(false);
+					if (window.scrollY === 0) {
+						__topNavbarVisible.set(true);
+						__bottomToolbarVisible.set(true);
+					} else {
+						__topNavbarVisible.set(false);
+						__bottomToolbarVisible.set(false);
+					}
 				}
 
 				prevScrollpos = currentScrollPos;

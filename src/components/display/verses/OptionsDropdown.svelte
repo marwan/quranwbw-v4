@@ -1,11 +1,12 @@
 <script>
 	export let page;
 
+	import Dropdown from '$ui/flowbite-svelte/dropdown/Dropdown.svelte';
+	import DropdownItem from '$ui/flowbite-svelte/dropdown/DropdownItem.svelte';
 	import { showAudioModal } from '$utils/audioController';
 	import { quranMetaData } from '$data/quranMeta';
 	import { __userSettings, __verseKey, __notesModalVisible } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';
-	import { Dropdown, DropdownItem } from 'flowbite-svelte';
 
 	// update userBookmarks whenever the __userSettings changes
 	$: userBookmarks = JSON.parse($__userSettings).userBookmarks;
