@@ -36,6 +36,14 @@
 }
 
 @font-face {
+  font-family: "bismillah";
+  src: url("../fonts/bismillah/QCF_Bismillah_COLOR-Regular.woff2") format("woff2"), url("../fonts/bismillah/QCF_Bismillah_COLOR-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: "urdu";
   src: url("../fonts/languages/Mehr-Nastaliq.ttf") format("truetype");
   font-weight: normal;
@@ -146,6 +154,11 @@ svg {
 
 .tajweed-rules {
   font-family: "tajweed-rules";
+  font-display: block;
+}
+
+.bismillah {
+  font-family: "bismillah";
   font-display: block;
 }
 
