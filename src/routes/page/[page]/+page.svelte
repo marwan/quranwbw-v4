@@ -8,12 +8,12 @@
 	import WordsBlock from '$display/verses/WordsBlock.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
 	import { goto } from '$app/navigation';
-	import { __chapterNumber, __pageNumber, __currentPage, __wordType, __tajweedEnabled, __mushafPageDivisions } from '$utils/stores';
+	import { __chapterNumber, __pageNumber, __currentPage, __wordType, __wordTranslation, __tajweedEnabled, __mushafPageDivisions } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';
 	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
 	import { quranMetaData, chapterHeaderCodes } from '$data/quranMeta';
 	import { mushafFontLinks } from '$data/options';
-	import { buttonClasses, tabPillClasses } from '$data/commonClasses';
+	import { buttonClasses } from '$data/commonClasses';
 	import { loadFont } from '$utils/loadFont';
 	import '$lib/swiped-events.min.js';
 
@@ -40,7 +40,7 @@
 		(chapters = []), (verses = []), (lines = []);
 
 		pageData = (async () => {
-			const apiURL = `${apiEndpoint}/page?page=${page}&word_type=${$__wordType}&word_translation=1&v=92827326`;
+			const apiURL = `${apiEndpoint}/page?page=${page}&word_type=${$__wordType}&word_translation=${$__wordTranslation}&v=92827326`;
 			const response = await fetch(apiURL);
 			const data = await response.json();
 			const apiData = data.data.verses;

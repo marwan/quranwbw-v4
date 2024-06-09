@@ -73,16 +73,12 @@
 
 	<!-- internal links -->
 	{#each Object.entries(internalLinks) as [id, link]}
-		<a href={link.link}>
-			<DropdownItem class={dropdownItemClasses}>{link.title}</DropdownItem>
-		</a>
+		<DropdownItem class={dropdownItemClasses} href={link.link}>{link.title}</DropdownItem>
 	{/each}
 
 	<!-- external links -->
-	<a href="https://legacy.quranwbw.com/" target="_blank">
-		<DropdownItem class="{dropdownItemClasses} flex flex-row items-center justify-between">
-			Legacy Website
-			<ExternalLink size={3} />
-		</DropdownItem>
-	</a>
+	<DropdownItem class="{dropdownItemClasses} flex flex-row items-center justify-between" href="https://legacy.quranwbw.com/" target="_blank">
+		Legacy Website
+		<ExternalLink size={3} />
+	</DropdownItem>
 </Dropdown>

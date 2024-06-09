@@ -75,14 +75,10 @@
 	</DropdownItem>
 
 	<!-- verse page button -->
-	<DropdownItem class={dropdownItemClasses}>
-		<a href="/page/{page}">Go to Page {page}</a>
-	</DropdownItem>
+	<DropdownItem class={dropdownItemClasses} href="/page/{page}">Go to Page {page}</DropdownItem>
 
 	<!-- verse morphology button -->
-	<DropdownItem class={dropdownItemClasses}>
-		<a href="/morphology/{$__verseKey}">Verse Morphology</a>
-	</DropdownItem>
+	<DropdownItem class={dropdownItemClasses} href="/morphology/{$__verseKey}">Verse Morphology</DropdownItem>
 
 	<!-- share verse button -->
 	<DropdownItem class={dropdownItemClasses} on:click={() => shareVerse()}>Share Verse</DropdownItem>

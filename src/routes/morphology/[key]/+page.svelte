@@ -8,7 +8,7 @@
 	import { quranMetaData } from '$data/quranMeta';
 	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
 	import { __currentPage, __wordType, __wordTranslation, __verseTranslations, __morphologyKey, __pageURL } from '$utils/stores';
-	import { tabPillClasses } from '$data/commonClasses';
+	import { buttonClasses } from '$data/commonClasses';
 	import { fetchVersesData } from '$utils/fetchData';
 
 	let fetchWordsData, fetchWordSummary;
@@ -50,18 +50,18 @@
 <PageHead title={`Morphology (${$__morphologyKey})`} />
 
 <div class="space-y-12 my-8">
-	<div id="verse-navigator" class="flex flex-row justify-center space-x-8">
+	<div id="verse-navigator" class="flex flex-row justify-center space-x-8 text-sm">
 		<!-- previous chapter -->
 		{#if verse === 1 && chapter > 1}
-			<a href="/morphology/{+chapter - 1}:1" class={tabPillClasses}>{@html '&#x2190;'} Chapter {+chapter - 1}</a>
+			<a href="/morphology/{+chapter - 1}:1" class={buttonClasses}>{@html '&#x2190;'} Chapter {+chapter - 1}</a>
 		{/if}
 
-		<a href="/morphology/{chapter}:{+verse - 1}" class="{tabPillClasses} {verse === 1 && 'hidden'}">{@html '&#x2190;'} Verse {chapter}:{+verse - 1}</a>
-		<a href="/morphology/{chapter}:{+verse + 1}" class="{tabPillClasses} {verse === quranMetaData[chapter].verses && 'hidden'}">Verse {chapter}:{+verse + 1} {@html '&#x2192;'}</a>
+		<a href="/morphology/{chapter}:{+verse - 1}" class="{buttonClasses} {verse === 1 && 'hidden'}">{@html '&#x2190;'} Verse {chapter}:{+verse - 1}</a>
+		<a href="/morphology/{chapter}:{+verse + 1}" class="{buttonClasses} {verse === quranMetaData[chapter].verses && 'hidden'}">Verse {chapter}:{+verse + 1} {@html '&#x2192;'}</a>
 
 		<!-- next chapter -->
 		{#if verse === quranMetaData[chapter].verses && chapter < 114}
-			<a href="/morphology/{+chapter + 1}:1" class={tabPillClasses}>Chapter {+chapter + 1} {@html '&#x2192;'}</a>
+			<a href="/morphology/{+chapter + 1}:1" class={buttonClasses}>Chapter {+chapter + 1} {@html '&#x2192;'}</a>
 		{/if}
 	</div>
 
