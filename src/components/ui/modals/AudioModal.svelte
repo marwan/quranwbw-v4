@@ -5,6 +5,8 @@
 	import { __currentPage, __chapterNumber, __audioSettings, __userSettings, __audioModalVisible } from '$utils/stores';
 	import { initializeAudio, updateAudioSettings } from '$utils/audioController';
 	import { disabledClasses, buttonClasses } from '$data/commonClasses';
+
+	$: console.log($__audioSettings);
 </script>
 
 <Modal id="audioModal" bind:open={$__audioModalVisible} size="xs" class="rounded-3xl theme-grayscale" bodyClass="p-6" placement="center" autoclose outsideclose>
@@ -22,8 +24,8 @@
 					<Radio bind:group={$__audioSettings.audioType} value="verse" on:change={(event) => updateAudioSettings}>Play Verse</Radio>
 				</div>
 				<!-- play word -->
-				<div class="flex items-center">
-					<Radio bind:group={$__audioSettings.audioType} value="word" on:change={(event) => updateAudioSettings}>Play Word</Radio>
+				<div class="flex items-center {$__currentPage !== 'chapter' && disabledClasses}">
+					<Radio bind:group={$__audioSettings.audioType} value="word" on:change={(event) => updateAudioSettings}>Play Words</Radio>
 				</div>
 			</div>
 
@@ -44,7 +46,7 @@
 					<Radio bind:group={$__audioSettings.audioRange} value="playThisVerse" on:change={(event) => updateAudioSettings}>This Verse</Radio>
 				</div>
 				<!-- play from here -->
-				<div class="flex items-center {$__currentPage !== 'chapter' && disabledClasses}">
+				<div class="flex items-center {!['chapter', 'page'].includes($__currentPage) && disabledClasses}">
 					<Radio bind:group={$__audioSettings.audioRange} value="playFromHere" on:change={(event) => updateAudioSettings}>From Here</Radio>
 				</div>
 				<!-- play range -->

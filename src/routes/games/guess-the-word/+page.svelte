@@ -9,6 +9,7 @@
 	import { __currentPage, __wordType, __quizCorrectAnswers, __quizWrongAnswers } from '$utils/stores';
 	import { buttonClasses, disabledClasses } from '$data/commonClasses';
 	import { updateSettings } from '$utils/updateSettings';
+	import { playWord } from '$utils/audioController';
 
 	let randomID = 1;
 	let fetchData;
@@ -62,10 +63,10 @@
 		{:then fetchData}
 			<div class="flex flex-col space-y-8 justify-center">
 				<!-- word -->
-				<div class="flex flex-col space-y-4 text-center">
+				<button class="flex flex-col space-y-4 mx-auto items-center" on:click={() => playWord(fetchData[randomWord].word_key)}>
 					<span class="text-5xl md:text-7xl arabic-font-1">{fetchData[randomWord].word_uthmani}</span>
 					<span class="text-xs">{fetchData[randomWord].word_transliteration}</span>
-				</div>
+				</button>
 
 				<!-- options -->
 				<div id="options" class="pt-8 theme-grayscale">

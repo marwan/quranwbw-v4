@@ -44,7 +44,7 @@
 	}
 </script>
 
-<Dropdown bind:open={dropdownOpen} class="px-2 mr-2 my-2 w-fit font-sans theme-grayscale">
+<Dropdown bind:open={dropdownOpen} class="px-2 mr-2 my-2 w-fit text-left font-sans theme-grayscale">
 	<div class="py-2 px-4 text-xs font-semibold text-left">Verse {$__verseKey}</div>
 
 	<!-- play verse button -->

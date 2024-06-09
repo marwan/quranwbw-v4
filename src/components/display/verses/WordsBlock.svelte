@@ -11,6 +11,12 @@
 	import { loadFont } from '$utils/loadFont';
 	import { wordAudioController } from '$utils/audioController';
 	import { Tooltip } from 'flowbite-svelte';
+	import { updateSettings } from '$utils/updateSettings';
+
+	const userSettings = JSON.parse(localStorage.getItem('userSettings'));
+
+	// for mushaf mode, we only allow v4 font type, but don't save the settings, and for other pages, get the font/word type from settings
+	updateSettings({ type: 'wordType', value: $__currentPage === 'page' ? 2 : userSettings.displaySettings.wordType });
 
 	const chapter = key.split(':')[0];
 	const verse = key.split(':')[1];

@@ -1,13 +1,13 @@
 /* eslint-disable no-case-declarations */
 import { __userSettings, __wordType, __displayType, __websiteTheme, __wordTranslation, __verseTranslations, __wordTranslationEnabled, __wordTransliterationEnabled, __reciter, __playbackSpeed, __lastRead, __tajweedEnabled, __wordTooltip, __userBookmarks, __autoScrollSpeed, __wakeLockEnabled, __userNotes, __quizCorrectAnswers, __quizWrongAnswers } from '$utils/stores';
 import { selectableVerseTranslations } from '$data/options';
-import { uploadSettingsToCloud } from '$utils/cloudSettings';
+// import { uploadSettingsToCloud } from '$utils/cloudSettings';
 
 // function to update website settings
 export function updateSettings(props) {
 	// get the settings from localStorage
 	const userSettings = JSON.parse(localStorage.getItem('userSettings'));
-	let uploadSettings = false;
+	// let uploadSettings = false;
 
 	switch (props.type) {
 		// for chapter number
@@ -18,6 +18,7 @@ export function updateSettings(props) {
 		// for word types
 		case 'wordType':
 			__wordType.set(props.value);
+			if (props.skipSave) return;
 			userSettings.displaySettings.wordType = props.value;
 			break;
 
@@ -145,7 +146,7 @@ export function updateSettings(props) {
 			__userBookmarks.set(userBookmarks);
 
 			// upload settings to cloud on every update
-			if (props.set === true) uploadSettings = true;
+			// if (props.set === true) uploadSettings = true;
 			break;
 
 		case 'userNotes':
@@ -178,7 +179,7 @@ export function updateSettings(props) {
 			__userNotes.set(userNotes);
 
 			// upload settings to cloud on every update
-			if (props.set === true) uploadSettings = true;
+			// if (props.set === true) uploadSettings = true;
 			break;
 
 		// for last read

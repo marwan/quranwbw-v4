@@ -99,7 +99,7 @@
 		__pageNumber.set(page);
 	}
 
-	// only allow continious normal mode and don't save the layout in settings
+	// only allow continious normal mode, but skip saving the settings
 	updateSettings({ type: 'displayType', value: 4, skipSave: true });
 
 	// dynamically load header font
@@ -116,7 +116,7 @@
 	{#await pageData}
 		<Spinner height="screen" margin="-mt-20" />
 	{:then}
-		<div class="space-y-2">
+		<div class="space-y-2 mt-1">
 			<div class="max-w-3xl space-y-2 pb-2 mx-auto text-[5.4vw] md:text-[42px] lg:text-[36px]">
 				{#each Array.from(Array(endingLine + 1).keys()).slice(startingLine) as line}
 					<!-- if it's the first verse of a chapter -->

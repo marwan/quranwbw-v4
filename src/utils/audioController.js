@@ -1,6 +1,6 @@
 import { get } from 'svelte/store';
 import { quranMetaData } from '$data/quranMeta';
-import { __reciter, __playbackSpeed, __audioSettings, __audioModalVisible } from '$utils/stores';
+import { __reciter, __playbackSpeed, __audioSettings, __audioModalVisible, __currentPage, __chapterData } from '$utils/stores';
 import { wordsAudioURL } from '$data/websiteSettings';
 import { selectableReciters, selectablePlaybackSpeeds } from '$data/options';
 import { scrollSmoothly } from '$utils/scrollSmoothly';
@@ -73,7 +73,11 @@ export function playAudio(props) {
 		// enable wbw highlighting only if the reciter is Mishary Rashid Alafasy
 		if (selectableReciters[get(__reciter)].id === 10) audio.addEventListener('timeupdate', wordHighlighter);
 
-		scrollSmoothly(document.getElementById(`${audioSettings.playingKey}`).offsetTop - 200, 500);
+		try {
+			scrollSmoothly(document.getElementById(`${audioSettings.playingKey}`).offsetTop - 200, 500);
+		} catch (error) {
+			// ...
+		}
 	}
 
 	// things to do when the audio has ended
@@ -303,27 +307,17 @@ export function showAudioModal(key) {
 }
 
 export function wordAudioController(props) {
-	// if verse audio is already playing, a set the verse audio timestamp same as word timestamp
+	const wordKey = `${props.chapter}:${props.verse}:${props.word + 1}`;
+
+	// if verse audio is already playing, then set the verse's audio timestamp same as word timestamp
 	// ...this is incase the user would like to start from a certain section of the verse
 	if (audioSettings.isPlaying && audioSettings.audioType === 'verse') {
 		// set the verse audio time same as word timestamp
-		return (audio.currentTime = document.getElementById(`${props.chapter}:${props.verse}:${props.word + 1}`).getAttribute('data-timestamp'));
+		return (audio.currentTime = document.getElementById(wordKey).getAttribute('data-timestamp'));
 	}
 
-	// show audio modal only when the end icon was clicked
-	if (props.type === 'end') showAudioModal(`${props.chapter}:${props.verse}`);
-	// else play word audio directly
-	else {
-		playAudio({
-			type: 'word',
-			chapter: props.chapter,
-			verse: props.verse,
-			firstToPlay: props.word + 1,
-			lastToPlay: props.word + 1,
-			timesToRepeat: 1,
-			delay: 0
-		});
-	}
+	// audio modal only when the end icon is clicked, else play word audio directly
+	props.type === 'end' ? showAudioModal(`${props.chapter}:${props.verse}`) : playWord(wordKey);
 }
 
 // function to quickly play verse audio, to be used by the play buttons
@@ -343,10 +337,45 @@ export function quickPlayAudio(chapter, startVerse, endVerse) {
 	}
 }
 
+// mini function to quickly play a verse
+export function playVerse(verseKey) {
+	const chapter = +verseKey.split(':')[0];
+	const verse = +verseKey.split(':')[1];
+
+	playAudio({
+		type: 'verse',
+		chapter: chapter,
+		verse: verse,
+		firstToPlay: verse,
+		lastToPlay: verse,
+		timesToRepeat: 1,
+		delay: 0
+	});
+}
+
+// mini function to quickly play a word
+export function playWord(wordKey) {
+	const chapter = +wordKey.split(':')[0];
+	const verse = +wordKey.split(':')[1];
+	const word = +wordKey.split(':')[2];
+
+	playAudio({
+		type: 'word',
+		chapter: chapter,
+		verse: verse,
+		firstToPlay: word,
+		lastToPlay: word,
+		timesToRepeat: 1,
+		delay: 0
+	});
+}
+
 function wordHighlighter() {
+	// for mushaf mode, we have the JSON data in localStorage, and for other pages we have it set in the store __chapterData
+	const data = get(__currentPage) === 'page' ? JSON.parse(localStorage.getItem('pageData')) : get(__chapterData);
+
 	// get the total number of words in the ayah
-	const wordsInVerse = document.getElementById(audioSettings.playingKey).getAttribute('data-words');
-	// const wordsInVerse = wordsCount[audioSettings.playingKey];
+	const wordsInVerse = data[audioSettings.playingKey].meta.words;
 
 	// loop through all the words
 	for (let word = 0; word <= wordsInVerse - 1; word++) {

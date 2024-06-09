@@ -144,7 +144,7 @@
 
 		<div class="flex flex-col flex-wrap text-base">
 			<!-- quran-font-setting -->
-			<div id="quran-font-setting" class={settingsBlockClasses}>
+			<div id="quran-font-setting" class="{settingsBlockClasses} {$__currentPage === 'page' && disabledClasses}">
 				<div class="flex flex-row justify-between items-center">
 					<div class="block text-gray-900">Quran Font</div>
 					<Button class={selectorClasses}>{selectableFontTypes[$__wordType].font}</Button>

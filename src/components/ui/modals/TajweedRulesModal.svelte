@@ -4,8 +4,8 @@
 	import { __websiteTheme, __tajweedRulesModalVisible } from '$utils/stores';
 </script>
 
-<Modal title="Tajweed Rules" id="tajeedRulesModal" bind:open={$__tajweedRulesModalVisible} class="rounded-3xl theme-grayscale" bodyClass="p-6 space-y-4 flex-1 overflow-y-auto overscroll-contain" headerClass="flex justify-between items-center p-6 rounded-t-3xl" center outsideclose>
-	<table class="w-full text-sm text-left rtl:text-right text-gray-500">
+<Modal title="Tajweed Rules" id="tajeedRulesModal" bind:open={$__tajweedRulesModalVisible} class="rounded-3xl" bodyClass="p-6 space-y-4 flex-1 overflow-y-auto overscroll-contain" headerClass="flex justify-between items-center p-6 rounded-t-3xl theme-grayscale" center outsideclose>
+	<table class="w-full text-sm text-left rtl:text-right">
 		<thead class="text-xs text-gray-700 uppercase bg-lightGray theme-grayscale">
 			<tr>
 				<th scope="col" class="px-6 py-3"> Rule/Icon </th>
