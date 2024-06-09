@@ -2,7 +2,7 @@
 const colors = require('tailwindcss/colors');
 
 export default {
-	content: ['./src/**/*.{html,js,svelte,ts}', './node_modules/flowbite-svelte/dist/**/*.{js,svelte,ts}'],
+	content: ['./src/**/*.{html,js,svelte,ts}'],
 	darkMode: 'selector',
 	theme: {
 		extend: {

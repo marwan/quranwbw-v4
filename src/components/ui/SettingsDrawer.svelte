@@ -4,12 +4,14 @@
 	import Checkbox from '$ui/flowbite-svelte/forms/Checkbox.svelte';
 	import Plus from '$svgs/Plus.svelte';
 	import Minus from '$svgs/Minus.svelte';
+	import CloseButton from '$ui/flowbite-svelte/utils/CloseButton.svelte';
+	import Dropdown from '$ui/flowbite-svelte/dropdown/Dropdown.svelte';
+	import Button from '$ui/flowbite-svelte/buttons/Button.svelte';
 	import { __currentPage, __chapterData, __chapterNumber, __wordType, __displayType, __websiteTheme, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __verseTranslations, __reciter, __playbackSpeed, __userSettings, __tajweedEnabled, __wordTooltip, __settingsDrawerHidden, __wakeLockEnabled } from '$utils/stores';
 	import { displayOptions, selectableFontTypes, selectableThemes, selectableVerseTranslations, verseTranslationsLanguages, selectableWordTranslations, selectableReciters, selectablePlaybackSpeeds, selectableTooltipOptions } from '$data/options';
 	import { updateSettings } from '$utils/updateSettings';
 	import { resetSettings } from '$utils/resetSettings';
 	import { disabledClasses, buttonClasses } from '$data/commonClasses';
-	import { CloseButton, Button, Dropdown } from 'flowbite-svelte';
 	import { sineIn } from 'svelte/easing';
 
 	const transitionParamsRight = {

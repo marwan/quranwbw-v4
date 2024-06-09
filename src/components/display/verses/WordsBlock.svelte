@@ -5,12 +5,12 @@
 
 	import OptionsDropdown from '$display/verses/OptionsDropdown.svelte';
 	import Word from '$display/verses/Word.svelte';
+	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
 	import { goto } from '$app/navigation';
 	import { displayOptions, mushafFontLinks } from '$data/options';
 	import { __currentPage, __wordType, __displayType, __userSettings, __audioSettings, __morphologyKey, __tajweedEnabled, __verseKey } from '$utils/stores';
 	import { loadFont } from '$utils/loadFont';
 	import { wordAudioController } from '$utils/audioController';
-	import { Tooltip } from 'flowbite-svelte';
 	import { updateSettings } from '$utils/updateSettings';
 
 	const userSettings = JSON.parse(localStorage.getItem('userSettings'));

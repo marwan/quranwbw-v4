@@ -9,13 +9,13 @@
 	import Minus from '$svgs/Minus.svelte';
 	import Cross from '$svgs/Cross.svelte';
 	import ScrollDown from '$svgs/ScrollDown.svelte';
+	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
 	import { __audioSettings } from '$utils/stores';
 	import { __chapterNumber, __displayType, __currentPage, __bottomToolbarVisible, __settingsDrawerHidden, __autoScrollSpeed, __firstVerseOnPage } from '$utils/stores';
 	import { quickPlayAudio } from '$utils/audioController';
 	import { quranMetaData } from '$data/quranMeta';
 	import { disabledClasses } from '$data/commonClasses';
 	import { updateSettings } from '$utils/updateSettings';
-	import { Tooltip } from 'flowbite-svelte';
 	// import { taphold } from 'svelte-taphold';
 
 	const holdInterval = 100;

@@ -11,10 +11,10 @@
 	import Pause from '$svgs/Pause.svelte';
 	import Notes from '$svgs/Notes.svelte';
 	import DotsHorizontal from '$svgs/DotsHorizontal.svelte';
+	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
 	import { quickPlayAudio } from '$utils/audioController';
 	import { __currentPage, __userSettings, __audioSettings, __verseKey, __userNotes, __notesModalVisible } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';
-	import { Tooltip } from 'flowbite-svelte';
 
 	// update userBookmarks whenever the __userSettings changes
 	$: userBookmarks = JSON.parse($__userSettings).userBookmarks;

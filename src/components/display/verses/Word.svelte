@@ -8,10 +8,10 @@
 	export let wordSpanClasses;
 	export let v4hafsClasses;
 
+	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
 	import { displayOptions } from '$data/options';
 	import { supplicationsFromQuran } from '$data/quranMeta';
 	import { __currentPage, __wordType, __displayType, __userSettings, __audioSettings, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __morphologyKey, __tajweedEnabled, __wordTooltip, __verseKey } from '$utils/stores';
-	import { Tooltip } from 'flowbite-svelte';
 
 	const chapter = key.split(':')[0];
 	const verse = key.split(':')[1];

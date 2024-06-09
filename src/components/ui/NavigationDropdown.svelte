@@ -44,7 +44,7 @@
 	const dropdownItemClasses = 'font-normal rounded-3xl';
 </script>
 
-<Dropdown class="px-2 mr-2 my-2 w-[180px] max-w-xs max-h-52 md:max-h-64 overflow-y-scroll" bind:open={dropdownOpen}>
+<Dropdown class="px-2 mr-2 my-2 w-[180px] max-w-xs max-h-64 overflow-y-scroll" bind:open={dropdownOpen}>
 	<!-- drawers / modals -->
 	<DropdownItem
 		class={dropdownItemClasses}

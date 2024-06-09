@@ -1,9 +1,10 @@
 <script>
 	export let key, page;
+
+	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
 	import { pageNumberKeys } from '$data/quranMeta';
 	import { __currentPage, __displayType } from '$utils/stores';
 	import { displayOptions } from '$data/options';
-	import { Tooltip } from 'flowbite-svelte';
 </script>
 
 <!-- if the current key is the first verse of a page  -->

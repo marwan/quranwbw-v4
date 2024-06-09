@@ -1,9 +1,9 @@
 <script>
+	import Select from '$ui/flowbite-svelte/forms/Select.svelte';
 	import { goto } from '$app/navigation';
 	import { pageNumberKeys, juzNumberKeys } from '$data/quranMeta';
 	import { __pageURL } from '$utils/stores';
 	import { buttonClasses, disabledClasses } from '$data/commonClasses';
-	import { Select } from 'flowbite-svelte';
 	import { validateKey } from '$utils/validateKey';
 
 	let waypoint = '',
@@ -82,8 +82,8 @@
 	}
 </script>
 
-<div id="navigatation-inputs" class="flex mb-4 justify-start theme-grayscale">
-	<div class="flex flex-row w-full">
+<div id="navigatation-inputs" class="flex mb-4 justify-start items-center theme-grayscale">
+	<div class="flex flex-row w-full h-fit">
 		<Select class="w-fit rounded-l-3xl rounded-r-none focus:border-gray-500 text-xs" items={navigationPoints} bind:value={selectedNavigation} placeholder="Go to..." />
 		<form on:submit|preventDefault={navigateToPoint} class="flex flex-row w-full">
 			<input type="text" bind:value={waypoint} id="navigationInput" aria-describedby="helper-text-explanation" class="w-[inherit] bg-gray-50 border border-gray-300 border-l-0 border-r-0 text-gray-900 text-xs rounded-l-none focus:ring-gray-500 focus:border-gray-500 block w-24 p-2.5" {placeholder} />

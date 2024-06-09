@@ -42,7 +42,8 @@ let __websiteOnline,
 	__tokenModalVisible,
 	__wakeLockEnabled,
 	__quizCorrectAnswers,
-	__quizWrongAnswers;
+	__quizWrongAnswers,
+	__timeSpecificChapters;
 
 if (browser) {
 	const userSettings = JSON.parse(localStorage.getItem('userSettings'));
@@ -175,6 +176,12 @@ if (browser) {
 	// quiz settings
 	__quizCorrectAnswers = writable(userSettings.quiz.correctAnswers);
 	__quizWrongAnswers = writable(userSettings.quiz.wrongAnswers);
+
+	// for al-kahf on friday and al-mulk at night
+	__timeSpecificChapters = writable({
+		isFriday: false,
+		isNight: false
+	});
 }
 
 export {
@@ -219,5 +226,6 @@ export {
 	__tokenModalVisible,
 	__wakeLockEnabled,
 	__quizCorrectAnswers,
-	__quizWrongAnswers
+	__quizWrongAnswers,
+	__timeSpecificChapters
 };
