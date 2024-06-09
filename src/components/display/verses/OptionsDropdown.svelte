@@ -75,7 +75,7 @@
 	</DropdownItem>
 
 	<!-- verse page button -->
-	<DropdownItem class={dropdownItemClasses} href="/page/{page}">Go to Page {page}</DropdownItem>
+	<DropdownItem class={dropdownItemClasses} href="/page/{page}">Go to Mushaf Page {page}</DropdownItem>
 
 	<!-- verse morphology button -->
 	<DropdownItem class={dropdownItemClasses} href="/morphology/{$__verseKey}">Verse Morphology</DropdownItem>

@@ -5,8 +5,6 @@
 	import { __currentPage, __chapterNumber, __audioSettings, __userSettings, __audioModalVisible } from '$utils/stores';
 	import { initializeAudio, updateAudioSettings } from '$utils/audioController';
 	import { disabledClasses, buttonClasses } from '$data/commonClasses';
-
-	$: console.log($__audioSettings);
 </script>
 
 <Modal id="audioModal" bind:open={$__audioModalVisible} size="xs" class="rounded-3xl theme-grayscale" bodyClass="p-6" placement="center" autoclose outsideclose>

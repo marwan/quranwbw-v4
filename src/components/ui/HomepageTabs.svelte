@@ -48,35 +48,43 @@
 </script>
 
 <div id="homepage-tabs" style="margin-top: 15px;">
-	<div class="flex flex-row justify-center mb-4 px-4">
-		<!-- main tabs on left -->
-		<div id="tab-buttons">
-			<ul class="flex text-sm font-medium text-center opacity-70 justify-center space-x-2 md:space-x-4">
-				<li>
-					<button on:click={() => (activeTab = 1)} class="{tabClasses} {activeTab === 1 ? `${activeTabClasses}` : null}" id="chapters-tab" data-tabs-target="#chapters-tab-panel" type="button" role="tab" aria-controls="chapters-tab-panel" aria-selected="false">Chapters</button>
-				</li>
-				<li>
-					<button on:click={() => (activeTab = 2)} class="{tabClasses} {activeTab === 2 ? `${activeTabClasses}` : null}" id="most-read-tab" data-tabs-target="#most-read-tab-panel" type="button" role="tab" aria-controls="most-read-tab-panel" aria-selected="false">Suggested</button>
-				</li>
-				<li>
-					<button on:click={() => (activeTab = 3)} class="{tabClasses} {activeTab === 3 ? `${activeTabClasses}` : null}" id="bookmarks-tab" data-tabs-target="#bookmarks-tab-panel" type="button" role="tab" aria-controls="bookmarks-tab-panel" aria-selected="false">
-						Bookmarks
-						{#if $__userBookmarks.length > 0}
-							({$__userBookmarks.length})
-						{/if}
-					</button>
-				</li>
-			</ul>
+	<div class="flex items-center justify-center px-2 mb-4">
+		<!-- <div class="hidden md:block flex-1 border-t border-gray-200"></div> -->
+
+		<div class="flex flex-row justify-center px-4">
+			<!-- main tabs on left -->
+			<div id="tab-buttons">
+				<ul class="flex text-sm font-medium text-center opacity-70 justify-center space-x-2 md:space-x-4">
+					<li>
+						<button on:click={() => (activeTab = 1)} class="{tabClasses} {activeTab === 1 ? `${activeTabClasses}` : null}" id="chapters-tab" data-tabs-target="#chapters-tab-panel" type="button" role="tab" aria-controls="chapters-tab-panel" aria-selected="false">Chapters</button>
+					</li>
+					<li>
+						<button on:click={() => (activeTab = 2)} class="{tabClasses} {activeTab === 2 ? `${activeTabClasses}` : null}" id="most-read-tab" data-tabs-target="#most-read-tab-panel" type="button" role="tab" aria-controls="most-read-tab-panel" aria-selected="false">Suggested</button>
+					</li>
+					<li>
+						<button on:click={() => (activeTab = 3)} class="{tabClasses} {activeTab === 3 ? `${activeTabClasses}` : null}" id="bookmarks-tab" data-tabs-target="#bookmarks-tab-panel" type="button" role="tab" aria-controls="bookmarks-tab-panel" aria-selected="false">
+							Bookmarks
+							{#if $__userBookmarks.length > 0}
+								({$__userBookmarks.length})
+							{/if}
+						</button>
+					</li>
+				</ul>
+			</div>
+
+			<!-- menu for links on right -->
+			<div class="ml-2">
+				<button class="flex flex-row items-center bg-lightGray rounded-3xl p-3 {tabClasses}" title="Menu">
+					<span class="text-black opacity-70"><Menu /></span>
+				</button>
+				<NavigationDropdown />
+			</div>
 		</div>
 
-		<!-- menu for links on right -->
-		<div class="ml-2">
-			<button class="flex flex-row items-center bg-lightGray rounded-3xl p-3 {tabClasses}" title="Menu">
-				<span class="text-black opacity-70"><Menu /></span>
-			</button>
-			<NavigationDropdown />
-		</div>
+		<!-- <div class="hidden md:block flex-1 border-t border-gray-200"></div> -->
 	</div>
+
+	<div class="hidden md:block border-b -mt-4 px-4 mx-auto w-[98%] theme-grayscale"></div>
 
 	<div id="content-tab" class="my-6 px-2">
 		<!-- chapters tab -->
@@ -86,7 +94,7 @@
 				<PointNavigationSelector />
 
 				<!-- time specific chapter buttons and last read -->
-				<div class="flex flex-col md:flex-row-reverse md:space-x-1 mb-4">
+				<div class="flex flex-col md:flex-row-reverse md:space-x-1">
 					<!-- last read -->
 					{#if $__lastRead !== null}
 						<div id="last-read">
@@ -122,7 +130,7 @@
 								<div class="flex flex-row items-center space-x-1 justify-center md:justify-start truncate">
 									<div>{chapter + 1}. {quranMetaData[chapter + 1].transliteration}</div>
 									<div class="opacity-50"><svelte:component this={quranMetaData[chapter + 1].revelation === 1 ? Mecca : Madinah} /></div>
-									<Tooltip type="light" placement="right" class="z-30 hidden md:block font-filter">{quranMetaData[chapter + 1].revelation === 1 ? 'Meccan' : 'Medinan'} revelation</Tooltip>
+									<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-filter">{quranMetaData[chapter + 1].revelation === 1 ? 'Meccan' : 'Medinan'} revelation</Tooltip>
 								</div>
 
 								<!-- chapter translation -->

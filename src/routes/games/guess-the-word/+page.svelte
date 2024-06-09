@@ -7,7 +7,7 @@
 	import Radio from '$ui/flowbite-svelte/forms/Radio.svelte';
 	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
 	import { __currentPage, __wordType, __quizCorrectAnswers, __quizWrongAnswers } from '$utils/stores';
-	import { buttonClasses, disabledClasses } from '$data/commonClasses';
+	import { buttonClasses, buttonOutlineClasses, disabledClasses } from '$data/commonClasses';
 	import { updateSettings } from '$utils/updateSettings';
 	import { playWord } from '$utils/audioController';
 
@@ -99,7 +99,7 @@
 				{/if}
 
 				<!-- buttons -->
-				<div id="buttons" class="flex flex-col space-y-8 justify-center w-full">
+				<div id="buttons" class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 justify-center w-full">
 					<!-- confirm-button -->
 					{#if !answerChecked}
 						<div id="confirm-button" class="{selection === null || answerChecked === true ? disabledClasses : null} w-full">
@@ -108,8 +108,8 @@
 					{/if}
 
 					<!-- skip-word-button -->
-					<div id="skip-word-button">
-						<button class="w-full" on:click={() => setRandomWord()}>{answerChecked ? 'Next' : 'Skip'} {@html '&#x2192;'}</button>
+					<div id="skip-word-button" class="w-full">
+						<button class="{buttonOutlineClasses} w-full" on:click={() => setRandomWord()}>{answerChecked ? 'Next' : 'Skip'} {@html '&#x2192;'}</button>
 					</div>
 				</div>
 

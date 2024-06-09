@@ -17,10 +17,10 @@
 					<a href="/76/29-30" class={linkClasses}>(76:29-30)</a>
 				</div>
 
-				<i>In the name of Allah and prayers & blessings be upon His messenger, Muhammad (<span style="font-style: initial; font-weight: normal;">ﷺ</span>).</i>
+				<i class="text-sm">In the name of Allah and prayers & blessings be upon His messenger, Muhammad (<span style="font-style: initial; font-weight: normal;">ﷺ</span>).</i>
 			</div>
 
-			<div id="about-website" class="flex flex-col space-y-4 mt-10">
+			<div id="about-website" class="flex flex-col space-y-4 mt-8 text-sm">
 				<span>Quranwbw.com is a Quran website with word by word translation, transliteration and corpus in multiple languages. You can also listen to how a word is pronounced and also listen to verse recitations. </span>
 
 				<span
@@ -29,7 +29,7 @@
 				>
 			</div>
 
-			<div id="website-credits" class="flex flex-col space-y-4 mt-6">
+			<div id="website-credits" class="flex flex-col space-y-4 mt-6 text-sm">
 				<span>Quranwbw.com wouldn't be possible without these amazing people:</span>
 
 				<ul class="list-disc ml-5 space-y-2">

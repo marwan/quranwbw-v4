@@ -5,27 +5,15 @@
 	import { selectableThemes } from '$data/options';
 	import { __currentPage, __websiteTheme } from '$utils/stores';
 	import { timeAgo } from '$utils/timeAgo';
-	import { buttonClasses, linkClasses, labelPillClasses } from '$data/commonClasses';
+	import { linkClasses } from '$data/commonClasses';
 
-	let fetchCommitsData,
-		fetchIssuesData,
-		issuesCount = '...';
+	let fetchCommitsData;
 
 	// fetch the commits from our API
 	$: {
 		fetchCommitsData = (async () => {
 			const response = await fetch(`${apiEndpoint}/repo/commits`);
 			const data = await response.json();
-			return data.data;
-		})();
-	}
-
-	// fetch the issues from our API
-	$: {
-		fetchIssuesData = (async () => {
-			const response = await fetch(`${apiEndpoint}/repo/issues`);
-			const data = await response.json();
-			issuesCount = Object.keys(data.data).length;
 			return data.data;
 		})();
 	}
@@ -38,50 +26,6 @@
 <PageHead title={'Changelogs'} />
 
 <div class="flex flex-col space-y-6 text-sm">
-	<div class="flex flex-row space-x-4 items-center mt-6">
-		<span>Go to:</span>
-		<a href="#issues" class={buttonClasses}>Issues</a>
-		<a href="#commits" class={buttonClasses}>Commits</a>
-	</div>
-
-	<!-- issues -->
-	<div id="issues">
-		<div class="mt-6 mb-2 space-y-4 pb-4 border-b-2">
-			<h1 class="text-2xl">Issues ({issuesCount})</h1>
-			<div class="text-sm">
-				The following list contains all the issues currently active on the Quranwbw.com's <a href="https://github.com/marwan/quranwbw-v4" target="_blank" class={linkClasses}>GitHub repository</a>.
-			</div>
-		</div>
-		<div id="issues-list">
-			{#await fetchIssuesData}
-				<Spinner />
-			{:then fetchIssuesData}
-				<div class="text-sm">
-					{#each Object.entries(fetchIssuesData) as [key, value]}
-						<div class="py-6 space-y-2 border-b">
-							<div class="space-y-2">
-								<a href={value.html_url} target="_blank" class={linkClasses}>Issue #{value.number}: {value.title}</a>
-
-								<!-- labels -->
-								<div class="inline-flex flex-wrap ml-2 space-x-2">
-									{#each Object.entries(value.labels) as [id, label]}
-										<span class={labelPillClasses}>{label.name}</span>
-									{/each}
-								</div>
-								<div>
-									<img class={userAvatarClasses} src={value.user.avatar_url} alt={value.user.login} />
-									{value.user.login} opened {timeAgo(value.created_at)} (#{value.number})
-								</div>
-							</div>
-						</div>
-					{/each}
-				</div>
-			{:catch error}
-				<p>{errorLoadingDataMessage}</p>
-			{/await}
-		</div>
-	</div>
-
 	<!-- commits -->
 	<div id="commits">
 		<div class="mt-6 mb-2 space-y-4 pb-4 border-b-2">
@@ -100,7 +44,7 @@
 							<div class="space-y-2">
 								<div><a href={value.html_url} target="_blank" class={linkClasses}>{value.commit.message}</a></div>
 								<div>
-									<img class="rounded-full inline-flex w-5 h-5" src={value.author.avatar_url} alt={value.author.login} />
+									<img class={userAvatarClasses} src={value.author.avatar_url} alt={value.author.login} />
 									{value.author.login} commited {timeAgo(value.commit.committer.date)} <span class="hidden md:inline-block">({value.sha.substring(0, 7)})</span>
 								</div>
 							</div>

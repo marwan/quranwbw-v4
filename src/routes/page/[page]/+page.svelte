@@ -13,7 +13,7 @@
 	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
 	import { quranMetaData, chapterHeaderCodes } from '$data/quranMeta';
 	import { mushafFontLinks } from '$data/options';
-	import { buttonClasses } from '$data/commonClasses';
+	import { buttonOutlineClasses } from '$data/commonClasses';
 	import { loadFont } from '$utils/loadFont';
 	import '$lib/swiped-events.min.js';
 
@@ -116,7 +116,7 @@
 	{#await pageData}
 		<Spinner height="screen" margin="-mt-20" />
 	{:then}
-		<div class="space-y-2 mt-1">
+		<div class="space-y-2 mt-2.5">
 			<div class="max-w-3xl space-y-2 pb-2 mx-auto text-[5.4vw] md:text-[42px] lg:text-[36px]">
 				{#each Array.from(Array(endingLine + 1).keys()).slice(startingLine) as line}
 					<!-- if it's the first verse of a chapter -->
@@ -140,21 +140,21 @@
 			<div class="max-w-3xl mx-auto justify-center text-sm">
 				<div class="flex items-center">
 					<div class="flex-1 border-t-2 border-gray-200"></div>
-					<span class="px-3">{page}</span>
+					<span class="px-3 opacity-70">{page}</span>
 					<div class="flex-1 border-t-2 border-gray-200"></div>
 				</div>
 			</div>
 
 			<!-- page navigator -->
-			<div id="page-navigator" class="flex flex-row justify-center space-x-8 pt-6 text-sm">
+			<div id="page-navigator" class="max-w-3xl flex flex-row justify-between space-x-8 pt-6 text-sm mx-auto">
 				<!-- next page -->
 				{#if page < 604}
-					<a href="/page/{+page + 1}" class={buttonClasses}>{@html '&#x2190;'} Page {+page + 1}</a>
+					<a href="/page/{+page + 1}" class={buttonOutlineClasses}>{@html '&#x2190;'} Page {+page + 1}</a>
 				{/if}
 
 				<!-- previous page -->
 				{#if page > 1}
-					<a href="/page/{+page - 1}" class={buttonClasses}>Page {+page - 1} {@html '&#x2192;'}</a>
+					<a href="/page/{+page - 1}" class={buttonOutlineClasses}>Page {+page - 1} {@html '&#x2192;'}</a>
 				{/if}
 			</div>
 		</div>

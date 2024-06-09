@@ -25,6 +25,7 @@
 
 	// custom padding depending on page
 	$: paddingTop = $__currentPage === 'home' ? 'pt-10' : 'pt-16';
+	$: paddingBottom = $__currentPage === 'chapter' ? 'pb-24' : 'pb-8';
 	$: paddingX = $__currentPage === 'page' ? 'px-0 md:px-4' : $__currentPage === 'home' ? 'px-0' : 'px-4';
 
 	// if settings drawer is open, hide body scroll
@@ -80,7 +81,7 @@
 	});
 </script>
 
-<div class="max-w-screen-lg mx-auto select-none pb-24 {paddingTop} {paddingX}">
+<div class="max-w-screen-lg mx-auto select-none {paddingTop} {paddingBottom} {paddingX}">
 	<!-- include the UI elements -->
 	<Navbar />
 	<SettingsDrawer />

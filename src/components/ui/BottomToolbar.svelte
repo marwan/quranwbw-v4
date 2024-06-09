@@ -99,7 +99,7 @@
 				<ChevronLeft />
 				<span class="sr-only">Previous {$__currentPage}</span>
 			</a>
-			<!-- <Tooltip type="light">Previous {$__currentPage}</Tooltip> -->
+			<!-- <Tooltip arrow={false} type="light">Previous {$__currentPage}</Tooltip> -->
 
 			<!-- normal / non-scroll mode -->
 			{#if !scrollModeEnabled}
@@ -108,7 +108,7 @@
 					<Eye />
 					<span class="sr-only">Display Type</span>
 				</button>
-				<Tooltip type="light" class="hidden md:block font-filter">Display Type</Tooltip>
+				<Tooltip arrow={false} type="light" class="hidden md:block font-filter">Display Type</Tooltip>
 
 				<!-- scroll button (temp) -->
 				<!-- <button
@@ -123,7 +123,7 @@
 					<svelte:component this={!scrollEnabled ? ScrollDown : Cross} size={6} />
 					<span class="sr-only">Scroll</span>
 				</button>
-				<Tooltip type="light" class="hidden md:block font-filter">Auto Scroll</Tooltip> -->
+				<Tooltip arrow={false} type="light" class="hidden md:block font-filter">Auto Scroll</Tooltip> -->
 
 				<!-- 3rd icon -->
 				<!-- play/pause button -->
@@ -138,14 +138,14 @@
 						{/if}
 					</button>
 				</div>
-				<Tooltip type="light" class="hidden md:block font-filter">{$__audioSettings.isPlaying ? 'Pause' : 'Play'}</Tooltip>
+				<Tooltip arrow={false} type="light" class="hidden md:block font-filter">{$__audioSettings.isPlaying ? 'Pause' : 'Play'}</Tooltip>
 
 				<!-- 4th icon -->
 				<button type="button" title="Settings" on:click={() => ($__settingsDrawerHidden = false)} class="inline-flex flex-col items-center justify-center px-5 hover:bg-lightGray group">
 					<Settings />
 					<span class="sr-only">Settings</span>
 				</button>
-				<Tooltip type="light" class="hidden md:block font-filter">Settings</Tooltip>
+				<Tooltip arrow={false} type="light" class="hidden md:block font-filter">Settings</Tooltip>
 			{/if}
 
 			<!-- ====================================================================== -->
@@ -191,7 +191,7 @@
 				<ChevronRight />
 				<span class="sr-only">Next {$__currentPage}</span>
 			</a>
-			<!-- <Tooltip type="light">Next {$__currentPage}</Tooltip> -->
+			<!-- <Tooltip arrow={false} type="light">Next {$__currentPage}</Tooltip> -->
 		</div>
 	</div>
 </div>

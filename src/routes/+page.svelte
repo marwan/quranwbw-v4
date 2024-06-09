@@ -6,26 +6,38 @@
 	import Supplication from '$svgs/Supplication.svelte';
 	import Morphology from '$svgs/Morphology.svelte';
 	import Search from '$svgs/Search.svelte';
+	import Games from '$svgs/Games.svelte';
+	import Book from '$svgs/Book.svelte';
 	import { websiteTagline } from '$data/websiteSettings';
 	import { __currentPage } from '$utils/stores';
 
-	const homepageLinks = {
-		1: {
+	const homepageLinks = [
+		{
 			title: 'Supplications',
 			icon: Supplication,
 			link: '/supplications'
 		},
-		3: {
+		{
+			title: 'Mushaf',
+			icon: Book,
+			link: '/page/1'
+		},
+		{
 			title: 'Morphology',
 			icon: Morphology,
 			link: '/morphology/1:1'
 		},
-		4: {
+		{
+			title: 'Games',
+			icon: Games,
+			link: '/games/guess-the-word'
+		},
+		{
 			title: 'Search',
 			icon: Search,
 			link: '/search'
 		}
-	};
+	];
 
 	__currentPage.set('home');
 </script>
@@ -41,8 +53,8 @@
 		<div class="text-xs text-center opacity-70">{websiteTagline}</div>
 	</div>
 
-	<div class="w-full flex flex-col justify-center mt-12 text-xs space-y-8 scale-[0.85]">
-		<div class="flex flex-row space-x-4 justify-center">
+	<div class="w-full flex flex-col md:justify-center mt-12 text-xs space-y-8 scale-[0.85]">
+		<div class="flex flex-row space-x-4 md:justify-center overflow-auto px-2 pb-1">
 			{#each Object.entries(homepageLinks) as [id, link]}
 				<a href={link.link} class="min-w-28 border border-gray-200 transition text-sm bg-gray-100 rounded-3xl p-5 hover:cursor-pointer hover:bg-lightGray">
 					<div class="flex flex-col items-center justify-center space-y-2">

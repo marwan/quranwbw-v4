@@ -71,7 +71,7 @@
 
 	<!-- word tooltip -->
 	{#if $__wordTooltip > 1}
-		<Tooltip type="light" class="z-30 hidden md:block text-center inline-flex font-sans font-filter">
+		<Tooltip arrow={false} type="light" class="z-30 hidden md:block text-center inline-flex font-sans font-filter">
 			{#if $__wordTooltip === 2}
 				{@html transliterationSplit[word]}
 			{:else if $__wordTooltip === 3}

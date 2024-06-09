@@ -42,7 +42,7 @@ export const websiteFAQs = [
 	{
 		id: 9,
 		question: 'I am looking for certain data which is available on QuranWBW.com, how do I get it?',
-		answer: "We suggest you to contact the original contributors directly. However depending on the type of data you are looking for, we can try helping you with it. Drop us an [email](mailto:quranwbw@gmail.com) and we'll see."
+		answer: "We suggest you to contact the original contributors directly. However depending on the type of data you are looking for, we can try helping you with it. Drop us an [email](mailto:quranwbw@gmail.com) and we'll have a look."
 	},
 	{
 		id: 10,
