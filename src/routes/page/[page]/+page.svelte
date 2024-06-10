@@ -92,6 +92,13 @@
 				goto(`/page/${page === 604 ? 604 : page + 1}`, { replaceState: false });
 			});
 
+			// dynamically load header font
+			loadFont('chapter-headers', mushafFontLinks.header).then(() => {
+				document.querySelectorAll('.header').forEach((element) => {
+					element.classList.remove('invisible');
+				});
+			});
+
 			return apiData;
 		})();
 
@@ -101,11 +108,6 @@
 
 	// only allow continious normal mode, but skip saving the settings
 	updateSettings({ type: 'displayType', value: 4, skipSave: true });
-
-	// dynamically load header font
-	loadFont('chapter-header', mushafFontLinks.header).then(() => {
-		document.getElementById('header').classList.remove('invisible');
-	});
 
 	__currentPage.set('page');
 </script>
@@ -122,7 +124,7 @@
 					<!-- if it's the first verse of a chapter -->
 					{#if chapters.length > 0 && lines.includes(line) && verses[lines.indexOf(line)] === 1}
 						<div class="flex flex-col my-2">
-							<div id="header" style="font-family: chapter-header" class="leading-base pt-4 md:pt-8 pb-6 text-[28vw] md:text-[220px] lg:text-[230px]">{chapterHeaderCodes[chapters[lines.indexOf(line)]]}</div>
+							<div style="font-family: chapter-headers" class="header invisible leading-base pt-4 md:pt-8 pb-6 text-[28vw] md:text-[220px] lg:text-[230px]">{chapterHeaderCodes[chapters[lines.indexOf(line)]]}</div>
 
 							<Bismillah {chapters} {lines} {line} />
 						</div>

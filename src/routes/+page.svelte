@@ -6,7 +6,6 @@
 	import Supplication from '$svgs/Supplication.svelte';
 	import Morphology from '$svgs/Morphology.svelte';
 	import Search from '$svgs/Search.svelte';
-	import Games from '$svgs/Games.svelte';
 	import Book from '$svgs/Book.svelte';
 	import { websiteTagline } from '$data/websiteSettings';
 	import { __currentPage } from '$utils/stores';
@@ -28,11 +27,6 @@
 			link: '/morphology/1:1'
 		},
 		{
-			title: 'Games',
-			icon: Games,
-			link: '/games/guess-the-word'
-		},
-		{
 			title: 'Search',
 			icon: Search,
 			link: '/search'
@@ -44,17 +38,18 @@
 
 <PageHead title={`Quran ${websiteTagline}`} />
 
-<div class="max-w-4xl mx-auto flex flex-col space-y-8 md:px-4 theme-grayscale">
+<div class="max-w-4xl mx-auto flex flex-col space-y-6 md:px-4 theme-grayscale">
 	<div class="flex flex-col mt-4">
 		<a href="/" class="flex flex-col items-center justify-center" aria-label="Home">
-			<Quran size={50} />
+			<Quran size={100} />
 			<Logo />
 		</a>
-		<div class="text-xs text-center opacity-70">{websiteTagline}</div>
+		<!-- <div class="text-xs text-center opacity-70">{websiteTagline}</div> -->
+		<div class="text-xs text-center opacity-70">Word By Word & Morphology</div>
 	</div>
 
-	<div class="w-full flex flex-col md:justify-center mt-12 text-xs space-y-8 scale-[0.85]">
-		<div class="flex flex-row space-x-4 md:justify-center overflow-auto px-2 pb-1">
+	<div class="w-full flex flex-col md:justify-center text-xs space-y-8 scale-[0.66] md:scale-[0.85]">
+		<div class="flex flex-row space-x-4 justify-center">
 			{#each Object.entries(homepageLinks) as [id, link]}
 				<a href={link.link} class="min-w-28 border border-gray-200 transition text-sm bg-gray-100 rounded-3xl p-5 hover:cursor-pointer hover:bg-lightGray">
 					<div class="flex flex-col items-center justify-center space-y-2">
