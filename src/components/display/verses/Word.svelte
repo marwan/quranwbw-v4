@@ -26,10 +26,10 @@
 	$: displayIsContinuous = displayOptions[$__displayType].continuous;
 
 	$: wordDivClasses = `
-    word rounded-lg hover:cursor-pointer hover:bg-lightGray ${wordAndEndIconCommonClasses}
-    ${$__audioSettings.playingWordKey === wordKey || $__morphologyKey === wordKey ? 'bg-lightGray' : null}
-    ${$__currentPage === 'supplications' && word + 1 < supplicationsFromQuran[key] ? 'opacity-30' : null}
-  `;
+	  word rounded-lg hover:cursor-pointer hover:bg-lightGray ${wordAndEndIconCommonClasses}
+	  ${$__audioSettings.playingWordKey === wordKey || $__morphologyKey === wordKey ? 'bg-lightGray' : null}
+	  ${$__currentPage === 'supplications' && word + 1 < supplicationsFromQuran[key] ? 'opacity-30' : null}
+	`;
 
 	// fix for Ba'da Ma Ja'aka for page 254
 	// since it's just a cosmetic change, there's no use of changing it at database level
@@ -60,7 +60,7 @@
 			{/if}
 		</span>
 
-		<!-- word translation and transliteration -->
+		<!-- word translation and transliteration, only for wbw modes -->
 		{#if $__displayType === 1 || $__displayType === 3}
 			<div class="wordTranslationText flex flex-col {fontSizes.wordTranslationText} {displayIsContinuous ? 'direction-ltr' : null}" data-fontSize={fontSizes.wordTranslationText}>
 				<span class="leading-normal {$__wordTransliterationEnabled ? 'block' : 'hidden'}">{transliterationSplit[word]}</span>

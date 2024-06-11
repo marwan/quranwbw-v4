@@ -2667,6 +2667,10 @@ input[type="range"]::-ms-fill-lower {
   line-height: 2.25rem;
 }
 
+.leading-none {
+  line-height: 1;
+}
+
 .leading-normal {
   line-height: 1.5;
 }

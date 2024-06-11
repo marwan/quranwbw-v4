@@ -17,7 +17,7 @@
 
 	<div class="grid grid-cols-2 gap-x-8">
 		<!-- words -->
-		<div class="flex flex-row-reverse flex-wrap order-last">
+		<div class="order-last inline direction-rtl">
 			<WordsBlock {key} {value} />
 		</div>
 
