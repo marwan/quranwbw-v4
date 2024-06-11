@@ -58,6 +58,7 @@
 		arabic-font-${$__wordType} 
 		${$__currentPage !== 'page' && fontSizes.arabicText} 
 		${displayIsContinuous ? 'inline-block group-hover:text-gray-500' : null}
+		${[1, 3].includes($__wordType) ? 'text-black theme' : null}
 	`;
 
 	$: v4hafsClasses = `

@@ -101,16 +101,11 @@
 					'bg-[#c4bbaa]' // sepia
 				];
 
-				console.log(`${bodyColors[theme]}`);
-
 				document.documentElement.classList = `theme-${theme} ${bodyColors[theme]}`;
-				document.body.classList = `${bodyColors[theme]}`;
 			} catch (error) {}
 		</script>
 		%sveltekit.head%
 	</head>
-	<!-- f9f9f9 - white -->
-	<!-- 001617 - green -->
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">%sveltekit.body%</div>
 		<!-- global audio player -->

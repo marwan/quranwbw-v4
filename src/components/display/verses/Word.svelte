@@ -31,6 +31,12 @@
 	  ${$__currentPage === 'supplications' && word + 1 < supplicationsFromQuran[key] ? 'opacity-30' : null}
 	`;
 
+	$: wordTranslationClasses = `
+		wordTranslationText flex flex-col 
+		${fontSizes.wordTranslationText} ${displayIsContinuous ? 'direction-ltr' : null}
+		text-black theme
+	`;
+
 	// fix for Ba'da Ma Ja'aka for page 254
 	// since it's just a cosmetic change, there's no need of changing it at database level
 	const fixedMushafWords = {
@@ -62,7 +68,7 @@
 
 		<!-- word translation and transliteration, only for wbw modes -->
 		{#if $__displayType === 1 || $__displayType === 3}
-			<div class="wordTranslationText flex flex-col theme {fontSizes.wordTranslationText} {displayIsContinuous ? 'direction-ltr' : null}" data-fontSize={fontSizes.wordTranslationText}>
+			<div class={wordTranslationClasses} data-fontSize={fontSizes.wordTranslationText}>
 				<span class="leading-normal {$__wordTransliterationEnabled ? 'block' : 'hidden'}">{transliterationSplit[word]}</span>
 				<span class="leading-normal {$__wordTranslation === 2 && 'font-Urdu'} {$__wordTranslationEnabled ? 'block' : 'hidden'}">{translationSplit[word]}</span>
 			</div>
