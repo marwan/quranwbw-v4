@@ -27,7 +27,7 @@
 
 	$: wordDivClasses = `
 	  word rounded-lg ${wordAndEndIconCommonClasses}
-	  ${$__audioSettings.playingWordKey === wordKey || $__morphologyKey === wordKey ? 'bg-lightGray' : null}
+	  ${$__audioSettings.playingWordKey === wordKey || $__morphologyKey === wordKey ? 'bg-white/10' : null}
 	  ${$__currentPage === 'supplications' && word + 1 < supplicationsFromQuran[key] ? 'opacity-30' : null}
 	`;
 

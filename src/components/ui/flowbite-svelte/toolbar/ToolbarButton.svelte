@@ -18,7 +18,7 @@
 		pink: 'text-pink-500 focus:ring-pink-400 hover:bg-pink-200 dark:hover:bg-pink-800 dark:hover:text-pink-300',
 		blue: 'text-blue-500 focus:ring-blue-400 hover:bg-blue-200 dark:hover:bg-blue-800 dark:hover:text-blue-300',
 		primary: 'text-primary-500 focus:ring-primary-400 hover:bg-primary-200 dark:hover:bg-primary-800 dark:hover:text-primary-300',
-		default: 'focus:ring-gray-400 hover:bg-gray-100'
+		default: 'focus:ring-gray-400 hover:bg-black/5'
 	};
 	const sizing = {
 		xs: 'm-0.5 rounded-full focus:ring-1 p-0.5',

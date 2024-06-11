@@ -2190,14 +2190,14 @@ input[type="range"]::-ms-fill-lower {
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 
-.bg-\[\#00000a\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 0 10 / var(--tw-bg-opacity));
-}
-
 .bg-\[\#001617\] {
   --tw-bg-opacity: 1;
   background-color: rgb(0 22 23 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#02021b\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(2 2 27 / var(--tw-bg-opacity));
 }
 
 .bg-\[\#c4bbaa\] {
@@ -2216,6 +2216,10 @@ input[type="range"]::-ms-fill-lower {
 
 .bg-black\/10 {
   background-color: rgb(0 0 0 / 0.1);
+}
+
+.bg-black\/15 {
+  background-color: rgb(0 0 0 / 0.15);
 }
 
 .bg-blue-400 {
@@ -2346,6 +2350,10 @@ input[type="range"]::-ms-fill-lower {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.bg-white\/10 {
+  background-color: rgb(255 255 255 / 0.1);
+}
+
 .bg-yellow-300 {
   --tw-bg-opacity: 1;
   background-color: rgb(253 224 71 / var(--tw-bg-opacity));
@@ -2359,11 +2367,6 @@ input[type="range"]::-ms-fill-lower {
 .bg-yellow-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(254 252 232 / var(--tw-bg-opacity));
-}
-
-.bg-\[\#02021b\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(2 2 27 / var(--tw-bg-opacity));
 }
 
 .bg-opacity-50 {
@@ -3616,6 +3619,10 @@ svg {
   background-color: rgb(153 27 27 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-white\/10:hover {
+  background-color: rgb(255 255 255 / 0.1);
+}
+
 .hover\:bg-yellow-200:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(254 240 138 / var(--tw-bg-opacity));
@@ -3626,28 +3633,16 @@ svg {
   background-color: rgb(234 179 8 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-black\/15:hover {
+  background-color: rgb(0 0 0 / 0.15);
+}
+
 .hover\:bg-black\/10:hover {
   background-color: rgb(0 0 0 / 0.1);
 }
 
-.hover\:bg-black\/40:hover {
-  background-color: rgb(0 0 0 / 0.4);
-}
-
-.hover\:bg-white\/40:hover {
-  background-color: rgb(255 255 255 / 0.4);
-}
-
-.hover\:bg-white\/30:hover {
-  background-color: rgb(255 255 255 / 0.3);
-}
-
-.hover\:bg-white\/20:hover {
-  background-color: rgb(255 255 255 / 0.2);
-}
-
-.hover\:bg-white\/10:hover {
-  background-color: rgb(255 255 255 / 0.1);
+.hover\:bg-black\/5:hover {
+  background-color: rgb(0 0 0 / 0.05);
 }
 
 .hover\:text-gray-900:hover {

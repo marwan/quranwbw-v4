@@ -11,7 +11,7 @@
 	// update userBookmarks whenever the __userSettings changes
 	$: userBookmarks = JSON.parse($__userSettings).userBookmarks;
 
-	const dropdownItemClasses = 'font-normal rounded-3xl';
+	const dropdownItemClasses = 'font-normal rounded-3xl hover:bg-black/5';
 
 	let dropdownOpen = false;
 
