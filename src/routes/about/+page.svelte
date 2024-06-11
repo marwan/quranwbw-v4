@@ -8,7 +8,7 @@
 
 <PageHead title={'About'} />
 
-<div class="">
+<div class="theme">
 	<div class="my-6 space-y-4 pb-4">
 		<div class="flex flex-col space-y-6text-sm">
 			<div id="about-start" class="flex flex-col space-y-6 text-center">

@@ -50,7 +50,7 @@
 <PageHead title={`Morphology (${$__morphologyKey})`} />
 
 <div class="space-y-12 my-8">
-	<div id="verse-navigator" class="flex flex-row justify-center space-x-8 text-sm">
+	<div id="verse-navigator" class="flex flex-row justify-center space-x-8 text-sm theme">
 		<!-- previous chapter -->
 		{#if verse === 1 && chapter > 1}
 			<a href="/morphology/{+chapter - 1}:1" class={buttonOutlineClasses}>{@html '&#x2190;'} Chapter {+chapter - 1}</a>
@@ -79,7 +79,7 @@
 		{/await}
 	</div>
 
-	<div id="word-summary" class="text-center opacity-70 mx-auto md:w-3/4 text-sm pb-6 border-b-2 md:text-lg">
+	<div id="word-summary" class="text-center opacity-70 mx-auto md:w-3/4 text-sm pb-6 border-b-2 border-black/10 md:text-lg theme">
 		{#await fetchWordSummary}
 			<span>...</span>
 		{:then fetchWordSummary}
@@ -89,7 +89,7 @@
 		{/await}
 	</div>
 
-	<div id="word-forms" class="pb-8 border-b-2">
+	<div id="word-forms" class="pb-8 border-b-2 border-black/10 theme">
 		{#await fetchWordsData}
 			<Spinner />
 		{:then fetchWordsData}
@@ -120,7 +120,7 @@
 		{/await}
 	</div>
 
-	<div id="word-root-data" class="pb-8 border-b-2">
+	<div id="word-root-data" class="pb-8 border-b-2 border-black/10 theme">
 		{#await fetchWordsData}
 			<Spinner />
 		{:then fetchWordsData}
@@ -130,7 +130,7 @@
 		{/await}
 	</div>
 
-	<div id="exact-word-data" class="pb-8 border-b-2">
+	<div id="exact-word-data" class="pb-8 border-b-2 border-black/10 theme">
 		{#await fetchWordsData}
 			<Spinner />
 		{:then fetchWordsData}

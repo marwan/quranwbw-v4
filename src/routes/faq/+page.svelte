@@ -17,14 +17,14 @@
 
 <PageHead title={'FAQ'} />
 
-<div class="">
-	<div class="my-6 space-y-4 pb-4 border-b-2">
+<div class="theme">
+	<div class="my-6 space-y-4 pb-4 border-b-2 border-black/10">
 		<h1 class="text-2xl">Frequently Asked Questions</h1>
 	</div>
 
 	<div class="text-sm">
 		{#each Object.entries(websiteFAQs) as [key, value]}
-			<div id={+key + 1} class="py-6 space-y-2 border-b">
+			<div id={+key + 1} class="py-6 space-y-2 border-b border-black/10">
 				<div class="flex flex-col space-y-2">
 					<div class="font-medium">#{+key + 1}: {value.question}</div>
 					<div>{@html linkMarkdown(value.answer)}</div>

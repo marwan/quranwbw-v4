@@ -44,15 +44,15 @@
 
 <PageHead title={'Search'} />
 
-<div class="theme-grayscale space-y-8">
-	<div class="my-6 space-y-4 pb-4 border-b-2 dark:border-slate-700">
+<div class="theme space-y-8">
+	<div class="my-6 space-y-4 pb-4 border-b-2 border-black/10">
 		<h1 class="text-2xl">Search the Quran</h1>
 		<div class="text-sm">
 			Search the Quran for any text in over 100+ translations. Powered by the <a href="https://alquran.cloud/api" target="_blank" class={linkClasses}>Al Quran Cloud API</a>.
 		</div>
 	</div>
 
-	<div class="flex max-w-2xl mx-auto">
+	<div class="flex max-w-2xl mx-auto theme-grayscale">
 		<div id="dropdown" class="z-10 w-44">
 			<select
 				id="dropdown"

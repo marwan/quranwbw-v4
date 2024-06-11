@@ -25,10 +25,10 @@
 
 <PageHead title={'Changelogs'} />
 
-<div class="flex flex-col space-y-6 text-sm">
+<div class="flex flex-col space-y-6 text-sm theme">
 	<!-- commits -->
 	<div id="commits">
-		<div class="mt-6 mb-2 space-y-4 pb-4 border-b-2">
+		<div class="mt-6 mb-2 space-y-4 pb-4 border-b-2 border-black/10">
 			<h1 class="text-2xl">Commits</h1>
 			<div class="text-sm">
 				The following list contains the latest 100 commits made to the Quranwbw.com's <a href="https://github.com/marwan/quranwbw-v4" target="_blank" class={linkClasses}>GitHub repository</a>.
@@ -40,7 +40,7 @@
 			{:then fetchCommitsData}
 				<div class="text-sm">
 					{#each Object.entries(fetchCommitsData) as [key, value]}
-						<div class="py-6 space-y-2 border-b dark:border-slate-700">
+						<div class="py-6 space-y-2 border-b border-black/10">
 							<div class="space-y-2">
 								<div><a href={value.html_url} target="_blank" class={linkClasses}>{value.commit.message}</a></div>
 								<div>

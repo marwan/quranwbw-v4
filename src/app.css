@@ -175,7 +175,6 @@ svg {
 }
 
 /* dark blue theme */
-
 .theme-2 .theme {
   filter: grayscale(0%) sepia(15%) brightness(100%) hue-rotate(325deg) saturate(625%) invert(100%);
   -webkit-filter: grayscale(0%) sepia(15%) brightness(100%) hue-rotate(325deg) saturate(625%) invert(100%);
@@ -189,7 +188,6 @@ svg {
 }
 
 /* dark green theme */
-
 .theme-3 .theme {
   filter: grayscale(0) sepia(5%) brightness(95%) hue-rotate(315deg) saturate(625%) invert(100%);
   -webkit-filter: grayscale(0) sepia(5%) brightness(95%) hue-rotate(315deg) saturate(625%) invert(100%);
@@ -210,7 +208,6 @@ svg {
 
 
 /* pure black theme (OLED) */
-
 .theme-4 .theme {
   filter: brightness(70%) contrast(300%) invert(100%) saturate(100%);
   -webkit-filter: brightness(70%) contrast(300%) invert(100%) saturate(100%);
@@ -228,11 +225,10 @@ svg {
 }
 
 /* sepia theme */
-
 .theme-5 .theme {
-  filter: brightness(70%) contrast(100%) saturate(100%) sepia(35%);
-  -webkit-filter: brightness(70%) contrast(100%) saturate(100%) sepia(35%);
-  -moz-filter: brightness(70%) contrast(100%) saturate(100%) sepia(35%);
+  filter: brightness(85%) contrast(100%) saturate(100%) sepia(35%);
+  -webkit-filter: brightness(85%) contrast(100%) saturate(100%) sepia(35%);
+  -moz-filter: brightness(85%) contrast(100%) saturate(100%) sepia(35%);
 }
 
 
