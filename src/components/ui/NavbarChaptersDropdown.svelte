@@ -44,7 +44,7 @@
 	const dropdownItemClasses = 'font-normal rounded-3xl pl-2';
 </script>
 
-<Dropdown class="px-2 my-2 z-30" bind:open={dropdownOpen}>
+<Dropdown class="px-2 my-2 z-30 theme-grayscale" bind:open={dropdownOpen}>
 	<div class="flex flex-col space-y-4 justify-between max-w-screen-lg px-4 py-5 mx-auto text-gray-900 md:px-2">
 		<div class="mx-2">
 			<PointNavigationSelector />

@@ -39,7 +39,7 @@
 	}
 </script>
 
-<div class="verseButtons flex flex-row space-x-2 z-10 theme-grayscale">
+<div class="verseButtons flex flex-row space-x-2 z-10 theme">
 	<a href={$__currentPage === 'chapter' ? `#${chapter}:${verse}` : `/${chapter}/${verse}`} class="{buttonClasses} font-semibold" data-html2canvas-ignore>
 		<div class="opacity-70">{key}</div>
 	</a>

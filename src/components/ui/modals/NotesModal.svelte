@@ -32,7 +32,7 @@
 <Modal id="notesModal" bind:open={$__notesModalVisible} size="xs" class="rounded-3xl theme-grayscale" bodyClass="p-6" center outsideclose>
 	<!-- Modal content -->
 	<h3 id="notes-modal-title" class="mb-8 text-xl font-medium text-gray-900 daaark:text-white">{quranMetaData[chapter].transliteration}, {$__verseKey}</h3>
-	<textarea id="notes-value" rows="8" value={verseNote} class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-3xl border border-gray-300 focus:ring-gray-500 focus:border-gray-500" placeholder="Write your thoughts here..."></textarea>
+	<textarea id="notes-value" rows="8" value={verseNote} class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-3xl border border-black/10 focus:ring-gray-500 focus:border-gray-500" placeholder="Write your thoughts here..."></textarea>
 
 	{#if noteModifiedAt !== null}
 		<div id="notes-last-modified" class="text-xs mt-4">Last modified: {noteModifiedAt}</div>

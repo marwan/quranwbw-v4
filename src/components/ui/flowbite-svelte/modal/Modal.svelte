@@ -108,7 +108,7 @@
 				{#if $$slots.header || title}
 					<Frame class={headerCls} {color}>
 						<slot name="header">
-							<h3 class="text-xl font-semibold {color === 'default' ? '' : 'text-gray-900 dark:text-white'} p-0">
+							<h3 class="text-xl font-semibold {color === 'default' ? '' : 'text-black dark:text-white'} p-0">
 								{title}
 							</h3>
 						</slot>

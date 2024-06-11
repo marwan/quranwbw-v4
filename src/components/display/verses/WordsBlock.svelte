@@ -64,7 +64,6 @@
 		invisible v4-words 
 		p${value.meta.page} 
 		${$__tajweedEnabled ? 'theme-palette-tajweed' : 'theme-palette-normal'} 
-		font-filter
 	`;
 
 	$: endIconClasses = `rounded-lg hover:cursor-pointer hover:bg-lightGray ${wordAndEndIconCommonClasses}`;

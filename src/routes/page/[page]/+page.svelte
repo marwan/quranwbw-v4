@@ -141,9 +141,9 @@
 			<!-- page number -->
 			<div class="max-w-3xl mx-auto justify-center text-sm">
 				<div class="flex items-center">
-					<div class="flex-1 border-t-2 border-gray-200"></div>
+					<div class="flex-1 border-t-2 border-black/10"></div>
 					<span class="px-3 opacity-70">{page}</span>
-					<div class="flex-1 border-t-2 border-gray-200"></div>
+					<div class="flex-1 border-t-2 border-black/10"></div>
 				</div>
 			</div>
 

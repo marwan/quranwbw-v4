@@ -32,7 +32,7 @@
 	`;
 
 	// fix for Ba'da Ma Ja'aka for page 254
-	// since it's just a cosmetic change, there's no use of changing it at database level
+	// since it's just a cosmetic change, there's no need of changing it at database level
 	const fixedMushafWords = {
 		'13:37:8': 'ﱿ', // 6th line last word - Ba'da
 		'13:37:9': 'ﲀﲁ' // 7th line first word - Ma Ja'aka
@@ -62,7 +62,7 @@
 
 		<!-- word translation and transliteration, only for wbw modes -->
 		{#if $__displayType === 1 || $__displayType === 3}
-			<div class="wordTranslationText flex flex-col {fontSizes.wordTranslationText} {displayIsContinuous ? 'direction-ltr' : null}" data-fontSize={fontSizes.wordTranslationText}>
+			<div class="wordTranslationText flex flex-col theme {fontSizes.wordTranslationText} {displayIsContinuous ? 'direction-ltr' : null}" data-fontSize={fontSizes.wordTranslationText}>
 				<span class="leading-normal {$__wordTransliterationEnabled ? 'block' : 'hidden'}">{transliterationSplit[word]}</span>
 				<span class="leading-normal {$__wordTranslation === 2 && 'font-Urdu'} {$__wordTranslationEnabled ? 'block' : 'hidden'}">{translationSplit[word]}</span>
 			</div>

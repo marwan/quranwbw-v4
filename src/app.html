@@ -90,12 +90,28 @@
 		<!-- set the website theme -->
 		<script>
 			try {
-				document.documentElement.classList = `theme-${JSON.parse(localStorage.getItem('userSettings')).displaySettings.websiteTheme}`;
+				const theme = JSON.parse(localStorage.getItem('userSettings')).displaySettings.websiteTheme;
+
+				const bodyColors = [
+					0,
+					'bg-[#f9f9f9]', // white
+					'bg-[#00000a]', // blue
+					'bg-[#001617]', // green
+					'bg-[#000000]', // black
+					'bg-[#c4bbaa]' // sepia
+				];
+
+				console.log(`${bodyColors[theme]}`);
+
+				document.documentElement.classList = `theme-${theme} ${bodyColors[theme]}`;
+				document.body.classList = `${bodyColors[theme]}`;
 			} catch (error) {}
 		</script>
 		%sveltekit.head%
 	</head>
-	<body data-sveltekit-preload-data="hover" class="bg-[#f9f9f9]">
+	<!-- f9f9f9 - white -->
+	<!-- 001617 - green -->
+	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">%sveltekit.body%</div>
 		<!-- global audio player -->
 		<audio id="player"></audio>
