@@ -26,7 +26,7 @@
 	$: displayIsContinuous = displayOptions[$__displayType].continuous;
 
 	$: wordDivClasses = `
-	  word rounded-lg hover:cursor-pointer hover:bg-lightGray ${wordAndEndIconCommonClasses}
+	  word rounded-lg ${wordAndEndIconCommonClasses}
 	  ${$__audioSettings.playingWordKey === wordKey || $__morphologyKey === wordKey ? 'bg-lightGray' : null}
 	  ${$__currentPage === 'supplications' && word + 1 < supplicationsFromQuran[key] ? 'opacity-30' : null}
 	`;

@@ -23,6 +23,7 @@
 	const settingsBlockClasses = 'space-y-2 py-6';
 	const selectorClasses = 'w-32 border border-black/10 text-black text-left rounded-3xl focus:ring-gray-500 focus:border-gray-500 focus-within:ring-2 block p-2.5 truncate font-normal';
 	const radioClasses = 'font-normal';
+	const dropdownClasses = 'w-52 p-3 space-y-3 text-sm max-h-64 overflow-y-scroll theme-grayscale';
 
 	$: fontSizeCodes = JSON.parse($__userSettings).displaySettings.fontSizes;
 	$: wordTranslationKey = Object.keys(selectableWordTranslations).filter((item) => selectableWordTranslations[item].id === $__wordTranslation);
@@ -30,7 +31,7 @@
 
 <!-- settings drawer -->
 <Drawer placement="right" transitionType="fly" transitionParams={transitionParamsRight} bind:hidden={$__settingsDrawerHidden} class="theme w-full md:w-1/2 lg:w-[430px] md:rounded-tl-3xl md:rounded-bl-3xl pt-0" id="settings-drawer">
-	<div class="flex z-30 top-0 sticky bg-white border-b-2 py-4 mb-4">
+	<div class="flex z-30 top-0 sticky bg-white border-b-2 border-black/10 py-4 mb-4">
 		<h5 id="drawer-label" class="inline-flex items-center mb-4 text-3xl font-semibold">Settings</h5>
 		<CloseButton on:click={() => ($__settingsDrawerHidden = true)} class="mb-4 rounded-3xl" />
 	</div>
@@ -45,7 +46,7 @@
 				<div class="flex flex-row justify-between items-center">
 					<div class="block">Theme</div>
 					<Button class={selectorClasses}>{selectableThemes[$__websiteTheme].name}</Button>
-					<Dropdown class="w-52 p-3 space-y-3 text-sm">
+					<Dropdown class={dropdownClasses}>
 						{#each Object.entries(selectableThemes) as [id, theme]}
 							<li><Radio name="websiteTheme" bind:group={$__websiteTheme} value={theme.id} on:change={(event) => updateSettings({ type: 'websiteTheme', value: +event.target.value })} class={radioClasses}>{theme.name}</Radio></li>
 						{/each}
@@ -61,7 +62,7 @@
 				<div class="flex flex-row justify-between items-center">
 					<div class="block">Display Type</div>
 					<Button class={selectorClasses}>{displayOptions[$__displayType].displayName}</Button>
-					<Dropdown class="w-52 p-3 space-y-3 text-sm">
+					<Dropdown class={dropdownClasses}>
 						{#each Object.entries(displayOptions) as [id, displayOption]}
 							<li><Radio name="displayType" bind:group={$__displayType} value={displayOption.displayID} on:change={(event) => updateSettings({ type: 'displayType', value: +event.target.value })} class={radioClasses}>{displayOption.displayName}</Radio></li>
 						{/each}
@@ -77,7 +78,7 @@
 				<div class="flex flex-row justify-between items-center">
 					<div class="block">Word Tooltip</div>
 					<Button class={selectorClasses}>{selectableTooltipOptions[$__wordTooltip].name}</Button>
-					<Dropdown class="w-52 p-3 space-y-3 text-sm">
+					<Dropdown class={dropdownClasses}>
 						{#each Object.entries(selectableTooltipOptions) as [id, options]}
 							<li><Radio name="wordTooltip" bind:group={$__wordTooltip} value={options.id} on:change={(event) => updateSettings({ type: 'wordTooltip', value: +event.target.value })} class={radioClasses}>{options.name}</Radio></li>
 						{/each}
@@ -150,7 +151,7 @@
 				<div class="flex flex-row justify-between items-center">
 					<div class="block">Quran Font</div>
 					<Button class={selectorClasses}>{selectableFontTypes[$__wordType].font}</Button>
-					<Dropdown class="w-52 p-3 space-y-3 text-sm">
+					<Dropdown class={dropdownClasses}>
 						{#each Object.entries(selectableFontTypes) as [id, font]}
 							<li><Radio name="wordType" bind:group={$__wordType} value={font.id} on:change={(event) => updateSettings({ type: 'wordType', value: +event.target.value })} class={radioClasses}>{font.font}</Radio></li>
 						{/each}
@@ -242,7 +243,7 @@
 				<div class="flex flex-row justify-between items-center">
 					<div class="block">Word</div>
 					<Button class={selectorClasses}>{selectableWordTranslations[wordTranslationKey].language}</Button>
-					<Dropdown class="w-52 max-h-64 overflow-y-scroll p-3 space-y-3 text-sm">
+					<Dropdown class={dropdownClasses}>
 						{#each Object.entries(selectableWordTranslations) as [id, translation]}
 							<li><Radio name="wordTranslation" bind:group={$__wordTranslation} value={translation.id} on:change={(event) => updateSettings({ type: 'wordTranslation', value: +event.target.value })} class={radioClasses}>{translation.language}</Radio></li>
 						{/each}
@@ -258,7 +259,7 @@
 				<div class="flex flex-row justify-between items-center">
 					<div class="block">Verse</div>
 					<Button class={selectorClasses}>{$__verseTranslations.length} selected</Button>
-					<Dropdown class="w-52 max-h-64 overflow-y-scroll p-3 space-y-4 text-sm">
+					<Dropdown class={dropdownClasses}>
 						{#each Object.entries(verseTranslationsLanguages) as [id, language]}
 							<div class="space-y-2">
 								<div id="translation-name" class="text-sm font-medium">{language.language}</div>
@@ -297,7 +298,7 @@
 				<div class="flex flex-row justify-between items-center">
 					<div class="block">Verse Reciter</div>
 					<Button class={selectorClasses}>{selectableReciters[$__reciter].reciter}</Button>
-					<Dropdown class="w-52 max-h-64 overflow-y-scroll p-3 space-y-3 text-sm">
+					<Dropdown class={dropdownClasses}>
 						{#each Object.entries(selectableReciters) as [id, reciter]}
 							<li><Radio name="reciter" bind:group={$__reciter} value={reciter.id} on:change={(event) => updateSettings({ type: 'reciter', value: +event.target.value })} class={radioClasses}>{reciter.reciter}</Radio></li>
 						{/each}
@@ -313,7 +314,7 @@
 				<div class="flex flex-row justify-between items-center">
 					<div class="block">Playback Speed</div>
 					<Button class={selectorClasses}>x{selectablePlaybackSpeeds[$__playbackSpeed].speed}</Button>
-					<Dropdown class="w-52 p-3 space-y-3 text-sm">
+					<Dropdown class={dropdownClasses}>
 						{#each Object.entries(selectablePlaybackSpeeds) as [id, speed]}
 							<li><Radio name="playbackSpeed" bind:group={$__playbackSpeed} value={speed.id} on:change={(event) => updateSettings({ type: 'playbackSpeed', value: +event.target.value })} class={radioClasses}>x{speed.speed}</Radio></li>
 						{/each}

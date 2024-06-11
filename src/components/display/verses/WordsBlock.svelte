@@ -49,6 +49,7 @@
 	}
 
 	$: wordAndEndIconCommonClasses = `
+		hover:bg-white/10 hover:cursor-pointer
 		${$__displayType === 1 ? 'text-center flex flex-col' : 'inline-flex flex-col'}
 		${displayOptions[$__displayType].layout === 'wbw' ? 'p-3' : $__currentPage === 'page' ? 'p-0' : 'p-1'}
 	`;
@@ -67,7 +68,7 @@
 		${$__tajweedEnabled ? 'theme-palette-tajweed' : 'theme-palette-normal'} 
 	`;
 
-	$: endIconClasses = `rounded-lg hover:cursor-pointer hover:bg-lightGray ${wordAndEndIconCommonClasses}`;
+	$: endIconClasses = `rounded-lg ${wordAndEndIconCommonClasses}`;
 </script>
 
 <!-- words -->
