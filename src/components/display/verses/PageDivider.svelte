@@ -17,6 +17,6 @@
 {#if $__currentPage === 'chapter'}
 	{#if pageNumberKeys.includes(key)}
 		<div class={dividerClasses}>Page {page}</div>
-		<Tooltip arrow={false} type="light" placement="top" class="z-30 font-filter">Start of Page {page}</Tooltip>
+		<Tooltip arrow={false} type="light" placement="top" class="z-30 theme-grayscale font-normal">Start of Page {page}</Tooltip>
 	{/if}
 {/if}

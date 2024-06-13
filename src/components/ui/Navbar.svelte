@@ -105,7 +105,7 @@
 
 	<!-- mini nav for chapter page -->
 	{#if $__currentPage === 'chapter'}
-		<div id="bottom-nav" class="flex flex-row items-center justify-between border-t text-xs max-w-screen-lg mx-auto px-6 theme-grayscale">
+		<div id="bottom-nav" class="flex flex-row items-center justify-between border-t border-black/10 text-xs max-w-screen-lg mx-auto px-6 theme-grayscale">
 			<div id="navbar-bottom-chapter-revalation" class="flex flex-row items-center py-2">
 				{#if !$__topNavbarVisible}
 					<span>{@html navbarChapterName}</span>
@@ -125,7 +125,7 @@
 
 	<!-- mini nav for mushaf page -->
 	{#if $__currentPage === 'page'}
-		<div id="bottom-nav" class="flex flex-row items-center justify-between border-t text-xs max-w-screen-lg mx-auto px-6">
+		<div id="bottom-nav" class="flex flex-row items-center justify-between border-t border-black/10 text-xs max-w-screen-lg mx-auto px-6 theme-grayscale">
 			<div class="flex flex-row items-center py-2">{mushafChapter}</div>
 			<div class="flex flex-row items-center py-2">{mushafJuz}</div>
 		</div>

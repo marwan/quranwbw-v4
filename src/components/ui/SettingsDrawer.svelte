@@ -21,9 +21,10 @@
 	};
 
 	const settingsBlockClasses = 'space-y-2 py-6';
-	const selectorClasses = 'w-32 border border-black/10 text-black text-left rounded-3xl focus:ring-gray-500 focus:border-gray-500 focus-within:ring-2 block p-2.5 truncate font-normal';
+	const selectorClasses = 'w-32 border border-black/10 text-black text-left rounded-3xl focus:ring-gray-500 focus:border-gray-500 focus-within:ring-2 block p-2.5 truncate font-normal theme-grayscale';
 	const radioClasses = 'font-normal';
 	const dropdownClasses = 'w-52 p-3 space-y-3 text-sm max-h-64 overflow-y-scroll theme-grayscale';
+	const settingsDescriptionClasses = 'mb-6 text-sm opacity-70';
 
 	$: fontSizeCodes = JSON.parse($__userSettings).displaySettings.fontSizes;
 	$: wordTranslationKey = Object.keys(selectableWordTranslations).filter((item) => selectableWordTranslations[item].id === $__wordTranslation);
@@ -52,7 +53,7 @@
 						{/each}
 					</Dropdown>
 				</div>
-				<p class="mb-6 text-sm">An assortment of website themes to please your vision.</p>
+				<p class={settingsDescriptionClasses}>An assortment of website themes to please your vision.</p>
 			</div>
 
 			<div class="border-b border-black/10"></div>
@@ -68,7 +69,7 @@
 						{/each}
 					</Dropdown>
 				</div>
-				<p class="mb-6 text-sm">Different verse layouts that you can choose from.</p>
+				<p class={settingsDescriptionClasses}>Different verse layouts that you can choose from.</p>
 			</div>
 
 			<div class="border-b border-black/10"></div>
@@ -84,7 +85,7 @@
 						{/each}
 					</Dropdown>
 				</div>
-				<p class="mb-6 text-sm">Choose what is displayed when you hover a word.</p>
+				<p class={settingsDescriptionClasses}>Choose what is displayed when you hover a word.</p>
 			</div>
 
 			<div class="border-b border-black/10"></div>
@@ -97,11 +98,11 @@
 					<label class="inline-flex items-center cursor-pointer {$__wordTransliterationEnabled === false && disabledClasses}">
 						<input type="checkbox" value="" class="sr-only peer" checked={$__wordTranslationEnabled} on:click={(event) => updateSettings({ type: 'wordTranslationEnabled', value: event.target.checked })} />
 						<div
-							class="relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-300 dark:peer-focus:ring-gray-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-black/10 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-gray-600"
+							class="relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-black/10 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-gray-600 theme-grayscale"
 						></div>
 					</label>
 				</div>
-				<p class="mb-6 text-sm">Toggle the word translation which is shown below the Arabic word.</p>
+				<p class={settingsDescriptionClasses}>Toggle the word translation which is shown below the Arabic word.</p>
 			</div>
 
 			<div class="border-b border-black/10"></div>
@@ -113,11 +114,11 @@
 					<label class="inline-flex items-center cursor-pointer {$__wordTranslationEnabled === false && disabledClasses}">
 						<input type="checkbox" value="" class="sr-only peer" checked={$__wordTransliterationEnabled} on:click={(event) => updateSettings({ type: 'wordTransliterationEnabled', value: event.target.checked })} />
 						<div
-							class="relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-300 dark:peer-focus:ring-gray-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-black/10 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-gray-600"
+							class="relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-black/10 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-gray-600 theme-grayscale"
 						></div>
 					</label>
 				</div>
-				<p class="mb-6 text-sm">Toggle the word transliteration which is shown below the Arabic word.</p>
+				<p class={settingsDescriptionClasses}>Toggle the word transliteration which is shown below the Arabic word.</p>
 			</div>
 
 			<!-- prevent sleep toggle, only show if the browser supports it  -->
@@ -131,11 +132,11 @@
 						<label class="inline-flex items-center cursor-pointer">
 							<input type="checkbox" value="" class="sr-only peer" checked={$__wakeLockEnabled} on:click={(event) => updateSettings({ type: 'wakeLockEnabled', value: event.target.checked })} />
 							<div
-								class="relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-300 dark:peer-focus:ring-gray-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-black/10 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-gray-600"
+								class="relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-black/10 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-gray-600 theme-grayscale"
 							></div>
 						</label>
 					</div>
-					<p class="mb-6 text-sm">Enabling this option would stop your screen from dimming/sleeping.</p>
+					<p class={settingsDescriptionClasses}>Enabling this option would stop your screen from dimming/sleeping.</p>
 				</div>
 			{/if}
 		</div>
@@ -157,7 +158,7 @@
 						{/each}
 					</Dropdown>
 				</div>
-				<p class="mb-6 text-sm">Multiple Quranic fonts to choose from depending on your mushaf or region preference.</p>
+				<p class={settingsDescriptionClasses}>Multiple Quranic fonts to choose from depending on your mushaf or region preference.</p>
 			</div>
 
 			<div class="border-b border-black/10"></div>
@@ -170,11 +171,11 @@
 					<label class="inline-flex items-center cursor-pointer">
 						<input type="checkbox" value="" class="sr-only peer" checked={$__tajweedEnabled} on:click={(event) => updateSettings({ type: 'tajweedEnabled', value: event.target.checked })} />
 						<div
-							class="relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-300 dark:peer-focus:ring-gray-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-black/10 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-gray-600"
+							class="relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-black/10 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-gray-600 theme-grayscale"
 						></div>
 					</label>
 				</div>
-				<p class="mb-6 text-sm">Switch between the colored fonts with Tajweed rulings or the normal black & white.</p>
+				<p class={settingsDescriptionClasses}>Switch between the colored fonts with Tajweed rulings or the normal black & white.</p>
 			</div>
 
 			<div class="border-b border-black/10"></div>
@@ -192,7 +193,7 @@
 						</button>
 					</div>
 				</div>
-				<p class="mb-6 text-sm">Font size for Arabic word text.</p>
+				<p class={settingsDescriptionClasses}>Font size for Arabic word text.</p>
 			</div>
 
 			<div class="border-b border-black/10"></div>
@@ -210,7 +211,7 @@
 						</button>
 					</div>
 				</div>
-				<p class="mb-6 text-sm">Font size for word translation and transliteration.</p>
+				<p class={settingsDescriptionClasses}>Font size for word translation and transliteration.</p>
 			</div>
 
 			<div class="border-b border-black/10"></div>
@@ -228,7 +229,7 @@
 						</button>
 					</div>
 				</div>
-				<p class="mb-6 text-sm">Font size for verse translation and transliteration.</p>
+				<p class={settingsDescriptionClasses}>Font size for verse translation and transliteration.</p>
 			</div>
 		</div>
 	</div>
@@ -249,7 +250,7 @@
 						{/each}
 					</Dropdown>
 				</div>
-				<p class="mb-6 text-sm">Word translation which will be displaced under the Arabic word text.</p>
+				<p class={settingsDescriptionClasses}>Word translation which will be displaced under the Arabic word text.</p>
 			</div>
 
 			<div class="border-b border-black/10"></div>
@@ -283,7 +284,7 @@
 						{/each}
 					</Dropdown>
 				</div>
-				<p class="mb-6 text-sm">Verse translations from multiple authors and languages.</p>
+				<p class={settingsDescriptionClasses}>Verse translations from multiple authors and languages.</p>
 			</div>
 		</div>
 	</div>
@@ -304,7 +305,7 @@
 						{/each}
 					</Dropdown>
 				</div>
-				<p class="mb-6 text-sm">Desired reciter whose audio will be played when you choose to listen to a verse.</p>
+				<p class={settingsDescriptionClasses}>Desired reciter whose audio will be played when you choose to listen to a verse.</p>
 			</div>
 
 			<div class="border-b border-black/10"></div>
@@ -320,7 +321,7 @@
 						{/each}
 					</Dropdown>
 				</div>
-				<p class="mb-6 text-sm">The playback speed at which the verse/word audio will be played.</p>
+				<p class={settingsDescriptionClasses}>The playback speed at which the verse/word audio will be played.</p>
 			</div>
 		</div>
 	</div>
@@ -328,6 +329,6 @@
 	<!-- reset settings button -->
 	<div class="flex flex-col justify-center border-t border-black/10 py-6 space-y-4">
 		<button on:click={() => resetSettings()} class="text-sm {buttonClasses}">Reset Settings</button>
-		<p class="mb-6 text-sm">Resetting the options will not erase your bookmarks, notes, and last read location.</p>
+		<p class={settingsDescriptionClasses}>Resetting the options will not erase your bookmarks, notes, and last read location.</p>
 	</div>
 </Drawer>

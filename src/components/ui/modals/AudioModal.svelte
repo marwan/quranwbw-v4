@@ -15,7 +15,7 @@
 	<div class="flex flex-col">
 		<!-- verse or words -->
 		<div class="flex flex-col space-y-4 py-4">
-			<span class="text-xs">Either play the whole verse or individual words.</span>
+			<span class="text-xs opacity-70">Either play the whole verse or individual words.</span>
 			<div class="flex flex-row space-x-4">
 				<!-- play verse -->
 				<div class="flex items-center">
@@ -37,7 +37,7 @@
 
 		<!-- single or range -->
 		<div id="single-or-range-block" class="flex flex-col space-y-4 py-4 border-t dark:border-slate-700 {$__audioSettings.audioType === 'word' ? 'hidden' : null}">
-			<span class="text-xs">Your preferred range.</span>
+			<span class="text-xs opacity-70">Your preferred range.</span>
 			<div class="flex flex-row space-x-4">
 				<!-- play this verse -->
 				<div class="flex items-center">
@@ -77,7 +77,7 @@
 
 	<!-- repeat times -->
 	<div class="flex flex-col space-y-4 py-4 border-t dark:border-slate-700">
-		<span class="text-xs">Number of times a verse or word has to be repeated.</span>
+		<span class="text-xs opacity-70">Number of times a verse or word has to be repeated.</span>
 		<div class="flex flex-row space-x-4">
 			<div class="flex flex-row space-x-2">
 				<span class="m-auto text-sm font-medium mr-2">Repeat each {$__audioSettings.audioType} </span>

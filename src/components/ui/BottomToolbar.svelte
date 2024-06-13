@@ -93,9 +93,9 @@
 
 <div class={$__currentPage === 'chapter' ? 'block' : 'hidden'}>
 	<div class="{$__bottomToolbarVisible ? 'block' : 'hidden'} fixed z-20 w-full h-16 max-w-xs md:max-w-lg shadow-sm -translate-x-1/2 bg-white border border-black/10 rounded-full bottom-4 left-1/2 theme">
-		<div class="grid h-full max-w-lg grid-cols-5 mx-auto opacity-70">
+		<div class="grid h-full max-w-lg grid-cols-5 mx-auto">
 			<!-- Previous Chapter -->
-			<a href="/{$__chapterNumber - 1}" class="inline-flex flex-col items-center justify-center px-5 rounded-s-full hover:bg-lightGray group {$__chapterNumber === 1 && disabledClasses}">
+			<a href="/{$__chapterNumber - 1}" class="inline-flex flex-col items-center justify-center px-5 rounded-s-full hover:bg-lightGray group opacity-70 {$__chapterNumber === 1 && disabledClasses}">
 				<ChevronLeft />
 				<span class="sr-only">Previous {$__currentPage}</span>
 			</a>
@@ -104,11 +104,11 @@
 			<!-- normal / non-scroll mode -->
 			{#if !scrollModeEnabled}
 				<!-- 2nd icon -->
-				<button type="button" title="Change Display" on:click={() => updateSettings({ type: 'displayType', value: $__displayType === 5 ? 1 : $__displayType + 1 })} class="inline-flex flex-col items-center justify-center px-5 relative inline-flex items-center hover:bg-lightGray group {$__currentPage === 'page' && disabledClasses}">
+				<button type="button" title="Change Display" on:click={() => updateSettings({ type: 'displayType', value: $__displayType === 5 ? 1 : $__displayType + 1 })} class="opacity-70 inline-flex flex-col items-center justify-center px-5 relative inline-flex items-center hover:bg-lightGray group {$__currentPage === 'page' && disabledClasses}">
 					<Eye />
 					<span class="sr-only">Display Type</span>
 				</button>
-				<Tooltip arrow={false} type="light" class="hidden md:block font-filter">Display Type</Tooltip>
+				<Tooltip arrow={false} type="light" class="hidden md:block font-filter font-normal">Display Type</Tooltip>
 
 				<!-- scroll button (temp) -->
 				<!-- <button
@@ -128,7 +128,7 @@
 				<!-- 3rd icon -->
 				<!-- play/pause button -->
 				<div class="flex items-center justify-center">
-					<button type="button" title={$__audioSettings.isPlaying ? 'Pause' : 'Play'} on:click={() => audioHandler()} class="inline-flex flex-col items-center justify-center w-10 h-10 font-medium bg-black/15 rounded-full group focus:ring-2 focus:ring-gray-300 focus:outline-none">
+					<button type="button" title={$__audioSettings.isPlaying ? 'Pause' : 'Play'} on:click={() => audioHandler()} class="opacity-70 inline-flex flex-col items-center justify-center w-10 h-10 font-medium bg-black/15 rounded-full group focus:ring-2 focus:ring-gray-300 focus:outline-none">
 						<svelte:component this={$__audioSettings.isPlaying ? Pause : PlaySolid} />
 						<span class="sr-only">{$__audioSettings.isPlaying ? 'Pause' : 'Play'}</span>
 
@@ -138,14 +138,14 @@
 						{/if}
 					</button>
 				</div>
-				<Tooltip arrow={false} type="light" class="hidden md:block font-filter">{$__audioSettings.isPlaying ? 'Pause' : 'Play'}</Tooltip>
+				<Tooltip arrow={false} type="light" class="hidden md:block font-filter font-normal">{$__audioSettings.isPlaying ? 'Pause' : 'Play'}</Tooltip>
 
 				<!-- 4th icon -->
-				<button type="button" title="Settings" on:click={() => ($__settingsDrawerHidden = false)} class="inline-flex flex-col items-center justify-center px-5 hover:bg-lightGray group">
+				<button type="button" title="Settings" on:click={() => ($__settingsDrawerHidden = false)} class="opacity-70 inline-flex flex-col items-center justify-center px-5 hover:bg-lightGray group">
 					<Settings />
 					<span class="sr-only">Settings</span>
 				</button>
-				<Tooltip arrow={false} type="light" class="hidden md:block font-filter">Settings</Tooltip>
+				<Tooltip arrow={false} type="light" class="hidden md:block font-filter font-normal">Settings</Tooltip>
 			{/if}
 
 			<!-- ====================================================================== -->
@@ -187,7 +187,7 @@
 			{/if}
 
 			<!-- Next Chapter -->
-			<a href="/{$__chapterNumber + 1}" class="inline-flex flex-col items-center justify-center px-5 rounded-e-full hover:bg-lightGray group {$__chapterNumber === 114 && disabledClasses}">
+			<a href="/{$__chapterNumber + 1}" class="inline-flex flex-col items-center justify-center px-5 rounded-e-full hover:bg-lightGray group opacity-70 {$__chapterNumber === 114 && disabledClasses}">
 				<ChevronRight />
 				<span class="sr-only">Next {$__currentPage}</span>
 			</a>

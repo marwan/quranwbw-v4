@@ -109,24 +109,6 @@ input:placeholder-shown {
   text-overflow: ellipsis;
 }
 
-/* button {
-	color: #333;
-	background-color: #f4f4f4;
-	outline: none;
-}
-
-button:disabled {
-	color: #999;
-}
-
-button:not(:disabled):active {
-	background-color: #ddd;
-}
-
-button:focus {
-	border-color: #666;
-} */
-
 svg {
   pointer-events: none;
 }
@@ -292,11 +274,11 @@ svg {
 }
 
 /* chapter header */
-.theme-1 #header, .theme-5 #header {
+.theme-1 .chapter-headers, .theme-5 .chapter-headers {
   font-palette: --palette3;
 }
 
-.theme-2 #header, .theme-3 #header, .theme-4 #header {
+.theme-2 .chapter-headers, .theme-3 .chapter-headers, .theme-4 .chapter-headers {
   font-palette: --palette1;
 }
 

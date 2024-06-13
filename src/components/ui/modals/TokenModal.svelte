@@ -171,8 +171,8 @@
 	}
 </script>
 
-<Modal title="Token Login" id="tokenModal" bind:open={$__tokenModalVisible} class="rounded-3xl theme" bodyClass="p-6 space-y-4 flex-1 overflow-y-auto overscroll-contain" headerClass="flex justify-between items-center p-6 rounded-t-3xl" center outsideclose>
-	<div id="token-info" class="flex flex-col space-y-4 text-sm">
+<Modal title="Token Login" id="tokenModal" bind:open={$__tokenModalVisible} class="rounded-3xl text-black theme" bodyClass="p-6 space-y-4 flex-1 overflow-y-auto overscroll-contain" headerClass="flex justify-between items-center p-6 rounded-t-3xl text-black" center outsideclose>
+	<div id="token-info" class="flex flex-col space-y-4 text-sm text-black">
 		<span>Token Login allows you to save your settings (bookmarks & notes for now) in the cloud without the need of creating an account or providing any personal details.</span>
 		<a href="/faq#11" class={linkClasses} on:click={() => __tokenModalVisible.set(false)}>You can read more about it on our FAQs page (#11).</a>
 	</div>

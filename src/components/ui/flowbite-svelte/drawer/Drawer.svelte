@@ -11,7 +11,7 @@
 	export let bottomOffset = 'inset-x-0 bottom-0';
 	export let width = 'w-80';
 	export let backdrop = true;
-	export let bgColor = 'bg-gray-200';
+	export let bgColor = 'bg-[#282828c4]';
 	export let bgOpacity = 'bg-opacity-75';
 	export let placement = 'left';
 	export let id = 'drawer-example';

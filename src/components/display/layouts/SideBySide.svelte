@@ -26,4 +26,4 @@
 	</div>
 </div>
 
-<div class="border-b theme"></div>
+<div class="border-b border-black/10 theme"></div>
