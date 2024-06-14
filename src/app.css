@@ -269,16 +269,13 @@ svg {
   font-palette: --palette5;
 }
 
-.theme-1 .chapter-headers {
+
+/* chapter header */
+.theme-1 .header, .theme-5 .header {
   font-palette: --palette0;
 }
 
-/* chapter header */
-.theme-1 .chapter-headers, .theme-5 .chapter-headers {
-  font-palette: --palette3;
-}
-
-.theme-2 .chapter-headers, .theme-3 .chapter-headers, .theme-4 .chapter-headers {
+.theme-2 .header, .theme-3 .header, .theme-4 .header {
   font-palette: --palette1;
 }
 

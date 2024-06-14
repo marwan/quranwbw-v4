@@ -51,7 +51,7 @@
 	$: wordAndEndIconCommonClasses = `
 		hover:bg-white/10 hover:cursor-pointer
 		${$__displayType === 1 ? 'text-center flex flex-col' : 'inline-flex flex-col'}
-		${displayOptions[$__displayType].layout === 'wbw' ? 'p-3' : $__currentPage === 'page' ? 'p-0' : 'p-1'}
+		${displayOptions[$__displayType].layout === 'wbw' ? 'p-3' : $__wordType === 2 ? 'p-0' : 'p-1'}
 	`;
 
 	$: wordSpanClasses = `
