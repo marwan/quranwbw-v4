@@ -7,8 +7,8 @@
 	import Word from '$display/verses/Word.svelte';
 	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
 	import { goto } from '$app/navigation';
-	import { displayOptions, mushafFontLinks } from '$data/options';
-	import { __currentPage, __wordType, __displayType, __userSettings, __audioSettings, __morphologyKey, __tajweedEnabled, __verseKey } from '$utils/stores';
+	import { displayOptions, mushafFontLinks, selectableThemes } from '$data/options';
+	import { __currentPage, __wordType, __displayType, __userSettings, __audioSettings, __morphologyKey, __tajweedEnabled, __verseKey, __websiteTheme } from '$utils/stores';
 	import { loadFont } from '$utils/loadFont';
 	import { wordAudioController } from '$utils/audioController';
 	import { updateSettings } from '$utils/updateSettings';
@@ -49,8 +49,10 @@
 	}
 
 	$: wordAndEndIconCommonClasses = `
+		hover:cursor-pointer
+		${selectableThemes[$__websiteTheme].palette === 1 ? 'hover:bg-white/20' : 'hover:bg-black/10'}
 		${$__displayType === 1 ? 'text-center flex flex-col' : 'inline-flex flex-col'}
-		${displayOptions[$__displayType].layout === 'wbw' ? 'p-3' : $__currentPage === 'page' ? 'p-0' : 'p-1'}
+		${displayOptions[$__displayType].layout === 'wbw' ? 'p-3' : $__wordType === 2 ? 'p-0' : 'p-1'}
 	`;
 
 	$: wordSpanClasses = `
@@ -58,16 +60,16 @@
 		arabic-font-${$__wordType} 
 		${$__currentPage !== 'page' && fontSizes.arabicText} 
 		${displayIsContinuous ? 'inline-block group-hover:text-gray-500' : null}
+		${[1, 3].includes($__wordType) ? 'text-black theme' : null}
 	`;
 
 	$: v4hafsClasses = `
 		invisible v4-words 
 		p${value.meta.page} 
 		${$__tajweedEnabled ? 'theme-palette-tajweed' : 'theme-palette-normal'} 
-		font-filter
 	`;
 
-	$: endIconClasses = `rounded-lg hover:cursor-pointer hover:bg-lightGray ${wordAndEndIconCommonClasses}`;
+	$: endIconClasses = `rounded-lg ${wordAndEndIconCommonClasses}`;
 </script>
 
 <!-- words -->

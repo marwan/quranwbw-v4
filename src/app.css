@@ -109,24 +109,6 @@ input:placeholder-shown {
   text-overflow: ellipsis;
 }
 
-/* button {
-	color: #333;
-	background-color: #f4f4f4;
-	outline: none;
-}
-
-button:disabled {
-	color: #999;
-}
-
-button:not(:disabled):active {
-	background-color: #ddd;
-}
-
-button:focus {
-	border-color: #666;
-} */
-
 svg {
   pointer-events: none;
 }
@@ -175,8 +157,7 @@ svg {
 }
 
 /* dark blue theme */
-
-.theme-2 {
+.theme-2 .theme {
   filter: grayscale(0%) sepia(15%) brightness(100%) hue-rotate(325deg) saturate(625%) invert(100%);
   -webkit-filter: grayscale(0%) sepia(15%) brightness(100%) hue-rotate(325deg) saturate(625%) invert(100%);
   -moz-filter: grayscale(0%) sepia(15%) brightness(100%) hue-rotate(325deg) saturate(625%) invert(100%);
@@ -189,8 +170,7 @@ svg {
 }
 
 /* dark green theme */
-
-.theme-3 {
+.theme-3 .theme {
   filter: grayscale(0) sepia(5%) brightness(95%) hue-rotate(315deg) saturate(625%) invert(100%);
   -webkit-filter: grayscale(0) sepia(5%) brightness(95%) hue-rotate(315deg) saturate(625%) invert(100%);
   -moz-filter: grayscale(0) sepia(5%) brightness(95%) hue-rotate(315deg) saturate(625%) invert(100%);
@@ -208,9 +188,9 @@ svg {
   -moz-filter:grayscale(100%);
 }
 
-/* pure black theme (OLED) */
 
-.theme-4 {
+/* pure black theme (OLED) */
+.theme-4 .theme {
   filter: brightness(70%) contrast(300%) invert(100%) saturate(100%);
   -webkit-filter: brightness(70%) contrast(300%) invert(100%) saturate(100%);
   -moz-filter: brightness(70%) contrast(300%) invert(100%) saturate(100%);
@@ -227,11 +207,10 @@ svg {
 }
 
 /* sepia theme */
-
-.theme-5 {
-  filter: brightness(70%) contrast(100%) saturate(100%) sepia(35%);
-  -webkit-filter: brightness(70%) contrast(100%) saturate(100%) sepia(35%);
-  -moz-filter: brightness(70%) contrast(100%) saturate(100%) sepia(35%);
+.theme-5 .theme {
+  filter: brightness(85%) contrast(100%) saturate(100%) sepia(35%);
+  -webkit-filter: brightness(85%) contrast(100%) saturate(100%) sepia(35%);
+  -moz-filter: brightness(85%) contrast(100%) saturate(100%) sepia(35%);
 }
 
 
@@ -290,16 +269,13 @@ svg {
   font-palette: --palette5;
 }
 
-.theme-1 .chapter-headers {
+
+/* chapter header */
+.theme-1 .header, .theme-5 .header {
   font-palette: --palette0;
 }
 
-/* chapter header */
-.theme-1 #header, .theme-5 #header {
-  font-palette: --palette3;
-}
-
-.theme-2 #header, .theme-3 #header, .theme-4 #header {
+.theme-2 .header, .theme-3 .header, .theme-4 .header {
   font-palette: --palette1;
 }
 

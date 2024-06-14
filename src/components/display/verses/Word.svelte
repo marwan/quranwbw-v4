@@ -9,9 +9,9 @@
 	export let v4hafsClasses;
 
 	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
-	import { displayOptions } from '$data/options';
+	import { displayOptions, selectableThemes } from '$data/options';
 	import { supplicationsFromQuran } from '$data/quranMeta';
-	import { __currentPage, __wordType, __displayType, __userSettings, __audioSettings, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __morphologyKey, __tajweedEnabled, __wordTooltip, __verseKey } from '$utils/stores';
+	import { __currentPage, __wordType, __displayType, __userSettings, __audioSettings, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __morphologyKey, __tajweedEnabled, __wordTooltip, __verseKey, __websiteTheme } from '$utils/stores';
 
 	const chapter = key.split(':')[0];
 	const verse = key.split(':')[1];
@@ -26,13 +26,19 @@
 	$: displayIsContinuous = displayOptions[$__displayType].continuous;
 
 	$: wordDivClasses = `
-	  word rounded-lg hover:cursor-pointer hover:bg-lightGray ${wordAndEndIconCommonClasses}
-	  ${$__audioSettings.playingWordKey === wordKey || $__morphologyKey === wordKey ? 'bg-lightGray' : null}
-	  ${$__currentPage === 'supplications' && word + 1 < supplicationsFromQuran[key] ? 'opacity-30' : null}
+	  word rounded-lg ${wordAndEndIconCommonClasses}
+	  ${$__audioSettings.playingWordKey === wordKey || $__morphologyKey === wordKey ? (selectableThemes[$__websiteTheme].palette === 1 ? 'bg-white/20' : 'bg-black/10') : null}
+		${$__currentPage === 'supplications' && word + 1 < supplicationsFromQuran[key] ? 'opacity-30' : null}
+	`;
+
+	$: wordTranslationClasses = `
+		wordTranslationText flex flex-col 
+		${fontSizes.wordTranslationText} ${displayIsContinuous ? 'direction-ltr' : null}
+		text-black theme
 	`;
 
 	// fix for Ba'da Ma Ja'aka for page 254
-	// since it's just a cosmetic change, there's no use of changing it at database level
+	// since it's just a cosmetic change, there's no need of changing it at database level
 	const fixedMushafWords = {
 		'13:37:8': 'ﱿ', // 6th line last word - Ba'da
 		'13:37:9': 'ﲀﲁ' // 7th line first word - Ma Ja'aka
@@ -62,7 +68,7 @@
 
 		<!-- word translation and transliteration, only for wbw modes -->
 		{#if $__displayType === 1 || $__displayType === 3}
-			<div class="wordTranslationText flex flex-col {fontSizes.wordTranslationText} {displayIsContinuous ? 'direction-ltr' : null}" data-fontSize={fontSizes.wordTranslationText}>
+			<div class={wordTranslationClasses} data-fontSize={fontSizes.wordTranslationText}>
 				<span class="leading-normal {$__wordTransliterationEnabled ? 'block' : 'hidden'}">{transliterationSplit[word]}</span>
 				<span class="leading-normal {$__wordTranslation === 2 && 'font-Urdu'} {$__wordTranslationEnabled ? 'block' : 'hidden'}">{translationSplit[word]}</span>
 			</div>
@@ -71,13 +77,13 @@
 
 	<!-- word tooltip -->
 	{#if $__wordTooltip > 1}
-		<Tooltip arrow={false} type="light" class="z-30 hidden md:block text-center inline-flex font-sans font-filter">
+		<Tooltip arrow={false} type="light" class="z-30 hidden md:block text-center inline-flex font-sans theme-grayscale font-normal">
 			{#if $__wordTooltip === 2}
 				{@html transliterationSplit[word]}
 			{:else if $__wordTooltip === 3}
 				{@html translationSplit[word]}
 			{:else if $__wordTooltip === 4}
-				{@html `${transliterationSplit[word]} <br /><br /> ${translationSplit[word]}`}
+				{@html `<div class="flex flex-col">${transliterationSplit[word]} <div class="border-t"></div> ${translationSplit[word]}</div>`}
 			{/if}
 		</Tooltip>
 	{/if}

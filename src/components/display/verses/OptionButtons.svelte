@@ -39,11 +39,11 @@
 	}
 </script>
 
-<div class="verseButtons flex flex-row space-x-2 z-10 theme-grayscale">
+<div class="verseButtons flex flex-row space-x-2 z-10 theme">
 	<a href={$__currentPage === 'chapter' ? `#${chapter}:${verse}` : `/${chapter}/${verse}`} class="{buttonClasses} font-semibold" data-html2canvas-ignore>
 		<div class="opacity-70">{key}</div>
 	</a>
-	<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-filter">Verse {key}</Tooltip>
+	<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-filter font-normal">Verse {key}</Tooltip>
 
 	<!-- play verse button -->
 	<button on:click={() => quickPlayAudio(chapter, verse, verse)} class={buttonClasses} aria-label="Play">
@@ -51,7 +51,7 @@
 			<svelte:component this={$__audioSettings.isPlaying && $__audioSettings.playingKey === key ? Pause : Play} size={3.5} />
 		</div>
 	</button>
-	<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-filter">Play</Tooltip>
+	<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-filter font-normal">Play</Tooltip>
 
 	<!-- notes button -->
 	{#if $__userNotes.hasOwnProperty(key)}
@@ -67,7 +67,7 @@
 				<Notes size={'[18px]'} />
 			</div>
 		</button>
-		<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-filter">Your Notes</Tooltip>
+		<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-filter font-normal">Your Notes</Tooltip>
 	{/if}
 
 	<!-- bookmark/unbookmark button -->
@@ -77,7 +77,7 @@
 				<svelte:component this={userBookmarks.includes(key) ? Bookmarked : Bookmark} size={3.5} />
 			</div>
 		</button>
-		<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-filter">Bookmark</Tooltip>
+		<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-filter font-normal">Bookmark</Tooltip>
 	{/if}
 
 	<!-- verses option dropdown -->

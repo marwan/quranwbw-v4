@@ -139,16 +139,16 @@
 			</div>
 
 			<!-- page number -->
-			<div class="max-w-3xl mx-auto justify-center text-sm">
+			<div class="max-w-3xl mx-auto justify-center text-sm theme">
 				<div class="flex items-center">
-					<div class="flex-1 border-t-2 border-gray-200"></div>
+					<div class="flex-1 border-t-2 border-black/10"></div>
 					<span class="px-3 opacity-70">{page}</span>
-					<div class="flex-1 border-t-2 border-gray-200"></div>
+					<div class="flex-1 border-t-2 border-black/10"></div>
 				</div>
 			</div>
 
 			<!-- page navigator -->
-			<div id="page-navigator" class="max-w-3xl flex flex-row justify-between space-x-8 pt-6 text-sm mx-auto">
+			<div id="page-navigator" class="max-w-3xl flex flex-row justify-between space-x-8 pt-6 text-sm mx-auto theme">
 				<!-- next page -->
 				{#if page < 604}
 					<a href="/page/{+page + 1}" class={buttonOutlineClasses}>{@html '&#x2190;'} Page {+page + 1}</a>

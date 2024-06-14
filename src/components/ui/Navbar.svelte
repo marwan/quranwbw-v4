@@ -63,7 +63,7 @@
 	}
 </script>
 
-<nav id="navbar" class="bg-white fixed w-full z-20 top-0 left-0 border-b border-gray-200 text-black print:hidden theme-grayscale {$__currentPage === 'home' ? 'hidden' : 'block'}">
+<nav id="navbar" class="bg-white fixed w-full z-20 top-0 left-0 border-b border-black/10 text-black print:hidden theme {$__currentPage === 'home' ? 'hidden' : 'block'}">
 	<div id="top-nav" class="{$__topNavbarVisible ? 'block' : 'hidden'} flex flex-row items-center justify-between max-w-screen-lg mx-auto px-4 py-2" aria-label="Home">
 		<a href="/" class="flex flex-row items-center p-3 cursor-pointer hover:bg-lightGray rounded-3xl" aria-label="Home">
 			<Home />
@@ -72,7 +72,7 @@
 
 		<!-- display the chapter name on chapter page -->
 		{#if $__currentPage === 'chapter'}
-			<button class="flex items-center p-3 text-sm border-gray-200 w-auto p-2 hover:bg-lightGray rounded-3xl">
+			<button class="flex items-center p-3 text-sm border-black/10 w-auto p-2 hover:bg-lightGray rounded-3xl">
 				{@html navbarChapterName}
 				<ChevronDown />
 			</button>
@@ -81,7 +81,7 @@
 
 		<!-- display only the page name for non-chapter page -->
 		{#if $__currentPage !== 'chapter'}
-			<button class="flex items-center p-3 text-sm border-gray-200 w-auto p-2 hover:bg-lightGray rounded-3xl">
+			<button class="flex items-center p-3 text-sm border-black/10 w-auto p-2 hover:bg-lightGray rounded-3xl">
 				{$__currentPage[0].toUpperCase() + $__currentPage.slice(1)}
 
 				<!-- if it's the mushaf page, show page number as well -->
@@ -105,7 +105,7 @@
 
 	<!-- mini nav for chapter page -->
 	{#if $__currentPage === 'chapter'}
-		<div id="bottom-nav" class="flex flex-row items-center justify-between border-t text-xs max-w-screen-lg mx-auto px-6">
+		<div id="bottom-nav" class="flex flex-row items-center justify-between border-t border-black/10 text-xs max-w-screen-lg mx-auto px-6 theme-grayscale">
 			<div id="navbar-bottom-chapter-revalation" class="flex flex-row items-center py-2">
 				{#if !$__topNavbarVisible}
 					<span>{@html navbarChapterName}</span>
@@ -120,12 +120,12 @@
 			</div>
 		</div>
 
-		<div id="chapter-progress-bar" class="fixed inset-x-0 z-20 h-1 bg-gray-300 transition transition-width transition-slowest ease" style="width: {chapterProgress}%" />
+		<div id="chapter-progress-bar" class="fixed inset-x-0 z-20 h-1 bg-black/10 transition transition-width transition-slowest ease" style="width: {chapterProgress}%" />
 	{/if}
 
 	<!-- mini nav for mushaf page -->
 	{#if $__currentPage === 'page'}
-		<div id="bottom-nav" class="flex flex-row items-center justify-between border-t text-xs max-w-screen-lg mx-auto px-6">
+		<div id="bottom-nav" class="flex flex-row items-center justify-between border-t border-black/10 text-xs max-w-screen-lg mx-auto px-6 theme-grayscale">
 			<div class="flex flex-row items-center py-2">{mushafChapter}</div>
 			<div class="flex flex-row items-center py-2">{mushafJuz}</div>
 		</div>

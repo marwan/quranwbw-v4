@@ -12,7 +12,7 @@
 	export let autoclose = false;
 	export let outsideclose = false;
 	export let dismissable = true;
-	export let backdropClass = 'fixed inset-0 z-40 bg-gray-200 bg-opacity-75';
+	export let backdropClass = 'fixed inset-0 z-40 bg-[#282828c4] bg-opacity-75';
 	export let classBackdrop = undefined;
 	export let dialogClass = 'fixed top-0 start-0 end-0 h-modal md:inset-0 md:h-full z-50 w-full p-4 flex';
 	export let classDialog = undefined;
@@ -108,7 +108,7 @@
 				{#if $$slots.header || title}
 					<Frame class={headerCls} {color}>
 						<slot name="header">
-							<h3 class="text-xl font-semibold {color === 'default' ? '' : 'text-gray-900 dark:text-white'} p-0">
+							<h3 class="text-xl font-semibold {color === 'default' ? '' : 'text-black dark:text-white'} p-0">
 								{title}
 							</h3>
 						</slot>

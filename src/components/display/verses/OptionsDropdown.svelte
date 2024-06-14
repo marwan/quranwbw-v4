@@ -11,22 +11,30 @@
 	// update userBookmarks whenever the __userSettings changes
 	$: userBookmarks = JSON.parse($__userSettings).userBookmarks;
 
-	const dropdownItemClasses = 'font-normal rounded-3xl';
+	const dropdownItemClasses = 'font-normal rounded-3xl hover:bg-black/5';
 
 	let dropdownOpen = false;
 
+	// we need to manually add and/or remove z-index from the verse options dropdown because it becomes transparent due to our themes which we achieve via CSS filters
+	// we remove z-index from all button blocks, and add it to button block of verse for which the dropdown was opened
 	$: {
 		try {
-			// remove z-index from all button blocks and to button block of that specific verse
 			if (dropdownOpen) {
 				document.querySelectorAll('.verseButtons').forEach((element) => {
 					element.classList.remove('z-10');
 				});
 
-				document.getElementsByClassName('verseButtons')[$__verseKey.split(':')[1]].classList.add('z-10');
+				// for some reason, applying z-index directly by selecting the .verseButtons of the verseKey doesn't work, so have to do this check...
+				const verse = +$__verseKey.split(':')[1];
+
+				if (verse === 1) {
+					document.getElementsByClassName('verseButtons')[verse].classList.add('z-10');
+				} else {
+					document.getElementById($__verseKey).firstChild.classList.add('z-10');
+				}
 			}
 		} catch (error) {
-			// error
+			console.error(error);
 		}
 	}
 
@@ -44,7 +52,7 @@
 	}
 </script>
 
-<Dropdown bind:open={dropdownOpen} class="px-2 mr-2 my-2 w-fit text-left font-sans theme-grayscale">
+<Dropdown bind:open={dropdownOpen} class="px-2 mr-2 my-2 w-max text-left font-sans theme-grayscale">
 	<div class="py-2 px-4 text-xs font-semibold text-left">Verse {$__verseKey}</div>
 
 	<!-- play verse button -->

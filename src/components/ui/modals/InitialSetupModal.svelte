@@ -45,7 +45,7 @@
 				<div class="flex flex-row space-x-6">
 					<div class="flex flex-col">
 						<label for="quran-font-list" class="block mb-2 text-sm font-medium text-gray-900">Quran Font</label>
-						<select id="quran-font-list" on:change={(event) => updateSettings({ type: 'wordType', value: +event.target.value })} bind:value={$__wordType} class="w-32 border border-gray-300 text-gray-900 rounded-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-gray-500 dark:focus:border-gray-500">
+						<select id="quran-font-list" on:change={(event) => updateSettings({ type: 'wordType', value: +event.target.value })} bind:value={$__wordType} class="w-32 border border-black/10 text-gray-900 rounded-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-gray-500 dark:focus:border-gray-500">
 							{#each Object.entries(selectableFontTypes) as [id, font]}
 								<option value={font.id}>{font.font}</option>
 							{/each}
@@ -58,7 +58,7 @@
 							id="display-style-list"
 							bind:value={$__displayType}
 							on:change={(event) => updateSettings({ type: 'displayType', value: +event.target.selectedIndex + 1 })}
-							class="w-32 border border-gray-300 text-gray-900 rounded-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-gray-500 dark:focus:border-gray-500"
+							class="w-32 border border-black/10 text-gray-900 rounded-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-gray-500 dark:focus:border-gray-500"
 						>
 							{#each Object.entries(displayOptions) as [id, displayOption]}
 								<option value={displayOption.displayID}>{displayOption.displayName}</option>
@@ -80,7 +80,7 @@
 				{/key}
 			</div>
 			<!-- Modal footer -->
-			<div class="flex justify-end p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+			<div class="flex justify-end p-6 space-x-2 border-t border-black/10 rounded-b dark:border-gray-600">
 				<button on:click={() => toggleModal('initialSetupModal', 'hide')} type="button" class={buttonClasses}>Close</button>
 			</div>
 		</div>

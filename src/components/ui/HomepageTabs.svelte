@@ -30,7 +30,7 @@
 
 	// chapter cards, tab styles
 	const cardGridClasses = 'grid md:grid-cols-2 lg:grid-cols-3 gap-3';
-	const cardInnerClasses = 'flex justify-between md:text-left border border-gray-200 transition text-sm bg-gray-100 rounded-3xl p-5 hover:cursor-pointer hover:bg-lightGray';
+	const cardInnerClasses = 'flex justify-between md:text-left border border-black/10 transition text-sm bg-gray-100 rounded-3xl p-5 hover:cursor-pointer hover:bg-lightGray';
 	const tabClasses = 'p-2 md:p-3 text-xs md:text-md cursor-pointer border-b-0';
 	const activeTabClasses = 'border-b-4';
 
@@ -47,9 +47,9 @@
 	checkTimeSpecificChapters();
 </script>
 
-<div id="homepage-tabs" style="margin-top: 15px;">
+<div id="homepage-tabs" style="margin-top: 15px;" class="theme-grayscale">
 	<div class="flex items-center justify-center px-2 mb-4">
-		<!-- <div class="hidden md:block flex-1 border-t border-gray-200"></div> -->
+		<!-- <div class="hidden md:block flex-1 border-t border-black/10"></div> -->
 
 		<div class="flex flex-row justify-center px-4">
 			<!-- main tabs on left -->
@@ -81,7 +81,7 @@
 			</div>
 		</div>
 
-		<!-- <div class="hidden md:block flex-1 border-t border-gray-200"></div> -->
+		<!-- <div class="hidden md:block flex-1 border-t border-black/10"></div> -->
 	</div>
 
 	<div class="hidden md:block border-b -mt-4 px-4 mx-auto w-[98%] theme-grayscale"></div>
@@ -130,7 +130,7 @@
 								<div class="flex flex-row items-center space-x-1 justify-center md:justify-start truncate">
 									<div>{chapter + 1}. {quranMetaData[chapter + 1].transliteration}</div>
 									<div class="opacity-50"><svelte:component this={quranMetaData[chapter + 1].revelation === 1 ? Mecca : Madinah} /></div>
-									<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-filter">{quranMetaData[chapter + 1].revelation === 1 ? 'Meccan' : 'Medinan'} revelation</Tooltip>
+									<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-filter font-normal">{quranMetaData[chapter + 1].revelation === 1 ? 'Meccan' : 'Medinan'} revelation</Tooltip>
 								</div>
 
 								<!-- chapter translation -->
