@@ -7,8 +7,8 @@
 	import Word from '$display/verses/Word.svelte';
 	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
 	import { goto } from '$app/navigation';
-	import { displayOptions, mushafFontLinks } from '$data/options';
-	import { __currentPage, __wordType, __displayType, __userSettings, __audioSettings, __morphologyKey, __tajweedEnabled, __verseKey } from '$utils/stores';
+	import { displayOptions, mushafFontLinks, selectableThemes } from '$data/options';
+	import { __currentPage, __wordType, __displayType, __userSettings, __audioSettings, __morphologyKey, __tajweedEnabled, __verseKey, __websiteTheme } from '$utils/stores';
 	import { loadFont } from '$utils/loadFont';
 	import { wordAudioController } from '$utils/audioController';
 	import { updateSettings } from '$utils/updateSettings';
@@ -49,7 +49,8 @@
 	}
 
 	$: wordAndEndIconCommonClasses = `
-		hover:bg-white/10 hover:cursor-pointer
+		hover:cursor-pointer
+		${selectableThemes[$__websiteTheme].palette === 1 ? 'hover:bg-white/20' : 'hover:bg-black/10'}
 		${$__displayType === 1 ? 'text-center flex flex-col' : 'inline-flex flex-col'}
 		${displayOptions[$__displayType].layout === 'wbw' ? 'p-3' : $__wordType === 2 ? 'p-0' : 'p-1'}
 	`;

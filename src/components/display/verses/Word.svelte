@@ -9,9 +9,9 @@
 	export let v4hafsClasses;
 
 	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
-	import { displayOptions } from '$data/options';
+	import { displayOptions, selectableThemes } from '$data/options';
 	import { supplicationsFromQuran } from '$data/quranMeta';
-	import { __currentPage, __wordType, __displayType, __userSettings, __audioSettings, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __morphologyKey, __tajweedEnabled, __wordTooltip, __verseKey } from '$utils/stores';
+	import { __currentPage, __wordType, __displayType, __userSettings, __audioSettings, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __morphologyKey, __tajweedEnabled, __wordTooltip, __verseKey, __websiteTheme } from '$utils/stores';
 
 	const chapter = key.split(':')[0];
 	const verse = key.split(':')[1];
@@ -27,8 +27,8 @@
 
 	$: wordDivClasses = `
 	  word rounded-lg ${wordAndEndIconCommonClasses}
-	  ${$__audioSettings.playingWordKey === wordKey || $__morphologyKey === wordKey ? 'bg-white/10' : null}
-	  ${$__currentPage === 'supplications' && word + 1 < supplicationsFromQuran[key] ? 'opacity-30' : null}
+	  ${$__audioSettings.playingWordKey === wordKey || $__morphologyKey === wordKey ? (selectableThemes[$__websiteTheme].palette === 1 ? 'bg-white/20' : 'bg-black/10') : null}
+		${$__currentPage === 'supplications' && word + 1 < supplicationsFromQuran[key] ? 'opacity-30' : null}
 	`;
 
 	$: wordTranslationClasses = `
@@ -83,7 +83,7 @@
 			{:else if $__wordTooltip === 3}
 				{@html translationSplit[word]}
 			{:else if $__wordTooltip === 4}
-				{@html `${transliterationSplit[word]} <br /><br /> ${translationSplit[word]}`}
+				{@html `<div class="flex flex-col">${transliterationSplit[word]} <div class="border-t"></div> ${translationSplit[word]}</div>`}
 			{/if}
 		</Tooltip>
 	{/if}
