@@ -15,18 +15,26 @@
 
 	let dropdownOpen = false;
 
+	// we need to manually add and/or remove z-index from the verse options dropdown because it becomes transparent due to our themes which we achieve via CSS filters
+	// we remove z-index from all button blocks, and add it to button block of verse for which the dropdown was opened
 	$: {
 		try {
-			// remove z-index from all button blocks and to button block of that specific verse
 			if (dropdownOpen) {
 				document.querySelectorAll('.verseButtons').forEach((element) => {
 					element.classList.remove('z-10');
 				});
 
-				document.getElementsByClassName('verseButtons')[$__verseKey.split(':')[1]].classList.add('z-10');
+				// for some reason, applying z-index directly by selecting the .verseButtons of the verseKey doesn't work, so have to do this check...
+				const verse = +$__verseKey.split(':')[1];
+
+				if (verse === 1) {
+					document.getElementsByClassName('verseButtons')[verse].classList.add('z-10');
+				} else {
+					document.getElementById($__verseKey).firstChild.classList.add('z-10');
+				}
 			}
 		} catch (error) {
-			// error
+			console.error(error);
 		}
 	}
 
