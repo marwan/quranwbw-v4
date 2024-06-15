@@ -80,14 +80,18 @@
 		{/if}
 
 		<!-- display only the page name for non-chapter page -->
-		{#if $__currentPage !== 'chapter'}
+		{#if $__currentPage === 'page'}
+			<button class="flex items-center p-3 text-sm border-black/10 w-auto p-2 hover:bg-lightGray rounded-3xl">
+				Page {$__pageNumber}
+				<ChevronDown />
+			</button>
+			<NavbarChaptersDropdown />
+		{/if}
+
+		<!-- display only the page name for non-chapter page -->
+		{#if !['chapter', 'page'].includes($__currentPage)}
 			<button class="flex items-center p-3 text-sm border-black/10 w-auto p-2 hover:bg-lightGray rounded-3xl">
 				{$__currentPage[0].toUpperCase() + $__currentPage.slice(1)}
-
-				<!-- if it's the mushaf page, show page number as well -->
-				{#if $__currentPage === 'page'}
-					{$__pageNumber}
-				{/if}
 
 				<!-- if it's the morphology page, show morphology key as well -->
 				{#if $__currentPage === 'morphology'}

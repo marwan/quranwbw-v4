@@ -9,6 +9,7 @@
 	export let v4hafsClasses;
 
 	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
+	// import Popover from '$ui/flowbite-svelte/popover/Popover.svelte';
 	import { displayOptions, selectableThemes } from '$data/options';
 	import { supplicationsFromQuran } from '$data/quranMeta';
 	import { __currentPage, __wordType, __displayType, __userSettings, __audioSettings, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __morphologyKey, __tajweedEnabled, __wordTooltip, __verseKey, __websiteTheme } from '$utils/stores';
@@ -48,7 +49,7 @@
 {#if $__currentPage != 'page' || ($__currentPage === 'page' && +value.words.line.split('|')[word] === line)}
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
-	<div id={wordKey} class={wordDivClasses} data-timestamp={timestampSplit[word]} on:click={() => wordClickHandler({ chapter, verse, word, type: 'word' })}>
+	<div id="word-{wordKey.split(':')[2]}" class={wordDivClasses} data-timestamp={timestampSplit[word]} on:click={() => wordClickHandler({ chapter, verse, word, type: 'word' })}>
 		<span class={wordSpanClasses} data-fontSize={fontSizes.arabicText}>
 			<!-- 1: Uthmanic Hafs Digital, 3: Indopak Madinah -->
 			{#if $__wordType === 1 || $__wordType === 3}
@@ -74,6 +75,10 @@
 			</div>
 		{/if}
 	</div>
+	<!-- <Popover class="w-64 text-sm font-light " title="Popover title" triggeredBy="#word-{wordKey.split(':')[2]}" trigger="hover" arrow={false}>
+		And here's some amazing content. It's very engaging. Right? <br />
+		<a href="/">home</a>
+	</Popover> -->
 
 	<!-- word tooltip -->
 	{#if $__wordTooltip > 1}

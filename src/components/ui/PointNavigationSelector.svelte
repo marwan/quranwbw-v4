@@ -1,22 +1,44 @@
 <script>
 	import Select from '$ui/flowbite-svelte/forms/Select.svelte';
 	import { goto } from '$app/navigation';
-	import { pageNumberKeys, juzNumberKeys } from '$data/quranMeta';
-	import { __pageURL } from '$utils/stores';
+	import { pageNumberKeys, juzNumberKeys, startPageOfChapters } from '$data/quranMeta';
+	import { __pageURL, __currentPage } from '$utils/stores';
 	import { buttonClasses, disabledClasses } from '$data/commonClasses';
 	import { validateKey } from '$utils/validateKey';
 
 	let waypoint = '',
-		placeholder = 'chapter, page, juz or key',
+		placeholder = '',
 		selectedNavigation,
 		incorrectValue = false;
 
-	const navigationPoints = [
-		{ value: 1, name: 'Chapter' },
-		{ value: 2, name: 'Page' },
-		{ value: 3, name: 'Juz' },
-		{ value: 4, name: 'Key' }
-	];
+	let navigationPoints;
+
+	$: {
+		if ($__currentPage === 'chapter') {
+			placeholder = 'chapter, page, juz or key';
+
+			navigationPoints = [
+				{ value: 1, name: 'Chapter' },
+				{ value: 2, name: 'Page' },
+				{ value: 3, name: 'Juz' },
+				{ value: 4, name: 'Key' }
+			];
+		} else if ($__currentPage === 'page') {
+			placeholder = 'chapter or page';
+
+			navigationPoints = [
+				{ value: 1, name: 'Chapter' },
+				{ value: 2, name: 'Page' }
+			];
+		}
+	}
+
+	// navigationPoints = [
+	// 	{ value: 1, name: 'Chapter' },
+	// 	{ value: 2, name: 'Page' },
+	// 	{ value: 3, name: 'Juz' },
+	// 	{ value: 4, name: 'Key' }
+	// ];
 
 	// basic checks
 	$: {
@@ -60,12 +82,20 @@
 
 		switch (selectedNavigation) {
 			case 1:
-				goto(`/${waypoint}`, { replaceState: false });
+				if ($__currentPage === 'chapter') {
+					goto(`/${waypoint}`, { replaceState: false });
+				} else if ($__currentPage === 'page') {
+					goto(`/page/${startPageOfChapters[waypoint]}`, { replaceState: false });
+				}
 				break;
 
 			case 2:
-				const pageKey = pageNumberKeys[waypoint - 1].split(':');
-				goto(`/${+pageKey[0]}/${+pageKey[1]}`, { replaceState: false });
+				if ($__currentPage === 'chapter') {
+					const pageKey = pageNumberKeys[waypoint - 1].split(':');
+					goto(`/${+pageKey[0]}/${+pageKey[1]}`, { replaceState: false });
+				} else if ($__currentPage === 'page') {
+					goto(`/page/${waypoint}`, { replaceState: false });
+				}
 				break;
 
 			case 3:

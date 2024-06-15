@@ -2017,6 +2017,11 @@ input[type="range"]::-ms-fill-lower {
   border-top-right-radius: 0.5rem;
 }
 
+.rounded-t-md {
+  border-top-left-radius: 0.375rem;
+  border-top-right-radius: 0.375rem;
+}
+
 .border {
   border-width: 1px;
 }
@@ -2094,6 +2099,11 @@ input[type="range"]::-ms-fill-lower {
 .border-gray-100 {
   --tw-border-opacity: 1;
   border-color: rgb(243 244 246 / var(--tw-border-opacity));
+}
+
+.border-gray-200 {
+  --tw-border-opacity: 1;
+  border-color: rgb(229 231 235 / var(--tw-border-opacity));
 }
 
 .border-gray-400 {
@@ -2354,8 +2364,8 @@ input[type="range"]::-ms-fill-lower {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
-.bg-white\/10 {
-  background-color: rgb(255 255 255 / 0.1);
+.bg-white\/20 {
+  background-color: rgb(255 255 255 / 0.2);
 }
 
 .bg-yellow-300 {
@@ -2371,10 +2381,6 @@ input[type="range"]::-ms-fill-lower {
 .bg-yellow-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(254 252 232 / var(--tw-bg-opacity));
-}
-
-.bg-white\/20 {
-  background-color: rgb(255 255 255 / 0.2);
 }
 
 .bg-opacity-50 {
@@ -2667,6 +2673,10 @@ input[type="range"]::-ms-fill-lower {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
+}
+
+.font-light {
+  font-weight: 300;
 }
 
 .font-medium {
@@ -3500,6 +3510,10 @@ svg {
   cursor: pointer;
 }
 
+.hover\:bg-black\/10:hover {
+  background-color: rgb(0 0 0 / 0.1);
+}
+
 .hover\:bg-black\/5:hover {
   background-color: rgb(0 0 0 / 0.05);
 }
@@ -3544,33 +3558,13 @@ svg {
   background-color: rgb(153 27 27 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-white\/10:hover {
-  background-color: rgb(255 255 255 / 0.1);
+.hover\:bg-white\/20:hover {
+  background-color: rgb(255 255 255 / 0.2);
 }
 
 .hover\:bg-yellow-500:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(234 179 8 / var(--tw-bg-opacity));
-}
-
-.hover\:bg-white\/20:hover {
-  background-color: rgb(255 255 255 / 0.2);
-}
-
-.hover\:bg-white\/50:hover {
-  background-color: rgb(255 255 255 / 0.5);
-}
-
-.hover\:bg-black\/50:hover {
-  background-color: rgb(0 0 0 / 0.5);
-}
-
-.hover\:bg-black\/20:hover {
-  background-color: rgb(0 0 0 / 0.2);
-}
-
-.hover\:bg-black\/10:hover {
-  background-color: rgb(0 0 0 / 0.1);
 }
 
 .hover\:text-gray-900:hover {
@@ -4005,6 +3999,11 @@ svg {
 .dark\:divide-yellow-800:where(.dark, .dark *) > :not([hidden]) ~ :not([hidden]) {
   --tw-divide-opacity: 1;
   border-color: rgb(133 77 14 / var(--tw-divide-opacity));
+}
+
+.dark\:\!border-gray-600:where(.dark, .dark *) {
+  --tw-border-opacity: 1 !important;
+  border-color: rgb(75 85 99 / var(--tw-border-opacity)) !important;
 }
 
 .dark\:border-blue-500:where(.dark, .dark *) {

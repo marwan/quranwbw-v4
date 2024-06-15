@@ -4,7 +4,7 @@
 	import Dropdown from '$ui/flowbite-svelte/dropdown/Dropdown.svelte';
 	import DropdownItem from '$ui/flowbite-svelte/dropdown/DropdownItem.svelte';
 	import { quranMetaData } from '$data/quranMeta';
-	import { __chapterNumber, __pageURL } from '$utils/stores';
+	import { __chapterNumber, __pageURL, __currentPage } from '$utils/stores';
 	import { inview } from 'svelte-inview';
 
 	let dropdownOpen = false;
@@ -12,6 +12,8 @@
 	let maxVersesLoaded = false;
 	let maxChaptersToLoad = 10;
 	let maxVersesToLoad = 1;
+
+	if (window.chapter === undefined) window.chapter = 1;
 
 	// when dropdown is toggled
 	$: {
@@ -51,45 +53,47 @@
 		</div>
 
 		<!-- chapter and verse selectors -->
-		<div class="flex flex-row space-x-4 max-h-80">
-			<!-- chapter selector -->
-			<div class="flex flex-col space-y-2 w-full">
-				<div class="mx-4 text-sm pb-2 border-b font-medium">Chapters</div>
-				<ul id="navbar-chapter-list" class="grow basis-1/2 px-2 overflow-y-scroll">
-					{#each { length: maxChaptersToLoad } as _, chapter}
-						<li>
-							<a href="/{chapter + 1}">
-								<DropdownItem class={dropdownItemClasses}>
-									{chapter + 1}. {quranMetaData[chapter + 1].transliteration}
-									<span class="hidden md:inline-block">({quranMetaData[chapter + 1].translation})</span>
-								</DropdownItem>
-							</a>
-						</li>
-					{/each}
-					{#if !maxChaptersLoaded}
-						<Spinner size="8" />
-					{/if}
-					<div class="invisible" use:inview on:inview_enter={() => loadMaxChapters()}></div>
-				</ul>
-			</div>
+		{#if $__currentPage === 'chapter'}
+			<div class="flex flex-row space-x-4 max-h-80">
+				<!-- chapter selector -->
+				<div class="flex flex-col space-y-2 w-full">
+					<div class="mx-4 text-sm pb-2 border-b font-medium">Chapters</div>
+					<ul id="navbar-chapter-list" class="grow basis-1/2 px-2 overflow-y-scroll">
+						{#each { length: maxChaptersToLoad } as _, chapter}
+							<li>
+								<a href="/{chapter + 1}">
+									<DropdownItem class={dropdownItemClasses}>
+										{chapter + 1}. {quranMetaData[chapter + 1].transliteration}
+										<span class="hidden md:inline-block">({quranMetaData[chapter + 1].translation})</span>
+									</DropdownItem>
+								</a>
+							</li>
+						{/each}
+						{#if !maxChaptersLoaded}
+							<Spinner size="8" />
+						{/if}
+						<div class="invisible" use:inview on:inview_enter={() => loadMaxChapters()}></div>
+					</ul>
+				</div>
 
-			<!-- verse selector -->
-			<div class="flex flex-col space-y-2 w-44">
-				<div class="mx-4 text-sm pb-2 border-b font-medium">Verses</div>
-				<ul id="navbar-verse-list" class="grow basis-1/2 px-2 overflow-y-scroll">
-					{#each { length: maxVersesToLoad } as _, verse}
-						<li>
-							<a href="/{window.chapter}/{verse + 1}" on:click={() => __pageURL.set(Math.random())}>
-								<DropdownItem class={dropdownItemClasses}>Verse {verse + 1}</DropdownItem>
-							</a>
-						</li>
-					{/each}
-					{#if !maxVersesLoaded}
-						<Spinner size="8" />
-					{/if}
-					<div class="invisible" use:inview on:inview_enter={() => loadMaxVerses()}></div>
-				</ul>
+				<!-- verse selector -->
+				<div class="flex flex-col space-y-2 w-44">
+					<div class="mx-4 text-sm pb-2 border-b font-medium">Verses</div>
+					<ul id="navbar-verse-list" class="grow basis-1/2 px-2 overflow-y-scroll">
+						{#each { length: maxVersesToLoad } as _, verse}
+							<li>
+								<a href="/{window.chapter}/{verse + 1}" on:click={() => __pageURL.set(Math.random())}>
+									<DropdownItem class={dropdownItemClasses}>Verse {verse + 1}</DropdownItem>
+								</a>
+							</li>
+						{/each}
+						{#if !maxVersesLoaded}
+							<Spinner size="8" />
+						{/if}
+						<div class="invisible" use:inview on:inview_enter={() => loadMaxVerses()}></div>
+					</ul>
+				</div>
 			</div>
-		</div>
+		{/if}
 	</div>
 </Dropdown>
