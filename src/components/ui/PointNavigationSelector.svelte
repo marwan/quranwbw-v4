@@ -14,7 +14,14 @@
 	let navigationPoints;
 
 	$: {
-		if ($__currentPage === 'chapter') {
+		if ($__currentPage === 'page') {
+			placeholder = 'chapter or page';
+
+			navigationPoints = [
+				{ value: 1, name: 'Chapter' },
+				{ value: 2, name: 'Page' }
+			];
+		} else {
 			placeholder = 'chapter, page, juz or key';
 
 			navigationPoints = [
@@ -23,22 +30,8 @@
 				{ value: 3, name: 'Juz' },
 				{ value: 4, name: 'Key' }
 			];
-		} else if ($__currentPage === 'page') {
-			placeholder = 'chapter or page';
-
-			navigationPoints = [
-				{ value: 1, name: 'Chapter' },
-				{ value: 2, name: 'Page' }
-			];
 		}
 	}
-
-	// navigationPoints = [
-	// 	{ value: 1, name: 'Chapter' },
-	// 	{ value: 2, name: 'Page' },
-	// 	{ value: 3, name: 'Juz' },
-	// 	{ value: 4, name: 'Key' }
-	// ];
 
 	// basic checks
 	$: {
@@ -82,19 +75,19 @@
 
 		switch (selectedNavigation) {
 			case 1:
-				if ($__currentPage === 'chapter') {
-					goto(`/${waypoint}`, { replaceState: false });
-				} else if ($__currentPage === 'page') {
+				if ($__currentPage === 'page') {
 					goto(`/page/${startPageOfChapters[waypoint]}`, { replaceState: false });
+				} else {
+					goto(`/${waypoint}`, { replaceState: false });
 				}
 				break;
 
 			case 2:
-				if ($__currentPage === 'chapter') {
+				if ($__currentPage === 'page') {
+					goto(`/page/${waypoint}`, { replaceState: false });
+				} else {
 					const pageKey = pageNumberKeys[waypoint - 1].split(':');
 					goto(`/${+pageKey[0]}/${+pageKey[1]}`, { replaceState: false });
-				} else if ($__currentPage === 'page') {
-					goto(`/page/${waypoint}`, { replaceState: false });
 				}
 				break;
 

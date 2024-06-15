@@ -2691,6 +2691,10 @@ input[type="range"]::-ms-fill-lower {
   font-weight: 600;
 }
 
+.font-bold {
+  font-weight: 700;
+}
+
 .uppercase {
   text-transform: uppercase;
 }
