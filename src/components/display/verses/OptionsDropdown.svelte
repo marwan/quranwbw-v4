@@ -5,7 +5,7 @@
 	import DropdownItem from '$ui/flowbite-svelte/dropdown/DropdownItem.svelte';
 	import { showAudioModal } from '$utils/audioController';
 	import { quranMetaData } from '$data/quranMeta';
-	import { __userSettings, __verseKey, __notesModalVisible } from '$utils/stores';
+	import { __userSettings, __verseKey, __notesModalVisible, __tafsirModalVisible } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';
 
 	// update userBookmarks whenever the __userSettings changes
@@ -80,6 +80,17 @@
 		}}
 	>
 		Verse Notes
+	</DropdownItem>
+
+	<!-- tafsir button -->
+	<DropdownItem
+		class={dropdownItemClasses}
+		on:click={() => {
+			__tafsirModalVisible.set(true);
+			dropdownOpen = false;
+		}}
+	>
+		Verse Tafsir
 	</DropdownItem>
 
 	<!-- verse page button -->

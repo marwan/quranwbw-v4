@@ -14,6 +14,7 @@
 	import NotesModal from '$ui/modals/NotesModal.svelte';
 	import TokenModal from '$ui/modals/TokenModal.svelte';
 	import DownloadModal from '$ui/modals/DownloadModal.svelte';
+	import TafsirModal from '$ui/modals/TafsirModal.svelte';
 	import { __websiteOnline, __currentPage, __chapterNumber, __settingsDrawerHidden, __wakeLockEnabled, __userToken } from '$utils/stores';
 	import { checkOldBookmarks } from '$utils/checkOldBookmarks';
 	import { debounce } from '$utils/debounce';
@@ -91,6 +92,7 @@
 	<NotesModal />
 	<TokenModal />
 	<DownloadModal />
+	<TafsirModal />
 	<BottomToolbar />
 
 	<slot />

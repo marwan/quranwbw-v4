@@ -52,7 +52,7 @@
 		hover:cursor-pointer
 		${selectableThemes[$__websiteTheme].palette === 1 ? 'hover:bg-white/20' : 'hover:bg-black/10'}
 		${$__displayType === 1 ? 'text-center flex flex-col' : 'inline-flex flex-col'}
-		${displayOptions[$__displayType].layout === 'wbw' ? 'p-3' : $__wordType === 2 ? 'px-0 py-1' : 'p-1'}
+		${displayOptions[$__displayType].layout === 'wbw' ? 'p-3' : $__wordType === 2 ? 'p-0' : 'p-1'}
 	`;
 
 	$: wordSpanClasses = `
