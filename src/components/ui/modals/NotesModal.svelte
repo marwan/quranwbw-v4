@@ -2,7 +2,7 @@
 	import Modal from '$ui/flowbite-svelte/modal/Modal.svelte';
 	import { quranMetaData } from '$data/quranMeta';
 	import { __currentPage, __chapterNumber, __audioSettings, __verseKey, __notesData, __userNotes, __notesModalVisible } from '$utils/stores';
-	import { buttonClasses } from '$data/commonClasses';
+	import { buttonClasses, buttonOutlineClasses } from '$data/commonClasses';
 	import { timeAgo } from '$utils/timeAgo';
 	import { updateSettings } from '$utils/updateSettings';
 
@@ -27,6 +27,10 @@
 		const notesValue = document.getElementById('notes-value').value;
 		updateSettings({ type: 'userNotes', key: $__verseKey, value: notesValue, set: true });
 	}
+
+	function resetNotes() {
+		updateSettings({ type: 'userNotes', key: $__verseKey, value: '', set: true });
+	}
 </script>
 
 <Modal id="notesModal" bind:open={$__notesModalVisible} size="xs" class="rounded-3xl theme" bodyClass="p-6" center outsideclose>
@@ -38,7 +42,8 @@
 		<div id="notes-last-modified" class="text-xs mt-4">Last modified: {noteModifiedAt}</div>
 	{/if}
 
-	<button id="notes-submit-button" on:click={() => updateNotesHandler()} class="w-full mr-2 mt-6 {buttonClasses}">
-		<span>Update Note</span>
-	</button>
+	<div class="flex flex-row space-x-2">
+		<button on:click={() => updateNotesHandler()} class="w-full mr-2 mt-6 {buttonClasses}">Update</button>
+		<button on:click={() => resetNotes()} class="w-full mr-2 mt-6 {buttonOutlineClasses}">Reset</button>
+	</div>
 </Modal>

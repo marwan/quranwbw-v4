@@ -5,7 +5,7 @@
 	import DropdownItem from '$ui/flowbite-svelte/dropdown/DropdownItem.svelte';
 	import { showAudioModal } from '$utils/audioController';
 	import { quranMetaData } from '$data/quranMeta';
-	import { __userSettings, __verseKey, __notesModalVisible, __tafsirModalVisible } from '$utils/stores';
+	import { __userSettings, __verseKey, __notesModalVisible, __tafsirModalVisible, __currentPage } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';
 
 	// update userBookmarks whenever the __userSettings changes
@@ -52,7 +52,7 @@
 	}
 </script>
 
-<Dropdown bind:open={dropdownOpen} class="px-2 mr-2 my-2 w-max text-left font-sans theme-grayscale">
+<Dropdown bind:open={dropdownOpen} class="px-2 mr-2 my-2 w-max text-left text-black font-sans theme-grayscale">
 	<div class="py-2 px-4 text-xs font-semibold text-left">Verse {$__verseKey}</div>
 
 	<!-- play verse button -->
@@ -93,8 +93,12 @@
 		Verse Tafsir
 	</DropdownItem>
 
-	<!-- verse page button -->
-	<DropdownItem class={dropdownItemClasses} href="/page/{page}">Go to Mushaf Page {page}</DropdownItem>
+	<!-- mode change buttons -->
+	{#if $__currentPage === 'chapter'}
+		<DropdownItem class={dropdownItemClasses} href="/page/{page}">Mushaf Mode</DropdownItem>
+	{:else if $__currentPage === 'page'}
+		<DropdownItem class={dropdownItemClasses} href="/{$__verseKey.split(':')[0]}/{$__verseKey.split(':')[1]}">Normal Mode</DropdownItem>
+	{/if}
 
 	<!-- verse morphology button -->
 	<DropdownItem class={dropdownItemClasses} href="/morphology/{$__verseKey}">Verse Morphology</DropdownItem>

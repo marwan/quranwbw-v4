@@ -1,5 +1,5 @@
 import { get } from 'svelte/store';
-import { __currentPage, __wordType, __chapterData, __wordTranslation, __verseTranslations } from '$utils/stores';
+import { __currentPage, __wordType, __chapterData, __wordTranslation, __verseTranslations, __timestampData } from '$utils/stores';
 import { apiEndpoint, staticEndpoint } from '$data/websiteSettings';
 import { quranMetaData } from '$data/quranMeta';
 
@@ -25,7 +25,7 @@ export async function fetchChapterData(chapter, download = false) {
 
 	// if the word type, word/verse translations are default (or user's first visit for example), load static chapter data instead
 	if (wordType === 1 && wordTranslation === 1 && verseTranslations === '1,15') {
-		apiURL = `${staticEndpoint}/${chapter}.json`;
+		apiURL = `${staticEndpoint}/v4/${chapter}.json`;
 	}
 
 	// if the user is on homepage, just fetch the chapter data
@@ -53,4 +53,12 @@ export async function fetchVersesData(verses, wordType, wordTranslation, verseTr
 	const response = await fetch(apiURL);
 	const data = await response.json();
 	return data.data.verses;
+}
+
+export async function fetchTimestampData(chapter) {
+	const apiURL = `${staticEndpoint}/timestamp/${chapter}.json?v=1`;
+	const response = await fetch(apiURL);
+	const data = await response.json();
+
+	__timestampData.set(data);
 }

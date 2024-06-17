@@ -9,7 +9,7 @@ export const wbwLanguages = 'English, Urdu, Hindi, Indonesian, Bangla, Turkish, 
 export const apiEndpoint = 'https://api.quranwbw.com/v1';
 // export const apiEndpoint = 'http://localhost:7500/v1';
 
-export const staticEndpoint = 'https://static.quranwbw.com/data/v4';
+export const staticEndpoint = 'https://static.quranwbw.com/data';
 
 export const wordsAudioURL = 'https://audios.quranwbw.com/words';
 

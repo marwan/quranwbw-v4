@@ -47,8 +47,6 @@
 				</div>
 			</div>
 
-			<div>Credits: <a href="https://quran.com" class={linkClasses} target="_blank">Quran.com</a>.</div>
-
 			<div class="flex flex-row justify-between">
 				{#if verse > 1}
 					<button class={buttonClasses} on:click={() => (verse = verse - 1)}>Previous Verse</button>

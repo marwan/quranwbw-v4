@@ -4,7 +4,7 @@
 	const chapter = +key.split(':')[0];
 	const verse = +key.split(':')[1];
 
-	import OptionsDropdown from '$display/verses/OptionsDropdown.svelte';
+	import VerseOptionsDropdown from '$display/verses/VerseOptionsDropdown.svelte';
 	import Bookmark from '$svgs/Bookmark.svelte';
 	import Bookmarked from '$svgs/Bookmarked.svelte';
 	import Play from '$svgs/Play.svelte';
@@ -86,5 +86,5 @@
 			<DotsHorizontal size={6} />
 		</div>
 	</button>
-	<OptionsDropdown page={value.meta.page} />
+	<VerseOptionsDropdown page={value.meta.page} />
 </div>

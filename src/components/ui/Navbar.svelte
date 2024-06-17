@@ -1,6 +1,5 @@
 <script>
-	import NavigationDropdown from '$ui/NavigationDropdown.svelte';
-	import NavbarChaptersDropdown from '$ui/NavbarChaptersDropdown.svelte';
+	import SiteNavigationDropdown from '$ui/SiteNavigationDropdown.svelte';
 	import Menu from '$svgs/Menu.svelte';
 	import Home from '$svgs/Home.svelte';
 	import ChevronDown from '$svgs/ChevronDown.svelte';
@@ -102,7 +101,7 @@
 			<span class="text-xs pr-2 hidden md:block">Menu</span>
 			<Menu />
 		</button>
-		<NavigationDropdown />
+		<SiteNavigationDropdown />
 	</div>
 
 	<!-- mini nav for chapter page -->

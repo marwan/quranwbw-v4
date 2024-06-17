@@ -1,5 +1,5 @@
 <script>
-	import NavigationDropdown from '$ui/NavigationDropdown.svelte';
+	import SiteNavigationDropdown from '$ui/SiteNavigationDropdown.svelte';
 	import PointNavigationSelector from '$ui/PointNavigationSelector.svelte';
 	import Mecca from '$svgs/Mecca.svelte';
 	import Madinah from '$svgs/Madinah.svelte';
@@ -77,7 +77,7 @@
 				<button class="flex flex-row items-center bg-lightGray rounded-3xl p-3 {tabClasses}" title="Menu">
 					<span class="text-black opacity-70"><Menu /></span>
 				</button>
-				<NavigationDropdown />
+				<SiteNavigationDropdown />
 			</div>
 		</div>
 

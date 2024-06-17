@@ -3,7 +3,7 @@
 	export let value;
 	export let line = null;
 
-	import OptionsDropdown from '$display/verses/OptionsDropdown.svelte';
+	import VerseOptionsDropdown from '$display/verses/VerseOptionsDropdown.svelte';
 	import Word from '$display/verses/Word.svelte';
 	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
 	import { goto } from '$app/navigation';
@@ -48,11 +48,13 @@
 		}
 	}
 
+	// ${displayOptions[$__displayType].layout === 'wbw' ? 'p-3' : $__wordType === 2 ? 'p-0' : 'p-1'}
+
 	$: wordAndEndIconCommonClasses = `
 		hover:cursor-pointer
 		${selectableThemes[$__websiteTheme].palette === 1 ? 'hover:bg-white/20' : 'hover:bg-black/10'}
 		${$__displayType === 1 ? 'text-center flex flex-col' : 'inline-flex flex-col'}
-		${displayOptions[$__displayType].layout === 'wbw' ? 'p-3' : $__wordType === 2 ? 'p-0' : 'p-1'}
+		${displayOptions[$__displayType].layout === 'wbw' ? 'p-3' : $__wordType === 2 ? ($__currentPage === 'page' ? 'p-0' : 'px-0 py-1') : 'p-1'}
 	`;
 
 	$: wordSpanClasses = `
@@ -92,7 +94,7 @@
 			{/if}
 		</span>
 	</div>
-	<OptionsDropdown page={value.meta.page} />
+	<VerseOptionsDropdown page={value.meta.page} />
 
 	<!-- end icon tooltip -->
 	<Tooltip arrow={false} type="light" class="z-30 inline-flex font-filter">End of {key}</Tooltip>
