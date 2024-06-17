@@ -41,6 +41,7 @@ let __websiteOnline,
 	__tajweedRulesModalVisible,
 	__tokenModalVisible,
 	__tafsirModalVisible,
+	__chapterNavigationModalVisible,
 	__wakeLockEnabled,
 	__quizCorrectAnswers,
 	__quizWrongAnswers,
@@ -171,6 +172,7 @@ if (browser) {
 	__tajweedRulesModalVisible = writable(false);
 	__tokenModalVisible = writable(false);
 	__tafsirModalVisible = writable(false);
+	__chapterNavigationModalVisible = writable(false);
 
 	// wake lock settings
 	__wakeLockEnabled = writable(userSettings.displaySettings.wakeLockEnabled);
@@ -227,6 +229,7 @@ export {
 	__tajweedRulesModalVisible,
 	__tokenModalVisible,
 	__tafsirModalVisible,
+	__chapterNavigationModalVisible,
 	__wakeLockEnabled,
 	__quizCorrectAnswers,
 	__quizWrongAnswers,

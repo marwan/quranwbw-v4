@@ -15,6 +15,7 @@
 	import TokenModal from '$ui/modals/TokenModal.svelte';
 	import DownloadModal from '$ui/modals/DownloadModal.svelte';
 	import TafsirModal from '$ui/modals/TafsirModal.svelte';
+	import ChapterNavigationModal from '$ui/modals/ChapterNavigationModal.svelte';
 	import { __websiteOnline, __currentPage, __chapterNumber, __settingsDrawerHidden, __wakeLockEnabled, __userToken } from '$utils/stores';
 	import { checkOldBookmarks } from '$utils/checkOldBookmarks';
 	import { debounce } from '$utils/debounce';
@@ -85,6 +86,7 @@
 <div class="max-w-screen-lg mx-auto select-none {paddingTop} {paddingBottom} {paddingX}">
 	<!-- include the UI elements -->
 	<Navbar />
+	<ChapterNavigationModal />
 	<SettingsDrawer />
 	<InitialSetupModal />
 	<AudioModal />

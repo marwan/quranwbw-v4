@@ -27,7 +27,7 @@
 	}
 </script>
 
-<Modal title="Tafsir of {quranMetaData[chapter].transliteration}, Verse {verse}" id="tafsirModal" bind:open={$__tafsirModalVisible} class="rounded-3xl theme" bodyClass="p-6 space-y-4 flex-1 overflow-y-auto overscroll-contain" headerClass="flex justify-between items-center p-6 rounded-t-3xl theme-grayscale" size="lg" center outsideclose>
+<Modal title="{quranMetaData[chapter].transliteration}, {chapter}:{verse}" id="tafsirModal" bind:open={$__tafsirModalVisible} class="rounded-3xl theme" bodyClass="p-6 space-y-4 flex-1 overflow-y-auto overscroll-contain" headerClass="flex justify-between items-center p-6 rounded-t-3xl text-black theme-grayscale" size="lg" center outsideclose>
 	{#await tafsirData}
 		<Spinner />
 	{:then tafsirData}

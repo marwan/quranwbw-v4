@@ -21,9 +21,7 @@
 
 	// fetch verses whenever there's a change
 	$: {
-		// updating the chapter number in store and in window (for chapter navigation)
 		__chapterNumber.set(+data.chapter);
-		window.chapter = +data.chapter;
 
 		const chapterTotalVerses = quranMetaData[$__chapterNumber].verses;
 

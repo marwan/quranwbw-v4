@@ -35,32 +35,32 @@
 
 	// =================================================
 	// function to load previous verses
-	let previousVersesProps = {},
-		previousVersesStart,
-		previousVersesEnd;
+	// let previousVersesProps = {},
+	// 	previousVersesStart,
+	// 	previousVersesEnd;
 
 	// function to load the previous set of verses
-	function loadPreviousVerses() {
-		versesLoadType = 'previous';
+	// function loadPreviousVerses() {
+	// 	versesLoadType = 'previous';
 
-		// importing the same component to be re-used when the "Load Previous Verses" button is pressed
-		import('./Chapter.svelte').then((res) => (Chapter = res.default));
+	// 	// importing the same component to be re-used when the "Load Previous Verses" button is pressed
+	// 	import('./Chapter.svelte').then((res) => (Chapter = res.default));
 
-		// get the last verse number from last prop value
-		const firstVerseOnPage = startVerse;
+	// 	// get the last verse number from last prop value
+	// 	const firstVerseOnPage = startVerse;
 
-		// remove the existing button
-		document.getElementById('loadPreviousVersesButton').remove();
+	// 	// remove the existing button
+	// 	document.getElementById('loadPreviousVersesButton').remove();
 
-		// define the new starting and ending range
-		(previousVersesStart = firstVerseOnPage - 1), (previousVersesEnd = previousVersesStart);
+	// 	// define the new starting and ending range
+	// 	(previousVersesStart = firstVerseOnPage - 1), (previousVersesEnd = previousVersesStart);
 
-		// setting the nextVersesProps
-		previousVersesProps = {
-			startVerse: previousVersesStart,
-			endVerse: previousVersesEnd
-		};
-	}
+	// 	// setting the nextVersesProps
+	// 	previousVersesProps = {
+	// 		startVerse: previousVersesStart,
+	// 		endVerse: previousVersesEnd
+	// 	};
+	// }
 	// =================================================
 
 	// =================================================
@@ -98,6 +98,8 @@
 		};
 	}
 	// =================================================
+
+	// console.log(nextVersesProps);
 </script>
 
 <!-- move the load button to Chapter component -->

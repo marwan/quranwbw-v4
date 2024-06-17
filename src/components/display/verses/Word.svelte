@@ -49,7 +49,7 @@
 {#if $__currentPage != 'page' || ($__currentPage === 'page' && +value.words.line.split('|')[word] === line)}
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
-	<div id="word-{wordKey.split(':')[2]}" class={wordDivClasses} data-timestamp={timestampSplit[word]} on:click={() => wordClickHandler({ chapter, verse, word, type: 'word' })}>
+	<div id={wordKey} class={wordDivClasses} data-timestamp={timestampSplit[word]} on:click={() => wordClickHandler({ chapter, verse, word, type: 'word' })}>
 		<span class={wordSpanClasses} data-fontSize={fontSizes.arabicText}>
 			<!-- 1: Uthmanic Hafs Digital, 3: Indopak Madinah -->
 			{#if $__wordType === 1 || $__wordType === 3}

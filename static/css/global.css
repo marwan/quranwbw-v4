@@ -2034,6 +2034,10 @@ input[type="range"]::-ms-fill-lower {
   border-width: 2px;
 }
 
+.\!border-t-0 {
+  border-top-width: 0px !important;
+}
+
 .border-b {
   border-bottom-width: 1px;
 }
@@ -2234,6 +2238,10 @@ input[type="range"]::-ms-fill-lower {
 
 .bg-black\/15 {
   background-color: rgb(0 0 0 / 0.15);
+}
+
+.bg-black\/5 {
+  background-color: rgb(0 0 0 / 0.05);
 }
 
 .bg-blue-400 {
