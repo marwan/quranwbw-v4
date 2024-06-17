@@ -5,7 +5,7 @@
 	import { searchableTranslations } from '$data/searchableTranslations';
 	import { quranMetaData } from '$data/quranMeta';
 	import { __currentPage } from '$utils/stores';
-	import { linkClasses } from '$data/commonClasses';
+	import { debounce } from '$utils/debounce';
 
 	let searchResults;
 
@@ -18,18 +18,21 @@
 	// in case it's not a number or out of range
 	if (isNaN(selectedTranslation) || selectedTranslation < 0 || selectedTranslation > 120) selectedTranslation = defaultTranslation;
 
-	// fetch the search results from Al Quran Cloud API
 	$: {
-		if (searchText.length > 0) {
-			// update the params
-			goto(`/search?text=${searchText}&translation=${selectedTranslation}`, { replaceState: false });
-
-			searchResults = (async () => {
-				const response = await fetch(`https://api.alquran.cloud/v1/search/${searchText}/all/${searchableTranslations[selectedTranslation].identifier}`);
-				const data = await response.json();
-				return data;
-			})();
+		if (searchText.length > 2) {
+			debounce(search, 500);
 		}
+	}
+
+	function search() {
+		// update the params
+		goto(`/search?text=${searchText}&translation=${selectedTranslation}`, { replaceState: false });
+
+		searchResults = (async () => {
+			const response = await fetch(`https://api.alquran.cloud/v1/search/${searchText}/all/${searchableTranslations[selectedTranslation].identifier}`);
+			const data = await response.json();
+			return data;
+		})();
 	}
 
 	// to make the searched text bolder
@@ -67,9 +70,9 @@
 		<!-- search input form -->
 		<form on:submit|preventDefault={(event) => (searchText = document.getElementById('search-input').value)} class="flex items-center w-full">
 			<div class="relative w-full">
-				<input type="search" id="search-input" value={searchText} class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 border-s-gray-50 border-s-2 border border-black/10" placeholder="Search Abraham, Mary, Noah, Paradise..." required />
+				<input type="search" id="search-input" bind:value={searchText} class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 border-s-gray-50 border-s-2 border border-black/10" placeholder="Search Abraham, Mary, Noah, Paradise..." required />
 			</div>
-			<button type="submit" class="p-2.5 text-sm font-medium text-white bg-gray-500 rounded-r-3xl border border-gray-500">
+			<button type="submit" class="p-2.5 px-4 text-sm font-medium text-white bg-gray-500 rounded-r-3xl border border-gray-500">
 				<svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
 					<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
 				</svg>
@@ -79,7 +82,7 @@
 	</div>
 
 	<!-- search instructions -->
-	{#if searchText.length === 0}
+	{#if searchText.length < 2}
 		<div id="how-to-search" class="flex flex-col text-sm space-y-2">
 			<span class="font-medium">Note:</span>
 			<ul class="list-disc ml-5 space-y-2">
@@ -90,7 +93,7 @@
 	{/if}
 
 	<!-- search results -->
-	{#if searchText.length > 0}
+	{#if searchText.length > 2 && searchResults}
 		<div id="search-results">
 			{#await searchResults}
 				<Spinner />

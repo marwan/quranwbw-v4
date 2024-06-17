@@ -6,6 +6,8 @@
 
 	let dropdownOpen = false;
 
+	const dropdownItemClasses = 'font-normal rounded-3xl';
+
 	const internalLinks = [
 		{
 			title: 'Supplications',
@@ -40,8 +42,6 @@
 			link: '/changelogs'
 		}
 	];
-
-	const dropdownItemClasses = 'font-normal rounded-3xl';
 </script>
 
 <Dropdown bind:open={dropdownOpen} class="px-2 mr-2 my-2 w-[180px] max-w-xs max-h-64 overflow-y-scroll theme-grayscale">

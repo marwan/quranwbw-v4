@@ -25,7 +25,7 @@ export async function fetchChapterData(chapter, download = false) {
 
 	// if the word type, word/verse translations are default (or user's first visit for example), load static chapter data instead
 	if (wordType === 1 && wordTranslation === 1 && verseTranslations === '1,15') {
-		apiURL = `${staticEndpoint}/v4/${chapter}.json`;
+		apiURL = `${staticEndpoint}/v4/${chapter}.json?v=1111`;
 	}
 
 	// if the user is on homepage, just fetch the chapter data
