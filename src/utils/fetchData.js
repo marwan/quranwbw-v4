@@ -1,5 +1,5 @@
 import { get } from 'svelte/store';
-import { __currentPage, __wordType, __chapterData, __wordTranslation, __verseTranslations, __timestampData, __chapterDataLoaded } from '$utils/stores';
+import { __wordType, __chapterData, __wordTranslation, __verseTranslations, __timestampData, __chapterDataLoaded } from '$utils/stores';
 import { apiEndpoint, staticEndpoint } from '$data/websiteSettings';
 import { quranMetaData } from '$data/quranMeta';
 
@@ -23,16 +23,6 @@ export async function fetchChapterData(complete = false, chapter, startVerse, en
 			// random: Math.floor(Math.random() * 999999999) + 0
 		});
 
-	if (complete) {
-		// if the word type, word/verse translations are default (or user's first visit for example), load static chapter data instead
-		// if (wordType === 1 && wordTranslation === 1 && verseTranslations === '1,15') {
-		// 	apiURL = `${staticEndpoint}/v4/${chapter}.json?v=1111`;
-		// }
-
-		// if the user is on homepage, just fetch the chapter data
-		if (get(__currentPage) === 'home') return fetch(apiURL);
-	}
-
 	// if the user is on the chapter page, fetch and set the data in store
 	const response = await fetch(apiURL);
 	const data = await response.json();
@@ -45,11 +35,8 @@ export async function fetchChapterData(complete = false, chapter, startVerse, en
 		__chapterDataLoaded.set(true);
 		localStorage.setItem('chapterDataLoaded', true);
 	}
-
 	// if only the partial data was requested, load the complete data too
-	if (!complete) {
-		fetchChapterData(true, chapter);
-	}
+	else fetchChapterData(true, chapter);
 }
 
 // function to fetch individual verses
