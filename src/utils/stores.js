@@ -6,6 +6,7 @@ let __websiteOnline,
 	__chapterNumber,
 	__pageNumber,
 	__chapterData,
+	__chapterDataLoaded,
 	__notesData,
 	__verseKey,
 	__userSettings,
@@ -65,6 +66,9 @@ if (browser) {
 
 	// to store the chapter data fetched from the API
 	__chapterData = writable(null);
+
+	// to store the boolean value of the complete chapter data load
+	__chapterDataLoaded = writable(null);
 
 	// to store the user notes data fetched from the API
 	__notesData = writable(null);
@@ -198,6 +202,7 @@ export {
 	__chapterNumber,
 	__pageNumber,
 	__chapterData,
+	__chapterDataLoaded,
 	__notesData,
 	__verseKey,
 	__userSettings,

@@ -1,6 +1,5 @@
 <!-- for chapter and verse routes -->
 <script>
-	// props from router
 	export let data, startVerse, endVerse;
 
 	import PageHead from '$misc/PageHead.svelte';
@@ -12,7 +11,7 @@
 	import { quranMetaData } from '$data/quranMeta';
 	import { displayOptions } from '$data/options';
 	import { errorLoadingDataMessage } from '$data/websiteSettings';
-	import { __userSettings, __currentPage, __chapterNumber, __displayType, __wordType, __wordTranslation, __verseTranslations, __pageURL, __firstVerseOnPage } from '$utils/stores';
+	import { __userSettings, __currentPage, __chapterNumber, __displayType, __wordType, __wordTranslation, __verseTranslations, __pageURL, __firstVerseOnPage, __chapterDataLoaded, __chapterData } from '$utils/stores';
 
 	// max verses to load if total verses in chapter are more than this
 	const maxVersesThreshold = 10;
@@ -21,11 +20,11 @@
 
 	// fetch verses whenever there's a change
 	$: {
+		resetChapterDataVariables(+data.chapter);
+
 		__chapterNumber.set(+data.chapter);
 
 		const chapterTotalVerses = quranMetaData[$__chapterNumber].verses;
-
-		chapterData = fetchChapterData($__chapterNumber);
 
 		// getting start and end range incase we need to load specific verses
 		(startVerse = parseURL()[0]), (endVerse = parseURL()[1]);
@@ -37,11 +36,29 @@
 			(startVerse = 1), (endVerse = chapterTotalVerses > maxVersesThreshold ? maxVersesThreshold : chapterTotalVerses);
 		}
 
+		// if the complete chapter data was already fetched for this chapter, fetch from the same endpoint again (which should be cached)
+		// else fetch the data for the given start and end verses
+		if (localStorage.getItem('chapterDataLoaded') === 'true') {
+			chapterData = fetchChapterData(true, $__chapterNumber);
+		} else {
+			chapterData = fetchChapterData(false, $__chapterNumber, startVerse, endVerse);
+		}
+
 		// update the first verse on page
 		__firstVerseOnPage.set(startVerse);
 
-		// logging these for now to re-run the block on URL change
-		console.log($__pageURL, $__displayType, $__wordType, $__wordTranslation, $__verseTranslations);
+		// do nothing except re-run the block if any of the following store updates
+		if ($__pageURL || $__displayType || $__wordType || $__wordTranslation || $__verseTranslations) {
+			// do nothing...
+		}
+	}
+
+	// update some variables on chapter change, for when the data has to be loaded from the API
+	function resetChapterDataVariables(chapter) {
+		if (chapter !== $__chapterNumber) {
+			__chapterDataLoaded.set(false);
+			localStorage.setItem('chapterDataLoaded', false);
+		}
 	}
 
 	__currentPage.set('chapter');

@@ -84,6 +84,10 @@
 				if (userSettings.chapter === undefined) userSettings.chapter = 1;
 
 				localStorage.setItem('userSettings', JSON.stringify(userSettings));
+
+				// =========================
+				// chapter data fetched from API
+				if (localStorage.getItem('chapterDataLoaded') === null || localStorage.getItem('chapterDataLoaded') === undefined) localStorage.setItem('chapterDataLoaded', false);
 			})();
 		</script>
 

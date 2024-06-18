@@ -16,7 +16,7 @@
 	import DownloadModal from '$ui/modals/DownloadModal.svelte';
 	import TafsirModal from '$ui/modals/TafsirModal.svelte';
 	import ChapterNavigationModal from '$ui/modals/ChapterNavigationModal.svelte';
-	import { __websiteOnline, __currentPage, __chapterNumber, __settingsDrawerHidden, __wakeLockEnabled, __userToken } from '$utils/stores';
+	import { __websiteOnline, __currentPage, __chapterNumber, __settingsDrawerHidden, __wakeLockEnabled, __userToken, __wordType, __wordTranslation, __verseTranslations } from '$utils/stores';
 	import { checkOldBookmarks } from '$utils/checkOldBookmarks';
 	import { debounce } from '$utils/debounce';
 	import { toggleNavbar } from '$utils/toggleNavbar';
@@ -66,6 +66,9 @@
 
 	// fetch settings from cloud whenever there's a change in chapter or page
 	// $: if ($__currentPage && $__chapterNumber) downloadSettingsFromCloud();
+
+	// reset chapterDataLoaded if any of the following updates
+	$: if ($__currentPage || $__wordType || $__wordTranslation || $__verseTranslations) localStorage.setItem('chapterDataLoaded', false);
 
 	// toggle bottom nav on scroll
 	document.getElementsByTagName('body')[0].onscroll = () => {
