@@ -2240,6 +2240,10 @@ input[type="range"]::-ms-fill-lower {
   background-color: rgb(0 0 0 / 0.15);
 }
 
+.bg-black\/30 {
+  background-color: rgb(0 0 0 / 0.3);
+}
+
 .bg-black\/5 {
   background-color: rgb(0 0 0 / 0.05);
 }
@@ -3889,6 +3893,11 @@ svg {
     line-height: 2.25rem;
   }
 
+  .md\:text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+
   .md\:text-7xl {
     font-size: 4.5rem;
     line-height: 1;
@@ -3914,11 +3923,6 @@ svg {
   .md\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
-  }
-
-  .md\:text-4xl {
-    font-size: 2.25rem;
-    line-height: 2.5rem;
   }
 }
 

@@ -10,8 +10,8 @@
 	import SideBySide from '$display/layouts/SideBySide.svelte';
 	import { inview } from 'svelte-inview';
 	import { quranMetaData } from '$data/quranMeta';
-	import { __userSettings, __displayType, __chapterNumber, __chapterData } from '$utils/stores';
-	import { buttonClasses } from '$data/commonClasses';
+	import { __userSettings, __displayType, __chapterNumber, __chapterData, __chapterDataLoaded } from '$utils/stores';
+	import { buttonClasses, disabledClasses } from '$data/commonClasses';
 
 	// load button click options
 	const loadButtonOptions = {
@@ -121,8 +121,13 @@
 {#if isExampleVerse === undefined}
 	<!-- only show the button when the last verse on page is less than total verses in chapter -->
 	{#if endVerse < chapterTotalVerses && document.getElementById('loadVersesButton') === null}
-		<div id="loadVersesButton" class="flex justify-center pt-6 pb-18" use:inview={loadButtonOptions} on:inview_enter={(event) => document.querySelector('#loadVersesButton > button').click()}>
-			<button on:click={loadNextVerses} class="text-sm {buttonClasses}"> Load Next Verses </button>
+		<div id="loadVersesButton" class="flex justify-center pt-6 pb-18">
+			{#if $__chapterDataLoaded}
+				<!-- use:inview={loadButtonOptions} on:inview_enter={(event) => document.querySelector('#loadVersesButton > button').click()} -->
+				<button on:click={loadNextVerses} class="text-sm {buttonClasses}"> Continue Reading </button>
+			{:else}
+				<button class="text-sm {buttonClasses} {disabledClasses}"> Fetching data, please wait... </button>
+			{/if}
 		</div>
 	{/if}
 {/if}

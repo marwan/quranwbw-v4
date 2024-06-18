@@ -48,7 +48,7 @@
 		<div class="flex flex-row space-x-4 max-h-80">
 			<!-- chapter selector -->
 			<div class="flex flex-col space-y-2 w-full">
-				<div class="mx-4 text-sm pb-2 border-b font-medium">Chapters</div>
+				<div class="mx-4 text-sm pb-2 border-b border-black/10 font-medium">Chapters</div>
 				<ul id="navbar-chapter-list" class="grow basis-1/2 px-2 overflow-y-scroll">
 					{#each { length: maxItemsToLoad } as _, chapter}
 						<li>
@@ -70,7 +70,7 @@
 			<!-- verse selector -->
 			{#if $__currentPage === 'chapter'}
 				<div class="flex flex-col space-y-2 w-44">
-					<div class="mx-4 text-sm pb-2 border-b font-medium">Verses</div>
+					<div class="mx-4 text-sm pb-2 border-b border-black/10 font-medium">Verses</div>
 					<ul id="navbar-verse-list" class="grow basis-1/2 px-2 overflow-y-scroll">
 						{#key $__chapterNumber}
 							{#each { length: maxVersesToLoad } as _, verse}
