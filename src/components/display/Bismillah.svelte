@@ -2,6 +2,7 @@
 	export let chapters = null;
 	export let lines = null;
 	export let line = null;
+	export let startVerse = null;
 
 	import { __currentPage, __chapterNumber, __wordType, __tajweedEnabled } from '$utils/stores';
 
@@ -24,14 +25,14 @@
 
 <!-- chapter page -->
 {#if $__currentPage === 'chapter'}
-	{#if ![1, 9].includes($__chapterNumber)}
+	{#if ![1, 9].includes($__chapterNumber) || ($__chapterNumber === 1 && startVerse > 1)}
 		<div class={chapterBismillahClasses}>
 			<!-- uthmani font -->
 			{#if $__wordType === 1 || $__wordType === 2}
 				<span class={$__wordType === 1 ? 'theme-palette-normal' : $__tajweedEnabled ? 'theme-palette-tajweed' : 'theme-palette-normal'}>
 					{#if $__chapterNumber === 2}
 						{bismillahTypes.uthmaniType1}
-					{:else if ![1, 9, 2].includes($__chapterNumber)}
+					{:else if ![1, 9, 2].includes($__chapterNumber) || ($__chapterNumber === 1 && startVerse > 1)}
 						{bismillahTypes.uthmaniType2}
 					{/if}
 				</span>

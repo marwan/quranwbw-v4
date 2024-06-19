@@ -70,7 +70,7 @@
 	{#await chapterData}
 		<Spinner height="screen" margin="-mt-20" />
 	{:then}
-		<Bismillah />
+		<Bismillah {startVerse} />
 
 		<!-- need custom stylings if display type is 3 or 4 - continuous -->
 		<div id="verses-block" class={displayOptions[JSON.parse($__userSettings).displaySettings.displayType].customStyle}>
