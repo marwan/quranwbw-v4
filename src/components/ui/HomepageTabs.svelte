@@ -16,9 +16,9 @@
 	let lastReadVerse = 1;
 
 	$: {
-		if ($__lastRead !== null) {
-			lastReadChapter = $__lastRead.split(':')[0];
-			lastReadVerse = $__lastRead.split(':')[1];
+		if ($__lastRead.hasOwnProperty('key')) {
+			lastReadChapter = $__lastRead.key.split(':')[0];
+			lastReadVerse = $__lastRead.key.split(':')[1];
 		}
 	}
 
@@ -96,7 +96,7 @@
 				<!-- time specific chapter buttons and last read -->
 				<div class="flex flex-col md:flex-row-reverse md:space-x-1">
 					<!-- last read -->
-					{#if $__lastRead !== null}
+					{#if $__lastRead.key !== null}
 						<div id="last-read">
 							<a href="/{lastReadChapter}/{lastReadVerse}" class="py-2.5 w-full mb-4 md:mb-0 {buttonClasses} truncate">Continue Reading: {quranMetaData[lastReadChapter].transliteration}, {lastReadChapter}:{lastReadVerse} {@html '&#10230'}</a>
 						</div>

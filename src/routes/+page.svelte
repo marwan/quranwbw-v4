@@ -8,7 +8,7 @@
 	import Search from '$svgs/Search.svelte';
 	import Book from '$svgs/Book.svelte';
 	import { websiteTagline } from '$data/websiteSettings';
-	import { __currentPage } from '$utils/stores';
+	import { __currentPage, __lastRead } from '$utils/stores';
 
 	const homepageLinks = [
 		{
@@ -19,7 +19,7 @@
 		{
 			title: 'Mushaf',
 			icon: Book,
-			link: '/page/1'
+			link: $__lastRead.hasOwnProperty('page') ? `/page/${$__lastRead.page}` : '/page/1'
 		},
 		{
 			title: 'Morphology',

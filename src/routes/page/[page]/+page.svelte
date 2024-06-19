@@ -8,7 +8,7 @@
 	import WordsBlock from '$display/verses/WordsBlock.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
 	import { goto } from '$app/navigation';
-	import { __chapterNumber, __pageNumber, __currentPage, __wordType, __wordTranslation, __tajweedEnabled, __mushafPageDivisions } from '$utils/stores';
+	import { __chapterNumber, __pageNumber, __currentPage, __wordType, __wordTranslation, __tajweedEnabled, __mushafPageDivisions, __lastRead } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';
 	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
 	import { quranMetaData, chapterHeaderCodes } from '$data/quranMeta';
@@ -104,6 +104,10 @@
 
 		// set the page number
 		__pageNumber.set(page);
+
+		// update the last read page
+		const key = JSON.parse(localStorage.getItem('userSettings')).lastRead.key;
+		updateSettings({ type: 'lastRead', value: { key: key !== undefined ? key : '1:1', page } });
 	}
 
 	// only allow continious normal mode, but skip saving the settings

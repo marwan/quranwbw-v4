@@ -14,12 +14,12 @@
 
 	$: {
 		try {
-			lastReadPage = document.getElementById($__lastRead).getAttribute('data-page');
-			lastReadJuz = document.getElementById($__lastRead).getAttribute('data-juz');
+			lastReadPage = document.getElementById($__lastRead.key).getAttribute('data-page');
+			lastReadJuz = document.getElementById($__lastRead.key).getAttribute('data-juz');
 
-			if ($__lastRead !== null) {
-				lastReadChapter = $__lastRead.split(':')[0];
-				lastReadVerse = $__lastRead.split(':')[1];
+			if ($__lastRead.hasOwnProperty('key')) {
+				lastReadChapter = $__lastRead.key.split(':')[0];
+				lastReadVerse = $__lastRead.key.split(':')[1];
 			}
 		} catch (error) {}
 	}
