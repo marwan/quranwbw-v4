@@ -10,7 +10,7 @@ export async function load({ params }) {
 	// }
 
 	// if a colon exists and the param is a valid key
-	if (params.chapter.includes(':') && validateKey(params.chapter)) {
+	if (params.chapter.includes(':') && validateVerseKey(params.chapter)) {
 		goto(`/${params.chapter.split(':')[0]}/${params.chapter.split(':')[1]}`, { replaceState: false });
 	}
 

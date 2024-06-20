@@ -1,6 +1,5 @@
 <script>
 	import SiteNavigationDropdown from '$ui/SiteNavigationDropdown.svelte';
-	import PointNavigationSelector from '$ui/PointNavigationSelector.svelte';
 	import Mecca from '$svgs/Mecca.svelte';
 	import Madinah from '$svgs/Madinah.svelte';
 	import CrossSolid from '$svgs/CrossSolid.svelte';
@@ -8,7 +7,7 @@
 	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
 	import { updateSettings } from '$utils/updateSettings';
 	import { quranMetaData, mostRead } from '$data/quranMeta';
-	import { __lastRead, __favouriteChapters, __userBookmarks, __timeSpecificChapters } from '$utils/stores';
+	import { __lastRead, __favouriteChapters, __userBookmarks, __timeSpecificChapters, __quranNavigationModalVisible } from '$utils/stores';
 	import { buttonClasses, buttonOutlineClasses } from '$data/commonClasses';
 	import { checkTimeSpecificChapters } from '$utils/checkTimeSpecificChapters';
 
@@ -90,8 +89,8 @@
 		<!-- chapters tab -->
 		<div class="homepage-tab-panels {activeTab === 1 ? 'block' : 'hidden'}" id="chapters-tab-panel" role="tabpanel" aria-labelledby="chapters-tab">
 			<!-- chapter / page etc... selector -->
-			<div class="flex flex-col md:flex-row justify-between text-xs">
-				<PointNavigationSelector />
+			<div class="flex flex-col space-y-2 md:space-y-0 md:flex-row justify-between text-xs mb-2">
+				<button class={buttonOutlineClasses} on:click={() => __quranNavigationModalVisible.set(true)}>Navigate Quran {@html '&#10230'}</button>
 
 				<!-- time specific chapter buttons and last read -->
 				<div class="flex flex-col md:flex-row-reverse md:space-x-1">

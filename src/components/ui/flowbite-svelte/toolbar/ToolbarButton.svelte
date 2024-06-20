@@ -8,13 +8,13 @@
 	export let size = 'md';
 	export let href = undefined;
 	const colors = {
-		default: 'focus:ring-gray-400 hover:bg-black/5 text-black'
+		default: 'hover:bg-black/5 text-black'
 	};
 	const sizing = {
-		xs: 'm-0.5 rounded-full focus:ring-1 p-0.5',
-		sm: 'm-0.5 rounded-full focus:ring-1 p-0.5',
-		md: 'm-0.5 rounded-full focus:ring-2 p-1.5',
-		lg: 'm-0.5 rounded-full focus:ring-2 p-2.5'
+		xs: 'm-0.5 rounded-full p-0.5',
+		sm: 'm-0.5 rounded-full p-0.5',
+		md: 'm-0.5 rounded-full p-1.5',
+		lg: 'm-0.5 rounded-full p-2.5'
 	};
 	let buttonClass;
 	$: buttonClass = twMerge('focus:outline-none whitespace-normal', sizing[size], colors[color], color === 'default' && (background ? 'dark:hover:bg-gray-600' : 'dark:hover:bg-gray-700'), $$props.class);

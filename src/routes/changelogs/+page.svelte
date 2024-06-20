@@ -42,7 +42,7 @@
 					{#each Object.entries(fetchCommitsData) as [key, value]}
 						<div class="py-6 space-y-2 border-b border-black/10">
 							<div class="space-y-2">
-								<div><a href={value.html_url} target="_blank" class={linkClasses}>{value.commit.message}</a></div>
+								<div><a href={value.html_url} target="_blank" class="font-semibold">{value.commit.message}</a></div>
 								<div>
 									<img class={userAvatarClasses} src={value.author.avatar_url} alt={value.author.login} />
 									{value.author.login} commited {timeAgo(value.commit.committer.date)} <span class="hidden md:inline-block">({value.sha.substring(0, 7)})</span>

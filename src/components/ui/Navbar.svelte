@@ -4,7 +4,7 @@
 	import Home from '$svgs/Home.svelte';
 	import ChevronDown from '$svgs/ChevronDown.svelte';
 	import { quranMetaData } from '$data/quranMeta';
-	import { __chapterNumber, __currentPage, __lastRead, __pageURL, __topNavbarVisible, __pageNumber, __morphologyKey, __mushafPageDivisions, __chapterNavigationModalVisible } from '$utils/stores';
+	import { __chapterNumber, __currentPage, __lastRead, __pageURL, __topNavbarVisible, __pageNumber, __morphologyKey, __mushafPageDivisions, __quranNavigationModalVisible } from '$utils/stores';
 
 	// updating the page, juz... when the last read location updates
 	let lastReadPage;
@@ -69,33 +69,29 @@
 			<span class="text-xs pl-2 hidden md:block">Home</span>
 		</a>
 
-		<!-- display the chapter name on chapter page -->
-		{#if $__currentPage === 'chapter'}
-			<button class="flex items-center p-3 text-sm border-black/10 w-auto p-2 hover:bg-lightGray rounded-3xl" on:click={() => __chapterNavigationModalVisible.set(true)}>
+		<button class="flex items-center p-3 text-sm border-black/10 w-auto p-2 hover:bg-lightGray rounded-3xl" on:click={() => __quranNavigationModalVisible.set(true)}>
+			<!-- display the chapter name on chapter page -->
+			{#if $__currentPage === 'chapter'}
 				{@html navbarChapterName}
 				<ChevronDown />
-			</button>
-		{/if}
+			{/if}
 
-		<!-- display only the page name for non-chapter page -->
-		{#if $__currentPage === 'page'}
-			<button class="flex items-center p-3 text-sm border-black/10 w-auto p-2 hover:bg-lightGray rounded-3xl" on:click={() => __chapterNavigationModalVisible.set(true)}>
+			<!-- display only the page name for non-chapter page -->
+			{#if $__currentPage === 'page'}
 				Page {$__pageNumber}
 				<ChevronDown />
-			</button>
-		{/if}
+			{/if}
 
-		<!-- display only the page name for non-chapter page -->
-		{#if !['chapter', 'page'].includes($__currentPage)}
-			<button class="flex items-center p-3 text-sm border-black/10 w-auto p-2 hover:bg-lightGray rounded-3xl">
+			<!-- display only the page name for non-chapter page -->
+			{#if !['chapter', 'page'].includes($__currentPage)}
 				{$__currentPage[0].toUpperCase() + $__currentPage.slice(1)}
 
 				<!-- if it's the morphology page, show morphology key as well -->
 				{#if $__currentPage === 'morphology'}
 					{$__morphologyKey}
 				{/if}
-			</button>
-		{/if}
+			{/if}
+		</button>
 
 		<button class="flex flex-row items-center p-3 cursor-pointer hover:bg-lightGray rounded-3xl" type="button" aria-label="Menu">
 			<span class="text-xs pr-2 hidden md:block">Menu</span>
