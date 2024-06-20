@@ -5,10 +5,11 @@
 	import Spinner from '$svgs/Spinner.svelte';
 	import { quranMetaData, startPageOfChapters, pageNumberKeys, juzNumberKeys } from '$data/quranMeta';
 	import { buttonClasses } from '$data/commonClasses';
-	import { __chapterNumber, __pageURL, __currentPage, __pageNumber, __keyNavigationModalVisible } from '$utils/stores';
+	import { __chapterNumber, __pageURL, __currentPage, __pageNumber, __quranNavigationModalVisible } from '$utils/stores';
 	import { inview } from 'svelte-inview';
 	import { validateKey } from '$utils/validateKey';
 	import { staticEndpoint } from '$data/websiteSettings';
+	import { page } from '$app/stores';
 
 	const listItemClasses = 'py-2 px-2 text-sm hover:bg-black/5 w-full text-left font-normal rounded-3xl';
 	let maxChaptersLoaded = false;
@@ -20,7 +21,7 @@
 	let keyPages;
 	let iskeyboardVisible = false;
 
-	$: if ($__pageURL || $__chapterNumber || $__pageNumber) __keyNavigationModalVisible.set(false);
+	$: if ($page.url.href || $__pageURL || $__chapterNumber || $__pageNumber) __quranNavigationModalVisible.set(false);
 	$: chapterVerses = quranMetaData[$__chapterNumber].verses;
 	$: searchResults = validateKey(searchedKey);
 
@@ -31,7 +32,7 @@
 
 	// load it externally because including it locally increases the bundle size
 	$: {
-		if ($__keyNavigationModalVisible) {
+		if ($__quranNavigationModalVisible) {
 			keyPages = (async () => {
 				const response = await fetch(`${staticEndpoint}/v4/meta/keyPages.json`);
 				const data = await response.json();
@@ -64,7 +65,7 @@
 	}
 </script>
 
-<Modal id="keyNavigationModal" title="Navigate" bind:open={$__keyNavigationModalVisible} size="sm" class="rounded-3xl text-black theme" bodyClass="p-2 !border-t-0" headerClass="hidden" placement={iskeyboardVisible ? 'top-center' : 'center'} outsideclose>
+<Modal id="quranNavigationModal" title="Navigate" bind:open={$__quranNavigationModalVisible} size="sm" class="rounded-3xl text-black theme" bodyClass="p-2 !border-t-0" headerClass="hidden" placement={iskeyboardVisible ? 'top-center' : 'center'} outsideclose>
 	<div class="flex flex-col space-y-2 justify-between max-w-screen-lg px-4 py-5 mx-auto">
 		<div class="mx-2">
 			{#await keyPages}
@@ -100,7 +101,7 @@
 								{:else if $__chapterNumber !== 'page'}
 									{#if key === 'chapter'}
 										<a href="/{value}" class="font-semibold hover:underline">{@html '&#10230'} Chapter {value} ({quranMetaData[value].transliteration})</a>
-									{:else if key === 'verse'}
+									{:else if key === 'verse' && $__currentPage === 'chapter'}
 										<a href="/{$__chapterNumber}/{value}" class="font-semibold hover:underline">{@html '&#10230'} Verse {value} (Current Chapter)</a>
 									{:else if key === 'page'}
 										<a href="/{pageNumberKeys[value - 1].split(':')[0]}/{pageNumberKeys[value - 1].split(':')[1]}" class="font-semibold hover:underline">{@html '&#10230'} Page {value} ({quranMetaData[pageNumberKeys[value - 1].split(':')[0]].transliteration})</a>
@@ -174,7 +175,7 @@
 		</div>
 
 		<div class="w-full px-2">
-			<button class="w-full {buttonClasses}" on:click={() => __keyNavigationModalVisible.set(false)}>Close</button>
+			<button class="w-full {buttonClasses}" on:click={() => __quranNavigationModalVisible.set(false)}>Close</button>
 		</div>
 	</div>
 </Modal>
