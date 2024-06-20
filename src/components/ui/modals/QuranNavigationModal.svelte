@@ -86,7 +86,7 @@
 
 					<div class="text-xs">
 						<span class="font-semibold">Instructions:</span>
-						Enter a chapter, page, juz number, or a verse key in the format of chapter:verse (e.g. 2:255) or a word key in the format of chapter:verse:word (e.g. 2:1:1).
+						You may navigate by entering either a chapter/page/juz number, a verse key (e.g. 2:255 or 2-255) or a word key (e.g. 2:1:1 or 2-1-1).
 					</div>
 
 					{#if searchResults}

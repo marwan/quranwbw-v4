@@ -17,9 +17,11 @@ export async function validateKey(key) {
 		if (key >= 1 && key <= 30) results.juz = key;
 	}
 
-	if (validateVerseKey(key)) results.key = key;
+	if (validateVerseKey(key)) results.key = key.replace('-', ':');
 
-	if (await validateWordKey(key)) results.word = key;
+	if (await validateWordKey(key)) results.word = key.replace(/-/g, ':');
+
+	console.log(Object.keys(results).length === 0 ? false : results);
 
 	return Object.keys(results).length === 0 ? false : results;
 }
@@ -35,9 +37,16 @@ export function validateVerseKey(key) {
 	// key should not be a number
 	if (!isNaN(key)) return false;
 
-	const keySplit = key.split(':');
+	let keySplit;
 
-	// we need only one ":"
+	// we allow split by ":" and "-"
+	if (key.includes(':')) {
+		keySplit = key.split(':');
+	} else if (key.includes('-')) {
+		keySplit = key.split('-');
+	}
+
+	// we only need 2 parts
 	if (keySplit.length !== 2) return false;
 
 	const chapter = +keySplit[0],
@@ -66,9 +75,16 @@ export async function validateWordKey(key) {
 	// key should not be a number
 	if (!isNaN(key)) return false;
 
-	const keySplit = key.split(':');
+	let keySplit;
 
-	// we need only 2 ":"
+	// we allow split by ":" and "-"
+	if (key.includes(':')) {
+		keySplit = key.split(':');
+	} else if (key.includes('-')) {
+		keySplit = key.split('-');
+	}
+
+	// we only need 3 parts
 	if (keySplit.length !== 3) return false;
 
 	const chapter = +keySplit[0],
