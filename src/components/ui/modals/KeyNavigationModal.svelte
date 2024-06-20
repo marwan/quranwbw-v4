@@ -4,11 +4,11 @@
 	import CloseButton from '$ui/flowbite-svelte/utils/CloseButton.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
 	import { quranMetaData, startPageOfChapters, pageNumberKeys, juzNumberKeys } from '$data/quranMeta';
-	import { keyPages } from '$data/keyPages';
 	import { buttonClasses } from '$data/commonClasses';
 	import { __chapterNumber, __pageURL, __currentPage, __pageNumber, __keyNavigationModalVisible } from '$utils/stores';
 	import { inview } from 'svelte-inview';
 	import { validateKey } from '$utils/validateKey';
+	import { staticEndpoint } from '$data/websiteSettings';
 
 	const listItemClasses = 'py-2 px-2 text-sm hover:bg-black/5 w-full text-left font-normal rounded-3xl';
 	let maxChaptersLoaded = false;
@@ -17,13 +17,26 @@
 	let maxVersesToLoad = 1;
 	let searchedKey = '';
 	let placeholder = 'chapter, page, juz or key';
+	let keyPages;
 
 	$: if ($__pageURL || $__chapterNumber || $__pageNumber) __keyNavigationModalVisible.set(false);
 	$: chapterVerses = quranMetaData[$__chapterNumber].verses;
 	$: searchResults = validateKey(searchedKey);
+
 	$: {
 		maxVersesLoaded = false;
 		maxVersesToLoad = chapterVerses > maxItemsToLoad ? maxItemsToLoad : chapterVerses;
+	}
+
+	// load it externally because including it locally increases the bundle size
+	$: {
+		if ($__keyNavigationModalVisible) {
+			keyPages = (async () => {
+				const response = await fetch(`${staticEndpoint}/v4/meta/keyPages.json`);
+				const data = await response.json();
+				return data;
+			})();
+		}
 	}
 
 	function loadMaxChapters() {
@@ -44,54 +57,58 @@
 <Modal id="keyNavigationModal" title="Navigate" bind:open={$__keyNavigationModalVisible} size="sm" class="rounded-3xl text-black theme" bodyClass="p-2 !border-t-0" headerClass="hidden" center outsideclose>
 	<div class="flex flex-col space-y-2 justify-between max-w-screen-lg px-4 py-5 mx-auto">
 		<div class="mx-2">
-			<div id="navigatation-inputs" class="flex flex-col space-y-4 mb-4 justify-start theme-grayscale">
-				<div class="flex flex-row w-full h-fit items-center">
-					<form on:submit|preventDefault={() => (searchedKey = document.getElementById('searchKey').value)} class="flex flex-row w-full">
-						<Input id="searchKey" type="text" bind:value={searchedKey} autocomplete="off" {placeholder} size="md" class="rounded-3xl theme-grayscale text-center pl-10">
-							<CloseButton slot="right" on:click={() => (searchedKey = '')} class="pr-2" />
-						</Input>
-					</form>
-				</div>
-
-				<div class="text-xs">
-					<span class="font-semibold">Search Instructions:</span>
-					You may either enter a chapter, page, juz number, or a verse key in the format of chapter:verse (e.g. 2:255).
-				</div>
-
-				{#if searchResults}
-					<div id="search-results" class="flex flex-col space-y-2 text-base md:text-lg py-4">
-						{#each Object.entries(searchResults) as [key, value]}
-							{#if $__currentPage === 'page'}
-								{#if key === 'chapter'}
-									<a href="/page/{startPageOfChapters[value]}" class="font-semibold hover:underline">→ Chapter {value} ({quranMetaData[value].transliteration})</a>
-								{:else if key === 'page'}
-									<a href="/page/{value}" class="font-semibold hover:underline">→ Page {value}</a>
-								{:else if key === 'juz'}
-									<a href="/page/{keyPages[juzNumberKeys[value - 1]]}" class="font-semibold hover:underline">→ Juz {value}</a>
-								{:else if key === 'key'}
-									<a href="/page/{keyPages[value]}" class="font-semibold hover:underline">→ {quranMetaData[value.split(':')[0]].transliteration}, Verse {value.split(':')[1]} (Page {keyPages[value]})</a>
-								{/if}
-							{:else if $__chapterNumber !== 'page'}
-								{#if key === 'chapter'}
-									<a href="/{value}" class="font-semibold hover:underline">→ Chapter {value} ({quranMetaData[value].transliteration})</a>
-								{:else if key === 'verse'}
-									<a href="/{$__chapterNumber}/{value}" class="font-semibold hover:underline">→ Verse {value} (Current Chapter)</a>
-								{:else if key === 'page'}
-									<a href="/{pageNumberKeys[value - 1].split(':')[0]}/{pageNumberKeys[value - 1].split(':')[1]}" class="font-semibold hover:underline">→ Page {value} ({quranMetaData[pageNumberKeys[value - 1].split(':')[0]].transliteration})</a>
-								{:else if key === 'juz'}
-									<a href="/{juzNumberKeys[value - 1].split(':')[0]}/{juzNumberKeys[value - 1].split(':')[1]}" class="font-semibold hover:underline">→ Juz {value} ({quranMetaData[juzNumberKeys[value - 1].split(':')[0]].transliteration})</a>
-								{:else if key === 'key'}
-									<a href="/{value.split(':')[0]}/{value.split(':')[1]}" class="font-semibold hover:underline">→ {quranMetaData[value.split(':')[0]].transliteration}, Verse {value.split(':')[1]}</a>
-								{/if}
-							{/if}
-						{/each}
+			{#await keyPages}
+				<Spinner />
+			{:then keyPages}
+				<div id="navigatation-inputs" class="flex flex-col space-y-4 mb-4 justify-start theme-grayscale">
+					<div class="flex flex-row w-full h-fit items-center">
+						<form on:submit|preventDefault={() => (searchedKey = document.getElementById('searchKey').value)} class="flex flex-row w-full">
+							<Input id="searchKey" type="text" bind:value={searchedKey} autocomplete="off" {placeholder} size="md" class="rounded-3xl theme-grayscale text-center pl-10">
+								<CloseButton slot="right" on:click={() => (searchedKey = '')} class="pr-2" />
+							</Input>
+						</form>
 					</div>
-				{/if}
 
-				{#if searchedKey.length > 0 && !searchResults}
-					<span class="text-xs font-semibold">No suggestions found for what you've entered.</span>
-				{/if}
-			</div>
+					<div class="text-xs">
+						<span class="font-semibold">Search Instructions:</span>
+						You may either enter a chapter, page, juz number, or a verse key in the format of chapter:verse (e.g. 2:255).
+					</div>
+
+					{#if searchResults}
+						<div id="search-results" class="flex flex-col space-y-2 text-base md:text-lg py-4">
+							{#each Object.entries(searchResults) as [key, value]}
+								{#if $__currentPage === 'page'}
+									{#if key === 'chapter'}
+										<a href="/page/{startPageOfChapters[value]}" class="font-semibold hover:underline">→ Chapter {value} ({quranMetaData[value].transliteration})</a>
+									{:else if key === 'page'}
+										<a href="/page/{value}" class="font-semibold hover:underline">→ Page {value}</a>
+									{:else if key === 'juz'}
+										<a href="/page/{keyPages[juzNumberKeys[value - 1]]}" class="font-semibold hover:underline">→ Juz {value}</a>
+									{:else if key === 'key'}
+										<a href="/page/{keyPages[value]}" class="font-semibold hover:underline">→ {quranMetaData[value.split(':')[0]].transliteration}, Verse {value.split(':')[1]} (Page {keyPages[value]})</a>
+									{/if}
+								{:else if $__chapterNumber !== 'page'}
+									{#if key === 'chapter'}
+										<a href="/{value}" class="font-semibold hover:underline">→ Chapter {value} ({quranMetaData[value].transliteration})</a>
+									{:else if key === 'verse'}
+										<a href="/{$__chapterNumber}/{value}" class="font-semibold hover:underline">→ Verse {value} (Current Chapter)</a>
+									{:else if key === 'page'}
+										<a href="/{pageNumberKeys[value - 1].split(':')[0]}/{pageNumberKeys[value - 1].split(':')[1]}" class="font-semibold hover:underline">→ Page {value} ({quranMetaData[pageNumberKeys[value - 1].split(':')[0]].transliteration})</a>
+									{:else if key === 'juz'}
+										<a href="/{juzNumberKeys[value - 1].split(':')[0]}/{juzNumberKeys[value - 1].split(':')[1]}" class="font-semibold hover:underline">→ Juz {value} ({quranMetaData[juzNumberKeys[value - 1].split(':')[0]].transliteration})</a>
+									{:else if key === 'key'}
+										<a href="/{value.split(':')[0]}/{value.split(':')[1]}" class="font-semibold hover:underline">→ {quranMetaData[value.split(':')[0]].transliteration}, Verse {value.split(':')[1]}</a>
+									{/if}
+								{/if}
+							{/each}
+						</div>
+					{/if}
+
+					{#if searchedKey.length > 0 && !searchResults}
+						<span class="text-xs font-semibold">No suggestions found for what you've entered.</span>
+					{/if}
+				</div>
+			{/await}
 		</div>
 
 		<!-- chapter and verse selectors -->
