@@ -20,10 +20,14 @@
 	let placeholder = 'chapter, page, juz or key';
 	let keyPages;
 	let iskeyboardVisible = false;
+	let searchResults;
 
 	$: if ($page.url.href || $__pageURL || $__chapterNumber || $__pageNumber) __quranNavigationModalVisible.set(false);
 	$: chapterVerses = quranMetaData[$__chapterNumber].verses;
-	$: searchResults = validateKey(searchedKey);
+
+	$: (async () => {
+		searchResults = await validateKey(searchedKey);
+	})();
 
 	$: {
 		maxVersesLoaded = false;
@@ -82,7 +86,7 @@
 
 					<div class="text-xs">
 						<span class="font-semibold">Instructions:</span>
-						You may either enter a chapter, page, juz number, or a verse key in the format of chapter:verse (e.g. 2:255).
+						Enter a chapter, page, juz number, or a verse key in the format of chapter:verse (e.g. 2:255) or a word key in the format of chapter:verse:word (e.g. 2:1:1).
 					</div>
 
 					{#if searchResults}
@@ -110,6 +114,10 @@
 									{:else if key === 'key'}
 										<a href="/{value.split(':')[0]}/{value.split(':')[1]}" class="font-semibold hover:underline">{@html '&#10230'} {quranMetaData[value.split(':')[0]].transliteration}, Verse {value.split(':')[1]}</a>
 									{/if}
+								{/if}
+
+								{#if key === 'word'}
+									<a href="/morphology/{value}" class="font-semibold hover:underline">{@html '&#10230'} Word {value} Morphology</a>
 								{/if}
 							{/each}
 						</div>
