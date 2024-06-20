@@ -1,6 +1,5 @@
 <script>
 	import SiteNavigationDropdown from '$ui/SiteNavigationDropdown.svelte';
-	import PointNavigationSelector from '$ui/PointNavigationSelector.svelte';
 	import Mecca from '$svgs/Mecca.svelte';
 	import Madinah from '$svgs/Madinah.svelte';
 	import CrossSolid from '$svgs/CrossSolid.svelte';
@@ -91,7 +90,7 @@
 		<div class="homepage-tab-panels {activeTab === 1 ? 'block' : 'hidden'}" id="chapters-tab-panel" role="tabpanel" aria-labelledby="chapters-tab">
 			<!-- chapter / page etc... selector -->
 			<div class="flex flex-col md:flex-row justify-between text-xs">
-				<PointNavigationSelector />
+				<button class={buttonOutlineClasses}>Navigate</button>
 
 				<!-- time specific chapter buttons and last read -->
 				<div class="flex flex-col md:flex-row-reverse md:space-x-1">

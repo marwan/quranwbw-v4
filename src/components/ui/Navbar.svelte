@@ -4,7 +4,7 @@
 	import Home from '$svgs/Home.svelte';
 	import ChevronDown from '$svgs/ChevronDown.svelte';
 	import { quranMetaData } from '$data/quranMeta';
-	import { __chapterNumber, __currentPage, __lastRead, __pageURL, __topNavbarVisible, __pageNumber, __morphologyKey, __mushafPageDivisions, __chapterNavigationModalVisible } from '$utils/stores';
+	import { __chapterNumber, __currentPage, __lastRead, __pageURL, __topNavbarVisible, __pageNumber, __morphologyKey, __mushafPageDivisions, __keyNavigationModalVisible } from '$utils/stores';
 
 	// updating the page, juz... when the last read location updates
 	let lastReadPage;
@@ -71,7 +71,7 @@
 
 		<!-- display the chapter name on chapter page -->
 		{#if $__currentPage === 'chapter'}
-			<button class="flex items-center p-3 text-sm border-black/10 w-auto p-2 hover:bg-lightGray rounded-3xl" on:click={() => __chapterNavigationModalVisible.set(true)}>
+			<button class="flex items-center p-3 text-sm border-black/10 w-auto p-2 hover:bg-lightGray rounded-3xl" on:click={() => __keyNavigationModalVisible.set(true)}>
 				{@html navbarChapterName}
 				<ChevronDown />
 			</button>
@@ -79,7 +79,7 @@
 
 		<!-- display only the page name for non-chapter page -->
 		{#if $__currentPage === 'page'}
-			<button class="flex items-center p-3 text-sm border-black/10 w-auto p-2 hover:bg-lightGray rounded-3xl" on:click={() => __chapterNavigationModalVisible.set(true)}>
+			<button class="flex items-center p-3 text-sm border-black/10 w-auto p-2 hover:bg-lightGray rounded-3xl" on:click={() => __keyNavigationModalVisible.set(true)}>
 				Page {$__pageNumber}
 				<ChevronDown />
 			</button>
