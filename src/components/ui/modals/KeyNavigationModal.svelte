@@ -9,7 +9,6 @@
 	import { inview } from 'svelte-inview';
 	import { validateKey } from '$utils/validateKey';
 	import { staticEndpoint } from '$data/websiteSettings';
-	import { scrollSmoothly } from '$utils/scrollSmoothly';
 
 	const listItemClasses = 'py-2 px-2 text-sm hover:bg-black/5 w-full text-left font-normal rounded-3xl';
 	let maxChaptersLoaded = false;
@@ -19,6 +18,7 @@
 	let searchedKey = '';
 	let placeholder = 'chapter, page, juz or key';
 	let keyPages;
+	let iskeyboardVisible = false;
 
 	$: if ($__pageURL || $__chapterNumber || $__pageNumber) __keyNavigationModalVisible.set(false);
 	$: chapterVerses = quranMetaData[$__chapterNumber].verses;
@@ -40,10 +40,6 @@
 		}
 	}
 
-	function scrollToOnceRendered() {
-		scrollSmoothly(document.getElementById('search-results').offsetTop - 50, 100);
-	}
-
 	function loadMaxChapters() {
 		if (!maxChaptersLoaded) {
 			maxItemsToLoad = 114;
@@ -57,9 +53,18 @@
 			maxVersesLoaded = true;
 		}
 	}
+
+	// https://stackoverflow.com/a/74618784
+	if ('visualViewport' in window) {
+		const VIEWPORT_VS_CLIENT_HEIGHT_RATIO = 0.75;
+		window.visualViewport.addEventListener('resize', function (event) {
+			if ((event.target.height * event.target.scale) / window.screen.height < VIEWPORT_VS_CLIENT_HEIGHT_RATIO) iskeyboardVisible = true;
+			else iskeyboardVisible = false;
+		});
+	}
 </script>
 
-<Modal id="keyNavigationModal" title="Navigate" bind:open={$__keyNavigationModalVisible} size="sm" class="rounded-3xl text-black theme" bodyClass="p-2 !border-t-0" headerClass="hidden" center outsideclose>
+<Modal id="keyNavigationModal" title="Navigate" bind:open={$__keyNavigationModalVisible} size="sm" class="rounded-3xl text-black theme" bodyClass="p-2 !border-t-0" headerClass="hidden" placement={iskeyboardVisible ? 'top-center' : 'center'} outsideclose>
 	<div class="flex flex-col space-y-2 justify-between max-w-screen-lg px-4 py-5 mx-auto">
 		<div class="mx-2">
 			{#await keyPages}
@@ -75,34 +80,34 @@
 					</div>
 
 					<div class="text-xs">
-						<span class="font-semibold">Search Instructions:</span>
+						<span class="font-semibold">Instructions:</span>
 						You may either enter a chapter, page, juz number, or a verse key in the format of chapter:verse (e.g. 2:255).
 					</div>
 
 					{#if searchResults}
-						<div id="search-results" class="flex flex-col space-y-2 text-base md:text-lg py-4" use:scrollToOnceRendered>
+						<div id="search-results" class="flex flex-col space-y-2 text-base md:text-lg py-4">
 							{#each Object.entries(searchResults) as [key, value]}
 								{#if $__currentPage === 'page'}
 									{#if key === 'chapter'}
-										<a href="/page/{startPageOfChapters[value]}" class="font-semibold hover:underline">→ Chapter {value} ({quranMetaData[value].transliteration})</a>
+										<a href="/page/{startPageOfChapters[value]}" class="font-semibold hover:underline">{@html '&#10230'} Chapter {value} ({quranMetaData[value].transliteration})</a>
 									{:else if key === 'page'}
-										<a href="/page/{value}" class="font-semibold hover:underline">→ Page {value}</a>
+										<a href="/page/{value}" class="font-semibold hover:underline">{@html '&#10230'} Page {value}</a>
 									{:else if key === 'juz'}
-										<a href="/page/{keyPages[juzNumberKeys[value - 1]]}" class="font-semibold hover:underline">→ Juz {value}</a>
+										<a href="/page/{keyPages[juzNumberKeys[value - 1]]}" class="font-semibold hover:underline">{@html '&#10230'} Juz {value}</a>
 									{:else if key === 'key'}
-										<a href="/page/{keyPages[value]}" class="font-semibold hover:underline">→ {quranMetaData[value.split(':')[0]].transliteration}, Verse {value.split(':')[1]} (Page {keyPages[value]})</a>
+										<a href="/page/{keyPages[value]}" class="font-semibold hover:underline">{@html '&#10230'} {quranMetaData[value.split(':')[0]].transliteration}, Verse {value.split(':')[1]} (Page {keyPages[value]})</a>
 									{/if}
 								{:else if $__chapterNumber !== 'page'}
 									{#if key === 'chapter'}
-										<a href="/{value}" class="font-semibold hover:underline">→ Chapter {value} ({quranMetaData[value].transliteration})</a>
+										<a href="/{value}" class="font-semibold hover:underline">{@html '&#10230'} Chapter {value} ({quranMetaData[value].transliteration})</a>
 									{:else if key === 'verse'}
-										<a href="/{$__chapterNumber}/{value}" class="font-semibold hover:underline">→ Verse {value} (Current Chapter)</a>
+										<a href="/{$__chapterNumber}/{value}" class="font-semibold hover:underline">{@html '&#10230'} Verse {value} (Current Chapter)</a>
 									{:else if key === 'page'}
-										<a href="/{pageNumberKeys[value - 1].split(':')[0]}/{pageNumberKeys[value - 1].split(':')[1]}" class="font-semibold hover:underline">→ Page {value} ({quranMetaData[pageNumberKeys[value - 1].split(':')[0]].transliteration})</a>
+										<a href="/{pageNumberKeys[value - 1].split(':')[0]}/{pageNumberKeys[value - 1].split(':')[1]}" class="font-semibold hover:underline">{@html '&#10230'} Page {value} ({quranMetaData[pageNumberKeys[value - 1].split(':')[0]].transliteration})</a>
 									{:else if key === 'juz'}
-										<a href="/{juzNumberKeys[value - 1].split(':')[0]}/{juzNumberKeys[value - 1].split(':')[1]}" class="font-semibold hover:underline">→ Juz {value} ({quranMetaData[juzNumberKeys[value - 1].split(':')[0]].transliteration})</a>
+										<a href="/{juzNumberKeys[value - 1].split(':')[0]}/{juzNumberKeys[value - 1].split(':')[1]}" class="font-semibold hover:underline">{@html '&#10230'} Juz {value} ({quranMetaData[juzNumberKeys[value - 1].split(':')[0]].transliteration})</a>
 									{:else if key === 'key'}
-										<a href="/{value.split(':')[0]}/{value.split(':')[1]}" class="font-semibold hover:underline">→ {quranMetaData[value.split(':')[0]].transliteration}, Verse {value.split(':')[1]}</a>
+										<a href="/{value.split(':')[0]}/{value.split(':')[1]}" class="font-semibold hover:underline">{@html '&#10230'} {quranMetaData[value.split(':')[0]].transliteration}, Verse {value.split(':')[1]}</a>
 									{/if}
 								{/if}
 							{/each}
@@ -117,53 +122,56 @@
 		</div>
 
 		<!-- chapter and verse selectors -->
-		{#if searchedKey.length === 0}
-			<div class="flex flex-row space-x-4 max-h-56">
-				<!-- chapter selector -->
-				<div class="flex flex-col space-y-2 w-full">
-					<div class="px-2 text-sm pb-2 border-b border-black/10 font-medium">Chapters</div>
-					<ul id="navbar-chapter-list" class="grow basis-1/2 overflow-y-scroll">
-						{#each { length: maxItemsToLoad } as _, chapter}
-							<li>
-								<a href={$__currentPage === 'chapter' ? `/${chapter + 1}` : `/page/${startPageOfChapters[chapter + 1]}`}>
-									<div class="{listItemClasses} {$__currentPage === 'chapter' ? (chapter + 1 === $__chapterNumber ? 'bg-black/5' : null) : null}">
-										{chapter + 1}. {quranMetaData[chapter + 1].transliteration}
+		<div class="flex flex-row space-x-4 max-h-56 {searchedKey.length > 0 ? 'hidden' : 'block'}">
+			<!-- chapter selector -->
+			<div class="flex flex-col space-y-2 w-full">
+				<div class="px-2 text-sm pb-2 border-b border-black/10 font-medium">Chapters</div>
+				<ul id="navbar-chapter-list" class="grow basis-1/2 overflow-y-scroll">
+					{#each { length: maxItemsToLoad } as _, chapter}
+						<li>
+							<a href={$__currentPage === 'page' ? `/page/${startPageOfChapters[chapter + 1]}` : `/${chapter + 1}`}>
+								<div class="{listItemClasses} {$__currentPage === 'chapter' ? (chapter + 1 === $__chapterNumber ? 'bg-black/5' : null) : null}">
+									{chapter + 1}. {quranMetaData[chapter + 1].transliteration}
+
+									{#if $__currentPage === 'chapter'}
 										<span class="hidden md:inline-block">({quranMetaData[chapter + 1].translation})</span>
-									</div>
-								</a>
-							</li>
-						{/each}
-						{#if !maxChaptersLoaded}
-							<Spinner size="8" />
-						{/if}
-						<div class="invisible" use:inview on:inview_enter={() => loadMaxChapters()}></div>
+									{:else}
+										<span>({quranMetaData[chapter + 1].translation})</span>
+									{/if}
+								</div>
+							</a>
+						</li>
+					{/each}
+					{#if !maxChaptersLoaded}
+						<Spinner size="8" />
+					{/if}
+					<div class="invisible" use:inview on:inview_enter={() => loadMaxChapters()}></div>
+				</ul>
+			</div>
+
+			<!-- verse selector -->
+			{#if $__currentPage === 'chapter'}
+				<div class="flex flex-col space-y-2 w-44">
+					<div class="mx-4 text-sm pb-2 border-b border-black/10 font-medium">Verses</div>
+					<ul id="navbar-verse-list" class="grow basis-1/2 px-2 overflow-y-scroll">
+						{#key $__chapterNumber}
+							{#each { length: maxVersesToLoad } as _, verse}
+								<li>
+									<a href="/{$__chapterNumber}/{verse + 1}" on:click={() => __pageURL.set(Math.random())}>
+										<div class={listItemClasses}>Verse {verse + 1}</div>
+									</a>
+								</li>
+							{/each}
+							{#if !maxVersesLoaded && chapterVerses > maxItemsToLoad}
+								<Spinner size="8" />
+							{/if}
+						{/key}
+
+						<div class="invisible" use:inview on:inview_enter={() => loadMaxVerses()}></div>
 					</ul>
 				</div>
-
-				<!-- verse selector -->
-				{#if $__currentPage === 'chapter'}
-					<div class="flex flex-col space-y-2 w-44">
-						<div class="mx-4 text-sm pb-2 border-b border-black/10 font-medium">Verses</div>
-						<ul id="navbar-verse-list" class="grow basis-1/2 px-2 overflow-y-scroll">
-							{#key $__chapterNumber}
-								{#each { length: maxVersesToLoad } as _, verse}
-									<li>
-										<a href="/{$__chapterNumber}/{verse + 1}" on:click={() => __pageURL.set(Math.random())}>
-											<div class={listItemClasses}>Verse {verse + 1}</div>
-										</a>
-									</li>
-								{/each}
-								{#if !maxVersesLoaded && chapterVerses > maxItemsToLoad}
-									<Spinner size="8" />
-								{/if}
-							{/key}
-
-							<div class="invisible" use:inview on:inview_enter={() => loadMaxVerses()}></div>
-						</ul>
-					</div>
-				{/if}
-			</div>
-		{/if}
+			{/if}
+		</div>
 
 		<div class="w-full px-2">
 			<button class="w-full {buttonClasses}" on:click={() => __keyNavigationModalVisible.set(false)}>Close</button>

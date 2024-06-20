@@ -1627,6 +1627,10 @@ input[type="range"]::-ms-fill-lower {
           user-select: none;
 }
 
+.resize {
+  resize: both;
+}
+
 .list-disc {
   list-style-type: disc;
 }
@@ -4251,6 +4255,10 @@ svg {
 .dark\:bg-yellow-400:where(.dark, .dark *) {
   --tw-bg-opacity: 1;
   background-color: rgb(250 204 21 / var(--tw-bg-opacity));
+}
+
+.dark\:bg-inherit:where(.dark, .dark *) {
+  background-color: inherit;
 }
 
 .dark\:bg-opacity-80:where(.dark, .dark *) {
