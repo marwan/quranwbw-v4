@@ -9,6 +9,7 @@
 	import { inview } from 'svelte-inview';
 	import { validateKey } from '$utils/validateKey';
 	import { staticEndpoint } from '$data/websiteSettings';
+	import { scrollSmoothly } from '$utils/scrollSmoothly';
 
 	const listItemClasses = 'py-2 px-2 text-sm hover:bg-black/5 w-full text-left font-normal rounded-3xl';
 	let maxChaptersLoaded = false;
@@ -39,6 +40,10 @@
 		}
 	}
 
+	function scrollToOnceRendered() {
+		scrollSmoothly(document.getElementById('search-results').offsetTop - 50, 100);
+	}
+
 	function loadMaxChapters() {
 		if (!maxChaptersLoaded) {
 			maxItemsToLoad = 114;
@@ -64,7 +69,7 @@
 					<div class="flex flex-row w-full h-fit items-center">
 						<form on:submit|preventDefault={() => (searchedKey = document.getElementById('searchKey').value)} class="flex flex-row w-full">
 							<Input id="searchKey" type="text" bind:value={searchedKey} autocomplete="off" {placeholder} size="md" class="rounded-3xl theme-grayscale text-center pl-10">
-								<CloseButton slot="right" on:click={() => (searchedKey = '')} class="pr-2" />
+								<CloseButton slot="right" on:click={() => (searchedKey = '')} class="pr-2 {searchedKey.length === 0 ? 'hidden' : null}" />
 							</Input>
 						</form>
 					</div>
@@ -75,7 +80,7 @@
 					</div>
 
 					{#if searchResults}
-						<div id="search-results" class="flex flex-col space-y-2 text-base md:text-lg py-4">
+						<div id="search-results" class="flex flex-col space-y-2 text-base md:text-lg py-4" use:scrollToOnceRendered>
 							{#each Object.entries(searchResults) as [key, value]}
 								{#if $__currentPage === 'page'}
 									{#if key === 'chapter'}
