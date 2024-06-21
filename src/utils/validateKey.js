@@ -6,24 +6,42 @@ import { staticEndpoint } from '$data/websiteSettings';
 export async function validateKey(key) {
 	let results = {};
 
+	// if key is a number, check for chapter, verse, page, or juz number
 	if (isNumeric(key)) {
 		if (key >= 1 && key <= 114) results.chapter = key;
-
 		if (get(__currentPage) === 'chapter') {
 			if (key >= 1 && key <= quranMetaData[get(__chapterNumber)].verses) results.verse = key;
 		}
-
 		if (key >= 1 && key <= 604) results.page = key;
 		if (key >= 1 && key <= 30) results.juz = key;
 	}
 
-	if (validateVerseKey(key)) results.key = key.replace('-', ':');
+	// if key contains "-" or  ":", check for verse or word key
+	else if (/:|-/.test(key)) {
+		if (validateVerseKey(key)) results.key = key.replace('-', ':');
+		if (await validateWordKey(key)) results.word = key.replace(/-/g, ':');
+	}
 
-	if (await validateWordKey(key)) results.word = key.replace(/-/g, ':');
+	// check for chapter names
+	else if (key.length > 2) {
+		results['chapters'] = {};
 
-	console.log(Object.keys(results).length === 0 ? false : results);
+		for (let chapter = 1; chapter <= 114; chapter++) {
+			const transliteration = quranMetaData[chapter].transliteration;
+			const translation = quranMetaData[chapter].translation;
 
-	return Object.keys(results).length === 0 ? false : results;
+			if (transliteration.toLowerCase().includes(key.toLowerCase()) || translation.toLowerCase().includes(key.toLowerCase())) {
+				results['chapters'][`${chapter}`] = {
+					transliteration,
+					translation
+				};
+			}
+		}
+	}
+
+	console.log(Object.keys(results).length === 0 || Object.keys(results['chapters']).length === 0 ? false : results);
+
+	return Object.keys(results).length === 0 || Object.keys(results['chapters']).length === 0 ? false : results;
 }
 
 // function for verse key (chapter:verse) validation

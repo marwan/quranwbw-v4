@@ -5,7 +5,7 @@
 	import Quran from '$svgs/Quran.svelte';
 	import Supplication from '$svgs/Supplication.svelte';
 	import Morphology from '$svgs/Morphology.svelte';
-	import Search from '$svgs/Search.svelte';
+	import SearchEmoji from '$svgs/SearchEmoji.svelte';
 	import Book from '$svgs/Book.svelte';
 	import { websiteTagline } from '$data/websiteSettings';
 	import { __currentPage, __lastRead } from '$utils/stores';
@@ -28,7 +28,7 @@
 		},
 		{
 			title: 'Search',
-			icon: Search,
+			icon: SearchEmoji,
 			link: '/search'
 		}
 	];

@@ -1388,6 +1388,14 @@ input[type="range"]::-ms-fill-lower {
   height: 100vh;
 }
 
+.max-h-52 {
+  max-height: 13rem;
+}
+
+.max-h-56 {
+  max-height: 14rem;
+}
+
 .max-h-64 {
   max-height: 16rem;
 }
@@ -1398,10 +1406,6 @@ input[type="range"]::-ms-fill-lower {
 
 .max-h-full {
   max-height: 100%;
-}
-
-.max-h-56 {
-  max-height: 14rem;
 }
 
 .min-h-\[calc\(100\%-3\.5rem\)\] {
@@ -2480,6 +2484,11 @@ input[type="range"]::-ms-fill-lower {
   padding-right: 1.5rem;
 }
 
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
 .py-0 {
   padding-top: 0px;
   padding-bottom: 0px;
@@ -2609,6 +2618,10 @@ input[type="range"]::-ms-fill-lower {
 
 .pt-0 {
   padding-top: 0px;
+}
+
+.pt-1 {
+  padding-top: 0.25rem;
 }
 
 .pt-10 {
@@ -3912,11 +3925,6 @@ svg {
     padding: 1.25rem;
   }
 
-  .md\:px-2 {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-  }
-
   .md\:px-4 {
     padding-left: 1rem;
     padding-right: 1rem;
@@ -4255,10 +4263,6 @@ svg {
 .dark\:bg-yellow-400:where(.dark, .dark *) {
   --tw-bg-opacity: 1;
   background-color: rgb(250 204 21 / var(--tw-bg-opacity));
-}
-
-.dark\:bg-inherit:where(.dark, .dark *) {
-  background-color: inherit;
 }
 
 .dark\:bg-opacity-80:where(.dark, .dark *) {

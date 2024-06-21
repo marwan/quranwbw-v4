@@ -3,6 +3,7 @@
 	import Input from '$ui/flowbite-svelte/forms/Input.svelte';
 	import CloseButton from '$ui/flowbite-svelte/utils/CloseButton.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
+	import Search from '$svgs/Search.svelte';
 	import { quranMetaData, startPageOfChapters, pageNumberKeys, juzNumberKeys } from '$data/quranMeta';
 	import { buttonClasses } from '$data/commonClasses';
 	import { __chapterNumber, __pageURL, __currentPage, __pageNumber, __quranNavigationModalVisible } from '$utils/stores';
@@ -23,6 +24,7 @@
 	let searchResults;
 
 	$: if ($page.url.href || $__pageURL || $__chapterNumber || $__pageNumber) __quranNavigationModalVisible.set(false);
+	$: if ($__currentPage) searchedKey = '';
 	$: chapterVerses = quranMetaData[$__chapterNumber].verses;
 
 	$: (async () => {
@@ -78,8 +80,9 @@
 				<div id="navigatation-inputs" class="flex flex-col space-y-4 mb-4 justify-start theme-grayscale">
 					<div class="flex flex-row w-full h-fit items-center">
 						<form on:submit|preventDefault={() => (searchedKey = document.getElementById('searchKey').value)} class="flex flex-row w-full">
-							<Input id="searchKey" type="text" bind:value={searchedKey} autocomplete="off" {placeholder} size="md" class="rounded-3xl theme-grayscale text-center pl-10">
-								<CloseButton slot="right" on:click={() => (searchedKey = '')} class="pr-2 {searchedKey.length === 0 ? 'hidden' : null}" />
+							<Input id="searchKey" type="text" bind:value={searchedKey} autocomplete="off" {placeholder} size="md" class="rounded-3xl !text-black theme-grayscale text-center pl-10 px-8">
+								<Search slot="left" size={7} classes="pl-2 pt-1" />
+								<CloseButton slot="right" on:click={() => (searchedKey = '')} class="pr-2 opacity-50 {searchedKey.length === 0 ? 'hidden' : null}" />
 							</Input>
 						</form>
 					</div>
@@ -90,8 +93,9 @@
 					</div>
 
 					{#if searchResults}
-						<div id="search-results" class="flex flex-col space-y-2 text-base md:text-lg py-4">
+						<div id="search-results" class="flex flex-col space-y-2 text-base md:text-lg py-4 max-h-52 overflow-y-auto">
 							{#each Object.entries(searchResults) as [key, value]}
+								<!-- numbers -->
 								{#if $__currentPage === 'page'}
 									{#if key === 'chapter'}
 										<a href="/page/{startPageOfChapters[value]}" class="font-semibold hover:underline">{@html '&#10230'} Chapter {value} ({quranMetaData[value].transliteration})</a>
@@ -116,8 +120,16 @@
 									{/if}
 								{/if}
 
+								<!-- word key -->
 								{#if key === 'word'}
 									<a href="/morphology/{value}" class="font-semibold hover:underline">{@html '&#10230'} Word {value} Morphology</a>
+								{/if}
+
+								<!-- chapter names -->
+								{#if key === 'chapters' && Object.keys(value).length > 0}
+									{#each Object.entries(value) as [key, value]}
+										<a href="/{key}" class="font-semibold hover:underline">{@html '&#10230'} {value.transliteration} <span class="hidden md:inline-block">({value.translation})</span></a>
+									{/each}
 								{/if}
 							{/each}
 						</div>
@@ -125,6 +137,7 @@
 
 					{#if searchedKey.length > 0 && !searchResults}
 						<span class="text-xs font-semibold">No suggestions found for what you've entered.</span>
+						<a href="/search?text={searchedKey}&translation=0" class="font-semibold hover:underline">{@html '&#10230'} Search the Quran for "{searchedKey}"</a>
 					{/if}
 				</div>
 			{/await}
