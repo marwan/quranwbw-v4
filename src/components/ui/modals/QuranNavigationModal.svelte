@@ -137,10 +137,6 @@
 							{/each}
 						{/if}
 
-						{#if searchedKey.length > 0 && !searchResults}
-							<span class="text-xs font-semibold">No suggestions found for what you've entered.</span>
-						{/if}
-
 						<!-- always allow user to search the Quran -->
 						{#if searchedKey.length > 0}
 							<a href="/search?text={searchedKey}&translation=0" class="font-semibold hover:underline">{@html '&#10230'} Search the Quran for "{searchedKey}"</a>
