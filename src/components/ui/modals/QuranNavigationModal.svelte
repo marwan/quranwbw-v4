@@ -92,52 +92,58 @@
 						You may navigate by entering either a chapter/page/juz number, a verse key (e.g. 2:255 or 2-255) or a word key (e.g. 2:1:1 or 2-1-1).
 					</div>
 
-					{#if searchResults}
+					{#if searchedKey.length > 0}
 						<div id="search-results" class="flex flex-col space-y-2 text-base md:text-lg py-4 max-h-52 overflow-y-auto">
-							{#each Object.entries(searchResults) as [key, value]}
-								<!-- numbers -->
-								{#if $__currentPage === 'page'}
-									{#if key === 'chapter'}
-										<a href="/page/{startPageOfChapters[value]}" class="font-semibold hover:underline">{@html '&#10230'} Chapter {value} ({quranMetaData[value].transliteration})</a>
-									{:else if key === 'page'}
-										<a href="/page/{value}" class="font-semibold hover:underline">{@html '&#10230'} Page {value}</a>
-									{:else if key === 'juz'}
-										<a href="/page/{keyPages[juzNumberKeys[value - 1]]}" class="font-semibold hover:underline">{@html '&#10230'} Juz {value}</a>
-									{:else if key === 'key'}
-										<a href="/page/{keyPages[value]}" class="font-semibold hover:underline">{@html '&#10230'} {quranMetaData[value.split(':')[0]].transliteration}, Verse {value.split(':')[1]} (Page {keyPages[value]})</a>
+							{#if searchResults}
+								{#each Object.entries(searchResults) as [key, value]}
+									<!-- numbers -->
+									{#if $__currentPage === 'page'}
+										{#if key === 'chapter'}
+											<a href="/page/{startPageOfChapters[value]}" class="font-semibold hover:underline">{@html '&#10230'} Chapter {value} ({quranMetaData[value].transliteration})</a>
+										{:else if key === 'page'}
+											<a href="/page/{value}" class="font-semibold hover:underline">{@html '&#10230'} Page {value}</a>
+										{:else if key === 'juz'}
+											<a href="/page/{keyPages[juzNumberKeys[value - 1]]}" class="font-semibold hover:underline">{@html '&#10230'} Juz {value}</a>
+										{:else if key === 'key'}
+											<a href="/page/{keyPages[value]}" class="font-semibold hover:underline">{@html '&#10230'} {quranMetaData[value.split(':')[0]].transliteration}, Verse {value.split(':')[1]} (Page {keyPages[value]})</a>
+										{/if}
+									{:else if $__chapterNumber !== 'page'}
+										{#if key === 'chapter'}
+											<a href="/{value}" class="font-semibold hover:underline">{@html '&#10230'} Chapter {value} ({quranMetaData[value].transliteration})</a>
+										{:else if key === 'verse' && $__currentPage === 'chapter'}
+											<a href="/{$__chapterNumber}/{value}" class="font-semibold hover:underline">{@html '&#10230'} Verse {value} (Current Chapter)</a>
+										{:else if key === 'page'}
+											<a href="/{pageNumberKeys[value - 1].split(':')[0]}/{pageNumberKeys[value - 1].split(':')[1]}" class="font-semibold hover:underline">{@html '&#10230'} Page {value} ({quranMetaData[pageNumberKeys[value - 1].split(':')[0]].transliteration})</a>
+										{:else if key === 'juz'}
+											<a href="/{juzNumberKeys[value - 1].split(':')[0]}/{juzNumberKeys[value - 1].split(':')[1]}" class="font-semibold hover:underline">{@html '&#10230'} Juz {value} ({quranMetaData[juzNumberKeys[value - 1].split(':')[0]].transliteration})</a>
+										{:else if key === 'key'}
+											<a href="/{value.split(':')[0]}/{value.split(':')[1]}" class="font-semibold hover:underline">{@html '&#10230'} {quranMetaData[value.split(':')[0]].transliteration}, Verse {value.split(':')[1]}</a>
+										{/if}
 									{/if}
-								{:else if $__chapterNumber !== 'page'}
-									{#if key === 'chapter'}
-										<a href="/{value}" class="font-semibold hover:underline">{@html '&#10230'} Chapter {value} ({quranMetaData[value].transliteration})</a>
-									{:else if key === 'verse' && $__currentPage === 'chapter'}
-										<a href="/{$__chapterNumber}/{value}" class="font-semibold hover:underline">{@html '&#10230'} Verse {value} (Current Chapter)</a>
-									{:else if key === 'page'}
-										<a href="/{pageNumberKeys[value - 1].split(':')[0]}/{pageNumberKeys[value - 1].split(':')[1]}" class="font-semibold hover:underline">{@html '&#10230'} Page {value} ({quranMetaData[pageNumberKeys[value - 1].split(':')[0]].transliteration})</a>
-									{:else if key === 'juz'}
-										<a href="/{juzNumberKeys[value - 1].split(':')[0]}/{juzNumberKeys[value - 1].split(':')[1]}" class="font-semibold hover:underline">{@html '&#10230'} Juz {value} ({quranMetaData[juzNumberKeys[value - 1].split(':')[0]].transliteration})</a>
-									{:else if key === 'key'}
-										<a href="/{value.split(':')[0]}/{value.split(':')[1]}" class="font-semibold hover:underline">{@html '&#10230'} {quranMetaData[value.split(':')[0]].transliteration}, Verse {value.split(':')[1]}</a>
+
+									<!-- word key -->
+									{#if key === 'word'}
+										<a href="/morphology/{value}" class="font-semibold hover:underline">{@html '&#10230'} Word {value} Morphology</a>
 									{/if}
-								{/if}
 
-								<!-- word key -->
-								{#if key === 'word'}
-									<a href="/morphology/{value}" class="font-semibold hover:underline">{@html '&#10230'} Word {value} Morphology</a>
-								{/if}
+									<!-- chapter names -->
+									{#if key === 'chapters' && Object.keys(value).length > 0}
+										{#each Object.entries(value) as [key, value]}
+											<a href="/{key}" class="font-semibold hover:underline">{@html '&#10230'} {value.transliteration} <span class="hidden md:inline-block">({value.translation})</span></a>
+										{/each}
+									{/if}
+								{/each}
+							{/if}
 
-								<!-- chapter names -->
-								{#if key === 'chapters' && Object.keys(value).length > 0}
-									{#each Object.entries(value) as [key, value]}
-										<a href="/{key}" class="font-semibold hover:underline">{@html '&#10230'} {value.transliteration} <span class="hidden md:inline-block">({value.translation})</span></a>
-									{/each}
-								{/if}
-							{/each}
+							{#if searchedKey.length > 0 && !searchResults}
+								<span class="text-xs font-semibold">No suggestions found for what you've entered.</span>
+							{/if}
+
+							<!-- always allow user to search the Quran -->
+							{#if searchedKey.length > 0}
+								<a href="/search?text={searchedKey}&translation=0" class="font-semibold hover:underline">{@html '&#10230'} Search the Quran for "{searchedKey}"</a>
+							{/if}
 						</div>
-					{/if}
-
-					{#if searchedKey.length > 0 && !searchResults}
-						<span class="text-xs font-semibold">No suggestions found for what you've entered.</span>
-						<a href="/search?text={searchedKey}&translation=0" class="font-semibold hover:underline">{@html '&#10230'} Search the Quran for "{searchedKey}"</a>
 					{/if}
 				</div>
 			{/await}

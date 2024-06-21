@@ -23,25 +23,28 @@ export async function validateKey(key) {
 	}
 
 	// check for chapter names
-	else if (key.length > 2) {
-		results['chapters'] = {};
+	else {
+		if (key.length > 2) {
+			results['chapters'] = {};
 
-		for (let chapter = 1; chapter <= 114; chapter++) {
-			const transliteration = quranMetaData[chapter].transliteration;
-			const translation = quranMetaData[chapter].translation;
+			for (let chapter = 1; chapter <= 114; chapter++) {
+				const transliteration = quranMetaData[chapter].transliteration;
+				const translation = quranMetaData[chapter].translation;
 
-			if (transliteration.toLowerCase().includes(key.toLowerCase()) || translation.toLowerCase().includes(key.toLowerCase())) {
-				results['chapters'][`${chapter}`] = {
-					transliteration,
-					translation
-				};
+				if (transliteration.toLowerCase().includes(key.toLowerCase()) || translation.toLowerCase().includes(key.toLowerCase())) {
+					results['chapters'][`${chapter}`] = {
+						transliteration,
+						translation
+					};
+				}
 			}
 		}
 	}
 
-	console.log(Object.keys(results).length === 0 || Object.keys(results['chapters']).length === 0 ? false : results);
+	const validationResults = Object.keys(results).length === 0 ? false : results;
 
-	return Object.keys(results).length === 0 || Object.keys(results['chapters']).length === 0 ? false : results;
+	console.log(validationResults);
+	return validationResults;
 }
 
 // function for verse key (chapter:verse) validation
