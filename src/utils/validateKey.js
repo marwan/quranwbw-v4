@@ -3,6 +3,7 @@ import { __currentPage, __chapterNumber } from '$utils/stores';
 import { quranMetaData } from '$data/quranMeta';
 import { staticEndpoint } from '$data/websiteSettings';
 
+// for the search terms in Quran navigation modal
 export async function validateKey(key) {
 	let results = {};
 
@@ -18,8 +19,8 @@ export async function validateKey(key) {
 
 	// if key contains "-" or  ":", check for verse or word key
 	else if (/:|-/.test(key)) {
-		if (validateVerseKey(key)) results.key = key.replace('-', ':');
-		if (await validateWordKey(key)) results.word = key.replace(/-/g, ':');
+		if (isValidVerseKey(key)) results.key = key.replace('-', ':');
+		if (await isValidWordKey(key)) results.word = key.replace(/-/g, ':');
 	}
 
 	// for keys having spaces
@@ -29,13 +30,13 @@ export async function validateKey(key) {
 		// verse key
 		if (keySplit.length === 2) {
 			const key = `${+keySplit[0]}:${+keySplit[1]}`;
-			if (validateVerseKey(key)) results.key = key.replace('-', ':');
+			if (isValidVerseKey(key)) results.key = key.replace('-', ':');
 		}
 
 		// word key
 		else if (keySplit.length === 3) {
 			const key = `${+keySplit[0]}:${+keySplit[1]}:${+keySplit[2]}`;
-			if (await validateWordKey(key)) results.word = key.replace(/-/g, ':');
+			if (await isValidWordKey(key)) results.word = key.replace(/-/g, ':');
 		}
 	}
 
@@ -70,8 +71,8 @@ export async function validateKey(key) {
 	return validationResults;
 }
 
-// function for verse key (chapter:verse) validation
-export function validateVerseKey(key) {
+// for verse key (chapter:verse) validation
+export function isValidVerseKey(key) {
 	// should not contain any whitespaces
 	if (key.indexOf(' ') >= 0) return false;
 
@@ -108,8 +109,8 @@ export function validateVerseKey(key) {
 	return true;
 }
 
-// function for word key (chapter:verse:word) validation
-export async function validateWordKey(key) {
+// for word key (chapter:verse:word) validation
+export async function isValidWordKey(key) {
 	// should not contain any whitespaces
 	if (key.indexOf(' ') >= 0) return false;
 
@@ -147,7 +148,7 @@ export async function validateWordKey(key) {
 	const verseKey = `${chapter}:${verse}`;
 
 	// chapter:verse should be a valid key
-	if (!validateVerseKey(verseKey)) return false;
+	if (!isValidVerseKey(verseKey)) return false;
 
 	const response = await fetch(`${staticEndpoint}/v4/meta/wordsInVerse.json`);
 	const data = await response.json();
