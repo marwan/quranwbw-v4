@@ -3,6 +3,7 @@
 
 	import { __wordType } from '$utils/stores';
 	import { buttonClasses } from '$data/commonClasses';
+	import { term } from '$utils/terminologies';
 
 	const tableTitles = {
 		1: { title: 'Words in Quran having same root', error: 'Root data for this word is not available.' },
@@ -34,7 +35,7 @@
 							<th scope="col" class="px-6 py-3"> Word </th>
 							<th scope="col" class="px-6 py-3"> Translation </th>
 							<th scope="col" class="px-6 py-3"> Transliteration </th>
-							<th scope="col" class="px-6 py-3"> Verse </th>
+							<th scope="col" class="px-6 py-3"> {term('verse')} </th>
 							<th scope="col" class="px-6 py-3"> Word </th>
 						</tr>
 					</thead>

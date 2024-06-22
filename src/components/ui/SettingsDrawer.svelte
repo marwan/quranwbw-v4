@@ -7,12 +7,13 @@
 	import CloseButton from '$ui/flowbite-svelte/utils/CloseButton.svelte';
 	import Dropdown from '$ui/flowbite-svelte/dropdown/Dropdown.svelte';
 	import Button from '$ui/flowbite-svelte/buttons/Button.svelte';
-	import { __currentPage, __chapterData, __chapterNumber, __wordType, __displayType, __websiteTheme, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __verseTranslations, __reciter, __playbackSpeed, __userSettings, __tajweedEnabled, __wordTooltip, __settingsDrawerHidden, __wakeLockEnabled } from '$utils/stores';
+	import { __currentPage, __chapterData, __chapterNumber, __wordType, __displayType, __websiteTheme, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __verseTranslations, __reciter, __playbackSpeed, __userSettings, __tajweedEnabled, __wordTooltip, __settingsDrawerHidden, __wakeLockEnabled, __englishTerminology } from '$utils/stores';
 	import { displayOptions, selectableFontTypes, selectableThemes, selectableVerseTranslations, verseTranslationsLanguages, selectableWordTranslations, selectableReciters, selectablePlaybackSpeeds, selectableTooltipOptions } from '$data/options';
 	import { updateSettings } from '$utils/updateSettings';
 	import { resetSettings } from '$utils/resetSettings';
 	import { disabledClasses, buttonClasses } from '$data/commonClasses';
 	import { sineIn } from 'svelte/easing';
+	import { term } from '$utils/terminologies';
 
 	const transitionParamsRight = {
 		x: 320,
@@ -69,7 +70,7 @@
 						{/each}
 					</Dropdown>
 				</div>
-				<p class={settingsDescriptionClasses}>Different verse layouts that you can choose from.</p>
+				<p class={settingsDescriptionClasses}>Different {term('verse')} layouts that you can choose from.</p>
 			</div>
 
 			<div class="border-b border-black/10"></div>
@@ -219,7 +220,7 @@
 			<!-- verse-translation-size-setting -->
 			<div id="verse-translation-size-setting" class={settingsBlockClasses}>
 				<div class="flex flex-row justify-between items-center">
-					<span class="block">Verse Tr/Tl Size ({fontSizeCodes.verseTranslationText.split('-')[1]})</span>
+					<span class="block">{term('verse')} Tr/Tl Size ({fontSizeCodes.verseTranslationText.split('-')[1]})</span>
 					<div class="inline-flex rounded-md shadow-sm" role="group">
 						<button type="button" on:click={() => updateSettings({ type: 'verseTranslationText', action: 'increase' })} class="w-16 border px-6 border-black/10 rounded-l-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:focus:ring-gray-500 dark:focus:border-gray-500">
 							<Plus size={3} />
@@ -229,7 +230,7 @@
 						</button>
 					</div>
 				</div>
-				<p class={settingsDescriptionClasses}>Font size for verse translation and transliteration.</p>
+				<p class={settingsDescriptionClasses}>Font size for {term('verse')} translation and transliteration.</p>
 			</div>
 		</div>
 	</div>
@@ -258,7 +259,7 @@
 			<!-- verse-translation-setting -->
 			<div id="verse-translation-setting" class={settingsBlockClasses}>
 				<div class="flex flex-row justify-between items-center">
-					<div class="block">Verse</div>
+					<div class="block">{term('verse')}</div>
 					<Button class={selectorClasses}>{$__verseTranslations.length} selected</Button>
 					<Dropdown class={dropdownClasses}>
 						{#each Object.entries(verseTranslationsLanguages) as [id, language]}
@@ -284,7 +285,7 @@
 						{/each}
 					</Dropdown>
 				</div>
-				<p class={settingsDescriptionClasses}>Verse translations from multiple authors and languages.</p>
+				<p class={settingsDescriptionClasses}>{term('verse')} translations from multiple authors and languages.</p>
 			</div>
 		</div>
 	</div>
@@ -297,7 +298,7 @@
 			<!-- verse-reciter-setting -->
 			<div id="verse-reciter-setting" class={settingsBlockClasses}>
 				<div class="flex flex-row justify-between items-center">
-					<div class="block">Verse Reciter</div>
+					<div class="block">{term('verse')} Reciter</div>
 					<Button class={selectorClasses}>{selectableReciters[$__reciter].reciter}</Button>
 					<Dropdown class={dropdownClasses}>
 						{#each Object.entries(selectableReciters) as [id, reciter]}
@@ -305,7 +306,7 @@
 						{/each}
 					</Dropdown>
 				</div>
-				<p class={settingsDescriptionClasses}>Desired reciter whose audio will be played when you choose to listen to a verse.</p>
+				<p class={settingsDescriptionClasses}>Desired reciter whose audio will be played when you choose to listen to a {term('verse')}.</p>
 			</div>
 
 			<div class="border-b border-black/10"></div>
@@ -321,7 +322,28 @@
 						{/each}
 					</Dropdown>
 				</div>
-				<p class={settingsDescriptionClasses}>The playback speed at which the verse/word audio will be played.</p>
+				<p class={settingsDescriptionClasses}>The playback speed at which the {term('verse')}/word audio will be played.</p>
+			</div>
+		</div>
+	</div>
+
+	<!-- miscellaneous-settings-block -->
+	<div id="miscellaneous-settings-block" class="py-5 border-t-2 border-black/10">
+		<h3 class="block mb-2 font-medium text-xl">Miscellaneous</h3>
+
+		<div class="flex flex-col flex-wrap text-base">
+			<!-- verse-reciter-setting -->
+			<div id="verse-reciter-setting" class={settingsBlockClasses}>
+				<div class="flex flex-row justify-between items-center">
+					<span class="block">English Terminologies</span>
+					<label class="inline-flex items-center cursor-pointer">
+						<input type="checkbox" value="" class="sr-only peer" checked={$__englishTerminology} on:click={(event) => updateSettings({ type: 'englishTerminology', value: event.target.checked })} />
+						<div
+							class="relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-black/10 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-gray-600 theme-grayscale"
+						></div>
+					</label>
+				</div>
+				<p class={settingsDescriptionClasses}>Switch between the English and Arabic terminologies used on the website.</p>
 			</div>
 		</div>
 	</div>

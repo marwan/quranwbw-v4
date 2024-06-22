@@ -1,5 +1,5 @@
 /* eslint-disable no-case-declarations */
-import { __userSettings, __wordType, __displayType, __websiteTheme, __wordTranslation, __verseTranslations, __wordTranslationEnabled, __wordTransliterationEnabled, __reciter, __playbackSpeed, __lastRead, __tajweedEnabled, __wordTooltip, __userBookmarks, __autoScrollSpeed, __wakeLockEnabled, __userNotes, __quizCorrectAnswers, __quizWrongAnswers } from '$utils/stores';
+import { __userSettings, __wordType, __displayType, __websiteTheme, __wordTranslation, __verseTranslations, __wordTranslationEnabled, __wordTransliterationEnabled, __reciter, __playbackSpeed, __lastRead, __tajweedEnabled, __wordTooltip, __userBookmarks, __autoScrollSpeed, __wakeLockEnabled, __userNotes, __quizCorrectAnswers, __quizWrongAnswers, __englishTerminology } from '$utils/stores';
 import { selectableVerseTranslations } from '$data/options';
 // import { uploadSettingsToCloud } from '$utils/cloudSettings';
 
@@ -33,6 +33,13 @@ export function updateSettings(props) {
 		case 'wordTooltip':
 			__wordTooltip.set(props.value);
 			userSettings.displaySettings.wordTooltip = props.value;
+			break;
+
+		// for terminologies language
+		case 'englishTerminology':
+			__englishTerminology.set(props.value);
+			userSettings.displaySettings.englishTerminology = props.value;
+			location.reload();
 			break;
 
 		// for website theme

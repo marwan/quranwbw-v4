@@ -7,6 +7,7 @@
 	import { quranMetaData } from '$data/quranMeta';
 	import { __userSettings, __verseKey, __notesModalVisible, __tafsirModalVisible, __currentPage } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';
+	import { term } from '$utils/terminologies';
 
 	// update userBookmarks whenever the __userSettings changes
 	$: userBookmarks = JSON.parse($__userSettings).userBookmarks;
@@ -45,7 +46,7 @@
 
 		if (navigator.share) {
 			navigator.share({
-				title: `${quranMetaData[chapter].transliteration}, Verse ${verse}`,
+				title: `${quranMetaData[chapter].transliteration}, ${term('verse')} ${verse}`,
 				url: `https://quranwbw.com/${chapter}/${verse}`
 			});
 		}
@@ -53,7 +54,7 @@
 </script>
 
 <Dropdown bind:open={dropdownOpen} class="px-2 mr-2 my-2 w-max text-left text-black font-sans theme-grayscale">
-	<div class="py-2 px-4 text-xs font-semibold text-left">Verse {$__verseKey}</div>
+	<div class="py-2 px-4 text-xs font-semibold text-left">{term('verse')} {$__verseKey}</div>
 
 	<!-- play verse button -->
 	<DropdownItem
@@ -79,7 +80,7 @@
 			dropdownOpen = false;
 		}}
 	>
-		Verse Notes
+		{term('verse')} Notes
 	</DropdownItem>
 
 	<!-- tafsir button -->
@@ -90,7 +91,8 @@
 			dropdownOpen = false;
 		}}
 	>
-		Verse Tafsir
+		{term('verse')}
+		{term('tafsir')}
 	</DropdownItem>
 
 	<!-- mode change buttons -->
@@ -101,8 +103,8 @@
 	{/if}
 
 	<!-- verse morphology button -->
-	<DropdownItem class={dropdownItemClasses} href="/morphology/{$__verseKey}">Verse Morphology</DropdownItem>
+	<DropdownItem class={dropdownItemClasses} href="/morphology/{$__verseKey}">{term('verse')} Morphology</DropdownItem>
 
 	<!-- share verse button -->
-	<DropdownItem class={dropdownItemClasses} on:click={() => shareVerse()}>Share Verse</DropdownItem>
+	<DropdownItem class={dropdownItemClasses} on:click={() => shareVerse()}>Share {term('verse')}</DropdownItem>
 </Dropdown>

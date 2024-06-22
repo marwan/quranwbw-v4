@@ -9,12 +9,13 @@
 	import Book from '$svgs/Book.svelte';
 	import { websiteTagline } from '$data/websiteSettings';
 	import { __currentPage, __lastRead } from '$utils/stores';
+	import { term } from '$utils/terminologies';
 
 	const homepageLinks = [
 		{
-			title: 'Supplications',
+			title: term('supplications'),
 			icon: Supplication,
-			link: '/supplications'
+			link: `/${term('supplications').toLowerCase()}`
 		},
 		{
 			title: 'Mushaf',

@@ -10,6 +10,7 @@
 	import { __lastRead, __favouriteChapters, __userBookmarks, __timeSpecificChapters, __quranNavigationModalVisible } from '$utils/stores';
 	import { buttonClasses, buttonOutlineClasses } from '$data/commonClasses';
 	import { checkTimeSpecificChapters } from '$utils/checkTimeSpecificChapters';
+	import { term } from '$utils/terminologies';
 
 	let lastReadChapter = 1;
 	let lastReadVerse = 1;
@@ -55,7 +56,7 @@
 			<div id="tab-buttons">
 				<ul class="flex text-sm font-medium text-center opacity-70 justify-center space-x-2 md:space-x-4">
 					<li>
-						<button on:click={() => (activeTab = 1)} class="{tabClasses} {activeTab === 1 ? `${activeTabClasses}` : null}" id="chapters-tab" data-tabs-target="#chapters-tab-panel" type="button" role="tab" aria-controls="chapters-tab-panel" aria-selected="false">Chapters</button>
+						<button on:click={() => (activeTab = 1)} class="{tabClasses} {activeTab === 1 ? `${activeTabClasses}` : null}" id="chapters-tab" data-tabs-target="#chapters-tab-panel" type="button" role="tab" aria-controls="chapters-tab-panel" aria-selected="false">{term('chapters')}</button>
 					</li>
 					<li>
 						<button on:click={() => (activeTab = 2)} class="{tabClasses} {activeTab === 2 ? `${activeTabClasses}` : null}" id="most-read-tab" data-tabs-target="#most-read-tab-panel" type="button" role="tab" aria-controls="most-read-tab-panel" aria-selected="false">Suggested</button>
@@ -139,7 +140,8 @@
 
 								<!-- chapter verses -->
 								<div class="block text-xs opacity-70">
-									{quranMetaData[chapter + 1].verses} Verses
+									{quranMetaData[chapter + 1].verses}
+									{term('verses')}
 								</div>
 							</div>
 							<div class="invisible chapter-icons justify-items-end opacity-70 text-3xl md:mt-2">{@html `&#xE9${quranMetaData[chapter + 1].icon};`}</div>
@@ -167,13 +169,13 @@
 		<div class="bookmarks-tab-panels space-y-12 {activeTab === 3 ? 'block' : 'hidden'}" id="bookmarks-tab-panel" role="tabpanel" aria-labelledby="bookmarks-tab">
 			<div id="bookmark-cards" class="flex flex-col space-y-4">
 				{#if $__userBookmarks.length === 0}
-					<div class="flex items-center justify-center text-sm opacity-70">You currently do not have any bookmarked verses.</div>
+					<div class="flex items-center justify-center text-sm opacity-70">You currently do not have any bookmarked {term('verses')}.</div>
 				{:else}
 					<div class="{cardGridClasses} grid-cols-1">
 						{#each $__userBookmarks as bookmark}
 							<div class="flex flex-row space-x-2">
 								<a href="{bookmark.split(':')[0]}/{bookmark.split(':')[1]}" class="{cardInnerClasses} flex-row items-center w-full">
-									<div class="text-sm">{quranMetaData[bookmark.split(':')[0]].transliteration}, Verse {bookmark}</div>
+									<div class="text-sm">{quranMetaData[bookmark.split(':')[0]].transliteration}, {term('verse')} {bookmark}</div>
 									<div class="invisible chapter-icons justify-items-end opacity-70 text-3xl mt-2">{@html `&#xE9${quranMetaData[bookmark.split(':')[0]].icon};`}</div>
 								</a>
 

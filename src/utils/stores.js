@@ -47,7 +47,8 @@ let __websiteOnline,
 	__wakeLockEnabled,
 	__quizCorrectAnswers,
 	__quizWrongAnswers,
-	__timeSpecificChapters;
+	__timeSpecificChapters,
+	__englishTerminology;
 
 if (browser) {
 	const userSettings = JSON.parse(localStorage.getItem('userSettings'));
@@ -194,6 +195,8 @@ if (browser) {
 		isFriday: false,
 		isNight: false
 	});
+
+	__englishTerminology = writable(userSettings.displaySettings.englishTerminology);
 }
 
 export {
@@ -243,5 +246,6 @@ export {
 	__wakeLockEnabled,
 	__quizCorrectAnswers,
 	__quizWrongAnswers,
-	__timeSpecificChapters
+	__timeSpecificChapters,
+	__englishTerminology
 };
