@@ -10,7 +10,8 @@ export const englishTerms = {
 		verse: 'Verse',
 		verses: 'Verses',
 		supplications: 'Supplications',
-		tafsir: 'Interpretation'
+		tafsir: 'Interpretation',
+		tajweed: 'Pronunciation'
 	},
 
 	// if Arabic
@@ -20,7 +21,8 @@ export const englishTerms = {
 		verse: 'Ayah',
 		verses: 'Ayahs',
 		supplications: 'Duas',
-		tafsir: 'Tafsir'
+		tafsir: 'Tafsir',
+		tajweed: 'Tajweed'
 	}
 };
 

@@ -90,18 +90,20 @@
 					</form>
 				</div>
 
-				<div class="text-xs">
-					<span class="font-semibold">Instructions:</span>
-					You may navigate by entering either a {term('chapter').toLowerCase()}/page/juz number, a {term('verse').toLowerCase()} key (e.g. 2:255 or 2-255) or a word key (e.g. 2:1:1 or 2-1-1).
+				{#if searchedKey.length === 0}
+					<div class="text-xs">
+						<span class="font-semibold">Instructions:</span>
+						You may navigate by entering either a {term('chapter').toLowerCase()}/page/juz number, a {term('verse').toLowerCase()} key (e.g. 2:255 or 2-255) or a word key (e.g. 2:1:1 or 2-1-1).
 
-					<br /><br />
-					<span class="font-semibold">Tip:</span>
-					This navigation modal can be opened from anywhere on the website by pressing CTRL+K.
-				</div>
+						<br /><br />
+						This navigation modal can be opened from anywhere on the website by pressing CTRL+K.
+					</div>
+				{/if}
 
 				{#if searchedKey.length > 0}
-					<div id="search-results" class="flex flex-col space-y-2 text-base md:text-lg py-4 max-h-52 overflow-y-auto">
+					<div id="search-results" class="flex flex-col space-y-2 text-base md:text-lg max-h-52 overflow-y-auto">
 						{#if searchResults}
+							<span class="text-xs font-semibold {searchResults ? 'pt-2' : null}">Navigate</span>
 							{#each Object.entries(searchResults) as [key, value]}
 								<!-- numbers -->
 								{#if $__currentPage === 'page'}
@@ -158,56 +160,58 @@
 		</div>
 
 		<!-- chapter and verse selectors -->
-		<div class="flex flex-row space-x-4 max-h-56 {searchedKey.length > 0 ? 'hidden' : 'block'}">
-			<!-- chapter selector -->
-			<div class="flex flex-col space-y-2 w-full">
-				<div class="px-2 text-sm pb-2 border-b border-black/10 font-medium">{term('chapters')}</div>
-				<ul id="navbar-chapter-list" class="grow basis-1/2 overflow-y-scroll">
-					{#each { length: maxItemsToLoad } as _, chapter}
-						<li>
-							<a href={$__currentPage === 'page' ? `/page/${startPageOfChapters[chapter + 1]}` : `/${chapter + 1}`}>
-								<div class="{listItemClasses} {$__currentPage === 'chapter' ? (chapter + 1 === $__chapterNumber ? 'bg-black/5' : null) : null}">
-									{chapter + 1}. {quranMetaData[chapter + 1].transliteration}
+		{#if $__currentPage !== 'home'}
+			<div class="flex flex-row space-x-4 max-h-56 {searchedKey.length > 0 ? 'hidden' : 'block'}">
+				<!-- chapter selector -->
+				<div class="flex flex-col space-y-2 w-full">
+					<div class="px-2 text-sm pb-2 border-b border-black/10 font-medium">{term('chapters')}</div>
+					<ul id="navbar-chapter-list" class="grow basis-1/2 overflow-y-scroll">
+						{#each { length: maxItemsToLoad } as _, chapter}
+							<li>
+								<a href={$__currentPage === 'page' ? `/page/${startPageOfChapters[chapter + 1]}` : `/${chapter + 1}`}>
+									<div class="{listItemClasses} {$__currentPage === 'chapter' ? (chapter + 1 === $__chapterNumber ? 'bg-black/5' : null) : null}">
+										{chapter + 1}. {quranMetaData[chapter + 1].transliteration}
 
-									{#if $__currentPage === 'chapter'}
-										<span class="hidden md:inline-block">({quranMetaData[chapter + 1].translation})</span>
-									{:else}
-										<span>({quranMetaData[chapter + 1].translation})</span>
-									{/if}
-								</div>
-							</a>
-						</li>
-					{/each}
-					{#if !maxChaptersLoaded}
-						<Spinner size="8" />
-					{/if}
-					<div class="invisible" use:inview on:inview_enter={() => loadMaxChapters()}></div>
-				</ul>
-			</div>
-
-			<!-- verse selector -->
-			{#if $__currentPage === 'chapter'}
-				<div class="flex flex-col space-y-2 w-44">
-					<div class="mx-4 text-sm pb-2 border-b border-black/10 font-medium">{term('verses')}</div>
-					<ul id="navbar-verse-list" class="grow basis-1/2 px-2 overflow-y-scroll">
-						{#key $__chapterNumber}
-							{#each { length: maxVersesToLoad } as _, verse}
-								<li>
-									<a href="/{$__chapterNumber}/{verse + 1}" on:click={() => __pageURL.set(Math.random())}>
-										<div class={listItemClasses}>{term('verse')} {verse + 1}</div>
-									</a>
-								</li>
-							{/each}
-							{#if !maxVersesLoaded && chapterVerses > maxItemsToLoad}
-								<Spinner size="8" />
-							{/if}
-						{/key}
-
-						<div class="invisible" use:inview on:inview_enter={() => loadMaxVerses()}></div>
+										{#if $__currentPage === 'chapter'}
+											<span class="hidden md:inline-block">({quranMetaData[chapter + 1].translation})</span>
+										{:else}
+											<span>({quranMetaData[chapter + 1].translation})</span>
+										{/if}
+									</div>
+								</a>
+							</li>
+						{/each}
+						{#if !maxChaptersLoaded}
+							<Spinner size="8" />
+						{/if}
+						<div class="invisible" use:inview on:inview_enter={() => loadMaxChapters()}></div>
 					</ul>
 				</div>
-			{/if}
-		</div>
+
+				<!-- verse selector -->
+				{#if $__currentPage === 'chapter'}
+					<div class="flex flex-col space-y-2 w-44">
+						<div class="mx-4 text-sm pb-2 border-b border-black/10 font-medium">{term('verses')}</div>
+						<ul id="navbar-verse-list" class="grow basis-1/2 px-2 overflow-y-scroll">
+							{#key $__chapterNumber}
+								{#each { length: maxVersesToLoad } as _, verse}
+									<li>
+										<a href="/{$__chapterNumber}/{verse + 1}" on:click={() => __pageURL.set(Math.random())}>
+											<div class={listItemClasses}>{term('verse')} {verse + 1}</div>
+										</a>
+									</li>
+								{/each}
+								{#if !maxVersesLoaded && chapterVerses > maxItemsToLoad}
+									<Spinner size="8" />
+								{/if}
+							{/key}
+
+							<div class="invisible" use:inview on:inview_enter={() => loadMaxVerses()}></div>
+						</ul>
+					</div>
+				{/if}
+			</div>
+		{/if}
 
 		<div class="w-full px-2">
 			<button class="w-full {buttonClasses}" on:click={() => __quranNavigationModalVisible.set(false)}>Close</button>

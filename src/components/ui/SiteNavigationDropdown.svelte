@@ -3,6 +3,7 @@
 	import Dropdown from '$ui/flowbite-svelte/dropdown/Dropdown.svelte';
 	import DropdownItem from '$ui/flowbite-svelte/dropdown/DropdownItem.svelte';
 	import { __settingsDrawerHidden, __tajweedRulesModalVisible, __tokenModalVisible } from '$utils/stores';
+	import { term } from '$utils/terminologies';
 
 	let dropdownOpen = false;
 
@@ -10,8 +11,8 @@
 
 	const internalLinks = [
 		{
-			title: 'Supplications',
-			link: '/supplications'
+			title: term('supplications'),
+			link: `/${term('supplications').toLowerCase()}`
 		},
 		{
 			title: 'Bookmarks',
@@ -59,7 +60,7 @@
 			// toggleModal('tajweed-rules-modal', 'show');
 			__tajweedRulesModalVisible.set(true);
 			dropdownOpen = false;
-		}}>Tajweed Rules</DropdownItem
+		}}>{term('tajweed')} Rules</DropdownItem
 	>
 	<DropdownItem
 		class={dropdownItemClasses}

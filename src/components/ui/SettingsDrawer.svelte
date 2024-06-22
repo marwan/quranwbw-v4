@@ -176,7 +176,7 @@
 						></div>
 					</label>
 				</div>
-				<p class={settingsDescriptionClasses}>Switch between the colored fonts with Tajweed rulings or the normal black & white.</p>
+				<p class={settingsDescriptionClasses}>Switch between the colored fonts with {term('tajweed')} rulings or the normal black & white.</p>
 			</div>
 
 			<div class="border-b border-black/10"></div>

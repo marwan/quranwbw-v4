@@ -2,9 +2,12 @@
 	import Modal from '$ui/flowbite-svelte/modal/Modal.svelte';
 	import { tajweedRulings } from '$data/quranMeta';
 	import { __websiteTheme, __tajweedRulesModalVisible } from '$utils/stores';
+	import { term } from '$utils/terminologies';
+
+	const modalTitle = `${term('tajweed')} Rules`;
 </script>
 
-<Modal title="Tajweed Rules" id="tajeedRulesModal" bind:open={$__tajweedRulesModalVisible} class="rounded-3xl theme" bodyClass="p-6 space-y-4 flex-1 overflow-y-auto overscroll-contain" headerClass="flex justify-between items-center p-6 rounded-t-3xl text-black theme-grayscale" center outsideclose>
+<Modal title={modalTitle} bind:open={$__tajweedRulesModalVisible} class="rounded-3xl theme" bodyClass="p-6 space-y-4 flex-1 overflow-y-auto overscroll-contain" headerClass="flex justify-between items-center p-6 rounded-t-3xl text-black theme-grayscale" center outsideclose>
 	<table class="w-full text-sm text-left rtl:text-right">
 		<thead class="text-xs text-gray-700 uppercase bg-lightGray theme-grayscale">
 			<tr>

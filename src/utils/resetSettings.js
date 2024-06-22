@@ -32,5 +32,5 @@ export function resetSettings() {
 	updateSettings({ type: 'playbackSpeed', value: 3 });
 
 	// miscellaneous
-	updateSettings({ type: 'englishTerminology', value: true });
+	// updateSettings({ type: 'englishTerminology', value: false });
 }
