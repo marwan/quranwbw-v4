@@ -11,6 +11,7 @@
 	import { validateKey } from '$utils/validateKey';
 	import { staticEndpoint } from '$data/websiteSettings';
 	import { page } from '$app/stores';
+	import { term } from '$utils/terminologies';
 
 	const listItemClasses = 'py-2 px-2 text-sm hover:bg-black/5 w-full text-left font-normal rounded-3xl';
 	let maxChaptersLoaded = false;
@@ -18,7 +19,7 @@
 	let maxItemsToLoad = 20;
 	let maxVersesToLoad = 1;
 	let searchedKey = '';
-	let placeholder = 'chapter, page, juz or key';
+	let placeholder = `${term('chapter')}, page, juz or key`;
 	let keyPages;
 	let iskeyboardVisible = false;
 	let searchResults;
@@ -91,7 +92,7 @@
 
 				<div class="text-xs">
 					<span class="font-semibold">Instructions:</span>
-					You may navigate by entering either a chapter/page/juz number, a verse key (e.g. 2:255 or 2-255) or a word key (e.g. 2:1:1 or 2-1-1).
+					You may navigate by entering either a {term('chapter')}/page/juz number, a {term('verse')} key (e.g. 2:255 or 2-255) or a word key (e.g. 2:1:1 or 2-1-1).
 
 					<br /><br />
 					<span class="font-semibold">Tip:</span>
@@ -105,7 +106,7 @@
 								<!-- numbers -->
 								{#if $__currentPage === 'page'}
 									{#if key === 'chapter'}
-										<a href="/page/{startPageOfChapters[value]}" class="font-semibold hover:underline">{@html '&#10230'} Chapter {value} ({quranMetaData[value].transliteration})</a>
+										<a href="/page/{startPageOfChapters[value]}" class="font-semibold hover:underline">{@html '&#10230'} {term('chapter')} {value} ({quranMetaData[value].transliteration})</a>
 									{:else if key === 'page'}
 										<a href="/page/{value}" class="font-semibold hover:underline">{@html '&#10230'} Page {value}</a>
 									{/if}
@@ -115,20 +116,20 @@
 										{#if key === 'juz'}
 											<a href="/page/{keyPages[juzNumberKeys[value - 1]]}" class="font-semibold hover:underline">{@html '&#10230'} Juz {value}</a>
 										{:else if key === 'key'}
-											<a href="/page/{keyPages[value]}" class="font-semibold hover:underline">{@html '&#10230'} {quranMetaData[value.split(':')[0]].transliteration}, Verse {value.split(':')[1]} (Page {keyPages[value]})</a>
+											<a href="/page/{keyPages[value]}" class="font-semibold hover:underline">{@html '&#10230'} {quranMetaData[value.split(':')[0]].transliteration}, {term('verse')} {value.split(':')[1]} (Page {keyPages[value]})</a>
 										{/if}
 									{/await}
 								{:else if $__chapterNumber !== 'page'}
 									{#if key === 'chapter'}
-										<a href="/{value}" class="font-semibold hover:underline">{@html '&#10230'} Chapter {value} ({quranMetaData[value].transliteration})</a>
+										<a href="/{value}" class="font-semibold hover:underline">{@html '&#10230'} {term('chapter')} {value} ({quranMetaData[value].transliteration})</a>
 									{:else if key === 'verse' && $__currentPage === 'chapter'}
-										<a href="/{$__chapterNumber}/{value}" class="font-semibold hover:underline">{@html '&#10230'} Verse {value} (Current Chapter)</a>
+										<a href="/{$__chapterNumber}/{value}" class="font-semibold hover:underline">{@html '&#10230'} {term('verse')} {value} (Current {term('chapter')})</a>
 									{:else if key === 'page'}
 										<a href="/{pageNumberKeys[value - 1].split(':')[0]}/{pageNumberKeys[value - 1].split(':')[1]}" class="font-semibold hover:underline">{@html '&#10230'} Page {value} ({quranMetaData[pageNumberKeys[value - 1].split(':')[0]].transliteration})</a>
 									{:else if key === 'juz'}
 										<a href="/{juzNumberKeys[value - 1].split(':')[0]}/{juzNumberKeys[value - 1].split(':')[1]}" class="font-semibold hover:underline">{@html '&#10230'} Juz {value} ({quranMetaData[juzNumberKeys[value - 1].split(':')[0]].transliteration})</a>
 									{:else if key === 'key'}
-										<a href="/{value.split(':')[0]}/{value.split(':')[1]}" class="font-semibold hover:underline">{@html '&#10230'} {quranMetaData[value.split(':')[0]].transliteration}, Verse {value.split(':')[1]}</a>
+										<a href="/{value.split(':')[0]}/{value.split(':')[1]}" class="font-semibold hover:underline">{@html '&#10230'} {quranMetaData[value.split(':')[0]].transliteration}, {term('verse')} {value.split(':')[1]}</a>
 									{/if}
 								{/if}
 
@@ -160,7 +161,7 @@
 		<div class="flex flex-row space-x-4 max-h-56 {searchedKey.length > 0 ? 'hidden' : 'block'}">
 			<!-- chapter selector -->
 			<div class="flex flex-col space-y-2 w-full">
-				<div class="px-2 text-sm pb-2 border-b border-black/10 font-medium">Chapters</div>
+				<div class="px-2 text-sm pb-2 border-b border-black/10 font-medium">{term('chapters')}</div>
 				<ul id="navbar-chapter-list" class="grow basis-1/2 overflow-y-scroll">
 					{#each { length: maxItemsToLoad } as _, chapter}
 						<li>
@@ -187,13 +188,13 @@
 			<!-- verse selector -->
 			{#if $__currentPage === 'chapter'}
 				<div class="flex flex-col space-y-2 w-44">
-					<div class="mx-4 text-sm pb-2 border-b border-black/10 font-medium">Verses</div>
+					<div class="mx-4 text-sm pb-2 border-b border-black/10 font-medium">{term('verses')}</div>
 					<ul id="navbar-verse-list" class="grow basis-1/2 px-2 overflow-y-scroll">
 						{#key $__chapterNumber}
 							{#each { length: maxVersesToLoad } as _, verse}
 								<li>
 									<a href="/{$__chapterNumber}/{verse + 1}" on:click={() => __pageURL.set(Math.random())}>
-										<div class={listItemClasses}>Verse {verse + 1}</div>
+										<div class={listItemClasses}>{term('verse')} {verse + 1}</div>
 									</a>
 								</li>
 							{/each}

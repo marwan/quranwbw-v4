@@ -5,7 +5,8 @@
 	import { errorLoadingDataMessage } from '$data/websiteSettings';
 	import { quranMetaData } from '$data/quranMeta';
 	import { __tafsirModalVisible, __verseKey } from '$utils/stores';
-	import { buttonClasses, linkClasses } from '$data/commonClasses';
+	import { buttonClasses } from '$data/commonClasses';
+	import { term } from '$utils/terminologies';
 
 	let tasfirsList = [
 		{ value: 'en-tafisr-ibn-kathir', name: 'Ibn Kathir (Abridged)' },
@@ -39,7 +40,7 @@
 
 			<div class="flex flex-col space-y-4">
 				{#if Object.keys(tafsirData.tafsir.verses).length > 1}
-					<div class="font-bold">You are reading a tafsir for the group of verses - {Object.keys(tafsirData.tafsir.verses)[0]} to {Object.keys(tafsirData.tafsir.verses)[Object.keys(tafsirData.tafsir.verses).length - 1]}.</div>
+					<div class="font-bold">You are reading a {term('tafsir')} for the group of {term('verses')} - {Object.keys(tafsirData.tafsir.verses)[0]} to {Object.keys(tafsirData.tafsir.verses)[Object.keys(tafsirData.tafsir.verses).length - 1]}.</div>
 				{/if}
 
 				<div class="flex flex-col space-y-4">
@@ -49,11 +50,11 @@
 
 			<div class="flex flex-row justify-between">
 				{#if verse > 1}
-					<button class={buttonClasses} on:click={() => (verse = verse - 1)}>Previous Verse</button>
+					<button class={buttonClasses} on:click={() => (verse = verse - 1)}>Previous {term('verse')}</button>
 				{/if}
 
 				{#if verse < quranMetaData[chapter].verses}
-					<button class={buttonClasses} on:click={() => (verse = verse + 1)}>Next Verse</button>
+					<button class={buttonClasses} on:click={() => (verse = verse + 1)}>Next {term('verse')}</button>
 				{/if}
 			</div>
 		</div>

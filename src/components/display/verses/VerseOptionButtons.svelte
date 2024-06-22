@@ -15,6 +15,7 @@
 	import { quickPlayAudio } from '$utils/audioController';
 	import { __currentPage, __userSettings, __audioSettings, __verseKey, __userNotes, __notesModalVisible } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';
+	import { term } from '$utils/terminologies';
 
 	// update userBookmarks whenever the __userSettings changes
 	$: userBookmarks = JSON.parse($__userSettings).userBookmarks;
@@ -43,7 +44,7 @@
 	<a href={$__currentPage === 'chapter' ? `#${chapter}:${verse}` : `/${chapter}/${verse}`} class="{buttonClasses} font-semibold" data-html2canvas-ignore>
 		<div class="opacity-70">{key}</div>
 	</a>
-	<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-filter font-normal">Verse {key}</Tooltip>
+	<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-filter font-normal">{term('verse')} {key}</Tooltip>
 
 	<!-- play verse button -->
 	<button on:click={() => quickPlayAudio(chapter, verse, verse)} class={buttonClasses} aria-label="Play">

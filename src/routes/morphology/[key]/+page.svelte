@@ -10,6 +10,7 @@
 	import { __currentPage, __wordType, __wordTranslation, __verseTranslations, __morphologyKey, __pageURL } from '$utils/stores';
 	import { buttonOutlineClasses } from '$data/commonClasses';
 	import { fetchVersesData } from '$utils/fetchData';
+	import { term } from '$utils/terminologies';
 
 	let fetchWordsData, fetchWordSummary;
 	let chapter, verse, word;
@@ -53,15 +54,15 @@
 	<div id="verse-navigator" class="flex flex-row justify-center space-x-8 text-sm theme">
 		<!-- previous chapter -->
 		{#if verse === 1 && chapter > 1}
-			<a href="/morphology/{+chapter - 1}:1" class={buttonOutlineClasses}>{@html '&#x2190;'} Chapter {+chapter - 1}</a>
+			<a href="/morphology/{+chapter - 1}:1" class={buttonOutlineClasses}>{@html '&#x2190;'} {term('chapter')} {+chapter - 1}</a>
 		{/if}
 
-		<a href="/morphology/{chapter}:{+verse - 1}" class="{buttonOutlineClasses} {verse === 1 && 'hidden'}">{@html '&#x2190;'} Verse {chapter}:{+verse - 1}</a>
-		<a href="/morphology/{chapter}:{+verse + 1}" class="{buttonOutlineClasses} {verse === quranMetaData[chapter].verses && 'hidden'}">Verse {chapter}:{+verse + 1} {@html '&#x2192;'}</a>
+		<a href="/morphology/{chapter}:{+verse - 1}" class="{buttonOutlineClasses} {verse === 1 && 'hidden'}">{@html '&#x2190;'} {term('verse')} {chapter}:{+verse - 1}</a>
+		<a href="/morphology/{chapter}:{+verse + 1}" class="{buttonOutlineClasses} {verse === quranMetaData[chapter].verses && 'hidden'}">{term('verse')} {chapter}:{+verse + 1} {@html '&#x2192;'}</a>
 
 		<!-- next chapter -->
 		{#if verse === quranMetaData[chapter].verses && chapter < 114}
-			<a href="/morphology/{+chapter + 1}:1" class={buttonOutlineClasses}>Chapter {+chapter + 1} {@html '&#x2192;'}</a>
+			<a href="/morphology/{+chapter + 1}:1" class={buttonOutlineClasses}>{term('chapter')} {+chapter + 1} {@html '&#x2192;'}</a>
 		{/if}
 	</div>
 

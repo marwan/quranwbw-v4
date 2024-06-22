@@ -2,6 +2,7 @@
 	import PageHead from '$misc/PageHead.svelte';
 	import { __currentPage } from '$utils/stores';
 	import { linkClasses } from '$data/commonClasses';
+	import { term } from '$utils/terminologies';
 
 	__currentPage.set('about');
 </script>
@@ -21,7 +22,7 @@
 			</div>
 
 			<div id="about-website" class="flex flex-col space-y-4 mt-8 text-sm">
-				<span>Quranwbw.com is a Quran website with word by word translation, transliteration and corpus in multiple languages. You can also listen to how a word is pronounced and also listen to verse recitations. </span>
+				<span>Quranwbw.com is a Quran website with word by word translation, transliteration and corpus in multiple languages. You can also listen to how a word is pronounced and also listen to {term('verse')} recitations. </span>
 
 				<span
 					>This website is just a hobby project and is not being worked on full-time. If you'd like to report an issue, have any suggestions, or would like to contribute, please visit Quranwbw.com's <a class={linkClasses} target="_blank" rel="noreferrer" href="https://github.com/marwan/quranwbw-v4">GitHub repository</a>, or contact us on

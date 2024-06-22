@@ -8,11 +8,15 @@ export function resetSettings() {
 
 	// display settings
 	updateSettings({ type: 'websiteTheme', value: 1 });
-	updateSettings({ type: 'wordType', value: 1 });
 	updateSettings({ type: 'displayType', value: 1 });
+	updateSettings({ type: 'wordTooltip', value: 1 });
 	updateSettings({ type: 'wordTranslationEnabled', value: true });
 	updateSettings({ type: 'wordTransliterationEnabled', value: true });
-	updateSettings({ type: 'wordTooltip', value: 1 });
+	updateSettings({ type: 'wakeLockEnabled', value: false });
+
+	// font type settings
+	updateSettings({ type: 'wordType', value: 1 });
+	updateSettings({ type: 'tajweedEnabled', value: true });
 
 	// font size settings
 	updateSettings({ type: 'arabicText', value: arabicTextSize });
@@ -26,4 +30,7 @@ export function resetSettings() {
 	// audio settings
 	updateSettings({ type: 'reciter', value: 10 });
 	updateSettings({ type: 'playbackSpeed', value: 3 });
+
+	// miscellaneous
+	updateSettings({ type: 'englishTerminology', value: true });
 }
