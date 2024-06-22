@@ -50,7 +50,7 @@
 				</div>
 				<!-- play range -->
 				<div class="flex items-center {$__currentPage !== 'chapter' && disabledClasses}">
-					<Radio bind:group={$__audioSettings.audioRange} value="playRange" on:change={(event) => updateAudioSettings} class="text-black">Verses Range</Radio>
+					<Radio bind:group={$__audioSettings.audioRange} value="playRange" on:change={(event) => updateAudioSettings} class="text-black">{term('verses')} Range</Radio>
 				</div>
 			</div>
 		</div>
@@ -81,7 +81,7 @@
 		<span class="text-xs opacity-70">Number of times a {term('verse')} or word has to be repeated.</span>
 		<div class="flex flex-row space-x-4">
 			<div class="flex flex-row space-x-2">
-				<span class="m-auto text-sm font-medium mr-2">Repeat each {$__audioSettings.audioType} </span>
+				<span class="m-auto text-sm font-medium mr-2">Repeat each {term($__audioSettings.audioType)}</span>
 				<input id="timesToRepeat" type="number" value="1" min="1" max="20" on:change={updateAudioSettings} class="w-16 text-xs border border-black/10 rounded-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 mb-0" />
 				<span class="m-auto text-sm font-medium">{$__audioSettings.timesToRepeat < 2 ? 'time' : 'times'} </span>
 			</div>

@@ -3,6 +3,7 @@ import { __englishTerminology } from '$utils/stores';
 
 // using true/false structure to save my time and efforts
 export const englishTerms = {
+	// if English
 	true: {
 		chapter: 'Chapter',
 		chapters: 'Chapters',
@@ -11,6 +12,8 @@ export const englishTerms = {
 		supplications: 'Supplications',
 		tafsir: 'Interpretation'
 	},
+
+	// if Arabic
 	false: {
 		chapter: 'Surah',
 		chapters: 'Surahs',

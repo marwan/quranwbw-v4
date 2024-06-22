@@ -19,7 +19,7 @@
 	let maxItemsToLoad = 20;
 	let maxVersesToLoad = 1;
 	let searchedKey = '';
-	let placeholder = `${term('chapter')}, page, juz or key`;
+	let placeholder = `${term('chapter').toLowerCase()}, page, juz or key`;
 	let keyPages;
 	let iskeyboardVisible = false;
 	let searchResults;
@@ -92,7 +92,7 @@
 
 				<div class="text-xs">
 					<span class="font-semibold">Instructions:</span>
-					You may navigate by entering either a {term('chapter')}/page/juz number, a {term('verse')} key (e.g. 2:255 or 2-255) or a word key (e.g. 2:1:1 or 2-1-1).
+					You may navigate by entering either a {term('chapter').toLowerCase()}/page/juz number, a {term('verse').toLowerCase()} key (e.g. 2:255 or 2-255) or a word key (e.g. 2:1:1 or 2-1-1).
 
 					<br /><br />
 					<span class="font-semibold">Tip:</span>
