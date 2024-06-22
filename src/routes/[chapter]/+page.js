@@ -1,6 +1,6 @@
 import { error } from '@sveltejs/kit';
 import { goto } from '$app/navigation';
-import { validateKey } from '$utils/validateKey';
+import { validateVerseKey } from '$utils/validateKey';
 // import { chapterSlugs } from '$data/quranMeta';
 
 export async function load({ params }) {

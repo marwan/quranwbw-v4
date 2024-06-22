@@ -44,6 +44,11 @@
 				const data = await response.json();
 				return data;
 			})();
+
+			// focus the search input box
+			setTimeout(function () {
+				document.getElementById('searchKey').focus();
+			}, 1);
 		}
 	}
 
@@ -87,6 +92,10 @@
 				<div class="text-xs">
 					<span class="font-semibold">Instructions:</span>
 					You may navigate by entering either a chapter/page/juz number, a verse key (e.g. 2:255 or 2-255) or a word key (e.g. 2:1:1 or 2-1-1).
+
+					<br /><br />
+					<span class="font-semibold">Tip:</span>
+					This navigation modal can be opened from anywhere on the website by pressing CTRL+K.
 				</div>
 
 				{#if searchedKey.length > 0}
@@ -139,7 +148,8 @@
 
 						<!-- always allow user to search the Quran -->
 						{#if searchedKey.length > 0}
-							<a href="/search?text={searchedKey}&translation=0" class="font-semibold hover:underline">{@html '&#10230'} Search the Quran for "{searchedKey}"</a>
+							<span class="text-xs font-semibold {searchResults ? 'pt-2' : null}">Search Quran</span>
+							<a href="/search?text={searchedKey}&translation=0" class="font-semibold hover:underline">{@html '&#10230'} "{searchedKey}"</a>
 						{/if}
 					</div>
 				{/if}

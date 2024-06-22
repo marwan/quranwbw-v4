@@ -3,7 +3,7 @@
 	import '$utils/checkURLParameters';
 
 	// check for key presses
-	// import "$utils/keyDownHandler";
+	import '$utils/keyDownHandler';
 
 	import Navbar from '$ui/Navbar.svelte';
 	import SettingsDrawer from '$ui/SettingsDrawer.svelte';

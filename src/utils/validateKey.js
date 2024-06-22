@@ -22,6 +22,23 @@ export async function validateKey(key) {
 		if (await validateWordKey(key)) results.word = key.replace(/-/g, ':');
 	}
 
+	// for keys having spaces
+	else if (key.includes(' ')) {
+		const keySplit = key.split(' ');
+
+		// verse key
+		if (keySplit.length === 2) {
+			const key = `${+keySplit[0]}:${+keySplit[1]}`;
+			if (validateVerseKey(key)) results.key = key.replace('-', ':');
+		}
+
+		// word key
+		else if (keySplit.length === 3) {
+			const key = `${+keySplit[0]}:${+keySplit[1]}:${+keySplit[2]}`;
+			if (await validateWordKey(key)) results.word = key.replace(/-/g, ':');
+		}
+	}
+
 	// check for chapter names
 	else {
 		if (key.length > 2) {
@@ -30,8 +47,9 @@ export async function validateKey(key) {
 			for (let chapter = 1; chapter <= 114; chapter++) {
 				const transliteration = quranMetaData[chapter].transliteration;
 				const translation = quranMetaData[chapter].translation;
+				const alternateNames = quranMetaData[chapter].alternateNames;
 
-				if (transliteration.toLowerCase().includes(key.toLowerCase()) || translation.toLowerCase().includes(key.toLowerCase())) {
+				if (transliteration.toLowerCase().includes(key.toLowerCase()) || translation.toLowerCase().includes(key.toLowerCase()) || alternateNames.toLowerCase().includes(key.toLowerCase())) {
 					results['chapters'][`${chapter}`] = {
 						transliteration,
 						translation
@@ -39,6 +57,11 @@ export async function validateKey(key) {
 				}
 			}
 		}
+	}
+
+	// remoove chapters key if empty
+	if (Object.prototype.hasOwnProperty.call(results, 'chapters')) {
+		if (Object.keys(results['chapters']).length === 0) delete results['chapters'];
 	}
 
 	const validationResults = Object.keys(results).length === 0 ? false : results;
