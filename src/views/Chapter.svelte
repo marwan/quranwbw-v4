@@ -14,7 +14,7 @@
 	import { __userSettings, __currentPage, __chapterNumber, __displayType, __wordType, __wordTranslation, __verseTranslations, __pageURL, __firstVerseOnPage, __chapterDataLoaded, __chapterData } from '$utils/stores';
 
 	// max verses to load if total verses in chapter are more than this
-	const maxVersesThreshold = 10;
+	const maxVersesThreshold = 5;
 
 	let chapterData;
 
