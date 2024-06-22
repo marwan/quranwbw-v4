@@ -20,6 +20,7 @@
 	import { checkOldBookmarks } from '$utils/checkOldBookmarks';
 	import { debounce } from '$utils/debounce';
 	import { toggleNavbar } from '$utils/toggleNavbar';
+	import { resetAudioSettings } from '$utils/audioController';
 	import { downloadSettingsFromCloud } from '$utils/cloudSettings';
 
 	// check old bookmarks for v3 update
@@ -69,6 +70,9 @@
 
 	// reset chapterDataLoaded if any of the following updates
 	$: if ($__currentPage || $__wordType || $__wordTranslation || $__verseTranslations) localStorage.setItem('chapterDataLoaded', false);
+
+	// stop all audio when the page or chapter is changed
+	$: if ($__currentPage || $__chapterNumber) resetAudioSettings();
 
 	// toggle bottom nav on scroll
 	document.getElementsByTagName('body')[0].onscroll = () => {
