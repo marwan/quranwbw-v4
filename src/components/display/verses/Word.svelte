@@ -8,11 +8,16 @@
 	export let wordSpanClasses;
 	export let v4hafsClasses;
 
+	import Spinner from '$svgs/Spinner.svelte';
 	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
-	// import Popover from '$ui/flowbite-svelte/popover/Popover.svelte';
+	import Popover from '$ui/flowbite-svelte/popover/Popover.svelte';
+	// import { Popover } from 'flowbite-svelte';
+
 	import { displayOptions, selectableThemes } from '$data/options';
 	import { supplicationsFromQuran } from '$data/quranMeta';
 	import { __currentPage, __wordType, __displayType, __userSettings, __audioSettings, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __morphologyKey, __tajweedEnabled, __wordTooltip, __verseKey, __websiteTheme } from '$utils/stores';
+	import { tajweedRulings, tajweedColorIds } from '$data/tajweedRulings';
+	import { apiEndpoint } from '$data/websiteSettings';
 
 	const chapter = key.split(':')[0];
 	const verse = key.split(':')[1];
@@ -23,6 +28,13 @@
 	const transliterationSplit = value.words.transliteration.split('|');
 	const translationSplit = value.words.translation.split('|');
 	const timestampSplit = value.words.timestamp.split('|');
+
+	// fix for Ba'da Ma Ja'aka for page 254
+	// since it's just a cosmetic change, there's no need of changing it at database level
+	const fixedMushafWords = {
+		'13:37:8': 'ﱿ', // 6th line last word - Ba'da
+		'13:37:9': 'ﲀﲁ' // 7th line first word - Ma Ja'aka
+	};
 
 	$: displayIsContinuous = displayOptions[$__displayType].continuous;
 
@@ -38,12 +50,23 @@
 		text-black theme
 	`;
 
-	// fix for Ba'da Ma Ja'aka for page 254
-	// since it's just a cosmetic change, there's no need of changing it at database level
-	const fixedMushafWords = {
-		'13:37:8': 'ﱿ', // 6th line last word - Ba'da
-		'13:37:9': 'ﲀﲁ' // 7th line first word - Ma Ja'aka
-	};
+	let hoveredWordKey = null;
+	let wordTajweedData;
+
+	$: {
+		if (hoveredWordKey !== null) {
+			const chapter = +hoveredWordKey.split(':')[0];
+			const verse = +hoveredWordKey.split(':')[1];
+			const word = +hoveredWordKey.split(':')[2];
+
+			wordTajweedData = (async () => {
+				const response = await fetch(`${apiEndpoint}/tajweed-data?key=${chapter}:${verse}`);
+				const data = await response.json();
+				const colorIds = data.data[word - 1].color_ids;
+				return colorIds;
+			})();
+		}
+	}
 </script>
 
 {#if $__currentPage != 'page' || ($__currentPage === 'page' && +value.words.line.split('|')[word] === line)}
@@ -56,7 +79,7 @@
 				{arabicSplit[word]}
 				<!-- 2: Uthmanic Hafs Mushaf -->
 			{:else if $__wordType === 2}
-				<span style="font-family: p{value.meta.page}" class={v4hafsClasses}>
+				<span id="word-{wordKey.split(':')[1]}-{wordKey.split(':')[2]}" style="font-family: p{value.meta.page}" class={v4hafsClasses} on:mouseenter={() => (hoveredWordKey = wordKey)}>
 					<!-- word fix, see fixedMushafWords -->
 					{#if fixedMushafWords.hasOwnProperty(wordKey)}
 						{fixedMushafWords[wordKey]}
@@ -75,10 +98,28 @@
 			</div>
 		{/if}
 	</div>
-	<!-- <Popover class="w-64 text-sm font-light " title="Popover title" triggeredBy="#word-{wordKey.split(':')[2]}" trigger="hover" arrow={false}>
-		And here's some amazing content. It's very engaging. Right? <br />
-		<a href="/">home</a>
-	</Popover> -->
+
+	<!-- tajweed colors popover (only for QPC v4 font) -->
+	<Popover class="w-64 text-sm font-light z-50 rounded-t-3xl" trigger="hover" triggeredBy="#word-{wordKey.split(':')[1]}-{wordKey.split(':')[2]}" arrow={false}>
+		{#await wordTajweedData}
+			<Spinner />
+		{:then wordTajweedData}
+			{#if wordTajweedData}
+				<div class="flex flex-col space-y-1">
+					{#each wordTajweedData.split(',') as id}
+						<div class="flex flex-row space-x-2 items-center text-xs">
+							<span class="tajweed-rules text-lg">{tajweedRulings[tajweedColorIds[id]].code}</span>
+							<span>{tajweedRulings[tajweedColorIds[id]].title}</span>
+						</div>
+					{/each}
+				</div>
+			{:else}
+				No data available.
+			{/if}
+		{:catch error}
+			<p>error...</p>
+		{/await}
+	</Popover>
 
 	<!-- word tooltip -->
 	{#if $__wordTooltip > 1}

@@ -1,3 +1,4 @@
+/* eslint-disable no-irregular-whitespace */
 export const quranMetaData = [
 	{ id: 0 },
 	{ id: 1, arabic: 'الفاتحة', translation: 'The Opening', transliteration: 'Al Faatiha', verses: 7, revelation: 1, icon: '04', alternateNames: 'fatiha' },
@@ -801,28 +802,6 @@ export const mostRead = [
 	{ id: 2, chapter: 2, verses: 'Verses 285-286', title: 'If anyone recited two verses from the last of Surah al-Baqarah at night, they will be sufficient for him.', url: '/2/285-286' },
 	{ id: 3, chapter: 18, verses: 'Verses 1-10', title: 'Whoever memorizes ten verses from the beginning of Surat al-Kahf will be immune to the False Messiah.', url: '/18/1-10' },
 	{ id: 4, chapter: 67, verses: 'Verses 1-30', title: 'Whoever reads Surah al-Mulk every night, Allah will protect him from the torment of the grave.', url: '/67' }
-];
-
-export const tajweedRulings = [
-	{ code: 'A', title: 'Normal Text', description: null },
-	{ code: 'B', title: 'Alif Hamzat Wasl', description: 'Hamzatul-wasl is read when the sentence or verse is started by it. It is represented by small ص  on top of it. If this Hamza comes in the middle of sentence or verse then it is silent or ignored and is not read.' },
-	{ code: 'C', title: 'Idgham / Silent', description: 'Represents letters that are <b>not pronounced.</b> For instance, the assimilated “L” in “اَلشَّمْس” (ash-shams) is never pronounced. Similarly, the Noon in “كَأَن لَّمْ” (ka’an lamma) is pronounced like “كَأَلَّمْ” (ka’allam).' },
-	{ code: 'DJE', title: 'Indicates compulsory lengthening (Madd)', description: 'When you encounter red letters, it signifies that you should elongate the pronunciation of the vowel. There are three variations:' },
-	{ code: 'D', title: 'Madd Lazim 6 Harakah', description: 'Necessary prolongation (six vowels), which is about half a second, as seen in “الْحَآجّ” (al-haajj).' },
-	{ code: 'J', title: 'Madd Wajib 4-5 Harakah', description: 'Obligatory prolongation (four or five vowels), such as in words like “أَوْلِيَآء” (awliyaa).' },
-	{ code: 'E', title: 'Madd Arid Lis-sukoon 2-4 or 6 Harakah', description: 'Permissible prolongation (two, four, or six vowels).' },
-	{ code: 'F', title: 'Madd 2 Harakah', description: 'General Prolongation (two vowels).' },
-	{
-		code: 'G',
-		title: 'Ghunna',
-		description: 'Denotes <b>nasalization.</b> The sound comes from the nose and continues as long as two vowels. It includes:',
-		points: [{ description: '<b>Disappearance (Ikhfa’a)</b>, as in “أَن تَخْشَوْه” (an takhshawhu).' }, { description: '<b>Stresses (N or M)</b>, seen in words like “فَإِنَّهم” (fa innahum) or “مِمَّا” (mimma).' }, { description: '<b>Inversion (Iglab)</b>, where the “N” is colored gray and inverted into a nasalized “M,” as in “مِن بَعْد” (min ba’d).' }]
-	},
-	{ code: 'H', title: 'Tafkhim', description: 'Used for letters that require <b>emphatic pronunciation.</b> When you encounter dark blue letters, emphasize their sound. For example, “الحرام” (al-haraam).' },
-	{ code: 'I', title: 'Qalqalah', description: 'Indicates the sound of Qalqalah (a plosive sound). When pronounced, these letters appear to have an echoing quality. For instance, “لقد” (laqad).' },
-	{ code: 'L', title: 'Waqf Mark with Shapes Outline', description: 'Indicates diacritic to be silenced/not pronounced.' },
-	{ code: 'W', title: 'Normal Ayah Icon with number (e.g. 1:1)', description: null },
-	{ code: 'Y', title: 'Special Ayah Icon with number', description: 'Indicates preferred continuation without stopping (e.g. 110:1).' }
 ];
 
 export const chapterHeaderCodes = [
