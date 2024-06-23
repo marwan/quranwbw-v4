@@ -22,6 +22,7 @@ let __websiteOnline,
 	__reciter,
 	__timestampData,
 	__playbackSpeed,
+	__playTranslation,
 	__displayType,
 	__websiteTheme,
 	__lastRead,
@@ -116,6 +117,9 @@ if (browser) {
 	// to store playback speed
 	__playbackSpeed = writable(userSettings.audioSettings.playbackSpeed);
 
+	// to store the toggle boolean for play translation
+	__playTranslation = writable(userSettings.audioSettings.playTranslation);
+
 	// to store the display type - WBW, Normal, Continuous, etc...
 	__displayType = writable(userSettings.displaySettings.displayType);
 
@@ -157,7 +161,8 @@ if (browser) {
 		isPlaying: false,
 		timesToRepeat: 1,
 		timesRepeated: 0,
-		delay: 0
+		delay: 0,
+		language: 'arabic'
 	});
 
 	// to store the morphology verse/word key
@@ -221,6 +226,7 @@ export {
 	__reciter,
 	__timestampData,
 	__playbackSpeed,
+	__playTranslation,
 	__displayType,
 	__websiteTheme,
 	__lastRead,

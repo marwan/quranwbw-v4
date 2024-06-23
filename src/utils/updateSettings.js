@@ -1,5 +1,27 @@
 /* eslint-disable no-case-declarations */
-import { __userSettings, __wordType, __displayType, __websiteTheme, __wordTranslation, __verseTranslations, __wordTranslationEnabled, __wordTransliterationEnabled, __reciter, __playbackSpeed, __lastRead, __tajweedEnabled, __wordTooltip, __userBookmarks, __autoScrollSpeed, __wakeLockEnabled, __userNotes, __quizCorrectAnswers, __quizWrongAnswers, __englishTerminology } from '$utils/stores';
+import {
+	__userSettings,
+	__wordType,
+	__displayType,
+	__websiteTheme,
+	__wordTranslation,
+	__verseTranslations,
+	__wordTranslationEnabled,
+	__wordTransliterationEnabled,
+	__reciter,
+	__playbackSpeed,
+	__playTranslation,
+	__lastRead,
+	__tajweedEnabled,
+	__wordTooltip,
+	__userBookmarks,
+	__autoScrollSpeed,
+	__wakeLockEnabled,
+	__userNotes,
+	__quizCorrectAnswers,
+	__quizWrongAnswers,
+	__englishTerminology
+} from '$utils/stores';
 import { selectableVerseTranslations } from '$data/options';
 // import { uploadSettingsToCloud } from '$utils/cloudSettings';
 
@@ -119,6 +141,12 @@ export function updateSettings(props) {
 		case 'playbackSpeed':
 			__playbackSpeed.set(props.value);
 			userSettings.audioSettings.playbackSpeed = props.value;
+			break;
+
+		// for play translation toggle
+		case 'playTranslation':
+			__playTranslation.set(props.value);
+			userSettings.audioSettings.playTranslation = props.value;
 			break;
 
 		// for Initial Setup

@@ -1,4 +1,4 @@
-<script>
+<script lang>
 	import Drawer from '$ui/flowbite-svelte/drawer/Drawer.svelte';
 	import Radio from '$ui/flowbite-svelte/forms/Radio.svelte';
 	import Checkbox from '$ui/flowbite-svelte/forms/Checkbox.svelte';
@@ -7,7 +7,7 @@
 	import CloseButton from '$ui/flowbite-svelte/utils/CloseButton.svelte';
 	import Dropdown from '$ui/flowbite-svelte/dropdown/Dropdown.svelte';
 	import Button from '$ui/flowbite-svelte/buttons/Button.svelte';
-	import { __currentPage, __chapterData, __chapterNumber, __wordType, __displayType, __websiteTheme, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __verseTranslations, __reciter, __playbackSpeed, __userSettings, __tajweedEnabled, __wordTooltip, __settingsDrawerHidden, __wakeLockEnabled, __englishTerminology } from '$utils/stores';
+	import { __currentPage, __chapterData, __chapterNumber, __wordType, __displayType, __websiteTheme, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __verseTranslations, __reciter, __playbackSpeed, __playTranslation, __userSettings, __tajweedEnabled, __wordTooltip, __settingsDrawerHidden, __wakeLockEnabled, __englishTerminology } from '$utils/stores';
 	import { displayOptions, selectableFontTypes, selectableThemes, selectableVerseTranslations, verseTranslationsLanguages, selectableWordTranslations, selectableReciters, selectablePlaybackSpeeds, selectableTooltipOptions } from '$data/options';
 	import { updateSettings } from '$utils/updateSettings';
 	import { resetSettings } from '$utils/resetSettings';
@@ -26,6 +26,8 @@
 	const radioClasses = 'font-normal';
 	const dropdownClasses = 'w-52 p-3 space-y-3 text-sm max-h-64 overflow-y-scroll theme-grayscale';
 	const settingsDescriptionClasses = 'mb-6 text-sm opacity-70';
+	const toggleBtnClasses =
+		"relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-black/10 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-gray-600 theme-grayscale";
 
 	$: fontSizeCodes = JSON.parse($__userSettings).displaySettings.fontSizes;
 	$: wordTranslationKey = Object.keys(selectableWordTranslations).filter((item) => selectableWordTranslations[item].id === $__wordTranslation);
@@ -98,9 +100,7 @@
 
 					<label class="inline-flex items-center cursor-pointer {$__wordTransliterationEnabled === false && disabledClasses}">
 						<input type="checkbox" value="" class="sr-only peer" checked={$__wordTranslationEnabled} on:click={(event) => updateSettings({ type: 'wordTranslationEnabled', value: event.target.checked })} />
-						<div
-							class="relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-black/10 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-gray-600 theme-grayscale"
-						></div>
+						<div class={toggleBtnClasses}></div>
 					</label>
 				</div>
 				<p class={settingsDescriptionClasses}>Toggle the word translation which is shown below the Arabic word.</p>
@@ -114,9 +114,7 @@
 					<span class="block">Word Transliteration</span>
 					<label class="inline-flex items-center cursor-pointer {$__wordTranslationEnabled === false && disabledClasses}">
 						<input type="checkbox" value="" class="sr-only peer" checked={$__wordTransliterationEnabled} on:click={(event) => updateSettings({ type: 'wordTransliterationEnabled', value: event.target.checked })} />
-						<div
-							class="relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-black/10 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-gray-600 theme-grayscale"
-						></div>
+						<div class={toggleBtnClasses}></div>
 					</label>
 				</div>
 				<p class={settingsDescriptionClasses}>Toggle the word transliteration which is shown below the Arabic word.</p>
@@ -132,9 +130,7 @@
 						<span class="block">Prevent Sleep</span>
 						<label class="inline-flex items-center cursor-pointer">
 							<input type="checkbox" value="" class="sr-only peer" checked={$__wakeLockEnabled} on:click={(event) => updateSettings({ type: 'wakeLockEnabled', value: event.target.checked })} />
-							<div
-								class="relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-black/10 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-gray-600 theme-grayscale"
-							></div>
+							<div class={toggleBtnClasses}></div>
 						</label>
 					</div>
 					<p class={settingsDescriptionClasses}>Enabling this option would stop your screen from dimming/sleeping.</p>
@@ -171,9 +167,7 @@
 
 					<label class="inline-flex items-center cursor-pointer">
 						<input type="checkbox" value="" class="sr-only peer" checked={$__tajweedEnabled} on:click={(event) => updateSettings({ type: 'tajweedEnabled', value: event.target.checked })} />
-						<div
-							class="relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-black/10 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-gray-600 theme-grayscale"
-						></div>
+						<div class={toggleBtnClasses}></div>
 					</label>
 				</div>
 				<p class={settingsDescriptionClasses}>Switch between the colored fonts with {term('tajweed')} rulings or the normal black & white.</p>
@@ -324,6 +318,20 @@
 				</div>
 				<p class={settingsDescriptionClasses}>The playback speed at which the {term('verse')}/word audio will be played.</p>
 			</div>
+
+			<div class="border-b border-black/10"></div>
+
+			<!-- play-translation-setting -->
+			<div id="play-translation-setting" class={settingsBlockClasses}>
+				<div class="flex flex-row justify-between items-center">
+					<span class="block">Play Translation</span>
+					<label class="inline-flex items-center cursor-pointer {$__wordTranslationEnabled === false && disabledClasses}">
+						<input type="checkbox" value="" class="sr-only peer" checked={$__playTranslation} on:click={(event) => updateSettings({ type: 'playTranslation', value: event.target.checked })} />
+						<div class={toggleBtnClasses}></div>
+					</label>
+				</div>
+				<p class={settingsDescriptionClasses}>Whether the translation audio should be played after the Arabic audio.</p>
+			</div>
 		</div>
 	</div>
 
@@ -338,9 +346,7 @@
 					<span class="block">English Terminologies</span>
 					<label class="inline-flex items-center cursor-pointer">
 						<input type="checkbox" value="" class="sr-only peer" checked={$__englishTerminology} on:click={(event) => updateSettings({ type: 'englishTerminology', value: event.target.checked })} />
-						<div
-							class="relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-black/10 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-gray-600 theme-grayscale"
-						></div>
+						<div class={toggleBtnClasses}></div>
 					</label>
 				</div>
 				<p class={settingsDescriptionClasses}>Switch between the English and Arabic terminologies used on the website.</p>

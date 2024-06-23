@@ -100,26 +100,28 @@
 	</div>
 
 	<!-- tajweed colors popover (only for QPC v4 font) -->
-	<Popover class="w-64 text-sm font-light z-50 rounded-t-3xl" trigger="hover" triggeredBy="#word-{wordKey.split(':')[1]}-{wordKey.split(':')[2]}" arrow={false}>
-		{#await wordTajweedData}
-			<Spinner />
-		{:then wordTajweedData}
-			{#if wordTajweedData}
-				<div class="flex flex-col space-y-1">
-					{#each wordTajweedData.split(',') as id}
-						<div class="flex flex-row space-x-2 items-center text-xs">
-							<span class="tajweed-rules text-lg">{tajweedRulings[tajweedColorIds[id]].code}</span>
-							<span>{tajweedRulings[tajweedColorIds[id]].title}</span>
-						</div>
-					{/each}
-				</div>
-			{:else}
-				No data available.
-			{/if}
-		{:catch error}
-			<p>error...</p>
-		{/await}
-	</Popover>
+	{#if $__wordType === 2}
+		<Popover class="w-64 text-sm font-light z-50 rounded-t-3xl" trigger="hover" triggeredBy="#word-{wordKey.split(':')[1]}-{wordKey.split(':')[2]}" arrow={false}>
+			{#await wordTajweedData}
+				<Spinner />
+			{:then wordTajweedData}
+				{#if wordTajweedData}
+					<div class="flex flex-col space-y-1">
+						{#each wordTajweedData.split(',') as id}
+							<div class="flex flex-row space-x-2 items-center text-xs">
+								<span class="tajweed-rules text-lg">{tajweedRulings[tajweedColorIds[id]].code}</span>
+								<span>{tajweedRulings[tajweedColorIds[id]].title}</span>
+							</div>
+						{/each}
+					</div>
+				{:else}
+					No data available.
+				{/if}
+			{:catch error}
+				<p>error...</p>
+			{/await}
+		</Popover>
+	{/if}
 
 	<!-- word tooltip -->
 	{#if $__wordTooltip > 1}

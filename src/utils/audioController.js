@@ -1,10 +1,9 @@
 import { get } from 'svelte/store';
 import { quranMetaData } from '$data/quranMeta';
-import { __reciter, __playbackSpeed, __audioSettings, __audioModalVisible, __currentPage, __chapterData } from '$utils/stores';
+import { __reciter, __playbackSpeed, __audioSettings, __audioModalVisible, __currentPage, __chapterData, __playTranslation } from '$utils/stores';
 import { wordsAudioURL } from '$data/websiteSettings';
 import { selectableReciters, selectablePlaybackSpeeds } from '$data/options';
 import { scrollSmoothly } from '$utils/scrollSmoothly';
-// import { wordsCount } from '$data/wordsCount';
 
 // getting the audio element
 let audio = document.querySelector('#player');
@@ -16,13 +15,13 @@ let verseTranslationPlayed = false;
 
 let nextToPlay;
 
-// to be moved to drawer/settings
-audioSettings.playTranslation = false;
-
 // function to play word or verse audio, either one time, or multiple
 export function playAudio(props) {
 	// we will first reset all audio settings
 	resetAudioSettings();
+
+	// play transfer after arabic audio?
+	audioSettings.playTranslation = get(__playTranslation);
 
 	// making the file name and getting the repeat times from localStorage
 	if (props.type === 'word') {
@@ -67,9 +66,12 @@ export function playAudio(props) {
 	// update the audio settings
 	audioSettings.audioType = props.type;
 	audioSettings.isPlaying = true;
+	audioSettings.language = props.playTranslation ? 'translation' : 'arabic';
 
-	// attach the word highlighter function
-	if (props.type === 'verse' && props.playTranslation !== true) {
+	console.log(audioSettings.playingKey, `playing ${audioSettings.language}`);
+
+	// attach the word highlighter function only for Arabic audio
+	if (props.type === 'verse' && audioSettings.language === 'arabic') {
 		// enable wbw highlighting only if the reciter is Mishary Rashid Alafasy
 		if (selectableReciters[get(__reciter)].id === 10) audio.addEventListener('timeupdate', wordHighlighter);
 
@@ -286,6 +288,7 @@ export function resetAudioSettings() {
 	audio.currentTime = 0;
 	audioSettings.isPlaying = false;
 	audioSettings.playingWordKey = null;
+	// audioSettings.playTranslation = false;
 
 	__audioSettings.set(audioSettings);
 

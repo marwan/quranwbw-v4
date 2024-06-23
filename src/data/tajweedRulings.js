@@ -249,7 +249,7 @@ export const tajweedRulings = {
 
 	// 3 blacks
 	36: {
-		code: 'F',
+		code: 'A',
 		title: "Madd I'wadh – (مدّ العِوَض)",
 		description: 'Normal prolongation (two vowels). Compensated prolongation, occurs only at the end of a word that has Tanween fatha.'
 	},
