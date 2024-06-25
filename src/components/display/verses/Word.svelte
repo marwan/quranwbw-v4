@@ -100,7 +100,7 @@
 	</div>
 
 	<!-- tajweed colors popover (only for QPC v4 font) -->
-	{#if $__wordType === 2}
+	{#if $__wordType === 2 && $__currentPage === 'chapter'}
 		<Popover class="w-64 text-sm font-light z-50 rounded-t-3xl" trigger="hover" triggeredBy="#word-{wordKey.split(':')[1]}-{wordKey.split(':')[2]}" arrow={false}>
 			{#await wordTajweedData}
 				<Spinner />

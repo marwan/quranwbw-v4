@@ -6,6 +6,8 @@
 	import { initializeAudio, updateAudioSettings } from '$utils/audioController';
 	import { disabledClasses, buttonClasses } from '$data/commonClasses';
 	import { term } from '$utils/terminologies';
+
+	$: console.table($__audioSettings);
 </script>
 
 <Modal id="audioModal" bind:open={$__audioModalVisible} size="xs" class="rounded-3xl !text-black theme" bodyClass="p-6" placement="center" autoclose outsideclose>
@@ -20,11 +22,11 @@
 			<div class="flex flex-row space-x-4">
 				<!-- play verse -->
 				<div class="flex items-center">
-					<Radio bind:group={$__audioSettings.audioType} value="verse" on:change={(event) => updateAudioSettings} class="text-black">Play {term('verse')}</Radio>
+					<Radio bind:group={$__audioSettings.audioType} value="verse" class="text-black">Play {term('verse')}</Radio>
 				</div>
 				<!-- play word -->
 				<div class="flex items-center {$__currentPage !== 'chapter' && disabledClasses}">
-					<Radio bind:group={$__audioSettings.audioType} value="word" on:change={(event) => updateAudioSettings} class="text-black">Play Words</Radio>
+					<Radio bind:group={$__audioSettings.audioType} value="word" class="text-black">Play Words</Radio>
 				</div>
 			</div>
 
@@ -42,15 +44,15 @@
 			<div class="flex flex-row space-x-4">
 				<!-- play this verse -->
 				<div class="flex items-center">
-					<Radio bind:group={$__audioSettings.audioRange} value="playThisVerse" on:change={(event) => updateAudioSettings} class="text-black">This {term('verse')}</Radio>
+					<Radio bind:group={$__audioSettings.audioRange} value="playThisVerse" class="text-black">This {term('verse')}</Radio>
 				</div>
 				<!-- play from here -->
 				<div class="flex items-center {!['chapter', 'page'].includes($__currentPage) && disabledClasses}">
-					<Radio bind:group={$__audioSettings.audioRange} value="playFromHere" on:change={(event) => updateAudioSettings} class="text-black">From Here</Radio>
+					<Radio bind:group={$__audioSettings.audioRange} value="playFromHere" class="text-black">From Here</Radio>
 				</div>
 				<!-- play range -->
 				<div class="flex items-center {$__currentPage !== 'chapter' && disabledClasses}">
-					<Radio bind:group={$__audioSettings.audioRange} value="playRange" on:change={(event) => updateAudioSettings} class="text-black">{term('verses')} Range</Radio>
+					<Radio bind:group={$__audioSettings.audioRange} value="playRange" o class="text-black">{term('verses')} Range</Radio>
 				</div>
 			</div>
 		</div>

@@ -72,7 +72,7 @@
 	$: if ($__currentPage || $__wordType || $__wordTranslation || $__verseTranslations) localStorage.setItem('chapterDataLoaded', false);
 
 	// stop all audio when the page or chapter is changed
-	$: if ($__currentPage || $__chapterNumber) resetAudioSettings();
+	$: if ($__currentPage || $__chapterNumber) resetAudioSettings({ location: 'end' });
 
 	// toggle bottom nav on scroll
 	document.getElementsByTagName('body')[0].onscroll = () => {

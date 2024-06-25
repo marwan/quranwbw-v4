@@ -99,6 +99,8 @@
 				});
 			});
 
+			// console.log(document.getElementsByClassName('word')[0].id);
+
 			return apiData;
 		})();
 

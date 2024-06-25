@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 import { get } from 'svelte/store';
 import { quranMetaData } from '$data/quranMeta';
-import { __reciter, __playbackSpeed, __audioSettings, __audioModalVisible, __currentPage, __chapterData, __playTranslation } from '$utils/stores';
+import { __reciter, __playbackSpeed, __audioSettings, __audioModalVisible, __currentPage, __chapterNumber, __chapterData, __playTranslation } from '$utils/stores';
 import { wordsAudioURL } from '$data/websiteSettings';
 import { selectableReciters, selectablePlaybackSpeeds } from '$data/options';
 import { scrollSmoothly } from '$utils/scrollSmoothly';
@@ -11,17 +12,12 @@ let audio = document.querySelector('#player');
 // set global audio settings
 const audioSettings = get(__audioSettings);
 
-let verseTranslationPlayed = false;
-
-let nextToPlay;
+// let nextToPlay;
 
 // function to play word or verse audio, either one time, or multiple
 export function playAudio(props) {
 	// we will first reset all audio settings
-	resetAudioSettings();
-
-	// play transfer after arabic audio?
-	audioSettings.playTranslation = get(__playTranslation);
+	resetAudioSettings({ location: 'start' });
 
 	// making the file name and getting the repeat times from localStorage
 	if (props.type === 'word') {
@@ -67,8 +63,7 @@ export function playAudio(props) {
 	audioSettings.audioType = props.type;
 	audioSettings.isPlaying = true;
 	audioSettings.language = props.playTranslation ? 'translation' : 'arabic';
-
-	console.log(audioSettings.playingKey, `playing ${audioSettings.language}`);
+	if (props.playTranslation) audioSettings.verseTranslationPlayed = true;
 
 	// attach the word highlighter function only for Arabic audio
 	if (props.type === 'verse' && audioSettings.language === 'arabic') {
@@ -88,21 +83,17 @@ export function playAudio(props) {
 		audio.removeEventListener('timeupdate', wordHighlighter);
 
 		// play verse translation after arabic audio if opted by the user
-		if (audioSettings.playTranslation) {
-			if (!verseTranslationPlayed) {
-				verseTranslationPlayed = true;
-
-				return playAudio({
-					type: props.type,
-					chapter: +props.chapter,
-					verse: +props.verse,
-					firstToPlay: +props.firstToPlay,
-					lastToPlay: +props.lastToPlay,
-					timesToRepeat: +props.timesToRepeat,
-					delay: +props.delay,
-					playTranslation: true
-				});
-			}
+		if (props.type === 'verse' && get(__playTranslation) && !audioSettings.verseTranslationPlayed) {
+			return playAudio({
+				type: props.type,
+				chapter: +props.chapter,
+				verse: +props.verse,
+				firstToPlay: +props.firstToPlay,
+				lastToPlay: +props.lastToPlay,
+				timesToRepeat: +props.timesToRepeat,
+				delay: +props.delay,
+				playTranslation: true
+			});
 		}
 
 		// repeating the audio if 'timesToRepeat' is more than 1
@@ -126,25 +117,37 @@ export function playAudio(props) {
 		audioSettings.timesRepeated = 0;
 
 		// if type is word, then next to play shall be word+1, else will be verse+1
-		nextToPlay = props.firstToPlay + 1;
+		// nextToPlay = props.firstToPlay + 1;
 
 		// if the next word/verse to play is less than or equal to the last word/verse to play
-		if (nextToPlay <= props.lastToPlay) {
-			verseTranslationPlayed = false;
+		// if (nextToPlay <= props.lastToPlay) {
+		// 	audioSettings.verseTranslationPlayed = false;
 
-			return playAudio({
-				type: props.type,
-				chapter: +props.chapter,
-				verse: +props.verse,
-				firstToPlay: +nextToPlay,
-				lastToPlay: +props.lastToPlay,
-				timesToRepeat: +props.timesToRepeat,
-				delay: +props.delay
-			});
+		// 	return playAudio({
+		// 		type: props.type,
+		// 		chapter: +props.chapter,
+		// 		verse: +props.verse,
+		// 		firstToPlay: +nextToPlay,
+		// 		lastToPlay: +props.lastToPlay,
+		// 		timesToRepeat: +props.timesToRepeat,
+		// 		delay: +props.delay
+		// 	});
+		// }
+
+		// for Mushaf page mode:
+		// if we have verses in the versesToPlay array, play those...
+		if (window.versesToPlayArray && window.versesToPlayArray.length > 0) {
+			const index = window.versesToPlayArray.indexOf(audioSettings.playingKey);
+
+			// remove the current verse
+			if (index > -1) window.versesToPlayArray.splice(index, 1);
+
+			// play the first verse in array
+			if (window.versesToPlayArray.length > 0) return playVerse(window.versesToPlayArray[0]);
 		}
 
 		// once everything is done, reset settings
-		resetAudioSettings();
+		resetAudioSettings({ location: 'end' });
 	};
 
 	// update the audio settings
@@ -195,41 +198,41 @@ export function updateAudioSettings(event) {
 	// 1. update values based on clicked ID
 	try {
 		switch (event.target.id) {
-			case 'playVerse':
-				audioSettings.audioType = 'verse';
-				break;
+			// case 'playVerse':
+			// 	audioSettings.audioType = 'verse';
+			// 	break;
 
-			case 'playWord':
-				audioSettings.audioType = 'word';
-				break;
+			// case 'playWord':
+			// 	audioSettings.audioType = 'word';
+			// 	break;
 
-			case 'playTranslation':
-				audioSettings.playTranslation = true;
-				break;
+			// case 'playTranslation':
+			// 	audioSettings.playTranslation = true;
+			// 	break;
 
-			case 'playThisVerse':
-				audioSettings.audioRange = event.target.id;
-				audioSettings.startVerse = audioSettings.playingVerse;
-				audioSettings.endVerse = audioSettings.playingVerse;
-				break;
+			// case 'playThisVerse':
+			// 	audioSettings.audioRange = event.target.id;
+			// 	audioSettings.startVerse = audioSettings.playingVerse;
+			// 	audioSettings.endVerse = audioSettings.playingVerse;
+			// 	break;
 
-			case 'playFromHere':
-				audioSettings.audioRange = event.target.id;
-				audioSettings.startVerse = audioSettings.playingVerse;
-				audioSettings.endVerse = chapterTotalVerses;
-				break;
+			// case 'playFromHere':
+			// 	audioSettings.audioRange = event.target.id;
+			// 	audioSettings.startVerse = audioSettings.playingVerse;
+			// 	audioSettings.endVerse = chapterTotalVerses;
+			// 	break;
 
-			case 'playRange':
-				audioSettings.audioRange = event.target.id;
-				break;
+			// case 'playRange':
+			// 	audioSettings.audioRange = event.target.id;
+			// 	break;
 
-			case 'startVerse':
-				audioSettings.startVerse = +event.target.value;
-				break;
+			// case 'startVerse':
+			// 	audioSettings.startVerse = +event.target.value;
+			// 	break;
 
-			case 'endVerse':
-				audioSettings.endVerse = +event.target.value;
-				break;
+			// case 'endVerse':
+			// 	audioSettings.endVerse = +event.target.value;
+			// 	break;
 
 			case 'timesToRepeat':
 				audioSettings.timesToRepeat = event.target.valueAsNumber;
@@ -237,6 +240,7 @@ export function updateAudioSettings(event) {
 		}
 	} catch (error) {
 		// ...
+		console.error(error);
 	}
 
 	// making sure endVerse is not less than startVerse
@@ -246,6 +250,8 @@ export function updateAudioSettings(event) {
 
 	// 3. update the global audio settings
 	__audioSettings.set(audioSettings);
+
+	console.log(audioSettings);
 }
 
 export function initializeAudioSettings(key) {
@@ -283,12 +289,20 @@ export function initializeAudioSettings(key) {
 	}
 }
 
-export function resetAudioSettings() {
+export function resetAudioSettings(props) {
+	if (props === undefined) props = {};
+
 	audio.pause();
 	audio.currentTime = 0;
 	audioSettings.isPlaying = false;
 	audioSettings.playingWordKey = null;
-	// audioSettings.playTranslation = false;
+
+	// if the reset function is called from the end of playAudio function
+	// because we have 1 at the start and 1 at the end
+	if (props.location === 'end') {
+		audioSettings.verseTranslationPlayed = false;
+		window.versesToPlayArray = [];
+	}
 
 	__audioSettings.set(audioSettings);
 
@@ -324,26 +338,28 @@ export function wordAudioController(props) {
 }
 
 // function to quickly play verse audio, to be used by the play buttons
-export function quickPlayAudio(chapter, startVerse, endVerse) {
-	if (audioSettings.isPlaying) {
-		resetAudioSettings();
-	} else {
-		playAudio({
-			type: 'verse',
-			chapter: chapter,
-			verse: 1,
-			firstToPlay: startVerse,
-			lastToPlay: endVerse,
-			timesToRepeat: 1,
-			delay: 0
-		});
-	}
-}
+// export function quickPlayAudio(chapter, startVerse, endVerse) {
+// 	if (audioSettings.isPlaying) {
+// 		resetAudioSettings();
+// 	} else {
+// 		playAudio({
+// 			type: 'verse',
+// 			chapter: chapter,
+// 			verse: 1,
+// 			firstToPlay: startVerse,
+// 			lastToPlay: endVerse,
+// 			timesToRepeat: 1,
+// 			delay: 0
+// 		});
+// 	}
+// }
 
 // mini function to quickly play a verse
 export function playVerse(verseKey) {
 	const chapter = +verseKey.split(':')[0];
 	const verse = +verseKey.split(':')[1];
+
+	console.log('playing ', verseKey, window.versesToPlayArray);
 
 	playAudio({
 		type: 'verse',
@@ -393,4 +409,41 @@ function wordHighlighter() {
 
 	// update the audio settings
 	__audioSettings.set(audioSettings);
+}
+
+// function to generate an array of verses to play
+export function setVersesToPlay() {
+	window.versesToPlayArray = [];
+
+	// chapter page
+	if (get(__currentPage) === 'chapter') {
+		const versesOnPage = document.getElementsByClassName('verse');
+
+		for (let verse = versesOnPage[1].id.split(':')[1]; verse <= quranMetaData[get(__chapterNumber)].verses; verse++) {
+			const verseKey = `${get(__chapterNumber)}:${verse}`;
+			window.versesToPlayArray.indexOf(verseKey) === -1 && window.versesToPlayArray.push(verseKey);
+		}
+	}
+
+	// mushaf page
+	else if (get(__currentPage) === 'page') {
+		const wordsOnPage = document.getElementsByClassName('word');
+
+		for (let word = 0; word <= wordsOnPage.length - 1; word++) {
+			const verseKey = `${wordsOnPage[word].id.split(':')[0]}:${wordsOnPage[word].id.split(':')[1]}`;
+			window.versesToPlayArray.indexOf(verseKey) === -1 && window.versesToPlayArray.push(verseKey);
+		}
+	}
+
+	// other pages (supplications, bookmarks)
+	else {
+		const versesOnPage = document.getElementsByClassName('verse');
+
+		for (let verse = 1; verse <= versesOnPage.length - 1; verse++) {
+			const verseKey = versesOnPage[verse].id;
+			window.versesToPlayArray.indexOf(verseKey) === -1 && window.versesToPlayArray.push(verseKey);
+		}
+	}
+
+	console.log('versesToPlayArray', window.versesToPlayArray);
 }
