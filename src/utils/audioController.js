@@ -1,3 +1,4 @@
+/* eslint-disable no-prototype-builtins */
 /* eslint-disable no-unused-vars */
 import { get } from 'svelte/store';
 import { quranMetaData } from '$data/quranMeta';
@@ -84,6 +85,7 @@ export function playAudio(props) {
 
 		// play verse translation after arabic audio if opted by the user
 		if (props.type === 'verse' && get(__playTranslation) && !audioSettings.verseTranslationPlayed) {
+			console.log('playing translation');
 			return playAudio({
 				type: props.type,
 				chapter: +props.chapter,
@@ -134,10 +136,12 @@ export function playAudio(props) {
 		// 	});
 		// }
 
-		// for Mushaf page mode:
 		// if we have verses in the versesToPlay array, play those...
 		if (window.versesToPlayArray && window.versesToPlayArray.length > 0) {
 			const index = window.versesToPlayArray.indexOf(audioSettings.playingKey);
+
+			// settings to false for the next verse to be played
+			audioSettings.verseTranslationPlayed = false;
 
 			// remove the current verse
 			if (index > -1) window.versesToPlayArray.splice(index, 1);
@@ -165,36 +169,36 @@ export function initializeAudio() {
 
 	resetAudioSettings();
 
-	// play this verse
-	if (audioSettings.audioRange === 'playThisVerse') {
-		audioSettings.startVerse = audioSettings.playingVerse;
-		audioSettings.endVerse = audioSettings.playingVerse;
-	}
+	if (audioSettings.audioType) playVerse(window.versesToPlayArray[0]);
 
-	// play from here
-	if (audioSettings.audioRange === 'playFromHere') {
-		audioSettings.startVerse = audioSettings.playingVerse;
-		audioSettings.endVerse = quranMetaData[audioSettings.playingChapter].verses;
-	}
+	// // play this verse
+	// if (audioSettings.audioRange === 'playThisVerse') {
+	// 	audioSettings.startVerse = audioSettings.playingVerse;
+	// 	audioSettings.endVerse = audioSettings.playingVerse;
+	// }
 
-	__audioSettings.set(audioSettings);
+	// // play from here
+	// if (audioSettings.audioRange === 'playFromHere') {
+	// 	audioSettings.startVerse = audioSettings.playingVerse;
+	// 	audioSettings.endVerse = quranMetaData[audioSettings.playingChapter].verses;
+	// }
 
-	playAudio({
-		type: audioSettings.audioType === undefined ? 'verse' : audioSettings.audioType,
-		chapter: audioSettings.playingChapter,
-		verse: audioSettings.startVerse,
-		firstToPlay: audioSettings.audioType === 'word' ? 1 : audioSettings.startVerse,
-		lastToPlay: audioSettings.audioType === 'word' ? wordsInVerse : audioSettings.endVerse,
-		timesToRepeat: audioSettings.timesToRepeat,
-		delay: audioSettings.delay
-	});
+	// __audioSettings.set(audioSettings);
 
-	__audioModalVisible.set(false);
+	// playAudio({
+	// 	type: audioSettings.audioType === undefined ? 'verse' : audioSettings.audioType,
+	// 	chapter: audioSettings.playingChapter,
+	// 	verse: audioSettings.startVerse,
+	// 	firstToPlay: audioSettings.audioType === 'word' ? 1 : audioSettings.startVerse,
+	// 	lastToPlay: audioSettings.audioType === 'word' ? wordsInVerse : audioSettings.endVerse,
+	// 	timesToRepeat: audioSettings.timesToRepeat,
+	// 	delay: audioSettings.delay
+	// });
+
+	// __audioModalVisible.set(false);
 }
 
 export function updateAudioSettings(event) {
-	const chapterTotalVerses = quranMetaData[audioSettings.playingChapter].verses;
-
 	// 1. update values based on clicked ID
 	try {
 		switch (event.target.id) {
@@ -210,29 +214,13 @@ export function updateAudioSettings(event) {
 			// 	audioSettings.playTranslation = true;
 			// 	break;
 
-			// case 'playThisVerse':
-			// 	audioSettings.audioRange = event.target.id;
-			// 	audioSettings.startVerse = audioSettings.playingVerse;
-			// 	audioSettings.endVerse = audioSettings.playingVerse;
-			// 	break;
+			case 'startVerse':
+				audioSettings.startVerse = +event.target.value;
+				break;
 
-			// case 'playFromHere':
-			// 	audioSettings.audioRange = event.target.id;
-			// 	audioSettings.startVerse = audioSettings.playingVerse;
-			// 	audioSettings.endVerse = chapterTotalVerses;
-			// 	break;
-
-			// case 'playRange':
-			// 	audioSettings.audioRange = event.target.id;
-			// 	break;
-
-			// case 'startVerse':
-			// 	audioSettings.startVerse = +event.target.value;
-			// 	break;
-
-			// case 'endVerse':
-			// 	audioSettings.endVerse = +event.target.value;
-			// 	break;
+			case 'endVerse':
+				audioSettings.endVerse = +event.target.value;
+				break;
 
 			case 'timesToRepeat':
 				audioSettings.timesToRepeat = event.target.valueAsNumber;
@@ -250,8 +238,6 @@ export function updateAudioSettings(event) {
 
 	// 3. update the global audio settings
 	__audioSettings.set(audioSettings);
-
-	console.log(audioSettings);
 }
 
 export function initializeAudioSettings(key) {
@@ -290,8 +276,6 @@ export function initializeAudioSettings(key) {
 }
 
 export function resetAudioSettings(props) {
-	if (props === undefined) props = {};
-
 	audio.pause();
 	audio.currentTime = 0;
 	audioSettings.isPlaying = false;
@@ -299,7 +283,7 @@ export function resetAudioSettings(props) {
 
 	// if the reset function is called from the end of playAudio function
 	// because we have 1 at the start and 1 at the end
-	if (props.location === 'end') {
+	if (props && props.location === 'end') {
 		audioSettings.verseTranslationPlayed = false;
 		window.versesToPlayArray = [];
 	}
@@ -390,57 +374,75 @@ export function playWord(wordKey) {
 }
 
 function wordHighlighter() {
-	// for mushaf mode, we have the JSON data in localStorage, and for other pages we have it set in the store __chapterData
-	const data = get(__currentPage) === 'page' ? JSON.parse(localStorage.getItem('pageData')) : get(__chapterData);
+	try {
+		// for mushaf mode, we have the JSON data in localStorage, and for other pages we have it set in the store __chapterData
+		const data = get(__currentPage) === 'page' ? JSON.parse(localStorage.getItem('pageData')) : get(__chapterData);
 
-	// get the total number of words in the ayah
-	const wordsInVerse = data[audioSettings.playingKey].meta.words;
+		// get the total number of words in the ayah
+		const wordsInVerse = data[audioSettings.playingKey].meta.words;
 
-	// loop through all the words
-	for (let word = 0; word <= wordsInVerse - 1; word++) {
-		// get the current word's timestamp
-		const wordTimestamp = document.getElementById(`${audioSettings.playingKey}:${word + 1}`).getAttribute('data-timestamp');
+		// loop through all the words
+		for (let word = 0; word <= wordsInVerse - 1; word++) {
+			// get the current word's timestamp
+			const wordTimestamp = document.getElementById(`${audioSettings.playingKey}:${word + 1}`).getAttribute('data-timestamp');
 
-		// as long as the word timestamp is lower than the current audio time
-		if (wordTimestamp < audio.currentTime) {
-			audioSettings.playingWordKey = `${audioSettings.playingKey}:${word + 1}`;
+			// as long as the word timestamp is lower than the current audio time
+			if (wordTimestamp < audio.currentTime) {
+				audioSettings.playingWordKey = `${audioSettings.playingKey}:${word + 1}`;
+			}
 		}
-	}
 
-	// update the audio settings
-	__audioSettings.set(audioSettings);
+		// update the audio settings
+		__audioSettings.set(audioSettings);
+	} catch (error) {
+		// console.log('wordHighlighter error: ', error);
+	}
 }
 
 // function to generate an array of verses to play
-export function setVersesToPlay() {
+export function setVersesToPlay(props) {
 	window.versesToPlayArray = [];
 
-	// chapter page
-	if (get(__currentPage) === 'chapter') {
-		const versesOnPage = document.getElementsByClassName('verse');
+	// for when the play was clicked from bottom toolbar
+	if (props && props.location === 'bottomToolbar') {
+		// mushaf page
+		if (get(__currentPage) === 'page') {
+			const wordsOnPage = document.getElementsByClassName('word');
 
-		for (let verse = versesOnPage[1].id.split(':')[1]; verse <= quranMetaData[get(__chapterNumber)].verses; verse++) {
-			const verseKey = `${get(__chapterNumber)}:${verse}`;
-			window.versesToPlayArray.indexOf(verseKey) === -1 && window.versesToPlayArray.push(verseKey);
+			for (let word = 0; word <= wordsOnPage.length - 1; word++) {
+				const verseKey = `${wordsOnPage[word].id.split(':')[0]}:${wordsOnPage[word].id.split(':')[1]}`;
+				window.versesToPlayArray.indexOf(verseKey) === -1 && window.versesToPlayArray.push(verseKey);
+			}
+		}
+
+		// chapter page, supp, bookmarks
+		else if (get(__currentPage) === 'chapter') {
+			const versesOnPage = document.getElementsByClassName('verse');
+			const startVerse = versesOnPage[1].id.split(':')[1];
+			const endVerse = quranMetaData[get(__chapterNumber)].verses;
+
+			for (let verse = startVerse; verse <= endVerse; verse++) {
+				const verseKey = `${get(__chapterNumber)}:${verse}`;
+				window.versesToPlayArray.indexOf(verseKey) === -1 && window.versesToPlayArray.push(verseKey);
+			}
+		}
+
+		// other pages (supplications, bookmarks)
+		else {
+			const versesOnPage = document.getElementsByClassName('verse');
+
+			for (let verse = 0; verse <= versesOnPage.length - 1; verse++) {
+				const verseKey = versesOnPage[verse].id;
+				window.versesToPlayArray.indexOf(verseKey) === -1 && window.versesToPlayArray.push(verseKey);
+			}
 		}
 	}
 
-	// mushaf page
-	else if (get(__currentPage) === 'page') {
-		const wordsOnPage = document.getElementsByClassName('word');
-
-		for (let word = 0; word <= wordsOnPage.length - 1; word++) {
-			const verseKey = `${wordsOnPage[word].id.split(':')[0]}:${wordsOnPage[word].id.split(':')[1]}`;
-			window.versesToPlayArray.indexOf(verseKey) === -1 && window.versesToPlayArray.push(verseKey);
-		}
-	}
-
-	// other pages (supplications, bookmarks)
-	else {
-		const versesOnPage = document.getElementsByClassName('verse');
-
-		for (let verse = 1; verse <= versesOnPage.length - 1; verse++) {
-			const verseKey = versesOnPage[verse].id;
+	// for when the play was clicked from verse options / modal
+	else if (props && props.location === 'verseOptionsOrModal') {
+		// chapter page, supp, bookmarks
+		for (let verse = props.startVerse; verse <= props.endVerse; verse++) {
+			const verseKey = `${props.chapter}:${verse}`;
 			window.versesToPlayArray.indexOf(verseKey) === -1 && window.versesToPlayArray.push(verseKey);
 		}
 	}

@@ -3,11 +3,36 @@
 	import Radio from '$ui/flowbite-svelte/forms/Radio.svelte';
 	import { quranMetaData } from '$data/quranMeta';
 	import { __currentPage, __chapterNumber, __audioSettings, __userSettings, __audioModalVisible } from '$utils/stores';
-	import { initializeAudio, updateAudioSettings } from '$utils/audioController';
+	import { initializeAudio, updateAudioSettings, setVersesToPlay } from '$utils/audioController';
 	import { disabledClasses, buttonClasses } from '$data/commonClasses';
 	import { term } from '$utils/terminologies';
 
-	$: console.table($__audioSettings);
+	$: {
+		if ($__audioModalVisible) {
+			const thisChapter = $__audioSettings.playingKey.split(':')[0];
+			const thisVerse = $__audioSettings.playingKey.split(':')[1];
+
+			// allow only playThisVerse option for non-chapter pages
+			if (!['chapter'].includes($__currentPage)) $__audioSettings.audioRange = 'playThisVerse';
+
+			// this verse
+			if ($__audioSettings.audioRange === 'playThisVerse') {
+				setVersesToPlay({ location: 'verseOptionsOrModal', chapter: thisChapter, startVerse: thisVerse, endVerse: thisVerse });
+			}
+
+			// from here
+			else if ($__audioSettings.audioRange === 'playFromHere') {
+				setVersesToPlay({ location: 'verseOptionsOrModal', chapter: thisChapter, startVerse: thisVerse, endVerse: quranMetaData[thisChapter].verses });
+			}
+
+			// range
+			else if ($__audioSettings.audioRange === 'playRange') {
+				setVersesToPlay({ location: 'verseOptionsOrModal', chapter: thisChapter, startVerse: $__audioSettings.startVerse, endVerse: $__audioSettings.endVerse });
+			}
+
+			console.log('audio modal');
+		}
+	}
 </script>
 
 <Modal id="audioModal" bind:open={$__audioModalVisible} size="xs" class="rounded-3xl !text-black theme" bodyClass="p-6" placement="center" autoclose outsideclose>
@@ -43,15 +68,15 @@
 			<span class="text-xs opacity-70">Your preferred range.</span>
 			<div class="flex flex-row space-x-4">
 				<!-- play this verse -->
-				<div class="flex items-center">
+				<div class="flex items-center {!['chapter'].includes($__currentPage) && disabledClasses}">
 					<Radio bind:group={$__audioSettings.audioRange} value="playThisVerse" class="text-black">This {term('verse')}</Radio>
 				</div>
 				<!-- play from here -->
-				<div class="flex items-center {!['chapter', 'page'].includes($__currentPage) && disabledClasses}">
+				<div class="flex items-center {!['chapter'].includes($__currentPage) && disabledClasses}">
 					<Radio bind:group={$__audioSettings.audioRange} value="playFromHere" class="text-black">From Here</Radio>
 				</div>
 				<!-- play range -->
-				<div class="flex items-center {$__currentPage !== 'chapter' && disabledClasses}">
+				<div class="flex items-center {!['chapter'].includes($__currentPage) && disabledClasses}">
 					<Radio bind:group={$__audioSettings.audioRange} value="playRange" o class="text-black">{term('verses')} Range</Radio>
 				</div>
 			</div>

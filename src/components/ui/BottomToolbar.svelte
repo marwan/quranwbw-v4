@@ -28,8 +28,7 @@
 		if ($__audioSettings.isPlaying) {
 			resetAudioSettings({ location: 'end' });
 		} else {
-			setVersesToPlay();
-			// start playing from first verse in array
+			setVersesToPlay({ location: 'bottomToolbar' });
 			playVerse(window.versesToPlayArray[0]);
 		}
 	}
