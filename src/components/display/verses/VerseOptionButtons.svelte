@@ -12,7 +12,7 @@
 	import Notes from '$svgs/Notes.svelte';
 	import DotsHorizontal from '$svgs/DotsHorizontal.svelte';
 	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
-	import { playVerse, resetAudioSettings } from '$utils/audioController';
+	import { playVerseAudio, resetAudioSettings } from '$utils/audioController';
 	import { __currentPage, __userSettings, __audioSettings, __verseKey, __userNotes, __notesModalVisible } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';
 	import { term } from '$utils/terminologies';
@@ -43,8 +43,8 @@
 		if ($__audioSettings.isPlaying) {
 			resetAudioSettings({ location: 'end' });
 		} else {
-			resetAudioSettings({ location: 'end' });
-			playVerse(key);
+			// resetAudioSettings({ location: 'end' });
+			playVerseAudio({ key, language: 'arabic', timesToRepeat: 1 });
 		}
 	}
 </script>

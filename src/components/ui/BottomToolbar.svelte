@@ -12,7 +12,7 @@
 	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
 	import { __audioSettings } from '$utils/stores';
 	import { __chapterNumber, __displayType, __currentPage, __bottomToolbarVisible, __settingsDrawerHidden, __autoScrollSpeed, __firstVerseOnPage } from '$utils/stores';
-	import { playVerse, setVersesToPlay, resetAudioSettings } from '$utils/audioController';
+	import { playVerseAudio, setVersesToPlay, resetAudioSettings } from '$utils/audioController';
 	import { quranMetaData } from '$data/quranMeta';
 	import { disabledClasses } from '$data/commonClasses';
 	import { updateSettings } from '$utils/updateSettings';
@@ -29,7 +29,12 @@
 			resetAudioSettings({ location: 'end' });
 		} else {
 			setVersesToPlay({ location: 'bottomToolbar' });
-			playVerse(window.versesToPlayArray[0]);
+
+			playVerseAudio({
+				key: `${window.versesToPlayArray[0]}`,
+				timesToRepeat: 1,
+				language: 'arabic'
+			});
 		}
 	}
 

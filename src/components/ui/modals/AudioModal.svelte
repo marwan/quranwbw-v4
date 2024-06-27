@@ -3,9 +3,11 @@
 	import Radio from '$ui/flowbite-svelte/forms/Radio.svelte';
 	import { quranMetaData } from '$data/quranMeta';
 	import { __currentPage, __chapterNumber, __audioSettings, __userSettings, __audioModalVisible } from '$utils/stores';
-	import { initializeAudio, updateAudioSettings, setVersesToPlay } from '$utils/audioController';
+	import { playVerseAudio, updateAudioSettings, setVersesToPlay } from '$utils/audioController';
 	import { disabledClasses, buttonClasses } from '$data/commonClasses';
 	import { term } from '$utils/terminologies';
+
+	$: console.log($__audioSettings);
 
 	$: {
 		if ($__audioModalVisible) {
@@ -22,7 +24,7 @@
 
 			// from here
 			else if ($__audioSettings.audioRange === 'playFromHere') {
-				setVersesToPlay({ location: 'verseOptionsOrModal', chapter: thisChapter, startVerse: thisVerse, endVerse: quranMetaData[thisChapter].verses });
+				setVersesToPlay({ location: 'verseOptionsOrModal', chapter: thisChapter, startVerse: thisVerse, endVerse: quranMetaData[thisChapter].verses, audioRange: 'playFromHere' });
 			}
 
 			// range
@@ -30,8 +32,16 @@
 				setVersesToPlay({ location: 'verseOptionsOrModal', chapter: thisChapter, startVerse: $__audioSettings.startVerse, endVerse: $__audioSettings.endVerse });
 			}
 
-			console.log('audio modal');
+			console.log($__audioSettings);
 		}
+	}
+
+	function playButtonHandler() {
+		playVerseAudio({
+			key: `${window.versesToPlayArray[0]}`,
+			timesToRepeat: $__audioSettings.audioRange,
+			language: 'arabic'
+		});
 	}
 </script>
 
@@ -116,7 +126,7 @@
 	</div>
 
 	<div class="mt-4">
-		<button on:click={initializeAudio} class="w-full mr-2 {buttonClasses}">
+		<button on:click={playButtonHandler} class="w-full mr-2 {buttonClasses}">
 			<span class="capitalize">Play</span>
 			<div class="hidden">
 				{#if $__audioSettings.startVerse !== null}
