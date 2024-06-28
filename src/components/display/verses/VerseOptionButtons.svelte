@@ -12,7 +12,7 @@
 	import Notes from '$svgs/Notes.svelte';
 	import DotsHorizontal from '$svgs/DotsHorizontal.svelte';
 	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
-	import { quickPlayAudio } from '$utils/audioController';
+	import { playVerseAudio, resetAudioSettings } from '$utils/audioController';
 	import { __currentPage, __userSettings, __audioSettings, __verseKey, __userNotes, __notesModalVisible } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';
 	import { term } from '$utils/terminologies';
@@ -38,16 +38,25 @@
 			// error
 		}
 	}
+
+	function audioHandler(key) {
+		if ($__audioSettings.isPlaying) {
+			resetAudioSettings({ location: 'end' });
+		} else {
+			// resetAudioSettings({ location: 'end' });
+			playVerseAudio({ key, language: 'arabic', timesToRepeat: 1 });
+		}
+	}
 </script>
 
 <div class="verseButtons flex flex-row space-x-2 z-10 theme">
-	<a href={$__currentPage === 'chapter' ? `#${chapter}:${verse}` : `/${chapter}/${verse}`} class="{buttonClasses} font-semibold" data-html2canvas-ignore>
+	<a href={$__currentPage === 'chapter' ? `#${key}` : `/${chapter}/${verse}`} class="{buttonClasses} font-semibold" data-html2canvas-ignore>
 		<div class="opacity-70">{key}</div>
 	</a>
 	<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-filter font-normal">{term('verse')} {key}</Tooltip>
 
 	<!-- play verse button -->
-	<button on:click={() => quickPlayAudio(chapter, verse, verse)} class={buttonClasses} aria-label="Play">
+	<button on:click={() => audioHandler(key)} class={buttonClasses} aria-label="Play">
 		<div class="opacity-70">
 			<svelte:component this={$__audioSettings.isPlaying && $__audioSettings.playingKey === key ? Pause : Play} size={3.5} />
 		</div>

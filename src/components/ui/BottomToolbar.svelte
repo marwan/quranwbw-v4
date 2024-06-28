@@ -12,7 +12,7 @@
 	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
 	import { __audioSettings } from '$utils/stores';
 	import { __chapterNumber, __displayType, __currentPage, __bottomToolbarVisible, __settingsDrawerHidden, __autoScrollSpeed, __firstVerseOnPage } from '$utils/stores';
-	import { quickPlayAudio } from '$utils/audioController';
+	import { playVerseAudio, setVersesToPlay, resetAudioSettings } from '$utils/audioController';
 	import { quranMetaData } from '$data/quranMeta';
 	import { disabledClasses } from '$data/commonClasses';
 	import { updateSettings } from '$utils/updateSettings';
@@ -25,73 +25,82 @@
 
 	// quick play from first verse of page till the max chapter verses
 	function audioHandler() {
-		quickPlayAudio($__chapterNumber, $__firstVerseOnPage, quranMetaData[$__chapterNumber].verses);
+		if ($__audioSettings.isPlaying) {
+			resetAudioSettings({ location: 'end' });
+		} else {
+			setVersesToPlay({ location: 'bottomToolbar' });
+
+			playVerseAudio({
+				key: `${window.versesToPlayArray[0]}`,
+				timesToRepeat: 1,
+				language: 'arabic'
+			});
+		}
 	}
 
 	// ====================================
 	// scroll stuff
+	// const scrollSpeeds = {
+	// 	0: 'x5',
+	// 	10: 'x4',
+	// 	20: 'x3',
+	// 	30: 'x2',
+	// 	40: 'x1'
+	// };
 
-	const scrollSpeeds = {
-		0: 'x5',
-		10: 'x4',
-		20: 'x3',
-		30: 'x2',
-		40: 'x1'
-	};
+	// // start/stop scroll
+	// $: {
+	// 	if (scrollEnabled) {
+	// 		pageScroll($__autoScrollSpeed);
+	// 	} else {
+	// 		clearAllIntervals();
+	// 	}
+	// }
 
-	// start/stop scroll
-	$: {
-		if (scrollEnabled) {
-			pageScroll($__autoScrollSpeed);
-		} else {
-			clearAllIntervals();
-		}
-	}
+	// function pageScroll(speed) {
+	// 	window.scrollBy(0, 1);
+	// 	setTimeout(`pageScroll(${speed})`, speed);
+	// }
 
-	function pageScroll(speed) {
-		window.scrollBy(0, 1);
-		setTimeout(`pageScroll(${speed})`, speed);
-	}
+	// // need this to re-run the function
+	// window.pageScroll = pageScroll;
 
-	// need this to re-run the function
-	window.pageScroll = pageScroll;
+	// function clearAllIntervals() {
+	// 	for (let i = 1; i < 99999; i++) window.clearInterval(i);
+	// }
 
-	function clearAllIntervals() {
-		// for (let i = 1; i < 99999; i++) window.clearInterval(i);
-	}
+	// function updateScrollSpeed(action) {
+	// 	if (scrollEnabled) {
+	// 		// stop all scrolls
+	// 		clearAllIntervals();
 
-	function updateScrollSpeed(action) {
-		if (scrollEnabled) {
-			// stop all scrolls
-			clearAllIntervals();
+	// 		// milliseconds
+	// 		const minSpeed = 40;
+	// 		const maxSpeed = 0;
 
-			// milliseconds
-			const minSpeed = 40;
-			const maxSpeed = 0;
+	// 		const interval = 10; // minimum change
+	// 		let updatedSpeed;
 
-			const interval = 10; // minimum change
-			let updatedSpeed;
+	// 		// decreasing the scroll speed by adding time
+	// 		if (action === 'decrease') {
+	// 			updatedSpeed = $__autoScrollSpeed + interval > minSpeed ? minSpeed : $__autoScrollSpeed + interval;
+	// 		}
 
-			// decreasing the scroll speed by adding time
-			if (action === 'decrease') {
-				updatedSpeed = $__autoScrollSpeed + interval > minSpeed ? minSpeed : $__autoScrollSpeed + interval;
-			}
+	// 		// increasing the scroll speed by subtracting time
+	// 		else if (action === 'increase') {
+	// 			updatedSpeed = $__autoScrollSpeed - interval < maxSpeed ? maxSpeed : $__autoScrollSpeed - interval;
+	// 		}
 
-			// increasing the scroll speed by subtracting time
-			else if (action === 'increase') {
-				updatedSpeed = $__autoScrollSpeed - interval < maxSpeed ? maxSpeed : $__autoScrollSpeed - interval;
-			}
+	// 		// update value in store
+	// 		updateSettings({ type: 'autoScrollSpeed', value: updatedSpeed });
 
-			// update value in store
-			updateSettings({ type: 'autoScrollSpeed', value: updatedSpeed });
-
-			// scroll the page with new speed
-			pageScroll(updatedSpeed);
-		}
-	}
+	// 		// scroll the page with new speed
+	// 		pageScroll(updatedSpeed);
+	// 	}
+	// }
 </script>
 
-<div class={$__currentPage === 'chapter' ? 'block' : 'hidden'}>
+<div class={['chapter'].includes($__currentPage) ? 'block' : 'hidden'}>
 	<div class="{$__bottomToolbarVisible ? 'block' : 'hidden'} fixed z-20 w-full h-16 max-w-xs md:max-w-lg shadow-sm -translate-x-1/2 bg-white border border-black/10 rounded-full bottom-4 left-1/2 theme">
 		<div class="grid h-full max-w-lg grid-cols-5 mx-auto">
 			<!-- Previous Chapter -->
@@ -134,7 +143,7 @@
 
 						<!-- show badge when a verse is playing -->
 						{#if $__audioSettings.isPlaying && $__audioSettings.audioType === 'verse'}
-							<div class="absolute inline-flex items-center justify-center z-30 text-xs px-2 text-white bg-gray-500 border-2 border-white rounded-md -top-3 theme-grayscale">{$__audioSettings.playingKey}</div>
+							<div class="absolute inline-flex items-center justify-center z-30 text-xs px-2 text-white bg-gray-500 border-2 border-white rounded-3xl -top-3 theme-grayscale">{$__audioSettings.playingKey}</div>
 						{/if}
 					</button>
 				</div>
@@ -150,16 +159,11 @@
 
 			<!-- ====================================================================== -->
 			<!-- scroll mode -->
-			{#if scrollModeEnabled}
-				<!-- 2nd icon -->
+			<!-- {#if scrollModeEnabled}
 				<button on:click={() => updateScrollSpeed('decrease')} type="button" title="Decrease Speed" class="{scrollEnabled === false && disabledClasses} inline-flex flex-col items-center justify-center px-5 relative inline-flex items-center hover:bg-lightGray group {$__currentPage === 'page' && disabledClasses}">
 					<Minus size={5} />
 				</button>
 
-				<!-- use:taphold={holdInterval}
-				on:taphold={() => (scrollEnabled = true)} -->
-
-				<!-- 3rd icon -->
 				<div class="flex items-center justify-center">
 					<button
 						on:click={() => {
@@ -173,18 +177,16 @@
 						<svelte:component this={!scrollEnabled ? ScrollDown : Cross} size={6} />
 						<span class="sr-only">Scroll</span>
 
-						<!-- show badge when scroll is enabled -->
 						{#if scrollEnabled}
 							<div class="absolute inline-flex items-center justify-center z-30 text-xs px-2 text-white bg-gray-500 border-2 border-white rounded-md -top-3 dark:border-gray-900">{scrollSpeeds[$__autoScrollSpeed]}</div>
 						{/if}
 					</button>
 				</div>
 
-				<!-- 4th icon -->
 				<button on:click={() => updateScrollSpeed('increase')} type="button" title="Increase Speed" class="{scrollEnabled === false && disabledClasses} inline-flex flex-col items-center justify-center px-5 hover:bg-lightGray group">
 					<Plus size={5} />
 				</button>
-			{/if}
+			{/if} -->
 
 			<!-- Next Chapter -->
 			<a href="/{$__chapterNumber + 1}" class="inline-flex flex-col items-center justify-center px-5 rounded-e-full hover:bg-lightGray group opacity-70 {$__chapterNumber === 114 && disabledClasses}">

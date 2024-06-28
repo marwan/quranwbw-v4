@@ -16,7 +16,8 @@
 	// only allow display type 1 & 2, and don't save the layout in settings
 	// if ([3, 4, 5].includes($__displayType)) updateSettings({ type: 'displayType', value: 1, skipSave: true });
 
-	__currentPage.set(`${term('supplications').toLowerCase()}`);
+	// __currentPage.set(`${term('supplications').toLowerCase()}`);
+	__currentPage.set('supplications');
 </script>
 
 <PageHead title={`${term('supplications')} From Quran`} />

@@ -22,12 +22,12 @@
 	const chapter = key.split(':')[0];
 	const verse = key.split(':')[1];
 	const wordKey = `${chapter}:${verse}:${word + 1}`;
-
 	const fontSizes = JSON.parse($__userSettings).displaySettings.fontSizes;
 	const arabicSplit = value.words.arabic.split('|');
 	const transliterationSplit = value.words.transliteration.split('|');
 	const translationSplit = value.words.translation.split('|');
 	const timestampSplit = value.words.timestamp.split('|');
+	const v4PopoverEnabled = false;
 
 	// fix for Ba'da Ma Ja'aka for page 254
 	// since it's just a cosmetic change, there's no need of changing it at database level
@@ -54,7 +54,7 @@
 	let wordTajweedData;
 
 	$: {
-		if (hoveredWordKey !== null) {
+		if (hoveredWordKey !== null && v4PopoverEnabled) {
 			const chapter = +hoveredWordKey.split(':')[0];
 			const verse = +hoveredWordKey.split(':')[1];
 			const word = +hoveredWordKey.split(':')[2];
@@ -72,7 +72,7 @@
 {#if $__currentPage != 'page' || ($__currentPage === 'page' && +value.words.line.split('|')[word] === line)}
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
-	<div id={wordKey} class={wordDivClasses} data-timestamp={timestampSplit[word]} on:click={() => wordClickHandler({ chapter, verse, word, type: 'word' })}>
+	<div id={wordKey} class={wordDivClasses} data-timestamp={timestampSplit[word]} on:click={() => wordClickHandler({ key: wordKey, type: 'word' })}>
 		<span class={wordSpanClasses} data-fontSize={fontSizes.arabicText}>
 			<!-- 1: Uthmanic Hafs Digital, 3: Indopak Madinah -->
 			{#if $__wordType === 1 || $__wordType === 3}
@@ -100,7 +100,7 @@
 	</div>
 
 	<!-- tajweed colors popover (only for QPC v4 font) -->
-	{#if $__wordType === 2}
+	{#if $__wordType === 2 && $__currentPage === 'chapter' && v4PopoverEnabled}
 		<Popover class="w-64 text-sm font-light z-50 rounded-t-3xl" trigger="hover" triggeredBy="#word-{wordKey.split(':')[1]}-{wordKey.split(':')[2]}" arrow={false}>
 			{#await wordTajweedData}
 				<Spinner />

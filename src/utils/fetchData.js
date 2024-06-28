@@ -52,6 +52,7 @@ export async function fetchVersesData(verses, wordType, wordTranslation, verseTr
 
 	const response = await fetch(apiURL);
 	const data = await response.json();
+	__chapterData.set(data.data.verses);
 	return data.data.verses;
 }
 

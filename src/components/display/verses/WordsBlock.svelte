@@ -18,8 +18,6 @@
 	// for mushaf mode, we only allow v4 font type, but don't save the settings, and for other pages, get the font/word type from settings
 	updateSettings({ type: 'wordType', value: $__currentPage === 'page' ? 2 : userSettings.displaySettings.wordType });
 
-	const chapter = key.split(':')[0];
-	const verse = key.split(':')[1];
 	const fontSizes = JSON.parse($__userSettings).displaySettings.fontSizes;
 
 	$: displayIsContinuous = displayOptions[$__displayType].continuous;
@@ -35,16 +33,20 @@
 	}
 
 	// handle what happens when a word is clicked depending on page type
+	// 1. if a word is clicked on the morphology page, show/goto that word's morphology
+	// 2. if a word is clicked on other pages, play the word's audio
+	// 3. if the end verse icon is clicked on any page, show the verse options dropdown
 	function wordClickHandler(props) {
-		if ($__currentPage === 'morphology' && props.type !== 'end') {
-			const wordKey = `${props.chapter}:${props.verse}:${props.word + 1}`;
-			__morphologyKey.set(wordKey);
-			goto(`/morphology/${wordKey}`, { replaceState: false });
+		if ($__currentPage === 'morphology' && props.type === 'word') {
+			__morphologyKey.set(props.key);
+			goto(`/morphology/${props.key}`, { replaceState: false });
 		} else {
-			// if end icon was clicked, show options
-			if (props.type === 'end') __verseKey.set(`${props.chapter}:${props.verse}`);
-			// else if word was clicked, play it
-			else wordAudioController(props);
+			const wordChapter = +props.key.split(':')[0];
+			const wordVerse = +props.key.split(':')[1];
+
+			if (props.type === 'word') {
+				wordAudioController({ key: props.key, chapter: wordChapter, verse: wordVerse });
+			} else __verseKey.set(`${wordChapter}:${wordVerse}`);
 		}
 	}
 
@@ -83,7 +85,7 @@
 {#if $__currentPage != 'page' || ($__currentPage === 'page' && value.words.end_line === line)}
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
-	<div class={endIconClasses} on:click={() => wordClickHandler({ chapter, verse, type: 'end' })}>
+	<div class={endIconClasses} on:click={() => wordClickHandler({ key, type: 'end' })}>
 		<span class={wordSpanClasses} data-fontSize={fontSizes.arabicText}>
 			<!-- 1: Uthmanic Hafs Digital, 3: Indopak Madinah -->
 			{#if $__wordType === 1 || $__wordType === 3}
