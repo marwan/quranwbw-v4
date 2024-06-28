@@ -7,8 +7,6 @@
 	import { disabledClasses, buttonClasses } from '$data/commonClasses';
 	import { term } from '$utils/terminologies';
 
-	// $: console.log($__audioSettings);
-
 	$: {
 		if ($__audioModalVisible) {
 			const thisChapter = $__audioSettings.playingKey.split(':')[0];
@@ -49,7 +47,10 @@
 
 		// word
 		else if ($__audioSettings.audioType === 'word') {
-			playWordAudio({ key: `${$__audioSettings.playingKey}:1`, playAllWords: true });
+			playWordAudio({
+				key: `${$__audioSettings.playingKey}:1`,
+				playAllWords: true
+			});
 		}
 
 		__audioModalVisible.set(false);

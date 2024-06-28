@@ -22,13 +22,11 @@
 	const chapter = key.split(':')[0];
 	const verse = key.split(':')[1];
 	const wordKey = `${chapter}:${verse}:${word + 1}`;
-
 	const fontSizes = JSON.parse($__userSettings).displaySettings.fontSizes;
 	const arabicSplit = value.words.arabic.split('|');
 	const transliterationSplit = value.words.transliteration.split('|');
 	const translationSplit = value.words.translation.split('|');
 	const timestampSplit = value.words.timestamp.split('|');
-
 	const v4PopoverEnabled = false;
 
 	// fix for Ba'da Ma Ja'aka for page 254

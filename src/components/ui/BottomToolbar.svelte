@@ -100,7 +100,7 @@
 	// }
 </script>
 
-<div class={['chapter', 'page', 'supplications', 'bookmarks'].includes($__currentPage) ? 'block' : 'hidden'}>
+<div class={['chapter'].includes($__currentPage) ? 'block' : 'hidden'}>
 	<div class="{$__bottomToolbarVisible ? 'block' : 'hidden'} fixed z-20 w-full h-16 max-w-xs md:max-w-lg shadow-sm -translate-x-1/2 bg-white border border-black/10 rounded-full bottom-4 left-1/2 theme">
 		<div class="grid h-full max-w-lg grid-cols-5 mx-auto">
 			<!-- Previous Chapter -->
@@ -143,7 +143,7 @@
 
 						<!-- show badge when a verse is playing -->
 						{#if $__audioSettings.isPlaying && $__audioSettings.audioType === 'verse'}
-							<div class="absolute inline-flex items-center justify-center z-30 text-xs px-2 text-white bg-gray-500 border-2 border-white rounded-md -top-3 theme-grayscale">{$__audioSettings.playingKey}</div>
+							<div class="absolute inline-flex items-center justify-center z-30 text-xs px-2 text-white bg-gray-500 border-2 border-white rounded-3xl -top-3 theme-grayscale">{$__audioSettings.playingKey}</div>
 						{/if}
 					</button>
 				</div>
