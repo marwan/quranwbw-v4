@@ -13,8 +13,6 @@ let audio = document.querySelector('#player');
 // set global audio settings
 const audioSettings = get(__audioSettings);
 
-// let nextToPlay;
-
 // function to play verse audio, either one time, or multiple
 export function playVerseAudio(props) {
 	resetAudioSettings();
@@ -263,39 +261,6 @@ export function wordAudioController(props) {
 	// audio modal only when the end icon is clicked, else play word audio directly
 	props.type === 'end' ? showAudioModal(`${props.chapter}:${props.verse}`) : playWordAudio({ key: props.key });
 }
-
-// function to quickly play verse audio, to be used by the play buttons
-// export function quickplayVerseAudio(chapter, startVerse, endVerse) {
-// 	if (audioSettings.isPlaying) {
-// 		resetAudioSettings();
-// 	} else {
-// 		playVerseAudio({
-// 			type: 'verse',
-// 			chapter: chapter,
-// 			verse: 1,
-// 			firstToPlay: startVerse,
-// 			lastToPlay: endVerse,
-// 			timesToRepeat: 1,
-// 			delay: 0
-// 		});
-// 	}
-// }
-
-// mini function to quickly play a verse
-// export function playVerse(verseKey) {
-// 	const chapter = +verseKey.split(':')[0];
-// 	const verse = +verseKey.split(':')[1];
-
-// 	console.log('playing ', verseKey, window.versesToPlayArray);
-
-// 	playVerseAudio({
-// 		type: 'verse',
-// 		chapter: chapter,
-// 		verse: verse,
-// 		timesToRepeat: 1,
-// 		delay: 0
-// 	});
-// }
 
 // mini function to quickly play a word
 export function playWord(wordKey) {
