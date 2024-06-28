@@ -37,12 +37,12 @@
 			return data.data;
 		})();
 
-		// fetch word summary
-		fetchWordSummary = (async () => {
-			const response = await fetch(`${apiEndpoint}/morphology/summary?word=${$__morphologyKey}`);
-			const data = await response.json();
-			return data.data;
-		})();
+		// // fetch word summary
+		// fetchWordSummary = (async () => {
+		// 	const response = await fetch(`${apiEndpoint}/morphology/summary?word=${$__morphologyKey}`);
+		// 	const data = await response.json();
+		// 	return data.data;
+		// })();
 	}
 
 	__currentPage.set('morphology');
@@ -80,7 +80,7 @@
 		{/await}
 	</div>
 
-	<div id="word-summary" class="text-center opacity-70 mx-auto md:w-3/4 text-sm pb-6 border-b-2 border-black/10 md:text-lg theme">
+	<!-- <div id="word-summary" class="text-center opacity-70 mx-auto md:w-3/4 text-sm pb-6 border-b-2 border-black/10 md:text-lg theme">
 		{#await fetchWordSummary}
 			<span>...</span>
 		{:then fetchWordSummary}
@@ -88,7 +88,7 @@
 		{:catch error}
 			<p>{errorLoadingDataMessage}</p>
 		{/await}
-	</div>
+	</div> -->
 
 	<div id="word-forms" class="pb-8 border-b-2 border-black/10 theme">
 		{#await fetchWordsData}
@@ -105,7 +105,7 @@
 											<div class="flex items-center justify-center mb-2">
 												<p id="verb-1" class="text-xl md:text-2xl pb-4 leading-5 arabic-font-{$__wordType}">{value}</p>
 											</div>
-											<p class="text-xs text-gray-900">{key}</p>
+											<p class="text-xs text-gray-900 capitalize">{key.replace('_', ' ')}</p>
 										</div>
 									{/if}
 								{/each}

@@ -78,7 +78,7 @@
 	{/each}
 
 	<!-- external links -->
-	<DropdownItem class="{dropdownItemClasses} flex flex-row items-center justify-between" href="https://legacy.quranwbw.com/" target="_blank">
+	<DropdownItem class="{dropdownItemClasses} flex flex-row items-center justify-between" href="https://v3.quranwbw.com/" target="_blank">
 		Legacy Website
 		<ExternalLink size={3} />
 	</DropdownItem>
