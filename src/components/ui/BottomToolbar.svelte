@@ -28,7 +28,7 @@
 		if ($__audioSettings.isPlaying) {
 			resetAudioSettings({ location: 'end' });
 		} else {
-			setVersesToPlay({ location: 'bottomToolbar' });
+			setVersesToPlay({ allVersesOnPage: true });
 
 			playVerseAudio({
 				key: `${window.versesToPlayArray[0]}`,

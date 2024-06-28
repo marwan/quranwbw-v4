@@ -56,10 +56,10 @@ export async function fetchVersesData(verses, wordType, wordTranslation, verseTr
 	return data.data.verses;
 }
 
+// function to fetch timestamps for wbw highlighting
 export async function fetchTimestampData(chapter) {
-	const apiURL = `${staticEndpoint}/timestamp/${chapter}.json?v=1`;
+	const apiURL = `${staticEndpoint}/timestamps/${chapter}.json?v=1`;
 	const response = await fetch(apiURL);
 	const data = await response.json();
-
 	__timestampData.set(data);
 }

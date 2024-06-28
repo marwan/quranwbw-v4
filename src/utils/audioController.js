@@ -1,8 +1,9 @@
 import { get } from 'svelte/store';
 import { quranMetaData } from '$data/quranMeta';
-import { __reciter, __playbackSpeed, __audioSettings, __audioModalVisible, __currentPage, __chapterNumber, __chapterData, __playTranslation } from '$utils/stores';
+import { __reciter, __playbackSpeed, __audioSettings, __audioModalVisible, __currentPage, __chapterNumber, __chapterData, __playTranslation, __timestampData } from '$utils/stores';
 import { wordsAudioURL } from '$data/websiteSettings';
 import { selectableReciters, selectablePlaybackSpeeds } from '$data/options';
+import { fetchTimestampData } from '$utils/fetchData';
 import { scrollSmoothly } from '$utils/scrollSmoothly';
 
 // getting the audio element
@@ -12,11 +13,14 @@ let audio = document.querySelector('#player');
 const audioSettings = get(__audioSettings);
 
 // function to play verse audio, either one time, or multiple
-export function playVerseAudio(props) {
+export async function playVerseAudio(props) {
 	resetAudioSettings();
 
 	const playChapter = +props.key.split(':')[0];
 	const playVerse = +props.key.split(':')[1];
+
+	// fetch the timestamp data for wbw highlighting
+	await fetchTimestampData(playChapter);
 
 	// get the reciter URL from selectableReciters
 	let reciterAudioUrl;
@@ -47,7 +51,10 @@ export function playVerseAudio(props) {
 
 	// attach the word highlighter function only for Arabic audio
 	if (props.language === 'arabic') {
-		if (selectableReciters[get(__reciter)].id === 10) audio.addEventListener('timeupdate', wordHighlighter);
+		// only attach wbw highlighting function if there's a timestamp slug
+		if (Object.prototype.hasOwnProperty.call(selectableReciters[get(__reciter)], 'timestampSlug')) {
+			audio.addEventListener('timeupdate', wordHighlighter);
+		}
 
 		try {
 			scrollSmoothly(document.getElementById(`${audioSettings.playingKey}`).offsetTop - 200, 500);
@@ -269,10 +276,13 @@ function wordHighlighter() {
 		// get the total number of words in the verse
 		const wordsInVerse = getWordsInVerse(audioSettings.playingKey);
 
+		// verse timestamp data with was fetch from the playVerseAudio function
+		const timestampSlug = selectableReciters[get(__reciter)].timestampSlug;
+		const verseTimestamp = get(__timestampData).data[audioSettings.playingKey.split(':')[1]][timestampSlug];
+
 		// loop through all the words
 		for (let word = 0; word <= wordsInVerse - 1; word++) {
-			// get the current word's timestamp
-			const wordTimestamp = document.getElementById(`${audioSettings.playingKey}:${word + 1}`).getAttribute('data-timestamp');
+			const wordTimestamp = verseTimestamp.split('|')[word];
 
 			// as long as the word timestamp is lower than the current audio time
 			if (wordTimestamp < audio.currentTime) {
@@ -292,7 +302,7 @@ export function setVersesToPlay(props) {
 	window.versesToPlayArray = [];
 
 	// for when the play was clicked from bottom toolbar
-	if (props && props.location === 'bottomToolbar') {
+	if (props && props.allVersesOnPage) {
 		// mushaf page
 		if (get(__currentPage) === 'page') {
 			const wordsOnPage = document.getElementsByClassName('word');
@@ -327,7 +337,7 @@ export function setVersesToPlay(props) {
 	}
 
 	// for when the play was clicked from verse options / modal
-	else if (props && props.location === 'verseOptionsOrModal') {
+	else if (props && !props.allVersesOnPage) {
 		// for playFromHere, non chapter page
 		if (get(__currentPage) === 'page' && props.audioRange === 'playFromHere') {
 			const key = `${props.chapter}:${props.startVerse}`;

@@ -26,7 +26,6 @@
 	const arabicSplit = value.words.arabic.split('|');
 	const transliterationSplit = value.words.transliteration.split('|');
 	const translationSplit = value.words.translation.split('|');
-	const timestampSplit = value.words.timestamp.split('|');
 	const v4PopoverEnabled = false;
 
 	// fix for Ba'da Ma Ja'aka for page 254
@@ -72,7 +71,7 @@
 {#if $__currentPage != 'page' || ($__currentPage === 'page' && +value.words.line.split('|')[word] === line)}
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
-	<div id={wordKey} class={wordDivClasses} data-timestamp={timestampSplit[word]} on:click={() => wordClickHandler({ key: wordKey, type: 'word' })}>
+	<div id={wordKey} class={wordDivClasses} on:click={() => wordClickHandler({ key: wordKey, type: 'word' })}>
 		<span class={wordSpanClasses} data-fontSize={fontSizes.arabicText}>
 			<!-- 1: Uthmanic Hafs Digital, 3: Indopak Madinah -->
 			{#if $__wordType === 1 || $__wordType === 3}
