@@ -263,8 +263,13 @@ export function wordAudioController(props) {
 	// if verse audio is already playing, then set the verse's audio timestamp same as word timestamp
 	// ...this is incase the user would like to start from a certain section of the verse
 	if (audioSettings.isPlaying && audioSettings.audioType === 'verse') {
+		// verse timestamp data with was fetch from the playVerseAudio function
+		const timestampSlug = selectableReciters[get(__reciter)].timestampSlug;
+		const verseTimestamp = get(__timestampData).data[props.key][timestampSlug];
+		const wordTimestamp = verseTimestamp.split('|')[props.key.split(':')[2]];
+
 		// set the verse audio time same as word timestamp
-		return (audio.currentTime = document.getElementById(props.key).getAttribute('data-timestamp'));
+		return (audio.currentTime = wordTimestamp);
 	}
 
 	// audio modal only when the end icon is clicked, else play word audio directly
@@ -278,7 +283,7 @@ function wordHighlighter() {
 
 		// verse timestamp data with was fetch from the playVerseAudio function
 		const timestampSlug = selectableReciters[get(__reciter)].timestampSlug;
-		const verseTimestamp = get(__timestampData).data[audioSettings.playingKey.split(':')[1]][timestampSlug];
+		const verseTimestamp = get(__timestampData).data[audioSettings.playingKey][timestampSlug];
 
 		// loop through all the words
 		for (let word = 0; word <= wordsInVerse - 1; word++) {
