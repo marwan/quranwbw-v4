@@ -15,10 +15,9 @@ const audioSettings = get(__audioSettings);
 
 // let nextToPlay;
 
-// function to play word or verse audio, either one time, or multiple
+// function to play verse audio, either one time, or multiple
 export function playVerseAudio(props) {
-	// we will first reset all audio settings
-	// resetAudioSettings();
+	resetAudioSettings();
 
 	const playChapter = +props.key.split(':')[0];
 	const playVerse = +props.key.split(':')[1];
@@ -36,13 +35,8 @@ export function playVerseAudio(props) {
 	// fetch the next verse audio in advance
 	fetch(`${reciterAudioUrl}/${`00${playChapter}`.slice(-3)}${`00${playVerse + 1}`.slice(-3)}.mp3`);
 
-	// assign to source
-	audio.src = `${reciterAudioUrl}/${currentVerseFileName}`;
-
-	// update the playing key
-	audioSettings.playingKey = props.key;
-
 	// load and play the audio
+	audio.src = `${reciterAudioUrl}/${currentVerseFileName}`;
 	audio.currentTime = 0;
 	audio.load();
 	audio.playbackRate = selectablePlaybackSpeeds[get(__playbackSpeed)].speed;
@@ -50,6 +44,8 @@ export function playVerseAudio(props) {
 
 	// update the audio settings
 	audioSettings.isPlaying = true;
+	audioSettings.playingKey = props.key;
+	audioSettings.audioType = 'verse';
 
 	console.log('playing', props.language, `${props.key}`);
 
@@ -73,9 +69,6 @@ export function playVerseAudio(props) {
 
 		// play verse translation is the previous language prop = arabic
 		if (get(__playTranslation) && previousLanguage === 'arabic') {
-			resetAudioSettings();
-
-			// console.log('playing translation: ', `${props.key}`);
 			return playVerseAudio({
 				key: `${props.key}`,
 				timesToRepeat: +props.timesToRepeat,
@@ -86,10 +79,10 @@ export function playVerseAudio(props) {
 		// repeating the audio if 'timesToRepeat' is more than 1
 		// for some reason, audio always repeats timesToPlay + 2 times hence need to do: timesToPlay - 2
 		if (audioSettings.timesRepeated <= audioSettings.timesToRepeat - 2) {
-			resetAudioSettings();
+			console.log('repeating verse: ', `${props.key}`);
 
 			audioSettings.timesRepeated++;
-			console.log('repeating verse: ', `${props.key}`);
+
 			return playVerseAudio({
 				key: `${props.key}`,
 				timesToRepeat: +props.timesToRepeat,
@@ -111,9 +104,6 @@ export function playVerseAudio(props) {
 
 			// play the first verse in array
 			if (window.versesToPlayArray.length > 0) {
-				resetAudioSettings();
-
-				// console.log('playing verse: ', `${window.versesToPlayArray[0]}`);
 				return playVerseAudio({
 					key: `${window.versesToPlayArray[0]}`,
 					timesToRepeat: +props.timesToRepeat,
@@ -130,62 +120,43 @@ export function playVerseAudio(props) {
 	__audioSettings.set(audioSettings);
 }
 
-export function initializeAudio() {
-	let wordsInVerse = 1;
-
-	try {
-		wordsInVerse = document.getElementById(`${audioSettings.playingChapter}:${audioSettings.startVerse}`).getAttribute('data-words');
-	} catch (error) {
-		// ...
-	}
-
+// function to play word audio
+export function playWordAudio(props) {
 	resetAudioSettings();
 
-	// if (audioSettings.audioType) playVerse(window.versesToPlayArray[0]);
+	const wordChapter = +props.key.split(':')[0];
+	const wordVerse = +props.key.split(':')[1];
+	const wordNumber = +props.key.split(':')[2];
 
-	// // play this verse
-	// if (audioSettings.audioRange === 'playThisVerse') {
-	// 	audioSettings.startVerse = audioSettings.playingVerse;
-	// 	audioSettings.endVerse = audioSettings.playingVerse;
-	// }
+	// generate mp3 file names for current word
+	const currentWordFileName = `${wordChapter}/${`00${wordChapter}`.slice(-3)}_${`00${wordVerse}`.slice(-3)}_${`00${wordNumber}`.slice(-3)}.mp3`;
 
-	// // play from here
-	// if (audioSettings.audioRange === 'playFromHere') {
-	// 	audioSettings.startVerse = audioSettings.playingVerse;
-	// 	audioSettings.endVerse = quranMetaData[audioSettings.playingChapter].verses;
-	// }
+	// load and play the audio
+	audio.src = `${wordsAudioURL}/${currentWordFileName}`;
+	audio.currentTime = 0;
+	audio.load();
+	audio.playbackRate = selectablePlaybackSpeeds[get(__playbackSpeed)].speed;
+	audio.play();
 
-	// __audioSettings.set(audioSettings);
+	// update the audio settings
+	audioSettings.isPlaying = true;
+	audioSettings.audioType = 'word';
+	audioSettings.playingKey = `${wordChapter}:${wordVerse}`;
+	audioSettings.playingWordKey = `${props.key}`;
 
-	playVerseAudio({
-		// type: audioSettings.audioType === undefined ? 'verse' : audioSettings.audioType,
-		chapter: audioSettings.playingChapter,
-		verse: audioSettings.startVerse,
-		// firstToPlay: audioSettings.audioType === 'word' ? 1 : audioSettings.startVerse,
-		// lastToPlay: audioSettings.audioType === 'word' ? wordsInVerse : audioSettings.endVerse,
-		timesToRepeat: audioSettings.timesToRepeat
-		// delay: audioSettings.delay
-	});
+	// things to do when the audio has ended
+	audio.onended = function () {
+		resetAudioSettings();
+	};
 
-	__audioModalVisible.set(false);
+	// update the audio settings
+	__audioSettings.set(audioSettings);
 }
 
 export function updateAudioSettings(event) {
 	// 1. update values based on clicked ID
 	try {
 		switch (event.target.id) {
-			// case 'playVerse':
-			// 	audioSettings.audioType = 'verse';
-			// 	break;
-
-			// case 'playWord':
-			// 	audioSettings.audioType = 'word';
-			// 	break;
-
-			// case 'playTranslation':
-			// 	audioSettings.playTranslation = true;
-			// 	break;
-
 			case 'startVerse':
 				audioSettings.startVerse = +event.target.value;
 				break;
@@ -199,7 +170,6 @@ export function updateAudioSettings(event) {
 				break;
 		}
 	} catch (error) {
-		// ...
 		console.error(error);
 	}
 
@@ -283,17 +253,15 @@ export function showAudioModal(key) {
 }
 
 export function wordAudioController(props) {
-	const wordKey = `${props.chapter}:${props.verse}:${props.word + 1}`;
-
 	// if verse audio is already playing, then set the verse's audio timestamp same as word timestamp
 	// ...this is incase the user would like to start from a certain section of the verse
 	if (audioSettings.isPlaying && audioSettings.audioType === 'verse') {
 		// set the verse audio time same as word timestamp
-		return (audio.currentTime = document.getElementById(wordKey).getAttribute('data-timestamp'));
+		return (audio.currentTime = document.getElementById(props.key).getAttribute('data-timestamp'));
 	}
 
 	// audio modal only when the end icon is clicked, else play word audio directly
-	props.type === 'end' ? showAudioModal(`${props.chapter}:${props.verse}`) : playWord(wordKey);
+	props.type === 'end' ? showAudioModal(`${props.chapter}:${props.verse}`) : playWordAudio({ key: props.key });
 }
 
 // function to quickly play verse audio, to be used by the play buttons

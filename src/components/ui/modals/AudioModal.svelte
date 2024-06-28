@@ -32,7 +32,10 @@
 				setVersesToPlay({ location: 'verseOptionsOrModal', chapter: thisChapter, startVerse: $__audioSettings.startVerse, endVerse: $__audioSettings.endVerse });
 			}
 
-			console.log($__audioSettings);
+			// make the endVerse same as startVerse initially
+			if ($__audioSettings.endVerse === undefined) $__audioSettings.endVerse = $__audioSettings.startVerse;
+
+			console.log($__audioSettings.startVerse, $__audioSettings.endVerse);
 		}
 	}
 
