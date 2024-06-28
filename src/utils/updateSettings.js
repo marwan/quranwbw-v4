@@ -1,5 +1,7 @@
 /* eslint-disable no-case-declarations */
+import { get } from 'svelte/store';
 import {
+	__currentPage,
 	__userSettings,
 	__wordType,
 	__displayType,
@@ -219,8 +221,10 @@ export function updateSettings(props) {
 
 		// for last read
 		case 'lastRead':
-			__lastRead.set(props.value);
-			userSettings.lastRead = props.value;
+			if (['chapter', 'page'].includes(get(__currentPage))) {
+				__lastRead.set(props.value);
+				userSettings.lastRead = props.value;
+			}
 			break;
 
 		// for auto scroll
