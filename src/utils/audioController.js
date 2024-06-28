@@ -262,23 +262,6 @@ export function wordAudioController(props) {
 	props.type === 'end' ? showAudioModal(`${props.chapter}:${props.verse}`) : playWordAudio({ key: props.key });
 }
 
-// mini function to quickly play a word
-export function playWord(wordKey) {
-	const chapter = +wordKey.split(':')[0];
-	const verse = +wordKey.split(':')[1];
-	const word = +wordKey.split(':')[2];
-
-	playVerseAudio({
-		type: 'word',
-		chapter: chapter,
-		verse: verse,
-		firstToPlay: word,
-		lastToPlay: word,
-		timesToRepeat: 1,
-		delay: 0
-	});
-}
-
 function wordHighlighter() {
 	try {
 		// for mushaf mode, we have the JSON data in localStorage, and for other pages we have it set in the store __chapterData
@@ -348,9 +331,19 @@ export function setVersesToPlay(props) {
 	else if (props && props.location === 'verseOptionsOrModal') {
 		// for playFromHere, non chapter page
 		if (get(__currentPage) === 'page' && props.audioRange === 'playFromHere') {
-			// WIP...
-			// const key = `${props.chapter}:${props.startVerse}`;
-			// console.log(key);
+			const key = `${props.chapter}:${props.startVerse}`;
+			const wordsOnPage = document.getElementsByClassName('word');
+
+			for (let word = 0; word <= wordsOnPage.length - 1; word++) {
+				const verseKey = `${wordsOnPage[word].id.split(':')[0]}:${wordsOnPage[word].id.split(':')[1]}`;
+				window.versesToPlayArray.indexOf(verseKey) === -1 && window.versesToPlayArray.push(verseKey);
+			}
+
+			const indexOfElement = window.versesToPlayArray.indexOf(key);
+			// remove all verses before this key
+			window.versesToPlayArray = window.versesToPlayArray.splice(indexOfElement, window.versesToPlayArray.length - 1);
+
+			console.log(window.versesToPlayArray);
 		}
 
 		// chapter page, supp, bookmarks

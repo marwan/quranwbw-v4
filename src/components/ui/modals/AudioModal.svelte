@@ -7,7 +7,7 @@
 	import { disabledClasses, buttonClasses } from '$data/commonClasses';
 	import { term } from '$utils/terminologies';
 
-	$: console.log($__audioSettings);
+	// $: console.log($__audioSettings);
 
 	$: {
 		if ($__audioModalVisible) {
@@ -15,7 +15,7 @@
 			const thisVerse = $__audioSettings.playingKey.split(':')[1];
 
 			// allow only playThisVerse option for non-chapter pages
-			if (!['chapter'].includes($__currentPage)) $__audioSettings.audioRange = 'playThisVerse';
+			if (!['chapter', 'page'].includes($__currentPage)) $__audioSettings.audioRange = 'playThisVerse';
 
 			// this verse
 			if ($__audioSettings.audioRange === 'playThisVerse') {
@@ -43,6 +43,8 @@
 			timesToRepeat: $__audioSettings.audioRange,
 			language: 'arabic'
 		});
+
+		__audioModalVisible.set(false);
 	}
 </script>
 
@@ -79,11 +81,11 @@
 			<span class="text-xs opacity-70">Your preferred range.</span>
 			<div class="flex flex-row space-x-4">
 				<!-- play this verse -->
-				<div class="flex items-center {!['chapter'].includes($__currentPage) && disabledClasses}">
+				<div class="flex items-center {!['chapter', 'page'].includes($__currentPage) && disabledClasses}">
 					<Radio bind:group={$__audioSettings.audioRange} value="playThisVerse" class="text-black">This {term('verse')}</Radio>
 				</div>
 				<!-- play from here -->
-				<div class="flex items-center {!['chapter'].includes($__currentPage) && disabledClasses}">
+				<div class="flex items-center {!['chapter', 'page'].includes($__currentPage) && disabledClasses}">
 					<Radio bind:group={$__audioSettings.audioRange} value="playFromHere" class="text-black">From Here</Radio>
 				</div>
 				<!-- play range -->
