@@ -3,7 +3,7 @@
 	import Radio from '$ui/flowbite-svelte/forms/Radio.svelte';
 	import { quranMetaData } from '$data/quranMeta';
 	import { __currentPage, __chapterNumber, __audioSettings, __userSettings, __audioModalVisible } from '$utils/stores';
-	import { playVerseAudio, updateAudioSettings, setVersesToPlay } from '$utils/audioController';
+	import { playVerseAudio, playWordAudio, updateAudioSettings, setVersesToPlay } from '$utils/audioController';
 	import { disabledClasses, buttonClasses } from '$data/commonClasses';
 	import { term } from '$utils/terminologies';
 
@@ -38,11 +38,19 @@
 	}
 
 	function playButtonHandler() {
-		playVerseAudio({
-			key: `${window.versesToPlayArray[0]}`,
-			timesToRepeat: $__audioSettings.audioRange,
-			language: 'arabic'
-		});
+		// verse
+		if ($__audioSettings.audioType === 'verse') {
+			playVerseAudio({
+				key: `${window.versesToPlayArray[0]}`,
+				timesToRepeat: $__audioSettings.audioRange,
+				language: 'arabic'
+			});
+		}
+
+		// word
+		else if ($__audioSettings.audioType === 'word') {
+			playWordAudio({ key: `${$__audioSettings.playingKey}:1`, playAllWords: true });
+		}
 
 		__audioModalVisible.set(false);
 	}
@@ -63,7 +71,7 @@
 					<Radio bind:group={$__audioSettings.audioType} value="verse" class="text-black">Play {term('verse')}</Radio>
 				</div>
 				<!-- play word -->
-				<div class="flex items-center {$__currentPage !== '...' && disabledClasses}">
+				<div class="flex items-center">
 					<Radio bind:group={$__audioSettings.audioType} value="word" class="text-black">Play Words</Radio>
 				</div>
 			</div>
@@ -117,16 +125,18 @@
 	</div>
 
 	<!-- repeat times -->
-	<div class="flex flex-col space-y-4 py-4 border-t dark:border-slate-700">
-		<span class="text-xs opacity-70">Number of times a {term('verse')} or word has to be repeated.</span>
-		<div class="flex flex-row space-x-4">
-			<div class="flex flex-row space-x-2">
-				<span class="m-auto text-sm font-medium mr-2">Repeat each {term($__audioSettings.audioType)}</span>
-				<input id="timesToRepeat" type="number" value="1" min="1" max="20" on:change={updateAudioSettings} class="w-16 text-xs border border-black/10 rounded-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 mb-0" />
-				<span class="m-auto text-sm font-medium">{$__audioSettings.timesToRepeat < 2 ? 'time' : 'times'} </span>
+	{#if $__audioSettings.audioType === 'verse'}
+		<div class="flex flex-col space-y-4 py-4 border-t">
+			<span class="text-xs opacity-70">Number of times a {term('verse')} or word has to be repeated.</span>
+			<div class="flex flex-row space-x-4">
+				<div class="flex flex-row space-x-2">
+					<span class="m-auto text-sm font-medium mr-2">Repeat each {term($__audioSettings.audioType)}</span>
+					<input id="timesToRepeat" type="number" value="1" min="1" max="20" on:change={updateAudioSettings} class="w-16 text-xs border border-black/10 rounded-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 mb-0" />
+					<span class="m-auto text-sm font-medium">{$__audioSettings.timesToRepeat < 2 ? 'time' : 'times'} </span>
+				</div>
 			</div>
 		</div>
-	</div>
+	{/if}
 
 	<div class="mt-4">
 		<button on:click={playButtonHandler} class="w-full mr-2 {buttonClasses}">

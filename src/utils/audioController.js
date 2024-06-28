@@ -142,8 +142,12 @@ export function playWordAudio(props) {
 	audioSettings.playingKey = `${wordChapter}:${wordVerse}`;
 	audioSettings.playingWordKey = `${props.key}`;
 
-	// things to do when the audio has ended
 	audio.onended = function () {
+		// play all words in verse back to back if user opted for that from audio modal
+		if (props.playAllWords && wordNumber < getWordsInVerse(audioSettings.playingKey)) {
+			return playWordAudio({ key: `${wordChapter}:${wordVerse}:${wordNumber + 1}`, playAllWords: true });
+		}
+
 		resetAudioSettings({ location: 'end' });
 	};
 
@@ -264,11 +268,8 @@ export function wordAudioController(props) {
 
 function wordHighlighter() {
 	try {
-		// for mushaf mode, we have the JSON data in localStorage, and for other pages we have it set in the store __chapterData
-		const data = get(__currentPage) === 'page' ? JSON.parse(localStorage.getItem('pageData')) : get(__chapterData);
-
-		// get the total number of words in the ayah
-		const wordsInVerse = data[audioSettings.playingKey].meta.words;
+		// get the total number of words in the verse
+		const wordsInVerse = getWordsInVerse(audioSettings.playingKey);
 
 		// loop through all the words
 		for (let word = 0; word <= wordsInVerse - 1; word++) {
@@ -339,11 +340,8 @@ export function setVersesToPlay(props) {
 				window.versesToPlayArray.indexOf(verseKey) === -1 && window.versesToPlayArray.push(verseKey);
 			}
 
-			const indexOfElement = window.versesToPlayArray.indexOf(key);
 			// remove all verses before this key
-			window.versesToPlayArray = window.versesToPlayArray.splice(indexOfElement, window.versesToPlayArray.length - 1);
-
-			console.log(window.versesToPlayArray);
+			window.versesToPlayArray = window.versesToPlayArray.splice(window.versesToPlayArray.indexOf(key), window.versesToPlayArray.length - 1);
 		}
 
 		// chapter page, supp, bookmarks
@@ -356,4 +354,12 @@ export function setVersesToPlay(props) {
 	}
 
 	// console.log('versesToPlayArray', window.versesToPlayArray);
+}
+
+function getWordsInVerse(key) {
+	// for mushaf mode, we have the JSON data in localStorage, and for other pages we have it set in the store __chapterData
+	const data = get(__currentPage) === 'page' ? JSON.parse(localStorage.getItem('pageData')) : get(__chapterData);
+
+	// get the total number of words in the verse
+	return data[key].meta.words;
 }
