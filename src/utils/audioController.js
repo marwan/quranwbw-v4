@@ -146,7 +146,7 @@ export function playWordAudio(props) {
 
 	// things to do when the audio has ended
 	audio.onended = function () {
-		resetAudioSettings();
+		resetAudioSettings({ location: 'end' });
 	};
 
 	// update the audio settings
@@ -237,7 +237,7 @@ export function resetAudioSettings(props) {
 
 	// remove word highlight
 	document.querySelectorAll('.word').forEach((element) => {
-		element.classList.remove('bg-lightGray');
+		element.classList.remove('bg-black/10');
 	});
 }
 

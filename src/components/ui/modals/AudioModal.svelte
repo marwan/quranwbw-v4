@@ -34,8 +34,6 @@
 
 			// make the endVerse same as startVerse initially
 			if ($__audioSettings.endVerse === undefined) $__audioSettings.endVerse = $__audioSettings.startVerse;
-
-			console.log($__audioSettings.startVerse, $__audioSettings.endVerse);
 		}
 	}
 
@@ -63,7 +61,7 @@
 					<Radio bind:group={$__audioSettings.audioType} value="verse" class="text-black">Play {term('verse')}</Radio>
 				</div>
 				<!-- play word -->
-				<div class="flex items-center {$__currentPage !== 'chapter' && disabledClasses}">
+				<div class="flex items-center {$__currentPage !== '...' && disabledClasses}">
 					<Radio bind:group={$__audioSettings.audioType} value="word" class="text-black">Play Words</Radio>
 				</div>
 			</div>
