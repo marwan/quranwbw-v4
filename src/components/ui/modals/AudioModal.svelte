@@ -77,9 +77,9 @@
 			</div>
 
 			{#if $__audioSettings.audioType === 'word'}
-				<span class="inline-flex items-center text-xs space-x-1 pt-2 opacity-80">
-					<!-- <Info /> -->
-					<span>This option would play all the words in the {term('verse')} one by one with your selected repeat options. If you would like to listen to individual words, click on them.</span>
+				<span class="flex flex-col space-y-3 text-xs pt-2 opacity-70">
+					<span>This option would play all the words in the {term('verse')} one by one. If you would like to listen to individual words, click on them.</span>
+					<span>Note that this option just plays the words in sequence without considering the connecting silent letters between the words. For correct and connected recitation, play the complete {term('verse')} instead.</span>
 				</span>
 			{/if}
 		</div>
