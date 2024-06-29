@@ -38,11 +38,13 @@
 
 		// if the complete chapter data was already fetched for this chapter, fetch from the same endpoint again (which should be cached)
 		// else fetch the data for the given start and end verses
-		if (localStorage.getItem('chapterDataLoaded') === 'true') {
-			chapterData = fetchChapterData(true, $__chapterNumber);
-		} else {
-			chapterData = fetchChapterData(false, $__chapterNumber, startVerse, endVerse);
-		}
+		// if (localStorage.getItem('chapterDataLoaded') === 'true') {
+		// 	chapterData = fetchChapterData(true, $__chapterNumber);
+		// } else {
+		// 	chapterData = fetchChapterData(false, $__chapterNumber, startVerse, endVerse);
+		// }
+
+		chapterData = fetchChapterData(true, $__chapterNumber);
 
 		// update the first verse on page
 		__firstVerseOnPage.set(startVerse);
