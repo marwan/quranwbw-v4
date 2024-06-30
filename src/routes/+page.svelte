@@ -26,12 +26,12 @@
 			title: 'Morphology',
 			icon: Morphology,
 			link: '/morphology/1:1'
-		},
-		{
-			title: 'Search',
-			icon: SearchEmoji,
-			link: '/search'
 		}
+		// {
+		// 	title: 'Search',
+		// 	icon: SearchEmoji,
+		// 	link: '/search'
+		// }
 	];
 
 	__currentPage.set('home');
@@ -49,21 +49,18 @@
 		<div class="text-xs text-center opacity-70">Word By Word & Morphology</div>
 	</div>
 
-	<div class="flex flex-col space-y-2">
-		<!-- homepage link cards -->
-		<div class="w-full flex flex-col md:justify-center text-xs space-y-8 scale-[0.66] md:scale-[0.85] theme-grayscale">
-			<div class="flex flex-row space-x-4 justify-center">
-				{#each Object.entries(homepageLinks) as [id, link]}
-					<a href={link.link} class="min-w-28 border border-black/10 transition text-sm bg-gray-100 rounded-3xl p-5 hover:cursor-pointer hover:bg-lightGray">
-						<div class="flex flex-col items-center justify-center space-y-2">
-							<div class="text-sm md:text-lg opacity-70">
-								<svelte:component this={link.icon} size={7} />
-							</div>
-							<div class="text-sm font-normal">{link.title}</div>
+	<div class="w-full flex flex-col md:justify-center text-xs space-y-8 scale-[0.70] md:scale-[0.85] theme-grayscale">
+		<div class="flex flex-row space-x-4 justify-center">
+			{#each Object.entries(homepageLinks) as [id, link]}
+				<a href={link.link} class="min-w-28 border border-black/10 transition text-sm bg-gray-100 rounded-3xl p-5 hover:cursor-pointer hover:bg-lightGray">
+					<div class="flex flex-col items-center justify-center space-y-2">
+						<div class="text-sm md:text-lg opacity-70">
+							<svelte:component this={link.icon} size={7} />
 						</div>
-					</a>
-				{/each}
-			</div>
+						<div class="text-sm font-normal">{link.title}</div>
+					</div>
+				</a>
+			{/each}
 		</div>
 	</div>
 

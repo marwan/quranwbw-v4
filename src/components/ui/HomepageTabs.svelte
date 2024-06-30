@@ -5,6 +5,7 @@
 	import CrossSolid from '$svgs/CrossSolid.svelte';
 	import Menu from '$svgs/Menu.svelte';
 	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
+	import Search from '$svgs/Search.svelte';
 	import { updateSettings } from '$utils/updateSettings';
 	import { quranMetaData, mostRead } from '$data/quranMeta';
 	import { __lastRead, __favouriteChapters, __userBookmarks, __timeSpecificChapters, __quranNavigationModalVisible } from '$utils/stores';
@@ -21,12 +22,6 @@
 			lastReadVerse = $__lastRead.key.split(':')[1];
 		}
 	}
-
-	// chapter data fetch options
-	const fetchOptions = {
-		rootMargin: '10px',
-		unobserveOnEnter: true
-	};
 
 	// chapter cards, tab styles
 	const cardGridClasses = 'grid md:grid-cols-2 lg:grid-cols-3 gap-3';
@@ -90,32 +85,44 @@
 		<!-- chapters tab -->
 		<div class="homepage-tab-panels {activeTab === 1 ? 'block' : 'hidden'}" id="chapters-tab-panel" role="tabpanel" aria-labelledby="chapters-tab">
 			<!-- chapter / page etc... selector -->
-			<div class="flex flex-col space-y-2 md:space-y-0 md:flex-row justify-between text-xs mb-2">
-				<button class={buttonOutlineClasses} on:click={() => __quranNavigationModalVisible.set(true)}>Navigate Quran {@html '&#10230'}</button>
+			<div class="flex flex-col space-y-2 md:space-y-0 md:flex-row justify-between text-xs mb-0 md:mb-2">
+				<!-- search bar -->
+				<button class="w-full md:w-max" on:click={() => __quranNavigationModalVisible.set(true)}>
+					<span class="w-full pointer-events-none {buttonOutlineClasses}">
+						<span class="pt-1"><Search size={4} /></span>
+						<span>Navigate or Search Quran</span>
+					</span>
+				</button>
 
 				<!-- time specific chapter buttons and last read -->
-				<div class="flex flex-col md:flex-row-reverse md:space-x-1">
+				<div class="flex flex-row space-x-2 md:flex-row-reverse md:space-x-1">
 					<!-- last read -->
 					{#if $__lastRead.key !== null}
 						<div id="last-read">
-							<a href="/{lastReadChapter}/{lastReadVerse}" class="py-2.5 w-full mb-4 md:mb-0 {buttonClasses} truncate">Continue Reading: {quranMetaData[lastReadChapter].transliteration}, {lastReadChapter}:{lastReadVerse} {@html '&#10230'}</a>
+							<a href="/{lastReadChapter}/{lastReadVerse}" class="hidden md:block py-2.5 w-full mb-4 md:mb-0 truncate {buttonClasses}">Continue Reading: {quranMetaData[lastReadChapter].transliteration}, {lastReadChapter}:{lastReadVerse} {@html '&#10230'}</a>
+							<a href="/{lastReadChapter}/{lastReadVerse}" class="block md:hidden py-2.5 w-full mb-4 md:mb-0 truncate {buttonClasses}">Continue: {lastReadChapter}:{lastReadVerse} {@html '&#10230'}</a>
 						</div>
 					{/if}
 
-					<!-- time specific chapters -->
-					<div class="flex flex-row space-x-2 md:pr-1">
-						{#if $__timeSpecificChapters.isFriday}
-							<div id="al-kahf" class="w-full md:w-max">
-								<a href="/18" class="py-2.5 w-full mb-4 md:mb-0 {buttonOutlineClasses}">Al-Kahf {@html '&#10230'}</a>
-							</div>
-						{/if}
+					<!-- show Al Kahf on Friday -->
+					{#if $__timeSpecificChapters.isFriday}
+						<div id="al-kahf" class="w-full md:w-max">
+							<a href="/18" class="py-2.5 w-full mb-4 md:mb-0 {buttonOutlineClasses}">
+								Al-Kahf
+								<span class="hidden md:block">{@html '&#10230'}</span>
+							</a>
+						</div>
+					{/if}
 
-						{#if $__timeSpecificChapters.isNight}
-							<div id="al-mulk" class="w-full md:w-max">
-								<a href="/67" class="py-2.5 w-full mb-4 md:mb-0 {buttonOutlineClasses}">Al-Mulk {@html '&#10230'}</a>
-							</div>
-						{/if}
-					</div>
+					<!-- show Al Mulk at night/evening -->
+					{#if $__timeSpecificChapters.isNight}
+						<div id="al-mulk" class="w-full md:w-max">
+							<a href="/67" class="py-2.5 w-full mb-4 md:mb-0 {buttonOutlineClasses}">
+								Al-Mulk
+								<span class="hidden md:block">{@html '&#10230'}</span>
+							</a>
+						</div>
+					{/if}
 				</div>
 			</div>
 
