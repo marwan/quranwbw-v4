@@ -23,8 +23,8 @@ export async function validateKey(key) {
 		if (await isValidWordKey(key)) results.word = key.replace(/-/g, ':');
 	}
 
-	// for keys having spaces
-	else if (key.includes(' ')) {
+	// for strings having (or not) spaces (could be keys or normal search terms like chapter names)
+	else if (key.includes(' ') || !key.includes(' ')) {
 		const keySplit = key.split(' ');
 
 		// verse key
@@ -38,10 +38,8 @@ export async function validateKey(key) {
 			const key = `${+keySplit[0]}:${+keySplit[1]}:${+keySplit[2]}`;
 			if (await isValidWordKey(key)) results.word = key.replace(/-/g, ':');
 		}
-	}
 
-	// check for chapter names
-	else {
+		// check for chapter names
 		if (key.length > 2) {
 			results['chapters'] = {};
 
@@ -67,7 +65,6 @@ export async function validateKey(key) {
 
 	const validationResults = Object.keys(results).length === 0 ? false : results;
 
-	console.log(validationResults);
 	return validationResults;
 }
 
