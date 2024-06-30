@@ -1400,8 +1400,8 @@ input[type="range"]::-ms-fill-lower {
   max-height: 16rem;
 }
 
-.max-h-80 {
-  max-height: 20rem;
+.max-h-\[32em\] {
+  max-height: 32em;
 }
 
 .max-h-full {
@@ -2788,10 +2788,6 @@ input[type="range"]::-ms-fill-lower {
 
 .opacity-70 {
   opacity: 0.7;
-}
-
-.opacity-80 {
-  opacity: 0.8;
 }
 
 .shadow {

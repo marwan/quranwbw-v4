@@ -8,13 +8,13 @@
 	import { fetchVersesData } from '$utils/fetchData';
 	import { errorLoadingDataMessage } from '$data/websiteSettings';
 	import { term } from '$utils/terminologies';
-	// import { updateSettings } from '$utils/updateSettings';
+	import { updateSettings } from '$utils/updateSettings';
 
 	// fetch supplication verses
 	$: fetchData = fetchVersesData(getSupplicationKeys(), $__wordType, $__wordTranslation, $__verseTranslations.toString());
 
 	// only allow display type 1 & 2, and don't save the layout in settings
-	// if ([3, 4, 5].includes($__displayType)) updateSettings({ type: 'displayType', value: 1, skipSave: true });
+	if ([3, 4, 5].includes($__displayType)) updateSettings({ type: 'displayType', value: 1, skipSave: true });
 
 	// __currentPage.set(`${term('supplications').toLowerCase()}`);
 	__currentPage.set('supplications');

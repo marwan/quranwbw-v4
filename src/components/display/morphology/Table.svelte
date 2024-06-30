@@ -13,7 +13,8 @@
 	const params = new URLSearchParams(window.location.search);
 	const loadAll = params.get('load_all') === 'true';
 	const totalAvailableWords = Object.keys(wordData).length;
-	let lastWordToLoad = loadAll ? totalAvailableWords : totalAvailableWords > 10 ? 10 : totalAvailableWords;
+	const maxResultsToLoad = 50;
+	let lastWordToLoad = loadAll ? totalAvailableWords : totalAvailableWords > maxResultsToLoad ? maxResultsToLoad : totalAvailableWords;
 
 	function updateLastWordToLoad() {
 		lastWordToLoad = lastWordToLoad + 50;
@@ -27,7 +28,7 @@
 	<div class="flex flex-col">
 		<div class="relative space-y-6 sm:rounded-3xl theme-grayscale">
 			<h1 class="text-md md:text-2xl text-center opacity-70">{tableTitles[tableType].title} ({totalAvailableWords})</h1>
-			<div class="max-h-80 overflow-auto">
+			<div class="max-h-[32em] overflow-auto">
 				<table class="w-full text-sm text-left rtl:text-right text-gray-500">
 					<thead class="text-xs text-gray-700 uppercase bg-lightGray">
 						<tr>
@@ -55,7 +56,7 @@
 			</div>
 
 			<!-- button to load more words -->
-			{#if totalAvailableWords > 10}
+			{#if totalAvailableWords > maxResultsToLoad}
 				<div class="text-center text-xs {lastWordToLoad === totalAvailableWords && 'hidden'}">
 					<button on:click={() => updateLastWordToLoad()} class={buttonClasses}>Load more</button>
 				</div>

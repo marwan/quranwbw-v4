@@ -5,6 +5,7 @@
 	import { __currentPage, __wordType, __displayType, __wordTranslation, __verseTranslations, __userBookmarks } from '$utils/stores';
 	import { fetchVersesData } from '$utils/fetchData';
 	import { errorLoadingDataMessage } from '$data/websiteSettings';
+	import { updateSettings } from '$utils/updateSettings';
 
 	let fetchData;
 
@@ -14,6 +15,9 @@
 			fetchData = fetchVersesData($__userBookmarks.toString(), $__wordType, $__wordTranslation, $__verseTranslations.toString());
 		}
 	}
+
+	// only allow display type 1 & 2, and don't save the layout in settings
+	if ([3, 4, 5].includes($__displayType)) updateSettings({ type: 'displayType', value: 1, skipSave: true });
 
 	__currentPage.set('bookmarks');
 </script>

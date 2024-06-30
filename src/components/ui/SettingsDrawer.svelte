@@ -1,4 +1,4 @@
-<script lang>
+<script>
 	import Drawer from '$ui/flowbite-svelte/drawer/Drawer.svelte';
 	import Radio from '$ui/flowbite-svelte/forms/Radio.svelte';
 	import Checkbox from '$ui/flowbite-svelte/forms/Checkbox.svelte';
@@ -62,7 +62,7 @@
 			<div class="border-b border-black/10"></div>
 
 			<!-- display-type-setting -->
-			<div id="display-type-setting" class="{settingsBlockClasses} {$__currentPage === 'page' && disabledClasses}">
+			<div id="display-type-setting" class="{settingsBlockClasses} {$__currentPage !== 'chapter' && disabledClasses}">
 				<div class="flex flex-row justify-between items-center">
 					<div class="block">Display Type</div>
 					<Button class={selectorClasses}>{displayOptions[$__displayType].displayName}</Button>

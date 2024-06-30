@@ -7,10 +7,11 @@
 	import Table from '$display/morphology/Table.svelte';
 	import { quranMetaData } from '$data/quranMeta';
 	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
-	import { __currentPage, __wordType, __wordTranslation, __verseTranslations, __morphologyKey, __pageURL } from '$utils/stores';
+	import { __currentPage, __wordType, __wordTranslation, __verseTranslations, __morphologyKey, __pageURL, __displayType } from '$utils/stores';
 	import { buttonOutlineClasses } from '$data/commonClasses';
 	import { fetchVersesData } from '$utils/fetchData';
 	import { term } from '$utils/terminologies';
+	import { updateSettings } from '$utils/updateSettings';
 
 	let fetchWordsData, fetchWordSummary;
 	let chapter, verse, word;
@@ -37,13 +38,16 @@
 			return data.data;
 		})();
 
-		// // fetch word summary
-		// fetchWordSummary = (async () => {
-		// 	const response = await fetch(`${apiEndpoint}/morphology/summary?word=${$__morphologyKey}`);
-		// 	const data = await response.json();
-		// 	return data.data;
-		// })();
+		// fetch word summary
+		fetchWordSummary = (async () => {
+			const response = await fetch(`${apiEndpoint}/morphology/summary?word=${$__morphologyKey}&v=2`);
+			const data = await response.json();
+			return data.data;
+		})();
 	}
+
+	// only allow display type 1 & 2, and don't save the layout in settings
+	if ([3, 4, 5].includes($__displayType)) updateSettings({ type: 'displayType', value: 1, skipSave: true });
 
 	__currentPage.set('morphology');
 </script>
@@ -80,15 +84,15 @@
 		{/await}
 	</div>
 
-	<!-- <div id="word-summary" class="text-center opacity-70 mx-auto md:w-3/4 text-sm pb-6 border-b-2 border-black/10 md:text-lg theme">
+	<div id="word-summary" class="text-center opacity-70 mx-auto md:w-3/4 text-sm pb-6 border-b-2 border-black/10 md:text-lg theme">
 		{#await fetchWordSummary}
 			<span>...</span>
 		{:then fetchWordSummary}
-			<span>{fetchWordSummary.summary}</span>
+			<span>{@html fetchWordSummary.summary}</span>
 		{:catch error}
 			<p>{errorLoadingDataMessage}</p>
 		{/await}
-	</div> -->
+	</div>
 
 	<div id="word-forms" class="pb-8 border-b-2 border-black/10 theme">
 		{#await fetchWordsData}

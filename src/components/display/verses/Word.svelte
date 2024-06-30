@@ -44,8 +44,8 @@
 	`;
 
 	$: wordTranslationClasses = `
-		wordTranslationText flex flex-col 
-		${fontSizes.wordTranslationText} ${displayIsContinuous ? 'direction-ltr' : null}
+		wordTranslationText flex flex-col direction-ltr
+		${fontSizes.wordTranslationText}
 		text-black theme
 	`;
 
