@@ -38,7 +38,7 @@
 	$: displayIsContinuous = displayOptions[$__displayType].continuous;
 
 	$: wordDivClasses = `
-	  word rounded-lg ${wordAndEndIconCommonClasses}
+	  word rounded-lg ${wordAndEndIconCommonClasses} print:break-inside-avoid
 	  ${$__audioSettings.playingWordKey === wordKey || ($__currentPage === 'morphology' && $__morphologyKey === wordKey) ? (selectableThemes[$__websiteTheme].palette === 1 ? 'bg-white/20' : 'bg-black/10') : null}
 		${$__currentPage === 'supplications' && word + 1 < supplicationsFromQuran[key] ? 'opacity-30' : null}
 	`;
