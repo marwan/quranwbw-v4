@@ -79,7 +79,7 @@
 	}
 </script>
 
-<Modal id="quranNavigationModal" title="Navigate" bind:open={$__quranNavigationModalVisible} size="sm" class="rounded-3xl text-black theme" bodyClass="p-2 !border-t-0" headerClass="hidden" placement={iskeyboardVisible ? 'top-center' : 'center'} outsideclose>
+<Modal id="quranNavigationModal" title="Navigate" bind:open={$__quranNavigationModalVisible} size="sm" class="rounded-3xl text-black theme" bodyClass="p-2 !border-t-0" headerClass="hidden" placement="center" outsideclose>
 	<div class="flex flex-col space-y-2 justify-between max-w-screen-lg px-4 py-5 mx-auto">
 		<div class="mx-2">
 			<div id="navigatation-inputs" class="flex flex-col space-y-4 mb-4 justify-start theme-grayscale">
