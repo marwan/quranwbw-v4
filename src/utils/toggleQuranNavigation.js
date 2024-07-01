@@ -12,12 +12,7 @@ export function toggleQuranNavigation(action) {
 		else if (getTailwindBreakpoint() !== 'default') {
 			__quranNavigationModalVisible.set(true);
 		}
-	}
-
-	// close all
-	else if (action === 'hide') {
-		hideAll();
-	}
+	} else if (action === 'hide') hideAll();
 
 	// hide all
 	function hideAll() {

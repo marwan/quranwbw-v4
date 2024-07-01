@@ -12,7 +12,7 @@
 	};
 </script>
 
-<Drawer id="quranNavigationDrawer" bind:hidden={$__quranNavigationDrawerHidden} divClass="overflow-y-auto z-50 p-0 bg-white rounded-b-3xl" placement="top" width="w-full" transitionType="fly" transitionParams={transitionParamsTop}>
+<Drawer id="quranNavigationDrawer" bind:hidden={$__quranNavigationDrawerHidden} class="overflow-y-auto z-50 p-0 bg-white rounded-b-3xl" placement="top" width="w-full" transitionType="fly" transitionParams={transitionParamsTop}>
 	<QuranNavInnerSearch />
 </Drawer>
 
