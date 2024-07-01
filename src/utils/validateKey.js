@@ -17,10 +17,11 @@ export async function validateKey(key) {
 		if (key >= 1 && key <= 30) results.juz = key;
 	}
 
-	// if key contains "-" or  ":", check for verse or word key
-	else if (/:|-/.test(key)) {
-		if (isValidVerseKey(key)) results.key = key.replace('-', ':');
-		if (await isValidWordKey(key)) results.word = key.replace(/-/g, ':');
+	// we allow keys with ":", "-", "."
+	else if ([':', '-', '.'].some((char) => key.includes(char))) {
+		const modifiedKey = key.replace(/[-.]/g, ':');
+		if (isValidVerseKey(modifiedKey)) results.key = modifiedKey;
+		if (await isValidWordKey(modifiedKey)) results.word = modifiedKey;
 	}
 
 	// for strings having (or not) spaces (could be keys or normal search terms like chapter names)
@@ -79,14 +80,7 @@ export function isValidVerseKey(key) {
 	// key should not be a number
 	if (!isNaN(key)) return false;
 
-	let keySplit;
-
-	// we allow split by ":" and "-"
-	if (key.includes(':')) {
-		keySplit = key.split(':');
-	} else if (key.includes('-')) {
-		keySplit = key.split('-');
-	}
+	const keySplit = key.split(':');
 
 	// we only need 2 parts
 	if (keySplit.length !== 2) return false;
@@ -117,14 +111,7 @@ export async function isValidWordKey(key) {
 	// key should not be a number
 	if (!isNaN(key)) return false;
 
-	let keySplit;
-
-	// we allow split by ":" and "-"
-	if (key.includes(':')) {
-		keySplit = key.split(':');
-	} else if (key.includes('-')) {
-		keySplit = key.split('-');
-	}
+	const keySplit = key.split(':');
 
 	// we only need 3 parts
 	if (keySplit.length !== 3) return false;
