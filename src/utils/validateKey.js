@@ -24,7 +24,7 @@ export async function validateKey(key) {
 		if (await isValidWordKey(modifiedKey)) results.word = modifiedKey;
 	}
 
-	// for strings having (or not) spaces (could be keys or normal search terms like chapter names)
+	// for strings having spaces (or not) - could be keys or normal search terms like chapter names
 	else if (key.includes(' ') || !key.includes(' ')) {
 		const keySplit = key.split(' ');
 
