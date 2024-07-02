@@ -8,12 +8,11 @@
 	import WordsBlock from '$display/verses/WordsBlock.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
 	import { goto } from '$app/navigation';
-	import { __chapterNumber, __pageNumber, __currentPage, __wordType, __wordTranslation, __tajweedEnabled, __mushafPageDivisions, __lastRead } from '$utils/stores';
+	import { __chapterNumber, __pageNumber, __currentPage, __wordType, __wordTranslation, __mushafPageDivisions, __lastRead } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';
 	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
 	import { quranMetaData, chapterHeaderCodes } from '$data/quranMeta';
-	import { mushafFontLinks } from '$data/options';
-	import { buttonOutlineClasses } from '$data/commonClasses';
+	import { mushafFontLinks, selectableFontTypes } from '$data/options';
 	import { loadFont } from '$utils/loadFont';
 	import '$lib/swiped-events.min.js';
 
@@ -28,7 +27,7 @@
 
 	// load some previous and next pages fonts for v4
 	$: {
-		if ($__wordType === 2) {
+		if ([2, 3].includes($__wordType)) {
 			for (let thisPage = +page - 1; thisPage <= +page + 1; thisPage++) {
 				fetch(`${mushafFontLinks.COLRv1}/QCF4${`00${thisPage}`.slice(-3)}_COLOR-Regular.woff`);
 			}
@@ -40,7 +39,7 @@
 		(chapters = []), (verses = []), (lines = []);
 
 		pageData = (async () => {
-			const apiURL = `${apiEndpoint}/page?page=${page}&word_type=${$__wordType}&word_translation=${$__wordTranslation}&v=92827326`;
+			const apiURL = `${apiEndpoint}/page?page=${page}&word_type=${selectableFontTypes[$__wordType].apiId}&word_translation=${$__wordTranslation}&v=92827326`;
 			const response = await fetch(apiURL);
 			const data = await response.json();
 			const apiData = data.data.verses;
@@ -98,8 +97,6 @@
 					element.classList.remove('invisible');
 				});
 			});
-
-			// console.log(document.getElementsByClassName('word')[0].id);
 
 			return apiData;
 		})();

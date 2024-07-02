@@ -16,7 +16,6 @@ export function resetSettings() {
 
 	// font type settings
 	updateSettings({ type: 'wordType', value: 1 });
-	updateSettings({ type: 'tajweedEnabled', value: true });
 
 	// font size settings
 	updateSettings({ type: 'arabicText', value: arabicTextSize });

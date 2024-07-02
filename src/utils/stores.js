@@ -18,7 +18,6 @@ let __websiteOnline,
 	__verseTranslations,
 	__wordTranslationEnabled,
 	__wordTransliterationEnabled,
-	__tajweedEnabled,
 	__reciter,
 	__timestampData,
 	__playbackSpeed,
@@ -105,9 +104,6 @@ if (browser) {
 
 	// to store the word transliteration toggle
 	__wordTransliterationEnabled = writable(userSettings.displaySettings.wordTransliterationEnabled);
-
-	// to store the v4 font tajweed boolean
-	__tajweedEnabled = writable(userSettings.displaySettings.tajweedEnabled);
 
 	// to store reciter
 	__reciter = writable(userSettings.audioSettings.reciter);
@@ -223,7 +219,6 @@ export {
 	__verseTranslations,
 	__wordTranslationEnabled,
 	__wordTransliterationEnabled,
-	__tajweedEnabled,
 	__reciter,
 	__timestampData,
 	__playbackSpeed,
