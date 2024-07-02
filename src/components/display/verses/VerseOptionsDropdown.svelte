@@ -99,7 +99,7 @@
 	{#if $__currentPage === 'chapter'}
 		<DropdownItem class={dropdownItemClasses} href="/page/{page}">Mushaf Mode</DropdownItem>
 	{:else if $__currentPage === 'page'}
-		<DropdownItem class={dropdownItemClasses} href="/{$__verseKey.split(':')[0]}/{$__verseKey.split(':')[1]}">Normal Mode</DropdownItem>
+		<DropdownItem class={dropdownItemClasses} href="/{$__verseKey.split(':')[0]}/{$__verseKey.split(':')[1]}">{term('chapter')} Mode</DropdownItem>
 	{/if}
 
 	<!-- verse morphology button -->

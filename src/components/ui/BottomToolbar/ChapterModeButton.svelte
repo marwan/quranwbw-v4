@@ -1,0 +1,21 @@
+<script>
+	import List from '$svgs/List.svelte';
+	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
+	import { pageNumberKeys } from '$data/quranMeta';
+	import { __pageNumber } from '$utils/stores';
+	import { term } from '$utils/terminologies';
+
+	let verseKey, chapter, verse;
+
+	$: {
+		verseKey = pageNumberKeys[$__pageNumber - 1];
+		chapter = +verseKey.split(':')[0];
+		verse = +verseKey.split(':')[1];
+	}
+</script>
+
+<a href="/{chapter}/{verse}" class="opacity-70 inline-flex flex-col items-center justify-center px-5 hover:bg-lightGray group">
+	<List />
+	<span class="sr-only">{term('chapter')} Mode</span>
+</a>
+<Tooltip arrow={false} type="light" class="hidden md:block font-filter font-normal">{term('chapter')} Mode</Tooltip>

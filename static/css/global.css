@@ -1631,10 +1631,6 @@ input[type="range"]::-ms-fill-lower {
           user-select: none;
 }
 
-.resize {
-  resize: both;
-}
-
 .list-disc {
   list-style-type: disc;
 }
@@ -1907,6 +1903,11 @@ input[type="range"]::-ms-fill-lower {
   border-bottom-left-radius: 0.25rem;
 }
 
+.rounded-b-3xl {
+  border-bottom-right-radius: 1.5rem;
+  border-bottom-left-radius: 1.5rem;
+}
+
 .rounded-b-lg {
   border-bottom-right-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
@@ -1985,11 +1986,6 @@ input[type="range"]::-ms-fill-lower {
 .rounded-t-md {
   border-top-left-radius: 0.375rem;
   border-top-right-radius: 0.375rem;
-}
-
-.rounded-b-3xl {
-  border-bottom-right-radius: 1.5rem;
-  border-bottom-left-radius: 1.5rem;
 }
 
 .border {
@@ -3500,10 +3496,6 @@ svg {
 .hover\:text-white:hover {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.hover\:underline:hover {
-  text-decoration-line: underline;
 }
 
 .focus\:border-black\/10:focus {

@@ -108,9 +108,9 @@
 					<!-- show Al Kahf on Friday -->
 					{#if $__timeSpecificChapters.isFriday}
 						<div id="al-kahf" class="w-full md:w-max">
-							<a href="/18" class="py-2.5 w-full mb-4 md:mb-0 {buttonOutlineClasses}">
+							<a href="/18" class="py-2.5 w-full mb-4 md:mb-0 {buttonClasses}">
 								Al-Kahf
-								<span class="hidden md:block">{@html '&#10230'}</span>
+								<span class="hidden md:block">{@html '&nbsp;'}{@html '&#10230'}</span>
 							</a>
 						</div>
 					{/if}
@@ -118,9 +118,9 @@
 					<!-- show Al Mulk at night/evening -->
 					{#if $__timeSpecificChapters.isNight}
 						<div id="al-mulk" class="w-full md:w-max">
-							<a href="/67" class="py-2.5 w-full mb-4 md:mb-0 {buttonOutlineClasses}">
+							<a href="/67" class="py-2.5 w-full mb-4 md:mb-0 {buttonClasses}">
 								Al-Mulk
-								<span class="hidden md:block">{@html '&#10230'}</span>
+								<span class="hidden md:block">{@html '&nbsp;'}{@html '&#10230'}</span>
 							</a>
 						</div>
 					{/if}

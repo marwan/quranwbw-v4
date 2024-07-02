@@ -7,7 +7,7 @@
 
 	import Navbar from '$ui/Navbar.svelte';
 	import SettingsDrawer from '$ui/SettingsDrawer.svelte';
-	import BottomToolbar from '$ui/BottomToolbar.svelte';
+	import BottomToolbar from '$ui/BottomToolbar/BottomToolbar.svelte';
 	import InitialSetupModal from '$ui/modals/InitialSetupModal.svelte';
 	import AudioModal from '$ui/modals/AudioModal.svelte';
 	import TajweedRulesModal from '$ui/modals/TajweedRulesModal.svelte';

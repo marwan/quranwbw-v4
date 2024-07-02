@@ -152,19 +152,6 @@
 					<div class="flex-1 border-t-2 border-black/10"></div>
 				</div>
 			</div>
-
-			<!-- page navigator -->
-			<div id="page-navigator" class="max-w-3xl flex flex-row justify-between space-x-8 pt-6 text-sm mx-auto theme">
-				<!-- next page -->
-				{#if page < 604}
-					<a href="/page/{+page + 1}" class={buttonOutlineClasses}>{@html '&#x2190;'} Page {+page + 1}</a>
-				{/if}
-
-				<!-- previous page -->
-				{#if page > 1}
-					<a href="/page/{+page - 1}" class={buttonOutlineClasses}>Page {+page - 1} {@html '&#x2192;'}</a>
-				{/if}
-			</div>
 		</div>
 	{:catch error}
 		<p>{errorLoadingDataMessage}</p>
