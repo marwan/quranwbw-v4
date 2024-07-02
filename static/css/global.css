@@ -3087,15 +3087,16 @@ svg {
 
 .arabic-font-1,
 .arabic-font-2,
-.arabic-font-3 {
+.arabic-font-3,
+.arabic-font-4 {
   direction: rtl;
 }
 
-.arabic-font-1, .arabic-font-2 {
+.arabic-font-1, .arabic-font-2, .arabic-font-3 {
   font-family: "Uthmani-Hafs";
 }
 
-.arabic-font-3 {
+.arabic-font-4 {
   font-family: "IndoPak";
 }
 

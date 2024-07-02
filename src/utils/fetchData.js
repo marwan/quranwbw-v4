@@ -2,6 +2,7 @@ import { get } from 'svelte/store';
 import { __wordType, __chapterData, __wordTranslation, __verseTranslations, __timestampData, __chapterDataLoaded } from '$utils/stores';
 import { apiEndpoint, staticEndpoint } from '$data/websiteSettings';
 import { quranMetaData } from '$data/quranMeta';
+import { selectableFontTypes } from '$data/options';
 
 // we first fetch specific verses (startVerse to endVerse), and then fetch the complete chapter data which will then be cached by the user's browser
 export async function fetchChapterData(complete = false, chapter, startVerse, endVerse, download = false) {
@@ -16,7 +17,7 @@ export async function fetchChapterData(complete = false, chapter, startVerse, en
 		`${apiEndpoint}/verses?` +
 		new URLSearchParams({
 			verses,
-			word_type: wordType,
+			word_type: selectableFontTypes[wordType].apiId,
 			word_translation: wordTranslation,
 			verse_translation: verseTranslations,
 			between: true
@@ -45,7 +46,7 @@ export async function fetchVersesData(verses, wordType, wordTranslation, verseTr
 		`${apiEndpoint}/verses?` +
 		new URLSearchParams({
 			verses: verses,
-			word_type: wordType,
+			word_type: selectableFontTypes[wordType].apiId,
 			word_translation: wordTranslation,
 			verse_translation: verseTranslations
 		});

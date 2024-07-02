@@ -8,7 +8,7 @@
 	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
 	import { goto } from '$app/navigation';
 	import { displayOptions, mushafFontLinks, selectableThemes } from '$data/options';
-	import { __currentPage, __wordType, __displayType, __userSettings, __audioSettings, __morphologyKey, __tajweedEnabled, __verseKey, __websiteTheme } from '$utils/stores';
+	import { __currentPage, __wordType, __displayType, __userSettings, __audioSettings, __morphologyKey, __verseKey, __websiteTheme } from '$utils/stores';
 	import { loadFont } from '$utils/loadFont';
 	import { wordAudioController } from '$utils/audioController';
 	import { updateSettings } from '$utils/updateSettings';
@@ -23,7 +23,7 @@
 	$: displayIsContinuous = displayOptions[$__displayType].continuous;
 
 	// if mushaf fonts are selected, then dynamically load the fonts
-	if ($__wordType === 2) {
+	if ([2, 3].includes($__wordType)) {
 		loadFont(`p${value.meta.page}`, `${mushafFontLinks.COLRv1}/QCF4${`00${value.meta.page}`.slice(-3)}_COLOR-Regular.woff`).then(() => {
 			// we can by default hide the v4 words and show when the font is loaded...
 			document.querySelectorAll(`.p${value.meta.page}`).forEach((element) => {
@@ -50,13 +50,11 @@
 		}
 	}
 
-	// ${displayOptions[$__displayType].layout === 'wbw' ? 'p-3' : $__wordType === 2 ? 'p-0' : 'p-1'}
-
 	$: wordAndEndIconCommonClasses = `
 		hover:cursor-pointer
 		${selectableThemes[$__websiteTheme].palette === 1 ? 'hover:bg-white/20' : 'hover:bg-black/10'}
 		${$__displayType === 1 ? 'text-center flex flex-col' : 'inline-flex flex-col'}
-		${displayOptions[$__displayType].layout === 'wbw' ? 'p-3' : $__wordType === 2 ? ($__currentPage === 'page' ? 'p-0' : 'px-0 py-1') : 'p-1'}
+		${displayOptions[$__displayType].layout === 'wbw' ? 'p-3' : [2, 3].includes($__wordType) ? ($__currentPage === 'page' ? 'p-0' : 'px-0 py-1') : 'p-1'}
 	`;
 
 	$: wordSpanClasses = `
@@ -64,13 +62,13 @@
 		arabic-font-${$__wordType} 
 		${$__currentPage !== 'page' && fontSizes.arabicText} 
 		${displayIsContinuous ? 'inline-block group-hover:text-gray-500' : null}
-		${[1, 3].includes($__wordType) ? 'text-black theme' : null}
+		${[1, 4].includes($__wordType) ? 'text-black theme' : null}
 	`;
 
 	$: v4hafsClasses = `
 		invisible v4-words 
 		p${value.meta.page} 
-		${$__tajweedEnabled ? 'theme-palette-tajweed' : 'theme-palette-normal'} 
+		${$__wordType === 3 ? 'theme-palette-tajweed' : 'theme-palette-normal'} 
 	`;
 
 	$: endIconClasses = `rounded-lg ${wordAndEndIconCommonClasses}`;
@@ -88,10 +86,10 @@
 	<div class={endIconClasses} on:click={() => wordClickHandler({ key, type: 'end' })}>
 		<span class={wordSpanClasses} data-fontSize={fontSizes.arabicText}>
 			<!-- 1: Uthmanic Hafs Digital, 3: Indopak Madinah -->
-			{#if $__wordType === 1 || $__wordType === 3}
+			{#if [1, 4].includes($__wordType)}
 				{value.words.end}
 				<!-- 2: Uthmanic Hafs Mushaf -->
-			{:else if $__wordType === 2}
+			{:else if [2, 3].includes($__wordType)}
 				<span style="font-family: p{value.meta.page}" class={v4hafsClasses}>{value.words.end}</span>
 			{/if}
 		</span>

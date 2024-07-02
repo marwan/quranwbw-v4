@@ -8,7 +8,7 @@
 	import WordsBlock from '$display/verses/WordsBlock.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
 	import { goto } from '$app/navigation';
-	import { __chapterNumber, __pageNumber, __currentPage, __wordType, __wordTranslation, __tajweedEnabled, __mushafPageDivisions, __lastRead } from '$utils/stores';
+	import { __chapterNumber, __pageNumber, __currentPage, __wordType, __wordTranslation, __mushafPageDivisions, __lastRead } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';
 	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
 	import { quranMetaData, chapterHeaderCodes } from '$data/quranMeta';
@@ -28,7 +28,7 @@
 
 	// load some previous and next pages fonts for v4
 	$: {
-		if ($__wordType === 2) {
+		if ([2, 3].includes($__wordType)) {
 			for (let thisPage = +page - 1; thisPage <= +page + 1; thisPage++) {
 				fetch(`${mushafFontLinks.COLRv1}/QCF4${`00${thisPage}`.slice(-3)}_COLOR-Regular.woff`);
 			}

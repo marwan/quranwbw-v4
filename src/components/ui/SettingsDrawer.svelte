@@ -7,7 +7,7 @@
 	import CloseButton from '$ui/flowbite-svelte/utils/CloseButton.svelte';
 	import Dropdown from '$ui/flowbite-svelte/dropdown/Dropdown.svelte';
 	import Button from '$ui/flowbite-svelte/buttons/Button.svelte';
-	import { __currentPage, __chapterData, __chapterNumber, __wordType, __displayType, __websiteTheme, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __verseTranslations, __reciter, __playbackSpeed, __playTranslation, __userSettings, __tajweedEnabled, __wordTooltip, __settingsDrawerHidden, __wakeLockEnabled, __englishTerminology } from '$utils/stores';
+	import { __currentPage, __chapterData, __chapterNumber, __wordType, __displayType, __websiteTheme, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __verseTranslations, __reciter, __playbackSpeed, __playTranslation, __userSettings, __wordTooltip, __settingsDrawerHidden, __wakeLockEnabled, __englishTerminology } from '$utils/stores';
 	import { displayOptions, selectableFontTypes, selectableThemes, selectableVerseTranslations, verseTranslationsLanguages, selectableWordTranslations, selectableReciters, selectablePlaybackSpeeds, selectableTooltipOptions } from '$data/options';
 	import { updateSettings } from '$utils/updateSettings';
 	import { resetSettings } from '$utils/resetSettings';
@@ -156,21 +156,6 @@
 					</Dropdown>
 				</div>
 				<p class={settingsDescriptionClasses}>Multiple Quranic fonts to choose from depending on your mushaf or region preference.</p>
-			</div>
-
-			<div class="border-b border-black/10"></div>
-
-			<!-- tajweed-toggle-setting -->
-			<div id="tajweed-toggle-setting" class="{settingsBlockClasses} {$__wordType !== 2 && disabledClasses}">
-				<div class="flex flex-row justify-between items-center">
-					<span class="block">Colored Fonts</span>
-
-					<label class="inline-flex items-center cursor-pointer">
-						<input type="checkbox" value="" class="sr-only peer" checked={$__tajweedEnabled} on:click={(event) => updateSettings({ type: 'tajweedEnabled', value: event.target.checked })} />
-						<div class={toggleBtnClasses}></div>
-					</label>
-				</div>
-				<p class={settingsDescriptionClasses}>Switch between the colored fonts with {term('tajweed')} rulings or the normal black & white.</p>
 			</div>
 
 			<div class="border-b border-black/10"></div>
