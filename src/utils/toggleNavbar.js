@@ -15,14 +15,15 @@ export function toggleNavbar() {
 		if (!ticking) {
 			window.requestAnimationFrame(function () {
 				// scrolling up
-				if (prevScrollpos > currentScrollPos) {
+				// show both if the user is scrolling up or is at bottom of the screen
+				if (prevScrollpos > currentScrollPos || window.innerHeight + window.scrollY >= document.body.scrollHeight) {
 					__topNavbarVisible.set(true);
 					__bottomToolbarVisible.set(true);
 				}
 
 				// scrolling down
 				else {
-					// show both is the user is at top of screen
+					// show both if the user is at the top of the screen
 					if (window.scrollY === 0) {
 						__topNavbarVisible.set(true);
 						__bottomToolbarVisible.set(true);
