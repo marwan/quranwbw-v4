@@ -7,10 +7,10 @@ export const displayOptions = {
 };
 
 export const selectableFontTypes = {
-	1: { id: 1, font: 'Uthmanic Hafs Digital', apiId: 1 },
-	2: { id: 2, font: 'Uthmanic Hafs Mushaf', apiId: 2 },
-	3: { id: 3, font: 'Uthmanic Hafs Tajweed Mushaf', apiId: 2 },
-	4: { id: 4, font: 'Indopak Madinah', apiId: 3 }
+	1: { id: 1, font: 'Uthmanic Hafs Digital', apiId: 1, disallowedIn: ['page'] },
+	2: { id: 2, font: 'Uthmanic Hafs Mushaf', apiId: 2, disallowedIn: [] },
+	3: { id: 3, font: 'Uthmanic Hafs Tajweed Mushaf', apiId: 2, disallowedIn: [] },
+	4: { id: 4, font: 'Indopak Madinah', apiId: 3, disallowedIn: ['page'] }
 };
 
 export const selectableThemes = {

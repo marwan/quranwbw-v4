@@ -145,13 +145,15 @@
 
 		<div class="flex flex-col flex-wrap text-base">
 			<!-- quran-font-setting -->
-			<div id="quran-font-setting" class="{settingsBlockClasses} {$__currentPage === 'page' && disabledClasses}">
+			<div id="quran-font-setting" class={settingsBlockClasses}>
 				<div class="flex flex-row justify-between items-center">
 					<div class="block">Quran Font</div>
 					<Button class={selectorClasses}>{selectableFontTypes[$__wordType].font}</Button>
 					<Dropdown class={dropdownClasses}>
 						{#each Object.entries(selectableFontTypes) as [id, font]}
-							<li><Radio name="wordType" bind:group={$__wordType} value={font.id} on:change={(event) => updateSettings({ type: 'wordType', value: +event.target.value })} class={radioClasses}>{font.font}</Radio></li>
+							{#if !font.disallowedIn.includes($__currentPage)}
+								<li><Radio name="wordType" bind:group={$__wordType} value={font.id} on:change={(event) => updateSettings({ type: 'wordType', value: +event.target.value })} class={radioClasses}>{font.font}</Radio></li>
+							{/if}
 						{/each}
 					</Dropdown>
 				</div>

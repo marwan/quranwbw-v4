@@ -16,7 +16,9 @@
 	const userSettings = JSON.parse(localStorage.getItem('userSettings'));
 
 	// for mushaf mode, we only allow v4 font type, but don't save the settings, and for other pages, get the font/word type from settings
-	updateSettings({ type: 'wordType', value: $__currentPage === 'page' ? 2 : userSettings.displaySettings.wordType });
+	if (![2, 3].includes($__wordType)) {
+		updateSettings({ type: 'wordType', value: $__currentPage === 'page' ? 2 : userSettings.displaySettings.wordType });
+	}
 
 	const fontSizes = JSON.parse($__userSettings).displaySettings.fontSizes;
 
