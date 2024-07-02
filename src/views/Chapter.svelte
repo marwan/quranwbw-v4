@@ -11,7 +11,7 @@
 	import { quranMetaData } from '$data/quranMeta';
 	import { displayOptions } from '$data/options';
 	import { errorLoadingDataMessage } from '$data/websiteSettings';
-	import { __userSettings, __currentPage, __chapterNumber, __displayType, __wordType, __wordTranslation, __verseTranslations, __pageURL, __firstVerseOnPage, __chapterDataLoaded, __chapterData } from '$utils/stores';
+	import { __userSettings, __currentPage, __chapterNumber, __displayType, __fontType, __wordTranslation, __verseTranslations, __pageURL, __firstVerseOnPage, __chapterDataLoaded, __chapterData } from '$utils/stores';
 
 	// max verses to load if total verses in chapter are more than this
 	const maxVersesThreshold = 5;
@@ -50,7 +50,7 @@
 		__firstVerseOnPage.set(startVerse);
 
 		// do nothing except re-run the block if any of the following store updates
-		if ($__pageURL || $__displayType || $__wordType || $__wordTranslation || $__verseTranslations) {
+		if ($__pageURL || $__displayType || $__fontType || $__wordTranslation || $__verseTranslations) {
 			// do nothing...
 		}
 	}
@@ -75,7 +75,7 @@
 		<Bismillah {startVerse} />
 
 		<!-- need custom stylings if display type is 3 or 4 - continuous -->
-		<div id="verses-block" class={displayOptions[JSON.parse($__userSettings).displaySettings.displayType].customStyle}>
+		<div id="verses-block" class={displayOptions[JSON.parse($__userSettings).displaySettings.displayType].customClasses}>
 			<Chapter {startVerse} {endVerse} />
 		</div>
 	{:catch error}

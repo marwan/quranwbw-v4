@@ -7,7 +7,7 @@
 	import CloseButton from '$ui/flowbite-svelte/utils/CloseButton.svelte';
 	import Dropdown from '$ui/flowbite-svelte/dropdown/Dropdown.svelte';
 	import Button from '$ui/flowbite-svelte/buttons/Button.svelte';
-	import { __currentPage, __chapterData, __chapterNumber, __wordType, __displayType, __websiteTheme, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __verseTranslations, __reciter, __playbackSpeed, __playTranslation, __userSettings, __wordTooltip, __settingsDrawerHidden, __wakeLockEnabled, __englishTerminology } from '$utils/stores';
+	import { __currentPage, __chapterData, __chapterNumber, __fontType, __displayType, __websiteTheme, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __verseTranslations, __reciter, __playbackSpeed, __playTranslation, __userSettings, __wordTooltip, __settingsDrawerHidden, __wakeLockEnabled, __englishTerminology } from '$utils/stores';
 	import { displayOptions, selectableFontTypes, selectableThemes, selectableVerseTranslations, verseTranslationsLanguages, selectableWordTranslations, selectableReciters, selectablePlaybackSpeeds, selectableTooltipOptions } from '$data/options';
 	import { updateSettings } from '$utils/updateSettings';
 	import { resetSettings } from '$utils/resetSettings';
@@ -148,11 +148,11 @@
 			<div id="quran-font-setting" class={settingsBlockClasses}>
 				<div class="flex flex-row justify-between items-center">
 					<div class="block">Quran Font</div>
-					<Button class={selectorClasses}>{selectableFontTypes[$__wordType].font}</Button>
+					<Button class={selectorClasses}>{selectableFontTypes[$__fontType].font}</Button>
 					<Dropdown class={dropdownClasses}>
 						{#each Object.entries(selectableFontTypes) as [id, font]}
 							{#if !font.disallowedIn.includes($__currentPage)}
-								<li><Radio name="wordType" bind:group={$__wordType} value={font.id} on:change={(event) => updateSettings({ type: 'wordType', value: +event.target.value })} class={radioClasses}>{font.font}</Radio></li>
+								<li><Radio name="fontType" bind:group={$__fontType} value={font.id} on:change={(event) => updateSettings({ type: 'fontType', value: +event.target.value })} class={radioClasses}>{font.font}</Radio></li>
 							{/if}
 						{/each}
 					</Dropdown>

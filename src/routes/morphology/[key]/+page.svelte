@@ -7,7 +7,7 @@
 	import Table from '$display/morphology/Table.svelte';
 	import { quranMetaData } from '$data/quranMeta';
 	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
-	import { __currentPage, __wordType, __wordTranslation, __verseTranslations, __morphologyKey, __pageURL, __displayType } from '$utils/stores';
+	import { __currentPage, __fontType, __wordTranslation, __verseTranslations, __morphologyKey, __pageURL, __displayType } from '$utils/stores';
 	import { buttonOutlineClasses } from '$data/commonClasses';
 	import { fetchVersesData } from '$utils/fetchData';
 	import { term } from '$utils/terminologies';
@@ -28,7 +28,7 @@
 	}
 
 	// fetching verse data
-	$: fetchData = fetchVersesData(`${chapter}:${verse}`, $__wordType, $__wordTranslation, $__verseTranslations.toString());
+	$: fetchData = fetchVersesData(`${chapter}:${verse}`, $__fontType, $__wordTranslation, $__verseTranslations.toString());
 
 	// fetch words
 	$: {
@@ -109,7 +109,7 @@
 											{#if value !== null}
 												<div class="flex flex-col py-5 duration-300 transform bg-white border rounded-3xl shadow-sm text-center hover:-translate-y-2">
 													<div class="flex items-center justify-center mb-2">
-														<p id="verb-1" class="text-xl md:text-2xl pb-4 leading-5 arabic-font-{$__wordType}">{value}</p>
+														<p id="verb-1" class="text-xl md:text-2xl pb-4 leading-5 arabic-font-{$__fontType}">{value}</p>
 													</div>
 													<p class="text-xs text-gray-900 capitalize">{key.replace('_', ' ')}</p>
 												</div>

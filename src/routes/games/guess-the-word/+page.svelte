@@ -6,7 +6,7 @@
 	import Cross from '$svgs/Cross.svelte';
 	import Radio from '$ui/flowbite-svelte/forms/Radio.svelte';
 	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
-	import { __currentPage, __wordType, __quizCorrectAnswers, __quizWrongAnswers } from '$utils/stores';
+	import { __currentPage, __fontType, __quizCorrectAnswers, __quizWrongAnswers } from '$utils/stores';
 	import { buttonClasses, buttonOutlineClasses, disabledClasses } from '$data/commonClasses';
 	import { updateSettings } from '$utils/updateSettings';
 	import { playWordAudio } from '$utils/audioController';

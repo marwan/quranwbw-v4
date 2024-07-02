@@ -1,7 +1,7 @@
 <script>
 	import { buttonClasses, disabledClasses } from '$data/commonClasses';
 	import { toggleModal } from '$utils/toggleModal';
-	import { __wordType, __verseTranslations, __wordTranslation, __downloadedDataSettings } from '$utils/stores';
+	import { __fontType, __verseTranslations, __wordTranslation, __downloadedDataSettings } from '$utils/stores';
 	import { downloadData } from '$utils/downloadData';
 	import { selectableFontTypes, selectableWordTranslations } from '$data/options';
 
@@ -46,7 +46,7 @@
 					<span>The data which are downloaded will be based on your settings as per below:</span>
 
 					<div class="flex flex-col space-y-2">
-						<span><b>Quran Font:</b> {selectableFontTypes[$__wordType].font}</span>
+						<span><b>Quran Font:</b> {selectableFontTypes[$__fontType].font}</span>
 						<span><b>Word Translation:</b> {selectableWordTranslations[wordTranslationKey].language}</span>
 						<span><b>Verse Translations:</b> {$__verseTranslations.length} selected</span>
 					</div>

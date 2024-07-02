@@ -1,6 +1,6 @@
 <script>
 	import Chapter from '$display/verses/modes/Chapter.svelte';
-	import { __currentPage, __chapterData, __wordType, __displayType } from '$utils/stores';
+	import { __currentPage, __chapterData, __fontType, __displayType } from '$utils/stores';
 	import { displayOptions, selectableFontTypes } from '$data/options';
 	import { updateSettings } from '$utils/updateSettings';
 	import { toggleModal } from '$utils/toggleModal';
@@ -45,7 +45,7 @@
 				<div class="flex flex-row space-x-6">
 					<div class="flex flex-col">
 						<label for="quran-font-list" class="block mb-2 text-sm font-medium text-gray-900">Quran Font</label>
-						<select id="quran-font-list" on:change={(event) => updateSettings({ type: 'wordType', value: +event.target.value })} bind:value={$__wordType} class="w-32 border border-black/10 text-gray-900 rounded-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-gray-500 dark:focus:border-gray-500">
+						<select id="quran-font-list" on:change={(event) => updateSettings({ type: 'fontType', value: +event.target.value })} bind:value={$__fontType} class="w-32 border border-black/10 text-gray-900 rounded-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-gray-500 dark:focus:border-gray-500">
 							{#each Object.entries(selectableFontTypes) as [id, font]}
 								<option value={font.id}>{font.font}</option>
 							{/each}
@@ -72,7 +72,7 @@
 					{#if $__chapterData !== null}
 						<div class="flex flex-col pt-8 space-y-4">
 							<span class="text-center text-xs">Example Verse:</span>
-							<div id="exampleVerse" style="zoom: 60%;" class={displayOptions[`${$__displayType}`].customStyle}>
+							<div id="exampleVerse" style="zoom: 60%;" class={displayOptions[`${$__displayType}`].customClasses}>
 								<Chapter startVerse={1} endVerse={1} isExampleVerse={true} />
 							</div>
 						</div>

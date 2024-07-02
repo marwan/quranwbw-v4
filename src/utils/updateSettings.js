@@ -3,7 +3,7 @@ import { get } from 'svelte/store';
 import {
 	__currentPage,
 	__userSettings,
-	__wordType,
+	__fontType,
 	__displayType,
 	__websiteTheme,
 	__wordTranslation,
@@ -38,11 +38,11 @@ export function updateSettings(props) {
 			userSettings.chapter = props.value;
 			break;
 
-		// for word types
-		case 'wordType':
-			__wordType.set(props.value);
+		// for font types
+		case 'fontType':
+			__fontType.set(props.value);
 			if (props.skipSave) return;
-			userSettings.displaySettings.wordType = props.value;
+			userSettings.displaySettings.fontType = props.value;
 			break;
 
 		// for display types

@@ -16,7 +16,7 @@
 	import DownloadModal from '$ui/modals/DownloadModal.svelte';
 	import TafsirModal from '$ui/modals/TafsirModal.svelte';
 	import QuranNavigation from '$ui/QuranNavigation/QuranNavigation.svelte';
-	import { __websiteOnline, __currentPage, __chapterNumber, __settingsDrawerHidden, __wakeLockEnabled, __userToken, __wordType, __wordTranslation, __verseTranslations } from '$utils/stores';
+	import { __websiteOnline, __currentPage, __chapterNumber, __settingsDrawerHidden, __wakeLockEnabled, __userToken, __fontType, __wordTranslation, __verseTranslations } from '$utils/stores';
 	import { checkOldBookmarks } from '$utils/checkOldBookmarks';
 	import { debounce } from '$utils/debounce';
 	import { toggleNavbar } from '$utils/toggleNavbar';
@@ -69,7 +69,7 @@
 	// $: if ($__currentPage && $__chapterNumber) downloadSettingsFromCloud();
 
 	// reset chapterDataLoaded if any of the following updates
-	$: if ($__currentPage || $__wordType || $__wordTranslation || $__verseTranslations) localStorage.setItem('chapterDataLoaded', false);
+	$: if ($__currentPage || $__fontType || $__wordTranslation || $__verseTranslations) localStorage.setItem('chapterDataLoaded', false);
 
 	// stop all audio when the page or chapter is changed
 	$: if ($__currentPage || $__chapterNumber) resetAudioSettings({ location: 'end' });

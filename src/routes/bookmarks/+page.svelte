@@ -2,7 +2,7 @@
 	import PageHead from '$misc/PageHead.svelte';
 	import Individual from '$display/verses/modes/Individual.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
-	import { __currentPage, __wordType, __displayType, __wordTranslation, __verseTranslations, __userBookmarks } from '$utils/stores';
+	import { __currentPage, __fontType, __displayType, __wordTranslation, __verseTranslations, __userBookmarks } from '$utils/stores';
 	import { fetchVersesData } from '$utils/fetchData';
 	import { errorLoadingDataMessage } from '$data/websiteSettings';
 	import { updateSettings } from '$utils/updateSettings';
@@ -12,7 +12,7 @@
 	// fetch verses whenever there's a change
 	$: {
 		if (__userBookmarks.length != 0) {
-			fetchData = fetchVersesData($__userBookmarks.toString(), $__wordType, $__wordTranslation, $__verseTranslations.toString());
+			fetchData = fetchVersesData($__userBookmarks.toString(), $__fontType, $__wordTranslation, $__verseTranslations.toString());
 		}
 	}
 

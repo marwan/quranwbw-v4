@@ -15,7 +15,7 @@ export function resetSettings() {
 	updateSettings({ type: 'wakeLockEnabled', value: false });
 
 	// font type settings
-	updateSettings({ type: 'wordType', value: 1 });
+	updateSettings({ type: 'fontType', value: 1 });
 
 	// font size settings
 	updateSettings({ type: 'arabicText', value: arabicTextSize });

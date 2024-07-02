@@ -8,7 +8,7 @@
 	import WordsBlock from '$display/verses/WordsBlock.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
 	import { goto } from '$app/navigation';
-	import { __chapterNumber, __pageNumber, __currentPage, __wordType, __wordTranslation, __mushafPageDivisions, __lastRead } from '$utils/stores';
+	import { __chapterNumber, __pageNumber, __currentPage, __fontType, __wordTranslation, __mushafPageDivisions, __lastRead } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';
 	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
 	import { quranMetaData, chapterHeaderCodes } from '$data/quranMeta';
@@ -27,7 +27,7 @@
 
 	// load some previous and next pages fonts for v4
 	$: {
-		if ([2, 3].includes($__wordType)) {
+		if ([2, 3].includes($__fontType)) {
 			for (let thisPage = +page - 1; thisPage <= +page + 1; thisPage++) {
 				fetch(`${mushafFontLinks.COLRv1}/QCF4${`00${thisPage}`.slice(-3)}_COLOR-Regular.woff`);
 			}
@@ -39,7 +39,7 @@
 		(chapters = []), (verses = []), (lines = []);
 
 		pageData = (async () => {
-			const apiURL = `${apiEndpoint}/page?page=${page}&word_type=${selectableFontTypes[$__wordType].apiId}&word_translation=${$__wordTranslation}&v=92827326`;
+			const apiURL = `${apiEndpoint}/page?page=${page}&word_type=${selectableFontTypes[$__fontType].apiId}&word_translation=${$__wordTranslation}&v=92827326`;
 			const response = await fetch(apiURL);
 			const data = await response.json();
 			const apiData = data.data.verses;
@@ -133,7 +133,7 @@
 						</div>
 					{/if}
 
-					<div class="line {line} flex px-2 arabic-font-{$__wordType} {+page < 3 || centeredPageLines.includes(`${+page}:${line}`) ? 'justify-center' : null} {+page > 2 && !centeredPageLines.includes(`${+page}:${line}`) ? 'justify-between' : null}">
+					<div class="line {line} flex px-2 arabic-font-{$__fontType} {+page < 3 || centeredPageLines.includes(`${+page}:${line}`) ? 'justify-center' : null} {+page > 2 && !centeredPageLines.includes(`${+page}:${line}`) ? 'justify-between' : null}">
 						{#each Object.entries(JSON.parse(localStorage.getItem('pageData'))) as [key, value]}
 							<WordsBlock {key} {value} {line} />
 						{/each}

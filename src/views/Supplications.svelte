@@ -3,7 +3,7 @@
 	import PageHead from '$misc/PageHead.svelte';
 	import Individual from '$display/verses/modes/Individual.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
-	import { __currentPage, __wordType, __displayType, __wordTranslation, __verseTranslations } from '$utils/stores';
+	import { __currentPage, __fontType, __displayType, __wordTranslation, __verseTranslations } from '$utils/stores';
 	import { getSupplicationKeys } from '$utils/getSupplicationKeys';
 	import { fetchVersesData } from '$utils/fetchData';
 	import { errorLoadingDataMessage } from '$data/websiteSettings';
@@ -11,7 +11,7 @@
 	import { updateSettings } from '$utils/updateSettings';
 
 	// fetch supplication verses
-	$: fetchData = fetchVersesData(getSupplicationKeys(), $__wordType, $__wordTranslation, $__verseTranslations.toString());
+	$: fetchData = fetchVersesData(getSupplicationKeys(), $__fontType, $__wordTranslation, $__verseTranslations.toString());
 
 	// only allow display type 1 & 2, and don't save the layout in settings
 	if ([3, 4, 5].includes($__displayType)) updateSettings({ type: 'displayType', value: 1, skipSave: true });

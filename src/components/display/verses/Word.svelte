@@ -15,7 +15,7 @@
 
 	import { displayOptions, selectableThemes } from '$data/options';
 	import { supplicationsFromQuran } from '$data/quranMeta';
-	import { __currentPage, __wordType, __displayType, __userSettings, __audioSettings, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __morphologyKey, __wordTooltip, __verseKey, __websiteTheme } from '$utils/stores';
+	import { __currentPage, __fontType, __displayType, __userSettings, __audioSettings, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __morphologyKey, __wordTooltip, __verseKey, __websiteTheme } from '$utils/stores';
 	import { tajweedRulings, tajweedColorIds } from '$data/tajweedRulings';
 	import { apiEndpoint } from '$data/websiteSettings';
 
@@ -74,10 +74,10 @@
 	<div id={wordKey} class={wordDivClasses} on:click={() => wordClickHandler({ key: wordKey, type: 'word' })}>
 		<span class={wordSpanClasses} data-fontSize={fontSizes.arabicText}>
 			<!-- 1: Uthmanic Hafs Digital, 3: Indopak Madinah -->
-			{#if [1, 4].includes($__wordType)}
+			{#if [1, 4].includes($__fontType)}
 				{arabicSplit[word]}
 				<!-- 2: Uthmanic Hafs Mushaf -->
-			{:else if [2, 3].includes($__wordType)}
+			{:else if [2, 3].includes($__fontType)}
 				<span id="word-{wordKey.split(':')[1]}-{wordKey.split(':')[2]}" style="font-family: p{value.meta.page}" class={v4hafsClasses} on:mouseenter={() => (hoveredWordKey = wordKey)}>
 					<!-- word fix, see fixedMushafWords -->
 					{#if fixedMushafWords.hasOwnProperty(wordKey)}
@@ -99,7 +99,7 @@
 	</div>
 
 	<!-- tajweed colors popover (only for QPC v4 font) -->
-	{#if $__wordType === 3 && $__currentPage === 'chapter' && v4PopoverEnabled}
+	{#if $__fontType === 3 && $__currentPage === 'chapter' && v4PopoverEnabled}
 		<Popover class="w-64 text-sm font-light z-50 rounded-t-3xl" trigger="hover" triggeredBy="#word-{wordKey.split(':')[1]}-{wordKey.split(':')[2]}" arrow={false}>
 			{#await wordTajweedData}
 				<Spinner />

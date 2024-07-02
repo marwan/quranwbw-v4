@@ -1,12 +1,12 @@
 import { get } from 'svelte/store';
-import { __wordType, __chapterData, __wordTranslation, __verseTranslations, __timestampData, __chapterDataLoaded } from '$utils/stores';
+import { __fontType, __chapterData, __wordTranslation, __verseTranslations, __timestampData, __chapterDataLoaded } from '$utils/stores';
 import { apiEndpoint, staticEndpoint } from '$data/websiteSettings';
 import { quranMetaData } from '$data/quranMeta';
 import { selectableFontTypes } from '$data/options';
 
 // we first fetch specific verses (startVerse to endVerse), and then fetch the complete chapter data which will then be cached by the user's browser
 export async function fetchChapterData(complete = false, chapter, startVerse, endVerse, download = false) {
-	const wordType = get(__wordType);
+	const fontType = get(__fontType);
 	const wordTranslation = get(__wordTranslation);
 	const verseTranslations = get(__verseTranslations).toString();
 
@@ -17,7 +17,7 @@ export async function fetchChapterData(complete = false, chapter, startVerse, en
 		`${apiEndpoint}/verses?` +
 		new URLSearchParams({
 			verses,
-			word_type: selectableFontTypes[wordType].apiId,
+			word_type: selectableFontTypes[fontType].apiId,
 			word_translation: wordTranslation,
 			verse_translation: verseTranslations,
 			between: true
@@ -41,12 +41,12 @@ export async function fetchChapterData(complete = false, chapter, startVerse, en
 }
 
 // function to fetch individual verses
-export async function fetchVersesData(verses, wordType, wordTranslation, verseTranslations) {
+export async function fetchVersesData(verses, fontType, wordTranslation, verseTranslations) {
 	const apiURL =
 		`${apiEndpoint}/verses?` +
 		new URLSearchParams({
 			verses: verses,
-			word_type: selectableFontTypes[wordType].apiId,
+			word_type: selectableFontTypes[fontType].apiId,
 			word_translation: wordTranslation,
 			verse_translation: verseTranslations
 		});

@@ -13,7 +13,7 @@ let __websiteOnline,
 	__userNotes,
 	__userBookmarks,
 	__userToken,
-	__wordType,
+	__fontType,
 	__wordTranslation,
 	__verseTranslations,
 	__wordTranslationEnabled,
@@ -90,8 +90,8 @@ if (browser) {
 	// to store the token
 	__userToken = writable(localStorage.getItem('userToken'));
 
-	// to store the word type - Uthmani, IndoPak, etc...
-	__wordType = writable(userSettings.displaySettings.wordType);
+	// to store the font type - Uthmani, IndoPak, etc...
+	__fontType = writable(userSettings.displaySettings.fontType);
 
 	// to store the word translation
 	__wordTranslation = writable(userSettings.translations.word);
@@ -214,7 +214,7 @@ export {
 	__userNotes,
 	__userBookmarks,
 	__userToken,
-	__wordType,
+	__fontType,
 	__wordTranslation,
 	__verseTranslations,
 	__wordTranslationEnabled,
