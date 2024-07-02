@@ -117,7 +117,7 @@
 
 <PageHead title={`Page ${page}`} />
 
-<div id="page-block" class="text-center text-xl mt-6 overflow-x-hidden">
+<div id="page-block" class="text-center text-xl mt-6 mb-14 overflow-x-hidden">
 	{#await pageData}
 		<Spinner height="screen" margin="-mt-20" />
 	{:then}
