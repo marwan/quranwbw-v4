@@ -1,6 +1,6 @@
 <br />
 <div align="center">
-  <a target="_blank" href="https://v4.quranwbw.com"><img src="https://raw.githubusercontent.com/marwan/quranwbw-v4/main/static/images/logo.png" width="300"></a>
+  <a target="_blank" href="https://v4.quranwbw.com"><img src="https://raw.githubusercontent.com/marwan/quranwbw-v4/main/static/images/logo.png" width="200"></a>
 </div>
 
 # About

@@ -8,10 +8,11 @@
 	import Search from '$svgs/Search.svelte';
 	import { updateSettings } from '$utils/updateSettings';
 	import { quranMetaData, mostRead } from '$data/quranMeta';
-	import { __lastRead, __favouriteChapters, __userBookmarks, __timeSpecificChapters, __quranNavigationModalVisible } from '$utils/stores';
+	import { __lastRead, __favouriteChapters, __userBookmarks, __timeSpecificChapters } from '$utils/stores';
 	import { buttonClasses, buttonOutlineClasses } from '$data/commonClasses';
 	import { checkTimeSpecificChapters } from '$utils/checkTimeSpecificChapters';
 	import { term } from '$utils/terminologies';
+	import { toggleQuranNavigation } from '$utils/toggleQuranNavigation';
 
 	let lastReadChapter = 1;
 	let lastReadVerse = 1;
@@ -87,7 +88,7 @@
 			<!-- chapter / page etc... selector -->
 			<div class="flex flex-col space-y-2 md:space-y-0 md:flex-row justify-between text-xs mb-0 md:mb-2">
 				<!-- search bar -->
-				<button class="w-full md:w-max" on:click={() => __quranNavigationModalVisible.set(true)}>
+				<button class="w-full md:w-max" on:click={() => toggleQuranNavigation('show')}>
 					<span class="w-full pointer-events-none {buttonOutlineClasses}">
 						<span class="pt-1"><Search size={4} /></span>
 						<span>Navigate or Search Quran</span>

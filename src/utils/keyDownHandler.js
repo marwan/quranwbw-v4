@@ -1,4 +1,4 @@
-import { __quranNavigationModalVisible } from '$utils/stores';
+import { toggleQuranNavigation } from '$utils/toggleQuranNavigation';
 
 // check for key presses
 window.addEventListener(
@@ -7,7 +7,7 @@ window.addEventListener(
 		// open Quran nav modal when CTRL+K is pressed
 		if (event.ctrlKey && event.code === 'KeyK') {
 			event.preventDefault();
-			__quranNavigationModalVisible.set(true);
+			toggleQuranNavigation('show');
 		}
 	},
 	true
