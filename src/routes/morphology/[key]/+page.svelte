@@ -33,7 +33,7 @@
 	// fetch words
 	$: {
 		fetchWordsData = (async () => {
-			const response = await fetch(`${apiEndpoint}/morphology?words=${$__morphologyKey}`);
+			const response = await fetch(`${apiEndpoint}/morphology?words=${$__morphologyKey}&word_translation=${$__wordTranslation}`);
 			const data = await response.json();
 			return data.data;
 		})();
