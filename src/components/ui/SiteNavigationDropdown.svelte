@@ -30,10 +30,10 @@
 			title: 'Guess The Word',
 			link: '/games/guess-the-word'
 		},
-		{
-			title: 'FAQs',
-			link: '/faq'
-		},
+		// {
+		// 	title: 'FAQs',
+		// 	link: '/faq'
+		// },
 		{
 			title: 'About',
 			link: '/about'

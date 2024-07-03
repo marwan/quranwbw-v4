@@ -2,7 +2,6 @@
 	import PageHead from '$misc/PageHead.svelte';
 	import { __currentPage } from '$utils/stores';
 	import { linkClasses } from '$data/commonClasses';
-	import { term } from '$utils/terminologies';
 
 	__currentPage.set('about');
 </script>
@@ -22,16 +21,16 @@
 			</div>
 
 			<div id="about-website" class="flex flex-col space-y-4 mt-8 text-sm">
-				<span>Quranwbw.com is a Quran website with word by word translation, transliteration and corpus in multiple languages. You can also listen to how a word is pronounced and also listen to {term('verse')} recitations. </span>
+				<span> QuranWBW.com helps you read, listen and learn the Holy Quran word by word with the help of word audios, Tajweed colors and transliteration. You can also research using multi-language translations, tafsir, and dive deep with word morphology. </span>
 
-				<span
-					>This website is just a hobby project and is not being worked on full-time. If you'd like to report an issue, have any suggestions, or would like to contribute, please visit Quranwbw.com's <a class={linkClasses} target="_blank" rel="noreferrer" href="https://github.com/marwan/quranwbw-v4">GitHub repository</a>, or contact us on
-					<a class={linkClasses} href="mailto:quranwbw@gmail.com">quranwbw@gmail.com</a>.</span
-				>
+				<span>
+					This website is just a hobby project and is not being worked on full-time. If you'd like to report an issue, have any suggestions, or would like to contribute, please visit QuranWBW.com's <a class={linkClasses} target="_blank" rel="noreferrer" href="https://github.com/marwan/quranwbw-v4">GitHub repository</a>, or contact us on
+					<a class={linkClasses} href="mailto:quranwbw@gmail.com">quranwbw@gmail.com</a>.
+				</span>
 			</div>
 
 			<div id="website-credits" class="flex flex-col space-y-4 mt-6 text-sm">
-				<span>Quranwbw.com wouldn't be possible without these amazing people:</span>
+				<span>QuranWBW.com wouldn't be possible without these amazing people:</span>
 
 				<ul class="list-disc ml-5 space-y-2">
 					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="http://emuslim.com/Quran/Translation_English.asp">Dr. Shehnaz Shaikh, Ms. Kausar Khatri</a> for their English and <a class={linkClasses} target="_blank" rel="noreferrer" href="https://www.farhathashmi.com">Dr. Farhat Hashmi</a> for her Urdu word by word compilation.</li>

@@ -2,7 +2,7 @@ export const websiteFAQs = [
 	{
 		id: 1,
 		question: 'What is QuranWBW.com?',
-		answer: 'Quranwbw.com is a Quran website with word by word translation, transliteration and corpus in multiple languages. You can also listen to how a word is pronounced and also listen to verse recitations.'
+		answer: "QuranWBW.com is a website where you can read the Holy Quran word by word in multiple translations. You can also see a word's transliteration or morphology, and listen to how it is pronounced."
 	},
 	{
 		id: 2,
