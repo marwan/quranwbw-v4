@@ -9,25 +9,21 @@ export function toggleNavbar() {
 	const audioSettings = get(__audioSettings);
 
 	// only when it's the chapter or mushaf page
-	if (['chapter', 'page'].includes(get(__currentPage))) {
+	if (['chapter'].includes(get(__currentPage))) {
 		let currentScrollPos = getCurrentScroll();
 
 		if (!ticking) {
 			window.requestAnimationFrame(function () {
 				// scrolling up
 				// show both if the user is scrolling up or is at bottom of the screen
-				if (prevScrollpos > currentScrollPos || window.innerHeight + window.scrollY >= document.body.scrollHeight) {
+				if (prevScrollpos > currentScrollPos || window.innerHeight + window.scrollY >= document.body.scrollHeight - 100) {
 					__topNavbarVisible.set(true);
 					__bottomToolbarVisible.set(true);
 				}
 
 				// scrolling down
 				else {
-					// show both if the user is at the top of the screen
-					if (window.scrollY === 0) {
-						__topNavbarVisible.set(true);
-						__bottomToolbarVisible.set(true);
-					} else {
+					if (window.scrollY > 100) {
 						__topNavbarVisible.set(false);
 						__bottomToolbarVisible.set(false);
 					}
