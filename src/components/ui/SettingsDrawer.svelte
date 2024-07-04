@@ -33,11 +33,22 @@
 	$: fontSizeCodes = JSON.parse($__userSettings).displaySettings.fontSizes;
 	$: wordTranslationKey = Object.keys(selectableWordTranslations).filter((item) => selectableWordTranslations[item].id === $__wordTranslation);
 	$: selectedDisplayType = $__displayType;
-	$: if ($__currentPage === 'page') selectedDisplayType = 6; // Mushaf Mode
+
+	$: {
+		if ($__currentPage === 'page')
+			selectedDisplayType = 6; // Mushaf Mode
+		else {
+			const displayIdFromLS = JSON.parse(localStorage.getItem('userSettings')).displaySettings.displayType;
+			updateSettings({ type: 'displayType', value: displayIdFromLS });
+			selectedDisplayType = displayIdFromLS;
+		}
+	}
 
 	function displayTypeChangeHandler(event) {
+		const displayId = +event.target.value;
+
 		// non-mushaf modes
-		if ([1, 2, 3, 4, 5].includes(+event.target.value)) {
+		if ([1, 2, 3, 4, 5].includes(displayId)) {
 			if ($__currentPage === 'page') {
 				const firstWordKey = document.getElementsByClassName('word')[0].id;
 				const chapter = firstWordKey.split(':')[0];
@@ -45,11 +56,11 @@
 				goto(`/${chapter}/${verse}`);
 			}
 
-			updateSettings({ type: 'displayType', value: +event.target.value });
+			updateSettings({ type: 'displayType', value: displayId });
 		}
 
 		// mushaf mode
-		else if ([6].includes(+event.target.value)) {
+		else if ([6].includes(displayId)) {
 			goto(`/page/${$__lastRead.page}`);
 		}
 	}
