@@ -7,13 +7,14 @@
 	import CloseButton from '$ui/flowbite-svelte/utils/CloseButton.svelte';
 	import Dropdown from '$ui/flowbite-svelte/dropdown/Dropdown.svelte';
 	import Button from '$ui/flowbite-svelte/buttons/Button.svelte';
-	import { __currentPage, __chapterData, __chapterNumber, __fontType, __displayType, __websiteTheme, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __verseTranslations, __reciter, __playbackSpeed, __playTranslation, __userSettings, __wordTooltip, __settingsDrawerHidden, __wakeLockEnabled, __englishTerminology } from '$utils/stores';
+	import { __currentPage, __chapterData, __chapterNumber, __fontType, __displayType, __websiteTheme, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __verseTranslations, __reciter, __playbackSpeed, __playTranslation, __userSettings, __wordTooltip, __settingsDrawerHidden, __wakeLockEnabled, __englishTerminology, __lastRead } from '$utils/stores';
 	import { displayOptions, selectableFontTypes, selectableThemes, selectableVerseTranslations, verseTranslationsLanguages, selectableWordTranslations, selectableReciters, selectablePlaybackSpeeds, selectableTooltipOptions } from '$data/options';
 	import { updateSettings } from '$utils/updateSettings';
 	import { resetSettings } from '$utils/resetSettings';
 	import { disabledClasses, buttonClasses } from '$data/commonClasses';
 	import { sineIn } from 'svelte/easing';
 	import { term } from '$utils/terminologies';
+	import { goto } from '$app/navigation';
 
 	const transitionParamsRight = {
 		x: 320,
@@ -31,6 +32,27 @@
 
 	$: fontSizeCodes = JSON.parse($__userSettings).displaySettings.fontSizes;
 	$: wordTranslationKey = Object.keys(selectableWordTranslations).filter((item) => selectableWordTranslations[item].id === $__wordTranslation);
+	$: selectedDisplayType = $__displayType;
+	$: if ($__currentPage === 'page') selectedDisplayType = 6; // Mushaf Mode
+
+	function displayTypeChangeHandler(event) {
+		// non-mushaf modes
+		if ([1, 2, 3, 4, 5].includes(+event.target.value)) {
+			if ($__currentPage === 'page') {
+				const firstWordKey = document.getElementsByClassName('word')[0].id;
+				const chapter = firstWordKey.split(':')[0];
+				const verse = firstWordKey.split(':')[1];
+				goto(`/${chapter}/${verse}`);
+			}
+
+			updateSettings({ type: 'displayType', value: +event.target.value });
+		}
+
+		// mushaf mode
+		else if ([6].includes(+event.target.value)) {
+			goto(`/page/${$__lastRead.page}`);
+		}
+	}
 </script>
 
 <!-- settings drawer -->
@@ -62,13 +84,13 @@
 			<div class="border-b border-black/10"></div>
 
 			<!-- display-type-setting -->
-			<div id="display-type-setting" class="{settingsBlockClasses} {$__currentPage !== 'chapter' && disabledClasses}">
+			<div id="display-type-setting" class="{settingsBlockClasses} {!['chapter', 'page'].includes($__currentPage) && disabledClasses}">
 				<div class="flex flex-row justify-between items-center">
 					<div class="block">Display Type</div>
-					<Button class={selectorClasses}>{displayOptions[$__displayType].displayName}</Button>
+					<Button class={selectorClasses}>{displayOptions[selectedDisplayType].displayName}</Button>
 					<Dropdown class={dropdownClasses}>
 						{#each Object.entries(displayOptions) as [id, displayOption]}
-							<li><Radio name="displayType" bind:group={$__displayType} value={displayOption.displayID} on:change={(event) => updateSettings({ type: 'displayType', value: +event.target.value })} class={radioClasses}>{displayOption.displayName}</Radio></li>
+							<li><Radio name="displayType" bind:group={selectedDisplayType} value={displayOption.displayID} on:change={(event) => displayTypeChangeHandler(event)} class={radioClasses}>{displayOption.displayName}</Radio></li>
 						{/each}
 					</Dropdown>
 				</div>
