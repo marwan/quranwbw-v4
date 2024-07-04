@@ -16,12 +16,13 @@
 	import DownloadModal from '$ui/modals/DownloadModal.svelte';
 	import TafsirModal from '$ui/modals/TafsirModal.svelte';
 	import QuranNavigation from '$ui/QuranNavigation/QuranNavigation.svelte';
-	import { __websiteOnline, __currentPage, __chapterNumber, __settingsDrawerHidden, __wakeLockEnabled, __userToken, __fontType, __wordTranslation, __verseTranslations } from '$utils/stores';
+	import { __websiteOnline, __currentPage, __chapterNumber, __settingsDrawerHidden, __wakeLockEnabled, __userToken, __fontType, __wordTranslation, __verseTranslations, __selectedDisplayId } from '$utils/stores';
 	import { checkOldBookmarks } from '$utils/checkOldBookmarks';
 	import { debounce } from '$utils/debounce';
 	import { toggleNavbar } from '$utils/toggleNavbar';
 	import { resetAudioSettings } from '$utils/audioController';
-	import { downloadSettingsFromCloud } from '$utils/cloudSettings';
+	import { updateSettings } from '$utils/updateSettings';
+	// import { downloadSettingsFromCloud } from '$utils/cloudSettings';
 
 	// check old bookmarks for v3 update
 	checkOldBookmarks();
@@ -73,6 +74,17 @@
 
 	// stop all audio when the page or chapter is changed
 	$: if ($__currentPage || $__chapterNumber) resetAudioSettings({ location: 'end' });
+
+	// set display type Id for dropdowns
+	$: {
+		if ($__currentPage === 'page')
+			__selectedDisplayId.set(6); // Mushaf Mode
+		else {
+			const displayIdFromLS = JSON.parse(localStorage.getItem('userSettings')).displaySettings.displayType;
+			updateSettings({ type: 'displayType', value: displayIdFromLS });
+			__selectedDisplayId.set(displayIdFromLS);
+		}
+	}
 
 	// toggle bottom nav on scroll
 	document.getElementsByTagName('body')[0].onscroll = () => {

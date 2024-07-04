@@ -7,7 +7,7 @@
 	import Word from '$display/verses/Word.svelte';
 	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
 	import { goto } from '$app/navigation';
-	import { displayOptions, mushafFontLinks, selectableThemes } from '$data/options';
+	import { selectableDisplays, mushafFontLinks, selectableThemes } from '$data/options';
 	import { __currentPage, __fontType, __displayType, __userSettings, __audioSettings, __morphologyKey, __verseKey, __websiteTheme } from '$utils/stores';
 	import { loadFont } from '$utils/loadFont';
 	import { wordAudioController } from '$utils/audioController';
@@ -22,7 +22,7 @@
 
 	const fontSizes = JSON.parse($__userSettings).displaySettings.fontSizes;
 
-	$: displayIsContinuous = displayOptions[$__displayType].continuous;
+	$: displayIsContinuous = selectableDisplays[$__displayType].continuous;
 
 	// if mushaf fonts are selected, then dynamically load the fonts
 	if ([2, 3].includes($__fontType)) {
@@ -56,7 +56,7 @@
 		hover:cursor-pointer
 		${selectableThemes[$__websiteTheme].palette === 1 ? 'hover:bg-white/20' : 'hover:bg-black/10'}
 		${$__displayType === 1 ? 'text-center flex flex-col' : 'inline-flex flex-col'}
-		${displayOptions[$__displayType].layout === 'wbw' ? 'p-3' : [2, 3].includes($__fontType) ? ($__currentPage === 'page' ? 'p-0' : 'px-0 py-1') : 'p-1'}
+		${selectableDisplays[$__displayType].layout === 'wbw' ? 'p-3' : [2, 3].includes($__fontType) ? ($__currentPage === 'page' ? 'p-0' : 'px-0 py-1') : 'p-1'}
 	`;
 
 	$: wordSpanClasses = `

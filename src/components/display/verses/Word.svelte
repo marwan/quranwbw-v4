@@ -13,7 +13,7 @@
 	import Popover from '$ui/flowbite-svelte/popover/Popover.svelte';
 	// import { Popover } from 'flowbite-svelte';
 
-	import { displayOptions, selectableThemes } from '$data/options';
+	import { selectableDisplays, selectableThemes } from '$data/options';
 	import { supplicationsFromQuran } from '$data/quranMeta';
 	import { __currentPage, __fontType, __displayType, __userSettings, __audioSettings, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __morphologyKey, __wordTooltip, __verseKey, __websiteTheme } from '$utils/stores';
 	import { tajweedRulings, tajweedColorIds } from '$data/tajweedRulings';
@@ -35,7 +35,7 @@
 		'13:37:9': 'ﲀﲁ' // 7th line first word - Ma Ja'aka
 	};
 
-	$: displayIsContinuous = displayOptions[$__displayType].continuous;
+	$: displayIsContinuous = selectableDisplays[$__displayType].continuous;
 
 	$: wordDivClasses = `
 	  word rounded-lg ${wordAndEndIconCommonClasses} print:break-inside-avoid

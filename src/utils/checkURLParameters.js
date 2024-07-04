@@ -1,5 +1,5 @@
 import { updateSettings } from '$utils/updateSettings';
-import { displayOptions, selectableFontTypes, selectableThemes, selectableWordTranslations } from '$data/options';
+import { selectableDisplays, selectableFontTypes, selectableThemes, selectableWordTranslations } from '$data/options';
 
 const params = new URLSearchParams(window.location.search);
 
@@ -17,7 +17,7 @@ if (fontType !== null && selectableFontTypes[fontType] !== undefined) {
 }
 
 // display_type
-if (displayType !== null && displayOptions[displayType] !== undefined) {
+if (displayType !== null && selectableDisplays[displayType] !== undefined) {
 	updateSettings({ type: 'displayType', value: displayType });
 }
 

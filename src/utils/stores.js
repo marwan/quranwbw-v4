@@ -23,6 +23,7 @@ let __websiteOnline,
 	__playbackSpeed,
 	__playTranslation,
 	__displayType,
+	__selectedDisplayId,
 	__websiteTheme,
 	__lastRead,
 	__favouriteChapters,
@@ -119,6 +120,7 @@ if (browser) {
 
 	// to store the display type - WBW, Normal, Continuous, etc...
 	__displayType = writable(userSettings.displaySettings.displayType);
+	__selectedDisplayId = writable(1);
 
 	// to store the website theme
 	__websiteTheme = writable(userSettings.displaySettings.websiteTheme);
@@ -224,6 +226,7 @@ export {
 	__playbackSpeed,
 	__playTranslation,
 	__displayType,
+	__selectedDisplayId,
 	__websiteTheme,
 	__lastRead,
 	__favouriteChapters,
