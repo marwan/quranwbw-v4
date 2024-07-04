@@ -1,4 +1,4 @@
-export const displayOptions = {
+export const selectableDisplays = {
 	1: { displayID: 1, displayName: 'Word by Word', displayComponent: 'WBWDisplay', layout: 'wbw', continuous: false, customClasses: null },
 	2: { displayID: 2, displayName: 'Normal', displayComponent: 'NormalDisplay', layout: 'normal', continuous: false, customClasses: null },
 	3: { displayID: 3, displayName: 'Continuous Word by Word', displayComponent: 'ContinuousDisplay', layout: 'wbw', continuous: true, customClasses: 'text-center direction-rtl' },

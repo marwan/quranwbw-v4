@@ -5,7 +5,6 @@
 	import { __currentPage, __fontType, __displayType, __wordTranslation, __verseTranslations, __userBookmarks } from '$utils/stores';
 	import { fetchVersesData } from '$utils/fetchData';
 	import { errorLoadingDataMessage } from '$data/websiteSettings';
-	import { updateSettings } from '$utils/updateSettings';
 
 	let fetchData;
 

@@ -7,14 +7,14 @@
 	import CloseButton from '$ui/flowbite-svelte/utils/CloseButton.svelte';
 	import Dropdown from '$ui/flowbite-svelte/dropdown/Dropdown.svelte';
 	import Button from '$ui/flowbite-svelte/buttons/Button.svelte';
-	import { __currentPage, __chapterData, __chapterNumber, __fontType, __displayType, __websiteTheme, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __verseTranslations, __reciter, __playbackSpeed, __playTranslation, __userSettings, __wordTooltip, __settingsDrawerHidden, __wakeLockEnabled, __englishTerminology, __lastRead } from '$utils/stores';
-	import { displayOptions, selectableFontTypes, selectableThemes, selectableVerseTranslations, verseTranslationsLanguages, selectableWordTranslations, selectableReciters, selectablePlaybackSpeeds, selectableTooltipOptions } from '$data/options';
+	import { __currentPage, __chapterData, __chapterNumber, __fontType, __displayType, __selectedDisplayId, __websiteTheme, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __verseTranslations, __reciter, __playbackSpeed, __playTranslation, __userSettings, __wordTooltip, __settingsDrawerHidden, __wakeLockEnabled, __englishTerminology, __lastRead } from '$utils/stores';
+	import { selectableDisplays, selectableFontTypes, selectableThemes, selectableVerseTranslations, verseTranslationsLanguages, selectableWordTranslations, selectableReciters, selectablePlaybackSpeeds, selectableTooltipOptions } from '$data/options';
 	import { updateSettings } from '$utils/updateSettings';
 	import { resetSettings } from '$utils/resetSettings';
 	import { disabledClasses, buttonClasses } from '$data/commonClasses';
 	import { sineIn } from 'svelte/easing';
 	import { term } from '$utils/terminologies';
-	import { goto } from '$app/navigation';
+	import { displayTypeChangeHandler } from '$utils/displayTypeChangeHandler';
 
 	const transitionParamsRight = {
 		x: 320,
@@ -32,38 +32,6 @@
 
 	$: fontSizeCodes = JSON.parse($__userSettings).displaySettings.fontSizes;
 	$: wordTranslationKey = Object.keys(selectableWordTranslations).filter((item) => selectableWordTranslations[item].id === $__wordTranslation);
-	$: selectedDisplayType = $__displayType;
-
-	$: {
-		if ($__currentPage === 'page')
-			selectedDisplayType = 6; // Mushaf Mode
-		else {
-			const displayIdFromLS = JSON.parse(localStorage.getItem('userSettings')).displaySettings.displayType;
-			updateSettings({ type: 'displayType', value: displayIdFromLS });
-			selectedDisplayType = displayIdFromLS;
-		}
-	}
-
-	function displayTypeChangeHandler(event) {
-		const displayId = +event.target.value;
-
-		// non-mushaf modes
-		if ([1, 2, 3, 4, 5].includes(displayId)) {
-			if ($__currentPage === 'page') {
-				const firstWordKey = document.getElementsByClassName('word')[0].id;
-				const chapter = firstWordKey.split(':')[0];
-				const verse = firstWordKey.split(':')[1];
-				goto(`/${chapter}/${verse}`);
-			}
-
-			updateSettings({ type: 'displayType', value: displayId });
-		}
-
-		// mushaf mode
-		else if ([6].includes(displayId)) {
-			goto(`/page/${$__lastRead.page}`);
-		}
-	}
 </script>
 
 <!-- settings drawer -->
@@ -98,10 +66,10 @@
 			<div id="display-type-setting" class="{settingsBlockClasses} {!['chapter', 'page'].includes($__currentPage) && disabledClasses}">
 				<div class="flex flex-row justify-between items-center">
 					<div class="block">Display Type</div>
-					<Button class={selectorClasses}>{displayOptions[selectedDisplayType].displayName}</Button>
+					<Button class={selectorClasses}>{selectableDisplays[$__selectedDisplayId].displayName}</Button>
 					<Dropdown class={dropdownClasses}>
-						{#each Object.entries(displayOptions) as [id, displayOption]}
-							<li><Radio name="displayType" bind:group={selectedDisplayType} value={displayOption.displayID} on:change={(event) => displayTypeChangeHandler(event)} class={radioClasses}>{displayOption.displayName}</Radio></li>
+						{#each Object.entries(selectableDisplays) as [id, displayOption]}
+							<li><Radio name="displayType" bind:group={$__selectedDisplayId} value={displayOption.displayID} on:change={(event) => displayTypeChangeHandler(+event.target.value)} class={radioClasses}>{displayOption.displayName}</Radio></li>
 						{/each}
 					</Dropdown>
 				</div>

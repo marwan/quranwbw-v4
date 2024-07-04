@@ -11,7 +11,6 @@
 	import { buttonOutlineClasses } from '$data/commonClasses';
 	import { fetchVersesData } from '$utils/fetchData';
 	import { term } from '$utils/terminologies';
-	import { updateSettings } from '$utils/updateSettings';
 
 	let fetchWordsData, fetchWordSummary;
 	let chapter, verse, word;

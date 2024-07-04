@@ -8,7 +8,6 @@
 	import { fetchVersesData } from '$utils/fetchData';
 	import { errorLoadingDataMessage } from '$data/websiteSettings';
 	import { term } from '$utils/terminologies';
-	import { updateSettings } from '$utils/updateSettings';
 
 	// fetch supplication verses
 	$: fetchData = fetchVersesData(getSupplicationKeys(), $__fontType, $__wordTranslation, $__verseTranslations.toString());
