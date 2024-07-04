@@ -8,7 +8,7 @@
 	import WordsBlock from '$display/verses/WordsBlock.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
 	import { goto } from '$app/navigation';
-	import { __chapterNumber, __pageNumber, __currentPage, __fontType, __wordTranslation, __mushafPageDivisions, __lastRead } from '$utils/stores';
+	import { __chapterNumber, __pageNumber, __currentPage, __fontType, __wordTranslation, __mushafPageDivisions, __lastRead, __displayType } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';
 	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
 	import { quranMetaData, chapterHeaderCodes } from '$data/quranMeta';
@@ -110,7 +110,7 @@
 	}
 
 	// only allow continious normal mode, but skip saving the settings
-	updateSettings({ type: 'displayType', value: 4, skipSave: true });
+	$__displayType = 4;
 
 	__currentPage.set('page');
 </script>

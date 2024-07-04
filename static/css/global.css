@@ -3667,6 +3667,10 @@ svg {
     margin-bottom: 0.5rem;
   }
 
+  .md\:ml-1 {
+    margin-left: 0.25rem;
+  }
+
   .md\:mt-2 {
     margin-top: 0.5rem;
   }
