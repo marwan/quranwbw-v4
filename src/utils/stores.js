@@ -19,6 +19,7 @@ let __websiteOnline,
 	__wordTranslationEnabled,
 	__wordTransliterationEnabled,
 	__reciter,
+	__translationReciter,
 	__timestampData,
 	__playbackSpeed,
 	__playTranslation,
@@ -108,6 +109,7 @@ if (browser) {
 
 	// to store reciter
 	__reciter = writable(userSettings.audioSettings.reciter);
+	__translationReciter = writable(userSettings.audioSettings.translationReciter);
 
 	// to store the word timestamp data fetched from the API
 	__timestampData = writable(null);
@@ -222,6 +224,7 @@ export {
 	__wordTranslationEnabled,
 	__wordTransliterationEnabled,
 	__reciter,
+	__translationReciter,
 	__timestampData,
 	__playbackSpeed,
 	__playTranslation,

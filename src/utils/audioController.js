@@ -1,8 +1,8 @@
 import { get } from 'svelte/store';
 import { quranMetaData } from '$data/quranMeta';
-import { __reciter, __playbackSpeed, __audioSettings, __audioModalVisible, __currentPage, __chapterNumber, __chapterData, __playTranslation, __timestampData } from '$utils/stores';
+import { __reciter, __translationReciter, __playbackSpeed, __audioSettings, __audioModalVisible, __currentPage, __chapterNumber, __chapterData, __playTranslation, __timestampData } from '$utils/stores';
 import { wordsAudioURL } from '$data/websiteSettings';
-import { selectableReciters, selectablePlaybackSpeeds } from '$data/options';
+import { selectableReciters, selectableTranslationReciters, selectablePlaybackSpeeds } from '$data/options';
 import { fetchTimestampData } from '$utils/fetchData';
 import { scrollSmoothly } from '$utils/scrollSmoothly';
 
@@ -27,7 +27,7 @@ export async function playVerseAudio(props) {
 
 	if (props.language === 'arabic') reciterAudioUrl = selectableReciters[get(__reciter)].url;
 	// or if the user has opted to play the translation after arabic audio, the URL would have to be updated
-	if (props.language === 'translation') reciterAudioUrl = 'https://everyayah.com/data/English/Sahih_Intnl_Ibrahim_Walk_192kbps/';
+	if (props.language === 'translation') reciterAudioUrl = selectableTranslationReciters[get(__translationReciter)].url;
 
 	// generate mp3 file names for current and next verse
 	const currentVerseFileName = `${`00${playChapter}`.slice(-3)}${`00${playVerse}`.slice(-3)}.mp3`;
@@ -57,7 +57,7 @@ export async function playVerseAudio(props) {
 		}
 
 		try {
-			scrollSmoothly(document.getElementById(`${audioSettings.playingKey}`).offsetTop - 200, 500);
+			scrollSmoothly(document.getElementById(`${audioSettings.playingKey}`).offsetTop - 75, 500);
 		} catch (error) {
 			// ...
 		}

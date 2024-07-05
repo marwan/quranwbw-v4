@@ -214,7 +214,7 @@ export const selectableReciters = {
 	2: { id: 2, timestampSlug: 'basit_murattal', reciter: 'Abdul Basit (Murattal)', url: 'https://verses.quran.com/AbdulBaset/Murattal/mp3/' },
 	3: { id: 3, reciter: 'Abdul-Rahman Al-Sudais', url: 'https://mirrors.quranicaudio.com/everyayah/Abdurrahmaan_As-Sudais_192kbps/' },
 	4: { id: 4, reciter: 'Abu Bakr Ash-Shaatree', url: 'https://mirrors.quranicaudio.com/everyayah/Abu_Bakr_Ash-Shaatree_128kbps/' },
-	5: { id: 5, reciter: 'Dr. Farhat Hashmi (Urdu/Hindi WBW)', url: 'https://everyayah.com/data/translations/urdu_farhat_hashmi/' },
+	// 5: ...
 	6: { id: 6, timestampSlug: 'rifai', reciter: 'Hani Ar-Rifai', url: 'https://everyayah.com/data/Hani_Rifai_192kbps/' },
 	7: { id: 7, reciter: 'Maher Al-Muaiqly', url: 'https://mirrors.quranicaudio.com/everyayah/Maher_AlMuaiqly_64kbps/' },
 	8: { id: 8, timestampSlug: 'husary', reciter: 'Mahmoud Khalil Al-Husary', url: 'https://everyayah.com/data/Husary_128kbps/' },
@@ -226,6 +226,12 @@ export const selectableReciters = {
 	14: { id: 14, reciter: 'Nasser Al Qatami', url: 'https://everyayah.com/data/Nasser_Alqatami_128kbps/' },
 	15: { id: 15, timestampSlug: 'shuraym', reciter: 'Saood Ash-Shuraym', url: 'https://everyayah.com/data/Saood_ash-Shuraym_128kbps/' },
 	16: { id: 16, reciter: 'Yasser Ad-Dossari', url: 'https://mirrors.quranicaudio.com/everyayah/Yasser_Ad-Dussary_128kbps/' }
+};
+
+export const selectableTranslationReciters = {
+	1: { id: 1, reciter: 'English - Ibrahim Walk (Sahih International)', url: 'https://everyayah.com/data/English/Sahih_Intnl_Ibrahim_Walk_192kbps/' },
+	2: { id: 2, reciter: 'Urdu - Dr. Farhat Hashmi (word by word)', url: 'https://everyayah.com/data/translations/urdu_farhat_hashmi/' },
+	3: { id: 3, reciter: 'Urdu - Shamshad Ali Khan', url: 'https://everyayah.com/data/translations/urdu_shamshad_ali_khan_46kbps/' }
 };
 
 export const selectablePlaybackSpeeds = {

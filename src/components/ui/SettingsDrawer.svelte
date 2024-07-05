@@ -7,8 +7,30 @@
 	import CloseButton from '$ui/flowbite-svelte/utils/CloseButton.svelte';
 	import Dropdown from '$ui/flowbite-svelte/dropdown/Dropdown.svelte';
 	import Button from '$ui/flowbite-svelte/buttons/Button.svelte';
-	import { __currentPage, __chapterData, __chapterNumber, __fontType, __displayType, __selectedDisplayId, __websiteTheme, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __verseTranslations, __reciter, __playbackSpeed, __playTranslation, __userSettings, __wordTooltip, __settingsDrawerHidden, __wakeLockEnabled, __englishTerminology, __lastRead } from '$utils/stores';
-	import { selectableDisplays, selectableFontTypes, selectableThemes, selectableVerseTranslations, verseTranslationsLanguages, selectableWordTranslations, selectableReciters, selectablePlaybackSpeeds, selectableTooltipOptions } from '$data/options';
+	import {
+		__currentPage,
+		__chapterData,
+		__chapterNumber,
+		__fontType,
+		__displayType,
+		__selectedDisplayId,
+		__websiteTheme,
+		__wordTranslation,
+		__wordTranslationEnabled,
+		__wordTransliterationEnabled,
+		__verseTranslations,
+		__reciter,
+		__translationReciter,
+		__playbackSpeed,
+		__playTranslation,
+		__userSettings,
+		__wordTooltip,
+		__settingsDrawerHidden,
+		__wakeLockEnabled,
+		__englishTerminology,
+		__lastRead
+	} from '$utils/stores';
+	import { selectableDisplays, selectableFontTypes, selectableThemes, selectableVerseTranslations, verseTranslationsLanguages, selectableWordTranslations, selectableReciters, selectableTranslationReciters, selectablePlaybackSpeeds, selectableTooltipOptions } from '$data/options';
 	import { updateSettings } from '$utils/updateSettings';
 	import { resetSettings } from '$utils/resetSettings';
 	import { disabledClasses, buttonClasses } from '$data/commonClasses';
@@ -288,7 +310,23 @@
 						{/each}
 					</Dropdown>
 				</div>
-				<p class={settingsDescriptionClasses}>Desired reciter whose audio will be played when you choose to listen to a {term('verse')}.</p>
+				<p class={settingsDescriptionClasses}>The reciter whose audio will be played when you choose to listen to a {term('verse')}.</p>
+			</div>
+
+			<div class="border-b border-black/10"></div>
+
+			<!-- translation-reciter-setting -->
+			<div id="translation-reciter-setting" class={settingsBlockClasses}>
+				<div class="flex flex-row justify-between items-center">
+					<div class="block">Translation Reciter</div>
+					<Button class={selectorClasses}>{selectableTranslationReciters[$__translationReciter].reciter}</Button>
+					<Dropdown class={dropdownClasses}>
+						{#each Object.entries(selectableTranslationReciters) as [id, reciter]}
+							<li><Radio name="reciter" bind:group={$__translationReciter} value={reciter.id} on:change={(event) => updateSettings({ type: 'translationReciter', value: +event.target.value })} class={radioClasses}>{reciter.reciter}</Radio></li>
+						{/each}
+					</Dropdown>
+				</div>
+				<p class={settingsDescriptionClasses}>The translation reciter whose audio will be played after the {term('verse')} audio.</p>
 			</div>
 
 			<div class="border-b border-black/10"></div>

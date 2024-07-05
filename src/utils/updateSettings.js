@@ -11,6 +11,7 @@ import {
 	__wordTranslationEnabled,
 	__wordTransliterationEnabled,
 	__reciter,
+	__translationReciter,
 	__playbackSpeed,
 	__playTranslation,
 	__lastRead,
@@ -119,6 +120,12 @@ export function updateSettings(props) {
 		case 'reciter':
 			__reciter.set(props.value);
 			userSettings.audioSettings.reciter = props.value;
+			break;
+
+		// for translation reciter
+		case 'translationReciter':
+			__translationReciter.set(props.value);
+			userSettings.audioSettings.translationReciter = props.value;
 			break;
 
 		// for playback speed
