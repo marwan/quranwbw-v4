@@ -189,7 +189,7 @@
 			<div id="arabic-word-size-setting" class="{settingsBlockClasses} {$__currentPage === 'page' && disabledClasses}">
 				<div class="flex flex-row justify-between items-center">
 					<span class="block">Arabic Word Size ({fontSizeCodes.arabicText.split('-')[1]})</span>
-					<div class="inline-flex rounded-md shadow-sm" role="group">
+					<div class="inline-flex rounded-3xl shadow-sm" role="group">
 						<button type="button" on:click={() => updateSettings({ type: 'arabicText', action: 'increase' })} class="w-16 border px-6 border-black/10 rounded-l-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5">
 							<Plus size={3} />
 						</button>
@@ -207,7 +207,7 @@
 			<div id="word-translation-size-setting" class={settingsBlockClasses}>
 				<div class="flex flex-row justify-between items-center">
 					<span class="block">Word Tr/Tl Size ({fontSizeCodes.wordTranslationText.split('-')[1]})</span>
-					<div class="inline-flex rounded-md shadow-sm" role="group">
+					<div class="inline-flex rounded-3xl shadow-sm" role="group">
 						<button type="button" on:click={() => updateSettings({ type: 'wordTranslationText', action: 'increase' })} class="w-16 border px-6 border-black/10 rounded-l-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:focus:ring-gray-500 dark:focus:border-gray-500">
 							<Plus size={3} />
 						</button>
@@ -225,7 +225,7 @@
 			<div id="verse-translation-size-setting" class={settingsBlockClasses}>
 				<div class="flex flex-row justify-between items-center">
 					<span class="block">{term('verse')} Tr/Tl Size ({fontSizeCodes.verseTranslationText.split('-')[1]})</span>
-					<div class="inline-flex rounded-md shadow-sm" role="group">
+					<div class="inline-flex rounded-3xl shadow-sm" role="group">
 						<button type="button" on:click={() => updateSettings({ type: 'verseTranslationText', action: 'increase' })} class="w-16 border px-6 border-black/10 rounded-l-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:focus:ring-gray-500 dark:focus:border-gray-500">
 							<Plus size={3} />
 						</button>
