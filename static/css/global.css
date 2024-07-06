@@ -1530,10 +1530,6 @@ input[type="range"]::-ms-fill-lower {
   width: max-content;
 }
 
-.w-screen {
-  width: 100vw;
-}
-
 .min-w-28 {
   min-width: 7rem;
 }
@@ -3570,11 +3566,6 @@ svg {
 
 .disabled\:opacity-50:disabled {
   opacity: 0.5;
-}
-
-.group:hover .group-hover\:text-gray-500 {
-  --tw-text-opacity: 1;
-  color: rgb(107 114 128 / var(--tw-text-opacity));
 }
 
 .peer:checked ~ .peer-checked\:bg-gray-600 {

@@ -9,8 +9,16 @@
 	import { term } from '$utils/terminologies';
 
 	let tasfirsList = [
-		{ value: 'en-tafisr-ibn-kathir', name: 'Ibn Kathir (Abridged)' },
-		{ value: 'en-tafsir-maarif-ul-quran', name: "Ma'arif al-Qur'an" }
+		// english
+		{ value: 'en-tafisr-ibn-kathir', name: 'English - Tafsir Ibn Kathir (Abridged)', author: 'Ibn Kathir' },
+		{ value: 'en-tafsir-maarif-ul-quran', name: "English - Ma'arif al-Qur'an", author: 'Mufti Muhammad Shafi' },
+		{ value: 'tazkirul-quran-en', name: 'English - Tazkirul Quran', author: 'Maulana Wahiduddin Khan' },
+
+		// urdu
+		{ value: 'tafseer-ibn-e-kaseer-urdu', name: 'Urdu - Tafsir Ibn Kathir', author: 'Ibn Kathir' },
+		{ value: 'tazkiru-quran-ur', name: 'Urdu - Tazkirul Quran', author: 'Maulana Wahiduddin Khan' },
+		{ value: 'tafsir-bayan-ul-quran', name: 'Urdu - Bayan ul Quran', author: 'Maulana Ashraf Ali Thanvi' },
+		{ value: 'tafsir-fe-zalul-quran-syed-qatab', name: 'Urdu - Fi Zilal al-Quran', author: 'Sayyid Qutb' }
 	];
 
 	let selectedTafsir = tasfirsList[0].value;
@@ -43,7 +51,7 @@
 					<div class="font-bold">You are reading a {term('tafsir')} for the group of {term('verses')} - {Object.keys(tafsirData.tafsir.verses)[0]} to {Object.keys(tafsirData.tafsir.verses)[Object.keys(tafsirData.tafsir.verses).length - 1]}.</div>
 				{/if}
 
-				<div class="flex flex-col space-y-4">
+				<div class="flex flex-col space-y-4 {tafsirData.tafsir.language_id === 174 && 'font-Urdu direction-rtl text-lg'}">
 					{@html tafsirData.tafsir.text}
 				</div>
 			</div>
