@@ -8,7 +8,7 @@
 	import { disabledClasses } from '$data/commonClasses';
 	import { displayTypeChangeHandler } from '$utils/displayTypeChangeHandler';
 
-	const radioClasses = 'font-normal w-max';
+	const radioClasses = 'font-normal';
 	const dropdownClasses = 'w-52 p-3 space-y-3 text-sm max-h-64 overflow-y-scroll theme-grayscale';
 </script>
 

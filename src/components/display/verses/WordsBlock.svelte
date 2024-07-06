@@ -10,7 +10,7 @@
 	import { selectableDisplays, mushafFontLinks, selectableThemes } from '$data/options';
 	import { __currentPage, __fontType, __displayType, __userSettings, __audioSettings, __morphologyKey, __verseKey, __websiteTheme } from '$utils/stores';
 	import { loadFont } from '$utils/loadFont';
-	import { wordAudioController } from '$utils/audioController';
+	import { playVerseAudio, wordAudioController } from '$utils/audioController';
 	import { updateSettings } from '$utils/updateSettings';
 
 	const userSettings = JSON.parse(localStorage.getItem('userSettings'));
@@ -39,16 +39,26 @@
 	// 2. if a word is clicked on other pages, play the word's audio
 	// 3. if the end verse icon is clicked on any page, show the verse options dropdown
 	function wordClickHandler(props) {
+		// only if its morphology page and a word is clicked
 		if ($__currentPage === 'morphology' && props.type === 'word') {
 			__morphologyKey.set(props.key);
 			goto(`/morphology/${props.key}`, { replaceState: false });
-		} else {
-			const wordChapter = +props.key.split(':')[0];
-			const wordVerse = +props.key.split(':')[1];
+		}
 
+		// for all other pages
+		else {
+			__verseKey.set(props.key);
+
+			// word in verse
 			if (props.type === 'word') {
-				wordAudioController({ key: props.key, chapter: wordChapter, verse: wordVerse });
-			} else __verseKey.set(`${wordChapter}:${wordVerse}`);
+				wordAudioController({ key: props.key, chapter: +props.key.split(':')[0], verse: +props.key.split(':')[1] });
+			}
+
+			// end verse icon
+			else if (props.type === 'end') {
+				// for continuous modes, the verse options dropdown will open, but if its not a continuous mode...
+				if (!displayIsContinuous) playVerseAudio({ key: props.key, language: 'arabic', timesToRepeat: 1 });
+			}
 		}
 	}
 
@@ -63,7 +73,7 @@
 		arabicText leading-normal 
 		arabic-font-${$__fontType} 
 		${$__currentPage !== 'page' && fontSizes.arabicText} 
-		${displayIsContinuous ? 'inline-block group-hover:text-gray-500' : null}
+		${displayIsContinuous ? 'inline-block' : null}
 		${[1, 4].includes($__fontType) ? 'text-black theme' : null}
 	`;
 
@@ -96,7 +106,9 @@
 			{/if}
 		</span>
 	</div>
-	<VerseOptionsDropdown page={value.meta.page} />
+	{#if displayIsContinuous}
+		<VerseOptionsDropdown page={value.meta.page} />
+	{/if}
 
 	<!-- end icon tooltip -->
 	<Tooltip arrow={false} type="light" class="z-30 inline-flex font-filter">End of {key}</Tooltip>
