@@ -43,7 +43,7 @@
 		<div class="text-sm text-black flex flex-col space-y-6">
 			<div class="flex flex-row items-center">
 				<span class="mr-2">Tafsir: </span>
-				<Select class="mt-2 w-fit rounded-3xl focus:border-gray-500 text-black theme-grayscale" items={tasfirsList} bind:value={selectedTafsir} />
+				<Select class="mt-2 w-56 rounded-3xl focus:border-gray-500 text-black theme-grayscale truncate" items={tasfirsList} bind:value={selectedTafsir} />
 			</div>
 
 			<div class="flex flex-col space-y-4">

@@ -51,7 +51,8 @@ let __websiteOnline,
 	__quizCorrectAnswers,
 	__quizWrongAnswers,
 	__timeSpecificChapters,
-	__englishTerminology;
+	__englishTerminology,
+	__hideNonDuaPart;
 
 if (browser) {
 	const userSettings = JSON.parse(localStorage.getItem('userSettings'));
@@ -202,7 +203,11 @@ if (browser) {
 		isNight: false
 	});
 
+	// english/arabic Quranic terms
 	__englishTerminology = writable(userSettings.displaySettings.englishTerminology);
+
+	// show/hide non-dua words
+	__hideNonDuaPart = writable(userSettings.displaySettings.hideNonDuaPart);
 }
 
 export {
@@ -256,5 +261,6 @@ export {
 	__quizCorrectAnswers,
 	__quizWrongAnswers,
 	__timeSpecificChapters,
-	__englishTerminology
+	__englishTerminology,
+	__hideNonDuaPart
 };

@@ -22,7 +22,8 @@ import {
 	__userNotes,
 	__quizCorrectAnswers,
 	__quizWrongAnswers,
-	__englishTerminology
+	__englishTerminology,
+	__hideNonDuaPart
 } from '$utils/stores';
 import { selectableVerseTranslations } from '$data/options';
 // import { uploadSettingsToCloud } from '$utils/cloudSettings';
@@ -226,6 +227,12 @@ export function updateSettings(props) {
 		case 'wakeLockEnabled':
 			__wakeLockEnabled.set(props.value);
 			userSettings.displaySettings.wakeLockEnabled = props.value;
+			break;
+
+		// for toggling non-dua words
+		case 'hideNonDuaPart':
+			__hideNonDuaPart.set(props.value);
+			userSettings.displaySettings.hideNonDuaPart = props.value;
 			break;
 
 		// for quiz correct answers

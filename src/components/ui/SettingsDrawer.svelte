@@ -28,7 +28,8 @@
 		__settingsDrawerHidden,
 		__wakeLockEnabled,
 		__englishTerminology,
-		__lastRead
+		__lastRead,
+		__hideNonDuaPart
 	} from '$utils/stores';
 	import { selectableDisplays, selectableFontTypes, selectableThemes, selectableVerseTranslations, verseTranslationsLanguages, selectableWordTranslations, selectableReciters, selectableTranslationReciters, selectablePlaybackSpeeds, selectableTooltipOptions } from '$data/options';
 	import { updateSettings } from '$utils/updateSettings';
@@ -376,6 +377,20 @@
 					</label>
 				</div>
 				<p class={settingsDescriptionClasses}>Switch between the English and Arabic terminologies used on the website.</p>
+			</div>
+
+			<div class="border-b border-black/10"></div>
+
+			<!-- non-dua-part-toggle -->
+			<div id="non-dua-part-toggle" class={settingsBlockClasses}>
+				<div class="flex flex-row justify-between items-center">
+					<span class="block">Hide Non-{term('supplications')} Words</span>
+					<label class="inline-flex items-center cursor-pointer">
+						<input type="checkbox" value="" class="sr-only peer" checked={$__hideNonDuaPart} on:click={(event) => updateSettings({ type: 'hideNonDuaPart', value: event.target.checked })} />
+						<div class={toggleBtnClasses}></div>
+					</label>
+				</div>
+				<p class={settingsDescriptionClasses}>Show/hide the non-{term('supplications')} words in the {term('supplications')} page.</p>
 			</div>
 		</div>
 	</div>

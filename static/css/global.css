@@ -1530,6 +1530,10 @@ input[type="range"]::-ms-fill-lower {
   width: max-content;
 }
 
+.w-56 {
+  width: 14rem;
+}
+
 .min-w-28 {
   min-width: 7rem;
 }
