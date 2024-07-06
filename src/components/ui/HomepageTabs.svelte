@@ -96,7 +96,7 @@
 				</button>
 
 				<!-- time specific chapter buttons and last read -->
-				<div class="flex flex-row space-x-2 md:flex-row-reverse md:space-x-1">
+				<div class="flex flex-row-reverse md:space-x-1">
 					<!-- last read -->
 					{#if $__lastRead.key !== null}
 						<div id="last-read" class="w-full md:w-max md:ml-1">

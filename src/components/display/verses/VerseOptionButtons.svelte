@@ -91,10 +91,11 @@
 	{/if}
 
 	<!-- verses option dropdown -->
-	<button class={buttonClasses} aria-label="Options" on:click={() => __verseKey.set(key)}>
+	<button id="verse-options-{verse}" class={buttonClasses} aria-label="Options" on:click={() => __verseKey.set(key)}>
 		<div class="opacity-70">
 			<DotsHorizontal size={6} />
 		</div>
 	</button>
 	<VerseOptionsDropdown page={value.meta.page} />
+	<Tooltip triggeredBy="#verse-options-{verse}" arrow={false} type="light" placement="top" class="z-30 hidden md:block font-filter font-normal">Options</Tooltip>
 </div>

@@ -1,4 +1,5 @@
 <script>
+	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
 	import ChevronRight from '$svgs/ChevronRight.svelte';
 	import { __chapterNumber, __currentPage, __pageNumber } from '$utils/stores';
 	import { disabledClasses } from '$data/commonClasses';
@@ -29,3 +30,4 @@
 	<ChevronRight />
 	<span class="sr-only">{linkText}</span>
 </a>
+<Tooltip arrow={false} type="light" class="w-max hidden md:block font-filter font-normal">{linkText}</Tooltip>

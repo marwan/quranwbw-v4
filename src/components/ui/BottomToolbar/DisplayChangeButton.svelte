@@ -8,11 +8,11 @@
 	import { disabledClasses } from '$data/commonClasses';
 	import { displayTypeChangeHandler } from '$utils/displayTypeChangeHandler';
 
-	const radioClasses = 'font-normal';
+	const radioClasses = 'font-normal w-max';
 	const dropdownClasses = 'w-52 p-3 space-y-3 text-sm max-h-64 overflow-y-scroll theme-grayscale';
 </script>
 
-<button type="button" title="Display Type" class="inline-flex flex-col items-center justify-center px-5 relative inline-flex items-center hover:bg-lightGray group {['chapter', 'page'].includes($__currentPage) ? 'opacity-70' : disabledClasses}">
+<button id="changeDisplayButton" type="button" title="Display Type" class="inline-flex flex-col items-center justify-center px-5 relative inline-flex items-center hover:bg-lightGray group {['chapter', 'page'].includes($__currentPage) ? 'opacity-70' : disabledClasses}">
 	<Eye />
 	<span class="sr-only">Display Type</span>
 </button>
@@ -21,4 +21,4 @@
 		<li><Radio name="displayType" bind:group={$__selectedDisplayId} value={displayOption.displayID} on:change={(event) => displayTypeChangeHandler(+event.target.value)} class={radioClasses}>{displayOption.displayName}</Radio></li>
 	{/each}
 </Dropdown>
-<Tooltip arrow={false} type="light" class="hidden md:block font-filter font-normal">Display Type</Tooltip>
+<Tooltip triggeredBy="#changeDisplayButton" arrow={false} type="light" class="hidden md:block font-filter font-normal">Display Type</Tooltip>

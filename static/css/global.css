@@ -1530,6 +1530,10 @@ input[type="range"]::-ms-fill-lower {
   width: max-content;
 }
 
+.w-screen {
+  width: 100vw;
+}
+
 .min-w-28 {
   min-width: 7rem;
 }
@@ -3728,10 +3732,6 @@ svg {
 
   .md\:flex-row {
     flex-direction: row;
-  }
-
-  .md\:flex-row-reverse {
-    flex-direction: row-reverse;
   }
 
   .md\:justify-start {

@@ -13,7 +13,7 @@
 	import Popover from '$ui/flowbite-svelte/popover/Popover.svelte';
 	// import { Popover } from 'flowbite-svelte';
 
-	import { selectableDisplays, selectableThemes } from '$data/options';
+	import { selectableThemes } from '$data/options';
 	import { supplicationsFromQuran } from '$data/quranMeta';
 	import { __currentPage, __fontType, __displayType, __userSettings, __audioSettings, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __morphologyKey, __wordTooltip, __verseKey, __websiteTheme } from '$utils/stores';
 	import { tajweedRulings, tajweedColorIds } from '$data/tajweedRulings';
@@ -34,8 +34,6 @@
 		'13:37:8': 'ﱿ', // 6th line last word - Ba'da
 		'13:37:9': 'ﲀﲁ' // 7th line first word - Ma Ja'aka
 	};
-
-	$: displayIsContinuous = selectableDisplays[$__displayType].continuous;
 
 	$: wordDivClasses = `
 	  word rounded-lg ${wordAndEndIconCommonClasses} print:break-inside-avoid
