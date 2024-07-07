@@ -62,14 +62,14 @@
 			dropdownOpen = false;
 		}}>{term('tajweed')} Rules</DropdownItem
 	>
-	<DropdownItem
+	<!-- <DropdownItem
 		class={dropdownItemClasses}
 		on:click={() => {
 			// toggleModal('token-modal', 'show');
 			__tokenModalVisible.set(true);
 			dropdownOpen = false;
 		}}>Token Login</DropdownItem
-	>
+	> -->
 	<!-- <DropdownItem class={dropdownItemClasses} on:click={() => toggleModal('downloadModal', 'show')}>Download Data</DropdownItem> -->
 
 	<!-- internal links -->

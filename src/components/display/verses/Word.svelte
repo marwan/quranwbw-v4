@@ -8,15 +8,14 @@
 	export let wordSpanClasses;
 	export let v4hafsClasses;
 
-	import Spinner from '$svgs/Spinner.svelte';
 	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
-	import Popover from '$ui/flowbite-svelte/popover/Popover.svelte';
-	// import { Popover } from 'flowbite-svelte';
+	// import Popover from '$ui/flowbite-svelte/popover/Popover.svelte';
+	// import Spinner from '$svgs/Spinner.svelte';
 
 	import { selectableThemes } from '$data/options';
 	import { supplicationsFromQuran } from '$data/quranMeta';
 	import { __currentPage, __fontType, __displayType, __userSettings, __audioSettings, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __morphologyKey, __wordTooltip, __verseKey, __websiteTheme, __hideNonDuaPart } from '$utils/stores';
-	import { tajweedRulings, tajweedColorIds } from '$data/tajweedRulings';
+	// import { tajweedRulings, tajweedColorIds } from '$data/tajweedRulings';
 	import { apiEndpoint } from '$data/websiteSettings';
 
 	const chapter = key.split(':')[0];
@@ -97,7 +96,7 @@
 	</div>
 
 	<!-- tajweed colors popover (only for QPC v4 font) -->
-	{#if $__fontType === 3 && $__currentPage === 'chapter' && v4PopoverEnabled}
+	<!-- {#if $__fontType === 3 && $__currentPage === 'chapter' && v4PopoverEnabled}
 		<Popover class="w-64 text-sm font-light z-50 rounded-t-3xl" trigger="hover" triggeredBy="#word-{wordKey.split(':')[1]}-{wordKey.split(':')[2]}" arrow={false}>
 			{#await wordTajweedData}
 				<Spinner />
@@ -118,7 +117,7 @@
 				<p>error...</p>
 			{/await}
 		</Popover>
-	{/if}
+	{/if} -->
 
 	<!-- word tooltip -->
 	{#if $__wordTooltip > 1}

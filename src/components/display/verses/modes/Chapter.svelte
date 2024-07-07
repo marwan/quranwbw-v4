@@ -46,8 +46,8 @@
 	// 	// importing the same component to be re-used when the "Load Previous Verses" button is pressed
 	// 	import('./Chapter.svelte').then((res) => (Chapter = res.default));
 
-	// 	// get the last verse number from last prop value
-	// 	const firstVerseOnPage = startVerse;
+	// 	// get the first verse number on page
+	// 	const firstVerseOnPage = +document.getElementsByClassName('verse')[1].id.split(':')[1];
 
 	// 	// remove the existing button
 	// 	document.getElementById('loadPreviousVersesButton').remove();
@@ -80,7 +80,8 @@
 		const versesToLoad = 5;
 
 		// get the last verse number from last prop value
-		const lastVerseOnPage = endVerse;
+		const versesOnPage = document.getElementsByClassName('verse');
+		const lastVerseOnPage = +versesOnPage[versesOnPage.length - 1].id.split(':')[1];
 
 		// remove the existing button
 		document.getElementById('loadVersesButton').remove();
@@ -98,8 +99,6 @@
 		};
 	}
 	// =================================================
-
-	// console.log(nextVersesProps);
 </script>
 
 <!-- move the load button to Chapter component -->
@@ -107,9 +106,9 @@
 	<div id="loadPreviousVersesButton" class="flex justify-center pt-8 pb-6">
 		<button on:click={loadPreviousVerses} class="text-sm {buttonClasses}"> Load Previous Verses </button>
 	</div>
-{/if} -->
+{/if}
 
-<!-- {#if versesLoadType === 'previous'}
+{#if versesLoadType === 'previous'}
 	<svelte:component this={Chapter} {...previousVersesProps} />
 {/if} -->
 

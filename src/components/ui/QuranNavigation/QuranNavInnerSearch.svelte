@@ -21,8 +21,8 @@
 	let maxItemsToLoad = 20;
 	let maxVersesToLoad = 1;
 	let searchedKey = '';
-	let placeholder = `${term('chapter').toLowerCase()}, page, juz or key`;
-	let keyPages;
+	let placeholder = 'Navigate or Search Quran';
+	let verseKeyData;
 	let searchResults;
 
 	$: if ($page.url.href || $__pageURL || $__chapterNumber || $__pageNumber) toggleQuranNavigation('hide');
@@ -40,8 +40,8 @@
 
 	// load it externally because including it locally increases the bundle size
 	$: {
-		keyPages = (async () => {
-			const response = await fetch(`${staticEndpoint}/v4/meta/keyPages.json`);
+		verseKeyData = (async () => {
+			const response = await fetch(`${staticEndpoint}/v4/meta/verseKeyData.json`);
 			const data = await response.json();
 			return data;
 		})();
@@ -50,8 +50,6 @@
 		setTimeout(function () {
 			document.getElementById('searchKey').focus();
 		}, 1);
-
-		console.log($__quranNavigationModalVisible, $__quranNavigationDrawerHidden);
 	}
 
 	function loadMaxChapters() {
@@ -84,7 +82,7 @@
 			{#if searchedKey.length === 0}
 				<div class="text-xs">
 					<span class="font-semibold">Instructions:</span>
-					You may navigate by entering either a {term('chapter').toLowerCase()}/page/juz number, a {term('verse').toLowerCase()} key (e.g. 2:255 or 2-255) or a word key (e.g. 2:1:1 or 2-1-1).
+					You may navigate by entering either a {term('chapter').toLowerCase()}/page/juz number, or a {term('verse').toLowerCase()}/word key seperated by a colon, period, dash or a space (e.g. 2:255, 2.286, 18-10 or 2 1 1).
 
 					<br /><br />
 					This navigation modal can be opened from anywhere on the website by pressing CTRL+K.
@@ -111,16 +109,16 @@
 								{/if}
 
 								<!-- only show results of key-pages if we have loaded the data -->
-								{#await keyPages then keyPages}
+								{#await verseKeyData then verseKeyData}
 									{#if key === 'juz'}
 										<div class={linkClasses}>
 											<span>{@html '&#10230'}</span>
-											<a href="/page/{keyPages[juzNumberKeys[value - 1]]}" class={linkTextClasses}>Juz {value}</a>
+											<a href="/page/{verseKeyData[juzNumberKeys[value - 1]].page}" class={linkTextClasses}>Juz {value}</a>
 										</div>
 									{:else if key === 'key'}
 										<div class={linkClasses}>
 											<span>{@html '&#10230'}</span>
-											<a href="/page/{keyPages[value]}" class={linkTextClasses}>{quranMetaData[value.split(':')[0]].transliteration}, {term('verse')} {value.split(':')[1]} (Page {keyPages[value]})</a>
+											<a href="/page/{verseKeyData[value].page}" class={linkTextClasses}>{quranMetaData[value.split(':')[0]].transliteration}, {term('verse')} {value.split(':')[1]} (Page {verseKeyData[value].page})</a>
 										</div>
 									{/if}
 								{/await}

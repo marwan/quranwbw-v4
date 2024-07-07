@@ -134,10 +134,10 @@ export async function isValidWordKey(key) {
 	// chapter:verse should be a valid key
 	if (!isValidVerseKey(verseKey)) return false;
 
-	const response = await fetch(`${staticEndpoint}/v4/meta/wordsInVerse.json`);
+	const response = await fetch(`${staticEndpoint}/v4/meta/verseKeyData.json`);
 	const data = await response.json();
 
-	if (word < 1 || word > data[verseKey]) return false;
+	if (word < 1 || word > data[verseKey].words) return false;
 
 	return true;
 }
