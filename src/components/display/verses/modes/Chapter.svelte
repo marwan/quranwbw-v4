@@ -122,12 +122,7 @@
 	<!-- invisible for now... -->
 	{#if endVerse < chapterTotalVerses && document.getElementById('loadVersesButton') === null}
 		<div id="loadVersesButton" class="flex justify-center pt-6 pb-18 invisible" use:inview={loadButtonOptions} on:inview_enter={(event) => document.querySelector('#loadVersesButton > button').click()}>
-			{#if $__chapterDataLoaded}
-				<!-- use:inview={loadButtonOptions} on:inview_enter={(event) => document.querySelector('#loadVersesButton > button').click()} -->
-				<button on:click={loadNextVerses} class="text-sm {buttonClasses}"> Continue Reading </button>
-			{:else}
-				<button class="text-sm {buttonClasses} {disabledClasses}"> Fetching data, please wait... </button>
-			{/if}
+			<button on:click={loadNextVerses} class="text-sm {buttonClasses}"> Continue Reading </button>
 		</div>
 	{/if}
 {/if}
