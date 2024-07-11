@@ -8,7 +8,7 @@
 	import Search from '$svgs/Search.svelte';
 	import { updateSettings } from '$utils/updateSettings';
 	import { quranMetaData, mostRead } from '$data/quranMeta';
-	import { __lastRead, __favouriteChapters, __userBookmarks, __timeSpecificChapters } from '$utils/stores';
+	import { __lastRead, __favouriteChapters, __userBookmarks, __timeSpecificChapters, __siteNavigationModalVisible } from '$utils/stores';
 	import { buttonClasses, buttonOutlineClasses } from '$data/commonClasses';
 	import { checkTimeSpecificChapters } from '$utils/checkTimeSpecificChapters';
 	import { term } from '$utils/terminologies';
@@ -70,10 +70,10 @@
 
 			<!-- menu for links on right -->
 			<div class="ml-2">
-				<button class="flex flex-row items-center bg-lightGray rounded-3xl p-3 {tabClasses}" title="Menu">
+				<button class="flex flex-row items-center bg-lightGray rounded-3xl p-3 {tabClasses}" title="Menu" on:click={() => __siteNavigationModalVisible.set(true)}>
 					<span class="text-black opacity-70"><Menu /></span>
 				</button>
-				<SiteNavigationDropdown />
+				<!-- <SiteNavigationDropdown /> -->
 			</div>
 		</div>
 

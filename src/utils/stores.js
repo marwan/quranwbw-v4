@@ -47,6 +47,7 @@ let __websiteOnline,
 	__tafsirModalVisible,
 	__quranNavigationModalVisible,
 	__quranNavigationDrawerHidden,
+	__siteNavigationModalVisible,
 	__wakeLockEnabled,
 	__quizCorrectAnswers,
 	__quizWrongAnswers,
@@ -181,7 +182,7 @@ if (browser) {
 	// to store the first verse on page
 	__firstVerseOnPage = writable(1);
 
-	// modals ===============
+	// modals & drawers ===============
 	__audioModalVisible = writable(false);
 	__notesModalVisible = writable(false);
 	__tajweedRulesModalVisible = writable(false);
@@ -189,6 +190,7 @@ if (browser) {
 	__tafsirModalVisible = writable(false);
 	__quranNavigationModalVisible = writable(false);
 	__quranNavigationDrawerHidden = writable(true);
+	__siteNavigationModalVisible = writable(false);
 
 	// wake lock settings
 	__wakeLockEnabled = writable(userSettings.displaySettings.wakeLockEnabled);
@@ -257,6 +259,7 @@ export {
 	__tafsirModalVisible,
 	__quranNavigationModalVisible,
 	__quranNavigationDrawerHidden,
+	__siteNavigationModalVisible,
 	__wakeLockEnabled,
 	__quizCorrectAnswers,
 	__quizWrongAnswers,
