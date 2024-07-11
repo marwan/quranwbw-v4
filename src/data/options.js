@@ -210,22 +210,22 @@ export const selectableWordTranslations = {
 };
 
 export const selectableReciters = {
-	1: { id: 1, timestampSlug: 'basit_mujawwad', reciter: 'Abdul Basit (Mujawwad)', url: 'https://verses.quran.com/AbdulBaset/Mujawwad/mp3/' },
-	2: { id: 2, timestampSlug: 'basit_murattal', reciter: 'Abdul Basit (Murattal)', url: 'https://verses.quran.com/AbdulBaset/Murattal/mp3/' },
-	3: { id: 3, reciter: 'Abdul-Rahman Al-Sudais', url: 'https://mirrors.quranicaudio.com/everyayah/Abdurrahmaan_As-Sudais_192kbps/' },
-	4: { id: 4, reciter: 'Abu Bakr Ash-Shaatree', url: 'https://mirrors.quranicaudio.com/everyayah/Abu_Bakr_Ash-Shaatree_128kbps/' },
+	1: { id: 1, timestampSlug: 'basit_mujawwad', reciter: 'Abdul Basit (Mujawwad)', url: 'https://everyayah.com/data/Abdul_Basit_Mujawwad_128kbps/' },
+	2: { id: 2, timestampSlug: 'basit_murattal', reciter: 'Abdul Basit (Murattal)', url: 'https://everyayah.com/data/Abdul_Basit_Murattal_192kbps/' },
+	3: { id: 3, reciter: 'Abdul-Rahman Al-Sudais', url: 'https://everyayah.com/data/Abdurrahmaan_As-Sudais_192kbps/' },
+	4: { id: 4, reciter: 'Abu Bakr Ash-Shaatree', url: 'https://everyayah.com/data/Abu%20Bakr%20Ash-Shaatree_128kbps/' },
 	// 5: ...
 	6: { id: 6, timestampSlug: 'rifai', reciter: 'Hani Ar-Rifai', url: 'https://everyayah.com/data/Hani_Rifai_192kbps/' },
-	7: { id: 7, reciter: 'Maher Al-Muaiqly', url: 'https://mirrors.quranicaudio.com/everyayah/Maher_AlMuaiqly_64kbps/' },
+	7: { id: 7, reciter: 'Maher Al-Muaiqly', url: 'https://everyayah.com/data/MaherAlMuaiqly128kbps/' },
 	8: { id: 8, timestampSlug: 'husary', reciter: 'Mahmoud Khalil Al-Husary', url: 'https://everyayah.com/data/Husary_128kbps/' },
 	9: { id: 9, reciter: 'Mahmoud Khalil Al-Husary (with gaps)', url: 'https://everyayah.com/data/Husary_Muallim_128kbps/' },
 	10: { id: 10, timestampSlug: 'mishary', reciter: 'Mishary Rashid Alafasy', url: 'https://everyayah.com/data/Alafasy_128kbps/' },
-	11: { id: 11, reciter: 'Mohamed El-Minshawi (Mujawwad)', url: 'https://mirrors.quranicaudio.com/everyayah/Minshawy_Mujawwad_192kbps/' },
+	11: { id: 11, reciter: 'Mohamed El-Minshawi (Mujawwad)', url: 'https://everyayah.com/data/Minshawy_Mujawwad_192kbps/' },
 	12: { id: 12, reciter: 'Mohamed El-Minshawi (Teacher)', url: 'https://everyayah.com/data/Minshawy_Teacher_128kbps/' },
-	13: { id: 13, reciter: 'Muhammad Ayyub', url: 'https://mirrors.quranicaudio.com/everyayah/Muhammad_Ayyoub_128kbps/' },
+	13: { id: 13, reciter: 'Muhammad Ayyub', url: 'https://everyayah.com/data/Muhammad_Ayyoub_128kbps/' },
 	14: { id: 14, reciter: 'Nasser Al Qatami', url: 'https://everyayah.com/data/Nasser_Alqatami_128kbps/' },
 	15: { id: 15, timestampSlug: 'shuraym', reciter: 'Saood Ash-Shuraym', url: 'https://everyayah.com/data/Saood_ash-Shuraym_128kbps/' },
-	16: { id: 16, reciter: 'Yasser Ad-Dossari', url: 'https://mirrors.quranicaudio.com/everyayah/Yasser_Ad-Dussary_128kbps/' }
+	16: { id: 16, reciter: 'Yasser Ad-Dossari', url: 'https://everyayah.com/data/Yasser_Ad-Dussary_128kbps/' }
 };
 
 export const selectableTranslationReciters = {

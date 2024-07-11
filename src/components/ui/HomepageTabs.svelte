@@ -8,7 +8,7 @@
 	import Search from '$svgs/Search.svelte';
 	import { updateSettings } from '$utils/updateSettings';
 	import { quranMetaData, mostRead } from '$data/quranMeta';
-	import { __lastRead, __favouriteChapters, __userBookmarks, __timeSpecificChapters } from '$utils/stores';
+	import { __lastRead, __favouriteChapters, __userBookmarks, __timeSpecificChapters, __siteNavigationModalVisible } from '$utils/stores';
 	import { buttonClasses, buttonOutlineClasses } from '$data/commonClasses';
 	import { checkTimeSpecificChapters } from '$utils/checkTimeSpecificChapters';
 	import { term } from '$utils/terminologies';
@@ -52,13 +52,13 @@
 			<div id="tab-buttons">
 				<ul class="flex text-sm font-medium text-center opacity-70 justify-center space-x-2 md:space-x-4">
 					<li>
-						<button on:click={() => (activeTab = 1)} class="{tabClasses} {activeTab === 1 ? `${activeTabClasses}` : null}" id="chapters-tab" data-tabs-target="#chapters-tab-panel" type="button" role="tab" aria-controls="chapters-tab-panel" aria-selected="false">{term('chapters')}</button>
+						<button on:click={() => (activeTab = 1)} class="{tabClasses} {activeTab === 1 ? `${activeTabClasses}` : null}" type="button" role="tab" aria-controls="chapters-tab-panel" aria-selected="false">{term('chapters')}</button>
 					</li>
 					<li>
-						<button on:click={() => (activeTab = 2)} class="{tabClasses} {activeTab === 2 ? `${activeTabClasses}` : null}" id="most-read-tab" data-tabs-target="#most-read-tab-panel" type="button" role="tab" aria-controls="most-read-tab-panel" aria-selected="false">Suggested</button>
+						<button on:click={() => (activeTab = 2)} class="{tabClasses} {activeTab === 2 ? `${activeTabClasses}` : null}" type="button" role="tab" aria-controls="most-read-tab-panel" aria-selected="false">Suggested</button>
 					</li>
 					<li>
-						<button on:click={() => (activeTab = 3)} class="{tabClasses} {activeTab === 3 ? `${activeTabClasses}` : null}" id="bookmarks-tab" data-tabs-target="#bookmarks-tab-panel" type="button" role="tab" aria-controls="bookmarks-tab-panel" aria-selected="false">
+						<button on:click={() => (activeTab = 3)} class="{tabClasses} {activeTab === 3 ? `${activeTabClasses}` : null}" type="button" role="tab" aria-controls="bookmarks-tab-panel" aria-selected="false">
 							Bookmarks
 							{#if $__userBookmarks.length > 0}
 								({$__userBookmarks.length})

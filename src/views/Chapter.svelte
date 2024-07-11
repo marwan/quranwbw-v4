@@ -44,7 +44,7 @@
 		// 	chapterData = fetchChapterData(false, $__chapterNumber, startVerse, endVerse);
 		// }
 
-		chapterData = fetchChapterData(true, $__chapterNumber);
+		chapterData = fetchChapterData($__chapterNumber);
 
 		// update the first verse on page
 		__firstVerseOnPage.set(startVerse);

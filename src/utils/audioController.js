@@ -262,10 +262,11 @@ export function showAudioModal(key) {
 export function wordAudioController(props) {
 	// if verse audio is already playing, then set the verse's audio timestamp same as word timestamp
 	// ...this is incase the user would like to start from a certain section of the verse
-	if (audioSettings.isPlaying && audioSettings.audioType === 'verse') {
+	const timestampSlug = selectableReciters[get(__reciter)].timestampSlug;
+
+	if (audioSettings.isPlaying && audioSettings.audioType === 'verse' && timestampSlug) {
 		// verse timestamp data with was fetch from the playVerseAudio function
-		const timestampSlug = selectableReciters[get(__reciter)].timestampSlug;
-		const verseTimestamp = get(__timestampData).data[props.key][timestampSlug];
+		const verseTimestamp = get(__timestampData).data[`${props.chapter}:${props.verse}`][timestampSlug];
 		const wordTimestamp = verseTimestamp.split('|')[props.key.split(':')[2]];
 
 		// set the verse audio time same as word timestamp

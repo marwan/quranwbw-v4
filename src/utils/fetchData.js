@@ -1,26 +1,21 @@
 import { get } from 'svelte/store';
-import { __fontType, __chapterData, __wordTranslation, __verseTranslations, __timestampData, __chapterDataLoaded } from '$utils/stores';
+import { __fontType, __chapterData, __wordTranslation, __verseTranslations, __timestampData } from '$utils/stores';
 import { apiEndpoint, staticEndpoint } from '$data/websiteSettings';
-import { quranMetaData } from '$data/quranMeta';
 import { selectableFontTypes } from '$data/options';
 
 // we first fetch specific verses (startVerse to endVerse), and then fetch the complete chapter data which will then be cached by the user's browser
-export async function fetchChapterData(complete = false, chapter, startVerse, endVerse, download = false) {
+export async function fetchChapterData(chapter, download = false) {
 	const fontType = get(__fontType);
 	const wordTranslation = get(__wordTranslation);
 	const verseTranslations = get(__verseTranslations).toString();
 
-	// if complete = true, fetch all the verses, else fetch from startVerse to endVerse
-	const verses = complete ? `${chapter}:1,${chapter}:${quranMetaData[chapter].verses}` : `${chapter}:${startVerse},${chapter}:${endVerse}`;
-
 	let apiURL =
-		`${apiEndpoint}/verses?` +
+		`${apiEndpoint}/chapter?` +
 		new URLSearchParams({
-			verses,
+			chapter: chapter,
 			word_type: selectableFontTypes[fontType].apiId,
 			word_translation: wordTranslation,
-			verse_translation: verseTranslations,
-			between: true
+			verse_translation: verseTranslations
 			// random: Math.floor(Math.random() * 999999999) + 0
 		});
 
@@ -30,14 +25,8 @@ export async function fetchChapterData(complete = false, chapter, startVerse, en
 
 	// download = true means that we are just fetching api data without updating the __chapterData store (for downloadData)
 	if (!download) __chapterData.set(data.data.verses);
-
-	// if the complete data was requested
-	if (complete) {
-		__chapterDataLoaded.set(true);
-		localStorage.setItem('chapterDataLoaded', true);
-	}
 	// if only the partial data was requested, load the complete data too
-	else fetchChapterData(true, chapter);
+	else fetchChapterData(chapter);
 }
 
 // function to fetch individual verses
