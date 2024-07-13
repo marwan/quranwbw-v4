@@ -3,8 +3,8 @@
 	"name": "QuranWBW.com",
 	"description": "Quran Word By Word & Morphology",
 	"start_url": "/",
-	"background_color": "#f9f9f9",
 	"display": "fullscreen",
+	"background_color": "#f9f9f9",
 	"theme_color": "#f9f9f9",
 	"icons": [
 		{
@@ -27,11 +27,11 @@
 	"lang": "en",
 	"categories": ["books", "education"],
 	"screenshots": [
-		{ "src": "https://raw.githubusercontent.com/marwan/quranwbw-v4/pwa-update/static/images/screenshots/mobile/1.png", "type": "image/png", "sizes": "1242x2688", "form_factor": "narrow" },
-		{ "src": "https://raw.githubusercontent.com/marwan/quranwbw-v4/pwa-update/static/images/screenshots/mobile/2.png", "type": "image/png", "sizes": "1242x2688", "form_factor": "narrow" },
-		{ "src": "https://raw.githubusercontent.com/marwan/quranwbw-v4/pwa-update/static/images/screenshots/mobile/3.png", "type": "image/png", "sizes": "1242x2688", "form_factor": "narrow" },
-		{ "src": "https://raw.githubusercontent.com/marwan/quranwbw-v4/pwa-update/static/images/screenshots/mobile/4.png", "type": "image/png", "sizes": "1242x2688", "form_factor": "narrow" },
-		{ "src": "https://raw.githubusercontent.com/marwan/quranwbw-v4/pwa-update/static/images/screenshots/mobile/5.png", "type": "image/png", "sizes": "1242x2688", "form_factor": "narrow" },
-		{ "src": "https://raw.githubusercontent.com/marwan/quranwbw-v4/pwa-update/static/images/screenshots/mobile/6.png", "type": "image/png", "sizes": "1242x2688", "form_factor": "narrow" }
+		{ "src": "https://static.quranwbw.com/data/v4/images/screenshots/mobile/1.png", "type": "image/png", "sizes": "1242x2688", "form_factor": "narrow" },
+		{ "src": "https://static.quranwbw.com/data/v4/images/screenshots/mobile/2.png", "type": "image/png", "sizes": "1242x2688", "form_factor": "narrow" },
+		{ "src": "https://static.quranwbw.com/data/v4/images/screenshots/mobile/3.png", "type": "image/png", "sizes": "1242x2688", "form_factor": "narrow" },
+		{ "src": "https://static.quranwbw.com/data/v4/images/screenshots/mobile/4.png", "type": "image/png", "sizes": "1242x2688", "form_factor": "narrow" },
+		{ "src": "https://static.quranwbw.com/data/v4/images/screenshots/mobile/5.png", "type": "image/png", "sizes": "1242x2688", "form_factor": "narrow" },
+		{ "src": "https://static.quranwbw.com/data/v4/images/screenshots/mobile/6.png", "type": "image/png", "sizes": "1242x2688", "form_factor": "narrow" }
 	]
 }
