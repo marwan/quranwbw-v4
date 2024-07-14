@@ -96,15 +96,7 @@
 				</button>
 
 				<!-- time specific chapter buttons and last read -->
-				<div class="flex flex-row-reverse md:space-x-1">
-					<!-- last read -->
-					{#if $__lastRead.key !== null}
-						<div id="last-read" class="w-full md:w-max md:ml-1">
-							<a href="/{lastReadChapter}/{lastReadVerse}" class="hidden md:block py-2.5 w-full mb-4 md:mb-0 truncate {buttonClasses}">Continue Reading: {quranMetaData[lastReadChapter].transliteration}, {lastReadChapter}:{lastReadVerse} {@html '&#10230'}</a>
-							<a href="/{lastReadChapter}/{lastReadVerse}" class="block md:hidden py-2.5 w-full mb-4 md:mb-0 truncate {buttonClasses}">Continue: {lastReadChapter}:{lastReadVerse} {@html '&#10230'}</a>
-						</div>
-					{/if}
-
+				<div class="flex flex-row space-x-2">
 					<!-- show Al Kahf on Friday -->
 					{#if $__timeSpecificChapters.isFriday}
 						<div id="al-kahf" class="w-full md:w-max">
@@ -122,6 +114,14 @@
 								Al-Mulk
 								<span class="hidden md:block">{@html '&nbsp;'}{@html '&#10230'}</span>
 							</a>
+						</div>
+					{/if}
+
+					<!-- last read -->
+					{#if $__lastRead.key !== null}
+						<div id="last-read" class="w-full md:w-max">
+							<a href="/{lastReadChapter}/{lastReadVerse}" class="hidden md:block py-2.5 w-full mb-4 md:mb-0 truncate {buttonClasses}">Continue Reading: {quranMetaData[lastReadChapter].transliteration}, {lastReadChapter}:{lastReadVerse} {@html '&#10230'}</a>
+							<a href="/{lastReadChapter}/{lastReadVerse}" class="block md:hidden py-2.5 w-full mb-4 md:mb-0 truncate {buttonClasses}">Continue: {lastReadChapter}:{lastReadVerse} {@html '&#10230'}</a>
 						</div>
 					{/if}
 				</div>
