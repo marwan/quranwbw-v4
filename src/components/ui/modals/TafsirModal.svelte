@@ -22,9 +22,9 @@
 	$: {
 		tafsirData = (async () => {
 			const selectedTafsir = selectableTafsirs[selectedTafirId];
-			const response = await fetch(`${tafsirUrls[selectedTafsir.url]}/${selectedTafsir.slug}/${chapter}/${verse}.json`);
+			const response = await fetch(`${tafsirUrls[selectedTafsir.url]}/${selectedTafsir.slug}/${chapter}.json`);
 			const data = await response.json();
-			return data;
+			return data.ayahs;
 		})();
 	}
 
@@ -51,7 +51,11 @@
 
 			<div class="flex flex-col space-y-4">
 				<div class={tafsirTextClasses}>
-					{@html tafsirData.text.replace(/[\n]/g, '<br /><br />')}
+					{#each Object.entries(tafsirData) as [id, tafsir]}
+						{#if tafsir.surah === chapter && tafsir.ayah === verse}
+							{@html tafsir.text.replace(/[\n]/g, '<br /><br />')}
+						{/if}
+					{/each}
 				</div>
 			</div>
 
