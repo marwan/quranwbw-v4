@@ -13,7 +13,7 @@
 		2: 'https://static.quranwbw.com/data/v4/tafsirs'
 	};
 
-	let selectedTafirId = 0;
+	let selectedTafirId = 12;
 	let tafsirData;
 
 	$: chapter = +$__verseKey.split(':')[0];
