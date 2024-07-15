@@ -65,7 +65,7 @@ export const selectableVerseTranslations = {
 		id: 12,
 		language: 'English',
 		author: 'Abul Alaa Maududi',
-		slug: 'eng_maududi'
+		slug: 'eng_maududi_new'
 	},
 	13: {
 		id: 13,
