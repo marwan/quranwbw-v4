@@ -7,10 +7,6 @@
 
 	const fontSizes = JSON.parse($__userSettings).displaySettings.fontSizes;
 	const footnoteSupClasses = 'ml-1 mt-1 px-2 py-1 bg-gray-200 rounded-full font-semibold cursor-pointer';
-	// const verseTranslationReplace = {
-	// 	search: /<sup/g,
-	// 	replace: `<sup onclick='supClick(this)' title='Click to show footnote' data-verse='${value.meta.verse}' class='${footnoteSupClasses}' `
-	// };
 
 	let footnoteId,
 		footnoteVerse,
@@ -41,7 +37,7 @@
 
 			// update the footnote number, text and unhide this verse's footnote block
 			footnoteBlockNumber[nodeId].innerText = footnoteNumber;
-			footnoteBlockText[nodeId].innerText = footnoteText;
+			footnoteBlockText[nodeId].innerHTML = footnoteText;
 			footnoteBlock[nodeId].classList.remove('hidden');
 			footnoteBlock[nodeId].classList.remove('block');
 		}
@@ -84,13 +80,5 @@
 				{/if}
 			</div>
 		{/each}
-
-		<!-- <div id="footnote-verse-{value.meta.verse}" class="hidden footnote-block footnote-verse-{value.meta.verse}">
-			<div class="title font-semibold">
-				<span>Footnote</span>
-				<span class="footnote-number">...</span>
-			</div>
-			<div class="text">...</div>
-		</div> -->
 	</div>
 {/if}
