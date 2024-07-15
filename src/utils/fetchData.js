@@ -15,7 +15,8 @@ export async function fetchChapterData(chapter, download = false) {
 			chapter: chapter,
 			word_type: selectableFontTypes[fontType].apiId,
 			word_translation: wordTranslation,
-			verse_translation: verseTranslations
+			verse_translation: verseTranslations,
+			version: 100
 			// random: Math.floor(Math.random() * 999999999) + 0
 		});
 
