@@ -1,5 +1,7 @@
 <script>
 	export let value;
+
+	import CrossSolid from '$svgs/CrossSolid.svelte';
 	import { __userSettings, __verseTranslations } from '$utils/stores';
 	import { selectableVerseTranslations } from '$data/options';
 
@@ -17,7 +19,7 @@
 		footnoteNumber = '...';
 
 	async function supClick(event) {
-		resetFootnoteBlock();
+		footnoteText = 'loading...';
 		footnoteId = +event.getAttribute('id');
 		footnoteVerse = +event.getAttribute('data-verse');
 		footnoteTranslation = +event.getAttribute('data-translation');
@@ -34,7 +36,7 @@
 			const nodeId = footnoteVerse === 1 ? 1 : 0;
 			const selector = `.footnote-${footnoteVerse}-${footnoteTranslation}`;
 			const footnoteBlock = document.querySelectorAll(`${selector}`);
-			let footnoteBlockNumber = document.querySelectorAll(`${selector} .title .footnote-number`);
+			let footnoteBlockNumber = document.querySelectorAll(`${selector} .footnote-header .title .footnote-number`);
 			let footnoteBlockText = document.querySelectorAll(`${selector} .text`);
 
 			// update the footnote number, text and unhide this verse's footnote block
@@ -45,12 +47,11 @@
 		}
 	}
 
-	function resetFootnoteBlock() {
-		footnoteText = 'loading...';
-		// document.querySelectorAll('.footnote-block').forEach((element) => {
-		// 	element.classList.remove('block');
-		// 	element.classList.add('hidden');
-		// });
+	function hideFootnote(verse, translation) {
+		const nodeId = verse === 1 ? 1 : 0;
+		const selector = `.footnote-${verse}-${translation}`;
+		document.querySelectorAll(selector)[nodeId].classList.remove('block');
+		document.querySelectorAll(selector)[nodeId].classList.add('hidden');
 	}
 
 	window.supClick = supClick;
@@ -60,13 +61,19 @@
 	<div class="verseTranslationText flex flex-col space-y-4 leading-normal theme {fontSizes.verseTranslationText}" data-fontSize={fontSizes.verseTranslationText}>
 		{#each Object.entries(value.translations) as [verseTranslationID, verseTranslation]}
 			<div class="flex flex-col print:break-inside-avoid">
-				<span class={selectableVerseTranslations[verseTranslationID].language === 'Urdu' ? 'font-Urdu direction-rtl' : 'direction-ltr'}>{@html verseTranslation.replace(/<sup/g, `<sup onclick='supClick(this)' title='Click to show footnote' data-verse='${value.meta.verse}' data-translation=${verseTranslationID} class='${footnoteSupClasses}' `)}</span>
+				<span class={selectableVerseTranslations[verseTranslationID].language === 'Urdu' ? 'font-Urdu direction-rtl' : 'direction-ltr'}>{@html verseTranslation.replace(/<sup/g, `<sup onclick='supClick(this)' title='Show footnote' data-verse='${value.meta.verse}' data-translation=${verseTranslationID} class='${footnoteSupClasses}' `)}</span>
 
 				<!-- translation footnotes -->
-				<div class="hidden my-2 footnote-block px-2 py-2 border-2 border-gray-200 rounded-2xl footnote-{value.meta.verse}-{verseTranslationID}">
-					<div class="title font-semibold text-xs">
-						<span>Footnote #</span>
-						<span class="footnote-number">...</span>
+				<div class="hidden my-2 footnote-block px-2 py-2 border-2 border-gray-200 rounded-2xl theme-grayscale footnote-{value.meta.verse}-{verseTranslationID}">
+					<div class="footnote-header flex flex-row justify-between font-semibold">
+						<!-- title -->
+						<div class="title">
+							<span>Footnote #</span>
+							<span class="footnote-number">...</span>
+						</div>
+
+						<!-- hide footnote button -->
+						<button on:click={() => hideFootnote(value.meta.verse, verseTranslationID)} class="opacity-70" title="Close footnote"><CrossSolid size={6} /></button>
 					</div>
 					<div class="text">...</div>
 				</div>
