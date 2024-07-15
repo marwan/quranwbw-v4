@@ -24,7 +24,7 @@ export function resetSettings() {
 
 	// translation settings
 	updateSettings({ type: 'wordTranslation', value: 1 });
-	updateSettings({ type: 'verseTranslation', value: [1, 15] });
+	updateSettings({ type: 'verseTranslation', value: [1, 12] });
 
 	// audio settings
 	updateSettings({ type: 'reciter', value: 10 });

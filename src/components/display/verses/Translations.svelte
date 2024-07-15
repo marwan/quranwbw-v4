@@ -7,7 +7,7 @@
 	const footnoteSupClasses = 'ml-1 mt-1 px-2 py-1 bg-gray-200 rounded-full font-semibold cursor-pointer';
 	const verseTranslationReplace = {
 		search: /<sup/g,
-		replace: `<sup onclick='supClick(this)' title='Click to show footnote' footnote_verse='${value.meta.verse}' class='${footnoteSupClasses}' `
+		replace: `<sup onclick='supClick(this)' title='Click to show footnote' data-verse='${value.meta.verse}' class='${footnoteSupClasses}' `
 	};
 
 	let footnoteId,
@@ -17,8 +17,8 @@
 
 	async function supClick(event) {
 		resetFootnoteBlock();
-		footnoteId = +event.getAttribute('foot_note');
-		footnoteVerse = +event.getAttribute('footnote_verse');
+		footnoteId = +event.getAttribute('id');
+		footnoteVerse = +event.getAttribute('data-verse');
 		footnoteNumber = +event.innerText;
 
 		// fetch footnote
