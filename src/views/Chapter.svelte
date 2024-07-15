@@ -7,11 +7,11 @@
 	import Chapter from '$display/verses/modes/Chapter.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
 	import { parseURL } from '$utils/parseURL';
-	import { fetchChapterData } from '$utils/fetchData';
+	import { fetchChapterData, fetchVerseTranslationData } from '$utils/fetchData';
 	import { quranMetaData } from '$data/quranMeta';
 	import { selectableDisplays } from '$data/options';
 	import { errorLoadingDataMessage } from '$data/websiteSettings';
-	import { __userSettings, __currentPage, __chapterNumber, __displayType, __fontType, __wordTranslation, __verseTranslations, __pageURL, __firstVerseOnPage, __chapterDataLoaded, __chapterData } from '$utils/stores';
+	import { __userSettings, __currentPage, __chapterNumber, __displayType, __fontType, __wordTranslation, __verseTranslations, __pageURL, __firstVerseOnPage, __chapterDataLoaded, __verseTranslationData } from '$utils/stores';
 
 	// max verses to load if total verses in chapter are more than this
 	const maxVersesThreshold = 5;
@@ -45,6 +45,9 @@
 		// }
 
 		chapterData = fetchChapterData($__chapterNumber);
+
+		// get verse translations
+		fetchVerseTranslationData($__chapterNumber);
 
 		// update the first verse on page
 		__firstVerseOnPage.set(startVerse);

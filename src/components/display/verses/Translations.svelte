@@ -2,7 +2,8 @@
 	export let value;
 
 	import CrossSolid from '$svgs/CrossSolid.svelte';
-	import { __userSettings, __verseTranslations } from '$utils/stores';
+	import Spinner from '$svgs/Spinner.svelte';
+	import { __userSettings, __verseTranslations, __verseTranslationData } from '$utils/stores';
 	import { selectableVerseTranslations } from '$data/options';
 
 	const fontSizes = JSON.parse($__userSettings).displaySettings.fontSizes;
@@ -53,32 +54,30 @@
 	window.supClick = supClick;
 </script>
 
-{#if value.translations != undefined}
+{#if $__verseTranslationData}
 	<div class="verseTranslationText flex flex-col space-y-4 leading-normal theme {fontSizes.verseTranslationText}" data-fontSize={fontSizes.verseTranslationText}>
-		{#each Object.entries(value.translations) as [verseTranslationID, verseTranslation]}
+		{#each Object.entries($__verseTranslationData[value.meta.verse - 1].translations) as [verseTranslationID, verseTranslation]}
 			<div class="flex flex-col print:break-inside-avoid">
-				<span class={selectableVerseTranslations[verseTranslationID].language === 'Urdu' ? 'font-Urdu direction-rtl' : 'direction-ltr'}>{@html verseTranslation.replace(/<sup/g, `<sup onclick='supClick(this)' title='Show footnote' data-verse='${value.meta.verse}' data-translation=${verseTranslationID} class='${footnoteSupClasses}' `)}</span>
+				<span>{@html verseTranslation.text}</span>
 
-				<!-- translation footnotes -->
-				<div class="hidden my-2 footnote-block px-2 py-2 border-2 border-gray-200 rounded-2xl theme-grayscale footnote-{value.meta.verse}-{verseTranslationID}">
+				<!-- <div class="hidden my-2 footnote-block px-2 py-2 border-2 border-gray-200 rounded-2xl theme-grayscale footnote-{value.meta.verse}-{verseTranslationID}">
 					<div class="footnote-header flex flex-row justify-between font-semibold">
-						<!-- title -->
 						<div class="title">
 							<span>Footnote #</span>
 							<span class="footnote-number">...</span>
 						</div>
 
-						<!-- hide footnote button -->
 						<button on:click={() => hideFootnote(value.meta.verse, verseTranslationID)} class="opacity-70" title="Close footnote"><CrossSolid size={6} /></button>
 					</div>
 					<div class="text">...</div>
 				</div>
 
-				<!-- author name -->
 				{#if $__verseTranslations.length > 1}
 					<span class="opacity-70">&mdash; {selectableVerseTranslations[verseTranslationID].author}</span>
-				{/if}
+				{/if} -->
 			</div>
 		{/each}
 	</div>
+{:else}
+	<Spinner />
 {/if}

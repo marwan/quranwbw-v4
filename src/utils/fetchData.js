@@ -1,5 +1,5 @@
 import { get } from 'svelte/store';
-import { __fontType, __chapterData, __wordTranslation, __verseTranslations, __timestampData } from '$utils/stores';
+import { __fontType, __chapterData, __verseTranslationData, __wordTranslation, __verseTranslations, __timestampData } from '$utils/stores';
 import { apiEndpoint, staticEndpoint } from '$data/websiteSettings';
 import { selectableFontTypes } from '$data/options';
 
@@ -28,6 +28,17 @@ export async function fetchChapterData(chapter, download = false) {
 	if (!download) __chapterData.set(data.data.verses);
 	// if only the partial data was requested, load the complete data too
 	else fetchChapterData(chapter);
+}
+
+// function to get verse translations, this is seperate from other data in a verse (like words)
+export async function fetchVerseTranslationData(chapter) {
+	// const verseTranslations = get(__verseTranslations).toString();
+	__verseTranslationData.set(null);
+	const apiURL = `https://api.qurancdn.com/api/qdc/verses/by_chapter/${chapter}?per_page=286&translations=131,20,57`;
+	const response = await fetch(apiURL);
+	const data = await response.json();
+	console.log(data.verses);
+	__verseTranslationData.set(data.verses);
 }
 
 // function to fetch individual verses
