@@ -60,6 +60,10 @@
 			<div class="flex flex-col print:break-inside-avoid">
 				<span>{@html verseTranslation.text}</span>
 
+				{#if $__verseTranslations.length > 1}
+					<span class="opacity-70">&mdash; {selectableVerseTranslations[verseTranslation.resource_id].resource_name}</span>
+				{/if}
+
 				<!-- <div class="hidden my-2 footnote-block px-2 py-2 border-2 border-gray-200 rounded-2xl theme-grayscale footnote-{value.meta.verse}-{verseTranslationID}">
 					<div class="footnote-header flex flex-row justify-between font-semibold">
 						<div class="title">
