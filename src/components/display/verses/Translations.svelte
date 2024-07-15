@@ -79,5 +79,5 @@
 		{/each}
 	</div>
 {:else}
-	<Spinner />
+	<Spinner size="14" />
 {/if}

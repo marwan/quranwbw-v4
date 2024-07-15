@@ -7,7 +7,7 @@ import { selectableFontTypes } from '$data/options';
 export async function fetchChapterData(chapter, download = false) {
 	const fontType = get(__fontType);
 	const wordTranslation = get(__wordTranslation);
-	const verseTranslations = get(__verseTranslations).toString();
+	// const verseTranslations = get(__verseTranslations).toString();
 
 	let apiURL =
 		`${apiEndpoint}/chapter?` +
@@ -15,7 +15,7 @@ export async function fetchChapterData(chapter, download = false) {
 			chapter: chapter,
 			word_type: selectableFontTypes[fontType].apiId,
 			word_translation: wordTranslation,
-			verse_translation: verseTranslations,
+			// verse_translation: verseTranslations,
 			version: 100
 			// random: Math.floor(Math.random() * 999999999) + 0
 		});
@@ -32,9 +32,9 @@ export async function fetchChapterData(chapter, download = false) {
 
 // function to get verse translations, this is seperate from other data in a verse (like words)
 export async function fetchVerseTranslationData(chapter) {
-	// const verseTranslations = get(__verseTranslations).toString();
+	const verseTranslations = get(__verseTranslations).toString();
 	__verseTranslationData.set(null);
-	const apiURL = `https://api.qurancdn.com/api/qdc/verses/by_chapter/${chapter}?per_page=286&translations=131,20,57`;
+	const apiURL = `https://api.qurancdn.com/api/qdc/verses/by_chapter/${chapter}?per_page=286&translations=${verseTranslations}`;
 	const response = await fetch(apiURL);
 	const data = await response.json();
 	console.log(data.verses);

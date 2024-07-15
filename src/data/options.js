@@ -22,176 +22,67 @@ export const selectableThemes = {
 	5: { id: 5, name: 'Sepia', palette: 2 }
 };
 
-export const verseTranslationsLanguages = {
-	1: { id: 1, language: 'Bangla' },
-	2: { id: 2, language: 'English' },
-	3: { id: 3, language: 'French' },
-	4: { id: 4, language: 'Hindi' },
-	5: { id: 5, language: 'Hindi Literal' },
-	6: { id: 6, language: 'Indonesian' },
-	7: { id: 7, language: 'Tamil' },
-	8: { id: 8, language: 'Transliteration' },
-	9: { id: 9, language: 'Turkish' },
-	10: { id: 10, language: 'Urdu' },
-	11: { id: 11, language: 'Urdu Literal' }
-};
+export const verseTranslationsLanguages = [
+	{ language_id: 38, language: 'English' }
+
+	// 1: { id: 1, language: 'Bangla' },
+	// 2: { id: 2, language: 'English' },
+	// 3: { id: 3, language: 'French' },
+	// 4: { id: 4, language: 'Hindi' },
+	// 5: { id: 5, language: 'Hindi Literal' },
+	// 6: { id: 6, language: 'Indonesian' },
+	// 7: { id: 7, language: 'Tamil' },
+	// 8: { id: 8, language: 'Transliteration' },
+	// 9: { id: 9, language: 'Turkish' },
+	// 10: { id: 10, language: 'Urdu' },
+	// 11: { id: 11, language: 'Urdu Literal' }
+];
 
 export const selectableVerseTranslations = {
-	1: {
-		id: 1,
-		language: 'Transliteration',
-		author: 'Tajweed Transliteration',
-		slug: 'arb_transliteration_tajweed'
-	},
-	2: {
-		id: 2,
-		language: 'Transliteration',
-		author: 'Transliteration',
-		slug: 'transliteration_normal'
-	},
-	10: {
-		id: 10,
-		language: 'English',
-		author: 'Hilali & Khan',
-		slug: 'eng_muhammadtaqiudd'
-	},
-	11: {
-		id: 11,
-		language: 'English',
-		author: 'Sahih International',
-		slug: 'eng_ummmuhammad'
-	},
-	12: {
-		id: 12,
-		language: 'English',
-		author: 'Abul Alaa Maududi',
-		slug: 'eng_maududi_new'
-	},
-	13: {
-		id: 13,
-		language: 'English',
-		author: 'Pickthall',
-		slug: 'eng_mohammedmarmadu'
-	},
-	14: {
-		id: 14,
-		language: 'English',
-		author: 'Yusuf Ali',
-		slug: 'eng_yusufaliorig'
-	},
-	15: {
-		id: 15,
-		language: 'English',
-		author: 'The Clear Quran (Mustafa Khattab)',
-		slug: 'eng_mustafakhattaba'
-	},
-	16: {
-		id: 16,
-		language: 'English',
-		author: 'Abdel Haleem',
-		slug: 'eng_abdelhaleem'
-	},
-	17: {
-		id: 17,
-		language: 'English',
-		author: 'Almuntakhab Fi Tafsir Alquran Alkarim',
-		slug: 'eng_almuntakhabfita'
-	},
-	18: {
-		id: 18,
-		language: 'English',
-		author: 'Mufti Taqi Usmani',
-		slug: 'eng_muftitaqiusmani'
-	},
-	19: {
-		id: 19,
-		language: 'English',
-		author: 'Tahfeem-ul-Quran by Abul Alaa Maududi',
-		slug: 'eng_tafheem'
+	131: {
+		resource_id: 131,
+		resource_name: 'Dr. Mustafa Khattab, The Clear Quran',
+		language_id: 38
 	},
 	20: {
-		id: 20,
-		language: 'English',
-		author: 'Tafsir al-Jalalayn',
-		slug: 'eng_jalalayn'
+		resource_id: 20,
+		resource_name: 'Saheeh International',
+		language_id: 38
 	},
-	30: {
-		id: 30,
-		language: 'Urdu',
-		author: 'Ahmed Ali',
-		slug: 'urd_ahmedali'
+	84: {
+		resource_id: 84,
+		resource_name: 'T. Usmani',
+		language_id: 38
 	},
-	31: {
-		id: 31,
-		language: 'Urdu',
-		author: 'Abul Alaa Maududi',
-		slug: 'urd_abulaalamaududi'
+	85: {
+		resource_id: 85,
+		resource_name: 'M.A.S. Abdel Haleem',
+		language_id: 38
 	},
-	32: {
-		id: 32,
-		language: 'Urdu',
-		author: 'Muhammad Junagarhi',
-		slug: 'urd_muhammadjunagar'
+	95: {
+		resource_id: 95,
+		resource_name: 'A. Maududi (Tafhim commentary)',
+		language_id: 38
 	},
-	33: {
-		id: 33,
-		language: 'Urdu Literal',
-		author: 'Abul Alaa Maududi',
-		slug: 'urd_abulaalamaududi_la'
+	57: {
+		resource_id: 57,
+		resource_name: 'Transliteration',
+		language_id: 38
 	},
-	34: {
-		id: 34,
-		language: 'Hindi',
-		author: 'Suhel Farooq & Saifur Rahman',
-		slug: 'hin_suhelfarooqkhan'
+	19: {
+		resource_id: 19,
+		resource_name: 'M. Pickthall',
+		language_id: 38
 	},
-	35: {
-		id: 35,
-		language: 'Hindi Literal',
-		author: 'Suhel Farooq & Saifur Rahman',
-		slug: 'hin_suhelfarooqkhan_la'
+	22: {
+		resource_id: 22,
+		resource_name: 'A. Yusuf Ali',
+		language_id: 38
 	},
-	36: {
-		id: 36,
-		language: 'Indonesian',
-		author: 'Indonesian Islamic Affairs Ministry',
-		slug: 'ind_indonesianislam'
-	},
-	37: {
-		id: 37,
-		language: 'Bangla',
-		author: 'Zohurul Hoque',
-		slug: 'ben_zohurulhoque'
-	},
-	38: {
-		id: 38,
-		language: 'Bangla',
-		author: 'Muhiuddin Khan',
-		slug: 'ben_muhiuddinkhan'
-	},
-	39: {
-		id: 39,
-		language: 'Turkish',
-		author: 'Diyanet Isleri',
-		slug: 'tur_diyanetisleri'
-	},
-	40: {
-		id: 40,
-		language: 'Turkish',
-		author: 'Elmalili Hamdi Yazir',
-		slug: 'tur_elmalilihamdiya'
-	},
-	41: {
-		id: 41,
-		language: 'Tamil',
-		author: 'Jan Turst Foundation',
-		slug: 'tam_janturstfoundat'
-	},
-	42: {
-		id: 42,
-		language: 'French',
-		author: 'Muhammad Hamidullah',
-		slug: 'fr_hamidullah'
+	203: {
+		resource_id: 203,
+		resource_name: 'Al-Hilali & Khan',
+		language_id: 38
 	}
 };
 

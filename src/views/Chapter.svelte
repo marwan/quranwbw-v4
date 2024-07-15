@@ -46,17 +46,16 @@
 
 		chapterData = fetchChapterData($__chapterNumber);
 
-		// get verse translations
-		fetchVerseTranslationData($__chapterNumber);
-
 		// update the first verse on page
 		__firstVerseOnPage.set(startVerse);
 
 		// do nothing except re-run the block if any of the following store updates
-		if ($__pageURL || $__displayType || $__fontType || $__wordTranslation || $__verseTranslations) {
+		if ($__pageURL || $__displayType || $__fontType || $__wordTranslation) {
 			// do nothing...
 		}
 	}
+
+	$: if ($__verseTranslations) fetchVerseTranslationData($__chapterNumber);
 
 	// update some variables on chapter change, for when the data has to be loaded from the API
 	function resetChapterDataVariables(chapter) {

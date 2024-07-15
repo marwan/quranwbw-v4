@@ -99,7 +99,7 @@ export function updateSettings(props) {
 
 			// loop through all the available verse translations
 			for (const key of Object.keys(selectableVerseTranslations)) {
-				const translationID = selectableVerseTranslations[key].id;
+				const translationID = selectableVerseTranslations[key].resource_id;
 				try {
 					// we check if this translation is checked, if true, push to array
 					if (document.getElementById(`verseTranslationCheckbox-${translationID}`).checked) {
