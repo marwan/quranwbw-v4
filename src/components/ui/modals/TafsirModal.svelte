@@ -33,6 +33,15 @@
 		${['Arabic', 'Urdu'].includes(selectableTafsirs[selectedTafirId].language) && 'direction-rtl text-lg'}
 		${['Urdu'].includes(selectableTafsirs[selectedTafirId].language) && 'font-Urdu'}
 	`;
+
+	// scroll to top if verse changes
+	$: {
+		try {
+			if ($__tafsirModalVisible && verse) document.getElementById('tafsirModal').getElementsByTagName('div')[1].scrollTop = 0;
+		} catch (error) {
+			// ignore errors
+		}
+	}
 </script>
 
 <Modal title="{quranMetaData[chapter].transliteration}, {chapter}:{verse}" id="tafsirModal" bind:open={$__tafsirModalVisible} class="rounded-3xl theme" bodyClass="p-6 space-y-4 flex-1 overflow-y-auto overscroll-contain" headerClass="flex justify-between items-center p-6 rounded-t-3xl text-black theme-grayscale" size="lg" center outsideclose>
