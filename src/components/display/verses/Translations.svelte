@@ -5,6 +5,11 @@
 
 	const fontSizes = JSON.parse($__userSettings).displaySettings.fontSizes;
 	const footnoteSupClasses = 'ml-1 mt-1 px-2 py-1 bg-gray-200 rounded-full font-semibold cursor-pointer';
+	const verseTranslationReplace = {
+		search: /<sup/g,
+		replace: `<sup onclick='supClick(this)' title='Click to show footnote' footnote_verse='${value.meta.verse}' class='${footnoteSupClasses}' `
+	};
+
 	let footnoteId,
 		footnoteVerse,
 		footnoteText = 'loading...',
@@ -52,7 +57,7 @@
 	<div class="verseTranslationText flex flex-col space-y-4 leading-normal theme {fontSizes.verseTranslationText}" data-fontSize={fontSizes.verseTranslationText}>
 		{#each Object.entries(value.translations) as [verseTranslationID, verseTranslation]}
 			<div class="flex flex-col print:break-inside-avoid">
-				<span class={selectableVerseTranslations[verseTranslationID].language === 'Urdu' ? 'font-Urdu direction-rtl' : 'direction-ltr'}>{@html verseTranslation.replace(/<sup/g, `<sup onclick='supClick(this)' footnote_verse='${value.meta.verse}' class='${footnoteSupClasses}' `)}</span>
+				<span class={selectableVerseTranslations[verseTranslationID].language === 'Urdu' ? 'font-Urdu direction-rtl' : 'direction-ltr'}>{@html verseTranslation.replace(verseTranslationReplace.search, verseTranslationReplace.replace)}</span>
 				{#if $__verseTranslations.length > 1}
 					<span class="opacity-70">&mdash; {selectableVerseTranslations[verseTranslationID].author}</span>
 				{/if}
