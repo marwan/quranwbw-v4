@@ -32,12 +32,10 @@ export async function fetchChapterData(chapter, download = false) {
 
 // function to get verse translations, this is seperate from other data in a verse (like words)
 export async function fetchVerseTranslationData(chapter) {
-	const verseTranslations = get(__verseTranslations).toString();
 	__verseTranslationData.set(null);
-	const apiURL = `https://api.qurancdn.com/api/qdc/verses/by_chapter/${chapter}?per_page=286&translations=${verseTranslations}`;
+	const apiURL = `https://api.qurancdn.com/api/qdc/verses/by_chapter/${chapter}?per_page=286&translations=${get(__verseTranslations).toString()}`;
 	const response = await fetch(apiURL);
 	const data = await response.json();
-	console.log(data.verses);
 	__verseTranslationData.set(data.verses);
 }
 
@@ -48,8 +46,8 @@ export async function fetchVersesData(verses, fontType, wordTranslation, verseTr
 		new URLSearchParams({
 			verses: verses,
 			word_type: selectableFontTypes[fontType].apiId,
-			word_translation: wordTranslation,
-			verse_translation: verseTranslations
+			word_translation: wordTranslation
+			// verse_translation: verseTranslations
 		});
 
 	const response = await fetch(apiURL);
