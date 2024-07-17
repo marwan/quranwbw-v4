@@ -7,7 +7,6 @@ import { selectableFontTypes } from '$data/options';
 export async function fetchChapterData(chapter, download = false) {
 	const fontType = get(__fontType);
 	const wordTranslation = get(__wordTranslation);
-	// const verseTranslations = get(__verseTranslations).toString();
 
 	let apiURL =
 		`${apiEndpoint}/chapter?` +
@@ -15,7 +14,6 @@ export async function fetchChapterData(chapter, download = false) {
 			chapter: chapter,
 			word_type: selectableFontTypes[fontType].apiId,
 			word_translation: wordTranslation,
-			// verse_translation: verseTranslations,
 			version: 100
 			// random: Math.floor(Math.random() * 999999999) + 0
 		});
@@ -37,17 +35,17 @@ export async function fetchVerseTranslationData(chapter) {
 	const response = await fetch(apiURL);
 	const data = await response.json();
 	__verseTranslationData.set(data.verses);
+	return data.verses;
 }
 
 // function to fetch individual verses
-export async function fetchVersesData(verses, fontType, wordTranslation, verseTranslations) {
+export async function fetchVersesData(verses, fontType, wordTranslation) {
 	const apiURL =
 		`${apiEndpoint}/verses?` +
 		new URLSearchParams({
 			verses: verses,
 			word_type: selectableFontTypes[fontType].apiId,
 			word_translation: wordTranslation
-			// verse_translation: verseTranslations
 		});
 
 	const response = await fetch(apiURL);
