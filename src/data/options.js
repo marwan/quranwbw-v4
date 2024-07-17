@@ -196,7 +196,7 @@ export const selectableVerseTranslations = {
 	},
 	97: {
 		resource_id: 97,
-		resource_name: "Tafheem e Qur'an - Syed Abu Ali Maududi",
+		resource_name: 'Tafheem Ul Quran - Abul Alaa Maududi',
 		language_id: 174
 	},
 	234: {
@@ -226,7 +226,7 @@ export const selectableVerseTranslations = {
 	},
 	831: {
 		resource_id: 831,
-		resource_name: 'Abul Ala Maududi (Roman Urdu)',
+		resource_name: 'Abul Alaa Maududi (Roman Urdu)',
 		language_id: 174,
 		is_roman: true
 	}

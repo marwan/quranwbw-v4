@@ -10,7 +10,7 @@
 
 	// fetch verses whenever there's a change
 	$: {
-		if (__userBookmarks.length != 0) {
+		if ($__userBookmarks.length != 0) {
 			fetchData = fetchVersesData($__userBookmarks.toString(), $__fontType, $__wordTranslation, $__verseTranslations.toString());
 		}
 	}
