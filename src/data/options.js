@@ -23,22 +23,40 @@ export const selectableThemes = {
 };
 
 export const verseTranslationsLanguages = [
-	{ language_id: 38, language: 'English' }
-
-	// 1: { id: 1, language: 'Bangla' },
-	// 2: { id: 2, language: 'English' },
-	// 3: { id: 3, language: 'French' },
-	// 4: { id: 4, language: 'Hindi' },
-	// 5: { id: 5, language: 'Hindi Literal' },
-	// 6: { id: 6, language: 'Indonesian' },
-	// 7: { id: 7, language: 'Tamil' },
-	// 8: { id: 8, language: 'Transliteration' },
-	// 9: { id: 9, language: 'Turkish' },
-	// 10: { id: 10, language: 'Urdu' },
-	// 11: { id: 11, language: 'Urdu Literal' }
+	{ language_id: 20, language: 'Bangla' },
+	{ language_id: 38, language: 'English' },
+	{ language_id: 49, language: 'French' },
+	{ language_id: 60, language: 'Hindi' },
+	{ language_id: 67, language: 'Indonesian' },
+	{ language_id: 158, language: 'Tamil' },
+	{ language_id: 167, language: 'Turkish' },
+	{ language_id: 174, language: 'Urdu' }
 ];
 
 export const selectableVerseTranslations = {
+	// bangla
+	161: {
+		resource_id: 161,
+		resource_name: 'Taisirul Quran',
+		language_id: 20
+	},
+	163: {
+		resource_id: 163,
+		resource_name: 'Sheikh Mujibur Rahman',
+		language_id: 20
+	},
+	162: {
+		resource_id: 162,
+		resource_name: 'Rawai Al-bayan',
+		language_id: 20
+	},
+	213: {
+		resource_id: 213,
+		resource_name: 'Dr. Abu Bakr Muhammad Zakaria',
+		language_id: 20
+	},
+
+	// english
 	131: {
 		resource_id: 131,
 		resource_name: 'Dr. Mustafa Khattab, The Clear Quran',
@@ -83,6 +101,134 @@ export const selectableVerseTranslations = {
 		resource_id: 203,
 		resource_name: 'Al-Hilali & Khan',
 		language_id: 38
+	},
+
+	// french
+	779: {
+		resource_id: 779,
+		resource_name: 'Rashid Maash',
+		language_id: 49
+	},
+	136: {
+		resource_id: 136,
+		resource_name: 'Montada Islamic Foundation',
+		language_id: 49
+	},
+	31: {
+		resource_id: 31,
+		resource_name: 'French Translation (Muhammad Hamidullah)',
+		language_id: 49
+	},
+
+	// hindi
+	122: {
+		resource_id: 122,
+		resource_name: 'Maulana Azizul Haque al-Umari',
+		language_id: 60
+	},
+
+	// indonesian
+	134: {
+		resource_id: 134,
+		resource_name: 'King Fahad Quran Complex',
+		language_id: 67
+	},
+	33: {
+		resource_id: 33,
+		resource_name: 'Indonesian Islamic affairs ministry',
+		language_id: 67
+	},
+	141: {
+		resource_id: 141,
+		resource_name: 'The Sabiq company',
+		language_id: 67
+	},
+
+	// tamil
+	229: {
+		resource_id: 229,
+		resource_name: 'Sheikh Omar Sharif bin Abdul Salam',
+		language_id: 158
+	},
+	50: {
+		resource_id: 50,
+		resource_name: 'Jan Trust Foundation',
+		language_id: 158
+	},
+	133: {
+		resource_id: 133,
+		resource_name: 'Abdul Hameed Baqavi',
+		language_id: 158
+	},
+
+	// turkish
+	210: {
+		resource_id: 210,
+		resource_name: 'Dar Al-Salam Center',
+		language_id: 167
+	},
+	77: {
+		resource_id: 77,
+		resource_name: 'Turkish Translation (Diyanet)',
+		language_id: 167
+	},
+	52: {
+		resource_id: 52,
+		resource_name: 'Elmalili Hamdi Yazir',
+		language_id: 167
+	},
+	112: {
+		resource_id: 112,
+		resource_name: 'Shaban Britch',
+		language_id: 167
+	},
+	124: {
+		resource_id: 124,
+		resource_name: 'Muslim Shahin',
+		language_id: 167
+	},
+
+	// urdu
+	156: {
+		resource_id: 156,
+		resource_name: "Fe Zilal al-Qur'an",
+		language_id: 174
+	},
+	97: {
+		resource_id: 97,
+		resource_name: "Tafheem e Qur'an - Syed Abu Ali Maududi",
+		language_id: 174
+	},
+	234: {
+		resource_id: 234,
+		resource_name: 'Fatah Muhammad Jalandhari',
+		language_id: 174
+	},
+	158: {
+		resource_id: 158,
+		resource_name: 'بیان القرآن (ڈاکٹر اسرار احمد)',
+		language_id: 174
+	},
+	151: {
+		resource_id: 151,
+		resource_name: 'Shaykh al-Hind Mahmud al-Hasan (with Tafsir E Usmani)',
+		language_id: 174
+	},
+	54: {
+		resource_id: 54,
+		resource_name: 'Maulana Muhammad Junagarhi',
+		language_id: 174
+	},
+	819: {
+		resource_id: 819,
+		resource_name: 'Maulana Wahiduddin Khan',
+		language_id: 174
+	},
+	831: {
+		resource_id: 831,
+		resource_name: 'Abul Ala Maududi (Roman Urdu)',
+		language_id: 174,
+		is_roman: true
 	}
 };
 

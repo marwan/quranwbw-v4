@@ -7,7 +7,7 @@
 	import { selectableVerseTranslations } from '$data/options';
 
 	const fontSizes = JSON.parse($__userSettings).displaySettings.fontSizes;
-	const footnoteSupClasses = 'ml-1 mt-1 px-2 py-1 bg-gray-200 rounded-full font-semibold cursor-pointer';
+	const footnoteSupClasses = 'ml-1 mt-1 px-2 py-1 bg-gray-200 rounded-full font-semibold cursor-pointer system-font';
 
 	let footnoteId,
 		footnoteVerse,
@@ -51,6 +51,10 @@
 		document.querySelectorAll(selector)[nodeId].classList.add('hidden');
 	}
 
+	function isTranslationRTL(id) {
+		return selectableVerseTranslations[id].language_id === 174 && !selectableVerseTranslations[id].is_roman;
+	}
+
 	window.supClick = supClick;
 </script>
 
@@ -58,7 +62,9 @@
 	<div class="verseTranslationText flex flex-col space-y-4 leading-normal theme {fontSizes.verseTranslationText}" data-fontSize={fontSizes.verseTranslationText}>
 		{#each Object.entries(data[value.meta.verse - 1].translations) as [verseTranslationID, verseTranslation]}
 			<div class="flex flex-col print:break-inside-avoid">
-				<span class={selectableVerseTranslations[verseTranslation.resource_id].language_id === 1 ? 'font-Urdu direction-rtl' : 'direction-ltr'}>{@html verseTranslation.text.replace(/<sup/g, `<sup onclick='supClick(this)' title='Show footnote' data-verse='${value.meta.verse}' data-translation=${verseTranslationID} class='${footnoteSupClasses}' `)}</span>
+				<span class={isTranslationRTL(verseTranslation.resource_id) && 'font-Urdu direction-rtl'}>
+					{@html verseTranslation.text.replace(/<sup/g, `<sup onclick='supClick(this)' title='Show footnote' data-verse='${value.meta.verse}' data-translation=${verseTranslationID} class='${footnoteSupClasses}' `)}
+				</span>
 
 				<!-- translation footnotes -->
 				<div class="hidden my-2 footnote-block px-2 py-2 border-2 border-gray-200 rounded-2xl theme-grayscale footnote-{value.meta.verse}-{verseTranslationID}">
@@ -71,10 +77,10 @@
 						<!-- close footnote button -->
 						<button on:click={() => hideFootnote(value.meta.verse, verseTranslationID)} class="opacity-70" title="Close footnote"><CrossSolid size={6} /></button>
 					</div>
-					<div class="text">...</div>
+					<div class="text {isTranslationRTL(verseTranslation.resource_id) && 'font-Urdu direction-rtl'}">...</div>
 				</div>
 
-				<span class="opacity-70">&mdash; {selectableVerseTranslations[verseTranslation.resource_id].resource_name}</span>
+				<span class="opacity-70 {isTranslationRTL(verseTranslation.resource_id) && 'direction-rtl'}">&mdash; {selectableVerseTranslations[verseTranslation.resource_id].resource_name}</span>
 			</div>
 		{/each}
 	</div>
