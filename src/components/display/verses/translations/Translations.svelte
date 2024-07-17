@@ -2,7 +2,7 @@
 	export let value;
 
 	import Spinner from '$svgs/Spinner.svelte';
-	import Layout from './Layout.svelte';
+	import Layout from '$display/verses/Translations/Layout.svelte';
 	import { __currentPage, __userSettings, __verseTranslations, __verseTranslationData } from '$utils/stores';
 
 	let thisVerseTranslation;
