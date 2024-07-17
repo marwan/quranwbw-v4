@@ -59,7 +59,7 @@ export const selectableVerseTranslations = {
 	// english
 	131: {
 		resource_id: 131,
-		resource_name: 'Dr. Mustafa Khattab, The Clear Quran',
+		resource_name: 'The Clear Quran (Mustafa Khattab)',
 		language_id: 38
 	},
 	20: {
@@ -69,17 +69,17 @@ export const selectableVerseTranslations = {
 	},
 	84: {
 		resource_id: 84,
-		resource_name: 'T. Usmani',
+		resource_name: 'Mufti Taqi Usmani',
 		language_id: 38
 	},
 	85: {
 		resource_id: 85,
-		resource_name: 'M.A.S. Abdel Haleem',
+		resource_name: 'Abdel Haleem',
 		language_id: 38
 	},
 	95: {
 		resource_id: 95,
-		resource_name: 'A. Maududi (Tafhim commentary)',
+		resource_name: 'Abul Alaa Maududi',
 		language_id: 38
 	},
 	57: {
@@ -89,17 +89,17 @@ export const selectableVerseTranslations = {
 	},
 	19: {
 		resource_id: 19,
-		resource_name: 'M. Pickthall',
+		resource_name: 'Pickthall',
 		language_id: 38
 	},
 	22: {
 		resource_id: 22,
-		resource_name: 'A. Yusuf Ali',
+		resource_name: 'Yusuf Ali',
 		language_id: 38
 	},
 	203: {
 		resource_id: 203,
-		resource_name: 'Al-Hilali & Khan',
+		resource_name: 'Hilali & Khan',
 		language_id: 38
 	},
 
