@@ -3,7 +3,7 @@
 
 	import Spinner from '$svgs/Spinner.svelte';
 	import Layout from '$display/verses/translations/Layout.svelte';
-	import { __currentPage, __userSettings, __verseTranslations, __verseTranslationData } from '$utils/stores';
+	import { __currentPage, __verseTranslations, __verseTranslationData } from '$utils/stores';
 	import { fetchVerseTranslationData } from '$utils/fetchData';
 
 	let verseTranslationData;
@@ -19,22 +19,24 @@
 	}
 </script>
 
-{#if $__currentPage === 'chapter'}
-	{#if $__verseTranslationData}
-		<Layout data={$__verseTranslationData} {value} />
+{#if $__verseTranslations.length > 0}
+	{#if $__currentPage === 'chapter'}
+		{#if $__verseTranslationData}
+			<Layout data={$__verseTranslationData} {value} />
+		{:else}
+			<div class="mr-auto">
+				<Spinner size="10" />
+			</div>
+		{/if}
 	{:else}
-		<div class="mr-auto">
-			<Spinner size="10" />
-		</div>
+		{#await verseTranslationData}
+			<div class="mr-auto">
+				<Spinner size="10" />
+			</div>
+		{:then verseTranslationData}
+			<Layout data={verseTranslationData} {value} />
+		{:catch error}
+			<p>{error}</p>
+		{/await}
 	{/if}
-{:else}
-	{#await verseTranslationData}
-		<div class="mr-auto">
-			<Spinner size="10" />
-		</div>
-	{:then verseTranslationData}
-		<Layout data={verseTranslationData} {value} />
-	{:catch error}
-		<p>{error}</p>
-	{/await}
 {/if}

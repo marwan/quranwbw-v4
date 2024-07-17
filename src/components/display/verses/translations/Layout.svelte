@@ -3,7 +3,7 @@
 	export let data;
 
 	import CrossSolid from '$svgs/CrossSolid.svelte';
-	import { __currentPage, __userSettings, __verseTranslations, __verseTranslationData } from '$utils/stores';
+	import { __userSettings } from '$utils/stores';
 	import { selectableVerseTranslations } from '$data/options';
 
 	const fontSizes = JSON.parse($__userSettings).displaySettings.fontSizes;
