@@ -28,10 +28,17 @@ export async function fetchChapterData(chapter, download = false) {
 	else fetchChapterData(chapter);
 }
 
-// function to get verse translations, this is seperate from other data in a verse (like words)
+// function to get verse translations from Quran.com's API, this is a seperate request as compared to the rest of verse data (from our API)
 export async function fetchVerseTranslationData(chapter) {
 	__verseTranslationData.set(null);
-	const apiURL = `https://api.qurancdn.com/api/qdc/verses/by_chapter/${chapter}?per_page=286&translations=${get(__verseTranslations).toString()}`;
+	const apiURL =
+		`https://api.qurancdn.com/api/qdc/verses/by_chapter/${chapter}?` +
+		new URLSearchParams({
+			per_page: 286,
+			translations: get(__verseTranslations).toString()
+			// random: Math.floor(Math.random() * 999999999) + 0
+		});
+
 	const response = await fetch(apiURL);
 	const data = await response.json();
 	__verseTranslationData.set(data.verses);
