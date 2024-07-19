@@ -114,7 +114,7 @@ export function updateSettings(props) {
 			if (props.value instanceof Array) verseTranslationsArray = props.value;
 
 			__verseTranslations.set(verseTranslationsArray);
-			userSettings.translations.verse = verseTranslationsArray;
+			userSettings.translations.verse_v1 = verseTranslationsArray;
 			break;
 
 		// for verse reciter

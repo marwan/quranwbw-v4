@@ -105,7 +105,7 @@ if (browser) {
 	__wordTranslation = writable(userSettings.translations.word);
 
 	// to store the verse translations
-	__verseTranslations = writable(userSettings.translations.verse);
+	__verseTranslations = writable(userSettings.translations.verse_v1);
 
 	// to store the word translation toggle
 	__wordTranslationEnabled = writable(userSettings.displaySettings.wordTranslationEnabled);
