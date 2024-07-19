@@ -1271,14 +1271,6 @@ input[type="range"]::-ms-fill-lower {
   margin-top: 2rem;
 }
 
-.-ml-2 {
-  margin-left: -0.5rem;
-}
-
-.\!ml-2 {
-  margin-left: 0.5rem !important;
-}
-
 .block {
   display: block;
 }
