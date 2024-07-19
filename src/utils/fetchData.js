@@ -1,5 +1,5 @@
 import { get } from 'svelte/store';
-import { __fontType, __chapterData, __wordTranslation, __verseTranslations, __timestampData } from '$utils/stores';
+import { __fontType, __chapterData, __verseTranslationData, __wordTranslation, __verseTranslations, __timestampData } from '$utils/stores';
 import { apiEndpoint, staticEndpoint } from '$data/websiteSettings';
 import { selectableFontTypes } from '$data/options';
 
@@ -7,7 +7,6 @@ import { selectableFontTypes } from '$data/options';
 export async function fetchChapterData(chapter, download = false) {
 	const fontType = get(__fontType);
 	const wordTranslation = get(__wordTranslation);
-	const verseTranslations = get(__verseTranslations).toString();
 
 	let apiURL =
 		`${apiEndpoint}/chapter?` +
@@ -15,7 +14,6 @@ export async function fetchChapterData(chapter, download = false) {
 			chapter: chapter,
 			word_type: selectableFontTypes[fontType].apiId,
 			word_translation: wordTranslation,
-			verse_translation: verseTranslations,
 			version: 100
 			// random: Math.floor(Math.random() * 999999999) + 0
 		});
@@ -30,15 +28,31 @@ export async function fetchChapterData(chapter, download = false) {
 	else fetchChapterData(chapter);
 }
 
+// function to get verse translations from Quran.com's API, this is a seperate request as compared to the rest of verse data (from our API)
+export async function fetchVerseTranslationData(chapter) {
+	__verseTranslationData.set(null);
+	const apiURL =
+		`https://api.qurancdn.com/api/qdc/verses/by_chapter/${chapter}?` +
+		new URLSearchParams({
+			per_page: 286,
+			translations: get(__verseTranslations).toString()
+			// random: Math.floor(Math.random() * 999999999) + 0
+		});
+
+	const response = await fetch(apiURL);
+	const data = await response.json();
+	__verseTranslationData.set(data.verses);
+	return data.verses;
+}
+
 // function to fetch individual verses
-export async function fetchVersesData(verses, fontType, wordTranslation, verseTranslations) {
+export async function fetchVersesData(verses, fontType, wordTranslation) {
 	const apiURL =
 		`${apiEndpoint}/verses?` +
 		new URLSearchParams({
 			verses: verses,
 			word_type: selectableFontTypes[fontType].apiId,
-			word_translation: wordTranslation,
-			verse_translation: verseTranslations
+			word_translation: wordTranslation
 		});
 
 	const response = await fetch(apiURL);

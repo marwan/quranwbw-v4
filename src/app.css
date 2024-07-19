@@ -135,6 +135,10 @@ svg {
   font-display: block;
 }
 
+.system-font {
+  font-family: 'system-ui';
+}
+
 .tajweed-rules {
   font-family: "tajweed-rules";
   font-display: block;

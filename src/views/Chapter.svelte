@@ -7,11 +7,11 @@
 	import Chapter from '$display/verses/modes/Chapter.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
 	import { parseURL } from '$utils/parseURL';
-	import { fetchChapterData } from '$utils/fetchData';
+	import { fetchChapterData, fetchVerseTranslationData } from '$utils/fetchData';
 	import { quranMetaData } from '$data/quranMeta';
 	import { selectableDisplays } from '$data/options';
 	import { errorLoadingDataMessage } from '$data/websiteSettings';
-	import { __userSettings, __currentPage, __chapterNumber, __displayType, __fontType, __wordTranslation, __verseTranslations, __pageURL, __firstVerseOnPage, __chapterDataLoaded, __chapterData } from '$utils/stores';
+	import { __userSettings, __currentPage, __chapterNumber, __displayType, __fontType, __wordTranslation, __verseTranslations, __pageURL, __firstVerseOnPage, __chapterDataLoaded, __verseTranslationData } from '$utils/stores';
 
 	// max verses to load if total verses in chapter are more than this
 	const maxVersesThreshold = 5;
@@ -50,10 +50,12 @@
 		__firstVerseOnPage.set(startVerse);
 
 		// do nothing except re-run the block if any of the following store updates
-		if ($__pageURL || $__displayType || $__fontType || $__wordTranslation || $__verseTranslations) {
+		if ($__pageURL || $__displayType || $__fontType || $__wordTranslation) {
 			// do nothing...
 		}
 	}
+
+	$: if ($__verseTranslations) fetchVerseTranslationData($__chapterNumber);
 
 	// update some variables on chapter change, for when the data has to be loaded from the API
 	function resetChapterDataVariables(chapter) {

@@ -272,14 +272,14 @@
 								<div id="translation-name" class="text-sm font-medium">{language.language}</div>
 								<div id="translation-list" class="space-y-2">
 									{#each Object.values(selectableVerseTranslations) as translation}
-										{#if translation.language === language.language}
+										{#if translation.language_id === language.language_id}
 											<li>
 												<div class="flex items-center">
 													<!-- using else-if block to add the "checked" attribute because for some reason the inline check is not working in Svelte as compared to regular javascript -->
-													{#if $__verseTranslations.includes(translation.id)}
-														<Checkbox checked id="verseTranslationCheckbox-{translation.id}" on:click={() => updateSettings({ type: 'verseTranslation', value: translation.id })} class={radioClasses}>{translation.author}</Checkbox>
+													{#if $__verseTranslations.includes(translation.resource_id)}
+														<Checkbox checked id="verseTranslationCheckbox-{translation.resource_id}" on:click={() => updateSettings({ type: 'verseTranslation', value: translation.resource_id })} class={radioClasses}>{translation.resource_name}</Checkbox>
 													{:else}
-														<Checkbox id="verseTranslationCheckbox-{translation.id}" on:click={() => updateSettings({ type: 'verseTranslation', value: translation.id })} class={radioClasses}>{translation.author}</Checkbox>
+														<Checkbox id="verseTranslationCheckbox-{translation.resource_id}" on:click={() => updateSettings({ type: 'verseTranslation', value: translation.resource_id })} class={radioClasses}>{translation.resource_name}</Checkbox>
 													{/if}
 												</div>
 											</li>

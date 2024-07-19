@@ -22,176 +22,213 @@ export const selectableThemes = {
 	5: { id: 5, name: 'Sepia', palette: 2 }
 };
 
-export const verseTranslationsLanguages = {
-	1: { id: 1, language: 'Bangla' },
-	2: { id: 2, language: 'English' },
-	3: { id: 3, language: 'French' },
-	4: { id: 4, language: 'Hindi' },
-	5: { id: 5, language: 'Hindi Literal' },
-	6: { id: 6, language: 'Indonesian' },
-	7: { id: 7, language: 'Tamil' },
-	8: { id: 8, language: 'Transliteration' },
-	9: { id: 9, language: 'Turkish' },
-	10: { id: 10, language: 'Urdu' },
-	11: { id: 11, language: 'Urdu Literal' }
-};
+export const verseTranslationsLanguages = [
+	{ language_id: 20, language: 'Bangla' },
+	{ language_id: 38, language: 'English' },
+	{ language_id: 49, language: 'French' },
+	{ language_id: 60, language: 'Hindi' },
+	{ language_id: 67, language: 'Indonesian' },
+	{ language_id: 158, language: 'Tamil' },
+	{ language_id: 167, language: 'Turkish' },
+	{ language_id: 174, language: 'Urdu' }
+];
 
 export const selectableVerseTranslations = {
-	1: {
-		id: 1,
-		language: 'Transliteration',
-		author: 'Tajweed Transliteration',
-		slug: 'arb_transliteration_tajweed'
+	// bangla
+	161: {
+		resource_id: 161,
+		resource_name: 'Taisirul Quran',
+		language_id: 20
 	},
-	2: {
-		id: 2,
-		language: 'Transliteration',
-		author: 'Transliteration',
-		slug: 'transliteration_normal'
+	163: {
+		resource_id: 163,
+		resource_name: 'Sheikh Mujibur Rahman',
+		language_id: 20
 	},
-	10: {
-		id: 10,
-		language: 'English',
-		author: 'Hilali & Khan',
-		slug: 'eng_muhammadtaqiudd'
+	162: {
+		resource_id: 162,
+		resource_name: 'Rawai Al-bayan',
+		language_id: 20
 	},
-	11: {
-		id: 11,
-		language: 'English',
-		author: 'Sahih International',
-		slug: 'eng_ummmuhammad'
+	213: {
+		resource_id: 213,
+		resource_name: 'Dr. Abu Bakr Muhammad Zakaria',
+		language_id: 20
 	},
-	12: {
-		id: 12,
-		language: 'English',
-		author: 'Abul Alaa Maududi',
-		slug: 'eng_maududi_new'
-	},
-	13: {
-		id: 13,
-		language: 'English',
-		author: 'Pickthall',
-		slug: 'eng_mohammedmarmadu'
-	},
-	14: {
-		id: 14,
-		language: 'English',
-		author: 'Yusuf Ali',
-		slug: 'eng_yusufaliorig'
-	},
-	15: {
-		id: 15,
-		language: 'English',
-		author: 'The Clear Quran (Mustafa Khattab)',
-		slug: 'eng_mustafakhattaba'
-	},
-	16: {
-		id: 16,
-		language: 'English',
-		author: 'Abdel Haleem',
-		slug: 'eng_abdelhaleem'
-	},
-	17: {
-		id: 17,
-		language: 'English',
-		author: 'Almuntakhab Fi Tafsir Alquran Alkarim',
-		slug: 'eng_almuntakhabfita'
-	},
-	18: {
-		id: 18,
-		language: 'English',
-		author: 'Mufti Taqi Usmani',
-		slug: 'eng_muftitaqiusmani'
-	},
-	19: {
-		id: 19,
-		language: 'English',
-		author: 'Tahfeem-ul-Quran by Abul Alaa Maududi',
-		slug: 'eng_tafheem'
+
+	// english
+	131: {
+		resource_id: 131,
+		resource_name: 'The Clear Quran (Mustafa Khattab)',
+		language_id: 38
 	},
 	20: {
-		id: 20,
-		language: 'English',
-		author: 'Tafsir al-Jalalayn',
-		slug: 'eng_jalalayn'
+		resource_id: 20,
+		resource_name: 'Saheeh International',
+		language_id: 38
 	},
-	30: {
-		id: 30,
-		language: 'Urdu',
-		author: 'Ahmed Ali',
-		slug: 'urd_ahmedali'
+	84: {
+		resource_id: 84,
+		resource_name: 'Mufti Taqi Usmani',
+		language_id: 38
+	},
+	85: {
+		resource_id: 85,
+		resource_name: 'Abdel Haleem',
+		language_id: 38
+	},
+	95: {
+		resource_id: 95,
+		resource_name: 'Abul Alaa Maududi',
+		language_id: 38
+	},
+	57: {
+		resource_id: 57,
+		resource_name: 'Transliteration',
+		language_id: 38
+	},
+	19: {
+		resource_id: 19,
+		resource_name: 'Pickthall',
+		language_id: 38
+	},
+	22: {
+		resource_id: 22,
+		resource_name: 'Yusuf Ali',
+		language_id: 38
+	},
+	203: {
+		resource_id: 203,
+		resource_name: 'Hilali & Khan',
+		language_id: 38
+	},
+
+	// french
+	779: {
+		resource_id: 779,
+		resource_name: 'Rashid Maash',
+		language_id: 49
+	},
+	136: {
+		resource_id: 136,
+		resource_name: 'Montada Islamic Foundation',
+		language_id: 49
 	},
 	31: {
-		id: 31,
-		language: 'Urdu',
-		author: 'Abul Alaa Maududi',
-		slug: 'urd_abulaalamaududi'
+		resource_id: 31,
+		resource_name: 'French Translation (Muhammad Hamidullah)',
+		language_id: 49
 	},
-	32: {
-		id: 32,
-		language: 'Urdu',
-		author: 'Muhammad Junagarhi',
-		slug: 'urd_muhammadjunagar'
+
+	// hindi
+	122: {
+		resource_id: 122,
+		resource_name: 'Maulana Azizul Haque al-Umari',
+		language_id: 60
+	},
+
+	// indonesian
+	134: {
+		resource_id: 134,
+		resource_name: 'King Fahad Quran Complex',
+		language_id: 67
 	},
 	33: {
-		id: 33,
-		language: 'Urdu Literal',
-		author: 'Abul Alaa Maududi',
-		slug: 'urd_abulaalamaududi_la'
+		resource_id: 33,
+		resource_name: 'Indonesian Islamic affairs ministry',
+		language_id: 67
 	},
-	34: {
-		id: 34,
-		language: 'Hindi',
-		author: 'Suhel Farooq & Saifur Rahman',
-		slug: 'hin_suhelfarooqkhan'
+	141: {
+		resource_id: 141,
+		resource_name: 'The Sabiq company',
+		language_id: 67
 	},
-	35: {
-		id: 35,
-		language: 'Hindi Literal',
-		author: 'Suhel Farooq & Saifur Rahman',
-		slug: 'hin_suhelfarooqkhan_la'
+
+	// tamil
+	229: {
+		resource_id: 229,
+		resource_name: 'Sheikh Omar Sharif bin Abdul Salam',
+		language_id: 158
 	},
-	36: {
-		id: 36,
-		language: 'Indonesian',
-		author: 'Indonesian Islamic Affairs Ministry',
-		slug: 'ind_indonesianislam'
+	50: {
+		resource_id: 50,
+		resource_name: 'Jan Trust Foundation',
+		language_id: 158
 	},
-	37: {
-		id: 37,
-		language: 'Bangla',
-		author: 'Zohurul Hoque',
-		slug: 'ben_zohurulhoque'
+	133: {
+		resource_id: 133,
+		resource_name: 'Abdul Hameed Baqavi',
+		language_id: 158
 	},
-	38: {
-		id: 38,
-		language: 'Bangla',
-		author: 'Muhiuddin Khan',
-		slug: 'ben_muhiuddinkhan'
+
+	// turkish
+	210: {
+		resource_id: 210,
+		resource_name: 'Dar Al-Salam Center',
+		language_id: 167
 	},
-	39: {
-		id: 39,
-		language: 'Turkish',
-		author: 'Diyanet Isleri',
-		slug: 'tur_diyanetisleri'
+	77: {
+		resource_id: 77,
+		resource_name: 'Turkish Translation (Diyanet)',
+		language_id: 167
 	},
-	40: {
-		id: 40,
-		language: 'Turkish',
-		author: 'Elmalili Hamdi Yazir',
-		slug: 'tur_elmalilihamdiya'
+	52: {
+		resource_id: 52,
+		resource_name: 'Elmalili Hamdi Yazir',
+		language_id: 167
 	},
-	41: {
-		id: 41,
-		language: 'Tamil',
-		author: 'Jan Turst Foundation',
-		slug: 'tam_janturstfoundat'
+	112: {
+		resource_id: 112,
+		resource_name: 'Shaban Britch',
+		language_id: 167
 	},
-	42: {
-		id: 42,
-		language: 'French',
-		author: 'Muhammad Hamidullah',
-		slug: 'fr_hamidullah'
+	124: {
+		resource_id: 124,
+		resource_name: 'Muslim Shahin',
+		language_id: 167
+	},
+
+	// urdu
+	156: {
+		resource_id: 156,
+		resource_name: "Fe Zilal al-Qur'an",
+		language_id: 174
+	},
+	97: {
+		resource_id: 97,
+		resource_name: 'Tafheem Ul Quran - Abul Alaa Maududi',
+		language_id: 174
+	},
+	234: {
+		resource_id: 234,
+		resource_name: 'Fatah Muhammad Jalandhari',
+		language_id: 174
+	},
+	158: {
+		resource_id: 158,
+		resource_name: 'بیان القرآن (ڈاکٹر اسرار احمد)',
+		language_id: 174
+	},
+	151: {
+		resource_id: 151,
+		resource_name: 'Shaykh al-Hind Mahmud al-Hasan (with Tafsir E Usmani)',
+		language_id: 174
+	},
+	54: {
+		resource_id: 54,
+		resource_name: 'Maulana Muhammad Junagarhi',
+		language_id: 174
+	},
+	819: {
+		resource_id: 819,
+		resource_name: 'Maulana Wahiduddin Khan',
+		language_id: 174
+	},
+	831: {
+		resource_id: 831,
+		resource_name: 'Abul Alaa Maududi (Roman Urdu)',
+		language_id: 174,
+		is_roman: true
 	}
 };
 

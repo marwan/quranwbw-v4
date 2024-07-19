@@ -1271,6 +1271,14 @@ input[type="range"]::-ms-fill-lower {
   margin-top: 2rem;
 }
 
+.-ml-2 {
+  margin-left: -0.5rem;
+}
+
+.\!ml-2 {
+  margin-left: 0.5rem !important;
+}
+
 .block {
   display: block;
 }
@@ -3141,6 +3149,10 @@ svg {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-display: block;
+}
+
+.system-font {
+  font-family: 'system-ui';
 }
 
 .tajweed-rules {
