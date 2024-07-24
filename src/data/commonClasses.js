@@ -11,3 +11,5 @@ export const tabPillClasses = 'py-2 px-4 text-xs cursor-pointer rounded-3xl hove
 export const labelPillClasses = 'bg-gray-300 text-gray-800 text-sm font-normal me-2 px-2.5 py-0.5 rounded-full grayscale';
 
 export const linkClasses = 'font-semibold underline';
+
+export const selectedRadioClasses = 'bg-gray-200 border-gray-400';

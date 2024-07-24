@@ -1,10 +1,8 @@
 <script>
 	import Drawer from '$ui/flowbite-svelte/drawer/Drawer.svelte';
-	import Radio from '$ui/flowbite-svelte/forms/Radio.svelte';
 	import Plus from '$svgs/Plus.svelte';
 	import Minus from '$svgs/Minus.svelte';
 	import CloseButton from '$ui/flowbite-svelte/utils/CloseButton.svelte';
-	import Dropdown from '$ui/flowbite-svelte/dropdown/Dropdown.svelte';
 	import Button from '$ui/flowbite-svelte/buttons/Button.svelte';
 	import {
 		__currentPage,
@@ -36,10 +34,16 @@
 	import { disabledClasses, buttonClasses } from '$data/commonClasses';
 	import { sineIn } from 'svelte/easing';
 	import { term } from '$utils/terminologies';
-	import { displayTypeChangeHandler } from '$utils/displayTypeChangeHandler';
 
-	import VerseTranslationSelector from '$ui/SettingsDrawer/VerseTranslationSelector.svelte';
 	import WebsiteThemeSelector from '$ui/SettingsDrawer/WebsiteThemeSelector.svelte';
+	import DisplayTypeSelector from '$ui/SettingsDrawer/DisplayTypeSelector.svelte';
+	import WordTooltipSelector from '$ui/SettingsDrawer/WordTooltipSelector.svelte';
+	import QuranFontSelector from '$ui/SettingsDrawer/QuranFontSelector.svelte';
+	import WordTranslationSelector from '$ui/SettingsDrawer/WordTranslationSelector.svelte';
+	import VerseTranslationSelector from '$ui/SettingsDrawer/VerseTranslationSelector.svelte';
+	import VerseRecitorSelector from '$ui/SettingsDrawer/VerseRecitorSelector.svelte';
+	import TranslationRecitorSelector from '$ui/SettingsDrawer/TranslationRecitorSelector.svelte';
+	import PlaybackSpeedSelector from '$ui/SettingsDrawer/PlaybackSpeedSelector.svelte';
 
 	const transitionParamsRight = {
 		x: 320,
@@ -49,13 +53,18 @@
 
 	const individualSettingsComponents = {
 		'website-theme': WebsiteThemeSelector,
-		'verse-translation': VerseTranslationSelector
+		'display-type': DisplayTypeSelector,
+		'word-tooltip': WordTooltipSelector,
+		'quran-font': QuranFontSelector,
+		'word-translation': WordTranslationSelector,
+		'verse-translation': VerseTranslationSelector,
+		'verse-reciter': VerseRecitorSelector,
+		'translation-reciter': TranslationRecitorSelector,
+		'playback-speed': PlaybackSpeedSelector
 	};
 
 	const settingsBlockClasses = 'space-y-2 py-6';
 	const selectorClasses = 'w-32 border border-black/10 text-black text-left rounded-3xl focus:ring-gray-500 focus:border-gray-500 focus-within:ring-2 block p-2.5 truncate font-normal theme-grayscale';
-	const radioClasses = 'font-normal text-md';
-	const dropdownClasses = 'w-52 p-3 space-y-3 text-sm max-h-64 overflow-y-scroll theme-grayscale';
 	const settingsDescriptionClasses = 'mb-6 text-sm opacity-70';
 	const toggleBtnClasses =
 		"relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-black/10 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-gray-600 theme-grayscale";
@@ -107,11 +116,6 @@
 					<div class="flex flex-row justify-between items-center">
 						<div class="block">Theme</div>
 						<Button class={selectorClasses} on:click={() => gotoIndividualSetting('website-theme')}>{selectableThemes[$__websiteTheme].name}</Button>
-						<!-- <Dropdown class={dropdownClasses}>
-							{#each Object.entries(selectableThemes) as [id, theme]}
-								<li><Radio name="websiteTheme" bind:group={$__websiteTheme} value={theme.id} on:change={(event) => updateSettings({ type: 'websiteTheme', value: +event.target.value })} class={radioClasses}>{theme.name}</Radio></li>
-							{/each}
-						</Dropdown> -->
 					</div>
 					<p class={settingsDescriptionClasses}>An assortment of website themes to please your vision.</p>
 				</div>
@@ -122,12 +126,7 @@
 				<div id="display-type-setting" class="{settingsBlockClasses} {!['chapter', 'page'].includes($__currentPage) && disabledClasses}">
 					<div class="flex flex-row justify-between items-center">
 						<div class="block">Display Type</div>
-						<Button class={selectorClasses}>{selectableDisplays[$__selectedDisplayId].displayName}</Button>
-						<Dropdown class={dropdownClasses}>
-							{#each Object.entries(selectableDisplays) as [id, displayOption]}
-								<li><Radio name="displayType" bind:group={$__selectedDisplayId} value={displayOption.displayID} on:change={(event) => displayTypeChangeHandler(+event.target.value)} class={radioClasses}>{displayOption.displayName}</Radio></li>
-							{/each}
-						</Dropdown>
+						<Button class={selectorClasses} on:click={() => gotoIndividualSetting('display-type')}>{selectableDisplays[$__selectedDisplayId].displayName}</Button>
 					</div>
 					<p class={settingsDescriptionClasses}>Different {term('verse')} layouts that you can choose from.</p>
 				</div>
@@ -138,12 +137,7 @@
 				<div id="word-tooltip-setting" class={settingsBlockClasses}>
 					<div class="flex flex-row justify-between items-center">
 						<div class="block">Word Tooltip</div>
-						<Button class={selectorClasses}>{selectableTooltipOptions[$__wordTooltip].name}</Button>
-						<Dropdown class={dropdownClasses}>
-							{#each Object.entries(selectableTooltipOptions) as [id, options]}
-								<li><Radio name="wordTooltip" bind:group={$__wordTooltip} value={options.id} on:change={(event) => updateSettings({ type: 'wordTooltip', value: +event.target.value })} class={radioClasses}>{options.name}</Radio></li>
-							{/each}
-						</Dropdown>
+						<Button class={selectorClasses} on:click={() => gotoIndividualSetting('word-tooltip')}>{selectableTooltipOptions[$__wordTooltip].name}</Button>
 					</div>
 					<p class={settingsDescriptionClasses}>Choose what is displayed when you hover a word.</p>
 				</div>
@@ -205,14 +199,7 @@
 				<div id="quran-font-setting" class={settingsBlockClasses}>
 					<div class="flex flex-row justify-between items-center">
 						<div class="block">Quran Font</div>
-						<Button class={selectorClasses}>{selectableFontTypes[$__fontType].font}</Button>
-						<Dropdown class={dropdownClasses}>
-							{#each Object.entries(selectableFontTypes) as [id, font]}
-								{#if !font.disallowedIn.includes($__currentPage)}
-									<li><Radio name="fontType" bind:group={$__fontType} value={font.id} on:change={(event) => updateSettings({ type: 'fontType', value: +event.target.value })} class={radioClasses}>{font.font}</Radio></li>
-								{/if}
-							{/each}
-						</Dropdown>
+						<Button class={selectorClasses} on:click={() => gotoIndividualSetting('quran-font')}>{selectableFontTypes[$__fontType].font}</Button>
 					</div>
 					<p class={settingsDescriptionClasses}>Multiple Quranic fonts to choose from depending on your mushaf or region preference.</p>
 				</div>
@@ -282,12 +269,7 @@
 				<div id="word-translation-setting" class={settingsBlockClasses}>
 					<div class="flex flex-row justify-between items-center">
 						<div class="block">Word</div>
-						<Button class={selectorClasses}>{selectableWordTranslations[wordTranslationKey].language}</Button>
-						<Dropdown class={dropdownClasses}>
-							{#each Object.entries(selectableWordTranslations) as [id, translation]}
-								<li><Radio name="wordTranslation" bind:group={$__wordTranslation} value={translation.id} on:change={(event) => updateSettings({ type: 'wordTranslation', value: +event.target.value })} class={radioClasses}>{translation.language}</Radio></li>
-							{/each}
-						</Dropdown>
+						<Button class={selectorClasses} on:click={() => gotoIndividualSetting('word-translation')}>{selectableWordTranslations[wordTranslationKey].language}</Button>
 					</div>
 					<p class={settingsDescriptionClasses}>Word translation which will be displaced under the Arabic word text.</p>
 				</div>
@@ -314,12 +296,7 @@
 				<div id="verse-reciter-setting" class={settingsBlockClasses}>
 					<div class="flex flex-row justify-between items-center">
 						<div class="block">{term('verse')} Reciter</div>
-						<Button class={selectorClasses}>{selectableReciters[$__reciter].reciter}</Button>
-						<Dropdown class={dropdownClasses}>
-							{#each Object.entries(selectableReciters) as [id, reciter]}
-								<li><Radio name="reciter" bind:group={$__reciter} value={reciter.id} on:change={(event) => updateSettings({ type: 'reciter', value: +event.target.value })} class={radioClasses}>{reciter.reciter}</Radio></li>
-							{/each}
-						</Dropdown>
+						<Button class={selectorClasses} on:click={() => gotoIndividualSetting('verse-reciter')}>{selectableReciters[$__reciter].reciter}</Button>
 					</div>
 					<p class={settingsDescriptionClasses}>The reciter whose audio will be played when you choose to listen to a {term('verse')}.</p>
 				</div>
@@ -330,12 +307,7 @@
 				<div id="translation-reciter-setting" class={settingsBlockClasses}>
 					<div class="flex flex-row justify-between items-center">
 						<div class="block">Translation Reciter</div>
-						<Button class={selectorClasses}>{selectableTranslationReciters[$__translationReciter].reciter}</Button>
-						<Dropdown class={dropdownClasses}>
-							{#each Object.entries(selectableTranslationReciters) as [id, reciter]}
-								<li><Radio name="reciter" bind:group={$__translationReciter} value={reciter.id} on:change={(event) => updateSettings({ type: 'translationReciter', value: +event.target.value })} class={radioClasses}>{reciter.reciter}</Radio></li>
-							{/each}
-						</Dropdown>
+						<Button class={selectorClasses} on:click={() => gotoIndividualSetting('translation-reciter')}>{selectableTranslationReciters[$__translationReciter].reciter}</Button>
 					</div>
 					<p class={settingsDescriptionClasses}>The translation reciter whose audio will be played after the {term('verse')} audio.</p>
 				</div>
@@ -346,12 +318,7 @@
 				<div id="playback-speed-setting" class={settingsBlockClasses}>
 					<div class="flex flex-row justify-between items-center">
 						<div class="block">Playback Speed</div>
-						<Button class={selectorClasses}>x{selectablePlaybackSpeeds[$__playbackSpeed].speed}</Button>
-						<Dropdown class={dropdownClasses}>
-							{#each Object.entries(selectablePlaybackSpeeds) as [id, speed]}
-								<li><Radio name="playbackSpeed" bind:group={$__playbackSpeed} value={speed.id} on:change={(event) => updateSettings({ type: 'playbackSpeed', value: +event.target.value })} class={radioClasses}>x{speed.speed}</Radio></li>
-							{/each}
-						</Dropdown>
+						<Button class={selectorClasses} on:click={() => gotoIndividualSetting('playback-speed')}>x{selectablePlaybackSpeeds[$__playbackSpeed].speed}</Button>
 					</div>
 					<p class={settingsDescriptionClasses}>The playback speed at which the {term('verse')}/word audio will be played.</p>
 				</div>
