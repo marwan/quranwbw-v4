@@ -127,15 +127,15 @@
 				</div>
 			</div>
 
-			<div class="{cardGridClasses} grid-cols-1">
+			<div class="{cardGridClasses} grid-cols-2">
 				{#each { length: 114 } as _, chapter}
 					<a href="/{chapter + 1}">
 						<!-- <button class="pointer h-7 w-7 rounded-full bg-gray-300 text-xs">{chapter + 1}</button> -->
 
-						<div class="{cardInnerClasses} md:flex-row items-center">
-							<div>
+						<div class="{cardInnerClasses} flex-col-reverse md:flex-row text-center items-center">
+							<div class="">
 								<!-- chapter name and icon -->
-								<div class="flex flex-row items-center space-x-1 justify-start truncate">
+								<div class="flex flex-row items-center space-x-1 justify-center md:justify-start truncate">
 									<div>{chapter + 1}. {quranMetaData[chapter + 1].transliteration}</div>
 									<div class="opacity-50"><svelte:component this={quranMetaData[chapter + 1].revelation === 1 ? Mecca : Madinah} /></div>
 									<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-filter font-normal">{quranMetaData[chapter + 1].revelation === 1 ? 'Meccan' : 'Medinan'} revelation</Tooltip>
