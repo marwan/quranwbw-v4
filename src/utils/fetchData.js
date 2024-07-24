@@ -14,6 +14,7 @@ export async function fetchChapterData(chapter, download = false) {
 			chapter: chapter,
 			word_type: selectableFontTypes[fontType].apiId,
 			word_translation: wordTranslation,
+			verse_translation: 1,
 			version: 100
 			// random: Math.floor(Math.random() * 999999999) + 0
 		});
@@ -52,7 +53,8 @@ export async function fetchVersesData(verses, fontType, wordTranslation) {
 		new URLSearchParams({
 			verses: verses,
 			word_type: selectableFontTypes[fontType].apiId,
-			word_translation: wordTranslation
+			word_translation: wordTranslation,
+			verse_translation: 1
 		});
 
 	const response = await fetch(apiURL);

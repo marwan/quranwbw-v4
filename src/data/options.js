@@ -29,6 +29,7 @@ export const verseTranslationsLanguages = [
 	{ language_id: 60, language: 'Hindi' },
 	{ language_id: 67, language: 'Indonesian' },
 	{ language_id: 158, language: 'Tamil' },
+	{ language_id: 11115, language: 'Transliteration' },
 	{ language_id: 167, language: 'Turkish' },
 	{ language_id: 174, language: 'Urdu' }
 ];
@@ -80,11 +81,6 @@ export const selectableVerseTranslations = {
 	95: {
 		resource_id: 95,
 		resource_name: 'Abul Alaa Maududi',
-		language_id: 38
-	},
-	57: {
-		resource_id: 57,
-		resource_name: 'Transliteration',
 		language_id: 38
 	},
 	19: {
@@ -160,6 +156,18 @@ export const selectableVerseTranslations = {
 		resource_name: 'Abdul Hameed Baqavi',
 		language_id: 158
 	},
+
+	// transliterations
+	57: {
+		resource_id: 57,
+		resource_name: 'Transliteration',
+		language_id: 11115
+	},
+	// 1: {
+	// 	resource_id: 1,
+	// 	resource_name: 'Tajweed Transliteration',
+	// 	language_id: 11115
+	// },
 
 	// turkish
 	210: {

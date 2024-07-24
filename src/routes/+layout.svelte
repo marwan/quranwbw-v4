@@ -6,7 +6,7 @@
 	import '$utils/keyDownHandler';
 
 	import Navbar from '$ui/Navbar.svelte';
-	import SettingsDrawer from '$ui/SettingsDrawer.svelte';
+	import SettingsDrawer from '$ui/SettingsDrawer/SettingsDrawer.svelte';
 	import BottomToolbar from '$ui/BottomToolbar/BottomToolbar.svelte';
 	import InitialSetupModal from '$ui/modals/InitialSetupModal.svelte';
 	import AudioModal from '$ui/modals/AudioModal.svelte';
