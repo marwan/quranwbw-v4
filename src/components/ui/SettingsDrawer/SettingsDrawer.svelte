@@ -38,7 +38,8 @@
 	import { term } from '$utils/terminologies';
 	import { displayTypeChangeHandler } from '$utils/displayTypeChangeHandler';
 
-	import VerseTranslations from '$ui/SettingsDrawer/VerseTranslations.svelte';
+	import VerseTranslationSelector from '$ui/SettingsDrawer/VerseTranslationSelector.svelte';
+	import WebsiteThemeSelector from '$ui/SettingsDrawer/WebsiteThemeSelector.svelte';
 
 	const transitionParamsRight = {
 		x: 320,
@@ -47,7 +48,8 @@
 	};
 
 	const individualSettingsComponents = {
-		'verse-translation': VerseTranslations
+		'website-theme': WebsiteThemeSelector,
+		'verse-translation': VerseTranslationSelector
 	};
 
 	const settingsBlockClasses = 'space-y-2 py-6';
@@ -71,7 +73,7 @@
 		scrollToTop();
 	}
 
-	function toggleIndividualSetting(type) {
+	function gotoIndividualSetting(type) {
 		allSettingsClasses = 'hidden';
 		individualSettingsClasses = 'block';
 		individualSettingsComponent = individualSettingsComponents[type];
@@ -104,12 +106,12 @@
 				<div id="website-theme-setting" class={settingsBlockClasses}>
 					<div class="flex flex-row justify-between items-center">
 						<div class="block">Theme</div>
-						<Button class={selectorClasses}>{selectableThemes[$__websiteTheme].name}</Button>
-						<Dropdown class={dropdownClasses}>
+						<Button class={selectorClasses} on:click={() => gotoIndividualSetting('website-theme')}>{selectableThemes[$__websiteTheme].name}</Button>
+						<!-- <Dropdown class={dropdownClasses}>
 							{#each Object.entries(selectableThemes) as [id, theme]}
 								<li><Radio name="websiteTheme" bind:group={$__websiteTheme} value={theme.id} on:change={(event) => updateSettings({ type: 'websiteTheme', value: +event.target.value })} class={radioClasses}>{theme.name}</Radio></li>
 							{/each}
-						</Dropdown>
+						</Dropdown> -->
 					</div>
 					<p class={settingsDescriptionClasses}>An assortment of website themes to please your vision.</p>
 				</div>
@@ -296,29 +298,7 @@
 				<div id="verse-translation-setting" class={settingsBlockClasses}>
 					<div class="flex flex-row justify-between items-center">
 						<div class="block">{term('verse')}</div>
-						<Button class={selectorClasses} on:click={() => toggleIndividualSetting('verse-translation')}>{$__verseTranslations.length} selected</Button>
-						<!-- <Dropdown class={dropdownClasses}>
-							{#each Object.entries(verseTranslationsLanguages) as [id, language]}
-								<div class="space-y-2">
-									<div id="translation-name" class="text-sm font-medium">{language.language}</div>
-									<div id="translation-list" class="space-y-2">
-										{#each Object.values(selectableVerseTranslations) as translation}
-											{#if translation.language_id === language.language_id}
-												<li>
-													<div class="flex items-center">
-														{#if $__verseTranslations.includes(translation.resource_id)}
-															<Checkbox checked id="verseTranslationCheckbox-{translation.resource_id}" on:click={() => updateSettings({ type: 'verseTranslation', value: translation.resource_id })} class={radioClasses}>{translation.resource_name}</Checkbox>
-														{:else}
-															<Checkbox id="verseTranslationCheckbox-{translation.resource_id}" on:click={() => updateSettings({ type: 'verseTranslation', value: translation.resource_id })} class={radioClasses}>{translation.resource_name}</Checkbox>
-														{/if}
-													</div>
-												</li>
-											{/if}
-										{/each}
-									</div>
-								</div>
-							{/each}
-						</Dropdown> -->
+						<Button class={selectorClasses} on:click={() => gotoIndividualSetting('verse-translation')}>{$__verseTranslations.length} selected</Button>
 					</div>
 					<p class={settingsDescriptionClasses}>{term('verse')} translations from multiple authors and languages.</p>
 				</div>
