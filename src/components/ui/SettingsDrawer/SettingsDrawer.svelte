@@ -75,25 +75,28 @@
 	let allSettingsClasses = 'block';
 	let individualSettingsClasses = 'hidden';
 	let individualSettingsComponent;
+	let mainSettingsScrollPos = 0;
 
 	function goBackToMainSettings() {
 		allSettingsClasses = 'block';
 		individualSettingsClasses = 'hidden';
-		scrollToTop();
+
+		// scroll to last position
+		setTimeout(function () {
+			document.getElementById('settings-drawer').scrollTop = mainSettingsScrollPos;
+		}, 0);
 	}
 
 	function gotoIndividualSetting(type) {
+		mainSettingsScrollPos = document.getElementById('settings-drawer').scrollTop;
 		allSettingsClasses = 'hidden';
 		individualSettingsClasses = 'block';
 		individualSettingsComponent = individualSettingsComponents[type];
-		scrollToTop();
-	}
 
-	function scrollToTop() {
+		// scroll to top
 		setTimeout(function () {
-			document.getElementById('all-settings').scrollIntoView();
 			document.getElementById('individual-setting').scrollIntoView();
-		}, 1);
+		}, 0);
 	}
 </script>
 
