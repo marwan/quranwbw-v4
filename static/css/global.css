@@ -1316,6 +1316,21 @@ input[type="range"]::-ms-fill-lower {
   display: none;
 }
 
+.size-8 {
+  width: 2rem;
+  height: 2rem;
+}
+
+.size-11 {
+  width: 2.75rem;
+  height: 2.75rem;
+}
+
+.size-10 {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
 .h-1 {
   height: 0.25rem;
 }
