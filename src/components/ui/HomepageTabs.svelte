@@ -26,7 +26,7 @@
 
 	// chapter cards, tab styles
 	const cardGridClasses = 'grid md:grid-cols-2 lg:grid-cols-3 gap-3';
-	const cardInnerClasses = 'flex justify-between md:text-left border border-black/10 transition text-sm bg-transparent rounded-3xl p-5 hover:cursor-pointer hover:bg-lightGray';
+	const cardInnerClasses = 'flex justify-between md:text-left border border-black/10 transition text-sm bg-gray-100 rounded-3xl p-5 hover:cursor-pointer hover:bg-lightGray';
 	const tabClasses = 'p-2 md:p-3 text-xs md:text-md cursor-pointer border-b-0';
 	const activeTabClasses = 'border-b-4';
 
