@@ -1116,6 +1116,10 @@ input[type="range"]::-ms-fill-lower {
   z-index: 51;
 }
 
+.z-\[9999999\] {
+  z-index: 9999999;
+}
+
 .order-last {
   order: 9999;
 }

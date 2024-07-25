@@ -2,7 +2,6 @@
 	import PageHead from '$misc/PageHead.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
 	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
-	import { selectableThemes } from '$data/options';
 	import { __currentPage, __websiteTheme } from '$utils/stores';
 	import { timeAgo } from '$utils/timeAgo';
 	import { linkClasses } from '$data/commonClasses';
@@ -18,7 +17,7 @@
 		})();
 	}
 
-	$: userAvatarClasses = `rounded-full inline-flex w-5 h-5 ${selectableThemes[$__websiteTheme].palette === 1 ? 'invert' : null}`;
+	$: userAvatarClasses = `rounded-full inline-flex w-5 h-5 ${[2, 3, 4].includes($__websiteTheme) && 'invert'}`;
 
 	__currentPage.set('changelogs');
 </script>
