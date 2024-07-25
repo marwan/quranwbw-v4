@@ -8,6 +8,7 @@ import {
 	__websiteTheme,
 	__wordTranslation,
 	__verseTranslations,
+	__verseTafsir,
 	__wordTranslationEnabled,
 	__wordTransliterationEnabled,
 	__reciter,
@@ -25,7 +26,6 @@ import {
 	__englishTerminology,
 	__hideNonDuaPart
 } from '$utils/stores';
-import { selectableVerseTranslations } from '$data/options';
 // import { uploadSettingsToCloud } from '$utils/cloudSettings';
 
 // function to update website settings
@@ -95,26 +95,20 @@ export function updateSettings(props) {
 
 		// for verse translations
 		case 'verseTranslation':
-			let verseTranslationsArray = [];
+			let verseTranslations = userSettings.translations.verse_v1;
 
-			// loop through all the available verse translations
-			for (const key of Object.keys(selectableVerseTranslations)) {
-				const translationID = selectableVerseTranslations[key].resource_id;
-				try {
-					// we check if this translation is checked, if true, push to array
-					if (document.getElementById(`verseTranslationCheckbox-${translationID}`).checked) {
-						verseTranslationsArray.push(translationID);
-					}
-				} catch (error) {
-					console.error(error);
-				}
-			}
+			// if the translation already exists, then remove it, else add it
+			verseTranslations.includes(props.value) ? (verseTranslations = verseTranslations.filter((x) => x !== props.value)) : verseTranslations.push(props.value);
 
-			// if the value is an array
-			if (props.value instanceof Array) verseTranslationsArray = props.value;
+			// update the verse translations
+			userSettings.translations.verse_v1 = verseTranslations;
+			__verseTranslations.set(verseTranslations);
+			break;
 
-			__verseTranslations.set(verseTranslationsArray);
-			userSettings.translations.verse_v1 = verseTranslationsArray;
+		// for verse tafsir
+		case 'verseTafsir':
+			__verseTafsir.set(props.value);
+			userSettings.translations.tafsir = props.value;
 			break;
 
 		// for verse reciter

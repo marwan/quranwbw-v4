@@ -16,6 +16,7 @@
 		__wordTranslationEnabled,
 		__wordTransliterationEnabled,
 		__verseTranslations,
+		__verseTafsir,
 		__reciter,
 		__translationReciter,
 		__playbackSpeed,
@@ -32,6 +33,7 @@
 	import { updateSettings } from '$utils/updateSettings';
 	import { resetSettings } from '$utils/resetSettings';
 	import { disabledClasses, buttonClasses } from '$data/commonClasses';
+	import { selectableTafsirs } from '$data/selectableTafsirs';
 	import { sineIn } from 'svelte/easing';
 	import { term } from '$utils/terminologies';
 
@@ -41,6 +43,7 @@
 	import QuranFontSelector from '$ui/SettingsDrawer/QuranFontSelector.svelte';
 	import WordTranslationSelector from '$ui/SettingsDrawer/WordTranslationSelector.svelte';
 	import VerseTranslationSelector from '$ui/SettingsDrawer/VerseTranslationSelector.svelte';
+	import VerseTafsirSelector from '$ui/SettingsDrawer/VerseTafsirSelector.svelte';
 	import VerseRecitorSelector from '$ui/SettingsDrawer/VerseRecitorSelector.svelte';
 	import TranslationRecitorSelector from '$ui/SettingsDrawer/TranslationRecitorSelector.svelte';
 	import PlaybackSpeedSelector from '$ui/SettingsDrawer/PlaybackSpeedSelector.svelte';
@@ -58,6 +61,7 @@
 		'quran-font': QuranFontSelector,
 		'word-translation': WordTranslationSelector,
 		'verse-translation': VerseTranslationSelector,
+		'verse-tafsir': VerseTafsirSelector,
 		'verse-reciter': VerseRecitorSelector,
 		'translation-reciter': TranslationRecitorSelector,
 		'playback-speed': PlaybackSpeedSelector
@@ -84,9 +88,13 @@
 		individualSettingsVisible = false;
 
 		// scroll to last position
-		setTimeout(function () {
-			document.getElementById('settings-drawer').scrollTop = mainSettingsScrollPos;
-		}, 0);
+		try {
+			setTimeout(function () {
+				document.getElementById('settings-drawer').scrollTop = mainSettingsScrollPos;
+			}, 0);
+		} catch (error) {
+			// ...
+		}
 	}
 
 	function gotoIndividualSetting(type) {
@@ -96,9 +104,13 @@
 		individualSettingsComponent = individualSettingsComponents[type];
 
 		// scroll to top
-		setTimeout(function () {
-			document.getElementById('individual-setting').scrollIntoView();
-		}, 0);
+		try {
+			setTimeout(function () {
+				document.getElementById('individual-setting').scrollIntoView();
+			}, 0);
+		} catch (error) {
+			// ...
+		}
 	}
 </script>
 
@@ -268,7 +280,7 @@
 
 			<!-- translation-settings-block -->
 			<div id="translation-settings-block" class="py-5 border-t-2 border-black/10">
-				<h3 class="block mb-2 font-medium text-xl">Translation</h3>
+				<h3 class="block mb-2 font-medium text-xl">Translation & {term('tafsir')}</h3>
 
 				<div class="flex flex-col flex-wrap text-base">
 					<!-- word-translation-setting -->
@@ -289,6 +301,17 @@
 							<Button class={selectorClasses} on:click={() => gotoIndividualSetting('verse-translation')}>{$__verseTranslations.length} selected</Button>
 						</div>
 						<p class={settingsDescriptionClasses}>{term('verse')} translations from multiple authors and languages.</p>
+					</div>
+
+					<div class="border-b border-black/10"></div>
+
+					<!-- tafsir-setting -->
+					<div id="tafsir-setting" class={settingsBlockClasses}>
+						<div class="flex flex-row justify-between items-center">
+							<div class="block">{term('tafsir')}</div>
+							<Button class={selectorClasses} on:click={() => gotoIndividualSetting('verse-tafsir')}>{selectableTafsirs[$__verseTafsir].name}</Button>
+						</div>
+						<p class={settingsDescriptionClasses}>{term('verse')} {term('tafsir')} from multiple authors and languages.</p>
 					</div>
 				</div>
 			</div>

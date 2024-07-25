@@ -71,6 +71,10 @@ input, select, textarea {
   margin: 0 0.5rem 0 0 !important;
 }
 
+#individual-setting label {
+  width: 100%;
+}
+
 html, body {
   position: relative;
   width: 100%;

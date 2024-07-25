@@ -47,7 +47,7 @@ export async function fetchVerseTranslationData(chapter) {
 }
 
 // function to fetch individual verses
-export async function fetchVersesData(verses, fontType, wordTranslation) {
+export async function fetchVersesData(verses, fontType, wordTranslation, skipStore = false) {
 	const apiURL =
 		`${apiEndpoint}/verses?` +
 		new URLSearchParams({
@@ -59,7 +59,7 @@ export async function fetchVersesData(verses, fontType, wordTranslation) {
 
 	const response = await fetch(apiURL);
 	const data = await response.json();
-	__chapterData.set(data.data.verses);
+	if (!skipStore) __chapterData.set(data.data.verses);
 	return data.data.verses;
 }
 
