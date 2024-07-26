@@ -14,6 +14,7 @@ export async function fetchChapterData(chapter, download = false) {
 			chapter: chapter,
 			word_type: selectableFontTypes[fontType].apiId,
 			word_translation: wordTranslation,
+			verse_translation: 1,
 			version: 100
 			// random: Math.floor(Math.random() * 999999999) + 0
 		});
@@ -46,18 +47,19 @@ export async function fetchVerseTranslationData(chapter) {
 }
 
 // function to fetch individual verses
-export async function fetchVersesData(verses, fontType, wordTranslation) {
+export async function fetchVersesData(verses, fontType, wordTranslation, skipStore = false) {
 	const apiURL =
 		`${apiEndpoint}/verses?` +
 		new URLSearchParams({
 			verses: verses,
 			word_type: selectableFontTypes[fontType].apiId,
-			word_translation: wordTranslation
+			word_translation: wordTranslation,
+			verse_translation: 1
 		});
 
 	const response = await fetch(apiURL);
 	const data = await response.json();
-	__chapterData.set(data.data.verses);
+	if (!skipStore) __chapterData.set(data.data.verses);
 	return data.data.verses;
 }
 

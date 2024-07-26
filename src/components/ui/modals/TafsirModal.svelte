@@ -3,7 +3,7 @@
 	import Spinner from '$svgs/Spinner.svelte';
 	import { errorLoadingDataMessage } from '$data/websiteSettings';
 	import { quranMetaData } from '$data/quranMeta';
-	import { __tafsirModalVisible, __verseKey } from '$utils/stores';
+	import { __tafsirModalVisible, __verseKey, __verseTafsir } from '$utils/stores';
 	import { buttonClasses } from '$data/commonClasses';
 	import { selectableTafsirs } from '$data/selectableTafsirs';
 	import { term } from '$utils/terminologies';
@@ -13,7 +13,7 @@
 		2: 'https://static.quranwbw.com/data/v4/tafsirs'
 	};
 
-	let selectedTafirId = 12;
+	$: selectedTafirId = $__verseTafsir || 30;
 	let tafsirData;
 
 	$: chapter = +$__verseKey.split(':')[0];
@@ -49,15 +49,6 @@
 		<Spinner />
 	{:then tafsirData}
 		<div class="text-sm text-black flex flex-col space-y-6">
-			<div class="flex flex-row items-center">
-				<span class="mr-2">Tafsir: </span>
-				<select id="dropdown" bind:value={selectedTafirId} on:change={(event) => (selectedTafirId = +event.target.value)} class="mt-2 w-56 rounded-3xl focus:border-gray-500 text-black theme-grayscale truncate">
-					{#each Object.entries(selectableTafsirs) as [id, tafsir]}
-						<option value={+id}>{tafsir.language} - {tafsir.name} by {tafsir.author}</option>
-					{/each}
-				</select>
-			</div>
-
 			<div class="flex flex-col space-y-4">
 				<div class={tafsirTextClasses}>
 					{#each Object.entries(tafsirData) as [id, tafsir]}

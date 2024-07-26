@@ -1116,6 +1116,10 @@ input[type="range"]::-ms-fill-lower {
   z-index: 51;
 }
 
+.z-\[9999999\] {
+  z-index: 9999999;
+}
+
 .order-last {
   order: 9999;
 }
@@ -1155,6 +1159,11 @@ input[type="range"]::-ms-fill-lower {
 .my-2 {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
+}
+
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .my-6 {
@@ -1309,6 +1318,21 @@ input[type="range"]::-ms-fill-lower {
 
 .hidden {
   display: none;
+}
+
+.size-8 {
+  width: 2rem;
+  height: 2rem;
+}
+
+.size-11 {
+  width: 2.75rem;
+  height: 2.75rem;
+}
+
+.size-10 {
+  width: 2.5rem;
+  height: 2.5rem;
 }
 
 .h-1 {
@@ -2322,6 +2346,10 @@ input[type="range"]::-ms-fill-lower {
   --tw-bg-opacity: 0.75;
 }
 
+.\!p-0 {
+  padding: 0px !important;
+}
+
 .p-0 {
   padding: 0px;
 }
@@ -3075,6 +3103,10 @@ input, select, textarea {
   margin: 0 0.5rem 0 0 !important;
 }
 
+#individual-setting label {
+  width: 100%;
+}
+
 html, body {
   position: relative;
   width: 100%;
@@ -3480,6 +3512,11 @@ svg {
   background-color: rgb(30 64 175 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-gray-100:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
+
 .hover\:bg-gray-200:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
@@ -3527,6 +3564,11 @@ svg {
 .hover\:bg-yellow-500:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(234 179 8 / var(--tw-bg-opacity));
+}
+
+.hover\:text-gray-600:hover {
+  --tw-text-opacity: 1;
+  color: rgb(75 85 99 / var(--tw-text-opacity));
 }
 
 .hover\:text-gray-900:hover {

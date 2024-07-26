@@ -2,6 +2,7 @@
 	export let key;
 	export let value;
 	export let line = null;
+	export let exampleVerse = false;
 
 	import VerseOptionsDropdown from '$display/verses/VerseOptionsDropdown.svelte';
 	import Word from '$display/verses/Word.svelte';
@@ -67,6 +68,7 @@
 		${selectableThemes[$__websiteTheme].palette === 1 ? 'hover:bg-white/20' : 'hover:bg-black/10'}
 		${$__displayType === 1 ? 'text-center flex flex-col' : 'inline-flex flex-col'}
 		${selectableDisplays[$__displayType].layout === 'wbw' ? 'p-3' : [2, 3].includes($__fontType) ? ($__currentPage === 'page' ? 'p-0' : 'px-0 py-1') : 'p-1'}
+		${exampleVerse && '!p-0'}
 	`;
 
 	$: wordSpanClasses = `
@@ -88,7 +90,7 @@
 
 <!-- words -->
 {#each { length: value.meta.words } as _, word}
-	<Word {value} {word} {key} {line} {wordClickHandler} {wordAndEndIconCommonClasses} {wordSpanClasses} {v4hafsClasses} />
+	<Word {value} {word} {key} {line} {wordClickHandler} {wordAndEndIconCommonClasses} {wordSpanClasses} {v4hafsClasses} {exampleVerse} />
 {/each}
 
 <!-- end icon -->

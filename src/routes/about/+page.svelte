@@ -54,6 +54,7 @@
 					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://alquran.cloud/">Al Quran Cloud</a> and <a class={linkClasses} target="_blank" rel="noreferrer" href="https://github.com/fawazahmed0">Fawaz Ahmed</a> for their Quran translations API.</li>
 					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://drusaman.github.io/">Dr. Usama Nonnenmacher</a> for his excellent work on the French word by word data.</li>
 					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://github.com/spa5k/tafsir_api">Spark (spa5k)</a> for his Tafsir API.</li>
+					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://quran-pro.com/">Quran Pro</a> for their pictures of different recitors.</li>
 				</ul>
 
 				<span

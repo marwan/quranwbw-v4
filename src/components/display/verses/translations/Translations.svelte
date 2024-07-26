@@ -3,9 +3,10 @@
 
 	import Spinner from '$svgs/Spinner.svelte';
 	import Layout from '$display/verses/translations/Layout.svelte';
-	import { __currentPage, __verseTranslations, __verseTranslationData } from '$utils/stores';
+	import { __currentPage, __verseTranslations, __verseTranslationData, __chapterData, __userSettings } from '$utils/stores';
 	import { fetchVerseTranslationData } from '$utils/fetchData';
 
+	const fontSizes = JSON.parse($__userSettings).displaySettings.fontSizes;
 	let verseTranslationData;
 
 	// for chapter and mushaf page, we fetch the verse translations for the whole chapter in one API call from the Chapter.svelte file
@@ -20,23 +21,37 @@
 </script>
 
 {#if $__verseTranslations.length > 0}
-	{#if $__currentPage === 'chapter'}
-		{#if $__verseTranslationData}
-			<Layout data={$__verseTranslationData} {value} />
+	<div class="verseTranslationText flex flex-col space-y-4 leading-normal theme {fontSizes.verseTranslationText}" data-fontSize={fontSizes.verseTranslationText}>
+		{#if $__currentPage === 'chapter'}
+			{#if $__verseTranslationData}
+				<!-- tajweed transliteration -->
+				{#if $__verseTranslations.includes(1)}
+					<Layout data={$__chapterData} {value} />
+				{/if}
+
+				<!-- rest of the translations -->
+				<Layout data={$__verseTranslationData} {value} />
+			{:else}
+				<div class="mr-auto">
+					<Spinner size="10" />
+				</div>
+			{/if}
 		{:else}
-			<div class="mr-auto">
-				<Spinner size="10" />
-			</div>
+			{#await verseTranslationData}
+				<div class="mr-auto">
+					<Spinner size="10" />
+				</div>
+			{:then verseTranslationData}
+				<!-- tajweed transliteration -->
+				{#if $__verseTranslations.includes(1)}
+					<Layout data={$__chapterData} {value} />
+				{/if}
+
+				<!-- rest of the translations -->
+				<Layout data={verseTranslationData} {value} />
+			{:catch error}
+				<p>{error}</p>
+			{/await}
 		{/if}
-	{:else}
-		{#await verseTranslationData}
-			<div class="mr-auto">
-				<Spinner size="10" />
-			</div>
-		{:then verseTranslationData}
-			<Layout data={verseTranslationData} {value} />
-		{:catch error}
-			<p>{error}</p>
-		{/await}
-	{/if}
+	</div>
 {/if}

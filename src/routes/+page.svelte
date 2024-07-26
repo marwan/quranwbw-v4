@@ -52,7 +52,7 @@
 	<div class="w-full flex flex-col md:justify-center text-xs space-y-8 scale-[0.70] md:scale-[0.85] theme-grayscale">
 		<div class="flex flex-row space-x-4 justify-center">
 			{#each Object.entries(homepageLinks) as [id, link]}
-				<a href={link.link} class="min-w-28 border border-black/10 transition text-sm bg-gray-100 rounded-3xl p-5 hover:cursor-pointer hover:bg-lightGray">
+				<a href={link.link} class="min-w-28 border border-black/10 transition text-sm bg-transparent rounded-3xl p-5 hover:cursor-pointer hover:bg-lightGray">
 					<div class="flex flex-col items-center justify-center space-y-2">
 						<div class="text-sm md:text-lg opacity-70">
 							<svelte:component this={link.icon} size={7} />

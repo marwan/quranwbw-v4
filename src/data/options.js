@@ -29,6 +29,7 @@ export const verseTranslationsLanguages = [
 	{ language_id: 60, language: 'Hindi' },
 	{ language_id: 67, language: 'Indonesian' },
 	{ language_id: 158, language: 'Tamil' },
+	{ language_id: 11115, language: 'Transliteration' },
 	{ language_id: 167, language: 'Turkish' },
 	{ language_id: 174, language: 'Urdu' }
 ];
@@ -80,11 +81,6 @@ export const selectableVerseTranslations = {
 	95: {
 		resource_id: 95,
 		resource_name: 'Abul Alaa Maududi',
-		language_id: 38
-	},
-	57: {
-		resource_id: 57,
-		resource_name: 'Transliteration',
 		language_id: 38
 	},
 	19: {
@@ -160,6 +156,18 @@ export const selectableVerseTranslations = {
 		resource_name: 'Abdul Hameed Baqavi',
 		language_id: 158
 	},
+
+	// transliterations
+	57: {
+		resource_id: 57,
+		resource_name: 'Transliteration',
+		language_id: 11115
+	},
+	// 1: {
+	// 	resource_id: 1,
+	// 	resource_name: 'Tajweed Transliteration',
+	// 	language_id: 11115
+	// },
 
 	// turkish
 	210: {
@@ -247,22 +255,103 @@ export const selectableWordTranslations = {
 };
 
 export const selectableReciters = {
-	1: { id: 1, timestampSlug: 'basit_mujawwad', reciter: 'Abdul Basit (Mujawwad)', url: 'https://everyayah.com/data/Abdul_Basit_Mujawwad_128kbps/' },
-	2: { id: 2, timestampSlug: 'basit_murattal', reciter: 'Abdul Basit (Murattal)', url: 'https://everyayah.com/data/Abdul_Basit_Murattal_192kbps/' },
-	3: { id: 3, reciter: 'Abdul-Rahman Al-Sudais', url: 'https://everyayah.com/data/Abdurrahmaan_As-Sudais_192kbps/' },
-	4: { id: 4, reciter: 'Abu Bakr Ash-Shaatree', url: 'https://everyayah.com/data/Abu%20Bakr%20Ash-Shaatree_128kbps/' },
+	1: {
+		id: 1,
+		timestampSlug: 'basit_mujawwad',
+		reciter: 'Abdul Basit (Mujawwad)',
+		url: 'https://everyayah.com/data/Abdul_Basit_Mujawwad_128kbps/',
+		image: 'abdul-baset-abdel-samad-medium.webp'
+	},
+	2: {
+		id: 2,
+		timestampSlug: 'basit_murattal',
+		reciter: 'Abdul Basit (Murattal)',
+		url: 'https://everyayah.com/data/Abdul_Basit_Murattal_192kbps/',
+		image: 'abdul-baset-abdel-samad-medium.webp'
+	},
+	3: {
+		id: 3,
+		reciter: 'Abdul-Rahman Al-Sudais',
+		url: 'https://everyayah.com/data/Abdurrahmaan_As-Sudais_192kbps/',
+		image: 'abdul-rahman-al-soudais-medium.webp'
+	},
+	4: {
+		id: 4,
+		reciter: 'Abu Bakr Ash-Shaatree',
+		url: 'https://everyayah.com/data/Abu%20Bakr%20Ash-Shaatree_128kbps/',
+		image: 'abu-bakr-al-shatri-medium.webp'
+	},
 	// 5: ...
-	6: { id: 6, timestampSlug: 'rifai', reciter: 'Hani Ar-Rifai', url: 'https://everyayah.com/data/Hani_Rifai_192kbps/' },
-	7: { id: 7, reciter: 'Maher Al-Muaiqly', url: 'https://everyayah.com/data/MaherAlMuaiqly128kbps/' },
-	8: { id: 8, timestampSlug: 'husary', reciter: 'Mahmoud Khalil Al-Husary', url: 'https://everyayah.com/data/Husary_128kbps/' },
-	9: { id: 9, reciter: 'Mahmoud Khalil Al-Husary (with gaps)', url: 'https://everyayah.com/data/Husary_Muallim_128kbps/' },
-	10: { id: 10, timestampSlug: 'mishary', reciter: 'Mishary Rashid Alafasy', url: 'https://everyayah.com/data/Alafasy_128kbps/' },
-	11: { id: 11, reciter: 'Mohamed El-Minshawi (Mujawwad)', url: 'https://everyayah.com/data/Minshawy_Mujawwad_192kbps/' },
-	12: { id: 12, reciter: 'Mohamed El-Minshawi (Teacher)', url: 'https://everyayah.com/data/Minshawy_Teacher_128kbps/' },
-	13: { id: 13, reciter: 'Muhammad Ayyub', url: 'https://everyayah.com/data/Muhammad_Ayyoub_128kbps/' },
-	14: { id: 14, reciter: 'Nasser Al Qatami', url: 'https://everyayah.com/data/Nasser_Alqatami_128kbps/' },
-	15: { id: 15, timestampSlug: 'shuraym', reciter: 'Saood Ash-Shuraym', url: 'https://everyayah.com/data/Saood_ash-Shuraym_128kbps/' },
-	16: { id: 16, reciter: 'Yasser Ad-Dossari', url: 'https://everyayah.com/data/Yasser_Ad-Dussary_128kbps/' }
+	6: {
+		id: 6,
+		timestampSlug: 'rifai',
+		reciter: 'Hani Ar-Rifai',
+		url: 'https://everyayah.com/data/Hani_Rifai_192kbps/',
+		image: 'hani-ar-rifai-medium.webp'
+	},
+	7: {
+		id: 7,
+		reciter: 'Maher Al-Muaiqly',
+		url: 'https://everyayah.com/data/MaherAlMuaiqly128kbps/',
+		image: 'maher-al-mueaqly-medium.webp'
+	},
+	8: {
+		id: 8,
+		timestampSlug: 'husary',
+		reciter: 'Mahmoud Khalil Al-Husary',
+		url: 'https://everyayah.com/data/Husary_128kbps/',
+		image: 'mahmoud-khalil-al-hussary-profile.webp'
+	},
+	9: {
+		id: 9,
+		reciter: 'Mahmoud Khalil Al-Husary (with gaps)',
+		url: 'https://everyayah.com/data/Husary_Muallim_128kbps/',
+		image: 'mahmoud-khalil-al-hussary-profile.webp'
+	},
+	10: {
+		id: 10,
+		timestampSlug: 'mishary',
+		reciter: 'Mishary Rashid Alafasy',
+		url: 'https://everyayah.com/data/Alafasy_128kbps/',
+		image: 'mishary-rashid-alafasy-medium.webp'
+	},
+	11: {
+		id: 11,
+		reciter: 'Mohamed El-Minshawi (Mujawwad)',
+		url: 'https://everyayah.com/data/Minshawy_Mujawwad_192kbps/',
+		image: 'mohammed-al-minshawi-hafs-an-assem-medium.webp'
+	},
+	12: {
+		id: 12,
+		reciter: 'Mohamed El-Minshawi (Teacher)',
+		url: 'https://everyayah.com/data/Minshawy_Teacher_128kbps/',
+		image: 'mohammed-al-minshawi-hafs-an-assem-medium.webp'
+	},
+	13: {
+		id: 13,
+		reciter: 'Muhammad Ayyub',
+		url: 'https://everyayah.com/data/Muhammad_Ayyoub_128kbps/',
+		image: 'mohamed-ayoub-medium.webp'
+	},
+	14: {
+		id: 14,
+		reciter: 'Nasser Al Qatami',
+		url: 'https://everyayah.com/data/Nasser_Alqatami_128kbps/',
+		image: 'nasser-al-qatami-medium.webp'
+	},
+	15: {
+		id: 15,
+		timestampSlug: 'shuraym',
+		reciter: 'Saood Ash-Shuraym',
+		url: 'https://everyayah.com/data/Saood_ash-Shuraym_128kbps/',
+		image: 'saud-al-shuraim-medium.webp'
+	},
+	16: {
+		id: 16,
+		reciter: 'Yasser Ad-Dossari',
+		url: 'https://everyayah.com/data/Yasser_Ad-Dussary_128kbps/',
+		image: 'yasser-al-dosari-medium.webp'
+	}
 };
 
 export const selectableTranslationReciters = {
