@@ -7,7 +7,7 @@
 	import { selectedRadioClasses } from '$data/commonClasses';
 	import { staticEndpoint } from '$data/websiteSettings';
 
-	$: reciterImageClasses = `rounded-full size-10 ${[2, 3, 4].includes($__websiteTheme) && 'invert'}`;
+	$: reciterImageClasses = `rounded-full size-10 grayscale ${[2, 3, 4].includes($__websiteTheme) && 'invert'}`;
 </script>
 
 <div class="grid gap-3 w-full theme-grayscale">

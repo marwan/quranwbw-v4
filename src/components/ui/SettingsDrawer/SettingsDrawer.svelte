@@ -48,12 +48,6 @@
 	import TranslationRecitorSelector from '$ui/SettingsDrawer/TranslationRecitorSelector.svelte';
 	import PlaybackSpeedSelector from '$ui/SettingsDrawer/PlaybackSpeedSelector.svelte';
 
-	const transitionParamsRight = {
-		x: 320,
-		duration: 200,
-		easing: sineIn
-	};
-
 	const individualSettingsComponents = {
 		'website-theme': WebsiteThemeSelector,
 		'display-type': DisplayTypeSelector,
@@ -67,6 +61,12 @@
 		'playback-speed': PlaybackSpeedSelector
 	};
 
+	const transitionParamsRight = {
+		x: 320,
+		duration: 200,
+		easing: sineIn
+	};
+
 	const settingsBlockClasses = 'space-y-2 py-6';
 	const selectorClasses = 'w-32 border border-black/10 text-black text-left rounded-3xl focus:ring-gray-500 focus:border-gray-500 focus-within:ring-2 block p-2.5 truncate font-normal theme-grayscale';
 	const settingsDescriptionClasses = 'mb-6 text-sm opacity-70';
@@ -75,11 +75,10 @@
 
 	$: fontSizeCodes = JSON.parse($__userSettings).displaySettings.fontSizes;
 	$: wordTranslationKey = Object.keys(selectableWordTranslations).filter((item) => selectableWordTranslations[item].id === $__wordTranslation);
-	$: if ($__currentPage) goBackToMainSettings();
+	$: if ($__currentPage || $__settingsDrawerHidden) goBackToMainSettings();
 
 	let individualSettingsComponent;
 	let mainSettingsScrollPos = 0;
-
 	let allSettingsVisible = true;
 	let individualSettingsVisible = false;
 
