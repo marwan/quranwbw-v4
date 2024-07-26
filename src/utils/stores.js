@@ -109,7 +109,7 @@ if (browser) {
 	__verseTranslations = writable(userSettings.translations.verse_v1);
 
 	// to store the verse tafisr
-	__verseTafsir = writable(userSettings.translations.tafisr);
+	__verseTafsir = writable(userSettings.translations.tafsir);
 
 	// to store the word translation toggle
 	__wordTranslationEnabled = writable(userSettings.displaySettings.wordTranslationEnabled);

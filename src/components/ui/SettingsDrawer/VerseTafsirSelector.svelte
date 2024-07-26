@@ -17,7 +17,10 @@
 						<div class="flex items-center w-full">
 							<Radio name="verseTafsir" bind:group={$__verseTafsir} value={tafsir.id} on:change={(event) => updateSettings({ type: 'verseTafsir', value: +event.target.value })} custom>
 								<div class="inline-flex justify-between items-center p-5 w-full text-gray-500 bg-white rounded-lg border border-gray-200 cursor-pointer peer-checked:border-primary-600 peer-checked:text-primary-600 hover:text-gray-600 hover:bg-gray-100 {$__verseTafsir === tafsir.id && selectedRadioClasses}">
-									<div class="w-full">{tafsir.name}</div>
+									<div class="flex flex-col space-y-2 w-full">
+										<span>{tafsir.name}</span>
+										<span class="text-xs font-normal">{tafsir.author}</span>
+									</div>
 
 									{#if $__verseTafsir === tafsir.id}
 										<Check size={5} />
