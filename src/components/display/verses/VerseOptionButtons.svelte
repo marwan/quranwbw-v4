@@ -1,9 +1,6 @@
 <script>
 	export let key, value;
 
-	const chapter = +key.split(':')[0];
-	const verse = +key.split(':')[1];
-
 	import VerseOptionsDropdown from '$display/verses/VerseOptionsDropdown.svelte';
 	import Bookmark from '$svgs/Bookmark.svelte';
 	import Bookmarked from '$svgs/Bookmarked.svelte';
@@ -17,33 +14,17 @@
 	import { updateSettings } from '$utils/updateSettings';
 	import { term } from '$utils/terminologies';
 
-	// update userBookmarks whenever the __userSettings changes
-	$: userBookmarks = JSON.parse($__userSettings).userBookmarks;
-
+	const chapter = +key.split(':')[0];
+	const verse = +key.split(':')[1];
 	const buttonClasses = 'inline-flex items-center justify-center w-10 h-10 transition-colors duration-150 rounded-3xl focus:shadow-outline hover:bg-lightGray print:hidden';
 
-	let dropdownOpen = false;
-
-	$: {
-		try {
-			// remove z-index from all button blocks and to button block of that specific verse
-			if (dropdownOpen) {
-				document.querySelectorAll('.verseButtons').forEach((element) => {
-					element.classList.remove('z-10');
-				});
-
-				document.getElementsByClassName('verseButtons')[key.split(':')[1]].classList.add('z-10');
-			}
-		} catch (error) {
-			// error
-		}
-	}
+	// update userBookmarks whenever the __userSettings changes
+	$: userBookmarks = JSON.parse($__userSettings).userBookmarks;
 
 	function audioHandler(key) {
 		if ($__audioSettings.isPlaying) {
 			resetAudioSettings({ location: 'end' });
 		} else {
-			// resetAudioSettings({ location: 'end' });
 			playVerseAudio({ key, language: 'arabic', timesToRepeat: 1 });
 		}
 	}

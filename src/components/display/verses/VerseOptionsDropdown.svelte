@@ -9,11 +9,7 @@
 	import { updateSettings } from '$utils/updateSettings';
 	import { term } from '$utils/terminologies';
 
-	// update userBookmarks whenever the __userSettings changes
-	$: userBookmarks = JSON.parse($__userSettings).userBookmarks;
-
 	const dropdownItemClasses = 'font-normal rounded-3xl hover:bg-black/5';
-
 	let dropdownOpen = false;
 
 	// we need to manually add and/or remove z-index from the verse options dropdown because it becomes transparent due to our themes which we achieve via CSS filters
@@ -28,16 +24,14 @@
 				// for some reason, applying z-index directly by selecting the .verseButtons of the verseKey doesn't work, so have to do this check...
 				const verse = +$__verseKey.split(':')[1];
 
-				if (verse === 1) {
-					document.getElementsByClassName('verseButtons')[verse].classList.add('z-10');
-				} else {
-					document.getElementById($__verseKey).firstChild.classList.add('z-10');
-				}
+				// the first verse of any chapter/page and the other verses will have different selectors
+				verse === 1 ? document.getElementsByClassName('verseButtons')[verse].classList.add('z-10') : document.getElementById($__verseKey).firstChild.classList.add('z-10');
 			}
-		} catch (error) {
-			// console.error(error);
-		}
+		} catch (error) {}
 	}
+
+	// update userBookmarks whenever the __userSettings changes
+	$: userBookmarks = JSON.parse($__userSettings).userBookmarks;
 
 	// open share menu
 	function shareVerse() {

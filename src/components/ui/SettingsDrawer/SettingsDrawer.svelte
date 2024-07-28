@@ -1,4 +1,14 @@
 <script>
+	import WebsiteThemeSelector from '$ui/SettingsDrawer/WebsiteThemeSelector.svelte';
+	import DisplayTypeSelector from '$ui/SettingsDrawer/DisplayTypeSelector.svelte';
+	import WordTooltipSelector from '$ui/SettingsDrawer/WordTooltipSelector.svelte';
+	import QuranFontSelector from '$ui/SettingsDrawer/QuranFontSelector.svelte';
+	import WordTranslationSelector from '$ui/SettingsDrawer/WordTranslationSelector.svelte';
+	import VerseTranslationSelector from '$ui/SettingsDrawer/VerseTranslationSelector.svelte';
+	import VerseTafsirSelector from '$ui/SettingsDrawer/VerseTafsirSelector.svelte';
+	import VerseRecitorSelector from '$ui/SettingsDrawer/VerseRecitorSelector.svelte';
+	import TranslationRecitorSelector from '$ui/SettingsDrawer/TranslationRecitorSelector.svelte';
+	import PlaybackSpeedSelector from '$ui/SettingsDrawer/PlaybackSpeedSelector.svelte';
 	import Drawer from '$ui/flowbite-svelte/drawer/Drawer.svelte';
 	import Plus from '$svgs/Plus.svelte';
 	import Minus from '$svgs/Minus.svelte';
@@ -37,17 +47,6 @@
 	import { sineIn } from 'svelte/easing';
 	import { term } from '$utils/terminologies';
 
-	import WebsiteThemeSelector from '$ui/SettingsDrawer/WebsiteThemeSelector.svelte';
-	import DisplayTypeSelector from '$ui/SettingsDrawer/DisplayTypeSelector.svelte';
-	import WordTooltipSelector from '$ui/SettingsDrawer/WordTooltipSelector.svelte';
-	import QuranFontSelector from '$ui/SettingsDrawer/QuranFontSelector.svelte';
-	import WordTranslationSelector from '$ui/SettingsDrawer/WordTranslationSelector.svelte';
-	import VerseTranslationSelector from '$ui/SettingsDrawer/VerseTranslationSelector.svelte';
-	import VerseTafsirSelector from '$ui/SettingsDrawer/VerseTafsirSelector.svelte';
-	import VerseRecitorSelector from '$ui/SettingsDrawer/VerseRecitorSelector.svelte';
-	import TranslationRecitorSelector from '$ui/SettingsDrawer/TranslationRecitorSelector.svelte';
-	import PlaybackSpeedSelector from '$ui/SettingsDrawer/PlaybackSpeedSelector.svelte';
-
 	const individualSettingsComponents = {
 		'website-theme': WebsiteThemeSelector,
 		'display-type': DisplayTypeSelector,
@@ -73,14 +72,14 @@
 	const toggleBtnClasses =
 		"relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-black/10 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-gray-600 theme-grayscale";
 
-	$: fontSizeCodes = JSON.parse($__userSettings).displaySettings.fontSizes;
-	$: wordTranslationKey = Object.keys(selectableWordTranslations).filter((item) => selectableWordTranslations[item].id === $__wordTranslation);
-	$: if ($__currentPage || $__settingsDrawerHidden) goBackToMainSettings();
-
 	let individualSettingsComponent;
 	let mainSettingsScrollPos = 0;
 	let allSettingsVisible = true;
 	let individualSettingsVisible = false;
+
+	$: fontSizeCodes = JSON.parse($__userSettings).displaySettings.fontSizes;
+	$: wordTranslationKey = Object.keys(selectableWordTranslations).filter((item) => selectableWordTranslations[item].id === $__wordTranslation);
+	$: if ($__currentPage || $__settingsDrawerHidden) goBackToMainSettings();
 
 	function goBackToMainSettings() {
 		allSettingsVisible = true;
@@ -90,7 +89,7 @@
 		setTimeout(function () {
 			try {
 				document.getElementById('settings-drawer').scrollTop = mainSettingsScrollPos;
-			} catch (error) { }
+			} catch (error) {}
 		}, 0);
 	}
 
@@ -103,7 +102,7 @@
 		setTimeout(function () {
 			try {
 				document.getElementById('individual-setting').scrollIntoView();
-			} catch (error) { }
+			} catch (error) {}
 		}, 0);
 	}
 </script>
