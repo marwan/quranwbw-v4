@@ -5,7 +5,7 @@
 	import Search from '$svgs/Search.svelte';
 	import { quranMetaData, startPageOfChapters, pageNumberKeys, juzNumberKeys } from '$data/quranMeta';
 	import { buttonClasses } from '$data/commonClasses';
-	import { __chapterNumber, __pageURL, __currentPage, __pageNumber, __quranNavigationModalVisible, __quranNavigationDrawerHidden, __lastRead } from '$utils/stores';
+	import { __chapterNumber, __pageURL, __currentPage, __pageNumber, __quranNavigationModalVisible, __quranNavigationDrawerHidden, __lastRead, __morphologyKey } from '$utils/stores';
 	import { inview } from 'svelte-inview';
 	import { validateKey } from '$utils/validateKey';
 	import { staticEndpoint } from '$data/websiteSettings';
@@ -27,6 +27,7 @@
 	let searchResults;
 	let lastReadChapter = 1;
 	let lastReadVerse = 1;
+	let morphologyKey = '1:1';
 
 	$: {
 		if ($__lastRead.hasOwnProperty('key')) {
@@ -61,6 +62,9 @@
 			document.getElementById('searchKey').focus();
 		}, 1);
 	}
+
+	// setting stuff for the morphology page
+	$: morphologyKey = `${$__morphologyKey.split(':')[0]}:${$__morphologyKey.split(':')[1]}`;
 
 	function loadMaxChapters() {
 		if (!maxChaptersLoaded) {
@@ -224,7 +228,7 @@
 	{#if $__currentPage !== 'home'}
 		<div class="flex flex-row space-x-4 max-h-56 {searchedKey.length > 0 ? 'hidden' : 'block'}">
 			<!-- chapter selector -->
-			{#if $__currentPage !== 'supplications'}
+			{#if !['supplications', 'morphology'].includes($__currentPage)}
 				<div class="flex flex-col space-y-2 w-full">
 					<div class="px-2 text-sm pb-2 border-b border-black/10 font-medium">{term('chapters')}</div>
 					<ul id="navbar-chapter-list" class="grow basis-1/2 overflow-y-scroll">
@@ -287,6 +291,24 @@
 							</li>
 						{/each}
 					</ul>
+				</div>
+			{/if}
+
+			<!-- words selector -->
+			{#if $__currentPage === 'morphology'}
+				<div class="flex flex-col space-y-2 w-full">
+					<div class="px-2 text-sm pb-2 border-b border-black/10 font-medium">Words</div>
+					{#await verseKeyData then verseKeyData}
+						<ul id="navbar-words-list" class="grow basis-1/2 px-2 overflow-y-scroll">
+							{#each { length: verseKeyData[morphologyKey].words } as _, word}
+								<li>
+									<a href="/morphology/{morphologyKey}:{word + 1}">
+										<div class={listItemClasses}>Word {morphologyKey}:{word + 1}</div>
+									</a>
+								</li>
+							{/each}
+						</ul>
+					{/await}
 				</div>
 			{/if}
 		</div>

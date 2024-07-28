@@ -51,7 +51,7 @@
 	__currentPage.set('morphology');
 </script>
 
-<PageHead title={`Morphology (${$__morphologyKey})`} />
+<PageHead title={`Morphology ${$__morphologyKey}`} />
 
 <div class="space-y-12 my-8">
 	<div id="verse-navigator" class="flex flex-row justify-center space-x-8 text-sm theme">
@@ -60,8 +60,15 @@
 			<a href="/morphology/{+chapter - 1}:1" class={buttonOutlineClasses}>{@html '&#x2190;'} {term('chapter')} {+chapter - 1}</a>
 		{/if}
 
-		<a href="/morphology/{chapter}:{+verse - 1}" class="{buttonOutlineClasses} {verse === 1 && 'hidden'}">{@html '&#x2190;'} {term('verse')} {chapter}:{+verse - 1}</a>
-		<a href="/morphology/{chapter}:{+verse + 1}" class="{buttonOutlineClasses} {verse === quranMetaData[chapter].verses && 'hidden'}">{term('verse')} {chapter}:{+verse + 1} {@html '&#x2192;'}</a>
+		<!-- next verse -->
+		{#if verse > 1}
+			<a href="/morphology/{chapter}:{+verse - 1}" class={buttonOutlineClasses}>{@html '&#x2190;'} {term('verse')} {chapter}:{+verse - 1}</a>
+		{/if}
+
+		<!-- previous verse -->
+		{#if verse < quranMetaData[chapter].verses}
+			<a href="/morphology/{chapter}:{+verse + 1}" class={buttonOutlineClasses}>{term('verse')} {chapter}:{+verse + 1} {@html '&#x2192;'}</a>
+		{/if}
 
 		<!-- next chapter -->
 		{#if verse === quranMetaData[chapter].verses && chapter < 114}

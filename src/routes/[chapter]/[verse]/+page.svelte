@@ -1,5 +1,8 @@
 <script>
-	export let data, startVerse, endVerse;
+	export let data;
+	export let startVerse = null;
+	export let endVerse = null;
+
 	import Chapter from '$views/Chapter.svelte';
 </script>
 
