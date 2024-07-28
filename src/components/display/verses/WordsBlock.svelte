@@ -57,8 +57,8 @@
 
 			// end verse icon
 			else if (props.type === 'end') {
-				// for continuous modes, the verse options dropdown will open, but if its not a continuous mode...
-				if (!displayIsContinuous) playVerseAudio({ key: props.key, language: 'arabic', timesToRepeat: 1 });
+				// for continuous modes, the verse options dropdown will open, but if its not a continuous mode then un/bookmark verse
+				if (!displayIsContinuous) updateSettings({ type: 'userBookmarks', key: props.key, set: true });
 			}
 		}
 	}

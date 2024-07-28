@@ -1116,10 +1116,6 @@ input[type="range"]::-ms-fill-lower {
   z-index: 51;
 }
 
-.z-\[9999999\] {
-  z-index: 9999999;
-}
-
 .order-last {
   order: 9999;
 }
@@ -1320,16 +1316,6 @@ input[type="range"]::-ms-fill-lower {
   display: none;
 }
 
-.size-8 {
-  width: 2rem;
-  height: 2rem;
-}
-
-.size-11 {
-  width: 2.75rem;
-  height: 2.75rem;
-}
-
 .size-10 {
   width: 2.5rem;
   height: 2.5rem;
@@ -1514,10 +1500,6 @@ input[type="range"]::-ms-fill-lower {
 
 .w-52 {
   width: 13rem;
-}
-
-.w-56 {
-  width: 14rem;
 }
 
 .w-6 {
