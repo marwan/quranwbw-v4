@@ -397,7 +397,7 @@
 			<!-- reset settings button -->
 			<div class="flex flex-col justify-center border-t border-black/10 py-6 space-y-4">
 				<button on:click={() => resetSettings()} class="text-sm {buttonClasses}">Reset Settings</button>
-				<p class={settingsDescriptionClasses}>Resetting the options will not erase your bookmarks, notes, and last read location.</p>
+				<p class={settingsDescriptionClasses}>Your bookmarks, notes, and last read location will remain unaffected.</p>
 			</div>
 		</div>
 	{/if}

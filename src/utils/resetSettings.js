@@ -1,35 +1,22 @@
 import { updateSettings } from '$utils/updateSettings';
+import { __userBookmarks, __userNotes, __lastRead } from '$utils/stores';
+import { setUserSettings } from '$src/hooks.client';
+import { get } from 'svelte/store';
 
 export function resetSettings() {
-	let arabicTextSize;
+	const currentUserBookmarks = get(__userBookmarks);
+	const currentUserNotes = get(__userNotes);
+	const currentLastRead = get(__lastRead);
 
-	// for larger screens, make 4xl the default for arabic word, else make 2xl the default
-	if (window.matchMedia('(min-width: 1280px)').matches || window.matchMedia('(min-width: 1024px)').matches || window.matchMedia('(min-width: 768px)').matches) arabicTextSize = 'text-4xl';
+	// remove current settings from localStorage and set new one
+	localStorage.removeItem('userSettings');
+	setUserSettings();
 
-	// display settings
-	updateSettings({ type: 'websiteTheme', value: 1 });
-	updateSettings({ type: 'displayType', value: 1 });
-	updateSettings({ type: 'wordTooltip', value: 1 });
-	updateSettings({ type: 'wordTranslationEnabled', value: true });
-	updateSettings({ type: 'wordTransliterationEnabled', value: true });
-	updateSettings({ type: 'wakeLockEnabled', value: false });
+	// restore important data
+	updateSettings({ type: 'userBookmarks', key: currentUserBookmarks, overide: true, set: true });
+	updateSettings({ type: 'userNotes', key: currentUserNotes, overide: true });
+	updateSettings({ type: 'lastRead', value: currentLastRead });
 
-	// font type settings
-	updateSettings({ type: 'fontType', value: 1 });
-
-	// font size settings
-	updateSettings({ type: 'arabicText', value: arabicTextSize });
-	updateSettings({ type: 'wordTranslationText', value: 'text-sm' });
-	updateSettings({ type: 'verseTranslationText', value: 'text-sm' });
-
-	// translation settings
-	updateSettings({ type: 'wordTranslation', value: 1 });
-	updateSettings({ type: 'verseTranslation', value: [57, 131] });
-
-	// audio settings
-	updateSettings({ type: 'reciter', value: 10 });
-	updateSettings({ type: 'playbackSpeed', value: 3 });
-
-	// miscellaneous
-	// updateSettings({ type: 'englishTerminology', value: false });
+	// reload the page
+	location.reload();
 }

@@ -64,7 +64,7 @@
 	}
 
 	// setting stuff for the morphology page
-	$: morphologyKey = `${$__morphologyKey.split(':')[0]}:${$__morphologyKey.split(':')[1]}`;
+	$: if ($__morphologyKey) morphologyKey = `${$__morphologyKey.split(':')[0]}:${$__morphologyKey.split(':')[1]}`;
 
 	function loadMaxChapters() {
 		if (!maxChaptersLoaded) {
