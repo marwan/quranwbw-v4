@@ -7,12 +7,15 @@
 	import { __chapterNumber, __currentPage, __lastRead, __pageURL, __topNavbarVisible, __pageNumber, __morphologyKey, __mushafPageDivisions } from '$utils/stores';
 	import { toggleQuranNavigation } from '$utils/toggleQuranNavigation';
 
-	// updating the page, juz... when the last read location updates
 	let lastReadPage;
 	let lastReadJuz;
 	let lastReadChapter = 1;
 	let lastReadVerse = 1;
+	let navbarChapterName;
+	let mushafChapters = [];
+	let mushafJuz = '...';
 
+	// last read
 	$: {
 		try {
 			lastReadPage = document.getElementById($__lastRead.key).getAttribute('data-page');
@@ -31,8 +34,7 @@
 	// scroll percentage
 	$: chapterProgress = (lastReadVerse / quranMetaData[lastReadChapter].verses) * 100;
 
-	let navbarChapterName;
-
+	// chapter name in navbar
 	$: {
 		navbarChapterName = quranMetaData[$__chapterNumber].transliteration;
 
@@ -43,22 +45,16 @@
 		}
 	}
 
-	// for mushaf page bottom nav
-	let mushafChapter = '...';
-	let mushafJuz = '...';
-
+	// chapter names for mushaf page
 	$: {
 		try {
-			const chapters = $__mushafPageDivisions.chapters;
-			mushafChapter = '';
+			mushafJuz = `Juz ${$__mushafPageDivisions.juz}`;
+			mushafChapters = [];
 
 			// join all the chapter names
-			for (const [key, value] of Object.entries(chapters)) {
-				mushafChapter += quranMetaData[value].transliteration;
-				if (key < Object.keys(chapters).length - 1) mushafChapter += ' / ';
+			for (const [key, value] of Object.entries($__mushafPageDivisions.chapters)) {
+				mushafChapters.push(quranMetaData[value].transliteration);
 			}
-
-			mushafJuz = `Juz ${$__mushafPageDivisions.juz}`;
 		} catch (error) {}
 	}
 </script>
@@ -112,9 +108,9 @@
 				{/if}
 			</div>
 			<div class="flex flex-row items-center py-2">
-				<span>{lastReadPage !== undefined ? `Page ${lastReadPage}` : '...'}</span>
+				<span>{lastReadPage ? `Page ${lastReadPage}` : '...'}</span>
 				<span class="px-1 opacity-60">/</span>
-				<span>{lastReadJuz !== undefined ? `Juz ${lastReadJuz}` : '...'}</span>
+				<span>{lastReadJuz ? `Juz ${lastReadJuz}` : '...'}</span>
 			</div>
 		</div>
 
@@ -124,7 +120,7 @@
 	<!-- mini nav for mushaf page -->
 	{#if $__currentPage === 'page'}
 		<div id="bottom-nav" class="flex flex-row items-center justify-between border-t border-black/10 text-xs max-w-screen-lg mx-auto px-6 theme-grayscale">
-			<div class="flex flex-row items-center py-2">{mushafChapter}</div>
+			<div class="flex flex-row items-center py-2">{mushafChapters.join(' / ')}</div>
 			<div class="flex flex-row items-center py-2">{mushafJuz}</div>
 		</div>
 	{/if}

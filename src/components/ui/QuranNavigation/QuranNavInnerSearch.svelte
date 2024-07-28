@@ -5,13 +5,14 @@
 	import Search from '$svgs/Search.svelte';
 	import { quranMetaData, startPageOfChapters, pageNumberKeys, juzNumberKeys } from '$data/quranMeta';
 	import { buttonClasses } from '$data/commonClasses';
-	import { __chapterNumber, __pageURL, __currentPage, __pageNumber, __quranNavigationModalVisible, __quranNavigationDrawerHidden } from '$utils/stores';
+	import { __chapterNumber, __pageURL, __currentPage, __pageNumber, __quranNavigationModalVisible, __quranNavigationDrawerHidden, __lastRead } from '$utils/stores';
 	import { inview } from 'svelte-inview';
 	import { validateKey } from '$utils/validateKey';
 	import { staticEndpoint } from '$data/websiteSettings';
 	import { page } from '$app/stores';
 	import { term } from '$utils/terminologies';
 	import { toggleQuranNavigation } from '$utils/toggleQuranNavigation';
+	import { supplicationsFromQuran, mostRead } from '$data/quranMeta';
 
 	const linkClasses = 'flex flex-row space-x-2 items-center';
 	const linkTextClasses = 'px-4 py-2 rounded-3xl bg-lightGray hover:bg-gray-200 w-fit text-sm';
@@ -24,6 +25,15 @@
 	let placeholder = 'Navigate or Search Quran';
 	let verseKeyData;
 	let searchResults;
+	let lastReadChapter = 1;
+	let lastReadVerse = 1;
+
+	$: {
+		if ($__lastRead.hasOwnProperty('key')) {
+			lastReadChapter = $__lastRead.key.split(':')[0];
+			lastReadVerse = $__lastRead.key.split(':')[1];
+		}
+	}
 
 	$: if ($page.url.href || $__pageURL || $__chapterNumber || $__pageNumber) toggleQuranNavigation('hide');
 	$: if ($__currentPage) searchedKey = '';
@@ -68,7 +78,8 @@
 </script>
 
 <div class="flex flex-col space-y-2 justify-between max-w-screen-lg px-4 py-5 mx-auto">
-	<div class="mx-2">
+	<!-- search block -->
+	<div id="search-block" class="mx-2">
 		<div id="navigatation-inputs" class="flex flex-col space-y-4 mb-4 justify-start theme-grayscale">
 			<div class="flex flex-row w-full h-fit items-center">
 				<form on:submit|preventDefault={() => (searchedKey = document.getElementById('searchKey').value)} class="flex flex-row w-full">
@@ -79,20 +90,45 @@
 				</form>
 			</div>
 
+			<!-- instructions -->
 			{#if searchedKey.length === 0}
 				<div class="text-xs">
 					<span class="font-semibold">Instructions:</span>
 					You may navigate by entering either a {term('chapter').toLowerCase()}/page/juz number, or a {term('verse').toLowerCase()}/word key seperated by a colon, period, dash or a space (e.g. 2:255, 2.286, 18-10 or 2 1 1).
 
-					<br /><br />
-					This navigation modal can be opened from anywhere on the website by pressing CTRL+K.
+					<!-- <br /><br />
+					This navigation modal can be opened from anywhere on the website by pressing CTRL+K. -->
 				</div>
 			{/if}
 
+			<!-- suggestions (only for home page) -->
+			{#if searchedKey.length === 0 && $__currentPage === 'home'}
+				<div id="search-suggestions" class="flex flex-col space-y-2 text-base md:text-lg max-h-52 overflow-y-auto">
+					<!-- last read -->
+					{#if $__lastRead.hasOwnProperty('key')}
+						<span class="text-xs font-semibold pt-2">Last Read</span>
+						<div class={linkClasses}>
+							<span>{@html '&#10230'}</span>
+							<a href="/{lastReadChapter}/{lastReadVerse}" class={linkTextClasses}>{quranMetaData[lastReadChapter].transliteration}, {lastReadChapter}:{lastReadVerse}</a>
+						</div>
+					{/if}
+
+					<!-- other suggestions -->
+					<span class="text-xs font-semibold pt-2">Suggestions</span>
+					{#each Object.entries(mostRead) as [id, item]}
+						<div class={linkClasses}>
+							<span>{@html '&#10230'}</span>
+							<a href={item.url} class={linkTextClasses}>{quranMetaData[item.chapter].transliteration} ({item.verses})</a>
+						</div>
+					{/each}
+				</div>
+			{/if}
+
+			<!-- results -->
 			{#if searchedKey.length > 0}
 				<div id="search-results" class="flex flex-col space-y-2 text-base md:text-lg max-h-52 overflow-y-auto">
 					{#if searchResults}
-						<span class="text-xs font-semibold {searchResults ? 'pt-2' : null}">Navigate</span>
+						<span class="text-xs font-semibold {searchResults && 'pt-2'}">Navigate</span>
 						{#each Object.entries(searchResults) as [key, value]}
 							<!-- numbers -->
 							{#if $__currentPage === 'page'}
@@ -173,7 +209,7 @@
 
 					<!-- always allow user to search the Quran -->
 					{#if searchedKey.length > 0}
-						<span class="text-xs font-semibold {searchResults ? 'pt-2' : null}">Search Quran</span>
+						<span class="text-xs font-semibold {searchResults && 'pt-2'}">Search Quran</span>
 						<div class={linkClasses}>
 							<span>{@html '&#10230'}</span>
 							<a href="/search?text={searchedKey}&translation=0" class={linkTextClasses}>"{searchedKey}"</a>
@@ -188,30 +224,32 @@
 	{#if $__currentPage !== 'home'}
 		<div class="flex flex-row space-x-4 max-h-56 {searchedKey.length > 0 ? 'hidden' : 'block'}">
 			<!-- chapter selector -->
-			<div class="flex flex-col space-y-2 w-full">
-				<div class="px-2 text-sm pb-2 border-b border-black/10 font-medium">{term('chapters')}</div>
-				<ul id="navbar-chapter-list" class="grow basis-1/2 overflow-y-scroll">
-					{#each { length: maxItemsToLoad } as _, chapter}
-						<li>
-							<a href={$__currentPage === 'page' ? `/page/${startPageOfChapters[chapter + 1]}` : `/${chapter + 1}`}>
-								<div class="{listItemClasses} {$__currentPage === 'chapter' ? (chapter + 1 === $__chapterNumber ? 'bg-black/5' : null) : null}">
-									{chapter + 1}. {quranMetaData[chapter + 1].transliteration}
+			{#if $__currentPage !== 'supplications'}
+				<div class="flex flex-col space-y-2 w-full">
+					<div class="px-2 text-sm pb-2 border-b border-black/10 font-medium">{term('chapters')}</div>
+					<ul id="navbar-chapter-list" class="grow basis-1/2 overflow-y-scroll">
+						{#each { length: maxItemsToLoad } as _, chapter}
+							<li>
+								<a href={$__currentPage === 'page' ? `/page/${startPageOfChapters[chapter + 1]}` : `/${chapter + 1}`}>
+									<div class="{listItemClasses} {$__currentPage === 'chapter' ? (chapter + 1 === $__chapterNumber ? 'bg-black/5' : null) : null}">
+										{chapter + 1}. {quranMetaData[chapter + 1].transliteration}
 
-									{#if $__currentPage === 'chapter'}
-										<span class="hidden md:inline-block">({quranMetaData[chapter + 1].translation})</span>
-									{:else}
-										<span>({quranMetaData[chapter + 1].translation})</span>
-									{/if}
-								</div>
-							</a>
-						</li>
-					{/each}
-					{#if !maxChaptersLoaded}
-						<Spinner size="8" />
-					{/if}
-					<div class="invisible" use:inview on:inview_enter={() => loadMaxChapters()}></div>
-				</ul>
-			</div>
+										{#if $__currentPage === 'chapter'}
+											<span class="hidden md:inline-block">({quranMetaData[chapter + 1].translation})</span>
+										{:else}
+											<span>({quranMetaData[chapter + 1].translation})</span>
+										{/if}
+									</div>
+								</a>
+							</li>
+						{/each}
+						{#if !maxChaptersLoaded}
+							<Spinner size="8" />
+						{/if}
+						<div class="invisible" use:inview on:inview_enter={() => loadMaxChapters()}></div>
+					</ul>
+				</div>
+			{/if}
 
 			<!-- verse selector -->
 			{#if $__currentPage === 'chapter'}
@@ -232,6 +270,22 @@
 						{/key}
 
 						<div class="invisible" use:inview on:inview_enter={() => loadMaxVerses()}></div>
+					</ul>
+				</div>
+			{/if}
+
+			<!-- supplications selector -->
+			{#if $__currentPage === 'supplications'}
+				<div class="flex flex-col space-y-2 w-full">
+					<div class="px-2 text-sm pb-2 border-b border-black/10 font-medium">{term('supplications')}</div>
+					<ul id="navbar-supplications-list" class="grow basis-1/2 px-2 overflow-y-scroll">
+						{#each Object.entries(supplicationsFromQuran) as [key, value]}
+							<li>
+								<a href="#{key}">
+									<div class={listItemClasses}>{quranMetaData[key.split(':')[0]].transliteration}, {key}</div>
+								</a>
+							</li>
+						{/each}
 					</ul>
 				</div>
 			{/if}

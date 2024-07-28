@@ -118,7 +118,7 @@
 					{/if}
 
 					<!-- last read -->
-					{#if $__lastRead.key !== null}
+					{#if $__lastRead.hasOwnProperty('key')}
 						<div id="last-read" class="w-full md:w-max">
 							<a href="/{lastReadChapter}/{lastReadVerse}" class="hidden md:block py-2.5 w-full mb-4 md:mb-0 truncate {buttonClasses}">Continue Reading: {quranMetaData[lastReadChapter].transliteration}, {lastReadChapter}:{lastReadVerse} {@html '&#10230'}</a>
 							<a href="/{lastReadChapter}/{lastReadVerse}" class="block md:hidden py-2.5 w-full mb-4 md:mb-0 truncate {buttonClasses}">Continue: {lastReadChapter}:{lastReadVerse} {@html '&#10230'}</a>

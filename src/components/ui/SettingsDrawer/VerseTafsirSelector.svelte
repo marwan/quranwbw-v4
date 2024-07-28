@@ -7,7 +7,7 @@
 	import { selectedRadioClasses } from '$data/commonClasses';
 </script>
 
-<div class="grid gap-3 w-full">
+<div class="grid gap-3 w-full theme-grayscale">
 	{#each Object.entries(verseTafsirLanguages) as [id, language]}
 		<div class="flex flex-col space-y-2 pb-6">
 			<div id="translation-name" class="text-md font-medium">{language.language}</div>

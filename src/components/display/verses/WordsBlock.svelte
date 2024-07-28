@@ -11,7 +11,7 @@
 	import { selectableDisplays, mushafFontLinks, selectableThemes } from '$data/options';
 	import { __currentPage, __fontType, __displayType, __userSettings, __audioSettings, __morphologyKey, __verseKey, __websiteTheme } from '$utils/stores';
 	import { loadFont } from '$utils/loadFont';
-	import { playVerseAudio, wordAudioController } from '$utils/audioController';
+	import { wordAudioController } from '$utils/audioController';
 	import { updateSettings } from '$utils/updateSettings';
 
 	const userSettings = JSON.parse(localStorage.getItem('userSettings'));

@@ -87,13 +87,11 @@
 		individualSettingsVisible = false;
 
 		// scroll to last position
-		try {
-			setTimeout(function () {
+		setTimeout(function () {
+			try {
 				document.getElementById('settings-drawer').scrollTop = mainSettingsScrollPos;
-			}, 0);
-		} catch (error) {
-			// ...
-		}
+			} catch (error) { }
+		}, 0);
 	}
 
 	function gotoIndividualSetting(type) {
@@ -102,14 +100,11 @@
 		individualSettingsVisible = true;
 		individualSettingsComponent = individualSettingsComponents[type];
 
-		// scroll to top
-		try {
-			setTimeout(function () {
+		setTimeout(function () {
+			try {
 				document.getElementById('individual-setting').scrollIntoView();
-			}, 0);
-		} catch (error) {
-			// ...
-		}
+			} catch (error) { }
+		}, 0);
 	}
 </script>
 
