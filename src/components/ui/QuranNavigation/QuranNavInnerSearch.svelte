@@ -132,6 +132,22 @@
 			{#if searchedKey.length > 0}
 				<div id="search-results" class="flex flex-col space-y-2 text-base md:text-lg max-h-52 overflow-y-auto">
 					{#if searchResults}
+						<!-- stuff for current chapter -->
+						{#each Object.entries(searchResults) as [key, value]}
+							<!-- numbers -->
+							{#if $__chapterNumber !== 'page'}
+								{#if key === 'verse' && $__currentPage === 'chapter'}
+									<span class="text-xs font-semibold {searchResults && 'pt-2'}">Current {term('chapter')}</span>
+
+									<div class={linkClasses}>
+										<span>{@html '&#10230'}</span>
+										<a href="/{$__chapterNumber}/{value}" class={linkTextClasses}>{term('verse')} {value}</a>
+									</div>
+								{/if}
+							{/if}
+						{/each}
+
+						<!-- normal stuff -->
 						<span class="text-xs font-semibold {searchResults && 'pt-2'}">Navigate</span>
 						{#each Object.entries(searchResults) as [key, value]}
 							<!-- numbers -->
@@ -167,11 +183,6 @@
 									<div class={linkClasses}>
 										<span>{@html '&#10230'}</span>
 										<a href="/{value}" class={linkTextClasses}>{term('chapter')} {value} ({quranMetaData[value].transliteration})</a>
-									</div>
-								{:else if key === 'verse' && $__currentPage === 'chapter'}
-									<div class={linkClasses}>
-										<span>{@html '&#10230'}</span>
-										<a href="/{$__chapterNumber}/{value}" class={linkTextClasses}>{term('verse')} {value} (Current {term('chapter')})</a>
 									</div>
 								{:else if key === 'page'}
 									<div class={linkClasses}>
