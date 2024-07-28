@@ -75,8 +75,8 @@
 		arabicText leading-normal 
 		arabic-font-${$__fontType} 
 		${$__currentPage !== 'page' && fontSizes.arabicText} 
-		${displayIsContinuous ? 'inline-block' : null}
-		${[1, 4].includes($__fontType) ? 'text-black theme' : null}
+		${displayIsContinuous && 'inline-block'}
+		${[1, 4].includes($__fontType) && 'text-black theme'}
 	`;
 
 	$: v4hafsClasses = `
