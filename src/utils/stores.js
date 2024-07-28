@@ -50,6 +50,7 @@ let __websiteOnline,
 	__quranNavigationModalVisible,
 	__quranNavigationDrawerHidden,
 	__siteNavigationModalVisible,
+	__settingsSelectorModal,
 	__wakeLockEnabled,
 	__quizCorrectAnswers,
 	__quizWrongAnswers,
@@ -199,6 +200,9 @@ if (browser) {
 	__quranNavigationModalVisible = writable(false);
 	__quranNavigationDrawerHidden = writable(true);
 	__siteNavigationModalVisible = writable(false);
+	__settingsSelectorModal = writable({
+		visible: false
+	});
 
 	// wake lock settings
 	__wakeLockEnabled = writable(userSettings.displaySettings.wakeLockEnabled);
@@ -270,6 +274,7 @@ export {
 	__quranNavigationModalVisible,
 	__quranNavigationDrawerHidden,
 	__siteNavigationModalVisible,
+	__settingsSelectorModal,
 	__wakeLockEnabled,
 	__quizCorrectAnswers,
 	__quizWrongAnswers,
