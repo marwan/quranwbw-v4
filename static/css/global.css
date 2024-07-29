@@ -2114,6 +2114,10 @@ input[type="range"]::-ms-fill-lower {
   border-top-width: 2px;
 }
 
+.\!border-b-0 {
+  border-bottom-width: 0px !important;
+}
+
 .\!border-black\/10 {
   border-color: rgb(0 0 0 / 0.1) !important;
 }

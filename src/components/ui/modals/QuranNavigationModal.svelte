@@ -10,7 +10,7 @@
 	import { inview } from 'svelte-inview';
 	import { validateKey } from '$utils/validateKey';
 	import { staticEndpoint } from '$data/websiteSettings';
-	// import { page } from '$app/stores';
+	import { page } from '$app/stores';
 	import { term } from '$utils/terminologies';
 	import { supplicationsFromQuran, mostRead } from '$data/quranMeta';
 
@@ -37,6 +37,7 @@
 	}
 
 	// $: if ($page.url.href || $__pageURL || $__chapterNumber || $__pageNumber) __quranNavigationModalVisible.set(false);
+	$: if ($page.url.href || $__pageURL || $__chapterNumber || $__pageNumber) __quranNavigationModalVisible.set(false);
 	$: if ($__currentPage) searchedKey = '';
 	$: chapterVerses = quranMetaData[$__chapterNumber].verses;
 
@@ -56,11 +57,15 @@
 			const data = await response.json();
 			return data;
 		})();
+	}
 
-		// focus the search input box
-		setTimeout(function () {
-			document.getElementById('searchKey').focus();
-		}, 1);
+	// focus the search input box
+	$: {
+		if ($__quranNavigationModalVisible) {
+			setTimeout(function () {
+				document.getElementById('searchKey').focus();
+			}, 1);
+		}
 	}
 
 	// setting stuff for the morphology page

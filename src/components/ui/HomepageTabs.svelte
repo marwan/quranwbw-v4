@@ -58,7 +58,7 @@
 
 			<!-- menu for links on right -->
 			<div class="ml-2">
-				<button class="flex flex-row items-center bg-lightGray rounded-3xl p-3 {tabClasses}" title="Menu">
+				<button class="flex flex-row items-center bg-lightGray rounded-3xl p-3 {tabClasses} !border-b-0" title="Menu">
 					<span class="text-black opacity-70"><Menu /></span>
 				</button>
 				<SiteNavigationDropdown />
