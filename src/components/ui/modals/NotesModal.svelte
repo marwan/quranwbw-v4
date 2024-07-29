@@ -33,7 +33,7 @@
 	}
 </script>
 
-<Modal id="notesModal" bind:open={$__notesModalVisible} size="xs" class="rounded-3xl theme" bodyClass="p-6" center outsideclose>
+<Modal id="notesModal" bind:open={$__notesModalVisible} size="xs" class="!rounded-b-none md:!rounded-3xl theme" bodyClass="p-6" position="bottom" center outsideclose>
 	<!-- Modal content -->
 	<h3 id="notes-modal-title" class="mb-8 text-xl font-medium text-black">{quranMetaData[chapter].transliteration}, {$__verseKey}</h3>
 	<textarea id="notes-value" rows="8" value={verseNote} class="block p-2.5 w-full text-sm text-black bg-gray-50 rounded-3xl border border-black/10 focus:ring-gray-500 focus:border-gray-500 placeholder-black" placeholder="Write your thoughts here..."></textarea>
