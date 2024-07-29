@@ -8,11 +8,10 @@
 	import Search from '$svgs/Search.svelte';
 	import { updateSettings } from '$utils/updateSettings';
 	import { quranMetaData, mostRead } from '$data/quranMeta';
-	import { __lastRead, __favouriteChapters, __userBookmarks, __timeSpecificChapters, __siteNavigationModalVisible } from '$utils/stores';
+	import { __lastRead, __favouriteChapters, __userBookmarks, __timeSpecificChapters, __siteNavigationModalVisible, __quranNavigationModalVisible } from '$utils/stores';
 	import { buttonClasses, buttonOutlineClasses } from '$data/commonClasses';
 	import { checkTimeSpecificChapters } from '$utils/checkTimeSpecificChapters';
 	import { term } from '$utils/terminologies';
-	import { toggleQuranNavigation } from '$utils/toggleQuranNavigation';
 
 	let lastReadChapter = 1;
 	let lastReadVerse = 1;
@@ -27,8 +26,8 @@
 	// chapter cards, tab styles
 	const cardGridClasses = 'grid md:grid-cols-2 lg:grid-cols-3 gap-3';
 	const cardInnerClasses = 'flex justify-between md:text-left border border-black/10 transition text-sm bg-gray-100 rounded-3xl p-5 hover:cursor-pointer hover:bg-lightGray';
-	const tabClasses = 'p-2 md:p-3 text-xs md:text-md cursor-pointer border-b-0';
-	const activeTabClasses = 'border-b-4';
+	const tabClasses = 'p-2 md:p-3 text-xs md:text-md cursor-pointer border-b-4 border-transparent';
+	const activeTabClasses = '!border-black/10';
 
 	let activeTab = 1; // chapters tab
 
@@ -48,24 +47,13 @@
 		<!-- <div class="hidden md:block flex-1 border-t border-black/10"></div> -->
 
 		<div class="flex flex-row justify-center px-4">
-			<!-- main tabs on left -->
+			<!-- main tabs -->
 			<div id="tab-buttons">
-				<ul class="flex text-sm font-medium text-center opacity-70 justify-center space-x-2 md:space-x-4">
-					<li>
-						<button on:click={() => (activeTab = 1)} class="{tabClasses} {activeTab === 1 ? `${activeTabClasses}` : null}" type="button" role="tab" aria-controls="chapters-tab-panel" aria-selected="false">{term('chapters')}</button>
-					</li>
-					<li>
-						<button on:click={() => (activeTab = 2)} class="{tabClasses} {activeTab === 2 ? `${activeTabClasses}` : null}" type="button" role="tab" aria-controls="most-read-tab-panel" aria-selected="false">Suggested</button>
-					</li>
-					<li>
-						<button on:click={() => (activeTab = 3)} class="{tabClasses} {activeTab === 3 ? `${activeTabClasses}` : null}" type="button" role="tab" aria-controls="bookmarks-tab-panel" aria-selected="false">
-							Bookmarks
-							{#if $__userBookmarks.length > 0}
-								({$__userBookmarks.length})
-							{/if}
-						</button>
-					</li>
-				</ul>
+				<div class="flex text-sm font-medium text-center opacity-70 justify-center space-x-2 md:space-x-4">
+					<button on:click={() => (activeTab = 1)} class="{tabClasses} {activeTab === 1 && activeTabClasses}" type="button" role="tab" aria-controls="chapters-tab-panel" aria-selected="false">{term('chapters')}</button>
+					<button on:click={() => (activeTab = 2)} class="{tabClasses} {activeTab === 2 && activeTabClasses}" type="button" role="tab" aria-controls="most-read-tab-panel" aria-selected="false">Suggested</button>
+					<button on:click={() => (activeTab = 3)} class="{tabClasses} {activeTab === 3 && activeTabClasses}" type="button" role="tab" aria-controls="bookmarks-tab-panel" aria-selected="false">Bookmarks {$__userBookmarks.length > 0 ? `(${$__userBookmarks.length})` : ''}</button>
+				</div>
 			</div>
 
 			<!-- menu for links on right -->
@@ -76,8 +64,6 @@
 				<SiteNavigationDropdown />
 			</div>
 		</div>
-
-		<!-- <div class="hidden md:block flex-1 border-t border-black/10"></div> -->
 	</div>
 
 	<div class="hidden md:block border-b -mt-4 px-4 mx-auto w-[98%] theme-grayscale"></div>
@@ -88,7 +74,7 @@
 			<!-- chapter / page etc... selector -->
 			<div class="flex flex-col space-y-2 md:space-y-0 md:flex-row justify-between text-xs mb-0 md:mb-2">
 				<!-- search bar -->
-				<button class="w-full md:w-max" on:click={() => toggleQuranNavigation('show')}>
+				<button class="w-full md:w-max" on:click={() => __quranNavigationModalVisible.set(true)}>
 					<span class="w-full pointer-events-none {buttonOutlineClasses}">
 						<span class="pt-1"><Search size={4} /></span>
 						<span>Navigate or Search Quran</span>

@@ -4,6 +4,23 @@
 	import { createEventDispatcher } from 'svelte';
 	import CloseButton from '../utils/CloseButton.svelte';
 	import focusTrap from '../utils/focusTrap';
+
+	const modalPositions = {
+		default: {
+			dialogClasses: 'fixed top-0 start-0 end-0 h-modal md:inset-0 md:h-full z-50 w-full p-4 flex',
+			innerClasses: 'flex relative'
+		},
+		top: {
+			dialogClasses: 'fixed top-0 start-0 end-0 h-full md:h-modal md:inset-0 md:h-full z-50 w-full md:p-4 flex',
+			innerClasses: 'flex fixed top-0 md:relative'
+		},
+		bottom: {
+			dialogClasses: 'fixed bottom-0 md:top-0 start-0 end-0 h-full md:h-modal md:inset-0 md:h-full z-50 w-full md:p-4 flex',
+			innerClasses: 'flex fixed bottom-0 md:relative'
+		}
+	};
+
+	export let position = 'default';
 	export let open = false;
 	export let title = '';
 	export let size = 'md';
@@ -14,7 +31,7 @@
 	export let dismissable = true;
 	export let backdropClass = 'fixed inset-0 z-40 bg-[#282828c4] bg-opacity-75';
 	export let classBackdrop = undefined;
-	export let dialogClass = 'fixed top-0 start-0 end-0 h-modal md:inset-0 md:h-full z-50 w-full p-4 flex';
+	export let dialogClass = modalPositions[position].dialogClasses;
 	export let classDialog = undefined;
 	export let defaultClass = 'relative flex flex-col mx-auto';
 	export let headerClass = 'flex justify-between items-center p-4 md:p-5 rounded-t-lg';
@@ -101,7 +118,7 @@
 	<!-- dialog -->
 	<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 	<div on:keydown={handleKeys} on:wheel|preventDefault|nonpassive use:prepareFocus use:focusTrap on:click={onAutoClose} on:mousedown={onOutsideClose} class={dialogCls} tabindex="-1" aria-modal="true" role="dialog">
-		<div class="flex relative {sizes[size]} w-full max-h-full">
+		<div class="{modalPositions[position].innerClasses} {sizes[size]} w-full max-h-full">
 			<!-- Modal content -->
 			<Frame rounded shadow {...$$restProps} class={frameCls} {color}>
 				<!-- Modal header -->

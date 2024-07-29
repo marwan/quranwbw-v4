@@ -48,7 +48,6 @@ let __websiteOnline,
 	__tokenModalVisible,
 	__tafsirModalVisible,
 	__quranNavigationModalVisible,
-	__quranNavigationDrawerHidden,
 	__siteNavigationModalVisible,
 	__settingsSelectorModal,
 	__wakeLockEnabled,
@@ -198,7 +197,6 @@ if (browser) {
 	__tokenModalVisible = writable(false);
 	__tafsirModalVisible = writable(false);
 	__quranNavigationModalVisible = writable(false);
-	__quranNavigationDrawerHidden = writable(true);
 	__siteNavigationModalVisible = writable(false);
 	__settingsSelectorModal = writable({
 		visible: false
@@ -272,7 +270,6 @@ export {
 	__tokenModalVisible,
 	__tafsirModalVisible,
 	__quranNavigationModalVisible,
-	__quranNavigationDrawerHidden,
 	__siteNavigationModalVisible,
 	__settingsSelectorModal,
 	__wakeLockEnabled,
