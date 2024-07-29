@@ -57,7 +57,7 @@
 	}
 </script>
 
-<Modal id="audioModal" bind:open={$__audioModalVisible} size="xs" class="rounded-3xl !text-black theme" bodyClass="p-6" placement="center" autoclose outsideclose>
+<Modal id="audioModal" bind:open={$__audioModalVisible} size="xs" class="!rounded-b-none md:!rounded-3xl !text-black theme" bodyClass="p-6" placement="center" position="bottom" autoclose outsideclose>
 	<!-- Modal content -->
 	<div class="flex flex-row space-x-4 mb-4 text-xl" style="margin-top: 0px;">
 		<h3 id="audio-modal-title" class="font-medium">{quranMetaData[$__audioSettings.playingChapter || 1].transliteration}, {$__audioSettings.playingKey}</h3>

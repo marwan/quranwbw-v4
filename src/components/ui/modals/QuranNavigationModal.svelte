@@ -10,7 +10,7 @@
 	import { inview } from 'svelte-inview';
 	import { validateKey } from '$utils/validateKey';
 	import { staticEndpoint } from '$data/websiteSettings';
-	import { page } from '$app/stores';
+	// import { page } from '$app/stores';
 	import { term } from '$utils/terminologies';
 	import { supplicationsFromQuran, mostRead } from '$data/quranMeta';
 
@@ -81,7 +81,7 @@
 	}
 </script>
 
-<Modal id="quranNavigationModal" bind:open={$__quranNavigationModalVisible} title="Navigate" size="sm" class="!rounded-t-3xl !rounded-t-none md:!rounded-3xl text-black theme" bodyClass="md:p-2 !border-t-0" headerClass="hidden" placement="center" position="top" outsideclose>
+<Modal id="quranNavigationModal" bind:open={$__quranNavigationModalVisible} title="Navigate" size="sm" class="!rounded-t-none md:!rounded-3xl text-black theme" bodyClass="md:p-2 !border-t-0" headerClass="hidden" placement="center" position="top" outsideclose>
 	<div class="flex flex-col space-y-2 justify-between max-w-screen-lg px-4 py-5 mx-auto">
 		<!-- search block -->
 		<div id="search-block" class="mx-2">
