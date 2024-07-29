@@ -5,7 +5,7 @@
 	import { buttonClasses } from '$data/commonClasses';
 </script>
 
-<Modal id="settingsSelectorModal" bind:open={$__settingsSelectorModal.visible} size="xs" class="rounded-3xl theme" bodyClass="p-6" center outsideclose>
+<Modal id="settingsSelectorModal" bind:open={$__settingsSelectorModal.visible} size="xs" class="!rounded-b-none md:!rounded-3xl theme" bodyClass="p-6" position="bottom" center outsideclose>
 	<!-- Modal content -->
 	<h3 id="modal-title" class="mb-8 text-xl font-medium text-black">{$__settingsSelectorModal.title}</h3>
 	<DisplayTypeSelector />
