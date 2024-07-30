@@ -45,6 +45,7 @@
 	import { disabledClasses, buttonClasses } from '$data/commonClasses';
 	import { selectableTafsirs } from '$data/selectableTafsirs';
 	import { sineIn } from 'svelte/easing';
+	import { fly } from 'svelte/transition';
 	import { term } from '$utils/terminologies';
 
 	const individualSettingsComponents = {
@@ -65,7 +66,6 @@
 		duration: 200,
 		easing: sineIn
 	};
-
 	const settingsBlockClasses = 'space-y-2 py-6';
 	const selectorClasses = 'w-32 border border-black/10 text-black text-left rounded-3xl focus:ring-gray-500 focus:border-gray-500 focus-within:ring-2 block p-2.5 truncate font-normal theme-grayscale';
 	const settingsDescriptionClasses = 'mb-6 text-sm opacity-70';
@@ -404,7 +404,7 @@
 
 	<!-- individual-setting -->
 	{#if individualSettingsVisible}
-		<div id="individual-setting">
+		<div id="individual-setting" transition:fly={{ duration: 150, x: 0, easing: sineIn }}>
 			<div class="flex z-30 top-0 sticky bg-white border-b-2 border-black/10 mb-4">
 				<button id="drawer-label" class="inline-flex items-center my-4 text-3xl font-semibold" on:click={() => goBackToMainSettings()}>← Back</button>
 				<CloseButton on:click={() => ($__settingsDrawerHidden = true)} class="my-4 rounded-3xl" />

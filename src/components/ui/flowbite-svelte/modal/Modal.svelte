@@ -96,11 +96,11 @@
 		}
 	};
 	const sizes = {
-		xs: 'max-w-md',
-		sm: 'max-w-lg',
-		md: 'max-w-2xl',
-		lg: 'max-w-4xl',
-		xl: 'max-w-7xl'
+		xs: 'max-w-full md:max-w-md',
+		sm: 'max-w-full md:max-w-lg',
+		md: 'max-w-full md:max-w-2xl',
+		lg: 'max-w-full md:max-w-4xl',
+		xl: 'max-w-full md:max-w-7xl'
 	};
 	const onAutoClose = (e) => {
 		const target = e.target;
