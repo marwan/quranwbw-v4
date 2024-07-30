@@ -47,3 +47,9 @@
 		<button on:click={() => resetNotes()} class="w-full mr-2 mt-6 {buttonOutlineClasses}">Reset</button>
 	</div>
 </Modal>
+
+<style>
+	#notes-value {
+		resize: none;
+	}
+</style>
