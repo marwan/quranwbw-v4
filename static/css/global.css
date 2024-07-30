@@ -1410,6 +1410,19 @@ input[type="range"]::-ms-fill-lower {
   height: 100vh;
 }
 
+.h-max {
+  height: -moz-max-content;
+  height: max-content;
+}
+
+.h-\[-webkit-fill-available\] {
+  height: -webkit-fill-available;
+}
+
+.h-\[200vh\] {
+  height: 200vh;
+}
+
 .max-h-52 {
   max-height: 13rem;
 }
