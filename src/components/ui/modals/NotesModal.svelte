@@ -26,12 +26,12 @@
 		if (noteModifiedAt === undefined) noteModifiedAt = 'just now';
 	}
 
-	function updateNotesHandler() {
+	function updateNote() {
 		const notesValue = document.getElementById('notes-value').value;
 		updateSettings({ type: 'userNotes', key: $__verseKey, value: notesValue, set: true });
 	}
 
-	function resetNotes() {
+	function resetNote() {
 		verseNote = '';
 		updateSettings({ type: 'userNotes', key: $__verseKey, value: '', set: true });
 	}
@@ -47,8 +47,8 @@
 	{/if}
 
 	<div class="flex flex-row space-x-2">
-		<button on:click={() => updateNotesHandler()} class="w-full mr-2 mt-6 {buttonClasses}">Update</button>
-		<button on:click={() => resetNotes()} class="w-full mr-2 mt-6 {buttonOutlineClasses}">Reset</button>
+		<button on:click={() => updateNote()} class="w-full mr-2 mt-6 {buttonClasses}">Update</button>
+		<button on:click={() => resetNote()} class="w-full mr-2 mt-6 {buttonOutlineClasses}">Reset</button>
 	</div>
 </Modal>
 
