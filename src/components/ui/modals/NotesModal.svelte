@@ -40,7 +40,7 @@
 	<textarea id="notes-value" rows="8" value={verseNote} class="block p-2.5 w-full text-sm text-black bg-gray-50 rounded-3xl border border-black/10 focus:ring-gray-500 focus:border-gray-500 placeholder-black theme-grayscale" placeholder="Write your thoughts here..."></textarea>
 
 	{#if noteModifiedAt !== null}
-		<div id="notes-last-modified" class="text-xs mt-4">Last modified: {noteModifiedAt}</div>
+		<div id="notes-last-modified" class="text-xs mt-4 theme-grayscale">Last modified: {noteModifiedAt}</div>
 	{/if}
 
 	<div class="flex flex-row space-x-2">
