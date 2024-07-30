@@ -10,7 +10,7 @@
 	<h3 id="modal-title" class="mb-8 text-xl font-medium text-black">{$__settingsSelectorModal.title}</h3>
 	<DisplayTypeSelector />
 
-	<div class="flex flex-row space-x-2">
-		<button class="w-full mr-2 mt-6 {buttonClasses}" on:click={() => __settingsSelectorModal.set({ visible: false })}>Close</button>
-	</div>
+	<!-- <div class="flex flex-row space-x-2">
+		<button class="w-full mt-6 {buttonClasses}" on:click={() => __settingsSelectorModal.set({ visible: false })}>Close</button>
+	</div> -->
 </Modal>

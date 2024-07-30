@@ -44,7 +44,19 @@
 	}
 </script>
 
-<Modal title="{quranMetaData[chapter].transliteration}, {chapter}:{verse}" id="tafsirModal" bind:open={$__tafsirModalVisible} class="!rounded-b-none md:!rounded-3xl theme" bodyClass="p-6 space-y-4 flex-1 overflow-y-auto overscroll-contain" headerClass="flex justify-between items-center p-6 rounded-t-3xl text-black theme-grayscale" size="lg" position="bottom" center outsideclose>
+<Modal
+	title="{quranMetaData[chapter].transliteration}, {chapter}:{verse}"
+	id="tafsirModal"
+	bind:open={$__tafsirModalVisible}
+	class="!rounded-b-none md:!rounded-3xl theme"
+	bodyClass="p-6 space-y-4 flex-1 overflow-y-auto overscroll-contain"
+	headerClass="flex justify-between items-center p-6 rounded-t-3xl text-black theme-grayscale"
+	classFooter="rounded-b-3xl flex flex-row justify-between"
+	size="lg"
+	position="bottom"
+	center
+	outsideclose
+>
 	{#await tafsirData}
 		<Spinner />
 	{:then tafsirData}
@@ -58,18 +70,18 @@
 					{/each}
 				</div>
 			</div>
-
-			<div class="flex flex-row justify-between">
-				{#if verse > 1}
-					<button class={buttonClasses} on:click={() => (verse = verse - 1)}>Previous {term('verse')}</button>
-				{/if}
-
-				{#if verse < quranMetaData[chapter].verses}
-					<button class={buttonClasses} on:click={() => (verse = verse + 1)}>Next {term('verse')}</button>
-				{/if}
-			</div>
 		</div>
 	{:catch error}
 		<p>{errorLoadingDataMessage}</p>
 	{/await}
+
+	<svelte:fragment slot="footer">
+		{#if verse > 1}
+			<button class="text-sm {buttonClasses}" on:click={() => (verse = verse - 1)}>Previous {term('verse')}</button>
+		{/if}
+
+		{#if verse < quranMetaData[chapter].verses}
+			<button class="text-sm {buttonClasses}" on:click={() => (verse = verse + 1)}>Next {term('verse')}</button>
+		{/if}
+	</svelte:fragment>
 </Modal>

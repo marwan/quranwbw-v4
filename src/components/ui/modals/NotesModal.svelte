@@ -29,6 +29,7 @@
 	}
 
 	function resetNotes() {
+		verseNote = '';
 		updateSettings({ type: 'userNotes', key: $__verseKey, value: '', set: true });
 	}
 </script>
