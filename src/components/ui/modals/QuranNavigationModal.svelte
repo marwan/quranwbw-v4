@@ -13,6 +13,7 @@
 	import { page } from '$app/stores';
 	import { term } from '$utils/terminologies';
 	import { supplicationsFromQuran, mostRead } from '$data/quranMeta';
+	import { getModalTransition } from '$utils/getModalTransition';
 
 	const linkClasses = 'flex flex-row space-x-2 items-center';
 	const linkTextClasses = 'px-4 py-2 rounded-3xl bg-lightGray hover:bg-gray-200 w-fit text-sm';
@@ -86,7 +87,7 @@
 	}
 </script>
 
-<Modal id="quranNavigationModal" bind:open={$__quranNavigationModalVisible} title="Navigate" size="sm" class="!rounded-t-none md:!rounded-3xl text-black theme" bodyClass="md:p-2 !border-t-0" headerClass="hidden" placement="center" position="top" outsideclose>
+<Modal id="quranNavigationModal" bind:open={$__quranNavigationModalVisible} transitionParams={getModalTransition('top')} title="Navigate" size="sm" class="!rounded-t-none md:!rounded-3xl text-black theme" bodyClass="md:p-2 !border-t-0" headerClass="hidden" placement="center" position="top" outsideclose>
 	<div class="flex flex-col space-y-2 justify-between max-w-screen-lg px-4 py-5 mx-auto">
 		<!-- search block -->
 		<div id="search-block" class="mx-2">

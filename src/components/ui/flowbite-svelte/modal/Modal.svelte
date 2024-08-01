@@ -45,14 +45,6 @@
 	export let footerClass = 'flex items-center p-4 md:p-5 space-x-3 rtl:space-x-reverse rounded-b-lg';
 	export let classFooter = undefined;
 	export let transitionParams = {};
-	export let transitionType = 'fly';
-
-	function multiple(node, params) {
-		switch (transitionType) {
-			case 'fly':
-				return fly(node, params);
-		}
-	}
 
 	const dispatch = createEventDispatcher();
 	$: dispatch(open ? 'open' : 'close');
@@ -131,7 +123,7 @@
 	<div class={backdropCls} />
 	<!-- dialog -->
 	<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-	<div transition:multiple={transitionParams} on:keydown={handleKeys} on:wheel|preventDefault|nonpassive use:prepareFocus use:focusTrap on:click={onAutoClose} on:mousedown={onOutsideClose} class={dialogCls} tabindex="-1" aria-modal="true" role="dialog">
+	<div transition:fly={transitionParams} on:keydown={handleKeys} on:wheel|preventDefault|nonpassive use:prepareFocus use:focusTrap on:click={onAutoClose} on:mousedown={onOutsideClose} class={dialogCls} tabindex="-1" aria-modal="true" role="dialog">
 		<div class="{modalPositions[position].innerClasses} {sizes[size]} {modalPositions[position].sizes}">
 			<!-- Modal content -->
 			<Frame rounded shadow {...$$restProps} class={frameCls} {color}>

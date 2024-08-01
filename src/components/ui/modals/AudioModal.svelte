@@ -6,6 +6,7 @@
 	import { playVerseAudio, playWordAudio, updateAudioSettings, setVersesToPlay } from '$utils/audioController';
 	import { disabledClasses, buttonClasses } from '$data/commonClasses';
 	import { term } from '$utils/terminologies';
+	import { getModalTransition } from '$utils/getModalTransition';
 
 	$: {
 		if ($__audioModalVisible) {
@@ -57,7 +58,7 @@
 	}
 </script>
 
-<Modal id="audioModal" bind:open={$__audioModalVisible} size="xs" class="!rounded-b-none md:!rounded-3xl !text-black theme" bodyClass="p-6" placement="center" position="bottom" autoclose outsideclose>
+<Modal id="audioModal" bind:open={$__audioModalVisible} transitionParams={getModalTransition('bottom')} size="xs" class="!rounded-b-none md:!rounded-3xl !text-black theme" bodyClass="p-6" placement="center" position="bottom" autoclose outsideclose>
 	<!-- Modal content -->
 	<div class="flex flex-row space-x-4 mb-4 text-xl" style="margin-top: 0px;">
 		<h3 id="audio-modal-title" class="font-medium">{quranMetaData[$__audioSettings.playingChapter || 1].transliteration}, {$__audioSettings.playingKey}</h3>
