@@ -55,10 +55,10 @@
 			aria-label="Note"
 		>
 			<div class="opacity-70">
-				<Notes size={'[18px]'} />
+				<Notes size={5} />
 			</div>
 		</button>
-		<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-filter font-normal">Your Notes</Tooltip>
+		<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-filter font-normal">Notes</Tooltip>
 	{/if}
 
 	<!-- bookmark/unbookmark button -->

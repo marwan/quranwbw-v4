@@ -67,7 +67,7 @@ input, select, textarea {
 }
 
 /* setting custom margin for some elements */
-#settings-drawer input, #audioModal input, #bottom-toolbar input {
+#settings-drawer input, #bottom-toolbar input {
   margin: 0 0.5rem 0 0 !important;
 }
 

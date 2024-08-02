@@ -1,9 +1,30 @@
 <script>
 	import { twMerge } from 'tailwind-merge';
+	import { fly } from 'svelte/transition';
 	import Frame from '../utils/Frame.svelte';
 	import { createEventDispatcher } from 'svelte';
 	import CloseButton from '../utils/CloseButton.svelte';
 	import focusTrap from '../utils/focusTrap';
+
+	const modalPositions = {
+		default: {
+			dialogClasses: 'fixed top-0 start-0 end-0 h-modal md:inset-0 md:h-full z-50 w-full p-4 flex',
+			innerClasses: 'flex relative',
+			sizes: 'w-full max-h-full'
+		},
+		top: {
+			dialogClasses: 'fixed top-0 start-0 end-0 h-full md:h-modal md:inset-0 md:h-full z-50 w-full md:p-4 flex',
+			innerClasses: 'flex fixed top-0 md:relative',
+			sizes: 'w-full max-h-full'
+		},
+		bottom: {
+			dialogClasses: 'fixed bottom-0 md:top-0 start-0 end-0 h-full md:h-modal md:inset-0 md:h-full z-50 w-full md:p-4 flex',
+			innerClasses: 'flex fixed bottom-0 md:relative',
+			sizes: 'w-full max-h-[90%]'
+		}
+	};
+
+	export let position = 'default';
 	export let open = false;
 	export let title = '';
 	export let size = 'md';
@@ -14,7 +35,7 @@
 	export let dismissable = true;
 	export let backdropClass = 'fixed inset-0 z-40 bg-[#282828c4] bg-opacity-75';
 	export let classBackdrop = undefined;
-	export let dialogClass = 'fixed top-0 start-0 end-0 h-modal md:inset-0 md:h-full z-50 w-full p-4 flex';
+	export let dialogClass = modalPositions[position].dialogClasses;
 	export let classDialog = undefined;
 	export let defaultClass = 'relative flex flex-col mx-auto';
 	export let headerClass = 'flex justify-between items-center p-4 md:p-5 rounded-t-lg';
@@ -23,6 +44,8 @@
 	export let classBody = undefined;
 	export let footerClass = 'flex items-center p-4 md:p-5 space-x-3 rtl:space-x-reverse rounded-b-lg';
 	export let classFooter = undefined;
+	export let transitionParams = {};
+
 	const dispatch = createEventDispatcher();
 	$: dispatch(open ? 'open' : 'close');
 	function prepareFocus(node) {
@@ -65,11 +88,11 @@
 		}
 	};
 	const sizes = {
-		xs: 'max-w-md',
-		sm: 'max-w-lg',
-		md: 'max-w-2xl',
-		lg: 'max-w-4xl',
-		xl: 'max-w-7xl'
+		xs: 'max-w-full md:max-w-md',
+		sm: 'max-w-full md:max-w-lg',
+		md: 'max-w-full md:max-w-2xl',
+		lg: 'max-w-full md:max-w-4xl',
+		xl: 'max-w-full md:max-w-7xl'
 	};
 	const onAutoClose = (e) => {
 		const target = e.target;
@@ -100,8 +123,8 @@
 	<div class={backdropCls} />
 	<!-- dialog -->
 	<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-	<div on:keydown={handleKeys} on:wheel|preventDefault|nonpassive use:prepareFocus use:focusTrap on:click={onAutoClose} on:mousedown={onOutsideClose} class={dialogCls} tabindex="-1" aria-modal="true" role="dialog">
-		<div class="flex relative {sizes[size]} w-full max-h-full">
+	<div transition:fly={transitionParams} on:keydown={handleKeys} on:wheel|preventDefault|nonpassive use:prepareFocus use:focusTrap on:click={onAutoClose} on:mousedown={onOutsideClose} class={dialogCls} tabindex="-1" aria-modal="true" role="dialog">
+		<div class="{modalPositions[position].innerClasses} {sizes[size]} {modalPositions[position].sizes}">
 			<!-- Modal content -->
 			<Frame rounded shadow {...$$restProps} class={frameCls} {color}>
 				<!-- Modal header -->

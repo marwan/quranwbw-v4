@@ -15,7 +15,7 @@
 	import TokenModal from '$ui/modals/TokenModal.svelte';
 	import DownloadModal from '$ui/modals/DownloadModal.svelte';
 	import TafsirModal from '$ui/modals/TafsirModal.svelte';
-	import QuranNavigation from '$ui/QuranNavigation/QuranNavigation.svelte';
+	import QuranNavigationModal from '$ui/modals/QuranNavigationModal.svelte';
 	import SiteNavigationModal from '$ui/modals/SiteNavigationModal.svelte';
 	import SettingsSelectorModal from '$ui/modals/SettingsSelectorModal.svelte';
 	import { __websiteOnline, __currentPage, __chapterNumber, __settingsDrawerHidden, __wakeLockEnabled, __userToken, __fontType, __wordTranslation, __verseTranslations, __selectedDisplayId } from '$utils/stores';
@@ -107,8 +107,8 @@
 <div class="max-w-screen-lg mx-auto select-none {paddingTop} {paddingBottom} {paddingX}">
 	<!-- include the UI elements -->
 	<Navbar />
-	<QuranNavigation />
 	<SettingsDrawer />
+	<QuranNavigationModal />
 	<InitialSetupModal />
 	<AudioModal />
 	<TajweedRulesModal />

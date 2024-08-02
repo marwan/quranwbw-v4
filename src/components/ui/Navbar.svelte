@@ -4,8 +4,7 @@
 	import Home from '$svgs/Home.svelte';
 	import ChevronDown from '$svgs/ChevronDown.svelte';
 	import { quranMetaData } from '$data/quranMeta';
-	import { __chapterNumber, __currentPage, __lastRead, __pageURL, __topNavbarVisible, __pageNumber, __morphologyKey, __mushafPageDivisions } from '$utils/stores';
-	import { toggleQuranNavigation } from '$utils/toggleQuranNavigation';
+	import { __chapterNumber, __currentPage, __lastRead, __pageURL, __topNavbarVisible, __pageNumber, __morphologyKey, __mushafPageDivisions, __quranNavigationModalVisible } from '$utils/stores';
 
 	let lastReadPage;
 	let lastReadJuz;
@@ -66,7 +65,7 @@
 			<span class="text-xs pl-2 hidden md:block">Home</span>
 		</a>
 
-		<button class="flex items-center p-3 text-sm border-black/10 w-auto p-2 hover:bg-lightGray rounded-3xl" on:click={() => toggleQuranNavigation('show')}>
+		<button class="flex items-center p-3 text-sm border-black/10 w-auto p-2 hover:bg-lightGray rounded-3xl" on:click={() => __quranNavigationModalVisible.set(true)}>
 			<!-- display the chapter name on chapter page -->
 			{#if $__currentPage === 'chapter'}
 				{@html navbarChapterName}
