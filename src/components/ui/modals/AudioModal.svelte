@@ -1,7 +1,6 @@
 <script>
 	import Modal from '$ui/flowbite-svelte/modal/Modal.svelte';
 	import Radio from '$ui/flowbite-svelte/forms/Radio.svelte';
-	import Check from '$svgs/Check.svelte';
 	import { quranMetaData } from '$data/quranMeta';
 	import { __currentPage, __chapterNumber, __audioSettings, __userSettings, __audioModalVisible } from '$utils/stores';
 	import { playVerseAudio, playWordAudio, updateAudioSettings, setVersesToPlay } from '$utils/audioController';
@@ -10,11 +9,18 @@
 	import { getModalTransition } from '$utils/getModalTransition';
 
 	const radioClasses = 'inline-flex justify-between items-center py-2 px-4 w-full text-gray-500 bg-white rounded-lg border border-gray-200 cursor-pointer peer-checked:border-primary-600 peer-checked:text-primary-600 hover:text-gray-600 hover:bg-gray-100 theme-grayscale';
+	let invalidStartVerse = false;
+	let invalidEndVerse = false;
+	let invalidTimesToRepeat = false;
 
 	$: {
 		if ($__audioModalVisible) {
 			const thisChapter = $__audioSettings.playingKey.split(':')[0];
 			const thisVerse = $__audioSettings.playingKey.split(':')[1];
+			const versesInChapter = quranMetaData[thisChapter].verses;
+			const startVerse = $__audioSettings.startVerse;
+			const endVerse = $__audioSettings.endVerse;
+			const timesToRepeat = $__audioSettings.timesToRepeat;
 
 			// allow only playThisVerse option for non-chapter pages
 			if (!['chapter', 'page'].includes($__currentPage)) $__audioSettings.audioRange = 'playThisVerse';
@@ -26,16 +32,21 @@
 
 			// from here
 			else if ($__audioSettings.audioRange === 'playFromHere') {
-				setVersesToPlay({ location: 'verseOptionsOrModal', chapter: thisChapter, startVerse: thisVerse, endVerse: quranMetaData[thisChapter].verses, audioRange: 'playFromHere' });
+				setVersesToPlay({ location: 'verseOptionsOrModal', chapter: thisChapter, startVerse: thisVerse, endVerse: versesInChapter, audioRange: 'playFromHere' });
 			}
 
 			// range
 			else if ($__audioSettings.audioRange === 'playRange') {
-				setVersesToPlay({ location: 'verseOptionsOrModal', chapter: thisChapter, startVerse: $__audioSettings.startVerse, endVerse: $__audioSettings.endVerse });
+				setVersesToPlay({ location: 'verseOptionsOrModal', chapter: thisChapter, startVerse: startVerse, endVerse: endVerse });
 			}
 
 			// make the endVerse same as startVerse initially
-			if ($__audioSettings.endVerse === undefined) $__audioSettings.endVerse = $__audioSettings.startVerse;
+			if (endVerse === undefined) $__audioSettings.endVerse = startVerse;
+
+			// checking for abnormal values in order to disable the play button
+			invalidStartVerse = startVerse < 1 || startVerse > versesInChapter ? true : false;
+			invalidEndVerse = endVerse < 1 || endVerse > versesInChapter || endVerse < startVerse ? true : false;
+			invalidTimesToRepeat = timesToRepeat < 1 || timesToRepeat > 20 || isNaN(timesToRepeat) ? true : false;
 		}
 	}
 
@@ -137,11 +148,11 @@
 					<div class="flex flex-row space-x-4">
 						<div class="flex flex-row space-x-2">
 							<span class="m-auto text-sm mr-2">From {term('verse')}</span>
-							<input type="number" min="1" max={quranMetaData[$__chapterNumber].verses} value={$__audioSettings.startVerse} id="startVerse" on:change={updateAudioSettings} aria-describedby="helper-text-explanation" class="w-16 text-xs border border-black/10 rounded-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 mb-0" placeholder="start" />
+							<input type="number" min="1" max={quranMetaData[$__chapterNumber].verses} bind:value={$__audioSettings.startVerse} id="startVerse" on:change={updateAudioSettings} aria-describedby="helper-text-explanation" class="w-16 text-xs border border-black/10 rounded-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 mb-0" placeholder="start" />
 						</div>
 						<div class="flex flex-row space-x-2">
 							<span class="m-auto text-sm mr-2">Till {term('verse')}</span>
-							<input type="number" min={$__audioSettings.startVerse} max={quranMetaData[$__chapterNumber].verses} value={$__audioSettings.endVerse} id="endVerse" on:change={updateAudioSettings} aria-describedby="helper-text-explanation" class="w-16 text-xs border border-black/10 rounded-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 mb-0" placeholder="end" />
+							<input type="number" min={$__audioSettings.startVerse} max={quranMetaData[$__chapterNumber].verses} bind:value={$__audioSettings.endVerse} id="endVerse" on:change={updateAudioSettings} aria-describedby="helper-text-explanation" class="w-16 text-xs border border-black/10 rounded-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 mb-0" placeholder="end" />
 						</div>
 					</div>
 				</div>
@@ -155,7 +166,7 @@
 			<div class="flex flex-row space-x-4">
 				<div class="flex flex-row space-x-2">
 					<span class="m-auto text-sm mr-2">Repeat each {term($__audioSettings.audioType)}</span>
-					<input id="timesToRepeat" type="number" value="1" min="1" max="20" on:change={updateAudioSettings} class="w-16 text-xs border border-black/10 rounded-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 mb-0" />
+					<input id="timesToRepeat" type="number" bind:value={$__audioSettings.timesToRepeat} min="1" max="20" on:change={updateAudioSettings} class="w-16 text-xs border border-black/10 rounded-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 mb-0" />
 					<span class="m-auto text-sm">{$__audioSettings.timesToRepeat > 1 ? 'times' : 'time'} </span>
 				</div>
 			</div>
@@ -163,16 +174,6 @@
 	{/if}
 
 	<div class="mt-4">
-		<button on:click={playButtonHandler} class="w-full mr-2 {buttonClasses}">
-			<span class="capitalize">Play</span>
-			<div class="hidden">
-				{#if $__audioSettings.startVerse !== null}
-					{$__audioSettings.startVerse}
-				{/if}
-				{#if $__audioSettings.endVerse !== undefined}
-					to {$__audioSettings.endVerse}
-				{/if}
-			</div>
-		</button>
+		<button on:click={playButtonHandler} class="w-full mr-2 {buttonClasses} {invalidStartVerse || invalidEndVerse || invalidTimesToRepeat ? disabledClasses : null}">Play</button>
 	</div>
 </Modal>
