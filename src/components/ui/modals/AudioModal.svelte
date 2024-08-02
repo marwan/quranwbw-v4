@@ -1,12 +1,15 @@
 <script>
 	import Modal from '$ui/flowbite-svelte/modal/Modal.svelte';
 	import Radio from '$ui/flowbite-svelte/forms/Radio.svelte';
+	import Check from '$svgs/Check.svelte';
 	import { quranMetaData } from '$data/quranMeta';
 	import { __currentPage, __chapterNumber, __audioSettings, __userSettings, __audioModalVisible } from '$utils/stores';
 	import { playVerseAudio, playWordAudio, updateAudioSettings, setVersesToPlay } from '$utils/audioController';
-	import { disabledClasses, buttonClasses } from '$data/commonClasses';
+	import { disabledClasses, buttonClasses, selectedRadioClasses } from '$data/commonClasses';
 	import { term } from '$utils/terminologies';
 	import { getModalTransition } from '$utils/getModalTransition';
+
+	const radioClasses = 'inline-flex justify-between items-center py-2 px-4 w-full text-gray-500 bg-white rounded-lg border border-gray-200 cursor-pointer peer-checked:border-primary-600 peer-checked:text-primary-600 hover:text-gray-600 hover:bg-gray-100 theme-grayscale';
 
 	$: {
 		if ($__audioModalVisible) {
@@ -66,20 +69,28 @@
 	<div class="flex flex-col">
 		<!-- verse or words -->
 		<div class="flex flex-col space-y-4 py-4">
-			<span class="text-xs opacity-70">Either play the whole {term('verse')} or individual words.</span>
-			<div class="flex flex-row space-x-4">
+			<span class="text-sm">Either play the whole {term('verse')} or individual words.</span>
+			<div class="flex flex-row space-x-2">
 				<!-- play verse -->
 				<div class="flex items-center">
-					<Radio bind:group={$__audioSettings.audioType} value="verse" class="text-black">Play {term('verse')}</Radio>
+					<Radio bind:group={$__audioSettings.audioType} value="verse" custom>
+						<div class="{radioClasses} {$__audioSettings.audioType === 'verse' && selectedRadioClasses}">
+							<div class="w-full">Play {term('verse')}</div>
+						</div>
+					</Radio>
 				</div>
 				<!-- play word -->
 				<div class="flex items-center">
-					<Radio bind:group={$__audioSettings.audioType} value="word" class="text-black">Play Words</Radio>
+					<Radio bind:group={$__audioSettings.audioType} value="word" custom>
+						<div class="{radioClasses} {$__audioSettings.audioType === 'word' && selectedRadioClasses}">
+							<div class="w-full">Play Words</div>
+						</div>
+					</Radio>
 				</div>
 			</div>
 
 			{#if $__audioSettings.audioType === 'word'}
-				<span class="flex flex-col space-y-3 text-xs pt-2 opacity-70">
+				<span class="flex flex-col space-y-3 text-sm pt-2 opacity-70">
 					<span>This option would play all the words in the {term('verse')} one by one. If you would like to listen to individual words, click on them.</span>
 					<span>Note that this option just plays the words in sequence without considering the connecting silent letters between the words. For correct and connected recitation, play the complete {term('verse')} instead.</span>
 				</span>
@@ -87,20 +98,32 @@
 		</div>
 
 		<!-- single or range -->
-		<div id="single-or-range-block" class="flex flex-col space-y-4 py-4 border-t dark:border-slate-700 {$__audioSettings.audioType === 'word' ? 'hidden' : null}">
-			<span class="text-xs opacity-70">Your preferred range.</span>
-			<div class="flex flex-row space-x-4">
+		<div id="single-or-range-block" class="flex flex-col space-y-4 py-4 border-t {$__audioSettings.audioType === 'word' ? 'hidden' : null}">
+			<span class="text-sm">Your preferred range.</span>
+			<div class="flex flex-row space-x-2">
 				<!-- play this verse -->
 				<div class="flex items-center {!['chapter', 'page'].includes($__currentPage) && disabledClasses}">
-					<Radio bind:group={$__audioSettings.audioRange} value="playThisVerse" class="text-black">This {term('verse')}</Radio>
+					<Radio bind:group={$__audioSettings.audioRange} value="playThisVerse" custom>
+						<div class="{radioClasses} {$__audioSettings.audioRange === 'playThisVerse' && selectedRadioClasses}">
+							<div class="w-full">This {term('verse')}</div>
+						</div>
+					</Radio>
 				</div>
 				<!-- play from here -->
 				<div class="flex items-center {!['chapter', 'page'].includes($__currentPage) && disabledClasses}">
-					<Radio bind:group={$__audioSettings.audioRange} value="playFromHere" class="text-black">From Here</Radio>
+					<Radio bind:group={$__audioSettings.audioRange} value="playFromHere" custom>
+						<div class="{radioClasses} {$__audioSettings.audioRange === 'playFromHere' && selectedRadioClasses}">
+							<div class="w-full">From Here</div>
+						</div>
+					</Radio>
 				</div>
 				<!-- play range -->
 				<div class="flex items-center {!['chapter'].includes($__currentPage) && disabledClasses}">
-					<Radio bind:group={$__audioSettings.audioRange} value="playRange" o class="text-black">{term('verses')} Range</Radio>
+					<Radio bind:group={$__audioSettings.audioRange} value="playRange" custom>
+						<div class="{radioClasses} {$__audioSettings.audioRange === 'playRange' && selectedRadioClasses}">
+							<div class="w-full">From / Till</div>
+						</div>
+					</Radio>
 				</div>
 			</div>
 		</div>
@@ -109,15 +132,15 @@
 		{#if $__currentPage === 'chapter' && $__audioSettings.audioType === 'verse'}
 			<div id="audio-range-options" class={$__audioSettings.audioRange === 'playRange' ? 'block' : 'hidden'}>
 				<!-- from / till -->
-				<div class="flex flex-col space-y-4 py-4 border-t dark:border-slate-700">
+				<div class="flex flex-col space-y-4 py-4 border-t">
 					<!-- <span class="text-xs  ">Select the range of verses or words to be played.</span> -->
 					<div class="flex flex-row space-x-4">
 						<div class="flex flex-row space-x-2">
-							<span class="m-auto text-sm font-medium mr-2">Start {term('verse')}</span>
+							<span class="m-auto text-sm mr-2">From {term('verse')}</span>
 							<input type="number" min="1" max={quranMetaData[$__chapterNumber].verses} value={$__audioSettings.startVerse} id="startVerse" on:change={updateAudioSettings} aria-describedby="helper-text-explanation" class="w-16 text-xs border border-black/10 rounded-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 mb-0" placeholder="start" />
 						</div>
 						<div class="flex flex-row space-x-2">
-							<span class="m-auto text-sm font-medium mr-2">End {term('verse')}</span>
+							<span class="m-auto text-sm mr-2">Till {term('verse')}</span>
 							<input type="number" min={$__audioSettings.startVerse} max={quranMetaData[$__chapterNumber].verses} value={$__audioSettings.endVerse} id="endVerse" on:change={updateAudioSettings} aria-describedby="helper-text-explanation" class="w-16 text-xs border border-black/10 rounded-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 mb-0" placeholder="end" />
 						</div>
 					</div>
@@ -129,12 +152,11 @@
 	<!-- repeat times -->
 	{#if $__audioSettings.audioType === 'verse'}
 		<div class="flex flex-col space-y-4 py-4 border-t">
-			<span class="text-xs opacity-70">Number of times a {term('verse')} or word has to be repeated.</span>
 			<div class="flex flex-row space-x-4">
 				<div class="flex flex-row space-x-2">
-					<span class="m-auto text-sm font-medium mr-2">Repeat each {term($__audioSettings.audioType)}</span>
+					<span class="m-auto text-sm mr-2">Repeat each {term($__audioSettings.audioType)}</span>
 					<input id="timesToRepeat" type="number" value="1" min="1" max="20" on:change={updateAudioSettings} class="w-16 text-xs border border-black/10 rounded-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 mb-0" />
-					<span class="m-auto text-sm font-medium">{$__audioSettings.timesToRepeat < 2 ? 'time' : 'times'} </span>
+					<span class="m-auto text-sm">{$__audioSettings.timesToRepeat > 1 ? 'times' : 'time'} </span>
 				</div>
 			</div>
 		</div>
