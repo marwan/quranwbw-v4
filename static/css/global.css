@@ -1592,6 +1592,14 @@ input[type="range"]::-ms-fill-lower {
   max-width: 20rem;
 }
 
+.max-w-7xl {
+  max-width: 80rem;
+}
+
+.max-w-md {
+  max-width: 28rem;
+}
+
 .flex-1 {
   flex: 1 1 0%;
 }
@@ -2098,6 +2106,10 @@ input[type="range"]::-ms-fill-lower {
 
 .border-t-2 {
   border-top-width: 2px;
+}
+
+.border-b-0 {
+  border-bottom-width: 0px;
 }
 
 .\!border-black\/10 {

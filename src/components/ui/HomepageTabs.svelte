@@ -74,10 +74,10 @@
 			<!-- chapter / page etc... selector -->
 			<div class="flex flex-col space-y-2 md:space-y-0 md:flex-row justify-between text-xs mb-0 md:mb-2">
 				<!-- search bar -->
-				<button class="w-full md:w-max" on:click={() => __quranNavigationModalVisible.set(true)}>
+				<button class="w-full md:w-max theme-grayscale" on:click={() => __quranNavigationModalVisible.set(true)}>
 					<span class="w-full pointer-events-none {buttonOutlineClasses}">
 						<span class="pt-1"><Search size={4} /></span>
-						<span>Navigate or Search Quran</span>
+						<span class="opacity-70">Navigate or Search Quran</span>
 					</span>
 				</button>
 

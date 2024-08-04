@@ -1,8 +1,8 @@
 <!-- component to load verses from a SINGLE chapter, unlike supplications and bookmarks which are random -->
 <script>
-	export let startVerse,
-		endVerse,
-		isExampleVerse = undefined;
+	export let startVerse;
+	export let endVerse;
+	export let isExampleVerse = undefined;
 
 	import WordByWord from '$display/layouts/WordByWord.svelte';
 	import Normal from '$display/layouts/Normal.svelte';
@@ -28,46 +28,11 @@
 	};
 
 	const chapterTotalVerses = quranMetaData[$__chapterNumber].verses;
-
 	let Chapter; // for the "Chapter" component
-
 	let versesLoadType; // previous/next
-
-	// =================================================
-	// function to load previous verses
-	// let previousVersesProps = {},
-	// 	previousVersesStart,
-	// 	previousVersesEnd;
-
-	// function to load the previous set of verses
-	// function loadPreviousVerses() {
-	// 	versesLoadType = 'previous';
-
-	// 	// importing the same component to be re-used when the "Load Previous Verses" button is pressed
-	// 	import('./Chapter.svelte').then((res) => (Chapter = res.default));
-
-	// 	// get the first verse number on page
-	// 	const firstVerseOnPage = +document.getElementsByClassName('verse')[1].id.split(':')[1];
-
-	// 	// remove the existing button
-	// 	document.getElementById('loadPreviousVersesButton').remove();
-
-	// 	// define the new starting and ending range
-	// 	(previousVersesStart = firstVerseOnPage - 1), (previousVersesEnd = previousVersesStart);
-
-	// 	// setting the nextVersesProps
-	// 	previousVersesProps = {
-	// 		startVerse: previousVersesStart,
-	// 		endVerse: previousVersesEnd
-	// 	};
-	// }
-	// =================================================
-
-	// =================================================
-	// function to load next verses
-	let nextVersesProps = {},
-		nextVersesStart,
-		nextVersesEnd;
+	let nextVersesProps = {};
+	let nextVersesStart;
+	let nextVersesEnd;
 
 	// function to load the next set of verses
 	function loadNextVerses() {
@@ -98,18 +63,22 @@
 			endVerse: nextVersesEnd
 		};
 	}
+
+	// function to load the previous set of verses
+	// function loadPreviousVerses() {
+	// 	const versesOnPage = document.getElementsByClassName('verse');
+	// 	const firstVerseOnPage = +document.getElementsByClassName('verse')[1].id.split(':')[1];
+	// 	const lastVerseOnPage = +versesOnPage[versesOnPage.length - 1].id.split(':')[1];
+
+	// 	console.log({ firstVerseOnPage, lastVerseOnPage });
+	// }
 	// =================================================
 </script>
 
-<!-- move the load button to Chapter component -->
-<!-- {#if startVerse > 1 && document.getElementById('loadPreviousVersesButton') === null}
+<!-- {#if startVerse > 1}
 	<div id="loadPreviousVersesButton" class="flex justify-center pt-8 pb-6">
 		<button on:click={loadPreviousVerses} class="text-sm {buttonClasses}"> Load Previous Verses </button>
 	</div>
-{/if}
-
-{#if versesLoadType === 'previous'}
-	<svelte:component this={Chapter} {...previousVersesProps} />
 {/if} -->
 
 {#each Array.from(Array(endVerse + 1).keys()).slice(startVerse) as verse}

@@ -1,4 +1,3 @@
-<!-- for chapter and verse routes -->
 <script>
 	export let data, startVerse, endVerse;
 
@@ -12,6 +11,8 @@
 	import { selectableDisplays } from '$data/options';
 	import { errorLoadingDataMessage } from '$data/websiteSettings';
 	import { __userSettings, __currentPage, __chapterNumber, __displayType, __fontType, __wordTranslation, __verseTranslations, __pageURL, __firstVerseOnPage, __chapterDataLoaded, __verseTranslationData } from '$utils/stores';
+	import { buttonClasses } from '$data/commonClasses';
+	import { goto } from '$app/navigation';
 
 	// max verses to load if total verses in chapter are more than this
 	const maxVersesThreshold = 5;
@@ -65,6 +66,19 @@
 		}
 	}
 
+	function loadPreviousVerses() {
+		const versesOnPage = document.getElementsByClassName('verse');
+		const firstVerseOnPage = +document.getElementsByClassName('verse')[1].id.split(':')[1];
+		const lastVerseOnPage = +versesOnPage[versesOnPage.length - 1].id.split(':')[1];
+
+		const firstVerseToLoad = +firstVerseOnPage - 1;
+		const lastVerseToLoad = +lastVerseOnPage;
+
+		goto(`/${$__chapterNumber}/${firstVerseToLoad}-${lastVerseToLoad}`, { replaceState: false });
+
+		// console.log({ firstVerseToLoad, lastVerseToLoad });
+	}
+
 	__currentPage.set('chapter');
 </script>
 
@@ -78,6 +92,12 @@
 
 		<!-- need custom stylings if display type is 3 or 4 - continuous -->
 		<div id="verses-block" class={selectableDisplays[JSON.parse($__userSettings).displaySettings.displayType].customClasses}>
+			{#if startVerse > 1}
+				<div id="loadPreviousVersesButton" class="flex justify-center pt-8 pb-6">
+					<button on:click={loadPreviousVerses} class="text-sm {buttonClasses}"> Load Previous Verse </button>
+				</div>
+			{/if}
+
 			<Chapter {startVerse} {endVerse} />
 		</div>
 	{:catch error}

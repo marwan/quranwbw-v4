@@ -22,7 +22,7 @@ export function parseURL() {
 	if (urlSlashesCount > 0) {
 		// eg: /2 or if there are more than two slashes
 		if (urlSlashesCount === 1 || urlSlashesCount > 2) {
-			(startVerse = 1), (endVerse = chapterTotalVerses);
+			(startVerse = 1), (endVerse = +chapterTotalVerses);
 		}
 
 		// eg: /2/255 or /2/255-256
@@ -32,24 +32,24 @@ export function parseURL() {
 
 			// eg: /2/255
 			if (secondPartHyphenSplitCount === 0) {
-				(startVerse = urlSlashesSplit[2]), (endVerse = startVerse);
+				(startVerse = +urlSlashesSplit[2]), (endVerse = +startVerse);
 			}
 
 			// eg: /2/255-256
 			else if (secondPartHyphenSplitCount === 1) {
-				(startVerse = secondPartHyphenSplit[0]), (endVerse = secondPartHyphenSplit[1]);
+				(startVerse = +secondPartHyphenSplit[0]), (endVerse = +secondPartHyphenSplit[1]);
 				console.log({ startVerse, endVerse });
 			}
 
 			// all other possibilites
-			else (startVerse = 1), (endVerse = chapterTotalVerses);
+			else (startVerse = 1), (endVerse = +chapterTotalVerses);
 		}
 	}
 
 	// for URL with colen
 	if (urlColenCount > 0) {
 		let chapter = urlColenSplit[0],
-			startVerse = urlColenSplit[1];
+			startVerse = +urlColenSplit[1];
 
 		if (chapter < 1) chapter = 1;
 		if (chapter > 114) chapter = 114;
