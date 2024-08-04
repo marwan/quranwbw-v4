@@ -67,7 +67,8 @@
 		}
 	}
 
-	function loadPreviousVerses() {
+	// load the first verse on page minus 1
+	function loadPreviousVerse() {
 		const versesOnPage = document.getElementsByClassName('verse');
 		const firstVerseOnPage = +versesOnPage[1].id.split(':')[1];
 		const lastVerseOnPage = +versesOnPage[versesOnPage.length - 1].id.split(':')[1];
@@ -91,7 +92,7 @@
 			{#if startVerse > 1}
 				<div class="flex flex-row space-x-4 justify-center pt-8 pb-6 theme">
 					<a href="/{$__chapterNumber}" class="text-sm {buttonOutlineClasses}"> Start of {term('chapter')} </a>
-					<button on:click={loadPreviousVerses} class="text-sm {buttonOutlineClasses}"> Previous {term('verse')} </button>
+					<button on:click={loadPreviousVerse} class="text-sm {buttonOutlineClasses}"> Previous {term('verse')} </button>
 				</div>
 			{/if}
 
