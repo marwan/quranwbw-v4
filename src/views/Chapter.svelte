@@ -91,7 +91,7 @@
 			{#if startVerse > 1}
 				<div class="flex flex-row space-x-4 justify-center pt-8 pb-6 theme">
 					<a href="/{$__chapterNumber}" class="text-sm {buttonOutlineClasses}"> Start of {term('chapter')} </a>
-					<button on:click={loadPreviousVerses} class="text-sm {buttonOutlineClasses}"> Load Previous {term('verse')} </button>
+					<button on:click={loadPreviousVerses} class="text-sm {buttonOutlineClasses}"> Previous {term('verse')} </button>
 				</div>
 			{/if}
 
