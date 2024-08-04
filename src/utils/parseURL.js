@@ -5,7 +5,6 @@ import { quranMetaData } from '$data/quranMeta';
 // function to parse the URL to get the starting and ending verses
 export function parseURL() {
 	const chapterTotalVerses = quranMetaData[get(__chapterNumber)].verses;
-
 	const url = window.location.pathname;
 
 	// example verses: /1, /2/255, /2/285-286
@@ -38,7 +37,6 @@ export function parseURL() {
 			// eg: /2/255-256
 			else if (secondPartHyphenSplitCount === 1) {
 				(startVerse = +secondPartHyphenSplit[0]), (endVerse = +secondPartHyphenSplit[1]);
-				console.log({ startVerse, endVerse });
 			}
 
 			// all other possibilites
@@ -58,8 +56,6 @@ export function parseURL() {
 		if (startVerse > quranMetaData[chapter].verses) startVerse = quranMetaData[chapter].verses;
 
 		endVerse = startVerse;
-
-		console.log(chapter, startVerse, endVerse);
 	}
 
 	// making sure the verses are between 1 and max chapter verses
