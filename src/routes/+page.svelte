@@ -5,7 +5,6 @@
 	import Quran from '$svgs/Quran.svelte';
 	import Supplication from '$svgs/Supplication.svelte';
 	import Morphology from '$svgs/Morphology.svelte';
-	import SearchEmoji from '$svgs/SearchEmoji.svelte';
 	import Book from '$svgs/Book.svelte';
 	import { websiteTagline } from '$data/websiteSettings';
 	import { __currentPage, __lastRead } from '$utils/stores';
@@ -27,11 +26,6 @@
 			icon: Morphology,
 			link: '/morphology/1:1'
 		}
-		// {
-		// 	title: 'Search',
-		// 	icon: SearchEmoji,
-		// 	link: '/search'
-		// }
 	];
 
 	__currentPage.set('home');
