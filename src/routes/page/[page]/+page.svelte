@@ -1,8 +1,6 @@
 <script>
 	export let data;
 
-	$: page = +data.page;
-
 	import Bismillah from '$display/Bismillah.svelte';
 	import PageHead from '$misc/PageHead.svelte';
 	import WordsBlock from '$display/verses/WordsBlock.svelte';
@@ -15,6 +13,8 @@
 	import { mushafFontLinks, selectableFontTypes } from '$data/options';
 	import { loadFont } from '$utils/loadFont';
 	import '$lib/swiped-events.min.js';
+
+	$: page = +data.page;
 
 	let pageData;
 	let startingLine, endingLine;

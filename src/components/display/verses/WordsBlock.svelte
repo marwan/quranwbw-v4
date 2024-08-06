@@ -14,13 +14,6 @@
 	import { wordAudioController } from '$utils/audioController';
 	import { updateSettings } from '$utils/updateSettings';
 
-	const userSettings = JSON.parse(localStorage.getItem('userSettings'));
-
-	// for mushaf mode, we only allow v4 font type, but don't save the settings, and for other pages, get the font type from settings
-	if (![2, 3].includes($__fontType)) {
-		updateSettings({ type: 'fontType', value: $__currentPage === 'page' ? 2 : userSettings.displaySettings.fontType });
-	}
-
 	const fontSizes = JSON.parse($__userSettings).displaySettings.fontSizes;
 
 	$: displayIsContinuous = selectableDisplays[$__displayType].continuous;

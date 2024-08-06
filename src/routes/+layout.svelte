@@ -77,14 +77,20 @@
 	// stop all audio when the page or chapter is changed
 	$: if ($__currentPage || $__chapterNumber) resetAudioSettings({ location: 'end' });
 
-	// set display type Id for dropdowns
+	// update display and font type depending on the page
 	$: {
-		if ($__currentPage === 'page')
+		if ($__currentPage === 'page') {
 			__selectedDisplayId.set(6); // Mushaf Mode
-		else {
-			const displayIdFromLS = JSON.parse(localStorage.getItem('userSettings')).displaySettings.displayType;
-			updateSettings({ type: 'displayType', value: displayIdFromLS });
-			__selectedDisplayId.set(displayIdFromLS);
+			if (![2, 3].includes($__fontType)) __fontType.set(2); // v4 font b&w
+		} else {
+			const userSettings = JSON.parse(localStorage.getItem('userSettings'));
+
+			// update display type
+			updateSettings({ type: 'displayType', value: userSettings.displaySettings.displayType });
+			__selectedDisplayId.set(userSettings.displaySettings.displayType);
+
+			// update font type
+			__fontType.set(userSettings.displaySettings.fontType);
 		}
 	}
 
