@@ -110,7 +110,7 @@
 	});
 </script>
 
-<div class="max-w-screen-lg mx-auto select-none {paddingTop} {paddingBottom} {paddingX}">
+<div class="max-w-screen-lg mx-auto {paddingTop} {paddingBottom} {paddingX}">
 	<!-- include the UI elements -->
 	<Navbar />
 	<SettingsDrawer />
