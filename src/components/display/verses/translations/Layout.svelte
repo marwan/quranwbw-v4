@@ -4,7 +4,7 @@
 	export let value;
 
 	import CrossSolid from '$svgs/CrossSolid.svelte';
-	import { __userSettings } from '$utils/stores';
+	import { __userSettings, __verseTranslations } from '$utils/stores';
 	import { selectableVerseTranslations } from '$data/options';
 
 	const footnoteSupClasses = 'ml-1 mt-1 px-2 py-1 bg-gray-200 rounded-full font-semibold cursor-pointer system-font';
@@ -77,5 +77,8 @@
 		<div class="text {isTranslationRTL(verseTranslation.resource_id) && 'font-Urdu direction-rtl'}">...</div>
 	</div>
 
-	<span class="opacity-70 {isTranslationRTL(verseTranslation.resource_id) && 'direction-rtl'}">&mdash; {selectableVerseTranslations[verseTranslation.resource_id].resource_name}</span>
+	<!-- show translaton author name only if more than 1 was selected -->
+	{#if $__verseTranslations.length > 1}
+		<span class="opacity-70 {isTranslationRTL(verseTranslation.resource_id) && 'direction-rtl'}">&mdash; {selectableVerseTranslations[verseTranslation.resource_id].resource_name}</span>
+	{/if}
 </div>
