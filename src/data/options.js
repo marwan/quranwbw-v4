@@ -158,21 +158,21 @@ export const selectableVerseTranslations = {
 	},
 
 	// transliterations
-	// 1: {
-	// 	resource_id: 1,
-	// 	resource_name: 'Transliteration (Tajweed)',
-	// 	language_id: 11115
-	// },
-	// 3: {
-	// 	resource_id: 3,
-	// 	resource_name: 'Transliteration (Syllables)',
-	// 	language_id: 11115
-	// },
-	// 57: {
-	// 	resource_id: 57,
-	// 	resource_name: 'Transliteration (Normal)',
-	// 	language_id: 11115
-	// },
+	1: {
+		resource_id: 1,
+		resource_name: 'Transliteration (Tajweed)',
+		language_id: 11115
+	},
+	3: {
+		resource_id: 3,
+		resource_name: 'Transliteration (Syllables)',
+		language_id: 11115
+	},
+	57: {
+		resource_id: 57,
+		resource_name: 'Transliteration (Normal)',
+		language_id: 11115
+	},
 
 	// turkish
 	210: {

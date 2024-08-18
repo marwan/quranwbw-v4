@@ -5,7 +5,7 @@
 
 	import CrossSolid from '$svgs/CrossSolid.svelte';
 	import { __userSettings, __verseTranslations } from '$utils/stores';
-	import { selectableVerseTranslations } from '$data/options';
+	import { selectableVerseTranslations, selectableVerseTransliterations } from '$data/options';
 
 	const footnoteSupClasses = 'ml-1 mt-1 px-2 py-1 bg-gray-200 rounded-full font-semibold cursor-pointer system-font';
 

@@ -3,7 +3,7 @@
 
 	import Spinner from '$svgs/Spinner.svelte';
 	import Layout from '$display/verses/translations/Layout.svelte';
-	import { __currentPage, __verseTranslations, __verseTranslationData, __chapterData, __userSettings } from '$utils/stores';
+	import { __currentPage, __verseTranslations, __verseTransliterations, __verseTranslationData, __chapterData, __userSettings } from '$utils/stores';
 	import { fetchVerseTranslationData } from '$utils/fetchData';
 
 	const fontSizes = JSON.parse($__userSettings).displaySettings.fontSizes;
