@@ -33,3 +33,5 @@
 		{/if}
 	{/each}
 </div>
+
+<div class="text-xs opacity-70">Relying solely on transliteration is not the right method to recite the Quran, because pronunciation mistakes can be committed when reading the Quran from transliteration. One must learn to read the Quran in Arabic for full reward and blessing.</div>

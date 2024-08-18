@@ -29,12 +29,12 @@
 			{#if $__verseTranslationData}
 				<!-- tajweed/syllables transliteration -->
 				{#if $__verseTranslations.includes(1)}
-					<Layout verseTranslationID={0} verseTranslation={$__chapterData[`${value.meta.chapter}:${value.meta.verse}`].translations[0]} {value} />
+					<Layout verseTranslationID={1} verseTranslation={$__chapterData[`${value.meta.chapter}:${value.meta.verse}`].translations[0]} {value} />
 				{/if}
 
 				<!-- tajweed/syllables transliteration -->
 				{#if $__verseTranslations.includes(3)}
-					<Layout verseTranslationID={1} verseTranslation={$__chapterData[`${value.meta.chapter}:${value.meta.verse}`].translations[1]} {value} />
+					<Layout verseTranslationID={3} verseTranslation={$__chapterData[`${value.meta.chapter}:${value.meta.verse}`].translations[1]} {value} />
 				{/if}
 				<!-- ================== -->
 
@@ -43,7 +43,7 @@
 					<!-- after transliteration, show other translations -->
 					{#each Object.entries($__verseTranslationData[Object.keys($__verseTranslationData)[value.meta.verse - 1]].translations) as [verseTranslationID, verseTranslation]}
 						{#if verseTranslation.resource_id !== 57}
-							<Layout {verseTranslationID} {verseTranslation} {value} />
+							<Layout verseTranslationID={verseTranslation.resource_id} {verseTranslation} {value} />
 						{/if}
 					{/each}
 				{/if}
