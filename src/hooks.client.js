@@ -36,7 +36,7 @@ export function setUserSettings() {
 	// translation settings
 	if (userSettings.translations === undefined) userSettings.translations = {}; // parent
 	if (userSettings.translations.word === undefined) userSettings.translations.word = 1; // English
-	if (userSettings.translations.verse_v1 === undefined) userSettings.translations.verse_v1 = [57, 131]; // The Clear Quran and Transliteration
+	if (userSettings.translations.verse_v1 === undefined) userSettings.translations.verse_v1 = [1, 131]; // Transliteration, The Clear Quran
 	if (userSettings.translations.tafsir === undefined) userSettings.translations.tafsir = 30; // tafisr ibn kathir
 
 	// audio settings

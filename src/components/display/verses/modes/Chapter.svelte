@@ -9,7 +9,7 @@
 	import SideBySide from '$display/layouts/SideBySide.svelte';
 	import { inview } from 'svelte-inview';
 	import { quranMetaData } from '$data/quranMeta';
-	import { __userSettings, __displayType, __chapterNumber, __chapterData, __chapterDataLoaded } from '$utils/stores';
+	import { __currentPage, __userSettings, __displayType, __chapterNumber, __chapterData, __chapterDataLoaded } from '$utils/stores';
 	import { buttonOutlineClasses } from '$data/commonClasses';
 
 	// load button click options
@@ -64,21 +64,23 @@
 	}
 </script>
 
-{#each Array.from(Array(endVerse + 1).keys()).slice(startVerse) as verse}
-	<svelte:component this={displayComponents[JSON.parse($__userSettings).displaySettings.displayType].component} key={`${$__chapterNumber}:${verse}`} value={$__chapterData[`${$__chapterNumber}:${verse}`]} />
-{/each}
+{#if $__currentPage === 'chapter' && $__chapterData}
+	{#each Array.from(Array(endVerse + 1).keys()).slice(startVerse) as verse}
+		<svelte:component this={displayComponents[JSON.parse($__userSettings).displaySettings.displayType].component} key={`${$__chapterNumber}:${verse}`} value={$__chapterData[`${$__chapterNumber}:${verse}`]} />
+	{/each}
 
-<!-- if the verses are being shown to the user in a modal/drawer, then do not show the loadNextVersesButton -->
-{#if isExampleVerse === undefined}
-	<!-- only show the button when the last verse on page is less than total verses in chapter -->
-	<!-- invisible for now... -->
-	{#if endVerse < chapterTotalVerses && document.getElementById('loadVersesButton') === null}
-		<div id="loadVersesButton" class="flex justify-center pt-6 pb-18 invisible" use:inview={loadButtonOptions} on:inview_enter={(event) => document.querySelector('#loadVersesButton > button').click()}>
-			<button on:click={loadNextVerses} class="text-sm {buttonOutlineClasses}"> Continue Reading </button>
-		</div>
+	<!-- if the verses are being shown to the user in a modal/drawer, then do not show the loadNextVersesButton -->
+	{#if isExampleVerse === undefined}
+		<!-- only show the button when the last verse on page is less than total verses in chapter -->
+		<!-- invisible for now... -->
+		{#if endVerse < chapterTotalVerses && document.getElementById('loadVersesButton') === null}
+			<div id="loadVersesButton" class="flex justify-center pt-6 pb-18 invisible" use:inview={loadButtonOptions} on:inview_enter={(event) => document.querySelector('#loadVersesButton > button').click()}>
+				<button on:click={loadNextVerses} class="text-sm {buttonOutlineClasses}"> Continue Reading </button>
+			</div>
+		{/if}
 	{/if}
-{/if}
 
-{#if versesLoadType === 'next'}
-	<svelte:component this={Chapter} {...nextVersesProps} />
+	{#if versesLoadType === 'next'}
+		<svelte:component this={Chapter} {...nextVersesProps} />
+	{/if}
 {/if}

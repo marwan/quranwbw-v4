@@ -27,24 +27,26 @@
 		<!-- for chapter page, we fetch the translation for the whole chapter in one go -->
 		{#if $__currentPage === 'chapter'}
 			{#if $__verseTranslationData}
-				<!-- tajweed transliteration -->
+				<!-- tajweed/syllables transliteration -->
 				{#if $__verseTranslations.includes(1)}
-					<Layout data={$__chapterData} {value} />
+					<Layout verseTranslationID={1} verseTranslation={$__chapterData[`${value.meta.chapter}:${value.meta.verse}`].translations[0]} {value} />
 				{/if}
 
-				<!-- always show transliteration (resource id 57) on top -->
-				{#each Object.entries($__verseTranslationData[Object.keys($__verseTranslationData)[value.meta.verse - 1]].translations) as [verseTranslationID, verseTranslation]}
-					{#if verseTranslation.resource_id === 57}
-						<Layout {verseTranslationID} {verseTranslation} {value} />
-					{/if}
-				{/each}
+				<!-- tajweed/syllables transliteration -->
+				{#if $__verseTranslations.includes(3)}
+					<Layout verseTranslationID={3} verseTranslation={$__chapterData[`${value.meta.chapter}:${value.meta.verse}`].translations[1]} {value} />
+				{/if}
+				<!-- ================== -->
 
-				<!-- after transliteration, show other translations -->
-				{#each Object.entries($__verseTranslationData[Object.keys($__verseTranslationData)[value.meta.verse - 1]].translations) as [verseTranslationID, verseTranslation]}
-					{#if verseTranslation.resource_id !== 57}
-						<Layout {verseTranslationID} {verseTranslation} {value} />
-					{/if}
-				{/each}
+				<!-- data from Quran.com's API -->
+				{#if $__verseTranslationData[value.meta.verse - 1].hasOwnProperty('translations')}
+					<!-- after transliteration, show other translations -->
+					{#each Object.entries($__verseTranslationData[Object.keys($__verseTranslationData)[value.meta.verse - 1]].translations) as [verseTranslationID, verseTranslation]}
+						{#if verseTranslation.resource_id !== 57}
+							<Layout verseTranslationID={verseTranslation.resource_id} {verseTranslation} {value} />
+						{/if}
+					{/each}
+				{/if}
 			{:else}
 				<div class="mr-auto">
 					<Spinner size="10" />
@@ -58,25 +60,27 @@
 					<Spinner size="10" />
 				</div>
 			{:then verseTranslationData}
-				<!-- tajweed transliteration -->
-				{#if $__verseTranslations.includes(1)}
-					<Layout data={$__chapterData} {value} />
+				<!-- tajweed/syllables transliteration -->
+				{#if $__chapterData !== null}
+					{#if $__verseTranslations.includes(1)}
+						<Layout verseTranslationID={0} verseTranslation={$__chapterData[`${value.meta.chapter}:${value.meta.verse}`].translations[0]} {value} />
+					{/if}
+
+					{#if $__verseTranslations.includes(3)}
+						<Layout verseTranslationID={1} verseTranslation={$__chapterData[`${value.meta.chapter}:${value.meta.verse}`].translations[1]} {value} />
+					{/if}
 				{/if}
+				<!-- ================== -->
 
+				<!-- after transliteration, show other translations -->
 				{#if verseTranslationData}
-					<!-- always show transliteration (resource id 57) on top -->
-					{#each Object.entries(verseTranslationData[Object.keys(verseTranslationData)[value.meta.verse - 1]].translations) as [verseTranslationID, verseTranslation]}
-						{#if verseTranslation.resource_id === 57}
-							<Layout {verseTranslationID} {verseTranslation} {value} />
-						{/if}
-					{/each}
-
-					<!-- after transliteration, show other translations -->
-					{#each Object.entries(verseTranslationData[Object.keys(verseTranslationData)[value.meta.verse - 1]].translations) as [verseTranslationID, verseTranslation]}
-						{#if verseTranslation.resource_id !== 57}
-							<Layout {verseTranslationID} {verseTranslation} {value} />
-						{/if}
-					{/each}
+					{#if verseTranslationData[Object.keys(verseTranslationData)[value.meta.verse - 1]].hasOwnProperty('translations')}
+						{#each Object.entries(verseTranslationData[Object.keys(verseTranslationData)[value.meta.verse - 1]].translations) as [verseTranslationID, verseTranslation]}
+							{#if verseTranslation.resource_id !== 57}
+								<Layout {verseTranslationID} {verseTranslation} {value} />
+							{/if}
+						{/each}
+					{/if}
 				{/if}
 			{:catch error}
 				<p>{error}</p>

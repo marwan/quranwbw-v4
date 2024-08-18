@@ -158,14 +158,19 @@ export const selectableVerseTranslations = {
 	},
 
 	// transliterations
-	57: {
-		resource_id: 57,
-		resource_name: 'Transliteration',
+	1: {
+		resource_id: 1,
+		resource_name: 'Transliteration (Tajweed)',
 		language_id: 11115
 	},
-	// 1: {
-	// 	resource_id: 1,
-	// 	resource_name: 'Tajweed Transliteration',
+	3: {
+		resource_id: 3,
+		resource_name: 'Transliteration (Syllables)',
+		language_id: 11115
+	},
+	// 57: {
+	// 	resource_id: 57,
+	// 	resource_name: 'Transliteration (Normal)',
 	// 	language_id: 11115
 	// },
 
@@ -239,6 +244,8 @@ export const selectableVerseTranslations = {
 		is_roman: true
 	}
 };
+
+export const selectableVerseTransliterations = [1, 3, 57];
 
 export const selectableWordTranslations = {
 	1: { id: 5, language: 'Bangla' },
