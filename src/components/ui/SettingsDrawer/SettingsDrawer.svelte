@@ -5,6 +5,7 @@
 	import QuranFontSelector from '$ui/SettingsDrawer/QuranFontSelector.svelte';
 	import WordTranslationSelector from '$ui/SettingsDrawer/WordTranslationSelector.svelte';
 	import VerseTranslationSelector from '$ui/SettingsDrawer/VerseTranslationSelector.svelte';
+	import VerseTransliterationSelector from '$ui/SettingsDrawer/VerseTransliterationSelector.svelte';
 	import VerseTafsirSelector from '$ui/SettingsDrawer/VerseTafsirSelector.svelte';
 	import VerseRecitorSelector from '$ui/SettingsDrawer/VerseRecitorSelector.svelte';
 	import TranslationRecitorSelector from '$ui/SettingsDrawer/TranslationRecitorSelector.svelte';
@@ -39,7 +40,7 @@
 		__lastRead,
 		__hideNonDuaPart
 	} from '$utils/stores';
-	import { selectableDisplays, selectableFontTypes, selectableThemes, selectableWordTranslations, selectableReciters, selectableTranslationReciters, selectablePlaybackSpeeds, selectableTooltipOptions } from '$data/options';
+	import { selectableDisplays, selectableFontTypes, selectableThemes, selectableWordTranslations, selectableVerseTransliterations, selectableReciters, selectableTranslationReciters, selectablePlaybackSpeeds, selectableTooltipOptions } from '$data/options';
 	import { updateSettings } from '$utils/updateSettings';
 	import { resetSettings } from '$utils/resetSettings';
 	import { disabledClasses, buttonClasses } from '$data/commonClasses';
@@ -55,6 +56,7 @@
 		'quran-font': QuranFontSelector,
 		'word-translation': WordTranslationSelector,
 		'verse-translation': VerseTranslationSelector,
+		'verse-transliteration': VerseTransliterationSelector,
 		'verse-tafsir': VerseTafsirSelector,
 		'verse-reciter': VerseRecitorSelector,
 		'translation-reciter': TranslationRecitorSelector,
@@ -76,10 +78,18 @@
 	let mainSettingsScrollPos = 0;
 	let allSettingsVisible = true;
 	let individualSettingsVisible = false;
+	let totalVerseTransliterationsSelected = 0;
 
 	$: fontSizeCodes = JSON.parse($__userSettings).displaySettings.fontSizes;
 	$: wordTranslationKey = Object.keys(selectableWordTranslations).filter((item) => selectableWordTranslations[item].id === $__wordTranslation);
 	$: if ($__currentPage || $__settingsDrawerHidden) goBackToMainSettings();
+	$: {
+		totalVerseTransliterationsSelected = 0;
+
+		$__verseTranslations.forEach((item) => {
+			if (selectableVerseTransliterations.includes(item)) totalVerseTransliterationsSelected++;
+		});
+	}
 
 	function goBackToMainSettings() {
 		allSettingsVisible = true;
@@ -279,7 +289,7 @@
 					<!-- word-translation-setting -->
 					<div id="word-translation-setting" class={settingsBlockClasses}>
 						<div class="flex flex-row justify-between items-center">
-							<div class="block">Word</div>
+							<div class="block">Word Translation</div>
 							<Button class={selectorClasses} on:click={() => gotoIndividualSetting('word-translation')}>{selectableWordTranslations[wordTranslationKey].language}</Button>
 						</div>
 						<p class={settingsDescriptionClasses}>Word translation which will be displaced under the Arabic word text.</p>
@@ -290,10 +300,21 @@
 					<!-- verse-translation-setting -->
 					<div id="verse-translation-setting" class={settingsBlockClasses}>
 						<div class="flex flex-row justify-between items-center">
-							<div class="block">{term('verse')}</div>
-							<Button class={selectorClasses} on:click={() => gotoIndividualSetting('verse-translation')}>{$__verseTranslations.length} selected</Button>
+							<div class="block">{term('verse')} Translation</div>
+							<Button class={selectorClasses} on:click={() => gotoIndividualSetting('verse-translation')}>{$__verseTranslations.length - totalVerseTransliterationsSelected} selected</Button>
 						</div>
 						<p class={settingsDescriptionClasses}>{term('verse')} translations from multiple authors and languages.</p>
+					</div>
+
+					<div class="border-b border-black/10"></div>
+
+					<!-- verse-transliteration-setting -->
+					<div id="verse-transliteration-setting" class={settingsBlockClasses}>
+						<div class="flex flex-row justify-between items-center">
+							<div class="block">{term('verse')} Transliteration</div>
+							<Button class={selectorClasses} on:click={() => gotoIndividualSetting('verse-transliteration')}>{totalVerseTransliterationsSelected} selected</Button>
+						</div>
+						<p class={settingsDescriptionClasses}>{term('verse')} transliteration of various types.</p>
 					</div>
 
 					<div class="border-b border-black/10"></div>

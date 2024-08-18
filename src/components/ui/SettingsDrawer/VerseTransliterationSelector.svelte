@@ -9,7 +9,7 @@
 
 <div class="grid gap-3 w-full theme-grayscale">
 	{#each Object.entries(verseTranslationsLanguages) as [id, language]}
-		{#if language.language_id !== 11115}
+		{#if language.language_id === 11115}
 			<div class="flex flex-col space-y-2 pb-6">
 				<div id="translation-name" class="text-md font-medium">{language.language}</div>
 				<div id="translation-list" class="space-y-3">
