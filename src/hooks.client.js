@@ -39,6 +39,10 @@ export function setUserSettings() {
 	if (userSettings.translations.verse_v1 === undefined) userSettings.translations.verse_v1 = [57, 131]; // The Clear Quran and Transliteration
 	if (userSettings.translations.tafsir === undefined) userSettings.translations.tafsir = 30; // tafisr ibn kathir
 
+	// transliterations settings
+	if (userSettings.transliterations === undefined) userSettings.transliterations = {}; // parent
+	if (userSettings.transliterations.verse === undefined) userSettings.transliterations.verse = [1]; // The Clear Quran and Transliteration
+
 	// audio settings
 	if (userSettings.audioSettings === undefined) userSettings.audioSettings = {}; // parent
 	if (userSettings.audioSettings.reciter === undefined) userSettings.audioSettings.reciter = 10; // Mishary Rashid Alafasy

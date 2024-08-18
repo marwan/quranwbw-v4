@@ -158,14 +158,19 @@ export const selectableVerseTranslations = {
 	},
 
 	// transliterations
-	57: {
-		resource_id: 57,
-		resource_name: 'Transliteration',
-		language_id: 11115
-	},
 	// 1: {
 	// 	resource_id: 1,
-	// 	resource_name: 'Tajweed Transliteration',
+	// 	resource_name: 'Transliteration (Tajweed)',
+	// 	language_id: 11115
+	// },
+	// 3: {
+	// 	resource_id: 3,
+	// 	resource_name: 'Transliteration (Syllables)',
+	// 	language_id: 11115
+	// },
+	// 57: {
+	// 	resource_id: 57,
+	// 	resource_name: 'Transliteration (Normal)',
 	// 	language_id: 11115
 	// },
 
@@ -237,6 +242,24 @@ export const selectableVerseTranslations = {
 		resource_name: 'Abul Alaa Maududi (Roman Urdu)',
 		language_id: 174,
 		is_roman: true
+	}
+};
+
+export const selectableVerseTransliterations = {
+	1: {
+		resource_id: 1,
+		resource_name: 'Transliteration (Tajweed)',
+		language_id: 11115
+	},
+	3: {
+		resource_id: 3,
+		resource_name: 'Transliteration (Syllables)',
+		language_id: 11115
+	},
+	57: {
+		resource_id: 57,
+		resource_name: 'Transliteration (Normal)',
+		language_id: 11115
 	}
 };
 

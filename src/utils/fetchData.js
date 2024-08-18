@@ -3,8 +3,11 @@ import { __fontType, __chapterData, __verseTranslationData, __wordTranslation, _
 import { apiEndpoint, staticEndpoint } from '$data/websiteSettings';
 import { selectableFontTypes } from '$data/options';
 
+const apiVersion = 101;
+
 // we first fetch specific verses (startVerse to endVerse), and then fetch the complete chapter data which will then be cached by the user's browser
 export async function fetchChapterData(chapter, download = false) {
+	__chapterData.set(null);
 	const fontType = get(__fontType);
 	const wordTranslation = get(__wordTranslation);
 
@@ -14,8 +17,8 @@ export async function fetchChapterData(chapter, download = false) {
 			chapter: chapter,
 			word_type: selectableFontTypes[fontType].apiId,
 			word_translation: wordTranslation,
-			verse_translation: 1,
-			version: 100
+			verse_translation: '1,3',
+			version: apiVersion
 			// random: Math.floor(Math.random() * 999999999) + 0
 		});
 
@@ -47,19 +50,23 @@ export async function fetchVerseTranslationData(chapter) {
 }
 
 // function to fetch individual verses
-export async function fetchVersesData(verses, fontType, wordTranslation, skipStore = false) {
+export async function fetchVersesData(verses, fontType, wordTranslation) {
+	__chapterData.set(null);
+
 	const apiURL =
 		`${apiEndpoint}/verses?` +
 		new URLSearchParams({
 			verses: verses,
 			word_type: selectableFontTypes[fontType].apiId,
 			word_translation: wordTranslation,
-			verse_translation: 1
+			verse_translation: '1,3',
+			version: apiVersion
 		});
 
 	const response = await fetch(apiURL);
 	const data = await response.json();
-	if (!skipStore) __chapterData.set(data.data.verses);
+	// if (!skipStore) __chapterData.set(data.data.verses);
+	__chapterData.set(data.data.verses);
 	return data.data.verses;
 }
 
