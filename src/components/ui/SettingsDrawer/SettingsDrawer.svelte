@@ -11,8 +11,6 @@
 	import TranslationRecitorSelector from '$ui/SettingsDrawer/TranslationRecitorSelector.svelte';
 	import PlaybackSpeedSelector from '$ui/SettingsDrawer/PlaybackSpeedSelector.svelte';
 	import Drawer from '$ui/flowbite-svelte/drawer/Drawer.svelte';
-	import Plus from '$svgs/Plus.svelte';
-	import Minus from '$svgs/Minus.svelte';
 	import Range from '$ui/flowbite-svelte/forms/Range.svelte';
 	import CloseButton from '$ui/flowbite-svelte/utils/CloseButton.svelte';
 	import Button from '$ui/flowbite-svelte/buttons/Button.svelte';
@@ -83,12 +81,14 @@
 	let arabicWordSizeValue = fontSizePresets.indexOf(JSON.parse($__userSettings).displaySettings.fontSizes.arabicText);
 	let wordTranlationTransliterationSizeValue = fontSizePresets.indexOf(JSON.parse($__userSettings).displaySettings.fontSizes.wordTranslationText);
 	let verseTranlationTransliterationSizeValue = fontSizePresets.indexOf(JSON.parse($__userSettings).displaySettings.fontSizes.verseTranslationText);
+	let playbackSpeedValue = JSON.parse($__userSettings).audioSettings.playbackSpeed;
 
+	// update settings when slider updates
 	$: updateSettings({ type: 'arabicText', value: selectableFontSizes[arabicWordSizeValue].value });
 	$: updateSettings({ type: 'wordTranslationText', value: selectableFontSizes[wordTranlationTransliterationSizeValue].value });
 	$: updateSettings({ type: 'verseTranslationText', value: selectableFontSizes[verseTranlationTransliterationSizeValue].value });
+	$: updateSettings({ type: 'playbackSpeed', value: playbackSpeedValue });
 
-	$: fontSizeCodes = JSON.parse($__userSettings).displaySettings.fontSizes;
 	$: wordTranslationKey = Object.keys(selectableWordTranslations).filter((item) => selectableWordTranslations[item].id === $__wordTranslation);
 	$: if ($__currentPage || $__settingsDrawerHidden) goBackToMainSettings();
 	$: {
@@ -349,11 +349,12 @@
 
 					<!-- playback-speed-setting -->
 					<div id="playback-speed-setting" class={settingsBlockClasses}>
-						<div class="flex flex-row justify-between items-center">
-							<div class="block">Playback Speed</div>
-							<Button class={selectorClasses} on:click={() => gotoIndividualSetting('playback-speed')}>x{selectablePlaybackSpeeds[$__playbackSpeed].speed}</Button>
+						<div class="flex flex-col justify-between space-y-4">
+							<span class="block">Playback Speed (x{selectablePlaybackSpeeds[playbackSpeedValue].speed})</span>
+							<div class="flex flex-col space-y-2 rounded-3xl w-full" role="group">
+								<Range min="1" max="7" bind:value={playbackSpeedValue} class="theme-grayscale" />
+							</div>
 						</div>
-						<p class={settingsDescriptionClasses}>The playback speed at which the {term('verse')}/word audio will be played.</p>
 					</div>
 
 					<div class="border-b border-black/10"></div>
