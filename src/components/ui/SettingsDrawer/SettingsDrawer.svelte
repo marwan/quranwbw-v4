@@ -283,7 +283,7 @@
 
 			<!-- translation-settings-block -->
 			<div id="translation-settings-block" class="py-5 border-t-2 border-black/10">
-				<h3 class="block mb-2 font-medium text-xl">Translation & {term('tafsir')}</h3>
+				<h3 class="block mb-2 font-medium text-xl">Translation, Transliteration & {term('tafsir')}</h3>
 
 				<div class="flex flex-col flex-wrap text-base">
 					<!-- word-translation-setting -->
