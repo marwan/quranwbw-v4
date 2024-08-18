@@ -94,7 +94,7 @@ label {
   display: block;
 }
 
-input, select, textarea {
+/* input, select, textarea {
   font-family: inherit;
   font-size: inherit;
   -webkit-padding: 0.4em 0;
@@ -103,7 +103,7 @@ input, select, textarea {
   box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 2px;
-}
+} */
 
 input:disabled {
   color: #ccc;

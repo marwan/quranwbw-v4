@@ -13,6 +13,7 @@
 	import Drawer from '$ui/flowbite-svelte/drawer/Drawer.svelte';
 	import Plus from '$svgs/Plus.svelte';
 	import Minus from '$svgs/Minus.svelte';
+	import Range from '$ui/flowbite-svelte/forms/Range.svelte';
 	import CloseButton from '$ui/flowbite-svelte/utils/CloseButton.svelte';
 	import Button from '$ui/flowbite-svelte/buttons/Button.svelte';
 	import {
@@ -40,7 +41,7 @@
 		__lastRead,
 		__hideNonDuaPart
 	} from '$utils/stores';
-	import { selectableDisplays, selectableFontTypes, selectableThemes, selectableWordTranslations, selectableVerseTransliterations, selectableReciters, selectableTranslationReciters, selectablePlaybackSpeeds, selectableTooltipOptions } from '$data/options';
+	import { selectableDisplays, selectableFontTypes, selectableThemes, selectableWordTranslations, selectableVerseTransliterations, selectableReciters, selectableTranslationReciters, selectablePlaybackSpeeds, selectableTooltipOptions, selectableFontSizes, fontSizePresets } from '$data/options';
 	import { updateSettings } from '$utils/updateSettings';
 	import { resetSettings } from '$utils/resetSettings';
 	import { disabledClasses, buttonClasses } from '$data/commonClasses';
@@ -79,6 +80,13 @@
 	let allSettingsVisible = true;
 	let individualSettingsVisible = false;
 	let totalVerseTransliterationsSelected = 0;
+	let arabicWordSizeValue = fontSizePresets.indexOf(JSON.parse($__userSettings).displaySettings.fontSizes.arabicText);
+	let wordTranlationTransliterationSizeValue = fontSizePresets.indexOf(JSON.parse($__userSettings).displaySettings.fontSizes.wordTranslationText);
+	let verseTranlationTransliterationSizeValue = fontSizePresets.indexOf(JSON.parse($__userSettings).displaySettings.fontSizes.verseTranslationText);
+
+	$: updateSettings({ type: 'arabicText', value: selectableFontSizes[arabicWordSizeValue].value });
+	$: updateSettings({ type: 'wordTranslationText', value: selectableFontSizes[wordTranlationTransliterationSizeValue].value });
+	$: updateSettings({ type: 'verseTranslationText', value: selectableFontSizes[verseTranlationTransliterationSizeValue].value });
 
 	$: fontSizeCodes = JSON.parse($__userSettings).displaySettings.fontSizes;
 	$: wordTranslationKey = Object.keys(selectableWordTranslations).filter((item) => selectableWordTranslations[item].id === $__wordTranslation);
@@ -229,54 +237,36 @@
 
 					<!-- arabic-word-size-setting -->
 					<div id="arabic-word-size-setting" class="{settingsBlockClasses} {$__currentPage === 'page' && disabledClasses}">
-						<div class="flex flex-row justify-between items-center">
-							<span class="block">Arabic Word Size ({fontSizeCodes.arabicText.split('-')[1]})</span>
-							<div class="inline-flex rounded-3xl shadow-sm" role="group">
-								<button type="button" on:click={() => updateSettings({ type: 'arabicText', action: 'increase' })} class="w-16 border px-6 border-black/10 rounded-l-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5">
-									<Plus size={3} />
-								</button>
-								<button type="button" on:click={() => updateSettings({ type: 'arabicText', action: 'decrease' })} class="w-16 border px-6 text-center border-black/10 rounded-r-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5">
-									<Minus size={3} />
-								</button>
+						<div class="flex flex-col justify-between space-y-4">
+							<span class="block">Arabic Word Size ({selectableFontSizes[arabicWordSizeValue].value.split('-')[1]})</span>
+							<div class="flex flex-col space-y-2 rounded-3xl w-full" role="group">
+								<Range min="1" max="12" bind:value={arabicWordSizeValue} class="theme-grayscale" />
 							</div>
 						</div>
-						<p class={settingsDescriptionClasses}>Font size for Arabic word text.</p>
 					</div>
 
 					<div class="border-b border-black/10"></div>
 
 					<!-- word-translation-size-setting -->
 					<div id="word-translation-size-setting" class={settingsBlockClasses}>
-						<div class="flex flex-row justify-between items-center">
-							<span class="block">Word Tr/Tl Size ({fontSizeCodes.wordTranslationText.split('-')[1]})</span>
-							<div class="inline-flex rounded-3xl shadow-sm" role="group">
-								<button type="button" on:click={() => updateSettings({ type: 'wordTranslationText', action: 'increase' })} class="w-16 border px-6 border-black/10 rounded-l-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:focus:ring-gray-500 dark:focus:border-gray-500">
-									<Plus size={3} />
-								</button>
-								<button type="button" on:click={() => updateSettings({ type: 'wordTranslationText', action: 'decrease' })} class="w-16 border px-6 text-center border-black/10 rounded-r-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:focus:ring-gray-500 dark:focus:border-gray-500">
-									<Minus size={3} />
-								</button>
+						<div class="flex flex-col justify-between space-y-4">
+							<span class="block">Word Translation/Transliteration Size ({selectableFontSizes[wordTranlationTransliterationSizeValue].value.split('-')[1]})</span>
+							<div class="flex flex-col space-y-2 rounded-3xl w-full" role="group">
+								<Range min="1" max="12" bind:value={wordTranlationTransliterationSizeValue} class="theme-grayscale" />
 							</div>
 						</div>
-						<p class={settingsDescriptionClasses}>Font size for word translation and transliteration.</p>
 					</div>
 
 					<div class="border-b border-black/10"></div>
 
 					<!-- verse-translation-size-setting -->
 					<div id="verse-translation-size-setting" class={settingsBlockClasses}>
-						<div class="flex flex-row justify-between items-center">
-							<span class="block">{term('verse')} Tr/Tl Size ({fontSizeCodes.verseTranslationText.split('-')[1]})</span>
-							<div class="inline-flex rounded-3xl shadow-sm" role="group">
-								<button type="button" on:click={() => updateSettings({ type: 'verseTranslationText', action: 'increase' })} class="w-16 border px-6 border-black/10 rounded-l-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:focus:ring-gray-500 dark:focus:border-gray-500">
-									<Plus size={3} />
-								</button>
-								<button type="button" on:click={() => updateSettings({ type: 'verseTranslationText', action: 'decrease' })} class="w-16 border px-6 text-center border-black/10 rounded-r-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 dark:bg-gray-700 dark:border-slate-700 dark:placeholder-gray-400 dark:focus:ring-gray-500 dark:focus:border-gray-500">
-									<Minus size={3} />
-								</button>
+						<div class="flex flex-col justify-between space-y-4">
+							<span class="block">{term('verse')} Translation/Transliteration Size ({selectableFontSizes[verseTranlationTransliterationSizeValue].value.split('-')[1]})</span>
+							<div class="flex flex-col space-y-2 rounded-3xl w-full" role="group">
+								<Range min="1" max="12" bind:value={verseTranlationTransliterationSizeValue} class="theme-grayscale" />
 							</div>
 						</div>
-						<p class={settingsDescriptionClasses}>Font size for {term('verse')} translation and transliteration.</p>
 					</div>
 				</div>
 			</div>
