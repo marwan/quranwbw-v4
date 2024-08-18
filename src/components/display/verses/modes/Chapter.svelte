@@ -64,7 +64,7 @@
 	}
 </script>
 
-{#if $__currentPage === 'chapter'}
+{#if $__currentPage === 'chapter' && $__chapterData}
 	{#each Array.from(Array(endVerse + 1).keys()).slice(startVerse) as verse}
 		<svelte:component this={displayComponents[JSON.parse($__userSettings).displaySettings.displayType].component} key={`${$__chapterNumber}:${verse}`} value={$__chapterData[`${$__chapterNumber}:${verse}`]} />
 	{/each}
