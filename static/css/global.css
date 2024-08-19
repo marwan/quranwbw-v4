@@ -2867,6 +2867,10 @@ input[type="range"].range-lg::-moz-range-thumb {
   color: rgb(0 0 0 / var(--tw-placeholder-opacity));
 }
 
+.opacity-10 {
+  opacity: 0.1;
+}
+
 .opacity-100 {
   opacity: 1;
 }
@@ -2885,6 +2889,10 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .opacity-70 {
   opacity: 0.7;
+}
+
+.opacity-0 {
+  opacity: 0;
 }
 
 .shadow {
