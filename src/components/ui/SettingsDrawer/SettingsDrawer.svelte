@@ -129,18 +129,18 @@
 	function onMouseEnter(selector) {
 		document.querySelectorAll('.fontSizeSliders').forEach((element) => {
 			element.classList.remove('bg-white', 'opacity-100');
-			element.classList.add('opacity-0');
+			element.classList.add('opacity-0', 'pointer-events-none');
 		});
 		settingsDrawerOpacity = 'opacity-0';
 		settingsDrawerBackground = 'bg-transparent';
 		document.getElementsByClassName('settings-backdrop')[0].classList.add('bg-transparent');
-		document.getElementById(selector).classList.remove('opacity-0');
+		document.getElementById(selector).classList.remove('opacity-0', 'pointer-events-none');
 		document.getElementById(selector).classList.add('opacity-100', 'bg-white', 'rounded-3xl', 'shadow-lg', 'px-2');
 	}
 
 	function onMouseLeave() {
 		document.querySelectorAll('.fontSizeSliders').forEach((element) => {
-			element.classList.remove('bg-white', 'opacity-0', 'rounded-3xl', 'shadow-lg', 'px-2');
+			element.classList.remove('bg-white', 'opacity-0', 'rounded-3xl', 'shadow-lg', 'px-2', 'pointer-events-none');
 			element.classList.add('opacity-100');
 		});
 		settingsDrawerOpacity = 'opacity-100';
@@ -264,7 +264,7 @@
 						<div class="flex flex-col justify-between space-y-4">
 							<span class="block">Arabic Word Size ({selectableFontSizes[arabicWordSizeValue].value.split('-')[1]})</span>
 							<!-- svelte-ignore a11y-mouse-events-have-key-events -->
-							<div class="flex flex-col space-y-2 rounded-3xl w-full" role="group" on:mouseover={() => onMouseEnter('arabic-word-size-setting')} on:mouseleave={() => onMouseLeave()}>
+							<div class="flex flex-col space-y-2 rounded-3xl w-full" role="group" on:mouseenter={() => onMouseEnter('arabic-word-size-setting')} on:mouseleave={() => onMouseLeave()}>
 								<Range min="1" max="12" bind:value={arabicWordSizeValue} class="theme-grayscale" />
 							</div>
 						</div>
@@ -277,7 +277,7 @@
 						<div class="flex flex-col justify-between space-y-4">
 							<span class="block">Word Translation/Transliteration Size ({selectableFontSizes[wordTranlationTransliterationSizeValue].value.split('-')[1]})</span>
 							<!-- svelte-ignore a11y-mouse-events-have-key-events -->
-							<div class="flex flex-col space-y-2 rounded-3xl w-full" role="group" on:mouseover={() => onMouseEnter('word-translation-size-setting')} on:mouseleave={() => onMouseLeave()}>
+							<div class="flex flex-col space-y-2 rounded-3xl w-full" role="group" on:mouseenter={() => onMouseEnter('word-translation-size-setting')} on:mouseleave={() => onMouseLeave()}>
 								<Range min="1" max="12" bind:value={wordTranlationTransliterationSizeValue} class="theme-grayscale" />
 							</div>
 						</div>
@@ -290,7 +290,7 @@
 						<div class="flex flex-col justify-between space-y-4">
 							<span class="block">{term('verse')} Translation/Transliteration Size ({selectableFontSizes[verseTranlationTransliterationSizeValue].value.split('-')[1]})</span>
 							<!-- svelte-ignore a11y-mouse-events-have-key-events -->
-							<div class="flex flex-col space-y-2 rounded-3xl w-full" role="group" on:mouseover={() => onMouseEnter('verse-translation-size-setting')} on:mouseleave={() => onMouseLeave()}>
+							<div class="flex flex-col space-y-2 rounded-3xl w-full" role="group" on:mouseenter={() => onMouseEnter('verse-translation-size-setting')} on:mouseleave={() => onMouseLeave()}>
 								<Range min="1" max="12" bind:value={verseTranlationTransliterationSizeValue} class="theme-grayscale" />
 							</div>
 						</div>
