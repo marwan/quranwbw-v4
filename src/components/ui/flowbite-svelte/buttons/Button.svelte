@@ -42,7 +42,7 @@
 		dark: 'focus-within:ring-gray-300 dark:focus-within:ring-gray-700',
 		green: 'focus-within:ring-green-300 dark:focus-within:ring-green-800',
 		light: 'focus-within:ring-gray-200 dark:focus-within:ring-gray-700',
-		primary: 'focus-within:ring-primary-300 dark:focus-within:ring-primary-800',
+		primary: 'focus-within:ring-gray-300 dark:focus-within:ring-gray-800',
 		purple: 'focus-within:ring-purple-300 dark:focus-within:ring-purple-900',
 		red: 'focus-within:ring-red-300 dark:focus-within:ring-red-900',
 		yellow: 'focus-within:ring-yellow-300 dark:focus-within:ring-yellow-900',

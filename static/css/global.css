@@ -866,6 +866,26 @@ input[type="range"]::-ms-fill-lower {
   background: #3b82f6;
 }
 
+input[type="range"].range-sm::-webkit-slider-thumb {
+  height: 1rem;
+  width: 1rem;
+}
+
+input[type="range"].range-lg::-webkit-slider-thumb {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+input[type="range"].range-sm::-moz-range-thumb {
+  height: 1rem;
+  width: 1rem;
+}
+
+input[type="range"].range-lg::-moz-range-thumb {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
 *, ::before, ::after {
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
@@ -2847,6 +2867,10 @@ input[type="range"]::-ms-fill-lower {
   color: rgb(0 0 0 / var(--tw-placeholder-opacity));
 }
 
+.opacity-10 {
+  opacity: 0.1;
+}
+
 .opacity-100 {
   opacity: 1;
 }
@@ -2865,6 +2889,10 @@ input[type="range"]::-ms-fill-lower {
 
 .opacity-70 {
   opacity: 0.7;
+}
+
+.opacity-0 {
+  opacity: 0;
 }
 
 .shadow {
@@ -3134,7 +3162,7 @@ label {
   display: block;
 }
 
-input, select, textarea {
+/* input, select, textarea {
   font-family: inherit;
   font-size: inherit;
   -webkit-padding: 0.4em 0;
@@ -3143,6 +3171,20 @@ input, select, textarea {
   box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 2px;
+} */
+
+/* settings drawer's range slider */
+
+input[type=range]::-webkit-slider-thumb {
+  background: #4b5563;
+}
+
+input[type="range"]::-moz-range-thumb {
+  background-color: #4b5563;
+}
+
+input[type="range"]::-moz-range-progress {
+  background-color: transparent;
 }
 
 input:disabled {

@@ -40,7 +40,7 @@
 		hidden = !hidden;
 	};
 	const handleClickOutside = () => activateClickOutside && !hidden && handleDrawer();
-	let backdropDivClass = twMerge('fixed top-0 start-0 z-50 w-full h-full', backdrop && bgColor, backdrop && bgOpacity);
+	let backdropDivClass = twMerge('settings-backdrop fixed top-0 start-0 z-50 w-full h-full', backdrop && bgColor, backdrop && bgOpacity);
 	function clickOutsideWrapper(node, callback) {
 		return activateClickOutside ? clickOutside(node, callback) : undefined;
 	}

@@ -384,6 +384,22 @@ export const selectableTooltipOptions = {
 	4: { id: 4, name: 'Both' }
 };
 
+export const fontSizePresets = [null, 'text-xs', 'text-sm', 'text-base', 'text-lg', 'text-xl', 'text-2xl', 'text-3xl', 'text-4xl', 'text-5xl', 'text-6xl', 'text-7xl', 'text-8xl'];
+export const selectableFontSizes = {
+	1: { id: 1, value: 'text-xs' },
+	2: { id: 2, value: 'text-sm' },
+	3: { id: 3, value: 'text-base' },
+	4: { id: 4, value: 'text-lg' },
+	5: { id: 5, value: 'text-xl' },
+	6: { id: 6, value: 'text-2xl' },
+	7: { id: 7, value: 'text-3xl' },
+	8: { id: 8, value: 'text-4xl' },
+	9: { id: 9, value: 'text-5xl' },
+	10: { id: 10, value: 'text-6xl' },
+	11: { id: 11, value: 'text-7xl' },
+	12: { id: 12, value: 'text-8xl' }
+};
+
 export const screenBreakpoints = {
 	sm: 640,
 	md: 768,
