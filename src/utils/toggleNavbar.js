@@ -41,7 +41,10 @@ export function toggleNavbar() {
 	}
 
 	// for all other pages
-	else __topNavbarVisible.set(true);
+	else {
+		__topNavbarVisible.set(true);
+		__bottomToolbarVisible.set(true);
+	}
 }
 
 function getCurrentScroll() {

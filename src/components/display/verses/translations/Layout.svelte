@@ -7,6 +7,7 @@
 	import { __userSettings, __verseTranslations } from '$utils/stores';
 	import { selectableVerseTranslations, selectableVerseTransliterations } from '$data/options';
 
+	const translationFootnoteClasses = `hidden my-2 footnote-block px-2 py-2 border-2 border-gray-200 rounded-2xl theme-grayscale footnote-${value.meta.verse}-${verseTranslationID}`;
 	const footnoteSupClasses = 'ml-1 mt-1 px-2 py-1 bg-gray-200 rounded-full font-semibold cursor-pointer system-font';
 
 	let footnoteId,
@@ -64,7 +65,7 @@
 	</span>
 
 	<!-- translation footnotes -->
-	<div class="hidden my-2 footnote-block px-2 py-2 border-2 border-gray-200 rounded-2xl theme-grayscale footnote-{value.meta.verse}-{verseTranslationID}">
+	<div class={translationFootnoteClasses}>
 		<div class="footnote-header flex flex-row justify-between font-semibold">
 			<div class="title">
 				<span>Footnote #</span>
