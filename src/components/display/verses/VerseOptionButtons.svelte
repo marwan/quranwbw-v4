@@ -35,12 +35,7 @@
 				// 2. Play from here
 				else if ($__playButtonsFunctionality.verse === 2) {
 					setVersesToPlay({ location: 'verseOptionsOrModal', chapter: chapter, startVerse: verse, endVerse: versesInChapter, audioRange: 'playFromHere' });
-
-					playVerseAudio({
-						key: `${window.versesToPlayArray[0]}`,
-						timesToRepeat: 1,
-						language: 'arabic'
-					});
+					playVerseAudio({ key: `${window.versesToPlayArray[0]}`, timesToRepeat: 1, language: 'arabic' });
 				}
 
 				// 3. Open Advance Play modal
@@ -48,9 +43,7 @@
 			}
 
 			// for any other page, stick to default
-			else {
-				playVerseAudio({ key, language: 'arabic', timesToRepeat: 1 });
-			}
+			else playVerseAudio({ key, language: 'arabic', timesToRepeat: 1 });
 		}
 	}
 </script>
