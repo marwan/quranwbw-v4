@@ -6,8 +6,8 @@
 	import WordsBlock from '$display/verses/WordsBlock.svelte';
 	import Table from '$display/morphology/Table.svelte';
 	import { quranMetaData } from '$data/quranMeta';
-	import { apiEndpoint, staticEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
-	import { __currentPage, __fontType, __wordTranslation, __verseTranslations, __morphologyKey, __pageURL, __displayType } from '$utils/stores';
+	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
+	import { __currentPage, __fontType, __wordTranslation, __verseTranslations, __morphologyKey, __pageURL, __displayType, __lexiconModalVisible, __wordRoot } from '$utils/stores';
 	import { buttonOutlineClasses } from '$data/commonClasses';
 	import { fetchVersesData } from '$utils/fetchData';
 	import { term } from '$utils/terminologies';
@@ -46,20 +46,10 @@
 		})();
 	}
 
-	async function showLexiconData() {
-		const wordRoot = fetchWordsData1[0].morphology.root.root;
-
-		// getting indexes file
-		const indexesResponse = await fetch(`${staticEndpoint}/v4/lexicon/indexes.json`);
-		const indexesData = await indexesResponse.json();
-		const lexiconFile = indexesData[wordRoot].file;
-		const lexiconIndex = indexesData[wordRoot].index;
-
-		// getting lexicon data for the root
-		const lexiconResponse = await fetch(`${staticEndpoint}/v4/lexicon/${lexiconFile}.json`);
-		const lexiconData = await lexiconResponse.json();
-
-		console.log(lexiconData[lexiconIndex]);
+	// set the word root and show the modal
+	function showLexiconModal() {
+		__wordRoot.set(fetchWordsData1[0].morphology.root.root);
+		__lexiconModalVisible.set(true);
 	}
 
 	// only allow display type 1 & 2, and don't save the layout in settings
@@ -118,7 +108,7 @@
 	</div>
 
 	<div id="lexicon-data">
-		<button class={buttonOutlineClasses} on:click={() => showLexiconData()}>Lanes Lexicon Data</button>
+		<button class={buttonOutlineClasses} on:click={() => showLexiconModal()}>Lanes Lexicon Data</button>
 	</div>
 
 	<div id="word-details" class="flex flex-col space-y-6">

@@ -302,3 +302,8 @@ svg {
   font-palette: --palette1;
 }
 
+/* for lexicon modal because the data is fetched externally and it has it's own classes */
+.entryFree {
+  padding-top: 2em;
+}
+

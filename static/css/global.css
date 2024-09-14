@@ -2867,6 +2867,10 @@ input[type="range"].range-lg::-moz-range-thumb {
   color: rgb(0 0 0 / var(--tw-placeholder-opacity));
 }
 
+.opacity-0 {
+  opacity: 0;
+}
+
 .opacity-10 {
   opacity: 0.1;
 }
@@ -2889,10 +2893,6 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .opacity-70 {
   opacity: 0.7;
-}
-
-.opacity-0 {
-  opacity: 0;
 }
 
 .shadow {
@@ -3381,6 +3381,12 @@ svg {
 
 .theme-2 .header, .theme-3 .header, .theme-4 .header {
   font-palette: --palette1;
+}
+
+/* for lexicon modal because the data is fetched externally and it has it's own classes */
+
+.entryFree {
+  padding-top: 2em;
 }
 
 .after\:absolute::after {
