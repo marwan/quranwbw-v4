@@ -406,6 +406,12 @@ export const screenBreakpoints = {
 	lg: 1024
 };
 
+export const selectableVersePlayButtonOptions = {
+	1: { id: 1, name: 'Play Selected Verse' },
+	2: { id: 2, name: 'Play From That Verse' },
+	3: { id: 3, name: 'Show Advance Options' }
+};
+
 export const mushafFontLinks = {
 	// normal word fonts
 	COLRv1: 'https://fonts.quranwbw.com/Hafs/KFGQPC-v4/COLRv1',

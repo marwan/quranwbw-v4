@@ -10,6 +10,7 @@
 	import VerseRecitorSelector from '$ui/SettingsDrawer/VerseRecitorSelector.svelte';
 	import TranslationRecitorSelector from '$ui/SettingsDrawer/TranslationRecitorSelector.svelte';
 	import PlaybackSpeedSelector from '$ui/SettingsDrawer/PlaybackSpeedSelector.svelte';
+	import VersePlayButtonSelector from '$ui/SettingsDrawer/VersePlayButtonSelector.svelte';
 	import Drawer from '$ui/flowbite-svelte/drawer/Drawer.svelte';
 	import Range from '$ui/flowbite-svelte/forms/Range.svelte';
 	import CloseButton from '$ui/flowbite-svelte/utils/CloseButton.svelte';
@@ -37,9 +38,10 @@
 		__wakeLockEnabled,
 		__englishTerminology,
 		__lastRead,
-		__hideNonDuaPart
+		__hideNonDuaPart,
+		__playButtonsFunctionality
 	} from '$utils/stores';
-	import { selectableDisplays, selectableFontTypes, selectableThemes, selectableWordTranslations, selectableVerseTransliterations, selectableReciters, selectableTranslationReciters, selectablePlaybackSpeeds, selectableTooltipOptions, selectableFontSizes, fontSizePresets } from '$data/options';
+	import { selectableDisplays, selectableFontTypes, selectableThemes, selectableWordTranslations, selectableVerseTransliterations, selectableReciters, selectableTranslationReciters, selectablePlaybackSpeeds, selectableTooltipOptions, selectableFontSizes, fontSizePresets, selectableVersePlayButtonOptions } from '$data/options';
 	import { updateSettings } from '$utils/updateSettings';
 	import { resetSettings } from '$utils/resetSettings';
 	import { disabledClasses, buttonClasses } from '$data/commonClasses';
@@ -60,7 +62,8 @@
 		'verse-tafsir': VerseTafsirSelector,
 		'verse-reciter': VerseRecitorSelector,
 		'translation-reciter': TranslationRecitorSelector,
-		'playback-speed': PlaybackSpeedSelector
+		'playback-speed': PlaybackSpeedSelector,
+		'verse-play-button': VersePlayButtonSelector
 	};
 
 	const transitionParamsRight = {
@@ -398,6 +401,17 @@
 							</label>
 						</div>
 						<p class={settingsDescriptionClasses}>Whether the translation audio should be played after the Arabic audio.</p>
+					</div>
+
+					<div class="border-b border-black/10"></div>
+
+					<!-- verse-play-button-setting -->
+					<div id="verse-play-button-setting" class={settingsBlockClasses}>
+						<div class="flex flex-row justify-between items-center">
+							<div class="block">{term('verse')} Play Button</div>
+							<Button class={selectorClasses} on:click={() => gotoIndividualSetting('verse-play-button')}>{selectableVersePlayButtonOptions[$__playButtonsFunctionality.verse].name}</Button>
+						</div>
+						<p class={settingsDescriptionClasses}>Select what happens when you click on the play button for a {term('verse')}.</p>
 					</div>
 				</div>
 			</div>

@@ -9,13 +9,15 @@
 	import Notes from '$svgs/Notes.svelte';
 	import DotsHorizontal from '$svgs/DotsHorizontal.svelte';
 	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
-	import { playVerseAudio, resetAudioSettings } from '$utils/audioController';
-	import { __currentPage, __userSettings, __audioSettings, __verseKey, __userNotes, __notesModalVisible } from '$utils/stores';
+	import { playVerseAudio, resetAudioSettings, setVersesToPlay, showAudioModal } from '$utils/audioController';
+	import { __currentPage, __userSettings, __audioSettings, __verseKey, __userNotes, __notesModalVisible, __playButtonsFunctionality } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';
 	import { term } from '$utils/terminologies';
+	import { quranMetaData } from '$data/quranMeta';
 
 	const chapter = +key.split(':')[0];
 	const verse = +key.split(':')[1];
+	const versesInChapter = quranMetaData[chapter].verses;
 	const buttonClasses = 'inline-flex items-center justify-center w-10 h-10 transition-colors duration-150 rounded-3xl focus:shadow-outline hover:bg-lightGray print:hidden';
 
 	// update userBookmarks whenever the __userSettings changes
@@ -25,7 +27,21 @@
 		if ($__audioSettings.isPlaying) {
 			resetAudioSettings({ location: 'end' });
 		} else {
-			playVerseAudio({ key, language: 'arabic', timesToRepeat: 1 });
+			// 1. Play selected Ayah (default)
+			if ($__playButtonsFunctionality.verse === 1) playVerseAudio({ key, language: 'arabic', timesToRepeat: 1 });
+			// 2. Play from here
+			else if ($__playButtonsFunctionality.verse === 2) {
+				setVersesToPlay({ location: 'verseOptionsOrModal', chapter: chapter, startVerse: verse, endVerse: versesInChapter, audioRange: 'playFromHere' });
+
+				playVerseAudio({
+					key: `${window.versesToPlayArray[0]}`,
+					timesToRepeat: 1,
+					language: 'arabic'
+				});
+			}
+
+			// 3. Open Advance Play modal
+			else if ($__playButtonsFunctionality.verse === 3) showAudioModal(key);
 		}
 	}
 </script>
