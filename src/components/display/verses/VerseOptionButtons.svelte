@@ -24,24 +24,33 @@
 	$: userBookmarks = JSON.parse($__userSettings).userBookmarks;
 
 	function audioHandler(key) {
-		if ($__audioSettings.isPlaying) {
-			resetAudioSettings({ location: 'end' });
-		} else {
-			// 1. Play selected Ayah (default)
-			if ($__playButtonsFunctionality.verse === 1) playVerseAudio({ key, language: 'arabic', timesToRepeat: 1 });
-			// 2. Play from here
-			else if ($__playButtonsFunctionality.verse === 2) {
-				setVersesToPlay({ location: 'verseOptionsOrModal', chapter: chapter, startVerse: verse, endVerse: versesInChapter, audioRange: 'playFromHere' });
+		// stop any audio if something is playing
+		if ($__audioSettings.isPlaying) resetAudioSettings({ location: 'end' });
+		// else continue with playing options
+		else {
+			// for chapter & mushaf page, respect the user select play button functionality
+			if (['chapter', 'page'].includes($__currentPage)) {
+				// 1. Play selected Ayah (default)
+				if ($__playButtonsFunctionality.verse === 1) playVerseAudio({ key, language: 'arabic', timesToRepeat: 1 });
+				// 2. Play from here
+				else if ($__playButtonsFunctionality.verse === 2) {
+					setVersesToPlay({ location: 'verseOptionsOrModal', chapter: chapter, startVerse: verse, endVerse: versesInChapter, audioRange: 'playFromHere' });
 
-				playVerseAudio({
-					key: `${window.versesToPlayArray[0]}`,
-					timesToRepeat: 1,
-					language: 'arabic'
-				});
+					playVerseAudio({
+						key: `${window.versesToPlayArray[0]}`,
+						timesToRepeat: 1,
+						language: 'arabic'
+					});
+				}
+
+				// 3. Open Advance Play modal
+				else if ($__playButtonsFunctionality.verse === 3) showAudioModal(key);
 			}
 
-			// 3. Open Advance Play modal
-			else if ($__playButtonsFunctionality.verse === 3) showAudioModal(key);
+			// for any other page, stick to default
+			else {
+				playVerseAudio({ key, language: 'arabic', timesToRepeat: 1 });
+			}
 		}
 	}
 </script>
