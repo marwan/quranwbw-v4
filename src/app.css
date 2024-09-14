@@ -51,6 +51,14 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "lexicon";
+  src: url("../fonts/lexicon/lexicon.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -303,7 +311,48 @@ svg {
 }
 
 /* for lexicon modal because the data is fetched externally and it has it's own classes */
-.entryFree {
-  padding-top: 2em;
+#lexiconModal .entryFree {
+  padding-bottom: 2rem;
+  line-height: 2rem;
 }
 
+#lexiconModal .entryFree::after {
+  content: '';
+  display: block;
+  position: relative;
+  top: 1rem;
+  width: 50%;
+  left: 25%;
+  border-top: 1px solid black;
+}
+
+#lexiconModal .hi {
+  font-weight: 500;
+}
+
+#lexiconModal .pageHeading {
+  display: none;
+  font-size: 2rem;
+}
+
+#lexiconModal .Arabic {
+  font-family: 'lexicon';
+  font-weight: 500;
+  direction: rtl;
+  font-size: 24px;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+#lexiconModal .itype {
+  font-weight: 600;
+}
+
+#lexiconModal .itype::after {
+  content: ': ';
+}
+
+#lexiconModal .orthdal {
+  display: none;
+  color: rgb(0, 255, 0);
+}

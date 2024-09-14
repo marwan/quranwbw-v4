@@ -26,7 +26,7 @@
 	}
 </script>
 
-<Modal title="Lanes Lexicon" id="lexiconModal" bind:open={$__lexiconModalVisible} class="!rounded-b-none md:!rounded-3xl theme" bodyClass="p-6 space-y-4 flex-1 overflow-y-auto overscroll-contain" headerClass="flex justify-between items-center p-6 rounded-t-3xl text-black theme-grayscale" classFooter="rounded-b-3xl flex flex-row justify-between" size="lg" position="bottom" center outsideclose>
+<Modal title={$__wordRoot} id="lexiconModal" bind:open={$__lexiconModalVisible} class="!rounded-b-none md:!rounded-3xl theme" bodyClass="p-6 space-y-4 flex-1 overflow-y-auto overscroll-contain" headerClass="flex justify-between items-center p-6 rounded-t-3xl text-black theme-grayscale" classFooter="rounded-b-3xl flex flex-row justify-between" size="lg" position="bottom" center outsideclose>
 	{#await lexiconData}
 		<Spinner />
 	{:then lexiconData}
