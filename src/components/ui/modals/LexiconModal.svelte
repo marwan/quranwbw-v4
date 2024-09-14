@@ -12,7 +12,7 @@
 			const indexesResponse = await fetch(`${staticEndpoint}/v4/lexicon/indexes.json`);
 			const indexesData = await indexesResponse.json();
 
-			if (indexesData[$__wordRoot] === undefined) return console.log('no lexicon data!');
+			if (indexesData[$__wordRoot] === undefined) return 'No data for this word.';
 
 			const lexiconFile = indexesData[$__wordRoot].file;
 			const lexiconIndex = indexesData[$__wordRoot].index;

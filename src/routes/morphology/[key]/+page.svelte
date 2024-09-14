@@ -101,14 +101,13 @@
 		{#await fetchWordSummary}
 			<span>...</span>
 		{:then fetchWordSummary}
-			<span>{@html fetchWordSummary.summary}</span>
+			<div class="flex flex-col space-y-4">
+				<span>{@html fetchWordSummary.summary}</span>
+				<!-- <button class="text-lg font-bold underline" on:click={() => showLexiconModal()}>View Lanes Lexicon Data &rarr;</button> -->
+			</div>
 		{:catch error}
 			<p>{errorLoadingDataMessage}</p>
 		{/await}
-	</div>
-
-	<div id="lexicon-data">
-		<button class={buttonOutlineClasses} on:click={() => showLexiconModal()}>Lanes Lexicon Data</button>
 	</div>
 
 	<div id="word-details" class="flex flex-col space-y-6">

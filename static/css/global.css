@@ -3691,6 +3691,10 @@ svg {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.hover\:underline:hover {
+  text-decoration-line: underline;
+}
+
 .focus\:border-black\/10:focus {
   border-color: rgb(0 0 0 / 0.1);
 }
