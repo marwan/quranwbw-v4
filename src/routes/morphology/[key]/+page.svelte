@@ -7,12 +7,12 @@
 	import Table from '$display/morphology/Table.svelte';
 	import { quranMetaData } from '$data/quranMeta';
 	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
-	import { __currentPage, __fontType, __wordTranslation, __verseTranslations, __morphologyKey, __pageURL, __displayType } from '$utils/stores';
+	import { __currentPage, __fontType, __wordTranslation, __verseTranslations, __morphologyKey, __pageURL, __displayType, __lexiconModalVisible, __wordRoot } from '$utils/stores';
 	import { buttonOutlineClasses } from '$data/commonClasses';
 	import { fetchVersesData } from '$utils/fetchData';
 	import { term } from '$utils/terminologies';
 
-	let fetchWordsData, fetchWordSummary;
+	let fetchWordsData, fetchWordsData1, fetchWordSummary;
 	let chapter, verse, word;
 
 	$: {
@@ -34,6 +34,7 @@
 		fetchWordsData = (async () => {
 			const response = await fetch(`${apiEndpoint}/morphology?words=${$__morphologyKey}&word_translation=${$__wordTranslation}`);
 			const data = await response.json();
+			fetchWordsData1 = data.data;
 			return data.data;
 		})();
 
@@ -43,6 +44,12 @@
 			const data = await response.json();
 			return data.data;
 		})();
+	}
+
+	// set the word root and show the modal
+	function showLexiconModal() {
+		__wordRoot.set(fetchWordsData1[0].morphology.root.root);
+		__lexiconModalVisible.set(true);
 	}
 
 	// only allow display type 1 & 2, and don't save the layout in settings
@@ -94,7 +101,10 @@
 		{#await fetchWordSummary}
 			<span>...</span>
 		{:then fetchWordSummary}
-			<span>{@html fetchWordSummary.summary}</span>
+			<div class="flex flex-col space-y-4">
+				<span>{@html fetchWordSummary.summary}</span>
+				<!-- <button class="text-lg font-bold underline" on:click={() => showLexiconModal()}>View Lanes Lexicon Data &rarr;</button> -->
+			</div>
 		{:catch error}
 			<p>{errorLoadingDataMessage}</p>
 		{/await}

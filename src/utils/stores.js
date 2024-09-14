@@ -50,12 +50,14 @@ let __websiteOnline,
 	__quranNavigationModalVisible,
 	__siteNavigationModalVisible,
 	__settingsSelectorModal,
+	__lexiconModalVisible,
 	__wakeLockEnabled,
 	__quizCorrectAnswers,
 	__quizWrongAnswers,
 	__timeSpecificChapters,
 	__englishTerminology,
-	__hideNonDuaPart;
+	__hideNonDuaPart,
+	__wordRoot;
 
 if (browser) {
 	const userSettings = JSON.parse(localStorage.getItem('userSettings'));
@@ -201,6 +203,7 @@ if (browser) {
 	__settingsSelectorModal = writable({
 		visible: false
 	});
+	__lexiconModalVisible = writable(false);
 
 	// wake lock settings
 	__wakeLockEnabled = writable(userSettings.displaySettings.wakeLockEnabled);
@@ -220,6 +223,9 @@ if (browser) {
 
 	// show/hide non-dua words
 	__hideNonDuaPart = writable(userSettings.displaySettings.hideNonDuaPart);
+
+	// to store the word root for showing lexicon data
+	__wordRoot = writable(null);
 }
 
 export {
@@ -272,10 +278,12 @@ export {
 	__quranNavigationModalVisible,
 	__siteNavigationModalVisible,
 	__settingsSelectorModal,
+	__lexiconModalVisible,
 	__wakeLockEnabled,
 	__quizCorrectAnswers,
 	__quizWrongAnswers,
 	__timeSpecificChapters,
 	__englishTerminology,
-	__hideNonDuaPart
+	__hideNonDuaPart,
+	__wordRoot
 };
