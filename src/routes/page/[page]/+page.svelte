@@ -16,7 +16,8 @@
 	import { debounce } from '$utils/debounce';
 	import '$lib/swiped-events.min.js';
 
-	$: page = +data.page;
+	// page:line for which we need to center the verse rathen than justify
+	const centeredPageLines = ['528:9', '594:5', '602:5', '602:15', '603:10', '603:15', '604:4', '604:9', '604:14', '604:15'];
 
 	let pageData;
 	let startingLine;
@@ -27,8 +28,7 @@
 	let scale;
 	let scale1 = 0;
 
-	// page:line for which we need to center the verse rathen than justify
-	const centeredPageLines = ['528:9', '594:5', '602:5', '602:15', '603:10', '603:15', '604:4', '604:9', '604:14', '604:15'];
+	$: page = +data.page;
 
 	// load some previous and next pages fonts for v4
 	$: {

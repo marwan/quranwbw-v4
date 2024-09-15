@@ -30,11 +30,16 @@
 	// check old bookmarks for v3 update
 	checkOldBookmarks();
 
+	// default top & bottom paddings of all pages
+	const defaultPaddingTop = 'pt-16';
+	const defaultPaddingBottom = 'pt-8';
+
 	// custom padding depending on page
-	$: paddingTop = $__currentPage === 'home' ? 'pt-10' : 'pt-16';
-	$: paddingBottom = $__currentPage === 'chapter' ? 'pb-24' : 'pb-8';
+	$: paddingTop = $__currentPage === 'home' ? 'pt-10' : defaultPaddingTop;
+	$: paddingBottom = $__currentPage === 'chapter' ? 'pb-24' : defaultPaddingBottom;
 	$: paddingX = $__currentPage === 'page' ? 'px-0 md:px-4' : $__currentPage === 'home' ? 'px-0' : 'px-4';
 
+	// distraction free mushaf mode, that is, hiding the top & bottom bar
 	$: {
 		if ($__mushafDistractionFreeReadingEnabled) {
 			paddingTop = 'pt-0';
@@ -42,8 +47,8 @@
 			__topNavbarVisible.set(false);
 			__bottomToolbarVisible.set(false);
 		} else {
-			paddingTop = 'pt-16';
-			paddingBottom = 'pb-8';
+			paddingTop = defaultPaddingTop;
+			paddingBottom = defaultPaddingBottom;
 			__topNavbarVisible.set(true);
 			__bottomToolbarVisible.set(true);
 		}
