@@ -24,7 +24,8 @@ import {
 	__quizCorrectAnswers,
 	__quizWrongAnswers,
 	__englishTerminology,
-	__hideNonDuaPart
+	__hideNonDuaPart,
+	__playButtonsFunctionality
 } from '$utils/stores';
 // import { uploadSettingsToCloud } from '$utils/cloudSettings';
 
@@ -239,6 +240,15 @@ export function updateSettings(props) {
 		case 'quizWrongAnswers':
 			__quizWrongAnswers.set(props.value);
 			userSettings.quiz.wrongAnswers = props.value;
+			break;
+
+		// for verse play button
+		case 'versePlayButton':
+			__playButtonsFunctionality.set({
+				verse: props.value,
+				toolbar: 1
+			});
+			userSettings.audioSettings.versePlayButton = props.value;
 			break;
 
 		// for increasing/decreasing font sizes

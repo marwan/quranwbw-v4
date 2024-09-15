@@ -45,6 +45,7 @@ export function setUserSettings() {
 	if (userSettings.audioSettings.translationReciter === undefined) userSettings.audioSettings.translationReciter = 1; // English - Ibrahim Walk (Sahih International)
 	if (userSettings.audioSettings.playbackSpeed === undefined) userSettings.audioSettings.playbackSpeed = 3; // x1
 	if (userSettings.audioSettings.playTranslation === undefined) userSettings.audioSettings.playTranslation = false; // verse translation
+	if (userSettings.audioSettings.versePlayButton === undefined) userSettings.audioSettings.versePlayButton = 1; // play selected verse
 
 	// quiz settings
 	if (userSettings.quiz === undefined) userSettings.quiz = {}; // parent

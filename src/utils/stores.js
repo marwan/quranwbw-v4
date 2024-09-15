@@ -57,7 +57,8 @@ let __websiteOnline,
 	__timeSpecificChapters,
 	__englishTerminology,
 	__hideNonDuaPart,
-	__wordRoot;
+	__wordRoot,
+	__playButtonsFunctionality;
 
 if (browser) {
 	const userSettings = JSON.parse(localStorage.getItem('userSettings'));
@@ -226,6 +227,12 @@ if (browser) {
 
 	// to store the word root for showing lexicon data
 	__wordRoot = writable(null);
+
+	// functionalities of the play buttons
+	__playButtonsFunctionality = writable({
+		verse: 1, // default is "play this verse"
+		toolbar: 1 // default is "play from start"
+	});
 }
 
 export {
@@ -285,5 +292,6 @@ export {
 	__timeSpecificChapters,
 	__englishTerminology,
 	__hideNonDuaPart,
-	__wordRoot
+	__wordRoot,
+	__playButtonsFunctionality
 };
