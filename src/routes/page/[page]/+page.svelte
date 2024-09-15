@@ -6,12 +6,13 @@
 	import WordsBlock from '$display/verses/WordsBlock.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
 	import { goto } from '$app/navigation';
-	import { __chapterNumber, __pageNumber, __currentPage, __fontType, __wordTranslation, __mushafPageDivisions, __lastRead, __displayType } from '$utils/stores';
+	import { __chapterNumber, __pageNumber, __currentPage, __fontType, __wordTranslation, __mushafPageDivisions, __lastRead, __displayType, __topNavbarVisible, __bottomToolbarVisible, __mushafDistractionFreeReadingEnabled } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';
 	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
 	import { quranMetaData, chapterHeaderCodes } from '$data/quranMeta';
 	import { mushafFontLinks, selectableFontTypes } from '$data/options';
 	import { loadFont } from '$utils/loadFont';
+	import { pinch } from 'svelte-gestures';
 	import '$lib/swiped-events.min.js';
 
 	$: page = +data.page;
@@ -113,11 +114,27 @@
 	$__displayType = 4;
 
 	__currentPage.set('page');
+
+	// swipe events
+	let scale;
+	let scaleStore = 0;
+
+	function handler(event) {
+		scale = event.detail.scale;
+
+		if (scale < scaleStore) {
+			__mushafDistractionFreeReadingEnabled.set(true);
+		} else {
+			__mushafDistractionFreeReadingEnabled.set(false);
+		}
+
+		scaleStore = scale;
+	}
 </script>
 
 <PageHead title={`Page ${page}`} />
 
-<div id="page-block" class="text-center text-xl mt-6 mb-14 overflow-x-hidden">
+<div id="page-block" class="text-center text-xl mt-6 mb-14 overflow-x-hidden" use:pinch on:pinch={handler}>
 	{#await pageData}
 		<Spinner height="screen" margin="-mt-20" />
 	{:then}

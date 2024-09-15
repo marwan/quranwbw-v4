@@ -19,7 +19,7 @@
 	import SiteNavigationModal from '$ui/modals/SiteNavigationModal.svelte';
 	import SettingsSelectorModal from '$ui/modals/SettingsSelectorModal.svelte';
 	import LexiconModal from '$ui/modals/LexiconModal.svelte';
-	import { __websiteOnline, __currentPage, __chapterNumber, __settingsDrawerHidden, __wakeLockEnabled, __userToken, __fontType, __wordTranslation, __verseTranslations, __selectedDisplayId } from '$utils/stores';
+	import { __websiteOnline, __currentPage, __chapterNumber, __settingsDrawerHidden, __wakeLockEnabled, __userToken, __fontType, __wordTranslation, __verseTranslations, __selectedDisplayId, __mushafDistractionFreeReadingEnabled, __topNavbarVisible, __bottomToolbarVisible } from '$utils/stores';
 	import { checkOldBookmarks } from '$utils/checkOldBookmarks';
 	import { debounce } from '$utils/debounce';
 	import { toggleNavbar } from '$utils/toggleNavbar';
@@ -34,6 +34,20 @@
 	$: paddingTop = $__currentPage === 'home' ? 'pt-10' : 'pt-16';
 	$: paddingBottom = $__currentPage === 'chapter' ? 'pb-24' : 'pb-8';
 	$: paddingX = $__currentPage === 'page' ? 'px-0 md:px-4' : $__currentPage === 'home' ? 'px-0' : 'px-4';
+
+	$: {
+		if ($__mushafDistractionFreeReadingEnabled) {
+			paddingTop = 'pt-0';
+			paddingBottom = 'pb-0';
+			__topNavbarVisible.set(false);
+			__bottomToolbarVisible.set(false);
+		} else {
+			paddingTop = 'pt-16';
+			paddingBottom = 'pb-8';
+			__topNavbarVisible.set(true);
+			__bottomToolbarVisible.set(true);
+		}
+	}
 
 	// if settings drawer is open, hide body scroll
 	$: {
