@@ -13,6 +13,7 @@
 	import { mushafFontLinks, selectableFontTypes } from '$data/options';
 	import { loadFont } from '$utils/loadFont';
 	import { pinch } from 'svelte-gestures';
+	import { debounce } from '$utils/debounce';
 	import '$lib/swiped-events.min.js';
 
 	$: page = +data.page;
@@ -110,31 +111,27 @@
 		updateSettings({ type: 'lastRead', value: { key: key !== undefined ? key : '1:1', page } });
 	}
 
+	// swipe events
+	let scale,
+		scale1 = 0;
+
+	function pinchHandler(event) {
+		debounce(() => {
+			scale = event.detail.scale;
+			__mushafDistractionFreeReadingEnabled.set(scale < scale1 ? false : true);
+			scale1 = scale;
+		}, 200);
+	}
+
 	// only allow continious normal mode, but skip saving the settings
 	$__displayType = 4;
 
 	__currentPage.set('page');
-
-	// swipe events
-	let scale;
-	let scaleStore = 0;
-
-	function handler(event) {
-		scale = event.detail.scale;
-
-		if (scale < scaleStore) {
-			__mushafDistractionFreeReadingEnabled.set(true);
-		} else {
-			__mushafDistractionFreeReadingEnabled.set(false);
-		}
-
-		scaleStore = scale;
-	}
 </script>
 
 <PageHead title={`Page ${page}`} />
 
-<div id="page-block" class="text-center text-xl mt-6 mb-14 overflow-x-hidden" use:pinch on:pinch={handler}>
+<div id="page-block" class="text-center text-xl mt-6 mb-14 overflow-x-hidden" use:pinch on:pinch={pinchHandler}>
 	{#await pageData}
 		<Spinner height="screen" margin="-mt-20" />
 	{:then}
