@@ -19,10 +19,13 @@
 	$: page = +data.page;
 
 	let pageData;
-	let startingLine, endingLine;
-	let chapters = [],
-		verses = [],
-		lines = [];
+	let startingLine;
+	let endingLine;
+	let chapters = [];
+	let verses = [];
+	let lines = [];
+	let scale;
+	let scale1 = 0;
 
 	// page:line for which we need to center the verse rathen than justify
 	const centeredPageLines = ['528:9', '594:5', '602:5', '602:15', '603:10', '603:15', '604:4', '604:9', '604:14', '604:15'];
@@ -111,10 +114,7 @@
 		updateSettings({ type: 'lastRead', value: { key: key !== undefined ? key : '1:1', page } });
 	}
 
-	// swipe events
-	let scale,
-		scale1 = 0;
-
+	// toggling the navbars on pinch for mushaf mode only
 	function pinchHandler(event) {
 		debounce(() => {
 			scale = event.detail.scale;
