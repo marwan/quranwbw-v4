@@ -95,7 +95,7 @@
 	$: updateSettings({ type: 'verseTranslationText', value: selectableFontSizes[verseTranlationTransliterationSizeValue].value });
 	$: updateSettings({ type: 'playbackSpeed', value: playbackSpeedValue });
 
-	$: maxFontSizeAllowed = ['default', 'sm'].includes(getTailwindBreakpoint()) ? 6 : 12;
+	$: maxFontSizeAllowed = ['default', 'sm'].includes(getTailwindBreakpoint()) ? 9 : 12;
 	$: wordTranslationKey = Object.keys(selectableWordTranslations).filter((item) => selectableWordTranslations[item].id === $__wordTranslation);
 	$: if ($__currentPage || $__settingsDrawerHidden) goBackToMainSettings();
 	$: {
