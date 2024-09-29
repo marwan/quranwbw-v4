@@ -30,14 +30,26 @@
 	// check old bookmarks for v3 update
 	checkOldBookmarks();
 
-	// default top & bottom paddings of all pages
 	const defaultPaddingTop = 'pt-16';
 	const defaultPaddingBottom = 'pt-8';
+	let wakeLock = null;
 
 	// custom padding depending on page
 	$: paddingTop = $__currentPage === 'home' ? 'pt-10' : defaultPaddingTop;
 	$: paddingBottom = $__currentPage === 'chapter' ? 'pb-24' : defaultPaddingBottom;
 	$: paddingX = $__currentPage === 'page' ? 'px-0 md:px-4' : $__currentPage === 'home' ? 'px-0' : 'px-4';
+
+	// if settings drawer is open, hide body scroll
+	$: $__settingsDrawerHidden ? document.body.classList.remove('overflow-y-hidden') : document.body.classList.add('overflow-y-hidden');
+
+	// fetch settings from cloud whenever there's a change in chapter or page
+	// $: if ($__currentPage && $__chapterNumber) downloadSettingsFromCloud();
+
+	// reset chapterDataLoaded if any of the following updates
+	$: if ($__currentPage || $__fontType || $__wordTranslation || $__verseTranslations) localStorage.setItem('chapterDataLoaded', false);
+
+	// stop all audio when the page or chapter is changed
+	$: if ($__currentPage || $__chapterNumber) resetAudioSettings({ location: 'end' });
 
 	// distraction free mushaf mode, that is, hiding the top & bottom bar
 	$: {
@@ -54,15 +66,7 @@
 		}
 	}
 
-	// if settings drawer is open, hide body scroll
-	$: {
-		if ($__settingsDrawerHidden) document.body.classList.remove('overflow-y-hidden');
-		else document.body.classList.add('overflow-y-hidden');
-	}
-
-	// wakelock / screen sleep settings
-	let wakeLock = null;
-
+	// wakelock stuff
 	$: {
 		// enabled wakeLock
 		if ($__wakeLockEnabled === true) {
@@ -87,15 +91,6 @@
 			}
 		}
 	}
-
-	// fetch settings from cloud whenever there's a change in chapter or page
-	// $: if ($__currentPage && $__chapterNumber) downloadSettingsFromCloud();
-
-	// reset chapterDataLoaded if any of the following updates
-	$: if ($__currentPage || $__fontType || $__wordTranslation || $__verseTranslations) localStorage.setItem('chapterDataLoaded', false);
-
-	// stop all audio when the page or chapter is changed
-	$: if ($__currentPage || $__chapterNumber) resetAudioSettings({ location: 'end' });
 
 	// update display and font type depending on the page
 	$: {
