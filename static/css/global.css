@@ -3072,7 +3072,7 @@ input[type="range"].range-lg::-moz-range-thumb {
 @font-face {
   font-family: "chapter-icons";
 
-  src: url("../fonts/chapter-icons/chapter-icons.woff") format("woff");
+  src: url("../fonts/chapter-icons/surahs_v4-Regular.woff") format("woff2"), url("../fonts/chapter-icons/surahs_v4-Regular.woff") format("woff");
 
   font-weight: normal;
 
@@ -3691,10 +3691,6 @@ svg {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-.hover\:underline:hover {
-  text-decoration-line: underline;
-}
-
 .focus\:border-black\/10:focus {
   border-color: rgb(0 0 0 / 0.1);
 }
@@ -4052,6 +4048,11 @@ svg {
   .md\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
+  }
+
+  .md\:text-5xl {
+    font-size: 3rem;
+    line-height: 1;
   }
 }
 

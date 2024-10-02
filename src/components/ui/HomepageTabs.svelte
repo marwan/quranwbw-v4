@@ -138,7 +138,7 @@
 									{term('verses')}
 								</div>
 							</div>
-							<div class="invisible chapter-icons justify-items-end opacity-70 text-3xl md:mt-2">{@html `&#xE9${quranMetaData[chapter + 1].icon};`}</div>
+							<div class="invisible chapter-icons justify-items-end opacity-70 text-5xl">{@html `&#xE9${quranMetaData[chapter + 1].icon};`}</div>
 						</div>
 					</a>
 				{/each}
