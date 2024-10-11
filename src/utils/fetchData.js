@@ -3,7 +3,7 @@ import { __fontType, __chapterData, __verseTranslationData, __wordTranslation, _
 import { apiEndpoint, staticEndpoint } from '$data/websiteSettings';
 import { selectableFontTypes } from '$data/options';
 
-const apiVersion = 104;
+const apiVersion = 105;
 
 // we first fetch specific verses (startVerse to endVerse), and then fetch the complete chapter data which will then be cached by the user's browser
 export async function fetchChapterData(chapter, download = false) {
