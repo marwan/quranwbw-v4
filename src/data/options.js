@@ -4,7 +4,8 @@ export const selectableDisplays = {
 	3: { displayID: 3, displayName: 'Continuous Word by Word', displayComponent: 'ContinuousDisplay', layout: 'wbw', continuous: true, customClasses: 'text-center direction-rtl' },
 	4: { displayID: 4, displayName: 'Continuous Normal', displayComponent: 'ContinuousDisplay', layout: 'normal', continuous: true, customClasses: 'text-center direction-rtl' },
 	5: { displayID: 5, displayName: 'Side By Side', displayComponent: 'SideBySideDisplay', layout: 'normal', continuous: false, customClasses: null },
-	6: { displayID: 6, displayName: 'Mushaf Mode' }
+	6: { displayID: 6, displayName: 'Mushaf Mode' },
+	7: { displayID: 7, displayName: 'Translation/Transliteration Only', displayComponent: 'TranslationTransliteration', layout: 'normal', continuous: false, customClasses: null }
 };
 
 export const selectableFontTypes = {
