@@ -117,11 +117,12 @@
 	<!-- words block toggle button for display #7 -->
 	{#if $__displayType === 7}
 		<div class="flex flex-row">
-			<button id="verse-options-{verse}" class={buttonClasses} aria-label="Toggle Words" on:click={() => wordsBlockToggler(verse)}>
+			<button class={buttonClasses} aria-label="Toggle Words" on:click={() => wordsBlockToggler(verse)}>
 				<div class="opacity-70">
 					<Eye size={6} />
 				</div>
 			</button>
+			<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-filter font-normal">Toggle Words</Tooltip>
 		</div>
 	{/if}
 </div>
