@@ -50,16 +50,7 @@
 
 	// function to toggle words block for display mode #7
 	function wordsBlockToggler(verse) {
-		const wordsBlock = document.querySelectorAll(`#verse-${verse}-words`);
-		const wordsBlockClasses = wordsBlock[verse === 1 ? 1 : 0].classList;
-
-		if (wordsBlockClasses.contains('hidden')) {
-			wordsBlockClasses.remove('hidden');
-			wordsBlockClasses.add('block');
-		} else {
-			wordsBlockClasses.remove('block');
-			wordsBlockClasses.add('hidden');
-		}
+		document.querySelectorAll(`#verse-${verse}-words`)[verse === 1 ? 1 : 0].classList.toggle('hidden');
 	}
 </script>
 
@@ -120,7 +111,7 @@
 		<div class="flex flex-row">
 			<button class={buttonClasses} aria-label="Toggle Words" on:click={() => wordsBlockToggler(verse)}>
 				<div class="opacity-70">
-					<Eye size={6} />
+					<Eye />
 				</div>
 			</button>
 			<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-filter font-normal">Toggle Words</Tooltip>
