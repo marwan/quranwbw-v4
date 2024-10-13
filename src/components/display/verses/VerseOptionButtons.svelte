@@ -50,14 +50,15 @@
 
 	// function to toggle words block for display mode #7
 	function wordsBlockToggler(verse) {
-		const wordsBlock = document.querySelector(`#verse-${verse}-words`);
+		const wordsBlock = document.querySelectorAll(`#verse-${verse}-words`);
+		const wordsBlockClasses = wordsBlock[verse === 1 ? 1 : 0].classList;
 
-		if (wordsBlock.classList.contains('hidden')) {
-			wordsBlock.classList.remove('hidden');
-			wordsBlock.classList.add('block');
+		if (wordsBlockClasses.contains('hidden')) {
+			wordsBlockClasses.remove('hidden');
+			wordsBlockClasses.add('block');
 		} else {
-			wordsBlock.classList.remove('block');
-			wordsBlock.classList.add('hidden');
+			wordsBlockClasses.remove('block');
+			wordsBlockClasses.add('hidden');
 		}
 	}
 </script>
