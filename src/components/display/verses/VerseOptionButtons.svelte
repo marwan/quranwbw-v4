@@ -8,7 +8,7 @@
 	import Pause from '$svgs/Pause.svelte';
 	import Notes from '$svgs/Notes.svelte';
 	import DotsHorizontal from '$svgs/DotsHorizontal.svelte';
-	import Eye from '$svgs/Eye.svelte';
+	import EyeOutline from '$svgs/EyeOutline.svelte';
 	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
 	import { playVerseAudio, resetAudioSettings, setVersesToPlay, showAudioModal } from '$utils/audioController';
 	import { __currentPage, __userSettings, __audioSettings, __verseKey, __userNotes, __notesModalVisible, __playButtonsFunctionality, __displayType } from '$utils/stores';
@@ -111,7 +111,7 @@
 		<div class="flex flex-row">
 			<button class={buttonClasses} aria-label="Toggle Words" on:click={() => wordsBlockToggler(verse)}>
 				<div class="opacity-70">
-					<Eye />
+					<EyeOutline />
 				</div>
 			</button>
 			<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-filter font-normal">Toggle Words</Tooltip>
