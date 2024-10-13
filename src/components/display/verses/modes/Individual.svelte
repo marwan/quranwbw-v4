@@ -4,13 +4,17 @@
 
 	import WordByWord from '$display/layouts/WordByWord.svelte';
 	import Normal from '$display/layouts/Normal.svelte';
-	import { updateSettings } from '$utils/updateSettings';
+	import TranslationTransliteration from '$display/layouts/TranslationTransliteration.svelte';
 	import { __displayType } from '$utils/stores';
 
-	// set the display back to type 1, in case it was 3, 4 or 5
-	if ($__displayType > 2) {
-		updateSettings({ type: 'displayType', value: 1 });
-	}
+	const displayComponents = {
+		1: { component: WordByWord },
+		2: { component: Normal },
+		7: { component: TranslationTransliteration }
+	};
+
+	// only allow display type 1, 2 & 7, and don't save the layout in settings
+	if (![1, 2, 7].includes($__displayType)) __displayType.set(1);
 </script>
 
-<svelte:component this={$__displayType === 1 ? WordByWord : Normal} {key} {value} />
+<svelte:component this={displayComponents[$__displayType].component} {key} {value} />
