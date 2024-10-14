@@ -12,9 +12,6 @@
 	// fetch supplication verses
 	$: fetchData = fetchVersesData(getSupplicationKeys(), $__fontType, $__wordTranslation, $__verseTranslations.toString());
 
-	// only allow display type 1 & 2, and don't save the layout in settings
-	if ([3, 4, 5].includes($__displayType)) $__displayType = 1;
-
 	// __currentPage.set(`${term('supplications').toLowerCase()}`);
 	__currentPage.set('supplications');
 </script>
