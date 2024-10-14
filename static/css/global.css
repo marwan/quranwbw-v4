@@ -3858,10 +3858,6 @@ svg {
     margin-bottom: 0.5rem;
   }
 
-  .md\:mt-2 {
-    margin-top: 0.5rem;
-  }
-
   .md\:mt-6 {
     margin-top: 1.5rem;
   }
@@ -4048,11 +4044,6 @@ svg {
   .md\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
-  }
-
-  .md\:text-5xl {
-    font-size: 3rem;
-    line-height: 1;
   }
 }
 

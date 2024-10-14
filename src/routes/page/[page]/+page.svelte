@@ -93,7 +93,7 @@
 			});
 
 			// dynamically load header font
-			loadFont('chapter-headers', mushafFontLinks.header).then(() => {
+			loadFont('chapter-headers', `${mushafFontLinks.header}?v=${mushafFontLinks.version}`).then(() => {
 				document.querySelectorAll('.header').forEach((element) => {
 					element.classList.remove('invisible');
 				});

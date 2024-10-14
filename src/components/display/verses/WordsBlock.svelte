@@ -20,7 +20,7 @@
 
 	// if mushaf fonts are selected, then dynamically load the fonts
 	if ([2, 3].includes($__fontType)) {
-		loadFont(`p${value.meta.page}`, `${mushafFontLinks.COLRv1}/QCF4${`00${value.meta.page}`.slice(-3)}_COLOR-Regular.woff`).then(() => {
+		loadFont(`p${value.meta.page}`, `${mushafFontLinks.COLRv1}/QCF4${`00${value.meta.page}`.slice(-3)}_COLOR-Regular.woff?v=${mushafFontLinks.version}`).then(() => {
 			// we can by default hide the v4 words and show when the font is loaded...
 			document.querySelectorAll(`.p${value.meta.page}`).forEach((element) => {
 				element.classList.remove('invisible');

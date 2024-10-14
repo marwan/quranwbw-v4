@@ -414,6 +414,9 @@ export const selectableVersePlayButtonOptions = {
 };
 
 export const mushafFontLinks = {
+	// version for caching
+	version: 1,
+
 	// normal word fonts
 	COLRv1: 'https://fonts.quranwbw.com/Hafs/KFGQPC-v4/COLRv1',
 
