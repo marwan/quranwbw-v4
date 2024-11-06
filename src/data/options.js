@@ -250,16 +250,22 @@ export const selectableVerseTransliterations = [1, 3, 57];
 
 export const selectableWordTranslations = {
 	1: { id: 5, language: 'Bangla' },
-	2: { id: 1, language: 'English' },
-	3: { id: 11, language: 'French' },
-	4: { id: 8, language: 'German' },
-	5: { id: 3, language: 'Hindi' },
-	6: { id: 4, language: 'Indonesian' },
-	7: { id: 10, language: 'Ingush' },
-	8: { id: 9, language: 'Russian' },
-	9: { id: 7, language: 'Tamil' },
-	10: { id: 6, language: 'Turkish' },
-	11: { id: 2, language: 'Urdu' }
+	2: { id: 14, language: 'Chinese (Traditional)' },
+	3: { id: 15, language: 'Chinese (Zhuyin)' },
+	4: { id: 16, language: 'Chinese (Simplified)' },
+	5: { id: 17, language: 'Chinese (Pinyin)' },
+	6: { id: 1, language: 'English' },
+	7: { id: 11, language: 'French' },
+	8: { id: 8, language: 'German' },
+	9: { id: 3, language: 'Hindi' },
+	10: { id: 4, language: 'Indonesian' },
+	11: { id: 10, language: 'Ingush' },
+	12: { id: 12, language: 'Malayalam (Amani Thafseer)' },
+	13: { id: 13, language: 'Malayalam (Quran Lalithasaram)' },
+	14: { id: 9, language: 'Russian' },
+	15: { id: 7, language: 'Tamil' },
+	16: { id: 6, language: 'Turkish' },
+	17: { id: 2, language: 'Urdu' }
 };
 
 export const selectableReciters = {
