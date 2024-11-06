@@ -25,10 +25,12 @@ export const selectableThemes = {
 
 export const verseTranslationsLanguages = [
 	{ language_id: 20, language: 'Bangla' },
+	{ language_id: 185, language: 'Chinese' },
 	{ language_id: 38, language: 'English' },
 	{ language_id: 49, language: 'French' },
 	{ language_id: 60, language: 'Hindi' },
 	{ language_id: 67, language: 'Indonesian' },
+	{ language_id: 106, language: 'Malayalam' },
 	{ language_id: 158, language: 'Tamil' },
 	{ language_id: 11115, language: 'Transliteration' },
 	{ language_id: 167, language: 'Turkish' },
@@ -56,6 +58,18 @@ export const selectableVerseTranslations = {
 		resource_id: 213,
 		resource_name: 'Dr. Abu Bakr Muhammad Zakaria',
 		language_id: 20
+	},
+
+	// chinese
+	56: {
+		resource_id: 56,
+		resource_name: 'Chinese Translation (Simplified) - Ma Jain',
+		language_id: 185
+	},
+	109: {
+		resource_id: 109,
+		resource_name: 'Muhammad Makin',
+		language_id: 185
 	},
 
 	// english
@@ -139,6 +153,23 @@ export const selectableVerseTranslations = {
 		resource_id: 141,
 		resource_name: 'The Sabiq company',
 		language_id: 67
+	},
+
+	// malayalam
+	224: {
+		resource_id: 224,
+		resource_name: 'Abdul-Hamid Haidar & Kanhi Muhammad',
+		language_id: 106
+	},
+	80: {
+		resource_id: 80,
+		resource_name: 'Muhammad Karakunnu and Vanidas Elayavoor',
+		language_id: 106
+	},
+	37: {
+		resource_id: 37,
+		resource_name: 'Abdul Hameed and Kunhi',
+		language_id: 106
 	},
 
 	// tamil
