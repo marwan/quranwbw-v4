@@ -1192,6 +1192,11 @@ input[type="range"].range-lg::-moz-range-thumb {
   margin-bottom: 2rem;
 }
 
+.mx-1 {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+}
+
 .-mt-20 {
   margin-top: -5rem;
 }
@@ -2120,6 +2125,10 @@ input[type="range"].range-lg::-moz-range-thumb {
   border-top-width: 2px;
 }
 
+.border-r {
+  border-right-width: 1px;
+}
+
 .\!border-black\/10 {
   border-color: rgb(0 0 0 / 0.1) !important;
 }
@@ -2573,6 +2582,10 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .pr-2 {
   padding-right: 0.5rem;
+}
+
+.pr-4 {
+  padding-right: 1rem;
 }
 
 .ps-10 {
@@ -3888,6 +3901,10 @@ svg {
 
   .md\:w-3\/4 {
     width: 75%;
+  }
+
+  .md\:w-full {
+    width: 100%;
   }
 
   .md\:w-max {
