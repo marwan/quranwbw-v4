@@ -25,10 +25,12 @@ export const selectableThemes = {
 
 export const verseTranslationsLanguages = [
 	{ language_id: 20, language: 'Bangla' },
+	{ language_id: 185, language: 'Chinese' },
 	{ language_id: 38, language: 'English' },
 	{ language_id: 49, language: 'French' },
 	{ language_id: 60, language: 'Hindi' },
 	{ language_id: 67, language: 'Indonesian' },
+	{ language_id: 106, language: 'Malayalam' },
 	{ language_id: 158, language: 'Tamil' },
 	{ language_id: 11115, language: 'Transliteration' },
 	{ language_id: 167, language: 'Turkish' },
@@ -56,6 +58,18 @@ export const selectableVerseTranslations = {
 		resource_id: 213,
 		resource_name: 'Dr. Abu Bakr Muhammad Zakaria',
 		language_id: 20
+	},
+
+	// chinese
+	56: {
+		resource_id: 56,
+		resource_name: 'Chinese Translation (Simplified) - Ma Jain',
+		language_id: 185
+	},
+	109: {
+		resource_id: 109,
+		resource_name: 'Muhammad Makin',
+		language_id: 185
 	},
 
 	// english
@@ -139,6 +153,23 @@ export const selectableVerseTranslations = {
 		resource_id: 141,
 		resource_name: 'The Sabiq company',
 		language_id: 67
+	},
+
+	// malayalam
+	224: {
+		resource_id: 224,
+		resource_name: 'Abdul-Hamid Haidar & Kanhi Muhammad',
+		language_id: 106
+	},
+	80: {
+		resource_id: 80,
+		resource_name: 'Muhammad Karakunnu and Vanidas Elayavoor',
+		language_id: 106
+	},
+	37: {
+		resource_id: 37,
+		resource_name: 'Abdul Hameed and Kunhi',
+		language_id: 106
 	},
 
 	// tamil
@@ -250,16 +281,22 @@ export const selectableVerseTransliterations = [1, 3, 57];
 
 export const selectableWordTranslations = {
 	1: { id: 5, language: 'Bangla' },
-	2: { id: 1, language: 'English' },
-	3: { id: 11, language: 'French' },
-	4: { id: 8, language: 'German' },
-	5: { id: 3, language: 'Hindi' },
-	6: { id: 4, language: 'Indonesian' },
-	7: { id: 10, language: 'Ingush' },
-	8: { id: 9, language: 'Russian' },
-	9: { id: 7, language: 'Tamil' },
-	10: { id: 6, language: 'Turkish' },
-	11: { id: 2, language: 'Urdu' }
+	2: { id: 14, language: 'Chinese (Traditional)' },
+	3: { id: 15, language: 'Chinese (Zhuyin)' },
+	4: { id: 16, language: 'Chinese (Simplified)' },
+	5: { id: 17, language: 'Chinese (Pinyin)' },
+	6: { id: 1, language: 'English' },
+	7: { id: 11, language: 'French' },
+	8: { id: 8, language: 'German' },
+	9: { id: 3, language: 'Hindi' },
+	10: { id: 4, language: 'Indonesian' },
+	11: { id: 10, language: 'Ingush' },
+	12: { id: 12, language: 'Malayalam (Amani Thafseer)' },
+	13: { id: 13, language: 'Malayalam (Quran Lalithasaram)' },
+	14: { id: 9, language: 'Russian' },
+	15: { id: 7, language: 'Tamil' },
+	16: { id: 6, language: 'Turkish' },
+	17: { id: 2, language: 'Urdu' }
 };
 
 export const selectableReciters = {
