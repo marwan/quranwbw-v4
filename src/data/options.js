@@ -315,6 +315,11 @@ export const selectableWordTranslations = {
 	18: { id: 2, language: 'Urdu' }
 };
 
+export const selectableWordTransliterations = {
+	1: { id: 1, language: 'Normal Transliteration' },
+	2: { id: 2, language: 'Tajweed Transliteration' }
+};
+
 export const selectableReciters = {
 	1: {
 		id: 1,

@@ -10,7 +10,7 @@
 	import { quranMetaData } from '$data/quranMeta';
 	import { selectableDisplays } from '$data/options';
 	import { errorLoadingDataMessage } from '$data/websiteSettings';
-	import { __userSettings, __currentPage, __chapterNumber, __displayType, __fontType, __wordTranslation, __verseTranslations, __pageURL, __firstVerseOnPage, __chapterDataLoaded, __verseTranslationData } from '$utils/stores';
+	import { __userSettings, __currentPage, __chapterNumber, __displayType, __fontType, __wordTranslation, __wordTransliteration, __verseTranslations, __pageURL, __firstVerseOnPage, __chapterDataLoaded, __verseTranslationData } from '$utils/stores';
 	import { buttonOutlineClasses } from '$data/commonClasses';
 	import { goto } from '$app/navigation';
 	import { term } from '$utils/terminologies';
@@ -52,7 +52,7 @@
 		__firstVerseOnPage.set(startVerse);
 
 		// do nothing except re-run the block if any of the following store updates
-		if ($__pageURL || $__displayType || $__fontType || $__wordTranslation) {
+		if ($__pageURL || $__displayType || $__fontType || $__wordTranslation || $__wordTransliteration) {
 			// do nothing...
 		}
 	}
