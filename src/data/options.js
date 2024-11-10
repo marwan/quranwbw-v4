@@ -26,6 +26,7 @@ export const selectableThemes = {
 export const verseTranslationsLanguages = [
 	{ language_id: 20, language: 'Bangla' },
 	{ language_id: 185, language: 'Chinese' },
+	{ language_id: 34, language: 'Divehi' },
 	{ language_id: 38, language: 'English' },
 	{ language_id: 49, language: 'French' },
 	{ language_id: 60, language: 'Hindi' },
@@ -70,6 +71,18 @@ export const selectableVerseTranslations = {
 		resource_id: 109,
 		resource_name: 'Muhammad Makin',
 		language_id: 185
+	},
+
+	// divehi
+	86: {
+		resource_id: 86,
+		resource_name: 'Office of the president of Maldives',
+		language_id: 34
+	},
+	840: {
+		resource_id: 840,
+		resource_name: 'Abu Bakr Ibrahim Ali (Bakurube)',
+		language_id: 34
 	},
 
 	// english
@@ -285,18 +298,19 @@ export const selectableWordTranslations = {
 	3: { id: 15, language: 'Chinese (Zhuyin)' },
 	4: { id: 16, language: 'Chinese (Simplified)' },
 	5: { id: 17, language: 'Chinese (Pinyin)' },
-	6: { id: 1, language: 'English' },
-	7: { id: 11, language: 'French' },
-	8: { id: 8, language: 'German' },
-	9: { id: 3, language: 'Hindi' },
-	10: { id: 4, language: 'Indonesian' },
-	11: { id: 10, language: 'Ingush' },
-	12: { id: 12, language: 'Malayalam (Amani Thafseer)' },
-	13: { id: 13, language: 'Malayalam (Quran Lalithasaram)' },
-	14: { id: 9, language: 'Russian' },
-	15: { id: 7, language: 'Tamil' },
-	16: { id: 6, language: 'Turkish' },
-	17: { id: 2, language: 'Urdu' }
+	6: { id: 18, language: 'Divehi' },
+	7: { id: 1, language: 'English' },
+	8: { id: 11, language: 'French' },
+	9: { id: 8, language: 'German' },
+	10: { id: 3, language: 'Hindi' },
+	11: { id: 4, language: 'Indonesian' },
+	12: { id: 10, language: 'Ingush' },
+	13: { id: 12, language: 'Malayalam (Amani Thafseer)' },
+	14: { id: 13, language: 'Malayalam (Quran Lalithasaram)' },
+	15: { id: 9, language: 'Russian' },
+	16: { id: 7, language: 'Tamil' },
+	17: { id: 6, language: 'Turkish' },
+	18: { id: 2, language: 'Urdu' }
 };
 
 export const selectableReciters = {
