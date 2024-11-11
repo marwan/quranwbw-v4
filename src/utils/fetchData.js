@@ -1,5 +1,5 @@
 import { get } from 'svelte/store';
-import { __fontType, __chapterData, __verseTranslationData, __wordTranslation, __verseTranslations, __timestampData } from '$utils/stores';
+import { __fontType, __chapterData, __verseTranslationData, __wordTranslation, __wordTransliteration, __verseTranslations, __timestampData } from '$utils/stores';
 import { apiEndpoint, staticEndpoint } from '$data/websiteSettings';
 import { selectableFontTypes } from '$data/options';
 
@@ -10,6 +10,7 @@ export async function fetchChapterData(chapter, download = false) {
 	__chapterData.set(null);
 	const fontType = get(__fontType);
 	const wordTranslation = get(__wordTranslation);
+	const wordTransliteration = get(__wordTransliteration);
 
 	let apiURL =
 		`${apiEndpoint}/chapter?` +
@@ -17,6 +18,7 @@ export async function fetchChapterData(chapter, download = false) {
 			chapter: chapter,
 			word_type: selectableFontTypes[fontType].apiId,
 			word_translation: wordTranslation,
+			word_transliteration: wordTransliteration,
 			verse_translation: '1,3',
 			version: apiVersion
 			// random: Math.floor(Math.random() * 999999999) + 0
@@ -59,6 +61,7 @@ export async function fetchVersesData(verses, fontType, wordTranslation) {
 			verses: verses,
 			word_type: selectableFontTypes[fontType].apiId,
 			word_translation: wordTranslation,
+			word_transliteration: get(__wordTransliteration),
 			verse_translation: '1,3',
 			version: apiVersion
 		});
