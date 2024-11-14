@@ -31,7 +31,7 @@
 	checkOldBookmarks();
 
 	const defaultPaddingTop = 'pt-16';
-	const defaultPaddingBottom = 'pt-8';
+	const defaultPaddingBottom = 'pb-8';
 	let wakeLock = null;
 
 	// custom padding depending on page
