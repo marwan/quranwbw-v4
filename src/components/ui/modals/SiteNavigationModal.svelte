@@ -1,13 +1,17 @@
 <script>
 	import Modal from '$ui/flowbite-svelte/modal/Modal.svelte';
-	import Menu from '$svgs/Menu.svelte';
-	import Settings from '$svgs/Settings.svelte';
+	import Settings2 from '$svgs/Settings2.svelte';
+	import TajweedRules from '$svgs/TajweedRules.svelte';
 	import Supplication from '$svgs/Supplication.svelte';
-	import Bookmarked from '$svgs/Bookmarked.svelte';
+	import Bookmark from '$svgs/Bookmark.svelte';
 	import Search from '$svgs/Search.svelte';
 	import Morphology from '$svgs/Morphology.svelte';
+	import Puzzle from '$svgs/Puzzle.svelte';
+	import About from '$svgs/About.svelte';
+	import Changelogs from '$svgs/Changelogs.svelte';
+	import LegacySite from '$svgs/LegacySite.svelte';
 
-	import { __siteNavigationModalVisible } from '$utils/stores';
+	import { __siteNavigationModalVisible, __settingsDrawerHidden, __tajweedRulesModalVisible, __tokenModalVisible } from '$utils/stores';
 	import { term } from '$utils/terminologies';
 
 	const linkClasses = 'w-full flex flex-row space-x-2 py-4 px-4 bg-gray-100 hover:bg-gray-200 rounded-xl items-center cursor-pointer';
@@ -21,7 +25,7 @@
 		{
 			title: 'Bookmarks',
 			link: '/bookmarks',
-			icon: Bookmarked
+			icon: Bookmark
 		},
 		{
 			title: 'Search',
@@ -36,17 +40,17 @@
 		{
 			title: 'Guess The Word',
 			link: '/games/guess-the-word',
-			icon: Settings
+			icon: Puzzle
 		},
 		{
 			title: 'About',
 			link: '/about',
-			icon: Settings
+			icon: About
 		},
 		{
 			title: 'Changelogs',
 			link: '/changelogs',
-			icon: Settings
+			icon: Changelogs
 		}
 	];
 </script>
@@ -56,20 +60,43 @@
 		<!-- modals / popups -->
 		<div class="flex flex-col space-y-2">
 			<div class="font-semibold">Navigate</div>
-			<div class="grid grid-cols-1 gap-1">
-				<!-- {#each { length: 5 } as _, link}
-					<div class={linkClasses}>
-						<Settings size={5} />
-						<div class="text-sm">Setting {link}</div>
-					</div>
-				{/each} -->
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-1">
+				<!-- settings modal -->
+				<button
+					on:click={() => {
+						__siteNavigationModalVisible.set(false);
+						__settingsDrawerHidden.set(false);
+					}}
+					class={linkClasses}
+				>
+					<Settings2 size={5} />
+					<span class="text-sm">Settings</span>
+				</button>
+
+				<!-- tajweed rules modal -->
+				<button
+					on:click={() => {
+						__siteNavigationModalVisible.set(false);
+						__tajweedRulesModalVisible.set(false);
+					}}
+					class={linkClasses}
+				>
+					<TajweedRules size={5} />
+					<span class="text-sm">{term('tajweed')} Rules</span>
+				</button>
 
 				{#each Object.entries(internalLinks) as [id, link]}
-					<div class={linkClasses}>
+					<a href={link.link} class={linkClasses}>
 						<svelte:component this={link.icon} size={5} />
-						<a href={link.link} class="text-sm">{link.title}</a>
-					</div>
+						<span class="text-sm">{link.title}</span>
+					</a>
 				{/each}
+
+				<!-- legacy site link -->
+				<a href="https://v3.quranwbw.com/" target="_blank" class={linkClasses}>
+					<LegacySite size={5} />
+					<span class="text-sm">Legacy Website</span>
+				</a>
 			</div>
 		</div>
 	</div>
