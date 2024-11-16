@@ -60,7 +60,7 @@
 		<!-- modals / popups -->
 		<div class="flex flex-col space-y-2">
 			<div class="font-semibold">Navigate</div>
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-1">
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-1 overflow-y-scroll max-h-80">
 				<!-- settings modal -->
 				<button
 					on:click={() => {
