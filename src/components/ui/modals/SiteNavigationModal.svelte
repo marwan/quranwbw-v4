@@ -10,49 +10,10 @@
 	import About from '$svgs/About.svelte';
 	import Changelogs from '$svgs/Changelogs.svelte';
 	import LegacySite from '$svgs/LegacySite.svelte';
-
 	import { __siteNavigationModalVisible, __settingsDrawerHidden, __tajweedRulesModalVisible, __tokenModalVisible, __currentPage } from '$utils/stores';
 	import { term } from '$utils/terminologies';
 
 	const linkClasses = 'w-full flex flex-row space-x-2 py-4 px-4 text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-xl items-center cursor-pointer theme-grayscale';
-
-	const internalLinks = [
-		{
-			title: term('supplications'),
-			link: `/${term('supplications').toLowerCase()}`,
-			icon: Supplication
-		},
-		{
-			title: 'Bookmarks',
-			link: '/bookmarks',
-			icon: Bookmark
-		},
-		{
-			title: 'Search',
-			link: '/search',
-			icon: Search2
-		},
-		{
-			title: 'Morphology',
-			link: '/morphology/1:1',
-			icon: Morphology
-		},
-		{
-			title: 'Guess The Word',
-			link: '/games/guess-the-word',
-			icon: Puzzle
-		},
-		{
-			title: 'About',
-			link: '/about',
-			icon: About
-		},
-		{
-			title: 'Changelogs',
-			link: '/changelogs',
-			icon: Changelogs
-		}
-	];
 
 	// hide the modal when page changes
 	$: if ($__currentPage) __siteNavigationModalVisible.set(false);
@@ -76,6 +37,18 @@
 					<span class="text-sm">Settings</span>
 				</button>
 
+				<!-- Search -->
+				<a href="/search" class={linkClasses}>
+					<Search2 size={5} />
+					<span class="text-sm">Search</span>
+				</a>
+
+				<!-- Bookmarks -->
+				<a href="/bookmarks" class={linkClasses}>
+					<Bookmark size={5} />
+					<span class="text-sm">Bookmarks</span>
+				</a>
+
 				<!-- tajweed rules modal -->
 				<button
 					on:click={() => {
@@ -88,17 +61,40 @@
 					<span class="text-sm">{term('tajweed')} Rules</span>
 				</button>
 
-				{#each Object.entries(internalLinks) as [id, link]}
-					<a href={link.link} class={linkClasses}>
-						<svelte:component this={link.icon} size={5} />
-						<span class="text-sm">{link.title}</span>
-					</a>
-				{/each}
+				<!-- Supplications -->
+				<a href="/{term('supplications').toLowerCase()}" class={linkClasses}>
+					<Supplication size={5} />
+					<span class="text-sm">{term('supplications')}</span>
+				</a>
+
+				<!-- Morphology -->
+				<a href="/morphology" class={linkClasses}>
+					<Morphology size={5} />
+					<span class="text-sm">Morphology</span>
+				</a>
+
+				<!-- Guess The Word -->
+				<a href="/games/guess-the-word" class={linkClasses}>
+					<Puzzle size={5} />
+					<span class="text-sm">Guess The Word</span>
+				</a>
+
+				<!-- Changelogs -->
+				<a href="/changelogs" class={linkClasses}>
+					<Changelogs size={5} />
+					<span class="text-sm">Changelogs</span>
+				</a>
+
+				<!-- About -->
+				<a href="/about" class={linkClasses}>
+					<About size={5} />
+					<span class="text-sm">About</span>
+				</a>
 
 				<!-- legacy site link -->
 				<a href="https://v3.quranwbw.com/" target="_blank" class={linkClasses}>
 					<LegacySite size={5} />
-					<span class="text-sm">Legacy Website</span>
+					<span class="text-sm">Old Website</span>
 				</a>
 			</div>
 		</div>
