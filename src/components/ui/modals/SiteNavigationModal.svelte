@@ -4,7 +4,7 @@
 	import TajweedRules from '$svgs/TajweedRules.svelte';
 	import Supplication from '$svgs/Supplication.svelte';
 	import Bookmark from '$svgs/Bookmark.svelte';
-	import Search from '$svgs/Search.svelte';
+	import Search2 from '$svgs/Search2.svelte';
 	import Morphology from '$svgs/Morphology.svelte';
 	import Puzzle from '$svgs/Puzzle.svelte';
 	import About from '$svgs/About.svelte';
@@ -30,7 +30,7 @@
 		{
 			title: 'Search',
 			link: '/search',
-			icon: Search
+			icon: Search2
 		},
 		{
 			title: 'Morphology',
