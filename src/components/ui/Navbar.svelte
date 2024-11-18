@@ -1,10 +1,9 @@
 <script>
-	import SiteNavigationDropdown from '$ui/SiteNavigationDropdown.svelte';
 	import Menu from '$svgs/Menu.svelte';
 	import Home from '$svgs/Home.svelte';
 	import ChevronDown from '$svgs/ChevronDown.svelte';
 	import { quranMetaData } from '$data/quranMeta';
-	import { __chapterNumber, __currentPage, __lastRead, __pageURL, __topNavbarVisible, __pageNumber, __morphologyKey, __mushafPageDivisions, __quranNavigationModalVisible } from '$utils/stores';
+	import { __chapterNumber, __currentPage, __lastRead, __pageURL, __topNavbarVisible, __pageNumber, __morphologyKey, __mushafPageDivisions, __siteNavigationModalVisible, __quranNavigationModalVisible } from '$utils/stores';
 
 	let lastReadPage;
 	let lastReadJuz;
@@ -89,11 +88,10 @@
 			{/if}
 		</button>
 
-		<button class="flex flex-row items-center p-3 cursor-pointer hover:bg-lightGray rounded-3xl" type="button" aria-label="Menu">
+		<button class="flex flex-row items-center p-3 cursor-pointer hover:bg-lightGray rounded-3xl" type="button" aria-label="Menu" on:click={() => __siteNavigationModalVisible.set(true)}>
 			<span class="text-xs pr-2 hidden md:block">Menu</span>
 			<Menu />
 		</button>
-		<SiteNavigationDropdown />
 	</div>
 
 	<!-- mini nav for chapter page -->
