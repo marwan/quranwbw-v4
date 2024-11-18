@@ -11,7 +11,7 @@
 	import Changelogs from '$svgs/Changelogs.svelte';
 	import LegacySite from '$svgs/LegacySite.svelte';
 
-	import { __siteNavigationModalVisible, __settingsDrawerHidden, __tajweedRulesModalVisible, __tokenModalVisible } from '$utils/stores';
+	import { __siteNavigationModalVisible, __settingsDrawerHidden, __tajweedRulesModalVisible, __tokenModalVisible, __currentPage } from '$utils/stores';
 	import { term } from '$utils/terminologies';
 
 	const linkClasses = 'w-full flex flex-row space-x-2 py-4 px-4 bg-gray-100 hover:bg-gray-200 rounded-xl items-center cursor-pointer';
@@ -53,6 +53,9 @@
 			icon: Changelogs
 		}
 	];
+
+	// hide the modal when page changes
+	$: if ($__currentPage) __siteNavigationModalVisible.set(false);
 </script>
 
 <Modal id="siteNavigationModal" bind:open={$__siteNavigationModalVisible} size="xs" class="rounded-3xl theme" bodyClass="p-6" center outsideclose>

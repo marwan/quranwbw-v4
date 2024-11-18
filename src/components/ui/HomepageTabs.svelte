@@ -57,11 +57,9 @@
 			</div>
 
 			<!-- menu for links on right -->
-			<div class="ml-2">
+			<div class="ml-2 align-center">
 				<button class="flex flex-row items-center bg-lightGray rounded-3xl p-3 {tabClasses} !border-b-0" title="Menu" on:click={() => __siteNavigationModalVisible.set(true)}>
-					<button class="flex flex-row items-center bg-lightGray rounded-3xl p-3 {tabClasses} !border-b-0" title="Menu">
-						<span class="text-black opacity-70"><Menu /></span>
-					</button>
+					<span class="text-black opacity-70"><Menu /></span>
 					<!-- <SiteNavigationDropdown /> -->
 				</button>
 			</div>
