@@ -1,4 +1,3 @@
-<!-- credits: Google Noto fonts - https://fonts.google.com/noto -->
 <script>
 	export let size = 4;
 </script>
