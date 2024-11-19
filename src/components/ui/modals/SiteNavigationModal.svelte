@@ -53,7 +53,7 @@
 				<button
 					on:click={() => {
 						__siteNavigationModalVisible.set(false);
-						__tajweedRulesModalVisible.set(false);
+						__tajweedRulesModalVisible.set(true);
 					}}
 					class={linkClasses}
 				>
