@@ -68,7 +68,7 @@
 				</a>
 
 				<!-- Morphology -->
-				<a href="/morphology" class={linkClasses}>
+				<a href="/morphology/1:1:1" class={linkClasses}>
 					<Morphology size={5} />
 					<span class="text-sm">Morphology</span>
 				</a>
