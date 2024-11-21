@@ -1,5 +1,4 @@
 <script>
-	import SiteNavigationDropdown from '$ui/SiteNavigationDropdown.svelte';
 	import Mecca from '$svgs/Mecca.svelte';
 	import Madinah from '$svgs/Madinah.svelte';
 	import CrossSolid from '$svgs/CrossSolid.svelte';
@@ -57,11 +56,10 @@
 			</div>
 
 			<!-- menu for links on right -->
-			<div class="ml-2">
-				<button class="flex flex-row items-center bg-lightGray rounded-3xl p-3 {tabClasses} !border-b-0" title="Menu">
+			<div class="ml-2 align-center">
+				<button class="flex flex-row items-center bg-lightGray rounded-3xl p-3 {tabClasses} !border-b-0" title="Menu" on:click={() => __siteNavigationModalVisible.set(true)}>
 					<span class="text-black opacity-70"><Menu /></span>
 				</button>
-				<SiteNavigationDropdown />
 			</div>
 		</div>
 	</div>
