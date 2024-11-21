@@ -59,6 +59,8 @@
 
 	$: if ($__verseTranslations) fetchVerseTranslationData($__chapterNumber);
 
+	$: loadPrevNextVerseButtons = `flex ${selectableDisplays[JSON.parse($__userSettings).displaySettings.displayType].continuous ? 'flex-row-reverse' : 'flex-row'} space-x-4 justify-center pt-8 pb-6 theme`;
+
 	// update some variables on chapter change, for when the data has to be loaded from the API
 	function resetChapterDataVariables(chapter) {
 		if (chapter !== $__chapterNumber) {
@@ -90,7 +92,7 @@
 		<div id="verses-block" class={selectableDisplays[JSON.parse($__userSettings).displaySettings.displayType].customClasses}>
 			<!-- buttons to start chapter from start and load previous verse -->
 			{#if startVerse > 1}
-				<div class="flex flex-row space-x-4 justify-center pt-8 pb-6 theme">
+				<div class={loadPrevNextVerseButtons}>
 					<a href="/{$__chapterNumber}" class="text-sm {buttonOutlineClasses}"> Start of {term('chapter')} </a>
 					<button on:click={loadPreviousVerse} class="text-sm {buttonOutlineClasses}"> Previous {term('verse')} </button>
 				</div>
