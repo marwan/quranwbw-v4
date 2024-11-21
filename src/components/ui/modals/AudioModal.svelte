@@ -102,8 +102,7 @@
 
 			{#if $__audioSettings.audioType === 'word'}
 				<span class="flex flex-col space-y-3 text-sm pt-2 opacity-70">
-					<span>This option would play all the words in the {term('verse')} one by one. If you would like to listen to individual words, click on them.</span>
-					<span>Note that this option just plays the words in sequence without considering the connecting silent letters between the words. For correct and connected recitation, play the complete {term('verse')} instead.</span>
+					<span>This feature allows you to hear each word in the {term('verse')} individually. To listen to specific words, simply click on them. Please note, this option plays the words sequentially without accounting for the connecting silent letters between them. For a seamless and accurate recitation, it is recommended to play the entire {term('verse')}.</span>
 				</span>
 			{/if}
 		</div>

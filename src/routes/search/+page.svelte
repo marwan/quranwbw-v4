@@ -80,11 +80,7 @@
 	<!-- search instructions -->
 	{#if searchText.length === 0}
 		<div id="how-to-search" class="flex flex-col text-sm space-y-2">
-			<span class="font-medium">Note:</span>
-			<ul class="list-disc ml-5 space-y-2">
-				<li>Avoid searching for extremely short phrases/words as it can fetch a lot of records causing slowness in your browser.</li>
-				<li>Phrases/words available in one translation may or may not be available in others. For example in Saheeh International, the word "Abraham" fetches 72 records but "Ibrahim" will fetch zero.</li>
-			</ul>
+			<span><b>Note:</b> To prevent browser slowdowns, avoid searching for extremely short phrases or words, as they may return a large number of records. Additionally, note that phrases or words available in one translation may not be available in others. For instance, in the Saheeh International translation, the word "Abraham" yields 72 records, whereas "Ibrahim" returns none.</span>
 		</div>
 	{/if}
 
