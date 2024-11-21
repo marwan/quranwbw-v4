@@ -1,11 +1,11 @@
 export const selectableDisplays = {
 	1: { displayID: 1, displayName: 'Word by Word', displayComponent: 'WBWDisplay', layout: 'wbw', continuous: false, customClasses: null, disallowedIn: [] },
 	2: { displayID: 2, displayName: 'Normal', displayComponent: 'NormalDisplay', layout: 'normal', continuous: false, customClasses: null, disallowedIn: [] },
-	3: { displayID: 3, displayName: 'Continuous Word by Word', displayComponent: 'ContinuousDisplay', layout: 'wbw', continuous: true, customClasses: 'text-center direction-rtl', disallowedIn: ['supplications', 'bookmarks'] },
-	4: { displayID: 4, displayName: 'Continuous Normal', displayComponent: 'ContinuousDisplay', layout: 'normal', continuous: true, customClasses: 'text-center direction-rtl', disallowedIn: ['supplications', 'bookmarks'] },
-	5: { displayID: 5, displayName: 'Side By Side', displayComponent: 'SideBySideDisplay', layout: 'normal', continuous: false, customClasses: null, disallowedIn: ['supplications', 'bookmarks'] },
-	6: { displayID: 6, displayName: 'Mushaf', disallowedIn: ['supplications', 'bookmarks'] },
-	7: { displayID: 7, displayName: 'Translation/Transliteration', displayComponent: 'TranslationTransliteration', layout: 'wbw', continuous: false, customClasses: null, disallowedIn: [] }
+	3: { displayID: 3, displayName: 'Continuous Word by Word', displayComponent: 'ContinuousDisplay', layout: 'wbw', continuous: true, customClasses: 'text-center direction-rtl', disallowedIn: ['supplications', 'bookmarks', 'morphology'] },
+	4: { displayID: 4, displayName: 'Continuous Normal', displayComponent: 'ContinuousDisplay', layout: 'normal', continuous: true, customClasses: 'text-center direction-rtl', disallowedIn: ['supplications', 'bookmarks', 'morphology'] },
+	5: { displayID: 5, displayName: 'Side By Side', displayComponent: 'SideBySideDisplay', layout: 'normal', continuous: false, customClasses: null, disallowedIn: ['supplications', 'bookmarks', 'morphology'] },
+	6: { displayID: 6, displayName: 'Mushaf', disallowedIn: ['supplications', 'bookmarks', 'morphology'] },
+	7: { displayID: 7, displayName: 'Translation/Transliteration', displayComponent: 'TranslationTransliteration', layout: 'wbw', continuous: false, customClasses: null, disallowedIn: ['morphology'] }
 };
 
 export const selectableFontTypes = {

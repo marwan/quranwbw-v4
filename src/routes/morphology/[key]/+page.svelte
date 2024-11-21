@@ -53,7 +53,7 @@
 	}
 
 	// only allow display type 1 & 2, and don't save the layout in settings
-	if ([3, 4, 5].includes($__displayType)) $__displayType = 1;
+	if (![1, 2].includes($__displayType)) $__displayType = 1;
 
 	__currentPage.set('morphology');
 </script>
