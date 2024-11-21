@@ -15,6 +15,7 @@
 	import { getModalTransition } from '$utils/getModalTransition';
 
 	const linkClasses = 'w-full flex flex-row space-x-2 py-4 px-4 text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-xl items-center cursor-pointer theme-grayscale';
+	const linkTextClasses = 'text-xs md:text-sm text-left w-[-webkit-fill-available] truncate';
 
 	// hide the modal when page changes
 	$: if ($__currentPage) __siteNavigationModalVisible.set(false);
@@ -25,7 +26,7 @@
 		<!-- modals / popups -->
 		<div class="flex flex-col space-y-2">
 			<div class="font-semibold">Navigate</div>
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-1 overflow-y-scroll max-h-80">
+			<div class="grid grid-cols-2 md:grid-cols-2 gap-1">
 				<!-- settings modal -->
 				<button
 					on:click={() => {
@@ -34,20 +35,20 @@
 					}}
 					class={linkClasses}
 				>
-					<Settings2 size={5} />
-					<span class="text-sm">Settings</span>
+					<Settings2 size={4} />
+					<span class={linkTextClasses}>Settings</span>
 				</button>
 
 				<!-- Search -->
 				<a href="/search" class={linkClasses}>
-					<Search2 size={5} />
-					<span class="text-sm">Search</span>
+					<Search2 size={4} />
+					<span class={linkTextClasses}>Search</span>
 				</a>
 
 				<!-- Bookmarks -->
 				<a href="/bookmarks" class={linkClasses}>
-					<Bookmark size={5} />
-					<span class="text-sm">Bookmarks</span>
+					<Bookmark size={4} />
+					<span class={linkTextClasses}>Bookmarks</span>
 				</a>
 
 				<!-- tajweed rules modal -->
@@ -58,44 +59,44 @@
 					}}
 					class={linkClasses}
 				>
-					<TajweedRules size={5} />
-					<span class="text-sm">{term('tajweed')} Rules</span>
+					<TajweedRules size={4} />
+					<span class={linkTextClasses}>{term('tajweed')} Rules</span>
 				</button>
 
 				<!-- Supplications -->
 				<a href="/{term('supplications').toLowerCase()}" class={linkClasses}>
-					<Supplication size={5} />
-					<span class="text-sm">{term('supplications')}</span>
+					<Supplication size={4} />
+					<span class={linkTextClasses}>{term('supplications')}</span>
 				</a>
 
 				<!-- Morphology -->
 				<a href="/morphology/1:1:1" class={linkClasses}>
-					<Morphology size={5} />
-					<span class="text-sm">Morphology</span>
+					<Morphology size={4} />
+					<span class={linkTextClasses}>Morphology</span>
 				</a>
 
 				<!-- Guess The Word -->
 				<a href="/games/guess-the-word" class={linkClasses}>
-					<Puzzle size={5} />
-					<span class="text-sm">Guess The Word</span>
+					<Puzzle size={4} />
+					<span class={linkTextClasses}>Word Game</span>
 				</a>
 
 				<!-- Changelogs -->
 				<a href="/changelogs" class={linkClasses}>
-					<Changelogs size={5} />
-					<span class="text-sm">Changelogs</span>
+					<Changelogs size={4} />
+					<span class={linkTextClasses}>Changelogs</span>
 				</a>
 
 				<!-- About -->
 				<a href="/about" class={linkClasses}>
-					<About size={5} />
-					<span class="text-sm">About</span>
+					<About size={4} />
+					<span class={linkTextClasses}>About</span>
 				</a>
 
 				<!-- legacy site link -->
 				<a href="https://v3.quranwbw.com/" target="_blank" class={linkClasses}>
-					<LegacySite size={5} />
-					<span class="text-sm">Old Website</span>
+					<LegacySite size={4} />
+					<span class={linkTextClasses}>Old Website</span>
 				</a>
 			</div>
 		</div>
