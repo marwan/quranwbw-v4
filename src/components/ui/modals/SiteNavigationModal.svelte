@@ -12,6 +12,7 @@
 	import LegacySite from '$svgs/LegacySite.svelte';
 	import { __siteNavigationModalVisible, __settingsDrawerHidden, __tajweedRulesModalVisible, __tokenModalVisible, __currentPage } from '$utils/stores';
 	import { term } from '$utils/terminologies';
+	import { getModalTransition } from '$utils/getModalTransition';
 
 	const linkClasses = 'w-full flex flex-row space-x-2 py-4 px-4 text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-xl items-center cursor-pointer theme-grayscale';
 
@@ -19,7 +20,7 @@
 	$: if ($__currentPage) __siteNavigationModalVisible.set(false);
 </script>
 
-<Modal id="siteNavigationModal" bind:open={$__siteNavigationModalVisible} size="xs" class="rounded-3xl text-black theme" bodyClass="p-6" center outsideclose>
+<Modal id="siteNavigationModal" bind:open={$__siteNavigationModalVisible} transitionParams={getModalTransition('basic')} size="xs" class="rounded-3xl text-black theme" bodyClass="p-6" center outsideclose>
 	<div class="flex flex-col space-y-4">
 		<!-- modals / popups -->
 		<div class="flex flex-col space-y-2">

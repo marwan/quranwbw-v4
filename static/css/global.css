@@ -1435,6 +1435,10 @@ input[type="range"].range-lg::-moz-range-thumb {
   height: 100vh;
 }
 
+.h-auto {
+  height: auto;
+}
+
 .max-h-52 {
   max-height: 13rem;
 }
