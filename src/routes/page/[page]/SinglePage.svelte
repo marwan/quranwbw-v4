@@ -168,7 +168,7 @@
 
 <!-- <div id="loadPageButton" class="flex justify-center pt-6 pb-18" use:inview={loadButtonOptions} on:inview_enter={(event) => document.querySelector('#loadPageButton > button').click()}> -->
 {#if page < 604}
-	<div id="loadPageButton" class="flex justify-center pt-6 pb-18">
+	<div id="loadPageButton" class="flex justify-center pt-6">
 		<button class="text-sm {buttonOutlineClasses}" on:click={() => loadNextPage()}> Continue Reading </button>
 	</div>
 {/if}

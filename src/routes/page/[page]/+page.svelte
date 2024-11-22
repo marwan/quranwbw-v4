@@ -10,7 +10,7 @@
 	__currentPage.set('page');
 </script>
 
-<div id="page-block" class="text-center text-xl mt-6 mb-14 overflow-x-hidden">
+<div id="page-block" class="text-center text-xl mt-6 mb-6 overflow-x-hidden">
 	{#key +data.page}
 		<SinglePage page={+data.page} />
 	{/key}
