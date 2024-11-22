@@ -11,6 +11,7 @@
 	import { quranMetaData, chapterHeaderCodes } from '$data/quranMeta';
 	import { mushafFontLinks, selectableFontTypes } from '$data/options';
 	import { loadFont } from '$utils/loadFont';
+	import { inview } from 'svelte-inview';
 	import '$lib/swiped-events.min.js';
 
 	$: page = +page;
@@ -126,14 +127,41 @@
 		// setting the nextVersesProps
 		nextPageToLoad = +nextPage;
 
-		console.log('loading page', nextPageToLoad);
+		// console.log('loading page', nextPageToLoad);
 	}
+
+	// const thisPageNumberOptions = {
+	// 	rootMargin: '10px'
+	// 	unobserveOnEnter: true
+	// };
+
+	let isInView;
+	const options = {};
 </script>
 
 {#await pageData}
 	<Spinner height="screen" margin="-mt-20" />
 {:then}
-	<div id={+page} class="space-y-2 mt-2.5">
+	<!-- <div id={+page} class="space-y-2 mt-2.5" use:inview={options} on:inview_enter={(event) => console.log(+event.target.id)}> -->
+	<div
+		id={+page}
+		class="space-y-2 mt-2.5"
+		use:inview={options}
+		on:inview_change={(event) => {
+			const { inView, entry, scrollDirection, observer, node } = event.detail;
+			isInView = inView;
+		}}
+		on:inview_enter={(event) => {
+			const { inView, entry, scrollDirection, observer, node } = event.detail;
+			isInView = inView;
+			console.log('page', +event.target.id);
+			__pageNumber.set(+event.target.id);
+		}}
+		on:inview_init={(event) => {
+			const { observer, node } = event.detail;
+		}}
+	>
+		<!-- {isInView && console.log(+event.target.id)} -->
 		<div class="max-w-3xl space-y-2 pb-2 mx-auto text-[5.4vw] md:text-[42px] lg:text-[36px]">
 			{#each Array.from(Array(endingLine + 1).keys()).slice(startingLine) as line}
 				<!-- if it's the first verse of a chapter -->
