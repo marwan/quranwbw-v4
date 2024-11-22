@@ -163,7 +163,7 @@ if (browser) {
 	__bottomToolbarVisible = writable(true);
 
 	// to store the chapters and juz info of a mushaf page
-	__mushafPageDivisions = writable(null);
+	__mushafPageDivisions = writable([]);
 
 	// to store the word tooltip type
 	__wordTooltip = writable(userSettings.displaySettings.wordTooltip);

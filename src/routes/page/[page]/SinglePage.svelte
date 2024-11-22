@@ -4,7 +4,6 @@
 	import Bismillah from '$display/Bismillah.svelte';
 	import WordsBlock from '$display/verses/WordsBlock.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
-	import { goto } from '$app/navigation';
 	import { __chapterNumber, __pageNumber, __currentPage, __fontType, __wordTranslation, __mushafPageDivisions, __lastRead, __displayType } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';
 	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
@@ -12,15 +11,19 @@
 	import { mushafFontLinks, selectableFontTypes } from '$data/options';
 	import { loadFont } from '$utils/loadFont';
 	import { inview } from 'svelte-inview';
-	import '$lib/swiped-events.min.js';
 
 	$: page = +page;
 
 	let pageData;
 	let startingLine, endingLine;
-	let chapters = [],
-		verses = [],
-		lines = [];
+	let chapters = [];
+	let verses = [];
+	let lines = [];
+	let SinglePageComponent;
+	let nextPageToLoad;
+	const options = {
+		rootMargin: '-50%'
+	};
 
 	// page:line for which we need to center the verse rathen than justify
 	const centeredPageLines = ['528:9', '594:5', '602:5', '602:15', '603:10', '603:15', '604:4', '604:9', '604:14', '604:15'];
@@ -76,21 +79,11 @@
 				}
 			}
 
-			// set the mushaf page divisions
-			__mushafPageDivisions.set({
+			// update mushaf page divisions
+			$__mushafPageDivisions[page] = {
 				chapters: chapters,
 				juz: apiData[Object.keys(apiData)[0]].meta.juz
-			});
-
-			// goto previous page on left swipe
-			document.getElementById('page-block').addEventListener('swiped-left', function (e) {
-				goto(`/page/${page === 1 ? 1 : page - 1}`, { replaceState: false });
-			});
-
-			// goto next page on right swipe
-			document.getElementById('page-block').addEventListener('swiped-right', function (e) {
-				goto(`/page/${page === 604 ? 604 : page + 1}`, { replaceState: false });
-			});
+			};
 
 			// dynamically load header font
 			loadFont('chapter-headers', `${mushafFontLinks.header}?v=${mushafFontLinks.version}`).then(() => {
@@ -110,58 +103,32 @@
 		updateSettings({ type: 'lastRead', value: { key: key !== undefined ? key : '1:1', page } });
 	}
 
-	// =========================
-	let SinglePageComponent;
-	let nextPageToLoad;
-
+	// function to load the next page when user scrolls down
 	function loadNextPage() {
 		import('./SinglePage.svelte').then((res) => (SinglePageComponent = res.default));
 
-		// get the last verse number from last prop value
+		// get the last page number
 		const lastPage = +document.querySelector('#page-block').lastElementChild.previousElementSibling.id;
-		const nextPage = lastPage + 1;
 
 		// remove the existing button
 		document.getElementById('loadPageButton').remove();
 
-		// setting the nextVersesProps
-		nextPageToLoad = +nextPage;
-
-		// console.log('loading page', nextPageToLoad);
+		// setting the next page
+		nextPageToLoad = lastPage + 1;
 	}
-
-	// const thisPageNumberOptions = {
-	// 	rootMargin: '10px'
-	// 	unobserveOnEnter: true
-	// };
-
-	let isInView;
-	const options = {};
 </script>
 
 {#await pageData}
 	<Spinner height="screen" margin="-mt-20" />
 {:then}
-	<!-- <div id={+page} class="space-y-2 mt-2.5" use:inview={options} on:inview_enter={(event) => console.log(+event.target.id)}> -->
 	<div
 		id={+page}
 		class="space-y-2 mt-2.5"
 		use:inview={options}
-		on:inview_change={(event) => {
-			const { inView, entry, scrollDirection, observer, node } = event.detail;
-			isInView = inView;
-		}}
 		on:inview_enter={(event) => {
-			const { inView, entry, scrollDirection, observer, node } = event.detail;
-			isInView = inView;
-			console.log('page', +event.target.id);
 			__pageNumber.set(+event.target.id);
 		}}
-		on:inview_init={(event) => {
-			const { observer, node } = event.detail;
-		}}
 	>
-		<!-- {isInView && console.log(+event.target.id)} -->
 		<div class="max-w-3xl space-y-2 pb-2 mx-auto text-[5.4vw] md:text-[42px] lg:text-[36px]">
 			{#each Array.from(Array(endingLine + 1).keys()).slice(startingLine) as line}
 				<!-- if it's the first verse of a chapter -->

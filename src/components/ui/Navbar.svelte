@@ -46,11 +46,11 @@
 	// chapter names for mushaf page
 	$: {
 		try {
-			mushafJuz = `Juz ${$__mushafPageDivisions.juz}`;
+			mushafJuz = `Juz ${$__mushafPageDivisions[$__pageNumber].juz}`;
 			mushafChapters = [];
 
 			// join all the chapter names
-			for (const [key, value] of Object.entries($__mushafPageDivisions.chapters)) {
+			for (const [key, value] of Object.entries($__mushafPageDivisions[$__pageNumber].chapters)) {
 				mushafChapters.push(quranMetaData[value].transliteration);
 			}
 		} catch (error) {}
