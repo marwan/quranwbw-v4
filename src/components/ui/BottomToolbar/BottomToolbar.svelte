@@ -8,7 +8,7 @@
 	import { __currentPage, __bottomToolbarVisible } from '$utils/stores';
 </script>
 
-<div id="bottom-toolbar" class="{['chapter', 'page'].includes($__currentPage) ? 'block' : 'hidden'} print:hidden">
+<div id="bottom-toolbar" class="{['chapter'].includes($__currentPage) ? 'block' : 'hidden'} print:hidden">
 	<div class="{$__bottomToolbarVisible ? 'block' : 'hidden'} fixed z-20 w-full h-16 max-w-xs md:max-w-lg shadow-sm -translate-x-1/2 bg-white border border-black/10 rounded-full bottom-4 left-1/2 theme">
 		<div class="grid h-full max-w-lg grid-cols-5 mx-auto">
 			<LeftNavigationButton />

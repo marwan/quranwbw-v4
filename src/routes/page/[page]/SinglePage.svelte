@@ -108,12 +108,32 @@
 		const key = JSON.parse(localStorage.getItem('userSettings')).lastRead.key;
 		updateSettings({ type: 'lastRead', value: { key: key !== undefined ? key : '1:1', page } });
 	}
+
+	// =========================
+	let SinglePageComponent;
+	let nextPageToLoad;
+
+	function loadNextPage() {
+		import('./SinglePage.svelte').then((res) => (SinglePageComponent = res.default));
+
+		// get the last verse number from last prop value
+		const lastPage = +document.querySelector('#page-block').lastElementChild.previousElementSibling.id;
+		const nextPage = lastPage + 1;
+
+		// remove the existing button
+		document.getElementById('loadPageButton').remove();
+
+		// setting the nextVersesProps
+		nextPageToLoad = +nextPage;
+
+		console.log('loading page', nextPageToLoad);
+	}
 </script>
 
 {#await pageData}
 	<Spinner height="screen" margin="-mt-20" />
 {:then}
-	<div class="space-y-2 mt-2.5">
+	<div id={+page} class="space-y-2 mt-2.5">
 		<div class="max-w-3xl space-y-2 pb-2 mx-auto text-[5.4vw] md:text-[42px] lg:text-[36px]">
 			{#each Array.from(Array(endingLine + 1).keys()).slice(startingLine) as line}
 				<!-- if it's the first verse of a chapter -->
@@ -145,3 +165,9 @@
 {:catch error}
 	<p>{errorLoadingDataMessage}</p>
 {/await}
+
+<div id="loadPageButton" class="flex justify-center pt-6 pb-18">
+	<button class="text-sm" on:click={loadNextPage}> Continue Reading </button>
+</div>
+
+<svelte:component this={SinglePageComponent} page={nextPageToLoad} />
