@@ -11,5 +11,7 @@
 </script>
 
 <div id="page-block" class="text-center text-xl mt-6 mb-14 overflow-x-hidden">
-	<SinglePage page={+data.page} />
+	{#key +data.page}
+		<SinglePage page={+data.page} />
+	{/key}
 </div>
