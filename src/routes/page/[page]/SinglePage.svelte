@@ -24,6 +24,10 @@
 	const options = {
 		rootMargin: '-50%'
 	};
+	const loadButtonOptions = {
+		rootMargin: '10px',
+		unobserveOnEnter: true
+	};
 
 	// page:line for which we need to center the verse rathen than justify
 	const centeredPageLines = ['528:9', '594:5', '602:5', '602:15', '603:10', '603:15', '604:4', '604:9', '604:14', '604:15'];
@@ -161,7 +165,8 @@
 	<p>{errorLoadingDataMessage}</p>
 {/await}
 
-<div id="loadPageButton" class="flex justify-center pt-6 pb-18">
+<!-- <div id="loadPageButton" class="flex justify-center pt-6 pb-18" use:inview={loadButtonOptions} on:inview_enter={(event) => document.querySelector('#loadPageButton > button').click()}> -->
+<div id="loadPageButton" class="flex justify-center pt-6 pb-18" use:inview={loadButtonOptions} on:inview_enter={(event) => document.querySelector('#loadPageButton > button').click()}>
 	<button class="text-sm" on:click={loadNextPage}> Continue Reading </button>
 </div>
 
