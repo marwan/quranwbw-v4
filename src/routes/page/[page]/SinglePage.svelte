@@ -11,6 +11,7 @@
 	import { mushafFontLinks, selectableFontTypes } from '$data/options';
 	import { loadFont } from '$utils/loadFont';
 	import { inview } from 'svelte-inview';
+	import { buttonOutlineClasses } from '$data/commonClasses';
 
 	$: page = +page;
 
@@ -24,23 +25,23 @@
 	const options = {
 		rootMargin: '-50%'
 	};
-	const loadButtonOptions = {
-		rootMargin: '10px',
-		unobserveOnEnter: true
-	};
+	// const loadButtonOptions = {
+	// 	rootMargin: '100px',
+	// 	unobserveOnEnter: true
+	// };
 
 	// page:line for which we need to center the verse rathen than justify
 	const centeredPageLines = ['528:9', '594:5', '602:5', '602:15', '603:10', '603:15', '604:4', '604:9', '604:14', '604:15'];
 
 	// prefetch the previous and next data for better UX
-	// $: {
-	// 	if ([2, 3].includes($__fontType)) {
-	// 		for (let thisPage = +page - 2; thisPage <= +page + 2; thisPage++) {
-	// 			fetch(`${mushafFontLinks.COLRv1}/QCF4${`00${thisPage}`.slice(-3)}_COLOR-Regular.woff`);
-	// 			fetch(`${apiEndpoint}/page?page=${thisPage}&word_type=${selectableFontTypes[$__fontType].apiId}&word_translation=${$__wordTranslation}&v=92827326`);
-	// 		}
-	// 	}
-	// }
+	$: {
+		if ([2, 3].includes($__fontType)) {
+			for (let thisPage = +page - 2; thisPage <= +page + 2; thisPage++) {
+				fetch(`${mushafFontLinks.COLRv1}/QCF4${`00${thisPage}`.slice(-3)}_COLOR-Regular.woff`);
+				fetch(`${apiEndpoint}/page?page=${thisPage}&word_type=${selectableFontTypes[$__fontType].apiId}&word_translation=${$__wordTranslation}&v=92827326`);
+			}
+		}
+	}
 
 	$: {
 		// empty all the arrays
@@ -166,8 +167,8 @@
 {/await}
 
 <!-- <div id="loadPageButton" class="flex justify-center pt-6 pb-18" use:inview={loadButtonOptions} on:inview_enter={(event) => document.querySelector('#loadPageButton > button').click()}> -->
-<div id="loadPageButton" class="flex justify-center pt-6 pb-18" use:inview={loadButtonOptions} on:inview_enter={(event) => document.querySelector('#loadPageButton > button').click()}>
-	<button class="text-sm" on:click={loadNextPage}> Continue Reading </button>
+<div id="loadPageButton" class="flex justify-center pt-6 pb-18">
+	<button class="text-sm {buttonOutlineClasses}" on:click={() => loadNextPage()}> Continue Reading </button>
 </div>
 
 <svelte:component this={SinglePageComponent} page={nextPageToLoad} />

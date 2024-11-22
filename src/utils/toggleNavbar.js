@@ -9,7 +9,7 @@ export function toggleNavbar() {
 	const audioSettings = get(__audioSettings);
 
 	// only when it's the chapter or mushaf page
-	if (['chapter'].includes(get(__currentPage))) {
+	if (['chapter', 'page'].includes(get(__currentPage))) {
 		let currentScrollPos = getCurrentScroll();
 
 		if (!ticking) {
