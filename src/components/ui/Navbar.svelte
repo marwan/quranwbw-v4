@@ -122,7 +122,12 @@
 	<!-- mini nav for mushaf page -->
 	{#if $__currentPage === 'page'}
 		<div id="bottom-nav" class="flex flex-row items-center justify-between border-t border-black/10 text-xs max-w-screen-lg mx-auto px-6 theme-grayscale">
-			<div class="flex flex-row items-center py-2">{mushafChapters.join(' / ')}</div>
+			<div class="flex flex-row items-center py-2">
+				{#if !$__topNavbarVisible}
+					<span>Page {$__pageNumber} -&nbsp;</span>
+				{/if}
+				<span>{mushafChapters.join(' / ')}</span>
+			</div>
 			<div class="flex flex-row items-center py-2">{mushafJuz}</div>
 		</div>
 	{/if}

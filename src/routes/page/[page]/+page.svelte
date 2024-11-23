@@ -119,12 +119,12 @@
 			minimalModeEnabled = true;
 			__topNavbarVisible.set(false);
 			__bottomToolbarVisible.set(false);
-			document.querySelector('#page-block').classList.add('-mt-8');
+			document.querySelector('#page-block').classList.add('!-mt-8');
 		} else {
 			minimalModeEnabled = false;
 			__topNavbarVisible.set(true);
 			__bottomToolbarVisible.set(true);
-			document.querySelector('#page-block').classList.remove('-mt-8');
+			document.querySelector('#page-block').classList.remove('!-mt-8');
 		}
 	}
 
@@ -163,9 +163,9 @@
 			<!-- page number -->
 			<div class="max-w-3xl mx-auto justify-center text-sm theme">
 				<div class="flex items-center">
-					<div class="flex-1 border-t-2 border-black/10"></div>
+					<!-- <div class="flex-1 border-t-2 border-black/10"></div>
 					<span class="px-3 opacity-70">{page}</span>
-					<div class="flex-1 border-t-2 border-black/10"></div>
+					<div class="flex-1 border-t-2 border-black/10"></div> -->
 				</div>
 			</div>
 		</div>
@@ -174,7 +174,7 @@
 	{/await}
 </div>
 
-<div class="flex justify-center -mt-10 pb-16">
+<div class="flex justify-center -mt-14 pb-16">
 	<button class="w-fit flex flex-row space-x-2 py-3 px-3 text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-xl items-center cursor-pointer theme-grayscale" on:click={toggleMinimalMode}>
 		<FullScreen size={3} />
 		<span class="text-xs md:text-sm text-left w-[-webkit-fill-available] truncate">Minimal Mode</span></button
