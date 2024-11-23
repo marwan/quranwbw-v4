@@ -4,6 +4,7 @@
 	import Bismillah from '$display/Bismillah.svelte';
 	import PageHead from '$misc/PageHead.svelte';
 	import WordsBlock from '$display/verses/WordsBlock.svelte';
+	import FullScreen from '$svgs/FullScreen.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
 	import { goto } from '$app/navigation';
 	import { __chapterNumber, __pageNumber, __currentPage, __fontType, __wordTranslation, __mushafPageDivisions, __lastRead, __displayType, __topNavbarVisible, __bottomToolbarVisible, __mushafDistractionFreeReadingEnabled } from '$utils/stores';
@@ -12,9 +13,7 @@
 	import { quranMetaData, chapterHeaderCodes } from '$data/quranMeta';
 	import { mushafFontLinks, selectableFontTypes } from '$data/options';
 	import { loadFont } from '$utils/loadFont';
-	import { pinch } from 'svelte-gestures';
-	import { debounce } from '$utils/debounce';
-	import { buttonOutlineClasses } from '$data/commonClasses';
+
 	import '$lib/swiped-events.min.js';
 
 	// page:line for which we need to center the verse rathen than justify
@@ -26,8 +25,6 @@
 	let chapters = [];
 	let verses = [];
 	let lines = [];
-	let scale;
-	let scale1 = 0;
 	let minimalModeEnabled = false;
 
 	$: page = +data.page;
@@ -116,15 +113,6 @@
 		updateSettings({ type: 'lastRead', value: { key: key !== undefined ? key : '1:1', page } });
 	}
 
-	// toggling the navbars on pinch for mushaf mode only
-	// function pinchHandler(event) {
-	// 	debounce(() => {
-	// 		scale = event.detail.scale;
-	// 		__mushafDistractionFreeReadingEnabled.set(scale < scale1 ? false : true);
-	// 		scale1 = scale;
-	// 	}, 200);
-	// }
-
 	// function to toggle top navbar and bottom toolbar for minimal mode
 	function toggleMinimalMode() {
 		if (!minimalModeEnabled) {
@@ -187,5 +175,8 @@
 </div>
 
 <div class="flex justify-center -mt-10 pb-16">
-	<button class="{buttonOutlineClasses} text-sm" on:click={toggleMinimalMode}>Toggle Minimal Mode</button>
+	<button class="w-fit flex flex-row space-x-2 py-3 px-3 text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-xl items-center cursor-pointer theme-grayscale" on:click={toggleMinimalMode}>
+		<FullScreen size={3} />
+		<span class="text-xs md:text-sm text-left w-[-webkit-fill-available] truncate">Minimal Mode</span></button
+	>
 </div>
