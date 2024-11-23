@@ -1200,6 +1200,10 @@ input[type="range"].range-lg::-moz-range-thumb {
   margin-top: -1rem;
 }
 
+.-mt-6 {
+  margin-top: -1.5rem;
+}
+
 .mb-0 {
   margin-bottom: 0px;
 }
@@ -1294,6 +1298,14 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .mt-8 {
   margin-top: 2rem;
+}
+
+.-mt-10 {
+  margin-top: -2.5rem;
+}
+
+.-mt-8 {
+  margin-top: -2rem;
 }
 
 .block {
@@ -1669,6 +1681,10 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.\!touch-auto {
+  touch-action: auto !important;
 }
 
 .select-none {
@@ -2519,6 +2535,10 @@ input[type="range"].range-lg::-moz-range-thumb {
   padding-bottom: 2rem;
 }
 
+.pb-0 {
+  padding-bottom: 0px;
+}
+
 .pb-2 {
   padding-bottom: 0.5rem;
 }
@@ -2629,6 +2649,10 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .pt-8 {
   padding-top: 2rem;
+}
+
+.pb-16 {
+  padding-bottom: 4rem;
 }
 
 .text-left {
@@ -3689,10 +3713,6 @@ svg {
 .hover\:text-white:hover {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.hover\:underline:hover {
-  text-decoration-line: underline;
 }
 
 .focus\:border-black\/10:focus {

@@ -14,6 +14,7 @@
 	import { loadFont } from '$utils/loadFont';
 	import { pinch } from 'svelte-gestures';
 	import { debounce } from '$utils/debounce';
+	import { buttonOutlineClasses } from '$data/commonClasses';
 	import '$lib/swiped-events.min.js';
 
 	// page:line for which we need to center the verse rathen than justify
@@ -27,6 +28,7 @@
 	let lines = [];
 	let scale;
 	let scale1 = 0;
+	let minimalModeEnabled = false;
 
 	$: page = +data.page;
 
@@ -115,12 +117,27 @@
 	}
 
 	// toggling the navbars on pinch for mushaf mode only
-	function pinchHandler(event) {
-		debounce(() => {
-			scale = event.detail.scale;
-			__mushafDistractionFreeReadingEnabled.set(scale < scale1 ? false : true);
-			scale1 = scale;
-		}, 200);
+	// function pinchHandler(event) {
+	// 	debounce(() => {
+	// 		scale = event.detail.scale;
+	// 		__mushafDistractionFreeReadingEnabled.set(scale < scale1 ? false : true);
+	// 		scale1 = scale;
+	// 	}, 200);
+	// }
+
+	// function to toggle top navbar and bottom toolbar for minimal mode
+	function toggleMinimalMode() {
+		if (!minimalModeEnabled) {
+			minimalModeEnabled = true;
+			__topNavbarVisible.set(false);
+			__bottomToolbarVisible.set(false);
+			document.querySelector('#page-block').classList.add('-mt-8');
+		} else {
+			minimalModeEnabled = false;
+			__topNavbarVisible.set(true);
+			__bottomToolbarVisible.set(true);
+			document.querySelector('#page-block').classList.remove('-mt-8');
+		}
 	}
 
 	// only allow continious normal mode, but skip saving the settings
@@ -131,7 +148,7 @@
 
 <PageHead title={`Page ${page}`} />
 
-<div id="page-block" class="text-center text-xl mt-6 mb-14 overflow-x-hidden" use:pinch on:pinch={pinchHandler}>
+<div id="page-block" class="text-center text-xl mt-6 mb-14 overflow-x-hidden !touch-auto">
 	{#await pageData}
 		<Spinner height="screen" margin="-mt-20" />
 	{:then}
@@ -167,4 +184,8 @@
 	{:catch error}
 		<p>{errorLoadingDataMessage}</p>
 	{/await}
+</div>
+
+<div class="flex justify-center -mt-10 pb-16">
+	<button class="{buttonOutlineClasses} text-sm" on:click={toggleMinimalMode}>Toggle Minimal Mode</button>
 </div>
