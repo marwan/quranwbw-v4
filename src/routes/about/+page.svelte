@@ -36,13 +36,13 @@
 					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="http://emuslim.com/Quran/Translation_English.asp">Dr. Shehnaz Shaikh, Ms. Kausar Khatri</a> for their English and <a class={linkClasses} target="_blank" rel="noreferrer" href="https://www.farhathashmi.com">Dr. Farhat Hashmi</a> for her Urdu word by word compilation.</li>
 					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://quran.com">Quran.com</a> for their API.</li>
 					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="http://recitequran.com">ReciteQuran.com </a> for their word by word audio files.</li>
-					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="http://qurancomplex.gov.sa/">King Fahd Glorious Quran Printing Complex</a> for their Quran text.</li>
+					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="http://qurancomplex.gov.sa/">King Fahd Glorious Quran Printing Complex</a> for their Quran text*.</li>
 					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="http://tanzil.net/trans/">Tanzil.net</a> for their collection of Quranic resources.</li>
 					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="http://everyayah.com">EveryAyah.com</a>, <a class={linkClasses} href="https://qurancentral.com">QuranCentral.com</a> and <a class={linkClasses} href="https://quranicaudio.com">QuranicAudio.com</a> for their collection of Quranic audios.</li>
 					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://zoopernet.com">Ayman Siddiqui</a> for all the help including providing various website data and fonts & website testing.</li>
 					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://github.com/cpfair">Collin Fair</a> for his word timestamps for Quranic audios.</li>
 					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://play.google.com/store/apps/details?id=com.atq.quranemajeedapp.org.islamone&hl=en">Usman Pervez (IslamOne android app)</a> for various data like Urdu WBW and Tafhim-ul-Quran.</li>
-					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://gtaf.org">Greentech Apps (Al Quran Tafsir & by Word app)</a> for their English, Indonesian, Bangla, Chinese, Malayalam and Divehi words database and corpus data.</li>
+					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://gtaf.org">Greentech Apps (Al Quran Tafsir & by Word app)</a> for their English, Indonesian, Bangla, Chinese**, Malayalam*** and Divehi words database and corpus data.</li>
 					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://github.com/kaisdukes">Dr. Kais Dukes</a> for his morphological description of the Quranic words.</li>
 					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://www.typemybook.com/download/complete-quran-kareem-text/">Ata Rafi</a> for sharing the IndoPak text originally by <a class={linkClasses} target="_blank" rel="noreferrer" href="http://inpage.com/">InPage™</a>.</li>
 					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://apps.apple.com/us/app/quran-word-by-word/id588198510">Azrul Azwar (Quran WbW iOS app)</a> for the words databases in many different languages.</li>
@@ -57,14 +57,30 @@
 					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://quran-pro.com/">Quran Pro</a> for their pictures of different recitors.</li>
 				</ul>
 
-				<span
-					>The Mushaf fonts are developed by and are a property of <a class={linkClasses} target="_blank" rel="noreferrer" href="https://qurancomplex.gov.sa/">King Fahad Glorious Quran Printing Complex</a> based in Madinah, Saudi Arabia. Tajweed Colors are based on
+				<span>All data used on this website belongs to their respective owners and authors. Permission must be obtained from them before copying any content.</span>
+
+				<div class="border-b border-black/10"></div>
+
+				<span class="text-xs"
+					>*The Mushaf fonts are developed by and are a property of <a class={linkClasses} target="_blank" rel="noreferrer" href="https://qurancomplex.gov.sa/">King Fahad Glorious Quran Printing Complex</a> based in Madinah, Saudi Arabia. Tajweed Colors are based on
 					<a class={linkClasses} target="_blank" rel="noreferrer" href="https://easyquran.com/ar/">Tajweed Quran (Easy Quran) Mushaf by Dar-Al-Marifa</a> developed by Dr. Eng. Taha Subhi, Damascus - Syria. Tajweed Color Font Features on King Fahad Glorious Quran Printing Complex V4 Mushaf fonts invented and developed by
 					<a class={linkClasses} target="_blank" rel="noreferrer" href="https://zoopernet.com">Ayman Siddiqui</a>
 					and co-developed by team : Rania, Amena, Naveed Ahmed, Mohammed Zahid, Tooba and Anza for Sadaqa-e-jaria (non-commercial) purposes only. Permitted to develop with prior permissions secured from King Fahad Glorious Quran Printing Complex and Dar-Al-Marifa by <a class={linkClasses} target="_blank" rel="noreferrer" href="https://quran.com">Quran.com</a> (Quran Foundation) team.</span
 				>
 
-				<span>All data used on this website belongs to their respective owners and authors. Permission must be obtained from them before copying any content.</span>
+				<span class="text-xs">
+					**We express our heartfelt gratitude to everyone who contributed to the Chinese word-by-word Quran translation, particularly Brother Ma Zhiren for his meticulous translation work completed in 2014, Brother Adam Voo from Malaysia and Brother Usama Nonnenmacher for digitalizing the data, and Brothers Max Ma from Canada and Suleyman Abdullah from China for their collaboration. May Allah
+					reward them all abundantly in this world and the hereafter. We pray that Allah blesses our Chinese brothers and sisters through the Quran app.
+				</span>
+
+				<span class="text-xs"
+					>***Original sources for the Malayalam translations are
+					<a class={linkClasses} target="_blank" rel="noreferrer" href="https://amanithafseer.com">Amani Thafseer</a>
+					and
+					<a class={linkClasses} target="_blank" rel="noreferrer" href="https://www.lalithasaram.net/">Lalithasaram</a>
+					For the Amani Thafseer translation, Brother Usama Nonnenmacher assisted in formatting the data and adjusting word splitting where knowledge of Malayalam was not required. Brother Ameen Abdussalam, whom he collaborated with via the Amani Thafseer team, provided crucial support for cases needing Malayalam expertise. Regarding the Lalithasaram translation, minimal adjustments were necessary
+					beyond converting the format from an SQL file to a standard database file.</span
+				>
 			</div>
 		</div>
 	</div>
