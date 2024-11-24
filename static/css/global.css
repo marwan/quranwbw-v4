@@ -2130,6 +2130,10 @@ input[type="range"].range-lg::-moz-range-thumb {
   border-color: rgb(0 0 0 / 0.1);
 }
 
+.border-black\/15 {
+  border-color: rgb(0 0 0 / 0.15);
+}
+
 .border-blue-700 {
   --tw-border-opacity: 1;
   border-color: rgb(29 78 216 / var(--tw-border-opacity));
