@@ -1,21 +1,22 @@
 <script>
+	import party from 'party-js';
 	import Modal from '$ui/flowbite-svelte/modal/Modal.svelte';
 	import { __newSiteChangelogModalVisible } from '$utils/stores';
-	import { getModalTransition } from '$utils/getModalTransition';
 	import { linkClasses } from '$data/commonClasses';
 	import { updateSettings } from '$utils/updateSettings';
 
 	const newFeatures = [
-		'<span class="font-semibold">Expanded Language Options:</span> Word-by-word translations now available in Chinese, Divehi, Malayalam, French, Russian, Ingush, and German.',
-		'<span class="font-semibold">King Fahad Quran Printing Complex Fonts:</span> Includes Dar Al Marifa Easy Quran with color-coded Tajweed support.',
+		'<span class="font-semibold">Expanded Language Options:</span> Word-by-word translations now available in Chinese, Divehi, French, German, Ingush, Malayalam, and Russian.',
+		'<span class="font-semibold">King Fahad Quran Printing Complex Fonts:</span> Includes Tajweed color-coded support based on Dar Al Marifa Easy Quran Mushaf.',
 		'<span class="font-semibold">New Themes and Styles:</span> Fresh themes in Blue, Green, and Sepia, along with enhanced Light and Black themes.',
 		'<span class="font-semibold">Tooltip and Popup Features:</span> Tooltips for word meanings and transliterations.',
 		'<span class="font-semibold">Screen Sleep Prevention:</span> Option to prevent the screen from sleeping.',
 		'<span class="font-semibold">Multiple Verse/Ayah Translations:</span> Select multiple verse/Ayah translations simultaneously, an improvement from the previous limit of two.',
-		'<span class="font-semibold">Comprehensive Footnotes and Annotations:</span> Added to Ayah/verse translations across multiple translations, and the option to add personal notes to verses.',
+		'<span class="font-semibold">Comprehensive Footnotes:</span> Added to Ayah/verse translations across multiple translations.',
 		'<span class="font-semibold">Tajweed and Transliteration:</span> New Tajweed transliterations for verses and words, ensuring correct pronunciation.',
 		'<span class="font-semibold">Tafsir Al Quran:</span> Access Tafsir by multiple authors in various languages.',
 		'<span class="font-semibold">Flexible Display Options:</span> Includes Mushaf (page mode) and other display layouts.',
+		'<span class="font-semibold">Verse Annotation:</span> Option to add personal notes to verses.',
 		'<span class="font-semibold">Morphology Mode:</span> Provides detailed word information for learning and research.',
 		'<span class="font-semibold">Sequential Word Playback:</span> Play words one-by-one for better learning.',
 		'<span class="font-semibold">Terminology Customization:</span> Switch website terminologies to fit user preferences.',
@@ -41,13 +42,24 @@
 		const userSettings = JSON.parse(localStorage.getItem('userSettings'));
 
 		if (userSettings.oneTimeModals.newSiteChangelogModal === false) {
-			__newSiteChangelogModalVisible.set(true);
-			updateSettings({ type: 'newSiteChangelogModal', value: true });
+			setTimeout(function () {
+				__newSiteChangelogModalVisible.set(true);
+				updateSettings({ type: 'newSiteChangelogModal', value: true });
+			}, 2000);
+
+			// confettis for the update? why not!
+			setTimeout(function () {
+				party.confetti(document.body, {
+					count: 80,
+					spread: 100,
+					size: 2
+				});
+			}, 2500);
 		}
 	}
 </script>
 
-<Modal id="newSiteChangelogModal" bind:open={$__newSiteChangelogModalVisible} size="md" class="rounded-3xl text-black theme" bodyClass="p-6" center outsideclose>
+<Modal id="newSiteChangelogModal" bind:open={$__newSiteChangelogModalVisible} size="md" class="rounded-3xl text-black theme" bodyClass="p-6" dialogClass="fixed top-0 start-0 end-0 h-[-webkit-fill-available] md:inset-0 md:h-full z-50 w-full p-4 flex" center outsideclose>
 	<div class="flex flex-col space-y-4">
 		<div class="flex flex-col space-y-2">
 			<div class="font-medium text-lg">QuranWBW v4 Update</div>
