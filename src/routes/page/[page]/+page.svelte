@@ -6,6 +6,7 @@
 	import WordsBlock from '$display/verses/WordsBlock.svelte';
 	import FullScreen from '$svgs/FullScreen.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
+	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
 	import { goto } from '$app/navigation';
 	import { __chapterNumber, __pageNumber, __currentPage, __fontType, __wordTranslation, __mushafPageDivisions, __lastRead, __displayType, __topNavbarVisible, __bottomToolbarVisible, __mushafDistractionFreeReadingEnabled } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';
@@ -177,6 +178,6 @@
 <div class="flex justify-center -mt-14 pb-16">
 	<button class="w-fit flex flex-row space-x-2 py-3 px-3 bg-gray-200 hover:bg-gray-300 rounded-xl items-center cursor-pointer theme" on:click={toggleMinimalMode}>
 		<FullScreen size={3} />
-		<!-- <span class="text-xs md:text-sm text-left w-[-webkit-fill-available] truncate">Minimal Mode</span> -->
 	</button>
+	<Tooltip arrow={false} type="light" class="z-30 hidden md:block font-filter font-normal">Minimal Mode</Tooltip>
 </div>
