@@ -141,7 +141,7 @@
 		<Spinner height="screen" margin="-mt-20" />
 	{:then}
 		<div class="space-y-2 mt-2.5">
-			<div class="max-w-3xl md:max-w-[40rem] space-y-2 pb-2 mx-auto text-[5.4vw] md:text-[36px] lg:text-[36px]">
+			<div class="max-w-3xl md:max-w-[40rem] pb-2 mx-auto text-[5.4vw] md:text-[36px] lg:text-[36px] {+page === 1 ? 'space-y-1' : 'space-y-2'}">
 				{#each Array.from(Array(endingLine + 1).keys()).slice(startingLine) as line}
 					<!-- if it's the first verse of a chapter -->
 					{#if chapters.length > 0 && lines.includes(line) && verses[lines.indexOf(line)] === 1}
@@ -161,11 +161,11 @@
 			</div>
 
 			<!-- page number -->
-			<div class="max-w-3xl mx-auto justify-center text-sm theme">
+			<div class="max-w-3xl md:max-w-[40rem] mx-auto justify-center text-sm theme">
 				<div class="flex items-center">
-					<!-- <div class="flex-1 border-t-2 border-black/10"></div>
+					<div class="flex-1 border-t-2 border-black/10"></div>
 					<span class="px-3 opacity-70">{page}</span>
-					<div class="flex-1 border-t-2 border-black/10"></div> -->
+					<div class="flex-1 border-t-2 border-black/10"></div>
 				</div>
 			</div>
 		</div>
@@ -174,7 +174,7 @@
 	{/await}
 </div>
 
-<div class="flex justify-center -mt-14 pb-16">
+<div class="flex justify-center -mt-12 pb-16">
 	<button class="w-fit flex flex-row space-x-2 py-3 px-3 text-black/70 bg-gray-200 hover:bg-gray-300 rounded-xl items-center cursor-pointer theme" on:click={toggleMinimalMode}>
 		<FullScreen size={3} />
 	</button>
