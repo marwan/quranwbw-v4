@@ -4,8 +4,9 @@
 	import Bismillah from '$display/Bismillah.svelte';
 	import PageHead from '$misc/PageHead.svelte';
 	import WordsBlock from '$display/verses/WordsBlock.svelte';
-	import Minimize from '$svgs/Minimize.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
+	import Maximize from '$svgs/Maximize.svelte';
+	// import BottomToolbarButtons from '$ui/BottomToolbar/BottomToolbarButtons.svelte';
 	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
 	import { goto } from '$app/navigation';
 	import { __chapterNumber, __pageNumber, __currentPage, __fontType, __wordTranslation, __mushafPageDivisions, __lastRead, __displayType, __topNavbarVisible, __bottomToolbarVisible, __mushafMinimalModeEnabled } from '$utils/stores';
@@ -130,7 +131,7 @@
 					<!-- if it's the first verse of a chapter -->
 					{#if chapters.length > 0 && lines.includes(line) && verses[lines.indexOf(line)] === 1}
 						<div class="flex flex-col my-2">
-							<div style="font-family: chapter-headers" class="header invisible leading-base pt-4 md:pt-8 pb-6 text-[28vw] md:text-[195px] lg:text-[195px]">{chapterHeaderCodes[chapters[lines.indexOf(line)]]}</div>
+							<div style="font-family: chapter-headers" class="header invisible leading-base md:pt-8 pb-6 text-[28vw] md:text-[195px] lg:text-[195px]">{chapterHeaderCodes[chapters[lines.indexOf(line)]]}</div>
 
 							<Bismillah {chapters} {lines} {line} />
 						</div>
@@ -160,9 +161,13 @@
 
 <!-- only show the minimize minimal mode button when it is enabled -->
 {#if $__mushafMinimalModeEnabled}
+	<!-- <div class="flex flex-row justify-between mx-auto max-w-3xl md:max-w-[40rem] -mt-12 pb-12 scale-[0.80]">
+		<BottomToolbarButtons />
+	</div> -->
+
 	<div class="flex justify-center -mt-12 pb-16">
-		<button class="w-fit flex flex-row space-x-2 py-3 px-3 text-black/70 bg-gray-200 hover:bg-gray-300 rounded-xl items-center cursor-pointer theme" on:click={toggleMushafMinimalMode}>
-			<Minimize size={3} />
+		<button class="w-fit flex flex-row space-x-2 py-3 px-3 text-black/70 opacity-70 bg-gray-200 hover:bg-gray-300 rounded-xl items-center cursor-pointer theme" on:click={toggleMushafMinimalMode}>
+			<Maximize size={3} />
 		</button>
 		<Tooltip arrow={false} type="light" class="z-30 hidden md:block font-filter font-normal">Minimal Mode</Tooltip>
 	</div>
