@@ -1192,6 +1192,10 @@ input[type="range"].range-lg::-moz-range-thumb {
   margin-bottom: 2rem;
 }
 
+.\!-mt-8 {
+  margin-top: -2rem !important;
+}
+
 .-mt-14 {
   margin-top: -3.5rem;
 }
@@ -1202,10 +1206,6 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .-mt-4 {
   margin-top: -1rem;
-}
-
-.-mt-8 {
-  margin-top: -2rem;
 }
 
 .mb-0 {
@@ -1302,14 +1302,6 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .mt-8 {
   margin-top: 2rem;
-}
-
-.\!mt-8 {
-  margin-top: 2rem !important;
-}
-
-.\!-mt-8 {
-  margin-top: -2rem !important;
 }
 
 .block {
@@ -3715,6 +3707,11 @@ svg {
 .hover\:bg-yellow-500:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(234 179 8 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-gray-300:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
 }
 
 .hover\:text-gray-600:hover {

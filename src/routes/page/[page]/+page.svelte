@@ -175,8 +175,8 @@
 </div>
 
 <div class="flex justify-center -mt-14 pb-16">
-	<button class="w-fit flex flex-row space-x-2 py-3 px-3 text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-xl items-center cursor-pointer theme-grayscale" on:click={toggleMinimalMode}>
+	<button class="w-fit flex flex-row space-x-2 py-3 px-3 bg-gray-200 hover:bg-gray-300 rounded-xl items-center cursor-pointer theme" on:click={toggleMinimalMode}>
 		<FullScreen size={3} />
-		<span class="text-xs md:text-sm text-left w-[-webkit-fill-available] truncate">Minimal Mode</span></button
-	>
+		<!-- <span class="text-xs md:text-sm text-left w-[-webkit-fill-available] truncate">Minimal Mode</span> -->
+	</button>
 </div>
