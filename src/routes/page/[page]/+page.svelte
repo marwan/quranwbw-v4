@@ -141,7 +141,7 @@
 		<Spinner height="screen" margin="-mt-20" />
 	{:then}
 		<div class="space-y-2 mt-2.5">
-			<div class="max-w-3xl md:max-w-[40rem] pace-y-2 pb-2 mx-auto text-[5.4vw] md:text-[36px] lg:text-[36px]">
+			<div class="max-w-3xl md:max-w-[40rem] space-y-2 pb-2 mx-auto text-[5.4vw] md:text-[36px] lg:text-[36px]">
 				{#each Array.from(Array(endingLine + 1).keys()).slice(startingLine) as line}
 					<!-- if it's the first verse of a chapter -->
 					{#if chapters.length > 0 && lines.includes(line) && verses[lines.indexOf(line)] === 1}
