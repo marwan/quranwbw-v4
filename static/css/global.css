@@ -1439,6 +1439,10 @@ input[type="range"].range-lg::-moz-range-thumb {
   height: 100vh;
 }
 
+.h-\[-webkit-fill-available\] {
+  height: -webkit-fill-available;
+}
+
 .max-h-52 {
   max-height: 13rem;
 }
@@ -1453,6 +1457,10 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .max-h-\[32em\] {
   max-height: 32em;
+}
+
+.max-h-\[60vh\] {
+  max-height: 60vh;
 }
 
 .max-h-\[90\%\] {
