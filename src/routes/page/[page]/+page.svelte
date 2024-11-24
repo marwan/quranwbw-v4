@@ -140,12 +140,12 @@
 		<Spinner height="screen" margin="-mt-20" />
 	{:then}
 		<div class="space-y-2 mt-2.5">
-			<div class="max-w-3xl md:max-w-[40rem] pace-y-2 pb-2 mx-auto text-[5.4vw] md:text-[42px] lg:text-[36px]">
+			<div class="max-w-3xl md:max-w-[40rem] pace-y-2 pb-2 mx-auto text-[5.4vw] md:text-[36px] lg:text-[36px]">
 				{#each Array.from(Array(endingLine + 1).keys()).slice(startingLine) as line}
 					<!-- if it's the first verse of a chapter -->
 					{#if chapters.length > 0 && lines.includes(line) && verses[lines.indexOf(line)] === 1}
 						<div class="flex flex-col my-2">
-							<div style="font-family: chapter-headers" class="header invisible leading-base pt-4 md:pt-8 pb-6 text-[28vw] md:text-[220px] lg:text-[195px]">{chapterHeaderCodes[chapters[lines.indexOf(line)]]}</div>
+							<div style="font-family: chapter-headers" class="header invisible leading-base pt-4 md:pt-8 pb-6 text-[28vw] md:text-[195px] lg:text-[195px]">{chapterHeaderCodes[chapters[lines.indexOf(line)]]}</div>
 
 							<Bismillah {chapters} {lines} {line} />
 						</div>

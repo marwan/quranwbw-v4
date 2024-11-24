@@ -4082,6 +4082,14 @@ svg {
     font-size: 1.25rem;
     line-height: 1.75rem;
   }
+
+  .md\:text-\[195px\] {
+    font-size: 195px;
+  }
+
+  .md\:text-\[36px\] {
+    font-size: 36px;
+  }
 }
 
 @media (min-width: 1024px) {
