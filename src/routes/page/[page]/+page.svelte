@@ -176,7 +176,7 @@
 </div>
 
 <div class="flex justify-center -mt-14 pb-16">
-	<button class="w-fit flex flex-row space-x-2 py-3 px-3 bg-gray-200 hover:bg-gray-300 rounded-xl items-center cursor-pointer theme" on:click={toggleMinimalMode}>
+	<button class="w-fit flex flex-row space-x-2 py-3 px-3 text-black/70 bg-gray-200 hover:bg-gray-300 rounded-xl items-center cursor-pointer theme" on:click={toggleMinimalMode}>
 		<FullScreen size={3} />
 	</button>
 	<Tooltip arrow={false} type="light" class="z-30 hidden md:block font-filter font-normal">Minimal Mode</Tooltip>

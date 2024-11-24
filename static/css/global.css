@@ -1554,10 +1554,6 @@ input[type="range"].range-lg::-moz-range-thumb {
   width: 20rem;
 }
 
-.w-\[-webkit-fill-available\] {
-  width: -webkit-fill-available;
-}
-
 .w-\[10px\] {
   width: 10px;
 }
@@ -1681,10 +1677,6 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .cursor-pointer {
   cursor: pointer;
-}
-
-.\!touch-auto {
-  touch-action: auto !important;
 }
 
 .select-none {
@@ -2801,6 +2793,10 @@ input[type="range"].range-lg::-moz-range-thumb {
   color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
+.text-black\/70 {
+  color: rgb(0 0 0 / 0.7);
+}
+
 .text-blue-700 {
   --tw-text-opacity: 1;
   color: rgb(29 78 216 / var(--tw-text-opacity));
@@ -2819,11 +2815,6 @@ input[type="range"].range-lg::-moz-range-thumb {
 .text-gray-500 {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
-}
-
-.text-gray-600 {
-  --tw-text-opacity: 1;
-  color: rgb(75 85 99 / var(--tw-text-opacity));
 }
 
 .text-gray-700 {
@@ -3665,6 +3656,11 @@ svg {
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-gray-300:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
+}
+
 .hover\:bg-gray-50:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
@@ -3707,11 +3703,6 @@ svg {
 .hover\:bg-yellow-500:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(234 179 8 / var(--tw-bg-opacity));
-}
-
-.hover\:bg-gray-300:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
 }
 
 .hover\:text-gray-600:hover {
@@ -4081,11 +4072,6 @@ svg {
   .md\:text-lg {
     font-size: 1.125rem;
     line-height: 1.75rem;
-  }
-
-  .md\:text-sm {
-    font-size: 0.875rem;
-    line-height: 1.25rem;
   }
 
   .md\:text-xl {
