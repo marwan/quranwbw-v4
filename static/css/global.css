@@ -1197,12 +1197,8 @@ input[type="range"].range-lg::-moz-range-thumb {
   margin-bottom: 2rem;
 }
 
-.\!-mt-8 {
-  margin-top: -2rem !important;
-}
-
-.-mt-14 {
-  margin-top: -3.5rem;
+.-mt-12 {
+  margin-top: -3rem;
 }
 
 .-mt-20 {
@@ -1307,10 +1303,6 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .mt-8 {
   margin-top: 2rem;
-}
-
-.-mt-12 {
-  margin-top: -3rem;
 }
 
 .block {
@@ -1654,6 +1646,12 @@ input[type="range"].range-lg::-moz-range-thumb {
 .scale-\[0\.70\] {
   --tw-scale-x: 0.70;
   --tw-scale-y: 0.70;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.scale-\[0\.80\] {
+  --tw-scale-x: 0.80;
+  --tw-scale-y: 0.80;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -2527,6 +2525,10 @@ input[type="range"].range-lg::-moz-range-thumb {
   padding-bottom: 0px;
 }
 
+.pb-12 {
+  padding-bottom: 3rem;
+}
+
 .pb-16 {
   padding-bottom: 4rem;
 }
@@ -2641,10 +2643,6 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .pt-8 {
   padding-top: 2rem;
-}
-
-.pb-12 {
-  padding-bottom: 3rem;
 }
 
 .text-left {
@@ -3941,16 +3939,16 @@ svg {
     max-width: 80rem;
   }
 
+  .md\:max-w-\[40rem\] {
+    max-width: 40rem;
+  }
+
   .md\:max-w-lg {
     max-width: 32rem;
   }
 
   .md\:max-w-md {
     max-width: 28rem;
-  }
-
-  .md\:max-w-\[40rem\] {
-    max-width: 40rem;
   }
 
   .md\:scale-\[0\.85\] {
@@ -4062,16 +4060,16 @@ svg {
     line-height: 1;
   }
 
-  .md\:text-\[220px\] {
-    font-size: 220px;
+  .md\:text-\[195px\] {
+    font-size: 195px;
   }
 
   .md\:text-\[32px\] {
     font-size: 32px;
   }
 
-  .md\:text-\[42px\] {
-    font-size: 42px;
+  .md\:text-\[36px\] {
+    font-size: 36px;
   }
 
   .md\:text-lg {
@@ -4087,14 +4085,6 @@ svg {
   .md\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
-  }
-
-  .md\:text-\[195px\] {
-    font-size: 195px;
-  }
-
-  .md\:text-\[36px\] {
-    font-size: 36px;
   }
 }
 
@@ -4112,20 +4102,12 @@ svg {
     padding-right: 2rem;
   }
 
-  .lg\:text-\[230px\] {
-    font-size: 230px;
+  .lg\:text-\[195px\] {
+    font-size: 195px;
   }
 
   .lg\:text-\[36px\] {
     font-size: 36px;
-  }
-
-  .lg\:text-\[185px\] {
-    font-size: 185px;
-  }
-
-  .lg\:text-\[195px\] {
-    font-size: 195px;
   }
 }
 
