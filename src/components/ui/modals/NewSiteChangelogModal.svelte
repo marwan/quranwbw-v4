@@ -13,7 +13,7 @@
 		'<span class="font-semibold">Screen Sleep Prevention:</span> Option to prevent the screen from sleeping.',
 		'<span class="font-semibold">Multiple Verse/Ayah Translations:</span> Select multiple verse/Ayah translations simultaneously, an improvement from the previous limit of two.',
 		'<span class="font-semibold">Comprehensive Footnotes:</span> Added to Ayah/verse translations across multiple translations.',
-		'<span class="font-semibold">Tajweed and Transliteration:</span> New Tajweed transliterations for verses and words, ensuring correct pronunciation.',
+		'<span class="font-semibold">Tajweed Transliteration:</span> New Tajweed transliterations for verses and words, ensuring correct pronunciation.',
 		'<span class="font-semibold">Tafsir Al Quran:</span> Access Tafsir by multiple authors in various languages.',
 		'<span class="font-semibold">Flexible Display Options:</span> Includes Mushaf (page mode) and other display layouts.',
 		'<span class="font-semibold">Verse Annotation:</span> Option to add personal notes to verses.',
