@@ -15,11 +15,6 @@
 	import { mushafFontLinks, selectableFontTypes } from '$data/options';
 	import { loadFont } from '$utils/loadFont';
 
-	import '$lib/swiped-events.min.js';
-
-	// page:line for which we need to center the verse rathen than justify
-	const centeredPageLines = ['528:9', '594:5', '602:5', '602:15', '603:10', '603:15', '604:4', '604:9', '604:14', '604:15'];
-
 	let pageData;
 	let startingLine;
 	let endingLine;
@@ -153,7 +148,7 @@
 						</div>
 					{/if}
 
-					<div class="line {line} flex px-2 arabic-font-{$__fontType} {+page < 3 || centeredPageLines.includes(`${+page}:${line}`) ? 'justify-center' : null} {+page > 2 && !centeredPageLines.includes(`${+page}:${line}`) ? 'justify-between' : null}">
+					<div class="line {line} flex px-2 justify-center arabic-font-{$__fontType}">
 						{#each Object.entries(JSON.parse(localStorage.getItem('pageData'))) as [key, value]}
 							<WordsBlock {key} {value} {line} />
 						{/each}
