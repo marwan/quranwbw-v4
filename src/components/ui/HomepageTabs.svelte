@@ -1,5 +1,4 @@
 <script>
-	import SiteNavigationDropdown from '$ui/SiteNavigationDropdown.svelte';
 	import Mecca from '$svgs/Mecca.svelte';
 	import Madinah from '$svgs/Madinah.svelte';
 	import CrossSolid from '$svgs/CrossSolid.svelte';
@@ -57,11 +56,10 @@
 			</div>
 
 			<!-- menu for links on right -->
-			<div class="ml-2">
-				<button class="flex flex-row items-center bg-lightGray rounded-3xl p-3 {tabClasses} !border-b-0" title="Menu">
+			<div class="ml-2 align-center">
+				<button class="flex flex-row items-center bg-lightGray rounded-3xl p-3 {tabClasses} !border-b-0" title="Menu" on:click={() => __siteNavigationModalVisible.set(true)}>
 					<span class="text-black opacity-70"><Menu /></span>
 				</button>
-				<SiteNavigationDropdown />
 			</div>
 		</div>
 	</div>
@@ -74,12 +72,14 @@
 			<!-- chapter / page etc... selector -->
 			<div class="flex flex-col space-y-2 md:space-y-0 md:flex-row justify-between text-xs mb-0 md:mb-2">
 				<!-- search bar -->
-				<button class="w-full md:w-max theme-grayscale" on:click={() => __quranNavigationModalVisible.set(true)}>
+				<button class="w-full md:w-full theme-grayscale" on:click={() => __quranNavigationModalVisible.set(true)}>
 					<span class="w-full pointer-events-none {buttonOutlineClasses}">
 						<span class="pt-1"><Search size={4} /></span>
 						<span class="opacity-70">Navigate or Search Quran</span>
 					</span>
 				</button>
+
+				<div class="hidden md:block mx-1"></div>
 
 				<!-- time specific chapter buttons and last read -->
 				<div class="flex flex-row space-x-2">
@@ -138,7 +138,7 @@
 									{term('verses')}
 								</div>
 							</div>
-							<div class="invisible chapter-icons justify-items-end opacity-70 text-3xl md:mt-2">{@html `&#xE9${quranMetaData[chapter + 1].icon};`}</div>
+							<div class="invisible chapter-icons justify-items-end opacity-70 text-5xl">{@html `&#xE9${quranMetaData[chapter + 1].icon};`}</div>
 						</div>
 					</a>
 				{/each}

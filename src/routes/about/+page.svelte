@@ -21,28 +21,28 @@
 			</div>
 
 			<div id="about-website" class="flex flex-col space-y-4 mt-8 text-sm">
-				<span> QuranWBW.com helps you read, listen and learn the Holy Quran word by word with the help of word audios, Tajweed colors and transliteration. You can also research using multi-language translations, tafsir, and dive deep with word morphology. </span>
+				<span>QuranWBW.com is your companion for reading, listening to, and learning the Holy Quran, word by word. With features like word audios, Tajweed colors, and transliteration, you can delve into the Quran with ease. Additionally, explore multi-language translations, tafsir, and detailed word morphology.</span>
 
 				<span>
-					This website is just a hobby project and is not being worked on full-time. If you'd like to report an issue, have any suggestions, or would like to contribute, please visit QuranWBW.com's <a class={linkClasses} target="_blank" rel="noreferrer" href="https://github.com/marwan/quranwbw-v4">GitHub repository</a>, or contact us on
-					<a class={linkClasses} href="mailto:quranwbw@gmail.com">quranwbw@gmail.com</a>. You may also join our <a class={linkClasses} target="_blank" rel="noreferrer" href="https://chat.whatsapp.com/CtrbWUB4GTyDdZWXWujVSl">WhatsApp group</a> for updates.
+					This website is a passion project, not a full-time endeavor. For issues, suggestions, or contributions, please visit our <a class={linkClasses} target="_blank" rel="noreferrer" href="https://github.com/marwan/quranwbw-v4">GitHub repository</a> or contact us at <a class={linkClasses} href="mailto:quranwbw@gmail.com">quranwbw@gmail.com</a>. You can also join our
+					<a class={linkClasses} target="_blank" rel="noreferrer" href="https://chat.whatsapp.com/CtrbWUB4GTyDdZWXWujVSl">WhatsApp group</a> for updates.
 				</span>
 			</div>
 
 			<div id="website-credits" class="flex flex-col space-y-4 mt-6 text-sm">
-				<span>QuranWBW.com wouldn't be possible without these amazing people:</span>
+				<span>QuranWBW.com owes its existence to the contributions of the following remarkable individuals and organizations:</span>
 
 				<ul class="list-disc ml-5 space-y-2">
 					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="http://emuslim.com/Quran/Translation_English.asp">Dr. Shehnaz Shaikh, Ms. Kausar Khatri</a> for their English and <a class={linkClasses} target="_blank" rel="noreferrer" href="https://www.farhathashmi.com">Dr. Farhat Hashmi</a> for her Urdu word by word compilation.</li>
 					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://quran.com">Quran.com</a> for their API.</li>
-					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="http://recitequran.com">ReciteQuran.com </a> for their word by word audio files orginally recited by <a class={linkClasses} target="_blank" rel="noreferrer" href="https://twitter.com/WisamSharieff/">Imam Wisam Sharieff</a>.</li>
+					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="http://recitequran.com">ReciteQuran.com </a> for their word by word audio files.</li>
 					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="http://qurancomplex.gov.sa/">King Fahd Glorious Quran Printing Complex</a> for their Quran text.</li>
 					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="http://tanzil.net/trans/">Tanzil.net</a> for their collection of Quranic resources.</li>
 					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="http://everyayah.com">EveryAyah.com</a>, <a class={linkClasses} href="https://qurancentral.com">QuranCentral.com</a> and <a class={linkClasses} href="https://quranicaudio.com">QuranicAudio.com</a> for their collection of Quranic audios.</li>
 					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://zoopernet.com">Ayman Siddiqui</a> for all the help including providing various website data and fonts & website testing.</li>
 					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://github.com/cpfair">Collin Fair</a> for his word timestamps for Quranic audios.</li>
 					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://play.google.com/store/apps/details?id=com.atq.quranemajeedapp.org.islamone&hl=en">Usman Pervez (IslamOne android app)</a> for various data like Urdu WBW and Tafhim-ul-Quran.</li>
-					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://gtaf.org">Greentech Apps (Al Quran Tafsir & by Word app)</a> for their English, Indonesian & Bangla words and corpus database.</li>
+					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://gtaf.org">Greentech Apps (Al Quran Tafsir & by Word app)</a> for their English, Indonesian, Bangla, Chinese, Malayalam and Divehi words database and corpus data.</li>
 					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://github.com/kaisdukes">Dr. Kais Dukes</a> for his morphological description of the Quranic words.</li>
 					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://www.typemybook.com/download/complete-quran-kareem-text/">Ata Rafi</a> for sharing the IndoPak text originally by <a class={linkClasses} target="_blank" rel="noreferrer" href="http://inpage.com/">InPage™</a>.</li>
 					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://apps.apple.com/us/app/quran-word-by-word/id588198510">Azrul Azwar (Quran WbW iOS app)</a> for the words databases in many different languages.</li>
@@ -64,7 +64,7 @@
 					and co-developed by team : Rania, Amena, Naveed Ahmed, Mohammed Zahid, Tooba and Anza for Sadaqa-e-jaria (non-commercial) purposes only. Permitted to develop with prior permissions secured from King Fahad Glorious Quran Printing Complex and Dar-Al-Marifa by <a class={linkClasses} target="_blank" rel="noreferrer" href="https://quran.com">Quran.com</a> (Quran Foundation) team.</span
 				>
 
-				<span>All the data used on this website belongs to their respective owners/authors and copying them will be subject to their permission.</span>
+				<span>All data used on this website belongs to their respective owners and authors. Permission must be obtained from them before copying any content.</span>
 			</div>
 		</div>
 	</div>

@@ -36,7 +36,7 @@
 	};
 
 	$: wordDivClasses = `
-	  word rounded-lg ${wordAndEndIconCommonClasses} print:break-inside-avoid
+	  word rounded-lg ${wordAndEndIconCommonClasses} text-center print:break-inside-avoid
 	  ${$__audioSettings.playingWordKey === wordKey || ($__currentPage === 'morphology' && $__morphologyKey === wordKey) ? (selectableThemes[$__websiteTheme].palette === 1 ? 'bg-white/20' : 'bg-black/10') : null}
 		${$__currentPage === 'supplications' && word + 1 < supplicationsFromQuran[key] ? ($__hideNonDuaPart ? 'hidden' : 'opacity-30') : null}
 	`;
@@ -88,7 +88,7 @@
 		</span>
 
 		<!-- word translation and transliteration, only for wbw modes -->
-		{#if [1, 3].includes($__displayType) && !exampleVerse}
+		{#if [1, 3, 7].includes($__displayType) && !exampleVerse}
 			<div class={wordTranslationClasses} data-fontSize={fontSizes.wordTranslationText}>
 				<span class="leading-normal {$__wordTransliterationEnabled ? 'block' : 'hidden'}">{transliterationSplit[word]}</span>
 				<span class="leading-normal {$__wordTranslation === 2 && 'font-Urdu'} {$__wordTranslationEnabled ? 'block' : 'hidden'}">{translationSplit[word]}</span>

@@ -10,7 +10,7 @@
 	import { quranMetaData } from '$data/quranMeta';
 	import { selectableDisplays } from '$data/options';
 	import { errorLoadingDataMessage } from '$data/websiteSettings';
-	import { __userSettings, __currentPage, __chapterNumber, __displayType, __fontType, __wordTranslation, __verseTranslations, __pageURL, __firstVerseOnPage, __chapterDataLoaded, __verseTranslationData } from '$utils/stores';
+	import { __userSettings, __currentPage, __chapterNumber, __displayType, __fontType, __wordTranslation, __wordTransliteration, __verseTranslations, __pageURL, __firstVerseOnPage, __chapterDataLoaded, __verseTranslationData } from '$utils/stores';
 	import { buttonOutlineClasses } from '$data/commonClasses';
 	import { goto } from '$app/navigation';
 	import { term } from '$utils/terminologies';
@@ -52,12 +52,14 @@
 		__firstVerseOnPage.set(startVerse);
 
 		// do nothing except re-run the block if any of the following store updates
-		if ($__pageURL || $__displayType || $__fontType || $__wordTranslation) {
+		if ($__pageURL || $__displayType || $__fontType || $__wordTranslation || $__wordTransliteration) {
 			// do nothing...
 		}
 	}
 
 	$: if ($__verseTranslations) fetchVerseTranslationData($__chapterNumber);
+
+	$: loadPrevNextVerseButtons = `flex ${selectableDisplays[JSON.parse($__userSettings).displaySettings.displayType].continuous ? 'flex-row-reverse' : 'flex-row'} space-x-4 justify-center pt-8 pb-6 theme`;
 
 	// update some variables on chapter change, for when the data has to be loaded from the API
 	function resetChapterDataVariables(chapter) {
@@ -90,7 +92,7 @@
 		<div id="verses-block" class={selectableDisplays[JSON.parse($__userSettings).displaySettings.displayType].customClasses}>
 			<!-- buttons to start chapter from start and load previous verse -->
 			{#if startVerse > 1}
-				<div class="flex flex-row space-x-4 justify-center pt-8 pb-6 theme">
+				<div class={loadPrevNextVerseButtons}>
 					<a href="/{$__chapterNumber}" class="text-sm {buttonOutlineClasses}"> Start of {term('chapter')} </a>
 					<button on:click={loadPreviousVerse} class="text-sm {buttonOutlineClasses}"> Previous {term('verse')} </button>
 				</div>

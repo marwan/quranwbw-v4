@@ -7,6 +7,7 @@
 	import Normal from '$display/layouts/Normal.svelte';
 	import Continuous from '$display/layouts/Continuous.svelte';
 	import SideBySide from '$display/layouts/SideBySide.svelte';
+	import TranslationTransliteration from '$display/layouts/TranslationTransliteration.svelte';
 	import { inview } from 'svelte-inview';
 	import { quranMetaData } from '$data/quranMeta';
 	import { __currentPage, __userSettings, __displayType, __chapterNumber, __chapterData, __chapterDataLoaded } from '$utils/stores';
@@ -23,7 +24,9 @@
 		2: { component: Normal },
 		3: { component: Continuous },
 		4: { component: Continuous },
-		5: { component: SideBySide }
+		5: { component: SideBySide },
+		// 6 is Mushaf mode which is handled differently
+		7: { component: TranslationTransliteration }
 	};
 
 	const chapterTotalVerses = quranMetaData[$__chapterNumber].verses;

@@ -4,6 +4,7 @@
 	import WordTooltipSelector from '$ui/SettingsDrawer/WordTooltipSelector.svelte';
 	import QuranFontSelector from '$ui/SettingsDrawer/QuranFontSelector.svelte';
 	import WordTranslationSelector from '$ui/SettingsDrawer/WordTranslationSelector.svelte';
+	import WordTransliterationSelector from '$ui/SettingsDrawer/WordTransliterationSelector.svelte';
 	import VerseTranslationSelector from '$ui/SettingsDrawer/VerseTranslationSelector.svelte';
 	import VerseTransliterationSelector from '$ui/SettingsDrawer/VerseTransliterationSelector.svelte';
 	import VerseTafsirSelector from '$ui/SettingsDrawer/VerseTafsirSelector.svelte';
@@ -24,6 +25,7 @@
 		__selectedDisplayId,
 		__websiteTheme,
 		__wordTranslation,
+		__wordTransliteration,
 		__wordTranslationEnabled,
 		__wordTransliterationEnabled,
 		__verseTranslations,
@@ -41,7 +43,7 @@
 		__hideNonDuaPart,
 		__playButtonsFunctionality
 	} from '$utils/stores';
-	import { selectableDisplays, selectableFontTypes, selectableThemes, selectableWordTranslations, selectableVerseTransliterations, selectableReciters, selectableTranslationReciters, selectablePlaybackSpeeds, selectableTooltipOptions, selectableFontSizes, fontSizePresets, selectableVersePlayButtonOptions } from '$data/options';
+	import { selectableDisplays, selectableFontTypes, selectableThemes, selectableWordTranslations, selectableWordTransliterations, selectableVerseTransliterations, selectableReciters, selectableTranslationReciters, selectablePlaybackSpeeds, selectableTooltipOptions, selectableFontSizes, fontSizePresets, selectableVersePlayButtonOptions } from '$data/options';
 	import { updateSettings } from '$utils/updateSettings';
 	import { resetSettings } from '$utils/resetSettings';
 	import { disabledClasses, buttonClasses } from '$data/commonClasses';
@@ -57,6 +59,7 @@
 		'word-tooltip': WordTooltipSelector,
 		'quran-font': QuranFontSelector,
 		'word-translation': WordTranslationSelector,
+		'word-transliteration': WordTransliterationSelector,
 		'verse-translation': VerseTranslationSelector,
 		'verse-transliteration': VerseTransliterationSelector,
 		'verse-tafsir': VerseTafsirSelector,
@@ -95,8 +98,9 @@
 	$: updateSettings({ type: 'verseTranslationText', value: selectableFontSizes[verseTranlationTransliterationSizeValue].value });
 	$: updateSettings({ type: 'playbackSpeed', value: playbackSpeedValue });
 
-	$: maxFontSizeAllowed = ['default', 'sm'].includes(getTailwindBreakpoint()) ? 6 : 12;
+	$: maxFontSizeAllowed = ['default', 'sm'].includes(getTailwindBreakpoint()) ? 9 : 12;
 	$: wordTranslationKey = Object.keys(selectableWordTranslations).filter((item) => selectableWordTranslations[item].id === $__wordTranslation);
+	$: wordTransliterationKey = Object.keys(selectableWordTransliterations).filter((item) => selectableWordTransliterations[item].id === $__wordTransliteration);
 	$: if ($__currentPage || $__settingsDrawerHidden) goBackToMainSettings();
 	$: {
 		totalVerseTransliterationsSelected = 0;
@@ -181,7 +185,7 @@
 					<div class="border-b border-black/10"></div>
 
 					<!-- display-type-setting -->
-					<div id="display-type-setting" class="{settingsBlockClasses} {!['chapter', 'page'].includes($__currentPage) && disabledClasses}">
+					<div id="display-type-setting" class="{settingsBlockClasses} {!['chapter', 'page', 'supplications', 'bookmarks', 'morphology'].includes($__currentPage) && disabledClasses}">
 						<div class="flex flex-row justify-between items-center">
 							<div class="block">Display Type</div>
 							<Button class={selectorClasses} on:click={() => gotoIndividualSetting('display-type')}>{selectableDisplays[$__selectedDisplayId].displayName}</Button>
@@ -315,6 +319,17 @@
 							<Button class={selectorClasses} on:click={() => gotoIndividualSetting('word-translation')}>{selectableWordTranslations[wordTranslationKey].language}</Button>
 						</div>
 						<p class={settingsDescriptionClasses}>Word translation which will be displaced under the Arabic word text.</p>
+					</div>
+
+					<div class="border-b border-black/10"></div>
+
+					<!-- word-transliteration-setting -->
+					<div id="word-transliteration-setting" class={settingsBlockClasses}>
+						<div class="flex flex-row justify-between items-center">
+							<div class="block">Word Transliteration</div>
+							<Button class={selectorClasses} on:click={() => gotoIndividualSetting('word-transliteration')}>{selectableWordTransliterations[wordTransliterationKey].language}</Button>
+						</div>
+						<p class={settingsDescriptionClasses}>Word transliteration of various types.</p>
 					</div>
 
 					<div class="border-b border-black/10"></div>

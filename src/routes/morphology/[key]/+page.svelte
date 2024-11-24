@@ -7,7 +7,7 @@
 	import Table from '$display/morphology/Table.svelte';
 	import { quranMetaData } from '$data/quranMeta';
 	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
-	import { __currentPage, __fontType, __wordTranslation, __verseTranslations, __morphologyKey, __pageURL, __displayType, __lexiconModalVisible, __wordRoot } from '$utils/stores';
+	import { __currentPage, __fontType, __wordTranslation, __morphologyKey, __pageURL, __displayType, __lexiconModalVisible, __wordRoot } from '$utils/stores';
 	import { buttonOutlineClasses } from '$data/commonClasses';
 	import { fetchVersesData } from '$utils/fetchData';
 	import { term } from '$utils/terminologies';
@@ -27,7 +27,7 @@
 	}
 
 	// fetching verse data
-	$: fetchData = fetchVersesData(`${chapter}:${verse}`, $__fontType, $__wordTranslation, $__verseTranslations.toString());
+	$: fetchData = fetchVersesData(`${chapter}:${verse}`, $__fontType, $__wordTranslation);
 
 	// fetch words
 	$: {
@@ -53,7 +53,7 @@
 	}
 
 	// only allow display type 1 & 2, and don't save the layout in settings
-	if ([3, 4, 5].includes($__displayType)) $__displayType = 1;
+	if (![1, 2].includes($__displayType)) $__displayType = 1;
 
 	__currentPage.set('morphology');
 </script>

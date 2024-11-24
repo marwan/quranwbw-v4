@@ -45,11 +45,12 @@ export async function validateKey(key) {
 			results['chapters'] = {};
 
 			for (let chapter = 1; chapter <= 114; chapter++) {
+				const arabic = quranMetaData[chapter].arabic;
 				const transliteration = quranMetaData[chapter].transliteration;
 				const translation = quranMetaData[chapter].translation;
 				const alternateNames = quranMetaData[chapter].alternateNames;
 
-				if (transliteration.toLowerCase().includes(key.toLowerCase()) || translation.toLowerCase().includes(key.toLowerCase()) || alternateNames.toLowerCase().includes(key.toLowerCase())) {
+				if (arabic.includes(key) || transliteration.toLowerCase().includes(key.toLowerCase()) || translation.toLowerCase().includes(key.toLowerCase()) || alternateNames.toLowerCase().includes(key.toLowerCase())) {
 					results['chapters'][`${chapter}`] = {
 						transliteration,
 						translation

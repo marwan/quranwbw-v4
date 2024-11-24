@@ -37,7 +37,6 @@
 		}
 	}
 
-	// $: if ($page.url.href || $__pageURL || $__chapterNumber || $__pageNumber) __quranNavigationModalVisible.set(false);
 	$: if ($page.url.href || $__pageURL || $__chapterNumber || $__pageNumber) __quranNavigationModalVisible.set(false);
 	$: if ($__currentPage) searchedKey = '';
 	$: chapterVerses = quranMetaData[$__chapterNumber].verses;
@@ -104,11 +103,7 @@
 				<!-- instructions -->
 				{#if searchedKey.length === 0}
 					<div class="text-xs">
-						<span class="font-semibold">Instructions:</span>
-						You may navigate by entering either a {term('chapter').toLowerCase()}/page/juz number, or a {term('verse').toLowerCase()}/word key seperated by a colon, period, dash or a space (e.g. 2:255, 2.286, 18-10 or 2 1 1).
-
-						<!-- <br /><br />
-						This navigation modal can be opened from anywhere on the website by pressing CTRL+K. -->
+						To navigate, enter either a {term('chapter').toLowerCase()}, page, or juz number. Alternatively, you can use an {term('verse').toLowerCase()} or word key, separated by a colon, period, dash, or a space (e.g., 2:255, 2.286, 18-10, or 2 1 1).
 					</div>
 				{/if}
 

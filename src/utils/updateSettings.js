@@ -7,6 +7,7 @@ import {
 	__displayType,
 	__websiteTheme,
 	__wordTranslation,
+	__wordTransliteration,
 	__verseTranslations,
 	__verseTafsir,
 	__wordTranslationEnabled,
@@ -92,6 +93,12 @@ export function updateSettings(props) {
 		case 'wordTranslation':
 			__wordTranslation.set(props.value);
 			userSettings.translations.word = props.value;
+			break;
+
+		// for word transliteration
+		case 'wordTransliteration':
+			__wordTransliteration.set(props.value);
+			userSettings.transliteration.word = props.value;
 			break;
 
 		// for verse translations

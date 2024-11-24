@@ -28,11 +28,12 @@
 	let lines = [];
 	$: page = +data.page;
 
-	// load some previous and next pages fonts for v4
+	// prefetch the previous and next data for better UX
 	$: {
 		if ([2, 3].includes($__fontType)) {
-			for (let thisPage = +page - 1; thisPage <= +page + 1; thisPage++) {
+			for (let thisPage = +page - 2; thisPage <= +page + 2; thisPage++) {
 				fetch(`${mushafFontLinks.COLRv1}/QCF4${`00${thisPage}`.slice(-3)}_COLOR-Regular.woff`);
+				fetch(`${apiEndpoint}/page?page=${thisPage}&word_type=${selectableFontTypes[$__fontType].apiId}&word_translation=${$__wordTranslation}&v=92827326`);
 			}
 		}
 	}
@@ -96,7 +97,7 @@
 			});
 
 			// dynamically load header font
-			loadFont('chapter-headers', mushafFontLinks.header).then(() => {
+			loadFont('chapter-headers', `${mushafFontLinks.header}?v=${mushafFontLinks.version}`).then(() => {
 				document.querySelectorAll('.header').forEach((element) => {
 					element.classList.remove('invisible');
 				});

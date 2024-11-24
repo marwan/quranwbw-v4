@@ -1152,6 +1152,11 @@ input[type="range"].range-lg::-moz-range-thumb {
   margin: auto;
 }
 
+.mx-1 {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+}
+
 .mx-2 {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
@@ -1498,10 +1503,6 @@ input[type="range"].range-lg::-moz-range-thumb {
   width: 5rem;
 }
 
-.w-28 {
-  width: 7rem;
-}
-
 .w-3 {
   width: 0.75rem;
 }
@@ -1558,12 +1559,12 @@ input[type="range"].range-lg::-moz-range-thumb {
   width: 20rem;
 }
 
-.w-\[10px\] {
-  width: 10px;
+.w-\[-webkit-fill-available\] {
+  width: -webkit-fill-available;
 }
 
-.w-\[180px\] {
-  width: 180px;
+.w-\[10px\] {
+  width: 10px;
 }
 
 .w-\[98\%\] {
@@ -1656,17 +1657,6 @@ input[type="range"].range-lg::-moz-range-thumb {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-.scale-\[0\.80\] {
-  --tw-scale-x: 0.80;
-  --tw-scale-y: 0.80;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-.scale-x-\[-1\] {
-  --tw-scale-x: -1;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
 .transform {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
@@ -1715,10 +1705,6 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.grid-cols-3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .grid-cols-4 {
@@ -1787,10 +1773,6 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .gap-1 {
   gap: 0.25rem;
-}
-
-.gap-2 {
-  gap: 0.5rem;
 }
 
 .gap-3 {
@@ -2831,6 +2813,11 @@ input[type="range"].range-lg::-moz-range-thumb {
   color: rgb(107 114 128 / var(--tw-text-opacity));
 }
 
+.text-gray-600 {
+  --tw-text-opacity: 1;
+  color: rgb(75 85 99 / var(--tw-text-opacity));
+}
+
 .text-gray-700 {
   --tw-text-opacity: 1;
   color: rgb(55 65 81 / var(--tw-text-opacity));
@@ -3110,7 +3097,7 @@ input[type="range"].range-lg::-moz-range-thumb {
 @font-face {
   font-family: "chapter-icons";
 
-  src: url("../fonts/chapter-icons/chapter-icons.woff") format("woff");
+  src: url("../fonts/chapter-icons/surahs_v4-Regular.woff") format("woff2"), url("../fonts/chapter-icons/surahs_v4-Regular.woff") format("woff");
 
   font-weight: normal;
 
@@ -3901,10 +3888,6 @@ svg {
     margin-bottom: 0.5rem;
   }
 
-  .md\:mt-2 {
-    margin-top: 0.5rem;
-  }
-
   .md\:mt-6 {
     margin-top: 1.5rem;
   }
@@ -3935,6 +3918,10 @@ svg {
 
   .md\:w-3\/4 {
     width: 75%;
+  }
+
+  .md\:w-full {
+    width: 100%;
   }
 
   .md\:w-max {
@@ -4090,6 +4077,11 @@ svg {
   .md\:text-lg {
     font-size: 1.125rem;
     line-height: 1.75rem;
+  }
+
+  .md\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
   }
 
   .md\:text-xl {

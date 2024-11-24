@@ -3,17 +3,14 @@
 	import PageHead from '$misc/PageHead.svelte';
 	import Individual from '$display/verses/modes/Individual.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
-	import { __currentPage, __fontType, __displayType, __wordTranslation, __verseTranslations } from '$utils/stores';
+	import { __currentPage, __fontType, __displayType, __wordTranslation, __wordTransliteration } from '$utils/stores';
 	import { getSupplicationKeys } from '$utils/getSupplicationKeys';
 	import { fetchVersesData } from '$utils/fetchData';
 	import { errorLoadingDataMessage } from '$data/websiteSettings';
 	import { term } from '$utils/terminologies';
 
 	// fetch supplication verses
-	$: fetchData = fetchVersesData(getSupplicationKeys(), $__fontType, $__wordTranslation, $__verseTranslations.toString());
-
-	// only allow display type 1 & 2, and don't save the layout in settings
-	if ([3, 4, 5].includes($__displayType)) $__displayType = 1;
+	$: fetchData = fetchVersesData(getSupplicationKeys(), $__fontType, $__wordTranslation, $__wordTransliteration);
 
 	// __currentPage.set(`${term('supplications').toLowerCase()}`);
 	__currentPage.set('supplications');

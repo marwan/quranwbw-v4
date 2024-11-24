@@ -16,6 +16,7 @@ let __websiteOnline,
 	__userToken,
 	__fontType,
 	__wordTranslation,
+	__wordTransliteration,
 	__verseTranslations,
 	__verseTafsir,
 	__wordTranslationEnabled,
@@ -108,6 +109,9 @@ if (browser) {
 
 	// to store the word translation
 	__wordTranslation = writable(userSettings.translations.word);
+
+	// to store the word transliteration
+	__wordTransliteration = writable(userSettings.transliteration.word);
 
 	// to store the verse translations
 	__verseTranslations = writable(userSettings.translations.verse_v1);
@@ -255,6 +259,7 @@ export {
 	__userToken,
 	__fontType,
 	__wordTranslation,
+	__wordTransliteration,
 	__verseTranslations,
 	__verseTafsir,
 	__wordTranslationEnabled,
