@@ -3948,6 +3948,10 @@ svg {
     max-width: 28rem;
   }
 
+  .md\:max-w-\[40rem\] {
+    max-width: 40rem;
+  }
+
   .md\:scale-\[0\.85\] {
     --tw-scale-x: 0.85;
     --tw-scale-y: 0.85;
@@ -4100,6 +4104,14 @@ svg {
 
   .lg\:text-\[36px\] {
     font-size: 36px;
+  }
+
+  .lg\:text-\[185px\] {
+    font-size: 185px;
+  }
+
+  .lg\:text-\[195px\] {
+    font-size: 195px;
   }
 }
 

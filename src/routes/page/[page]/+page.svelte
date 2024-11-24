@@ -15,6 +15,9 @@
 	import { mushafFontLinks, selectableFontTypes } from '$data/options';
 	import { loadFont } from '$utils/loadFont';
 
+	// page:line for which we need to center the verse rathen than justify
+	const centeredPageLines = ['528:9', '594:5', '602:5', '602:15', '603:10', '603:15', '604:4', '604:9', '604:14', '604:15'];
+
 	let pageData;
 	let startingLine;
 	let endingLine;
@@ -137,18 +140,18 @@
 		<Spinner height="screen" margin="-mt-20" />
 	{:then}
 		<div class="space-y-2 mt-2.5">
-			<div class="max-w-3xl space-y-2 pb-2 mx-auto text-[5.4vw] md:text-[42px] lg:text-[36px]">
+			<div class="max-w-3xl md:max-w-[40rem] pace-y-2 pb-2 mx-auto text-[5.4vw] md:text-[42px] lg:text-[36px]">
 				{#each Array.from(Array(endingLine + 1).keys()).slice(startingLine) as line}
 					<!-- if it's the first verse of a chapter -->
 					{#if chapters.length > 0 && lines.includes(line) && verses[lines.indexOf(line)] === 1}
 						<div class="flex flex-col my-2">
-							<div style="font-family: chapter-headers" class="header invisible leading-base md:pt-8 pb-6 text-[28vw] md:text-[220px] lg:text-[230px]">{chapterHeaderCodes[chapters[lines.indexOf(line)]]}</div>
+							<div style="font-family: chapter-headers" class="header invisible leading-base pt-4 md:pt-8 pb-6 text-[28vw] md:text-[220px] lg:text-[195px]">{chapterHeaderCodes[chapters[lines.indexOf(line)]]}</div>
 
 							<Bismillah {chapters} {lines} {line} />
 						</div>
 					{/if}
 
-					<div class="line {line} flex px-2 justify-center arabic-font-{$__fontType}">
+					<div class="line {line} flex px-2 arabic-font-{$__fontType} {+page < 3 || centeredPageLines.includes(`${+page}:${line}`) ? 'justify-center' : null} {+page > 2 && !centeredPageLines.includes(`${+page}:${line}`) ? 'justify-between' : null}">
 						{#each Object.entries(JSON.parse(localStorage.getItem('pageData'))) as [key, value]}
 							<WordsBlock {key} {value} {line} />
 						{/each}
