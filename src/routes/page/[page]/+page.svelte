@@ -14,6 +14,7 @@
 	import { quranMetaData, chapterHeaderCodes } from '$data/quranMeta';
 	import { mushafFontLinks, selectableFontTypes } from '$data/options';
 	import { loadFont } from '$utils/loadFont';
+	import '$lib/swiped-events.min.js';
 
 	// page:line for which we need to center the verse rathen than justify
 	const centeredPageLines = ['528:9', '594:5', '602:5', '602:15', '603:10', '603:15', '604:4', '604:9', '604:14', '604:15'];
