@@ -60,7 +60,8 @@ let __websiteOnline,
 	__hideNonDuaPart,
 	__wordRoot,
 	__playButtonsFunctionality,
-	__mushafMinimalModeEnabled;
+	__mushafMinimalModeEnabled,
+	__newSiteChangelogModalVisible;
 
 if (browser) {
 	const userSettings = JSON.parse(localStorage.getItem('userSettings'));
@@ -241,6 +242,9 @@ if (browser) {
 
 	// used to hide elements on pinch
 	__mushafMinimalModeEnabled = writable(false);
+
+	// one time modals
+	__newSiteChangelogModalVisible = writable(false);
 }
 
 export {
@@ -303,5 +307,6 @@ export {
 	__hideNonDuaPart,
 	__wordRoot,
 	__playButtonsFunctionality,
-	__mushafMinimalModeEnabled
+	__mushafMinimalModeEnabled,
+	__newSiteChangelogModalVisible
 };

@@ -74,5 +74,9 @@ export function setUserSettings() {
 	// chapter number
 	if (userSettings.chapter === undefined) userSettings.chapter = 1;
 
+	// one time modals (is shown?)
+	if (userSettings.oneTimeModals === undefined) userSettings.oneTimeModals = {}; // parent
+	if (userSettings.oneTimeModals.newSiteChangelogModal === undefined) userSettings.oneTimeModals.newSiteChangelogModal = false;
+
 	localStorage.setItem('userSettings', JSON.stringify(userSettings));
 }
