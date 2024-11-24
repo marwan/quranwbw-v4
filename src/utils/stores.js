@@ -59,7 +59,7 @@ let __websiteOnline,
 	__hideNonDuaPart,
 	__wordRoot,
 	__playButtonsFunctionality,
-	__mushafDistractionFreeReadingEnabled;
+	__mushafMinimalModeEnabled;
 
 if (browser) {
 	const userSettings = JSON.parse(localStorage.getItem('userSettings'));
@@ -236,7 +236,7 @@ if (browser) {
 	});
 
 	// used to hide elements on pinch
-	__mushafDistractionFreeReadingEnabled = writable(false);
+	__mushafMinimalModeEnabled = writable(false);
 }
 
 export {
@@ -298,5 +298,5 @@ export {
 	__hideNonDuaPart,
 	__wordRoot,
 	__playButtonsFunctionality,
-	__mushafDistractionFreeReadingEnabled
+	__mushafMinimalModeEnabled
 };

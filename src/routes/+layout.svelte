@@ -19,7 +19,7 @@
 	import SiteNavigationModal from '$ui/modals/SiteNavigationModal.svelte';
 	import SettingsSelectorModal from '$ui/modals/SettingsSelectorModal.svelte';
 	import LexiconModal from '$ui/modals/LexiconModal.svelte';
-	import { __websiteOnline, __currentPage, __chapterNumber, __settingsDrawerHidden, __wakeLockEnabled, __userToken, __fontType, __wordTranslation, __verseTranslations, __selectedDisplayId, __mushafDistractionFreeReadingEnabled, __topNavbarVisible, __bottomToolbarVisible } from '$utils/stores';
+	import { __websiteOnline, __currentPage, __chapterNumber, __settingsDrawerHidden, __wakeLockEnabled, __userToken, __fontType, __wordTranslation, __verseTranslations, __selectedDisplayId, __mushafMinimalModeEnabled, __topNavbarVisible, __bottomToolbarVisible } from '$utils/stores';
 	import { checkOldBookmarks } from '$utils/checkOldBookmarks';
 	import { debounce } from '$utils/debounce';
 	import { toggleNavbar } from '$utils/toggleNavbar';
@@ -53,7 +53,7 @@
 
 	// distraction free mushaf mode, that is, hiding the top & bottom bar
 	$: {
-		if ($__mushafDistractionFreeReadingEnabled) {
+		if ($__mushafMinimalModeEnabled) {
 			paddingTop = 'pt-0';
 			paddingBottom = 'pb-0';
 			__topNavbarVisible.set(false);

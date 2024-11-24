@@ -4,29 +4,27 @@
 	import Bismillah from '$display/Bismillah.svelte';
 	import PageHead from '$misc/PageHead.svelte';
 	import WordsBlock from '$display/verses/WordsBlock.svelte';
-	import FullScreen from '$svgs/FullScreen.svelte';
+	import Minimize from '$svgs/Minimize.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
 	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
 	import { goto } from '$app/navigation';
-	import { __chapterNumber, __pageNumber, __currentPage, __fontType, __wordTranslation, __mushafPageDivisions, __lastRead, __displayType, __topNavbarVisible, __bottomToolbarVisible, __mushafDistractionFreeReadingEnabled } from '$utils/stores';
+	import { __chapterNumber, __pageNumber, __currentPage, __fontType, __wordTranslation, __mushafPageDivisions, __lastRead, __displayType, __topNavbarVisible, __bottomToolbarVisible, __mushafMinimalModeEnabled } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';
 	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
 	import { quranMetaData, chapterHeaderCodes } from '$data/quranMeta';
 	import { mushafFontLinks, selectableFontTypes } from '$data/options';
 	import { loadFont } from '$utils/loadFont';
+	import { toggleMushafMinimalMode } from '$utils/toggleMushafMinimalMode';
 	import '$lib/swiped-events.min.js';
 
 	// page:line for which we need to center the verse rathen than justify
 	const centeredPageLines = ['528:9', '594:5', '602:5', '602:15', '603:10', '603:15', '604:4', '604:9', '604:14', '604:15'];
-
 	let pageData;
 	let startingLine;
 	let endingLine;
 	let chapters = [];
 	let verses = [];
 	let lines = [];
-	let minimalModeEnabled = false;
-
 	$: page = +data.page;
 
 	// load some previous and next pages fonts for v4
@@ -38,6 +36,7 @@
 		}
 	}
 
+	// fetching the page data from API
 	$: {
 		// empty all the arrays
 		(chapters = []), (verses = []), (lines = []);
@@ -113,21 +112,6 @@
 		updateSettings({ type: 'lastRead', value: { key: key !== undefined ? key : '1:1', page } });
 	}
 
-	// function to toggle top navbar and bottom toolbar for minimal mode
-	function toggleMinimalMode() {
-		if (!minimalModeEnabled) {
-			minimalModeEnabled = true;
-			__topNavbarVisible.set(false);
-			__bottomToolbarVisible.set(false);
-			document.querySelector('#page-block').classList.add('!-mt-8');
-		} else {
-			minimalModeEnabled = false;
-			__topNavbarVisible.set(true);
-			__bottomToolbarVisible.set(true);
-			document.querySelector('#page-block').classList.remove('!-mt-8');
-		}
-	}
-
 	// only allow continious normal mode, but skip saving the settings
 	$__displayType = 4;
 
@@ -174,9 +158,12 @@
 	{/await}
 </div>
 
-<div class="flex justify-center -mt-12 pb-16">
-	<button class="w-fit flex flex-row space-x-2 py-3 px-3 text-black/70 bg-gray-200 hover:bg-gray-300 rounded-xl items-center cursor-pointer theme" on:click={toggleMinimalMode}>
-		<FullScreen size={3} />
-	</button>
-	<Tooltip arrow={false} type="light" class="z-30 hidden md:block font-filter font-normal">Minimal Mode</Tooltip>
-</div>
+<!-- only show the minimize minimal mode button when it is enabled -->
+{#if $__mushafMinimalModeEnabled}
+	<div class="flex justify-center -mt-12 pb-16">
+		<button class="w-fit flex flex-row space-x-2 py-3 px-3 text-black/70 bg-gray-200 hover:bg-gray-300 rounded-xl items-center cursor-pointer theme" on:click={toggleMushafMinimalMode}>
+			<Minimize size={3} />
+		</button>
+		<Tooltip arrow={false} type="light" class="z-30 hidden md:block font-filter font-normal">Minimal Mode</Tooltip>
+	</div>
+{/if}
