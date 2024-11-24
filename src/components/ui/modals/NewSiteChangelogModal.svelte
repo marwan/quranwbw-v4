@@ -37,7 +37,7 @@
 		'<span class="font-semibold">Advanced Audio Play:</span> Enhanced audio play features.'
 	];
 
-	// show the setup modal on first visit
+	// show the modal on first visit
 	$: {
 		const userSettings = JSON.parse(localStorage.getItem('userSettings'));
 
