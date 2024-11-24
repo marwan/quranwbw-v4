@@ -19,7 +19,7 @@
 	import SiteNavigationModal from '$ui/modals/SiteNavigationModal.svelte';
 	import SettingsSelectorModal from '$ui/modals/SettingsSelectorModal.svelte';
 	import LexiconModal from '$ui/modals/LexiconModal.svelte';
-	import { __websiteOnline, __currentPage, __chapterNumber, __settingsDrawerHidden, __wakeLockEnabled, __userToken, __fontType, __wordTranslation, __verseTranslations, __selectedDisplayId } from '$utils/stores';
+	import { __websiteOnline, __currentPage, __chapterNumber, __settingsDrawerHidden, __wakeLockEnabled, __userToken, __fontType, __wordTranslation, __verseTranslations, __selectedDisplayId, __mushafMinimalModeEnabled, __topNavbarVisible, __bottomToolbarVisible } from '$utils/stores';
 	import { checkOldBookmarks } from '$utils/checkOldBookmarks';
 	import { debounce } from '$utils/debounce';
 	import { toggleNavbar } from '$utils/toggleNavbar';
@@ -30,20 +30,43 @@
 	// check old bookmarks for v3 update
 	checkOldBookmarks();
 
+	const defaultPaddingTop = 'pt-16';
+	const defaultPaddingBottom = 'pb-8';
+	let wakeLock = null;
+
 	// custom padding depending on page
-	$: paddingTop = $__currentPage === 'home' ? 'pt-10' : 'pt-16';
-	$: paddingBottom = $__currentPage === 'chapter' ? 'pb-24' : 'pb-8';
+	$: paddingTop = $__currentPage === 'home' ? 'pt-10' : defaultPaddingTop;
+	$: paddingBottom = $__currentPage === 'chapter' ? 'pb-24' : defaultPaddingBottom;
 	$: paddingX = $__currentPage === 'page' ? 'px-0 md:px-4' : $__currentPage === 'home' ? 'px-0' : 'px-4';
 
 	// if settings drawer is open, hide body scroll
+	$: $__settingsDrawerHidden ? document.body.classList.remove('overflow-y-hidden') : document.body.classList.add('overflow-y-hidden');
+
+	// fetch settings from cloud whenever there's a change in chapter or page
+	// $: if ($__currentPage && $__chapterNumber) downloadSettingsFromCloud();
+
+	// reset chapterDataLoaded if any of the following updates
+	$: if ($__currentPage || $__fontType || $__wordTranslation || $__verseTranslations) localStorage.setItem('chapterDataLoaded', false);
+
+	// stop all audio when the page or chapter is changed
+	$: if ($__currentPage || $__chapterNumber) resetAudioSettings({ location: 'end' });
+
+	// distraction free mushaf mode, that is, hiding the top & bottom bar
 	$: {
-		if ($__settingsDrawerHidden) document.body.classList.remove('overflow-y-hidden');
-		else document.body.classList.add('overflow-y-hidden');
+		if ($__mushafMinimalModeEnabled) {
+			paddingTop = 'pt-0';
+			paddingBottom = 'pb-0';
+			__topNavbarVisible.set(false);
+			__bottomToolbarVisible.set(false);
+		} else {
+			paddingTop = defaultPaddingTop;
+			paddingBottom = defaultPaddingBottom;
+			__topNavbarVisible.set(true);
+			__bottomToolbarVisible.set(true);
+		}
 	}
 
-	// wakelock / screen sleep settings
-	let wakeLock = null;
-
+	// wakelock stuff
 	$: {
 		// enabled wakeLock
 		if ($__wakeLockEnabled === true) {
@@ -68,15 +91,6 @@
 			}
 		}
 	}
-
-	// fetch settings from cloud whenever there's a change in chapter or page
-	// $: if ($__currentPage && $__chapterNumber) downloadSettingsFromCloud();
-
-	// reset chapterDataLoaded if any of the following updates
-	$: if ($__currentPage || $__fontType || $__wordTranslation || $__verseTranslations) localStorage.setItem('chapterDataLoaded', false);
-
-	// stop all audio when the page or chapter is changed
-	$: if ($__currentPage || $__chapterNumber) resetAudioSettings({ location: 'end' });
 
 	// update display and font type depending on the page
 	$: {

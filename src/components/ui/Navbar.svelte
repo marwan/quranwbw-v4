@@ -13,6 +13,9 @@
 	let mushafChapters = [];
 	let mushafJuz = '...';
 
+	$: navbarClasses = `bg-white fixed w-full z-20 top-0 left-0 border-b border-black/10 text-black print:hidden theme ${$__currentPage === 'home' ? 'hidden' : 'block'}`;
+	$: topNavClasses = `${$__topNavbarVisible ? 'block' : 'hidden'} flex flex-row items-center justify-between max-w-screen-lg mx-auto px-4 py-2`;
+
 	// last read
 	$: {
 		try {
@@ -57,8 +60,8 @@
 	}
 </script>
 
-<nav id="navbar" class="bg-white fixed w-full z-20 top-0 left-0 border-b border-black/10 text-black print:hidden theme {$__currentPage === 'home' ? 'hidden' : 'block'}">
-	<div id="top-nav" class="{$__topNavbarVisible ? 'block' : 'hidden'} flex flex-row items-center justify-between max-w-screen-lg mx-auto px-4 py-2" aria-label="Home">
+<nav id="navbar" class={navbarClasses}>
+	<div id="top-nav" class={topNavClasses} aria-label="Home">
 		<a href="/" class="flex flex-row items-center p-3 cursor-pointer hover:bg-lightGray rounded-3xl" aria-label="Home">
 			<Home />
 			<span class="text-xs pl-2 hidden md:block">Home</span>
@@ -117,7 +120,12 @@
 	<!-- mini nav for mushaf page -->
 	{#if $__currentPage === 'page'}
 		<div id="bottom-nav" class="flex flex-row items-center justify-between border-t border-black/10 text-xs max-w-screen-lg mx-auto px-6 theme-grayscale">
-			<div class="flex flex-row items-center py-2">{mushafChapters.join(' / ')}</div>
+			<div class="flex flex-row items-center py-2">
+				{#if !$__topNavbarVisible}
+					<span>Page {$__pageNumber} -&nbsp;</span>
+				{/if}
+				<span>{mushafChapters.join(' / ')}</span>
+			</div>
 			<div class="flex flex-row items-center py-2">{mushafJuz}</div>
 		</div>
 	{/if}

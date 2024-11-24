@@ -59,7 +59,8 @@ let __websiteOnline,
 	__englishTerminology,
 	__hideNonDuaPart,
 	__wordRoot,
-	__playButtonsFunctionality;
+	__playButtonsFunctionality,
+	__mushafMinimalModeEnabled;
 
 if (browser) {
 	const userSettings = JSON.parse(localStorage.getItem('userSettings'));
@@ -237,6 +238,9 @@ if (browser) {
 		verse: 1, // default is "play this verse"
 		toolbar: 1 // default is "play from start"
 	});
+
+	// used to hide elements on pinch
+	__mushafMinimalModeEnabled = writable(false);
 }
 
 export {
@@ -298,5 +302,6 @@ export {
 	__englishTerminology,
 	__hideNonDuaPart,
 	__wordRoot,
-	__playButtonsFunctionality
+	__playButtonsFunctionality,
+	__mushafMinimalModeEnabled
 };
