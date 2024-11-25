@@ -1431,6 +1431,11 @@ input[type="range"].range-lg::-moz-range-thumb {
   height: 100%;
 }
 
+.h-max {
+  height: -moz-max-content;
+  height: max-content;
+}
+
 .h-modal {
   height: calc(100% - 2rem);
 }
@@ -2386,6 +2391,10 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .\!p-0 {
   padding: 0px !important;
+}
+
+.\!p-2 {
+  padding: 0.5rem !important;
 }
 
 .p-0 {
@@ -3910,10 +3919,6 @@ svg {
     display: inline-block;
   }
 
-  .md\:hidden {
-    display: none;
-  }
-
   .md\:h-full {
     height: 100%;
   }
@@ -3928,10 +3933,6 @@ svg {
 
   .md\:w-3\/4 {
     width: 75%;
-  }
-
-  .md\:w-full {
-    width: 100%;
   }
 
   .md\:w-max {

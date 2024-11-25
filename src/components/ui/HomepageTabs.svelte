@@ -23,6 +23,8 @@
 		}
 	}
 
+	$: noTimeSpecificChaptersAvailable = !$__timeSpecificChapters.isFriday && !$__timeSpecificChapters.isNight;
+
 	// chapter cards, tab styles
 	const cardGridClasses = 'grid md:grid-cols-2 lg:grid-cols-3 gap-3';
 	const cardInnerClasses = 'flex justify-between md:text-left border border-black/10 transition text-sm bg-gray-100 rounded-3xl p-5 hover:cursor-pointer hover:bg-lightGray';
@@ -56,13 +58,6 @@
 					<button on:click={() => (activeTab = 4)} class="{tabClasses} {activeTab === 4 && activeTabClasses}" type="button" role="tab" aria-controls="notes-tab-panel" aria-selected="false">Notes</button>
 				</div>
 			</div>
-
-			<!-- menu for links on right -->
-			<div class="ml-2 align-center">
-				<button class="flex flex-row items-center bg-lightGray rounded-3xl p-3 {tabClasses} !border-b-0" title="Menu" on:click={() => __siteNavigationModalVisible.set(true)}>
-					<span class="text-black opacity-70"><Menu /></span>
-				</button>
-			</div>
 		</div>
 	</div>
 
@@ -72,23 +67,27 @@
 		<!-- chapters tab -->
 		<div class="homepage-tab-panels {activeTab === 1 ? 'block' : 'hidden'}" id="chapters-tab-panel" role="tabpanel" aria-labelledby="chapters-tab">
 			<!-- chapter / page etc... selector -->
-			<div class="flex flex-col space-y-2 md:space-y-0 md:flex-row justify-between text-xs mb-0 md:mb-2">
-				<!-- search bar -->
-				<button class="w-full md:w-full theme-grayscale" on:click={() => __quranNavigationModalVisible.set(true)}>
-					<span class="w-full pointer-events-none {buttonOutlineClasses}">
-						<span class="pt-1"><Search size={4} /></span>
-						<span class="opacity-70">Navigate or Search Quran</span>
-					</span>
-				</button>
+			<div class="flex flex-col md:flex-row justify-between text-xs mb-0 md:mb-2">
+				<!-- time specific chapter buttons and search -->
+				<div class="flex flex-row space-x-1 mb-2 md:mb-0 md:space-x-2">
+					<div id="searchAndMenuIcons" class="flex flex-row space-x-1 md:space-x-2 {noTimeSpecificChaptersAvailable && 'mx-auto'}">
+						<!-- menu for links -->
+						<div class="ml-2 align-center">
+							<button class="flex flex-row items-center bg-lightGray rounded-3xl p-3 {tabClasses} !border-b-0" title="Menu" on:click={() => __siteNavigationModalVisible.set(true)}>
+								<span class="text-black opacity-70"><Menu /></span>
+							</button>
+						</div>
 
-				<div class="hidden md:block mx-1"></div>
+						<!-- search bar -->
+						<button class="flex flex-row items-center bg-lightGray rounded-3xl {tabClasses} !p-2 !border-b-0 h-max" title="Search" on:click={() => __quranNavigationModalVisible.set(true)}>
+							<span class="text-black opacity-70"><Search size={5} /></span>
+						</button>
+					</div>
 
-				<!-- time specific chapter buttons and last read -->
-				<div class="flex flex-row space-x-2">
 					<!-- show Al Kahf on Friday -->
 					{#if $__timeSpecificChapters.isFriday}
 						<div id="al-kahf" class="w-full md:w-max">
-							<a href="/18" class="py-2.5 w-full mb-4 md:mb-0 {buttonClasses}">
+							<a href="/18" class="py-2.5 w-full {buttonClasses}">
 								Al-Kahf
 								<span class="hidden md:block">{@html '&nbsp;'}{@html '&#10230'}</span>
 							</a>
@@ -98,21 +97,22 @@
 					<!-- show Al Mulk at night/evening -->
 					{#if $__timeSpecificChapters.isNight}
 						<div id="al-mulk" class="w-full md:w-max">
-							<a href="/67" class="py-2.5 w-full mb-4 md:mb-0 {buttonClasses}">
+							<a href="/67" class="py-2.5 w-full {buttonClasses}">
 								Al-Mulk
 								<span class="hidden md:block">{@html '&nbsp;'}{@html '&#10230'}</span>
 							</a>
 						</div>
 					{/if}
-
-					<!-- last read -->
-					{#if $__lastRead.hasOwnProperty('key')}
-						<div id="last-read" class="w-full md:w-max">
-							<a href="/{lastReadChapter}/{lastReadVerse}" class="hidden md:block py-2.5 w-full mb-4 md:mb-0 truncate {buttonClasses}">Continue Reading: {quranMetaData[lastReadChapter].transliteration}, {lastReadChapter}:{lastReadVerse} {@html '&#10230'}</a>
-							<a href="/{lastReadChapter}/{lastReadVerse}" class="block md:hidden py-2.5 w-full mb-4 md:mb-0 truncate {buttonClasses}">Continue: {lastReadChapter}:{lastReadVerse} {@html '&#10230'}</a>
-						</div>
-					{/if}
 				</div>
+
+				<div class="hidden md:block mx-1"></div>
+
+				<!-- last read -->
+				{#if $__lastRead.hasOwnProperty('key')}
+					<div id="last-read" class="w-full md:w-max">
+						<a href="/{lastReadChapter}/{lastReadVerse}" class="py-2.5 w-full mb-4 md:mb-0 truncate {buttonOutlineClasses}">Continue Reading: {quranMetaData[lastReadChapter].transliteration}, {lastReadChapter}:{lastReadVerse} {@html '&#10230'}</a>
+					</div>
+				{/if}
 			</div>
 
 			<div class="{cardGridClasses} grid-cols-2">
