@@ -1358,6 +1358,10 @@ input[type="range"].range-lg::-moz-range-thumb {
   height: 2.5rem;
 }
 
+.h-12 {
+  height: 3rem;
+}
+
 .h-16 {
   height: 4rem;
 }
@@ -1431,11 +1435,6 @@ input[type="range"].range-lg::-moz-range-thumb {
   height: 100%;
 }
 
-.h-max {
-  height: -moz-max-content;
-  height: max-content;
-}
-
 .h-modal {
   height: calc(100% - 2rem);
 }
@@ -1486,6 +1485,10 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .w-10 {
   width: 2.5rem;
+}
+
+.w-12 {
+  width: 3rem;
 }
 
 .w-14 {
@@ -1594,10 +1597,6 @@ input[type="range"].range-lg::-moz-range-thumb {
   width: max-content;
 }
 
-.min-w-28 {
-  min-width: 7rem;
-}
-
 .max-w-2xl {
   max-width: 42rem;
 }
@@ -1653,12 +1652,6 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .rotate-45 {
   --tw-rotate: 45deg;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-.scale-\[0\.70\] {
-  --tw-scale-x: 0.70;
-  --tw-scale-y: 0.70;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -2091,10 +2084,6 @@ input[type="range"].range-lg::-moz-range-thumb {
   border-width: 2px;
 }
 
-.\!border-b-0 {
-  border-bottom-width: 0px !important;
-}
-
 .\!border-t-0 {
   border-top-width: 0px !important;
 }
@@ -2141,10 +2130,6 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .border-black\/10 {
   border-color: rgb(0 0 0 / 0.1);
-}
-
-.border-black\/15 {
-  border-color: rgb(0 0 0 / 0.15);
 }
 
 .border-blue-700 {
@@ -2391,10 +2376,6 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .\!p-0 {
   padding: 0px !important;
-}
-
-.\!p-2 {
-  padding: 0.5rem !important;
 }
 
 .p-0 {
@@ -2664,10 +2645,6 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .pt-8 {
   padding-top: 2rem;
-}
-
-.pb-14 {
-  padding-bottom: 3.5rem;
 }
 
 .text-left {
@@ -3968,12 +3945,6 @@ svg {
     max-width: 28rem;
   }
 
-  .md\:scale-\[0\.85\] {
-    --tw-scale-x: 0.85;
-    --tw-scale-y: 0.85;
-    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-  }
-
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -3992,10 +3963,6 @@ svg {
 
   .md\:justify-start {
     justify-content: flex-start;
-  }
-
-  .md\:justify-center {
-    justify-content: center;
   }
 
   .md\:gap-6 {
