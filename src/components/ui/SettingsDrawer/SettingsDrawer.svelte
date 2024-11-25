@@ -110,6 +110,11 @@
 		});
 	}
 
+	// some basic detection
+	const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
+	const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+	const isIOS = /(iPhone|iPod|iPad)/i.test(navigator.platform);
+
 	function goBackToMainSettings() {
 		allSettingsVisible = true;
 		individualSettingsVisible = false;
@@ -266,8 +271,10 @@
 						<p class={settingsDescriptionClasses}>Multiple Quranic fonts to choose from depending on your mushaf or region preference.</p>
 
 						<!-- note for Firefox users on Apple devices -->
-						{#if [2, 3].includes($__fontType) && navigator.userAgent.match('FxiOS')}
-							<p class={settingsDescriptionClasses}><span class="font-semibold">Important Note: </span>The Mushaf fonts you have selected may not be fully compatible with Firefox on Apple devices. For the best experience, please use Safari or Chrome.</p>
+						{#if [2, 3].includes($__fontType)}
+							{#if (isIOS && isFirefox) || (isMac && isFirefox)}
+								<p class={settingsDescriptionClasses}><span class="font-semibold">Important Note: </span>The Mushaf fonts you have selected may not be fully compatible with Firefox on Apple devices. For the best experience, please use Safari or Chrome.</p>
+							{/if}
 						{/if}
 					</div>
 
