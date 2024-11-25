@@ -4,6 +4,7 @@
 	import ChevronDown from '$svgs/ChevronDown.svelte';
 	import { quranMetaData } from '$data/quranMeta';
 	import { __chapterNumber, __currentPage, __lastRead, __pageURL, __topNavbarVisible, __pageNumber, __morphologyKey, __mushafPageDivisions, __siteNavigationModalVisible, __quranNavigationModalVisible } from '$utils/stores';
+	import { term } from '$utils/terminologies';
 
 	let lastReadPage;
 	let lastReadJuz;
@@ -49,7 +50,7 @@
 	// chapter names for mushaf page
 	$: {
 		try {
-			mushafJuz = `Juz ${$__mushafPageDivisions.juz}`;
+			mushafJuz = `${term('juz')} ${$__mushafPageDivisions.juz}`;
 			mushafChapters = [];
 
 			// join all the chapter names
@@ -110,7 +111,7 @@
 			<div class="flex flex-row items-center py-2">
 				<span>{lastReadPage ? `Page ${lastReadPage}` : '...'}</span>
 				<span class="px-1 opacity-60">/</span>
-				<span>{lastReadJuz ? `Juz ${lastReadJuz}` : '...'}</span>
+				<span>{lastReadJuz ? `${term('juz')} ${lastReadJuz}` : '...'}</span>
 			</div>
 		</div>
 

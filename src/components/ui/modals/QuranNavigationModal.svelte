@@ -103,7 +103,7 @@
 				<!-- instructions -->
 				{#if searchedKey.length === 0}
 					<div class="text-xs">
-						To navigate, enter either a {term('chapter').toLowerCase()}, page, or juz number. Alternatively, you can use an {term('verse').toLowerCase()} or word key, separated by a colon, period, dash, or a space (e.g., 2:255, 2.286, 18-10, or 2 1 1).
+						To navigate, enter either a {term('chapter').toLowerCase()}, page, or {term('juz')} number. Alternatively, you can use an {term('verse').toLowerCase()} or word key, separated by a colon, period, dash, or a space (e.g., 2:255, 2.286, 18-10, or 2 1 1).
 					</div>
 				{/if}
 
@@ -171,7 +171,7 @@
 										{#if key === 'juz'}
 											<div class={linkClasses}>
 												<span>{@html '&#10230'}</span>
-												<a href="/page/{verseKeyData[juzNumberKeys[value - 1]].page}" class={linkTextClasses}>Juz {value}</a>
+												<a href="/page/{verseKeyData[juzNumberKeys[value - 1]].page}" class={linkTextClasses}>{term('juz')} {value}</a>
 											</div>
 										{:else if key === 'key'}
 											<div class={linkClasses}>
@@ -194,7 +194,7 @@
 									{:else if key === 'juz'}
 										<div class={linkClasses}>
 											<span>{@html '&#10230'}</span>
-											<a href="/{juzNumberKeys[value - 1].split(':')[0]}/{juzNumberKeys[value - 1].split(':')[1]}" class={linkTextClasses}>Juz {value} ({quranMetaData[juzNumberKeys[value - 1].split(':')[0]].transliteration})</a>
+											<a href="/{juzNumberKeys[value - 1].split(':')[0]}/{juzNumberKeys[value - 1].split(':')[1]}" class={linkTextClasses}>{term('juz')} {value} ({quranMetaData[juzNumberKeys[value - 1].split(':')[0]].transliteration})</a>
 										</div>
 									{:else if key === 'key'}
 										<div class={linkClasses}>
