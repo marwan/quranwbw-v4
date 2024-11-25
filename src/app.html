@@ -1,7 +1,7 @@
 <script>
-	// a simple check for old iOS/Mac versions which do not support Optional chaining (?.), and redirect these users to old website version
-	// see more on: https://github.com/sveltejs/kit/issues/5209
-	// credits: https://stackoverflow.com/a/69935847
+	// a simple check for old iOS/Mac versions which do not support Optional chaining (?.), redirect these users to old website version
+	// issue: https://github.com/sveltejs/kit/issues/5209
+	// credit: https://stackoverflow.com/a/69935847
 	try {
 		eval('const foo = {}; foo?.bar');
 	} catch {
