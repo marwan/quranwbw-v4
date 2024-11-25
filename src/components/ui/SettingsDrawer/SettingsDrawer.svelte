@@ -264,6 +264,11 @@
 							<Button class={selectorClasses} on:click={() => gotoIndividualSetting('quran-font')}>{selectableFontTypes[$__fontType].font}</Button>
 						</div>
 						<p class={settingsDescriptionClasses}>Multiple Quranic fonts to choose from depending on your mushaf or region preference.</p>
+
+						<!-- note for Firefox users on Apple devices -->
+						{#if [2, 3].includes($__fontType) && navigator.userAgent.match('FxiOS')}
+							<p class={settingsDescriptionClasses}><span class="font-semibold">Important Note: </span>The Mushaf fonts you have selected may not be fully compatible with Firefox on Apple devices. For the best experience, please use Safari or Chrome.</p>
+						{/if}
 					</div>
 
 					<div class="border-b border-black/10 {settingsDrawerOpacity}"></div>
