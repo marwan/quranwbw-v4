@@ -282,7 +282,7 @@
 					<div class="border-b border-black/10 {settingsDrawerOpacity}"></div>
 
 					<!-- word-translation-size-setting . -->
-					<div id="word-translation-size-setting" class="fontSizeSliders {settingsBlockClasses}">
+					<div id="word-translation-size-setting" class="fontSizeSliders {settingsBlockClasses} {$__currentPage === 'page' && disabledClasses}">
 						<div class="flex flex-col justify-between space-y-4">
 							<span class="block">Word Translation/Transliteration Size ({selectableFontSizes[wordTranlationTransliterationSizeValue].value.split('-')[1]})</span>
 							<!-- svelte-ignore a11y-mouse-events-have-key-events -->
@@ -295,7 +295,7 @@
 					<div class="border-b border-black/10 {settingsDrawerOpacity}"></div>
 
 					<!-- verse-translation-size-setting -->
-					<div id="verse-translation-size-setting" class="fontSizeSliders {settingsBlockClasses}">
+					<div id="verse-translation-size-setting" class="fontSizeSliders {settingsBlockClasses} {$__currentPage === 'page' && disabledClasses}">
 						<div class="flex flex-col justify-between space-y-4">
 							<span class="block">{term('verse')} Translation/Transliteration Size ({selectableFontSizes[verseTranlationTransliterationSizeValue].value.split('-')[1]})</span>
 							<!-- svelte-ignore a11y-mouse-events-have-key-events -->
