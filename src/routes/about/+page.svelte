@@ -55,6 +55,7 @@
 					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://drusaman.github.io/">Dr. Usama Nonnenmacher</a> for his excellent work on the French word by word data.</li>
 					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://github.com/spa5k/tafsir_api">Spark (spa5k)</a> for his Tafsir API.</li>
 					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://quran-pro.com/">Quran Pro</a> for their pictures of different recitors.</li>
+					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://www.flaticon.com/uicons/">Flaticon</a> for their great range of interface icons.</li>
 				</ul>
 
 				<span>All data used on this website belongs to their respective owners and authors. Permission must be obtained from them before copying any content.</span>

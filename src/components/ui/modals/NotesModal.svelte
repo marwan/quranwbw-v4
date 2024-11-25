@@ -1,5 +1,6 @@
 <script>
 	import Modal from '$ui/flowbite-svelte/modal/Modal.svelte';
+	import Trash from '$svgs/Trash.svelte';
 	import { quranMetaData } from '$data/quranMeta';
 	import { __currentPage, __chapterNumber, __audioSettings, __verseKey, __notesData, __userNotes, __notesModalVisible } from '$utils/stores';
 	import { buttonClasses, buttonOutlineClasses } from '$data/commonClasses';
@@ -47,9 +48,11 @@
 		<div id="notes-last-modified" class="text-xs mt-4 theme-grayscale">Modified {noteModifiedAt}.</div>
 	{/if}
 
-	<div class="flex flex-row space-x-2">
+	<div class="flex flex-row">
 		<button on:click={() => updateNote()} class="w-full mr-2 mt-6 {buttonClasses}">Update</button>
-		<button on:click={() => resetNote()} class="w-full mr-2 mt-6 {buttonOutlineClasses}">Reset</button>
+		<button on:click={() => resetNote()} class="w-fit mr-2 mt-6 {buttonOutlineClasses}">
+			<span class="opacity-70"><Trash size={5} /></span>
+		</button>
 	</div>
 </Modal>
 
