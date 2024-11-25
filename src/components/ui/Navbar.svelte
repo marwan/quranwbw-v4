@@ -105,7 +105,7 @@
 				{#if !$__topNavbarVisible}
 					<span>{@html navbarChapterName}</span>
 				{:else}
-					<span>{chapterRevelation === 1 ? 'Meccan' : 'Medinan'}</span>
+					<span>{chapterRevelation === 1 ? term('meccan') : term('medinan')}</span>
 				{/if}
 			</div>
 			<div class="flex flex-row items-center py-2">

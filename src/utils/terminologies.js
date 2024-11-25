@@ -12,7 +12,9 @@ export const englishTerms = {
 		supplications: 'Supplications',
 		tafsir: 'Exegesis',
 		tajweed: 'Pronunciation',
-		juz: 'Part'
+		juz: 'Part',
+		meccan: 'Meccan',
+		medinan: 'Medinan'
 	},
 
 	// if Arabic
@@ -24,7 +26,9 @@ export const englishTerms = {
 		supplications: 'Duas',
 		tafsir: 'Tafsir',
 		tajweed: 'Tajweed',
-		juz: 'Juz'
+		juz: 'Juz',
+		meccan: 'Makki',
+		medinan: 'Madani'
 	}
 };
 
