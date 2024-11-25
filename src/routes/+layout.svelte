@@ -114,7 +114,7 @@
 	// custom padding depending on page
 	function setDefaultPaddings() {
 		paddingTop = $__currentPage === 'home' ? 'pt-10' : defaultPaddingTop;
-		paddingBottom = $__currentPage === 'chapter' ? 'pb-24' : defaultPaddingBottom;
+		paddingBottom = $__currentPage === 'chapter' ? 'pb-24' : $__currentPage === 'home' ? 'pb-16' : defaultPaddingBottom;
 		paddingX = $__currentPage === 'page' ? 'px-0 md:px-4' : $__currentPage === 'home' ? 'px-0' : 'px-4';
 	}
 

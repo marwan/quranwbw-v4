@@ -2,9 +2,7 @@
 	import Mecca from '$svgs/Mecca.svelte';
 	import Madinah from '$svgs/Madinah.svelte';
 	import CrossSolid from '$svgs/CrossSolid.svelte';
-	import Menu from '$svgs/Menu.svelte';
 	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
-	import Search from '$svgs/Search.svelte';
 	import { updateSettings } from '$utils/updateSettings';
 	import { quranMetaData, mostRead } from '$data/quranMeta';
 	import { __lastRead, __favouriteChapters, __userBookmarks, __userNotes, __timeSpecificChapters, __siteNavigationModalVisible, __quranNavigationModalVisible } from '$utils/stores';
@@ -70,26 +68,13 @@
 			<div class="flex flex-col md:flex-row justify-between text-xs mb-0 md:mb-2">
 				<!-- time specific chapter buttons and search -->
 				<div class="flex flex-row space-x-1 mb-2 md:mb-0 md:space-x-2">
-					<div id="searchAndMenuIcons" class="flex flex-row space-x-1 md:space-x-2 {noTimeSpecificChaptersAvailable && 'mx-auto'}">
-						<!-- menu for links -->
-						<div class="ml-2 align-center">
-							<button class="flex flex-row items-center bg-lightGray rounded-3xl p-3 {tabClasses} !border-b-0" title="Menu" on:click={() => __siteNavigationModalVisible.set(true)}>
-								<span class="text-black opacity-70"><Menu /></span>
-							</button>
-						</div>
-
-						<!-- search bar -->
-						<button class="flex flex-row items-center bg-lightGray rounded-3xl {tabClasses} !p-2 !border-b-0 h-max" title="Search" on:click={() => __quranNavigationModalVisible.set(true)}>
-							<span class="text-black opacity-70"><Search size={5} /></span>
-						</button>
-					</div>
-
 					<!-- show Al Kahf on Friday -->
 					{#if $__timeSpecificChapters.isFriday}
 						<div id="al-kahf" class="w-full md:w-max">
-							<a href="/18" class="py-2.5 w-full {buttonClasses}">
+							<a href="/18" class="py-2.5 w-full truncate {buttonClasses}">
+								<span>It's Friday:&nbsp;</span>
 								Al-Kahf
-								<span class="hidden md:block">{@html '&nbsp;'}{@html '&#10230'}</span>
+								<span class="hidden md:block">{@html '&#10230'}</span>
 							</a>
 						</div>
 					{/if}
@@ -97,9 +82,10 @@
 					<!-- show Al Mulk at night/evening -->
 					{#if $__timeSpecificChapters.isNight}
 						<div id="al-mulk" class="w-full md:w-max">
-							<a href="/67" class="py-2.5 w-full {buttonClasses}">
+							<a href="/67" class="py-2.5 w-full truncate {buttonClasses}">
+								<span>Night Reminder:&nbsp;</span>
 								Al-Mulk
-								<span class="hidden md:block">{@html '&nbsp;'}{@html '&#10230'}</span>
+								<span class="hidden md:block">{@html '&#10230'}</span>
 							</a>
 						</div>
 					{/if}
