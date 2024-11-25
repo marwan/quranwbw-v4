@@ -27,6 +27,12 @@
 		<div class="flex flex-col space-y-2">
 			<div class="font-semibold">Navigate</div>
 			<div class="grid grid-cols-2 md:grid-cols-2 gap-1">
+				<!-- Search -->
+				<a href="/search" class={linkClasses}>
+					<Search2 size={4} />
+					<span class={linkTextClasses}>Search</span>
+				</a>
+
 				<!-- settings modal -->
 				<button
 					on:click={() => {
@@ -38,12 +44,6 @@
 					<Settings2 size={4} />
 					<span class={linkTextClasses}>Settings</span>
 				</button>
-
-				<!-- Search -->
-				<a href="/search" class={linkClasses}>
-					<Search2 size={4} />
-					<span class={linkTextClasses}>Search</span>
-				</a>
 
 				<!-- Bookmarks -->
 				<a href="/bookmarks" class={linkClasses}>
@@ -87,16 +87,16 @@
 					<span class={linkTextClasses}>Changelogs</span>
 				</a>
 
-				<!-- About -->
-				<a href="/about" class={linkClasses}>
-					<About size={4} />
-					<span class={linkTextClasses}>About</span>
-				</a>
-
 				<!-- legacy site link -->
 				<a href="https://v3.quranwbw.com/" target="_blank" class={linkClasses}>
 					<LegacySite size={4} />
 					<span class={linkTextClasses}>Old Website</span>
+				</a>
+
+				<!-- About -->
+				<a href="/about" class={linkClasses}>
+					<About size={4} />
+					<span class={linkTextClasses}>About</span>
 				</a>
 			</div>
 		</div>
