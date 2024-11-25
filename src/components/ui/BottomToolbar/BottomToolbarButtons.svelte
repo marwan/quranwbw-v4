@@ -42,7 +42,7 @@
 	</a>
 	<Tooltip arrow={false} type="light" class="hidden md:block font-filter font-normal">Morphology</Tooltip>
 
-	<button class="opacity-70 inline-flex flex-col items-center justify-center px-5 hover:bg-lightGray group" on:click={() => __siteNavigationModalVisible.set(true)}>
+	<button class="opacity-70 inline-flex flex-col items-center rounded-e-full justify-center px-5 hover:bg-lightGray group" on:click={() => __siteNavigationModalVisible.set(true)}>
 		<MenuBold size={4} />
 		<span class="sr-only">Menu</span>
 	</button>
