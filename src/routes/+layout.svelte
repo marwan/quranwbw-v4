@@ -36,9 +36,11 @@
 	let wakeLock = null;
 
 	// custom padding depending on page
-	$: paddingTop = $__currentPage === 'home' ? 'pt-10' : defaultPaddingTop;
-	$: paddingBottom = $__currentPage === 'chapter' ? 'pb-24' : defaultPaddingBottom;
-	$: paddingX = $__currentPage === 'page' ? 'px-0 md:px-4' : $__currentPage === 'home' ? 'px-0' : 'px-4';
+	$: paddingTop = 0;
+	$: paddingBottom = 0;
+	$: paddingX = 0;
+
+	setDefaultPaddings();
 
 	// if settings drawer is open, hide body scroll
 	$: $__settingsDrawerHidden ? document.body.classList.remove('overflow-y-hidden') : document.body.classList.add('overflow-y-hidden');
@@ -54,14 +56,13 @@
 
 	// distraction free mushaf mode, that is, hiding the top & bottom bar
 	$: {
-		if ($__mushafMinimalModeEnabled) {
+		if ($__mushafMinimalModeEnabled && $__currentPage === 'page') {
 			paddingTop = 'pt-0';
 			paddingBottom = 'pb-0';
 			__topNavbarVisible.set(false);
 			__bottomToolbarVisible.set(false);
 		} else {
-			paddingTop = defaultPaddingTop;
-			paddingBottom = defaultPaddingBottom;
+			setDefaultPaddings();
 			__topNavbarVisible.set(true);
 			__bottomToolbarVisible.set(true);
 		}
@@ -108,6 +109,13 @@
 			// update font type
 			__fontType.set(userSettings.displaySettings.fontType);
 		}
+	}
+
+	// custom padding depending on page
+	function setDefaultPaddings() {
+		paddingTop = $__currentPage === 'home' ? 'pt-10' : defaultPaddingTop;
+		paddingBottom = $__currentPage === 'chapter' ? 'pb-24' : $__currentPage === 'home' ? 'pb-16' : defaultPaddingBottom;
+		paddingX = $__currentPage === 'page' ? 'px-0 md:px-4' : $__currentPage === 'home' ? 'px-0' : 'px-4';
 	}
 
 	// toggle bottom nav on scroll
