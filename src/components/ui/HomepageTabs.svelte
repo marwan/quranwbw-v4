@@ -7,7 +7,7 @@
 	import Search from '$svgs/Search.svelte';
 	import { updateSettings } from '$utils/updateSettings';
 	import { quranMetaData, mostRead } from '$data/quranMeta';
-	import { __lastRead, __favouriteChapters, __userBookmarks, __timeSpecificChapters, __siteNavigationModalVisible, __quranNavigationModalVisible } from '$utils/stores';
+	import { __lastRead, __favouriteChapters, __userBookmarks, __userNotes, __timeSpecificChapters, __siteNavigationModalVisible, __quranNavigationModalVisible } from '$utils/stores';
 	import { buttonClasses, buttonOutlineClasses } from '$data/commonClasses';
 	import { checkTimeSpecificChapters } from '$utils/checkTimeSpecificChapters';
 	import { term } from '$utils/terminologies';
@@ -24,7 +24,7 @@
 
 	// chapter cards, tab styles
 	const cardGridClasses = 'grid md:grid-cols-2 lg:grid-cols-3 gap-3';
-	const cardInnerClasses = 'flex justify-between md:text-left border border-black/10 transition text-sm bg-gray-100 rounded-3xl p-5 hover:cursor-pointer hover:bg-lightGray';
+	const cardInnerClasses = 'flex justify-between md:text-left border border-black/10 transition text-sm bg-gray-100 rounded-3xl p-5 hover:cursor-pointer hover:bg-lightGray truncate';
 	const tabClasses = 'p-2 md:p-3 text-xs md:text-md cursor-pointer border-b-4 border-transparent';
 	const activeTabClasses = '!border-black/10';
 
@@ -51,7 +51,7 @@
 				<div class="flex text-sm font-medium text-center opacity-70 justify-center space-x-2 md:space-x-4">
 					<button on:click={() => (activeTab = 1)} class="{tabClasses} {activeTab === 1 && activeTabClasses}" type="button" role="tab" aria-controls="chapters-tab-panel" aria-selected="false">{term('chapters')}</button>
 					<button on:click={() => (activeTab = 2)} class="{tabClasses} {activeTab === 2 && activeTabClasses}" type="button" role="tab" aria-controls="most-read-tab-panel" aria-selected="false">Suggested</button>
-					<button on:click={() => (activeTab = 3)} class="{tabClasses} {activeTab === 3 && activeTabClasses}" type="button" role="tab" aria-controls="bookmarks-tab-panel" aria-selected="false">Bookmarks {$__userBookmarks.length > 0 ? `(${$__userBookmarks.length})` : ''}</button>
+					<button on:click={() => (activeTab = 3)} class="{tabClasses} {activeTab === 3 && activeTabClasses}" type="button" role="tab" aria-controls="bookmarks-tab-panel" aria-selected="false">Bookmarks/Notes</button>
 				</div>
 			</div>
 
@@ -161,24 +161,44 @@
 
 		<!-- bookmarks tab -->
 		<div class="bookmarks-tab-panels space-y-12 {activeTab === 3 ? 'block' : 'hidden'}" id="bookmarks-tab-panel" role="tabpanel" aria-labelledby="bookmarks-tab">
-			<div id="bookmark-cards" class="flex flex-col space-y-4">
-				{#if $__userBookmarks.length === 0}
-					<div class="flex items-center justify-center text-sm opacity-70">You currently do not have any bookmarked {term('verses')}.</div>
-				{:else}
-					<div class="{cardGridClasses} grid-cols-1">
-						{#each $__userBookmarks as bookmark}
-							<div class="flex flex-row space-x-2">
-								<a href="{bookmark.split(':')[0]}/{bookmark.split(':')[1]}" class="{cardInnerClasses} flex-row items-center w-full">
-									<div class="text-sm">{quranMetaData[bookmark.split(':')[0]].transliteration}, {term('verse')} {bookmark}</div>
-									<div class="invisible chapter-icons justify-items-end opacity-70 text-3xl mt-2">{@html `&#xE9${quranMetaData[bookmark.split(':')[0]].icon};`}</div>
-								</a>
+			<div class="flex flex-col space-y-4">
+				<h1 class="text-lg font-medium">Bookmarks</h1>
+				<!-- bookmarks -->
+				<div id="bookmark-cards" class="flex flex-col space-y-4">
+					{#if $__userBookmarks.length === 0}
+						<div class="flex items-center justify-start text-sm opacity-70">You currently do not have any bookmarked {term('verses')}.</div>
+					{:else}
+						<div class="{cardGridClasses} grid-cols-2 md:grid-cols-4 lg:grid-cols-5">
+							{#each $__userBookmarks as bookmark}
+								<div class="flex flex-row space-x-2">
+									<a href="{bookmark.split(':')[0]}/{bookmark.split(':')[1]}" class="{cardInnerClasses} flex-row items-center w-full text-sm">
+										<div class="text-sm truncate">{quranMetaData[bookmark.split(':')[0]].transliteration} ({bookmark})</div>
+									</a>
 
-								<!-- delete/cross button -->
-								<button on:click={() => updateSettings({ type: 'userBookmarks', key: bookmark })} class="pointer h-7 w-7 opacity-100" style="margin-left: -20px; margin-top: -5px;" title="Remove bookmark"><CrossSolid size={7} /></button>
-							</div>
-						{/each}
-					</div>
-				{/if}
+									<!-- delete/cross button -->
+									<button on:click={() => updateSettings({ type: 'userBookmarks', key: bookmark })} class="pointer h-7 w-7 opacity-100" style="margin-left: -20px; margin-top: -5px;" title="Remove bookmark"><CrossSolid size={7} /></button>
+								</div>
+							{/each}
+						</div>
+					{/if}
+				</div>
+
+				<!-- notes -->
+				<h1 class="text-lg font-medium pt-2">Notes</h1>
+				<div id="notes-cards" class="flex flex-col space-y-4">
+					{#if Object.keys($__userNotes).length === 0}
+						<div class="flex items-center justify-start text-sm opacity-70">You currently do not have any saved notes.</div>
+					{:else}
+						<div class="{cardGridClasses} grid-cols-1">
+							{#each Object.entries($__userNotes) as [verse, note]}
+								<a href="{verse.split(':')[0]}/{verse.split(':')[1]}" class="{cardInnerClasses} flex-col">
+									<span class="text-sm">{quranMetaData[verse.split(':')[0]].transliteration} ({verse})</span>
+									<div class="block text-xs opacity-70 truncate">{note.note}</div>
+								</a>
+							{/each}
+						</div>
+					{/if}
+				</div>
 			</div>
 		</div>
 	</div>
