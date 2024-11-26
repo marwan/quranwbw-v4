@@ -21,8 +21,8 @@
 			verseNote = $__userNotes[$__verseKey].note;
 			noteModifiedAt = timeAgo($__userNotes[$__verseKey].modified_at);
 
-			// logging to re-run the block
-			console.log($__notesModalVisible);
+			// to re-run the block
+			$__notesModalVisible;
 		}
 
 		if (noteModifiedAt === undefined) noteModifiedAt = 'just now';

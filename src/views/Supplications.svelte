@@ -16,7 +16,7 @@
 	__currentPage.set('supplications');
 </script>
 
-<PageHead title={`${term('supplications')} From Quran`} />
+<PageHead title={`Quranic ${term('supplications')}`} />
 
 <div>
 	{#await fetchData}

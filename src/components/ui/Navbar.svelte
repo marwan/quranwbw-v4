@@ -75,14 +75,19 @@
 				<ChevronDown />
 			{/if}
 
-			<!-- display only the page name for non-chapter page -->
+			<!-- display only the page name for mushaf page -->
 			{#if $__currentPage === 'page'}
 				Page {$__pageNumber}
 				<ChevronDown />
 			{/if}
 
+			<!-- display Quranic+supplication term for supplications page -->
+			{#if $__currentPage === 'supplications'}
+				Quranic {term('supplications')}
+			{/if}
+
 			<!-- display only the page name for non-chapter page -->
-			{#if !['chapter', 'page'].includes($__currentPage)}
+			{#if !['chapter', 'page', 'supplications'].includes($__currentPage)}
 				{$__currentPage[0].toUpperCase() + $__currentPage.slice(1)}
 
 				<!-- if it's the morphology page, show morphology key as well -->
