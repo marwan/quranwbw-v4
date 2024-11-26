@@ -52,8 +52,6 @@ let __websiteOnline,
 	__siteNavigationModalVisible,
 	__settingsSelectorModal,
 	__lexiconModalVisible,
-	__newSiteChangelogModalVisible,
-	__verseTranslationModalVisible,
 	__wakeLockEnabled,
 	__quizCorrectAnswers,
 	__quizWrongAnswers,
@@ -62,7 +60,8 @@ let __websiteOnline,
 	__hideNonDuaPart,
 	__wordRoot,
 	__playButtonsFunctionality,
-	__mushafMinimalModeEnabled;
+	__mushafMinimalModeEnabled,
+	__newSiteChangelogModalVisible;
 
 if (browser) {
 	const userSettings = JSON.parse(localStorage.getItem('userSettings'));
@@ -212,8 +211,6 @@ if (browser) {
 		visible: false
 	});
 	__lexiconModalVisible = writable(false);
-	__newSiteChangelogModalVisible = writable(false);
-	__verseTranslationModalVisible = writable(false);
 
 	// wake lock settings
 	__wakeLockEnabled = writable(userSettings.displaySettings.wakeLockEnabled);
@@ -245,6 +242,9 @@ if (browser) {
 
 	// used to hide elements on pinch
 	__mushafMinimalModeEnabled = writable(false);
+
+	// one time modals
+	__newSiteChangelogModalVisible = writable(false);
 }
 
 export {
@@ -299,8 +299,6 @@ export {
 	__siteNavigationModalVisible,
 	__settingsSelectorModal,
 	__lexiconModalVisible,
-	__newSiteChangelogModalVisible,
-	__verseTranslationModalVisible,
 	__wakeLockEnabled,
 	__quizCorrectAnswers,
 	__quizWrongAnswers,
@@ -309,5 +307,6 @@ export {
 	__hideNonDuaPart,
 	__wordRoot,
 	__playButtonsFunctionality,
-	__mushafMinimalModeEnabled
+	__mushafMinimalModeEnabled,
+	__newSiteChangelogModalVisible
 };

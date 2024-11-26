@@ -19,7 +19,6 @@
 	import '$lib/swiped-events.min.js';
 
 	// page:line for which we need to center the verse rathen than justify
-	const pageAPIVersion = 92827327;
 	const centeredPageLines = ['528:9', '594:5', '602:5', '602:15', '603:10', '603:15', '604:4', '604:9', '604:14', '604:15'];
 	let pageData;
 	let startingLine;
@@ -34,7 +33,7 @@
 		if ([2, 3].includes($__fontType)) {
 			for (let thisPage = +page - 2; thisPage <= +page + 2; thisPage++) {
 				fetch(`${mushafFontLinks.COLRv1}/QCF4${`00${thisPage}`.slice(-3)}_COLOR-Regular.woff`);
-				fetch(`${apiEndpoint}/page?page=${thisPage}&word_type=${selectableFontTypes[$__fontType].apiId}&word_translation=${$__wordTranslation}&v=${pageAPIVersion}`);
+				fetch(`${apiEndpoint}/page?page=${thisPage}&word_type=${selectableFontTypes[$__fontType].apiId}&word_translation=${$__wordTranslation}&v=92827326`);
 			}
 		}
 	}
@@ -45,7 +44,7 @@
 		(chapters = []), (verses = []), (lines = []);
 
 		pageData = (async () => {
-			const apiURL = `${apiEndpoint}/page?page=${page}&word_type=${selectableFontTypes[$__fontType].apiId}&word_translation=${$__wordTranslation}&v=${pageAPIVersion}`;
+			const apiURL = `${apiEndpoint}/page?page=${page}&word_type=${selectableFontTypes[$__fontType].apiId}&word_translation=${$__wordTranslation}&v=92827326`;
 			const response = await fetch(apiURL);
 			const data = await response.json();
 			const apiData = data.data.verses;
