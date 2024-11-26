@@ -21,7 +21,8 @@
 		}
 	}
 
-	$: noTimeSpecificChaptersAvailable = !$__timeSpecificChapters.isFriday && !$__timeSpecificChapters.isNight;
+	$: totalBookmarks = $__userBookmarks.length;
+	$: totalNotes = Object.keys($__userNotes).length;
 
 	// chapter cards, tab styles
 	const cardGridClasses = 'grid md:grid-cols-2 lg:grid-cols-3 gap-3';
@@ -52,8 +53,8 @@
 				<div class="flex text-sm font-medium text-center opacity-70 justify-center space-x-1 md:space-x-4">
 					<button on:click={() => (activeTab = 1)} class="{tabClasses} {activeTab === 1 && activeTabClasses}" type="button" role="tab" aria-controls="chapters-tab-panel" aria-selected="false">{term('chapters')}</button>
 					<button on:click={() => (activeTab = 2)} class="{tabClasses} {activeTab === 2 && activeTabClasses}" type="button" role="tab" aria-controls="most-read-tab-panel" aria-selected="false">Suggested</button>
-					<button on:click={() => (activeTab = 3)} class="{tabClasses} {activeTab === 3 && activeTabClasses}" type="button" role="tab" aria-controls="bookmarks-tab-panel" aria-selected="false">Bookmarks</button>
-					<button on:click={() => (activeTab = 4)} class="{tabClasses} {activeTab === 4 && activeTabClasses}" type="button" role="tab" aria-controls="notes-tab-panel" aria-selected="false">Notes</button>
+					<button on:click={() => (activeTab = 3)} class="{tabClasses} {activeTab === 3 && activeTabClasses} truncate" type="button" role="tab" aria-controls="bookmarks-tab-panel" aria-selected="false">Bookmarks {totalBookmarks > 0 ? `(${totalBookmarks})` : ''}</button>
+					<button on:click={() => (activeTab = 4)} class="{tabClasses} {activeTab === 4 && activeTabClasses} truncate" type="button" role="tab" aria-controls="notes-tab-panel" aria-selected="false">Notes {totalNotes > 0 ? `(${totalNotes})` : ''}</button>
 				</div>
 			</div>
 		</div>
@@ -152,7 +153,7 @@
 		<!-- bookmarks tab -->
 		<div class="bookmarks-tab-panels space-y-12 {activeTab === 3 ? 'block' : 'hidden'}" id="bookmarks-tab-panel" role="tabpanel" aria-labelledby="bookmarks-tab">
 			<div id="bookmark-cards" class="flex flex-col space-y-4">
-				{#if $__userBookmarks.length === 0}
+				{#if totalBookmarks === 0}
 					<div class="flex items-center justify-center text-sm opacity-70">You currently do not have any bookmarks.</div>
 				{:else}
 					<div class="{cardGridClasses} grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
@@ -174,7 +175,7 @@
 		<!-- notes tab -->
 		<div class="notes-tab-panels space-y-12 {activeTab === 4 ? 'block' : 'hidden'}" id="notes-tab-panel" role="tabpanel" aria-labelledby="notes-tab">
 			<div id="notes-cards" class="flex flex-col space-y-4">
-				{#if Object.keys($__userNotes).length === 0}
+				{#if totalNotes === 0}
 					<div class="flex items-center justify-center text-sm opacity-70">You currently do not have any saved notes.</div>
 				{:else}
 					<div class="{cardGridClasses} grid-cols-1">
