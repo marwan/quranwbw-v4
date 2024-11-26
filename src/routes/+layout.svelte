@@ -20,6 +20,7 @@
 	import SettingsSelectorModal from '$ui/Modals/SettingsSelectorModal.svelte';
 	import LexiconModal from '$ui/Modals/LexiconModal.svelte';
 	import NewSiteChangelogModal from '$ui/Modals/NewSiteChangelogModal.svelte';
+	import VerseTranslationModal from '$ui/Modals/VerseTranslationModal.svelte';
 	import { __websiteOnline, __currentPage, __chapterNumber, __settingsDrawerHidden, __wakeLockEnabled, __userToken, __fontType, __wordTranslation, __verseTranslations, __selectedDisplayId, __mushafMinimalModeEnabled, __topNavbarVisible, __bottomToolbarVisible } from '$utils/stores';
 	import { checkOldBookmarks } from '$utils/checkOldBookmarks';
 	import { debounce } from '$utils/debounce';
@@ -135,7 +136,6 @@
 </script>
 
 <div class="max-w-screen-lg mx-auto {paddingTop} {paddingBottom} {paddingX}">
-	<!-- include the UI elements -->
 	<Navbar />
 	<SettingsDrawer />
 	<QuranNavigationModal />
@@ -149,7 +149,8 @@
 	<SiteNavigationModal />
 	<SettingsSelectorModal />
 	<LexiconModal />
-	<BottomToolbar />
 	<NewSiteChangelogModal />
+	<VerseTranslationModal />
+	<BottomToolbar />
 	<slot />
 </div>

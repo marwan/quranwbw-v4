@@ -5,7 +5,8 @@
 	import DropdownItem from '$ui/FlowbiteSvelte/dropdown/DropdownItem.svelte';
 	import { showAudioModal } from '$utils/audioController';
 	import { quranMetaData } from '$data/quranMeta';
-	import { __userSettings, __verseKey, __notesModalVisible, __tafsirModalVisible, __currentPage } from '$utils/stores';
+	import { selectableDisplays } from '$data/options';
+	import { __userSettings, __verseKey, __notesModalVisible, __tafsirModalVisible, __verseTranslationModalVisible, __currentPage, __displayType } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';
 	import { term } from '$utils/terminologies';
 
@@ -76,6 +77,20 @@
 	>
 		{term('verse')} Notes
 	</DropdownItem>
+
+	<!-- verse translation button - only show on Mushaf page or on continuous display -->
+	{#if selectableDisplays[$__displayType].continuous}
+		<DropdownItem
+			class={dropdownItemClasses}
+			on:click={() => {
+				__verseTranslationModalVisible.set(true);
+				dropdownOpen = false;
+			}}
+		>
+			{term('verse')}
+			Translation
+		</DropdownItem>
+	{/if}
 
 	<!-- tafsir button -->
 	<DropdownItem
