@@ -63,7 +63,7 @@
 
 	<!-- bookmark button -->
 	<DropdownItem class={dropdownItemClasses} on:click={() => updateSettings({ type: 'userBookmarks', key: $__verseKey, set: true })}>
-		{userBookmarks.includes($__verseKey) ? 'Unbookmark  Verse' : 'Bookmark Verse'}
+		{userBookmarks.includes($__verseKey) ? `Unbookmark  ${term('verse')}` : `Bookmark ${term('verse')}`}
 	</DropdownItem>
 
 	<!-- verse notes button -->
