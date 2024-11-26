@@ -27,11 +27,8 @@
 <div class="flex flex-col space-y-6 text-sm theme">
 	<!-- commits -->
 	<div id="commits">
-		<div class="mt-6 mb-2 space-y-4 pb-4 border-b-2 border-black/10">
-			<h1 class="text-2xl">Commits</h1>
-			<div class="text-sm">
-				The following list contains the latest 100 commits made to the QuranWBW.com's <a href="https://github.com/marwan/quranwbw-v4" target="_blank" class={linkClasses}>GitHub repository</a>.
-			</div>
+		<div class="mt-6 mb-2 space-y-4 pb-2">
+			<div class="text-xl">Following are the most recent 100 updates made on QuranWBW.com.</div>
 		</div>
 		<div id="commits-list">
 			{#await fetchCommitsData}
@@ -41,10 +38,10 @@
 					{#each Object.entries(fetchCommitsData) as [key, value]}
 						<div class="py-6 space-y-2 border-b border-black/10">
 							<div class="space-y-2">
-								<div><a href={value.html_url} target="_blank" class="font-semibold">{value.commit.message}</a></div>
+								<div><a href={value.html_url} target="_blank">{value.commit.message}</a></div>
 								<div>
 									<img class={userAvatarClasses} src={value.author.avatar_url} alt={value.author.login} />
-									{value.author.login} commited {timeAgo(value.commit.committer.date)} <span class="hidden md:inline-block">({value.sha.substring(0, 7)})</span>
+									<span class="opacity-70">{value.author.login} commited {timeAgo(value.commit.committer.date)} <span class="hidden md:inline-block">({value.sha.substring(0, 7)})</span></span>
 								</div>
 							</div>
 						</div>
