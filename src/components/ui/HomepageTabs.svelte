@@ -5,7 +5,7 @@
 	import Tooltip from '$ui/FlowbiteSvelte/tooltip/Tooltip.svelte';
 	import { updateSettings } from '$utils/updateSettings';
 	import { quranMetaData, mostRead } from '$data/quranMeta';
-	import { __lastRead, __favouriteChapters, __userBookmarks, __userNotes, __timeSpecificChapters, __siteNavigationModalVisible, __quranNavigationModalVisible, __fontType } from '$utils/stores';
+	import { __lastRead, __favouriteChapters, __userBookmarks, __userNotes, __timeSpecificChapters, __siteNavigationModalVisible, __quranNavigationModalVisible } from '$utils/stores';
 	import { buttonClasses, buttonOutlineClasses } from '$data/commonClasses';
 	import { checkTimeSpecificChapters } from '$utils/checkTimeSpecificChapters';
 	import { term } from '$utils/terminologies';
@@ -22,6 +22,7 @@
 		}
 	}
 
+	$: fetchData = activeTab === 3 && totalBookmarks !== 0 ? fetchSingleVerseData($__userBookmarks.toString(), 1) : null; // fetch bookmarks arabic verse
 	$: totalBookmarks = $__userBookmarks.length;
 	$: totalNotes = Object.keys($__userNotes).length;
 
@@ -39,9 +40,6 @@
 			element.classList.remove('invisible');
 		});
 	});
-
-	// $: fontType = [1, 2, 3].includes($__fontType) ? 1 : 4;
-	// $: fetchData = fetchSingleVerseData($__userBookmarks.toString(), fontType);
 
 	// check if it's friday and night
 	checkTimeSpecificChapters();
@@ -160,19 +158,21 @@
 				{#if totalBookmarks === 0}
 					<div class="flex items-center justify-center text-sm opacity-70">You currently do not have any bookmarks.</div>
 				{:else}
-					<div class="{cardGridClasses} grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
+					<div class="{cardGridClasses} grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 						{#each $__userBookmarks as bookmark}
 							<div class="flex flex-row space-x-2">
-								<a href="{bookmark.split(':')[0]}/{bookmark.split(':')[1]}" class="{cardInnerClasses} flex-col items-start w-full text-sm">
-									<!-- <div>
-										{#await fetchData then data}
-											<div class="direction-rtl">{data[bookmark].words.arabic.split('|').join(' ')}</div>
-										{:catch error}
-											<p></p>
-										{/await}
-									</div> -->
+								<a href="{bookmark.split(':')[0]}/{bookmark.split(':')[1]}" class="{cardInnerClasses} space-y-1 w-full flex-col">
+									<div class="block text-xs opacity-70 truncate">{quranMetaData[bookmark.split(':')[0]].transliteration} ({bookmark})</div>
 
-									<div class="text-sm truncate">{quranMetaData[bookmark.split(':')[0]].transliteration} ({bookmark})</div>
+									{#if activeTab === 3 && totalBookmarks !== 0}
+										<div class="text-sm truncate direction-rtl text-right arabic-font-1">
+											{#await fetchData then data}
+												{data[bookmark].words.arabic.split('|').join(' ')}
+											{:catch error}
+												<p></p>
+											{/await}
+										</div>
+									{/if}
 								</a>
 
 								<!-- delete/cross button -->
@@ -192,9 +192,9 @@
 				{:else}
 					<div class="{cardGridClasses} grid-cols-1">
 						{#each Object.entries($__userNotes) as [verse, note]}
-							<a href="{verse.split(':')[0]}/{verse.split(':')[1]}" class="{cardInnerClasses} flex-col">
-								<span class="text-sm truncate">{note.note}</span>
+							<a href="{verse.split(':')[0]}/{verse.split(':')[1]}" class="{cardInnerClasses} space-y-1 flex-col">
 								<div class="block text-xs opacity-70 truncate">{quranMetaData[verse.split(':')[0]].transliteration} ({verse}) - modfied {timeAgo(note.modified_at)}</div>
+								<span class="text-sm truncate">{note.note}</span>
 							</a>
 						{/each}
 					</div>
