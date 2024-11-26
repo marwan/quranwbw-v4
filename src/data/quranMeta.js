@@ -801,7 +801,10 @@ export const mostRead = [
 	{ id: 1, chapter: 2, verses: 'Verse 255', title: "Whoever recites the 'verse of the Throne' after every prescribed prayer, there will be nothing standing between him and entry into Paradise but his death.", url: '/2/255' },
 	{ id: 2, chapter: 2, verses: 'Verses 285-286', title: 'If anyone recited two verses from the last of Surah al-Baqarah at night, they will be sufficient for him.', url: '/2/285-286' },
 	{ id: 3, chapter: 18, verses: 'Verses 1-10', title: 'Whoever memorizes ten verses from the beginning of Surat al-Kahf will be immune to the False Messiah.', url: '/18/1-10' },
-	{ id: 4, chapter: 67, verses: 'Verses 1-30', title: 'Whoever reads Surah al-Mulk every night, Allah will protect him from the torment of the grave.', url: '/67' }
+	{ id: 4, chapter: 36, verses: 'Verses 1-83', title: 'Everything has a heart, and the heart of the Quran is Yaseen; whoever reads it, it is as if he has read the Quran ten times.', url: '/36' },
+	{ id: 5, chapter: 55, verses: 'Verses 1-78', title: 'Everything has an adornment, and the adornment of Quran is Surah Ar Rahman.', url: '/55' },
+	{ id: 6, chapter: 56, verses: 'Verses 1-96', title: 'Whoever recites Surah al-Waqiah every night, he will never be afflicted by poverty.', url: '/56' },
+	{ id: 7, chapter: 67, verses: 'Verses 1-30', title: 'Whoever reads Surah al-Mulk every night, Allah will protect him from the torment of the grave.', url: '/67' }
 ];
 
 export const chapterHeaderCodes = [

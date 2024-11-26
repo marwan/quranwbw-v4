@@ -138,12 +138,14 @@
 			<div id="most-read-chapters" class="flex flex-col space-y-4">
 				<div class="{cardGridClasses} grid-cols-1">
 					{#each Object.entries(mostRead) as [id, item]}
-						<a href={item.url} class="{cardInnerClasses} flex-col">
+						<a href={item.url} class="!justify-start {cardInnerClasses} flex-col">
 							<span class="text-sm">{quranMetaData[item.chapter].transliteration} ({item.verses})</span>
 							<div class="block text-xs opacity-70">{item.title}</div>
 						</a>
 					{/each}
 				</div>
+
+				<div class="px-2 text-xs opacity-70">Suggestions listed here are based on the most frequently read chapters and verses by muslim audience, as well as virtues derived from Hadiths. While some Hadiths highlighting these virtues may be considered weak by some scholars, using them for beneficial knowledge is also a widely accepted opinion.</div>
 			</div>
 		</div>
 
