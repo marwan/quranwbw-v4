@@ -11,15 +11,18 @@
 
 	$: verseTranslationClasses = `verseTranslationText flex flex-col space-y-4 leading-normal theme ${fontSizes.verseTranslationText}`;
 
-	// setting the chapter data depending on the page
+	// setting the variables depending on the page
 	$: chapterData = $__currentPage === 'page' ? JSON.parse(localStorage.getItem('pageData')) : $__chapterData;
+	$: chapterToFetch = $__currentPage === 'page' ? +$__verseKey.split(':')[0] : value.meta.chapter;
+
+	// $: console.log(chapterData[`${value.meta.chapter}:${value.meta.verse}`]);
 
 	// for chapter and mushaf page, we fetch the verse translations for the whole chapter in one API call from the Chapter.svelte file
 	// and for other pages like supplications & bookmarks, we fetch the translations for each verse because all can be different
 	$: {
 		if (!['chapter'].includes($__currentPage)) {
 			(async () => {
-				verseTranslationData = await fetchVerseTranslationData(+$__verseKey.split(':')[0]);
+				verseTranslationData = await fetchVerseTranslationData(chapterToFetch);
 			})();
 		}
 	}
@@ -66,13 +69,11 @@
 				<!-- tajweed/syllables transliteration -->
 				{#if chapterData !== null}
 					{#if $__verseTranslations.includes(1)}
-						<Layout verseTranslationID={0} verseTranslation={chapterData[`${value.meta.chapter}:${value.meta.verse}`].translations[0]} {value} />
-						<!-- <Layout verseTranslationID={0} verseTranslation={JSON.parse(localStorage.getItem('pageData'))[`${value.meta.chapter}:${value.meta.verse}`].translations[0]} {value} /> -->
+						<Layout verseTranslationID={1} verseTranslation={chapterData[`${value.meta.chapter}:${value.meta.verse}`].translations[0]} {value} />
 					{/if}
 
 					{#if $__verseTranslations.includes(3)}
-						<Layout verseTranslationID={1} verseTranslation={chapterData[`${value.meta.chapter}:${value.meta.verse}`].translations[1]} {value} />
-						<!-- <Layout verseTranslationID={0} verseTranslation={JSON.parse(localStorage.getItem('pageData'))[`${value.meta.chapter}:${value.meta.verse}`].translations[0]} {value} /> -->
+						<Layout verseTranslationID={3} verseTranslation={chapterData[`${value.meta.chapter}:${value.meta.verse}`].translations[1]} {value} />
 					{/if}
 				{/if}
 				<!-- ================== -->
@@ -82,7 +83,7 @@
 					{#if verseTranslationData[Object.keys(verseTranslationData)[value.meta.verse - 1]].hasOwnProperty('translations')}
 						{#each Object.entries(verseTranslationData[Object.keys(verseTranslationData)[value.meta.verse - 1]].translations) as [verseTranslationID, verseTranslation]}
 							{#if verseTranslation.resource_id !== 57}
-								<Layout {verseTranslationID} {verseTranslation} {value} />
+								<Layout verseTranslationID={verseTranslation.resource_id} {verseTranslation} {value} />
 							{/if}
 						{/each}
 					{/if}
