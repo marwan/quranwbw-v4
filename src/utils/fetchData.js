@@ -73,6 +73,21 @@ export async function fetchVersesData(verses, fontType, wordTranslation) {
 	return data.data.verses;
 }
 
+// function to fetch single verses
+export async function fetchSingleVerseData(verses, fontType) {
+	const apiURL =
+		`${apiEndpoint}/verses?` +
+		new URLSearchParams({
+			verses: verses,
+			word_type: selectableFontTypes[fontType].apiId,
+			version: apiVersion
+		});
+
+	const response = await fetch(apiURL);
+	const data = await response.json();
+	return data.data.verses;
+}
+
 // function to fetch timestamps for wbw highlighting
 export async function fetchTimestampData(chapter) {
 	const apiURL = `${staticEndpoint}/v4/timestamps/${chapter}.json?v=1`;
