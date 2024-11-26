@@ -11,6 +11,8 @@ export const apiEndpoint = 'https://api.quranwbw.com/v1';
 
 export const staticEndpoint = 'https://static.quranwbw.com/data';
 
+export const apiVersion = 107;
+
 export const wordsAudioURL = 'https://audios.quranwbw.com/words';
 
 export const errorLoadingDataMessage = 'Sorry, there was an error while loading the data. Please refresh the page and try again.';
