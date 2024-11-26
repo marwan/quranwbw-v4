@@ -161,7 +161,9 @@
 					<div class="{cardGridClasses} grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 						{#each $__userBookmarks as bookmark}
 							<div class="flex flex-row space-x-2">
-								<a href="{bookmark.split(':')[0]}/{bookmark.split(':')[1]}" class="{cardInnerClasses} w-full flex-col">
+								<a href="{bookmark.split(':')[0]}/{bookmark.split(':')[1]}" class="{cardInnerClasses} space-y-1 w-full flex-col">
+									<div class="block text-xs opacity-70 truncate">{quranMetaData[bookmark.split(':')[0]].transliteration} ({bookmark})</div>
+
 									{#if activeTab === 3 && totalBookmarks !== 0}
 										<div class="text-sm truncate direction-rtl text-right arabic-font-1">
 											{#await fetchData then data}
@@ -171,8 +173,6 @@
 											{/await}
 										</div>
 									{/if}
-
-									<div class="block text-xs opacity-70 truncate">{quranMetaData[bookmark.split(':')[0]].transliteration} ({bookmark})</div>
 								</a>
 
 								<!-- delete/cross button -->
@@ -192,9 +192,9 @@
 				{:else}
 					<div class="{cardGridClasses} grid-cols-1">
 						{#each Object.entries($__userNotes) as [verse, note]}
-							<a href="{verse.split(':')[0]}/{verse.split(':')[1]}" class="{cardInnerClasses} flex-col">
-								<span class="text-sm truncate">{note.note}</span>
+							<a href="{verse.split(':')[0]}/{verse.split(':')[1]}" class="{cardInnerClasses} space-y-1 flex-col">
 								<div class="block text-xs opacity-70 truncate">{quranMetaData[verse.split(':')[0]].transliteration} ({verse}) - modfied {timeAgo(note.modified_at)}</div>
+								<span class="text-sm truncate">{note.note}</span>
 							</a>
 						{/each}
 					</div>
