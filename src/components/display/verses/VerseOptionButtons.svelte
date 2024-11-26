@@ -23,7 +23,7 @@
 	const buttonClasses = 'inline-flex items-center justify-center w-10 h-10 transition-colors duration-150 rounded-3xl focus:shadow-outline hover:bg-lightGray print:hidden';
 
 	// for chapter page, just show the key, else show the complete chapter transliteration & key
-	$: verseKeyClasses = $__currentPage === 'chapter' ? `${buttonClasses} font-medium` : `${buttonOutlineClasses} text-sm w-fit theme-grayscale`;
+	$: verseKeyClasses = $__currentPage === 'chapter' ? `${buttonClasses} font-medium` : `${buttonOutlineClasses} text-xs w-fit theme-grayscale`;
 
 	// update userBookmarks whenever the __userSettings changes
 	$: userBookmarks = JSON.parse($__userSettings).userBookmarks;
