@@ -15,8 +15,6 @@
 	$: chapterData = $__currentPage === 'page' ? JSON.parse(localStorage.getItem('pageData')) : $__chapterData;
 	$: chapterToFetch = $__currentPage === 'page' ? +$__verseKey.split(':')[0] : value.meta.chapter;
 
-	// $: console.log(chapterData[`${value.meta.chapter}:${value.meta.verse}`]);
-
 	// for chapter and mushaf page, we fetch the verse translations for the whole chapter in one API call from the Chapter.svelte file
 	// and for other pages like supplications & bookmarks, we fetch the translations for each verse because all can be different
 	$: {
