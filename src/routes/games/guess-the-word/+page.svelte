@@ -99,7 +99,7 @@
 				{/if}
 
 				<!-- buttons -->
-				<div id="buttons" class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 justify-center w-full">
+				<div id="buttons" class="flex flex-row space-x-4 justify-center w-full">
 					<!-- confirm-button -->
 					{#if !answerChecked}
 						<div id="confirm-button" class="{selection === null || answerChecked === true ? disabledClasses : null} w-full">
