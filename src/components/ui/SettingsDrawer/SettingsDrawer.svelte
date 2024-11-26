@@ -76,7 +76,7 @@
 	};
 	const settingsBlockClasses = 'space-y-2 py-6';
 	const selectorClasses = 'w-32 border border-black/10 text-black text-left rounded-3xl focus:ring-gray-500 focus:border-gray-500 focus-within:ring-2 block p-2.5 truncate font-normal theme-grayscale';
-	const settingsDescriptionClasses = 'mb-6 text-sm opacity-70';
+	const settingsDescriptionClasses = 'mb-6 text-xs opacity-70';
 	const toggleBtnClasses =
 		"relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-black/10 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-gray-600 theme-grayscale";
 

@@ -90,7 +90,7 @@
 	<div class="flex flex-col space-y-2 justify-between max-w-screen-lg px-4 py-5 mx-auto">
 		<!-- search block -->
 		<div id="search-block" class="mx-2">
-			<div id="navigatation-inputs" class="flex flex-col space-y-4 mb-4 justify-start theme-grayscale">
+			<div id="navigatation-inputs" class="flex flex-col mb-4 justify-start theme-grayscale">
 				<div class="flex flex-row w-full h-fit items-center">
 					<form on:submit|preventDefault={() => (searchedKey = document.getElementById('searchKey').value)} class="flex flex-row w-full">
 						<Input id="searchKey" type="text" bind:value={searchedKey} autocomplete="off" {placeholder} size="md" class="rounded-3xl !text-black theme-grayscale text-center pl-10 px-8">
@@ -102,7 +102,7 @@
 
 				<!-- instructions -->
 				{#if searchedKey.length === 0}
-					<div class="text-xs">
+					<div class="text-xs opacity-70 {$__currentPage === 'home' && 'pb-4'}">
 						To navigate, enter either a {term('chapter').toLowerCase()}, page, or {term('juz')} number. Alternatively, you can use an {term('verse').toLowerCase()} or word key, separated by a colon, period, dash, or a space (e.g., 2:255, 2.286, 18-10, or 2 1 1).
 					</div>
 				{/if}

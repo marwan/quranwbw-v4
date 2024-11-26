@@ -62,19 +62,19 @@
 
 				<div class="border-b border-black/10"></div>
 
-				<span class="text-xs"
+				<span class="text-xs opacity-70"
 					>*The Mushaf fonts are developed by and are a property of <a class={linkClasses} target="_blank" rel="noreferrer" href="https://qurancomplex.gov.sa/">King Fahad Glorious Quran Printing Complex</a> based in Madinah, Saudi Arabia. Tajweed Colors are based on
 					<a class={linkClasses} target="_blank" rel="noreferrer" href="https://easyquran.com/ar/">Tajweed Quran (Easy Quran) Mushaf by Dar-Al-Marifa</a> developed by Dr. Eng. Taha Subhi, Damascus - Syria. Tajweed Color Font Features on King Fahad Glorious Quran Printing Complex V4 Mushaf fonts invented and developed by
 					<a class={linkClasses} target="_blank" rel="noreferrer" href="https://zoopernet.com">Ayman Siddiqui</a>
 					and co-developed by team : Rania, Amena, Naveed Ahmed, Mohammed Zahid, Tooba and Anza for Sadaqa-e-jaria (non-commercial) purposes only. Permitted to develop with prior permissions secured from King Fahad Glorious Quran Printing Complex and Dar-Al-Marifa by <a class={linkClasses} target="_blank" rel="noreferrer" href="https://quran.com">Quran.com</a> (Quran Foundation) team.</span
 				>
 
-				<span class="text-xs">
+				<span class="text-xs opacity-70">
 					**We express our heartfelt gratitude to everyone who contributed to the Chinese word-by-word Quran translation, particularly Brother Ma Zhiren for his meticulous translation work completed in 2014, Brother Adam Voo from Malaysia and Brother Usama Nonnenmacher for digitalizing the data, and Brothers Max Ma from Canada and Suleyman Abdullah from China for their collaboration. May Allah
 					reward them all abundantly in this world and the hereafter. We pray that Allah blesses our Chinese brothers and sisters through the Quran app.
 				</span>
 
-				<span class="text-xs"
+				<span class="text-xs opacity-70"
 					>***Original sources for the Malayalam translations are
 					<a class={linkClasses} target="_blank" rel="noreferrer" href="https://amanithafseer.com">Amani Thafseer</a>
 					and
