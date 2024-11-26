@@ -1,6 +1,7 @@
 <script>
 	import Modal from '$ui/FlowbiteSvelte/modal/Modal.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
+	import SingleArabicVerse from '$display/verses/SingleArabicVerse.svelte';
 	import { errorLoadingDataMessage } from '$data/websiteSettings';
 	import { quranMetaData } from '$data/quranMeta';
 	import { __tafsirModalVisible, __verseKey, __verseTafsir } from '$utils/stores';
@@ -44,11 +45,11 @@
 </script>
 
 <Modal
+	bind:open={$__tafsirModalVisible}
 	title="{quranMetaData[chapter].transliteration}, {chapter}:{verse}"
 	id="tafsirModal"
-	bind:open={$__tafsirModalVisible}
 	class="!rounded-b-none md:!rounded-3xl theme"
-	bodyClass="p-6 space-y-4 flex-1 overflow-y-auto overscroll-contain"
+	bodyClass="p-6 space-y-4 flex-1 overflow-y-auto overscroll-contain theme-grayscale"
 	headerClass="flex justify-between items-center p-6 rounded-t-3xl text-black theme-grayscale"
 	classFooter="rounded-b-3xl flex flex-row justify-between"
 	size="lg"
@@ -56,23 +57,31 @@
 	center
 	outsideclose
 >
-	{#await tafsirData}
-		<Spinner />
-	{:then tafsirData}
-		<div class="text-sm text-black flex flex-col space-y-6">
-			<div class="flex flex-col space-y-4">
-				<div class={tafsirTextClasses}>
-					{#each Object.entries(tafsirData) as [id, tafsir]}
-						{#if tafsir.surah === chapter && tafsir.ayah === verse}
-							{@html tafsir.text.replace(/[\n]/g, '<br /><br />')}
-						{/if}
-					{/each}
+	<div class="flex flex-col space-y-4">
+		{#key verse}
+			<div class="py-4">
+				<SingleArabicVerse key="{chapter}:{verse}" />
+			</div>
+		{/key}
+
+		{#await tafsirData}
+			<Spinner />
+		{:then tafsirData}
+			<div class="text-sm text-black flex flex-col space-y-6">
+				<div class="flex flex-col space-y-4">
+					<div class={tafsirTextClasses}>
+						{#each Object.entries(tafsirData) as [id, tafsir]}
+							{#if tafsir.surah === chapter && tafsir.ayah === verse}
+								{@html tafsir.text.replace(/[\n]/g, '<br /><br />')}
+							{/if}
+						{/each}
+					</div>
 				</div>
 			</div>
-		</div>
-	{:catch error}
-		<p>{errorLoadingDataMessage}</p>
-	{/await}
+		{:catch error}
+			<p>{errorLoadingDataMessage}</p>
+		{/await}
+	</div>
 
 	<svelte:fragment slot="footer">
 		{#if verse > 1}

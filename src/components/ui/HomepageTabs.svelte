@@ -5,11 +5,12 @@
 	import Tooltip from '$ui/FlowbiteSvelte/tooltip/Tooltip.svelte';
 	import { updateSettings } from '$utils/updateSettings';
 	import { quranMetaData, mostRead } from '$data/quranMeta';
-	import { __lastRead, __favouriteChapters, __userBookmarks, __userNotes, __timeSpecificChapters, __siteNavigationModalVisible, __quranNavigationModalVisible } from '$utils/stores';
+	import { __lastRead, __favouriteChapters, __userBookmarks, __userNotes, __timeSpecificChapters, __siteNavigationModalVisible, __quranNavigationModalVisible, __fontType } from '$utils/stores';
 	import { buttonClasses, buttonOutlineClasses } from '$data/commonClasses';
 	import { checkTimeSpecificChapters } from '$utils/checkTimeSpecificChapters';
 	import { term } from '$utils/terminologies';
 	import { timeAgo } from '$utils/timeAgo';
+	import { fetchSingleVerseData } from '$utils/fetchData';
 
 	let lastReadChapter = 1;
 	let lastReadVerse = 1;
@@ -38,6 +39,9 @@
 			element.classList.remove('invisible');
 		});
 	});
+
+	// $: fontType = [1, 2, 3].includes($__fontType) ? 1 : 4;
+	// $: fetchData = fetchSingleVerseData($__userBookmarks.toString(), fontType);
 
 	// check if it's friday and night
 	checkTimeSpecificChapters();
@@ -159,7 +163,15 @@
 					<div class="{cardGridClasses} grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
 						{#each $__userBookmarks as bookmark}
 							<div class="flex flex-row space-x-2">
-								<a href="{bookmark.split(':')[0]}/{bookmark.split(':')[1]}" class="{cardInnerClasses} flex-row items-center w-full text-sm">
+								<a href="{bookmark.split(':')[0]}/{bookmark.split(':')[1]}" class="{cardInnerClasses} flex-col items-start w-full text-sm">
+									<!-- <div>
+										{#await fetchData then data}
+											<div class="direction-rtl">{data[bookmark].words.arabic.split('|').join(' ')}</div>
+										{:catch error}
+											<p></p>
+										{/await}
+									</div> -->
+
 									<div class="text-sm truncate">{quranMetaData[bookmark.split(':')[0]].transliteration} ({bookmark})</div>
 								</a>
 
