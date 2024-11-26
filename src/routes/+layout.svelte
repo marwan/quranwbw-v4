@@ -27,7 +27,6 @@
 	import { toggleNavbar } from '$utils/toggleNavbar';
 	import { resetAudioSettings } from '$utils/audioController';
 	import { updateSettings } from '$utils/updateSettings';
-	import VerseOptionsDropdown from '../components/display/verses/VerseOptionsDropdown.svelte';
 	// import { downloadSettingsFromCloud } from '$utils/cloudSettings';
 
 	// check old bookmarks for v3 update
