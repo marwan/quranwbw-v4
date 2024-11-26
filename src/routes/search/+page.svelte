@@ -43,12 +43,7 @@
 
 <PageHead title={'Search'} />
 
-<div class="theme space-y-8">
-	<div class="my-6 space-y-4 pb-4 border-b-2 border-black/10">
-		<h1 class="text-2xl">Search</h1>
-		<div class="text-sm">Search the Quran for any text in multiple translations.</div>
-	</div>
-
+<div class="theme mt-4 space-y-4">
 	<div class="flex max-w-2xl mx-auto theme-grayscale">
 		<div id="dropdown" class="z-10 w-44">
 			<select
@@ -68,7 +63,7 @@
 			<div class="relative w-full">
 				<input type="search" id="search-input" value={searchText} class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 border-s-gray-50 border-s-2 border border-black/10" placeholder="Search Abraham, Mary, Noah, Paradise..." required />
 			</div>
-			<button type="submit" class="p-2.5 text-sm font-medium text-white bg-gray-500 rounded-r-3xl border border-gray-500">
+			<button type="submit" class="p-2.5 px-4 text-sm font-medium text-white bg-gray-500 rounded-r-3xl border border-gray-500">
 				<svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
 					<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
 				</svg>
