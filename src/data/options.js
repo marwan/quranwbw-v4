@@ -29,9 +29,11 @@ export const verseTranslationsLanguages = [
 	{ language_id: 34, language: 'Divehi' },
 	{ language_id: 38, language: 'English' },
 	{ language_id: 49, language: 'French' },
+	{ language_id: 33, language: 'German' },
 	{ language_id: 60, language: 'Hindi' },
 	{ language_id: 67, language: 'Indonesian' },
 	{ language_id: 106, language: 'Malayalam' },
+	{ language_id: 138, language: 'Russian' },
 	{ language_id: 158, language: 'Tamil' },
 	{ language_id: 11115, language: 'Transliteration' },
 	{ language_id: 167, language: 'Turkish' },
@@ -146,6 +148,18 @@ export const selectableVerseTranslations = {
 		language_id: 49
 	},
 
+	// german
+	208: {
+		resource_id: 208,
+		resource_name: 'Abu Reda Muhammad ibn Ahmad',
+		language_id: 33
+	},
+	27: {
+		resource_id: 27,
+		resource_name: 'Frank Bubenheim and Nadeem',
+		language_id: 33
+	},
+
 	// hindi
 	122: {
 		resource_id: 122,
@@ -185,6 +199,23 @@ export const selectableVerseTranslations = {
 		resource_id: 37,
 		resource_name: 'Abdul Hameed and Kunhi',
 		language_id: 106
+	},
+
+	// russian
+	79: {
+		resource_id: 79,
+		resource_name: 'Abu Adel',
+		language_id: 138
+	},
+	78: {
+		resource_id: 78,
+		resource_name: 'Ministry of Awqaf, Egypt',
+		language_id: 138
+	},
+	45: {
+		resource_id: 45,
+		resource_name: 'Russian Translation ( Elmir Kuliev )',
+		language_id: 138
 	},
 
 	// tamil
