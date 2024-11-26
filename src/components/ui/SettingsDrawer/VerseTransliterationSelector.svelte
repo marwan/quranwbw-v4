@@ -1,5 +1,5 @@
 <script>
-	import Checkbox from '$ui/flowbite-svelte/forms/Checkbox.svelte';
+	import Checkbox from '$ui/FlowbiteSvelte/forms/Checkbox.svelte';
 	import Check from '$svgs/Check.svelte';
 	import { __verseTranslations } from '$utils/stores';
 	import { selectableVerseTranslations, verseTranslationsLanguages } from '$data/options';

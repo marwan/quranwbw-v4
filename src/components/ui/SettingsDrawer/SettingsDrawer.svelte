@@ -12,10 +12,10 @@
 	import TranslationRecitorSelector from '$ui/SettingsDrawer/TranslationRecitorSelector.svelte';
 	import PlaybackSpeedSelector from '$ui/SettingsDrawer/PlaybackSpeedSelector.svelte';
 	import VersePlayButtonSelector from '$ui/SettingsDrawer/VersePlayButtonSelector.svelte';
-	import Drawer from '$ui/flowbite-svelte/drawer/Drawer.svelte';
-	import Range from '$ui/flowbite-svelte/forms/Range.svelte';
-	import CloseButton from '$ui/flowbite-svelte/utils/CloseButton.svelte';
-	import Button from '$ui/flowbite-svelte/buttons/Button.svelte';
+	import Drawer from '$ui/FlowbiteSvelte/drawer/Drawer.svelte';
+	import Range from '$ui/FlowbiteSvelte/forms/Range.svelte';
+	import CloseButton from '$ui/FlowbiteSvelte/utils/CloseButton.svelte';
+	import Button from '$ui/FlowbiteSvelte/buttons/Button.svelte';
 	import {
 		__currentPage,
 		__chapterData,

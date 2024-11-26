@@ -1,5 +1,5 @@
 <script>
-	import Modal from '$ui/flowbite-svelte/modal/Modal.svelte';
+	import Modal from '$ui/FlowbiteSvelte/modal/Modal.svelte';
 	import DisplayTypeSelector from '$ui/SettingsDrawer/DisplayTypeSelector.svelte';
 	import { __settingsSelectorModal } from '$utils/stores';
 	import { getModalTransition } from '$utils/getModalTransition';

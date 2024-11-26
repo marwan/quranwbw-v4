@@ -1,5 +1,5 @@
 <script>
-	import Modal from '$ui/flowbite-svelte/modal/Modal.svelte';
+	import Modal from '$ui/FlowbiteSvelte/modal/Modal.svelte';
 	import Settings2 from '$svgs/Settings2.svelte';
 	import TajweedRules from '$svgs/TajweedRules.svelte';
 	import Supplication from '$svgs/Supplication.svelte';

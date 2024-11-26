@@ -1,6 +1,6 @@
 <script>
 	import Eye from '$svgs/Eye.svelte';
-	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
+	import Tooltip from '$ui/FlowbiteSvelte/tooltip/Tooltip.svelte';
 	import { __chapterNumber, __displayType, __currentPage, __selectedDisplayId, __settingsSelectorModal } from '$utils/stores';
 	import { disabledClasses } from '$data/commonClasses';
 

@@ -1,5 +1,5 @@
 <script>
-	import Modal from '$ui/flowbite-svelte/modal/Modal.svelte';
+	import Modal from '$ui/FlowbiteSvelte/modal/Modal.svelte';
 	import Download from '$svgs/Download.svelte';
 	import Share from '$svgs/Share.svelte';
 	import CloudDownload from '$svgs/CloudDownload.svelte';

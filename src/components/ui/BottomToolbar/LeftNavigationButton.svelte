@@ -1,5 +1,5 @@
 <script>
-	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
+	import Tooltip from '$ui/FlowbiteSvelte/tooltip/Tooltip.svelte';
 	import ChevronLeft from '$svgs/ChevronLeft.svelte';
 	import { __chapterNumber, __currentPage, __pageNumber } from '$utils/stores';
 	import { disabledClasses } from '$data/commonClasses';

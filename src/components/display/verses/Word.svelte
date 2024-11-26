@@ -9,8 +9,8 @@
 	export let v4hafsClasses;
 	export let exampleVerse = false;
 
-	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
-	// import Popover from '$ui/flowbite-svelte/popover/Popover.svelte';
+	import Tooltip from '$ui/FlowbiteSvelte/tooltip/Tooltip.svelte';
+	// import Popover from '$ui/FlowbiteSvelte/popover/Popover.svelte';
 	// import Spinner from '$svgs/Spinner.svelte';
 
 	import { selectableThemes } from '$data/options';

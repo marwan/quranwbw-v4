@@ -1,5 +1,5 @@
 <script>
-	import Radio from '$ui/flowbite-svelte/forms/Radio.svelte';
+	import Radio from '$ui/FlowbiteSvelte/forms/Radio.svelte';
 	import Check from '$svgs/Check.svelte';
 	import { __playButtonsFunctionality } from '$utils/stores';
 	import { selectableVersePlayButtonOptions } from '$data/options';

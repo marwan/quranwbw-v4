@@ -1,7 +1,7 @@
 <script>
-	import Modal from '$ui/flowbite-svelte/modal/Modal.svelte';
-	import Input from '$ui/flowbite-svelte/forms/Input.svelte';
-	import CloseButton from '$ui/flowbite-svelte/utils/CloseButton.svelte';
+	import Modal from '$ui/FlowbiteSvelte/modal/Modal.svelte';
+	import Input from '$ui/FlowbiteSvelte/forms/Input.svelte';
+	import CloseButton from '$ui/FlowbiteSvelte/utils/CloseButton.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
 	import Search from '$svgs/Search.svelte';
 	import { quranMetaData, startPageOfChapters, pageNumberKeys, juzNumberKeys } from '$data/quranMeta';

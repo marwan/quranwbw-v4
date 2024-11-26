@@ -1,5 +1,5 @@
 <script>
-	import Modal from '$ui/flowbite-svelte/modal/Modal.svelte';
+	import Modal from '$ui/FlowbiteSvelte/modal/Modal.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
 	import { staticEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
 	import { __lexiconModalVisible, __wordRoot } from '$utils/stores';

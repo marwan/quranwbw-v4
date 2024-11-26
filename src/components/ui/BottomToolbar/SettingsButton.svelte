@@ -1,6 +1,6 @@
 <script>
 	import Settings from '$svgs/Settings.svelte';
-	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
+	import Tooltip from '$ui/FlowbiteSvelte/tooltip/Tooltip.svelte';
 	import { __audioSettings } from '$utils/stores';
 	import { __settingsDrawerHidden } from '$utils/stores';
 </script>

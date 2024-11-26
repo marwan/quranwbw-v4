@@ -1,7 +1,7 @@
 <script>
 	import PlaySolid from '$svgs/PlaySolid.svelte';
 	import Pause from '$svgs/Pause.svelte';
-	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
+	import Tooltip from '$ui/FlowbiteSvelte/tooltip/Tooltip.svelte';
 	import { __audioSettings } from '$utils/stores';
 	import { playVerseAudio, setVersesToPlay, resetAudioSettings } from '$utils/audioController';
 

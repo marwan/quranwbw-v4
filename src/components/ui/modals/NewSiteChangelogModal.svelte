@@ -1,6 +1,6 @@
 <script>
 	import party from 'party-js';
-	import Modal from '$ui/flowbite-svelte/modal/Modal.svelte';
+	import Modal from '$ui/FlowbiteSvelte/modal/Modal.svelte';
 	import { __newSiteChangelogModalVisible } from '$utils/stores';
 	import { linkClasses } from '$data/commonClasses';
 	import { updateSettings } from '$utils/updateSettings';

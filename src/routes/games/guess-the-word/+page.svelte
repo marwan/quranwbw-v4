@@ -4,7 +4,7 @@
 	import party from 'party-js';
 	import Check from '$svgs/Check.svelte';
 	import Cross from '$svgs/Cross.svelte';
-	import Radio from '$ui/flowbite-svelte/forms/Radio.svelte';
+	import Radio from '$ui/FlowbiteSvelte/forms/Radio.svelte';
 	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
 	import { __currentPage, __fontType, __quizCorrectAnswers, __quizWrongAnswers } from '$utils/stores';
 	import { buttonClasses, buttonOutlineClasses, disabledClasses } from '$data/commonClasses';

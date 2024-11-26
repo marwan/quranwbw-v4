@@ -10,7 +10,7 @@
 	import SupplicationBold from '$svgs/SupplicationBold.svelte';
 	import MorphologyBold from '$svgs/MorphologyBold.svelte';
 	import BookBold from '$svgs/BookBold.svelte';
-	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
+	import Tooltip from '$ui/FlowbiteSvelte/tooltip/Tooltip.svelte';
 	import { term } from '$utils/terminologies';
 	import { __currentPage, __siteNavigationModalVisible, __quranNavigationModalVisible, __lastRead } from '$utils/stores';
 </script>

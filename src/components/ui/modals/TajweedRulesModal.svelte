@@ -1,5 +1,5 @@
 <script>
-	import Modal from '$ui/flowbite-svelte/modal/Modal.svelte';
+	import Modal from '$ui/FlowbiteSvelte/modal/Modal.svelte';
 	import { tajweedRulings } from '$data/tajweedRulings';
 	import { __websiteTheme, __tajweedRulesModalVisible } from '$utils/stores';
 	import { term } from '$utils/terminologies';

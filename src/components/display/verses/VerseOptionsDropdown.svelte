@@ -1,8 +1,8 @@
 <script>
 	export let page;
 
-	import Dropdown from '$ui/flowbite-svelte/dropdown/Dropdown.svelte';
-	import DropdownItem from '$ui/flowbite-svelte/dropdown/DropdownItem.svelte';
+	import Dropdown from '$ui/FlowbiteSvelte/dropdown/Dropdown.svelte';
+	import DropdownItem from '$ui/FlowbiteSvelte/dropdown/DropdownItem.svelte';
 	import { showAudioModal } from '$utils/audioController';
 	import { quranMetaData } from '$data/quranMeta';
 	import { __userSettings, __verseKey, __notesModalVisible, __tafsirModalVisible, __currentPage } from '$utils/stores';

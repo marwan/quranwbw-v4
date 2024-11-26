@@ -1,7 +1,7 @@
 <script>
 	export let key, page;
 
-	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
+	import Tooltip from '$ui/FlowbiteSvelte/tooltip/Tooltip.svelte';
 	import { pageNumberKeys } from '$data/quranMeta';
 	import { __currentPage, __displayType } from '$utils/stores';
 	import { selectableDisplays } from '$data/options';

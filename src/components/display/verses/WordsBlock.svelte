@@ -6,7 +6,7 @@
 
 	import VerseOptionsDropdown from '$display/verses/VerseOptionsDropdown.svelte';
 	import Word from '$display/verses/Word.svelte';
-	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
+	import Tooltip from '$ui/FlowbiteSvelte/tooltip/Tooltip.svelte';
 	import { goto } from '$app/navigation';
 	import { selectableDisplays, mushafFontLinks, selectableThemes } from '$data/options';
 	import { __currentPage, __fontType, __displayType, __userSettings, __audioSettings, __morphologyKey, __verseKey, __websiteTheme } from '$utils/stores';

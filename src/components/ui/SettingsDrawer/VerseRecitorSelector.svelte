@@ -1,5 +1,5 @@
 <script>
-	import Radio from '$ui/flowbite-svelte/forms/Radio.svelte';
+	import Radio from '$ui/FlowbiteSvelte/forms/Radio.svelte';
 	import Check from '$svgs/Check.svelte';
 	import { __reciter, __websiteTheme } from '$utils/stores';
 	import { selectableReciters } from '$data/options';

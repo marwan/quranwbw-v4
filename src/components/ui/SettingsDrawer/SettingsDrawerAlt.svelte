@@ -9,11 +9,11 @@
 	import VerseRecitorSelector from '$ui/SettingsDrawer/VerseRecitorSelector.svelte';
 	import TranslationRecitorSelector from '$ui/SettingsDrawer/TranslationRecitorSelector.svelte';
 	import PlaybackSpeedSelector from '$ui/SettingsDrawer/PlaybackSpeedSelector.svelte';
-	import Drawer from '$ui/flowbite-svelte/drawer/Drawer.svelte';
+	import Drawer from '$ui/FlowbiteSvelte/drawer/Drawer.svelte';
 	import Plus from '$svgs/Plus.svelte';
 	import Minus from '$svgs/Minus.svelte';
-	import CloseButton from '$ui/flowbite-svelte/utils/CloseButton.svelte';
-	import Button from '$ui/flowbite-svelte/buttons/Button.svelte';
+	import CloseButton from '$ui/FlowbiteSvelte/utils/CloseButton.svelte';
+	import Button from '$ui/FlowbiteSvelte/buttons/Button.svelte';
 	import {
 		__currentPage,
 		__chapterData,

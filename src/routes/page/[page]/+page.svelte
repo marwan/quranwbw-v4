@@ -7,7 +7,7 @@
 	import Spinner from '$svgs/Spinner.svelte';
 	import Minimize from '$svgs/Minimize.svelte';
 	// import BottomToolbarButtons from '$ui/BottomToolbar/BottomToolbarButtons.svelte';
-	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
+	import Tooltip from '$ui/FlowbiteSvelte/tooltip/Tooltip.svelte';
 	import { goto } from '$app/navigation';
 	import { __chapterNumber, __pageNumber, __currentPage, __fontType, __wordTranslation, __mushafPageDivisions, __lastRead, __displayType, __topNavbarVisible, __bottomToolbarVisible, __mushafMinimalModeEnabled } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';

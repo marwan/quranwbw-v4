@@ -9,7 +9,7 @@
 	import Notes from '$svgs/Notes.svelte';
 	import DotsHorizontal from '$svgs/DotsHorizontal.svelte';
 	import EyeOutline from '$svgs/EyeOutline.svelte';
-	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
+	import Tooltip from '$ui/FlowbiteSvelte/tooltip/Tooltip.svelte';
 	import { playVerseAudio, resetAudioSettings, setVersesToPlay, showAudioModal } from '$utils/audioController';
 	import { __currentPage, __userSettings, __audioSettings, __verseKey, __userNotes, __notesModalVisible, __playButtonsFunctionality, __displayType } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';

@@ -1,5 +1,5 @@
 <script>
-	import Modal from '$ui/flowbite-svelte/modal/Modal.svelte';
+	import Modal from '$ui/FlowbiteSvelte/modal/Modal.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
 	import { errorLoadingDataMessage } from '$data/websiteSettings';
 	import { quranMetaData } from '$data/quranMeta';

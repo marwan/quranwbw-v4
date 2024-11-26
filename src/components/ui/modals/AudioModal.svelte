@@ -1,6 +1,6 @@
 <script>
-	import Modal from '$ui/flowbite-svelte/modal/Modal.svelte';
-	import Radio from '$ui/flowbite-svelte/forms/Radio.svelte';
+	import Modal from '$ui/FlowbiteSvelte/modal/Modal.svelte';
+	import Radio from '$ui/FlowbiteSvelte/forms/Radio.svelte';
 	import { quranMetaData } from '$data/quranMeta';
 	import { __currentPage, __chapterNumber, __audioSettings, __userSettings, __audioModalVisible } from '$utils/stores';
 	import { playVerseAudio, playWordAudio, updateAudioSettings, setVersesToPlay } from '$utils/audioController';

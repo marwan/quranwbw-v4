@@ -1,6 +1,6 @@
 <script>
 	import Maximize from '$svgs/Maximize.svelte';
-	import Tooltip from '$ui/flowbite-svelte/tooltip/Tooltip.svelte';
+	import Tooltip from '$ui/FlowbiteSvelte/tooltip/Tooltip.svelte';
 	import { toggleMushafMinimalMode } from '$utils/toggleMushafMinimalMode';
 </script>
 
