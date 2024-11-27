@@ -36,7 +36,7 @@
 		</span>
 
 		<span class="text-black text-xs md:text-sm">
-			Experience the Enhanced QuranWBW. <button class="inline font-medium text-primary-600 underline underline-offset-2 decoration-600 decoration-solid hover:no-underline" on:click={() => __newSiteChangelogModalVisible.set(true)}> Read More</button>.
+			Experience the Enhanced QuranWBW. <button class="inline font-medium text-primary-600 underline underline-offset-2 decoration-600 decoration-solid hover:no-underline" on:click={() => __newSiteChangelogModalVisible.set(true)}> Read More {@html '&#x2192;'}</button>.
 		</span>
 	</p>
 </Banner>
