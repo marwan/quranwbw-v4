@@ -8,11 +8,12 @@
 	import Word from '$display/verses/Word.svelte';
 	import Tooltip from '$ui/FlowbiteSvelte/tooltip/Tooltip.svelte';
 	import { goto } from '$app/navigation';
-	import { selectableDisplays, mushafFontLinks, selectableThemes } from '$data/options';
+	import { selectableDisplays, selectableThemes } from '$data/options';
 	import { __currentPage, __fontType, __displayType, __userSettings, __audioSettings, __morphologyKey, __verseKey, __websiteTheme } from '$utils/stores';
 	import { loadFont } from '$utils/loadFont';
 	import { wordAudioController } from '$utils/audioController';
 	import { updateSettings } from '$utils/updateSettings';
+	import { mushafWordFontLink, mushafFontVersion } from '$data/websiteSettings';
 
 	const fontSizes = JSON.parse($__userSettings).displaySettings.fontSizes;
 
@@ -20,7 +21,7 @@
 
 	// if mushaf fonts are selected, then dynamically load the fonts
 	if ([2, 3].includes($__fontType)) {
-		loadFont(`p${value.meta.page}`, `${mushafFontLinks.COLRv1}/QCF4${`00${value.meta.page}`.slice(-3)}_COLOR-Regular.woff?v=${mushafFontLinks.version}`).then(() => {
+		loadFont(`p${value.meta.page}`, `${mushafWordFontLink}/QCF4${`00${value.meta.page}`.slice(-3)}_COLOR-Regular.woff?v=${mushafFontVersion}`).then(() => {
 			// we can by default hide the v4 words and show when the font is loaded...
 			document.querySelectorAll(`.p${value.meta.page}`).forEach((element) => {
 				element.classList.remove('invisible');

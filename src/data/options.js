@@ -515,14 +515,3 @@ export const selectableVersePlayButtonOptions = {
 	2: { id: 2, name: 'Play From That Verse' },
 	3: { id: 3, name: 'Show Advance Options' }
 };
-
-export const mushafFontLinks = {
-	// version for caching
-	version: 2,
-
-	// normal word fonts
-	COLRv1: 'https://fonts.quranwbw.com/Hafs/KFGQPC-v4/COLRv1',
-
-	// chapter header fonts
-	header: 'https://v4.quranwbw.com/fonts/chapter-headers/QCF_SurahHeader_COLOR-Regular.woff2'
-};

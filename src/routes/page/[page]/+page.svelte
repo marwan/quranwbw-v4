@@ -11,9 +11,9 @@
 	import { goto } from '$app/navigation';
 	import { __chapterNumber, __pageNumber, __currentPage, __fontType, __wordTranslation, __mushafPageDivisions, __lastRead, __displayType, __topNavbarVisible, __bottomToolbarVisible, __mushafMinimalModeEnabled } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';
-	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
+	import { apiEndpoint, errorLoadingDataMessage, mushafWordFontLink, mushafHeaderFontLink, mushafFontVersion } from '$data/websiteSettings';
 	import { quranMetaData, chapterHeaderCodes } from '$data/quranMeta';
-	import { mushafFontLinks, selectableFontTypes } from '$data/options';
+	import { selectableFontTypes } from '$data/options';
 	import { loadFont } from '$utils/loadFont';
 	import { toggleMushafMinimalMode } from '$utils/toggleMushafMinimalMode';
 	import '$lib/swiped-events.min.js';
@@ -33,7 +33,7 @@
 	$: {
 		if ([2, 3].includes($__fontType)) {
 			for (let thisPage = +page - 2; thisPage <= +page + 2; thisPage++) {
-				fetch(`${mushafFontLinks.COLRv1}/QCF4${`00${thisPage}`.slice(-3)}_COLOR-Regular.woff`);
+				fetch(`${mushafWordFontLink}/QCF4${`00${thisPage}`.slice(-3)}_COLOR-Regular.woff?v=${mushafFontVersion}`);
 				fetch(`${apiEndpoint}/page?page=${thisPage}&word_type=${selectableFontTypes[$__fontType].apiId}&word_translation=${$__wordTranslation}&v=${pageAPIVersion}`);
 			}
 		}
@@ -98,7 +98,7 @@
 			});
 
 			// dynamically load header font
-			loadFont('chapter-headers', `${mushafFontLinks.header}?v=${mushafFontLinks.version}`).then(() => {
+			loadFont('chapter-headers', `${mushafHeaderFontLink}?v=${mushafFontVersion}`).then(() => {
 				document.querySelectorAll('.header').forEach((element) => {
 					element.classList.remove('invisible');
 				});
