@@ -18,7 +18,7 @@
 	import QuranNavigationModal from '$ui/Modals/QuranNavigationModal.svelte';
 	import SiteNavigationModal from '$ui/Modals/SiteNavigationModal.svelte';
 	import SettingsSelectorModal from '$ui/Modals/SettingsSelectorModal.svelte';
-	import LexiconModal from '$ui/Modals/LexiconModal.svelte';
+	// import LexiconModal from '$ui/Modals/LexiconModal.svelte';
 	import NewSiteChangelogModal from '$ui/Modals/NewSiteChangelogModal.svelte';
 	import VerseTranslationModal from '$ui/Modals/VerseTranslationModal.svelte';
 	import { __websiteOnline, __currentPage, __chapterNumber, __settingsDrawerHidden, __wakeLockEnabled, __userToken, __fontType, __wordTranslation, __verseTranslations, __selectedDisplayId, __mushafMinimalModeEnabled, __topNavbarVisible, __bottomToolbarVisible } from '$utils/stores';
@@ -148,7 +148,7 @@
 	<TafsirModal />
 	<SiteNavigationModal />
 	<SettingsSelectorModal />
-	<LexiconModal />
+	<!-- <LexiconModal /> -->
 	<NewSiteChangelogModal />
 	<VerseTranslationModal />
 	<BottomToolbar />

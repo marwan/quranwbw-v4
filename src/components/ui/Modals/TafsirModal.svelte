@@ -20,12 +20,14 @@
 	$: verse = +$__verseKey.split(':')[1];
 
 	$: {
-		tafsirData = (async () => {
-			const selectedTafsir = selectableTafsirs[selectedTafirId];
-			const response = await fetch(`${tafsirUrls[selectedTafsir.url]}/${selectedTafsir.slug}/${chapter}.json`);
-			const data = await response.json();
-			return data.ayahs;
-		})();
+		if ($__tafsirModalVisible) {
+			tafsirData = (async () => {
+				const selectedTafsir = selectableTafsirs[selectedTafirId];
+				const response = await fetch(`${tafsirUrls[selectedTafsir.url]}/${selectedTafsir.slug}/${chapter}.json`);
+				const data = await response.json();
+				return data.ayahs;
+			})();
+		}
 	}
 
 	$: tafsirTextClasses = `
