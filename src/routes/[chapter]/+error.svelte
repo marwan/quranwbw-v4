@@ -8,9 +8,9 @@
 
 <div class="flex flex-col space-y-4 items-center justify-center text-center pt-28 theme">
 	{#if $page.status === 404}
-		<span>The page/content you were looking for was not found.</span>
+		<span>The content you were looking for was not found.</span>
 	{:else}
-		<span>There was an error while loading the page/content. Please try again later.</span>
+		<span>There was an error while loading the content. Please try again later.</span>
 	{/if}
 
 	<span>If you think this error shouldn't occur, please let us know via <a class={linkClasses} href="mailto:quranwbw@gmail.com">email</a>.</span>

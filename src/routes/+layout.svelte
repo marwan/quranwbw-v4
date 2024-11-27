@@ -8,12 +8,12 @@
 	import Navbar from '$ui/Navbar.svelte';
 	import SettingsDrawer from '$ui/SettingsDrawer/SettingsDrawer.svelte';
 	import BottomToolbar from '$ui/BottomToolbar/BottomToolbar.svelte';
-	import InitialSetupModal from '$ui/Modals/InitialSetupModal.svelte';
+	// import InitialSetupModal from '$ui/Modals/InitialSetupModal.svelte';
 	import AudioModal from '$ui/Modals/AudioModal.svelte';
 	import TajweedRulesModal from '$ui/Modals/TajweedRulesModal.svelte';
 	import NotesModal from '$ui/Modals/NotesModal.svelte';
-	import TokenModal from '$ui/Modals/TokenModal.svelte';
-	import DownloadModal from '$ui/Modals/DownloadModal.svelte';
+	// import TokenModal from '$ui/Modals/TokenModal.svelte';
+	// import DownloadModal from '$ui/Modals/DownloadModal.svelte';
 	import TafsirModal from '$ui/Modals/TafsirModal.svelte';
 	import QuranNavigationModal from '$ui/Modals/QuranNavigationModal.svelte';
 	import SiteNavigationModal from '$ui/Modals/SiteNavigationModal.svelte';
@@ -139,12 +139,12 @@
 	<Navbar />
 	<SettingsDrawer />
 	<QuranNavigationModal />
-	<InitialSetupModal />
+	<!-- <InitialSetupModal /> -->
 	<AudioModal />
 	<TajweedRulesModal />
 	<NotesModal />
-	<TokenModal />
-	<DownloadModal />
+	<!-- <TokenModal /> -->
+	<!-- <DownloadModal /> -->
 	<TafsirModal />
 	<SiteNavigationModal />
 	<SettingsSelectorModal />

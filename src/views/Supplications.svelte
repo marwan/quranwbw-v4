@@ -4,15 +4,25 @@
 	import Individual from '$display/verses/modes/Individual.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
 	import { __currentPage, __fontType, __displayType, __wordTranslation, __wordTransliteration } from '$utils/stores';
-	import { getSupplicationKeys } from '$utils/getSupplicationKeys';
 	import { fetchVersesData } from '$utils/fetchData';
 	import { errorLoadingDataMessage } from '$data/websiteSettings';
 	import { term } from '$utils/terminologies';
+	import { supplicationsFromQuran } from '$data/quranMeta';
 
 	// fetch supplication verses
 	$: fetchData = fetchVersesData(getSupplicationKeys(), $__fontType, $__wordTranslation, $__wordTransliteration);
 
-	// __currentPage.set(`${term('supplications').toLowerCase()}`);
+	// function to a get string of all supplications chapter:verses
+	function getSupplicationKeys() {
+		let array = [];
+
+		for (const [key] of Object.entries(supplicationsFromQuran)) {
+			array.push(key);
+		}
+
+		return array.toString();
+	}
+
 	__currentPage.set('supplications');
 </script>
 

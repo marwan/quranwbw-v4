@@ -6,11 +6,9 @@
 	import { quranMetaData } from '$data/quranMeta';
 	import { __currentPage } from '$utils/stores';
 
-	let searchResults;
-
 	const params = new URLSearchParams(window.location.search);
 	const defaultTranslation = 0;
-
+	let searchResults;
 	let selectedTranslation = params.get('translation') === null ? defaultTranslation : +params.get('translation'); // default to Saheeh International
 	let searchText = params.get('text') === null ? '' : params.get('text'); // default to ""
 
