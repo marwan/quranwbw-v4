@@ -3,6 +3,7 @@
 	import ChevronLeft from '$svgs/ChevronLeft.svelte';
 	import { __chapterNumber, __currentPage, __pageNumber } from '$utils/stores';
 	import { disabledClasses } from '$data/commonClasses';
+	import { term } from '$utils/terminologies';
 
 	let linkHref;
 	let linkText;
@@ -12,7 +13,7 @@
 		// chapter (left to right navigation)
 		if ($__currentPage === 'chapter') {
 			linkHref = $__chapterNumber - 1;
-			linkText = 'Previous Chapter';
+			linkText = `Previous ${term('chapter')}`;
 			linkDisabled = $__chapterNumber === 1 ? true : false;
 		}
 
