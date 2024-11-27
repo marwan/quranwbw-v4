@@ -69,10 +69,10 @@
 		}
 	}
 
-	// load the first verse on page minus 1
+	// load from the first verse on page minus 1, till the last verse which was already available on the page
 	function loadPreviousVerse() {
 		const versesOnPage = document.getElementsByClassName('verse');
-		const firstVerseOnPage = +versesOnPage[1].id.split(':')[1];
+		const firstVerseOnPage = +versesOnPage[0].id.split(':')[1];
 		const lastVerseOnPage = +versesOnPage[versesOnPage.length - 1].id.split(':')[1];
 		goto(`/${$__chapterNumber}/${+firstVerseOnPage - 1}-${+lastVerseOnPage}`, { replaceState: false });
 	}
