@@ -1325,10 +1325,6 @@ input[type="range"].range-lg::-moz-range-thumb {
   margin-top: 2rem;
 }
 
-.me-3 {
-  margin-inline-end: 0.75rem;
-}
-
 .block {
   display: block;
 }

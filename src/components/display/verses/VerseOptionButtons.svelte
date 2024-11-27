@@ -15,7 +15,6 @@
 	import { updateSettings } from '$utils/updateSettings';
 	import { term } from '$utils/terminologies';
 	import { quranMetaData } from '$data/quranMeta';
-	import { buttonOutlineClasses } from '$data/commonClasses';
 
 	const chapter = +key.split(':')[0];
 	const verse = +key.split(':')[1];
@@ -23,7 +22,7 @@
 	const buttonClasses = 'inline-flex items-center justify-center w-10 h-10 transition-colors duration-150 rounded-3xl focus:shadow-outline hover:bg-lightGray print:hidden';
 
 	// for chapter page, just show the key, else show the complete chapter transliteration & key
-	$: verseKeyClasses = $__currentPage === 'chapter' ? `${buttonClasses} font-medium` : `${buttonOutlineClasses} text-xs w-fit theme-grayscale`;
+	$: verseKeyClasses = `${buttonClasses} w-fit px-4 bg-lightGray font-medium`;
 
 	// update userBookmarks whenever the __userSettings changes
 	$: userBookmarks = JSON.parse($__userSettings).userBookmarks;
@@ -65,9 +64,9 @@
 		<div class="flex flex-row space-x-2">
 			<a href={$__currentPage === 'chapter' ? `#${key}` : `/${chapter}/${verse}`} class={verseKeyClasses} data-html2canvas-ignore>
 				{#if $__currentPage === 'chapter'}
-					<div class="opacity-70">{key}</div>
+					<div class="opacity-70 text-xs">{key}</div>
 				{:else}
-					<div>{quranMetaData[chapter].transliteration}, {key}</div>
+					<div class="opacity-70 text-xs">{quranMetaData[chapter].transliteration}, {key}</div>
 				{/if}
 			</a>
 			<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-filter font-normal">{term('verse')} {key}</Tooltip>
