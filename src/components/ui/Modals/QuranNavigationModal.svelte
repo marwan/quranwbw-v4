@@ -50,21 +50,19 @@
 		maxVersesToLoad = chapterVerses > maxItemsToLoad ? maxItemsToLoad : chapterVerses;
 	}
 
-	// load it externally because including it locally increases the bundle size
-	$: {
-		verseKeyData = (async () => {
-			const response = await fetch(`${staticEndpoint}/v4/meta/verseKeyData.json`);
-			const data = await response.json();
-			return data;
-		})();
-	}
-
-	// focus the search input box
 	$: {
 		if ($__quranNavigationModalVisible) {
+			// focus the search input box
 			setTimeout(function () {
 				document.getElementById('searchKey').focus();
 			}, 1);
+
+			// load it externally because including it locally increases the bundle size
+			verseKeyData = (async () => {
+				const response = await fetch(`${staticEndpoint}/v4/meta/verseKeyData.json`);
+				const data = await response.json();
+				return data;
+			})();
 		}
 	}
 

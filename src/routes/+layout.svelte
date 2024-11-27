@@ -18,7 +18,7 @@
 	import QuranNavigationModal from '$ui/Modals/QuranNavigationModal.svelte';
 	import SiteNavigationModal from '$ui/Modals/SiteNavigationModal.svelte';
 	import SettingsSelectorModal from '$ui/Modals/SettingsSelectorModal.svelte';
-	import LexiconModal from '$ui/Modals/LexiconModal.svelte';
+	// import LexiconModal from '$ui/Modals/LexiconModal.svelte';
 	import NewSiteChangelogModal from '$ui/Modals/NewSiteChangelogModal.svelte';
 	import VerseTranslationModal from '$ui/Modals/VerseTranslationModal.svelte';
 	import { __websiteOnline, __currentPage, __chapterNumber, __settingsDrawerHidden, __wakeLockEnabled, __userToken, __fontType, __wordTranslation, __verseTranslations, __selectedDisplayId, __mushafMinimalModeEnabled, __topNavbarVisible, __bottomToolbarVisible } from '$utils/stores';
@@ -114,7 +114,7 @@
 
 	// custom padding depending on page
 	function setDefaultPaddings() {
-		paddingTop = $__currentPage === 'home' ? 'pt-10' : defaultPaddingTop;
+		paddingTop = $__currentPage === 'home' ? 'pt-16' : defaultPaddingTop;
 		paddingBottom = $__currentPage === 'chapter' ? 'pb-24' : $__currentPage === 'home' ? 'pb-20' : defaultPaddingBottom;
 		paddingX = $__currentPage === 'page' ? 'px-0 md:px-4' : $__currentPage === 'home' ? 'px-0' : 'px-4';
 	}
@@ -148,7 +148,7 @@
 	<TafsirModal />
 	<SiteNavigationModal />
 	<SettingsSelectorModal />
-	<LexiconModal />
+	<!-- <LexiconModal /> -->
 	<NewSiteChangelogModal />
 	<VerseTranslationModal />
 	<BottomToolbar />
