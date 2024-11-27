@@ -3,6 +3,7 @@
 	import HomepageTabs from '$ui/HomepageTabs.svelte';
 	import Logo from '$svgs/Logo.svelte';
 	import Quran from '$svgs/Quran.svelte';
+	import Megaphone from '$svgs/Megaphone.svelte';
 	import Banner from '$ui/FlowbiteSvelte/banner/Banner.svelte';
 	import { websiteTagline } from '$data/websiteSettings';
 	import { __currentPage, __lastRead, __newSiteChangelogModalVisible } from '$utils/stores';
@@ -26,8 +27,14 @@
 	<HomepageTabs />
 </div>
 
+<!-- banner for updates: currently v4 launch -->
 <Banner id="newSiteBanner" position="fixed" divClass="z-10 flex justify-between p-4 !bg-gray-100 theme">
-	<p class="flex items-center text-sm font-normal text-gray-500">
+	<p class="flex items-center text-sm font-normal text-gray-500 space-x-1">
+		<span class="inline-flex p-2 me-3 bg-gray-200 rounded-full text-black">
+			<span class="opacity-70"><Megaphone size={3} /></span>
+			<span class="sr-only">Announcement</span>
+		</span>
+
 		<span class="text-black text-xs md:text-sm">
 			Experience the Enhanced QuranWBW. <button class="inline font-medium text-primary-600 underline underline-offset-2 decoration-600 decoration-solid hover:no-underline" on:click={() => __newSiteChangelogModalVisible.set(true)}> Read More</button>.
 		</span>
