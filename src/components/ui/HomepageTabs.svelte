@@ -9,7 +9,6 @@
 	import { buttonClasses, buttonOutlineClasses } from '$data/commonClasses';
 	import { checkTimeSpecificChapters } from '$utils/checkTimeSpecificChapters';
 	import { term } from '$utils/terminologies';
-	import { timeAgo } from '$utils/timeAgo';
 	import { fetchSingleVerseData } from '$utils/fetchData';
 
 	let lastReadChapter = 1;
@@ -54,7 +53,7 @@
 			<div id="tab-buttons">
 				<div class="flex text-sm font-medium text-center opacity-70 justify-center space-x-1 md:space-x-4">
 					<button on:click={() => (activeTab = 1)} class="{tabClasses} {activeTab === 1 && activeTabClasses}" type="button" role="tab" aria-controls="chapters-tab-panel" aria-selected="false">{term('chapters')}</button>
-					<button on:click={() => (activeTab = 2)} class="{tabClasses} {activeTab === 2 && activeTabClasses}" type="button" role="tab" aria-controls="most-read-tab-panel" aria-selected="false">Suggested</button>
+					<button on:click={() => (activeTab = 2)} class="{tabClasses} {activeTab === 2 && activeTabClasses}" type="button" role="tab" aria-controls="suggestions-tab-panel" aria-selected="false">Suggested</button>
 					<button on:click={() => (activeTab = 3)} class="{tabClasses} {activeTab === 3 && activeTabClasses} truncate" type="button" role="tab" aria-controls="bookmarks-tab-panel" aria-selected="false">Bookmarks {totalBookmarks > 0 ? `(${totalBookmarks})` : ''}</button>
 					<button on:click={() => (activeTab = 4)} class="{tabClasses} {activeTab === 4 && activeTabClasses} truncate" type="button" role="tab" aria-controls="notes-tab-panel" aria-selected="false">Notes {totalNotes > 0 ? `(${totalNotes})` : ''}</button>
 				</div>
@@ -104,11 +103,10 @@
 				{/if}
 			</div>
 
+			<!-- surahs tab -->
 			<div class="{cardGridClasses} grid-cols-2">
 				{#each { length: 114 } as _, chapter}
 					<a href="/{chapter + 1}">
-						<!-- <button class="pointer h-7 w-7 rounded-full bg-gray-300 text-xs">{chapter + 1}</button> -->
-
 						<div class="{cardInnerClasses} flex-col-reverse md:flex-row text-center items-center">
 							<div class="">
 								<!-- chapter name and icon -->
@@ -136,9 +134,9 @@
 			</div>
 		</div>
 
-		<!-- most read tab -->
-		<div class="homepage-tab-panels space-y-12 {activeTab === 2 ? 'block' : 'hidden'}" id="most-read-tab-panel" role="tabpanel" aria-labelledby="most-read-tab">
-			<div id="most-read-chapters" class="flex flex-col space-y-4">
+		<!-- suggestions tab -->
+		<div class="homepage-tab-panels space-y-12 {activeTab === 2 ? 'block' : 'hidden'}" id="suggestions-tab-panel" role="tabpanel" aria-labelledby="suggestions-tab">
+			<div id="suggestions-chapters" class="flex flex-col space-y-4">
 				<div class="{cardGridClasses} grid-cols-1">
 					{#each Object.entries(mostRead) as [id, item]}
 						<a href={item.url} class="!justify-start {cardInnerClasses} flex-col">
@@ -158,14 +156,14 @@
 				{#if totalBookmarks === 0}
 					<div class="flex items-center justify-center text-sm opacity-70">You currently do not have any bookmarks.</div>
 				{:else}
-					<div class="{cardGridClasses} grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+					<div class="{cardGridClasses} grid-cols-1">
 						{#each $__userBookmarks as bookmark}
 							<div class="flex flex-row space-x-2">
-								<a href="{bookmark.split(':')[0]}/{bookmark.split(':')[1]}" class="{cardInnerClasses} space-y-1 w-full flex-col">
-									<div class="block text-xs opacity-70 truncate">{quranMetaData[bookmark.split(':')[0]].transliteration} ({bookmark})</div>
+								<a href="{bookmark.split(':')[0]}/{bookmark.split(':')[1]}" class="!justify-start {cardInnerClasses} w-full flex-col">
+									<div class="text-sm">{quranMetaData[bookmark.split(':')[0]].transliteration} ({bookmark})</div>
 
 									{#if activeTab === 3 && totalBookmarks !== 0}
-										<div class="text-sm truncate direction-rtl text-right arabic-font-1">
+										<div class="text-sm opacity-70 truncate direction-rtl text-right arabic-font-1">
 											{#await fetchData then data}
 												{data[bookmark].words.arabic.split('|').join(' ')}
 											{:catch error}
@@ -192,9 +190,9 @@
 				{:else}
 					<div class="{cardGridClasses} grid-cols-1">
 						{#each Object.entries($__userNotes) as [verse, note]}
-							<a href="{verse.split(':')[0]}/{verse.split(':')[1]}" class="{cardInnerClasses} space-y-1 flex-col">
-								<div class="block text-xs opacity-70 truncate">{quranMetaData[verse.split(':')[0]].transliteration} ({verse}) - modfied {timeAgo(note.modified_at)}</div>
-								<span class="text-sm truncate">{note.note}</span>
+							<a href="{verse.split(':')[0]}/{verse.split(':')[1]}" class="!justify-start {cardInnerClasses} w-full flex-col">
+								<div class="text-sm">{quranMetaData[verse.split(':')[0]].transliteration} ({verse})</div>
+								<span class="text-xs opacity-70 truncate">{note.note}</span>
 							</a>
 						{/each}
 					</div>
