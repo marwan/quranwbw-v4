@@ -33,6 +33,7 @@ export const verseTranslationsLanguages = [
 	{ language_id: 60, language: 'Hindi' },
 	{ language_id: 67, language: 'Indonesian' },
 	{ language_id: 106, language: 'Malayalam' },
+	{ language_id: 43, language: 'Persian' },
 	{ language_id: 138, language: 'Russian' },
 	{ language_id: 158, language: 'Tamil' },
 	{ language_id: 11115, language: 'Transliteration' },
@@ -40,7 +41,7 @@ export const verseTranslationsLanguages = [
 	{ language_id: 174, language: 'Urdu' }
 ];
 
-export const rightToLeftVerseTranslations = [86, 840, 156, 97, 234, 158, 151, 54, 819];
+export const rightToLeftVerseTranslations = [86, 840, 156, 97, 234, 158, 151, 54, 819, 135, 29];
 
 export const selectableVerseTranslations = {
 	// bangla
@@ -201,6 +202,18 @@ export const selectableVerseTranslations = {
 		language_id: 106
 	},
 
+	// persian
+	135: {
+		resource_id: 135,
+		resource_name: 'IslamHouse.com',
+		language_id: 43
+	},
+	29: {
+		resource_id: 29,
+		resource_name: 'Hussein Taji Kal Dari',
+		language_id: 43
+	},
+
 	// russian
 	79: {
 		resource_id: 79,
@@ -340,10 +353,11 @@ export const selectableWordTranslations = {
 	12: { id: 10, language: 'Ingush' },
 	13: { id: 12, language: 'Malayalam (Amani Thafseer)' },
 	14: { id: 13, language: 'Malayalam (Quran Lalithasaram)' },
-	15: { id: 9, language: 'Russian' },
-	16: { id: 7, language: 'Tamil' },
-	17: { id: 6, language: 'Turkish' },
-	18: { id: 2, language: 'Urdu' }
+	15: { id: 19, language: 'Persian' },
+	16: { id: 9, language: 'Russian' },
+	17: { id: 7, language: 'Tamil' },
+	18: { id: 6, language: 'Turkish' },
+	19: { id: 2, language: 'Urdu' }
 };
 
 export const selectableWordTransliterations = {
