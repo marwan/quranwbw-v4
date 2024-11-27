@@ -30,7 +30,7 @@
 <!-- banner for updates: currently v4 launch -->
 <Banner id="newSiteBanner" position="fixed" divClass="z-10 flex justify-between p-4 !bg-gray-100 theme">
 	<p class="flex items-center text-sm font-normal text-gray-500 space-x-1">
-		<span class="inline-flex p-2 me-3 bg-gray-200 rounded-full text-black">
+		<span class="inline-flex p-2 bg-gray-200 rounded-full text-black">
 			<span class="opacity-70"><Megaphone size={3} /></span>
 			<span class="sr-only">Announcement</span>
 		</span>
