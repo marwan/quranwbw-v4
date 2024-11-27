@@ -3,8 +3,9 @@
 	import HomepageTabs from '$ui/HomepageTabs.svelte';
 	import Logo from '$svgs/Logo.svelte';
 	import Quran from '$svgs/Quran.svelte';
+	import Banner from '$ui/FlowbiteSvelte/banner/Banner.svelte';
 	import { websiteTagline } from '$data/websiteSettings';
-	import { __currentPage, __lastRead } from '$utils/stores';
+	import { __currentPage, __lastRead, __newSiteChangelogModalVisible } from '$utils/stores';
 
 	__currentPage.set('home');
 </script>
@@ -24,3 +25,11 @@
 	<!-- chapter and most read tabs -->
 	<HomepageTabs />
 </div>
+
+<Banner id="newSiteBanner" position="fixed" divClass="z-10 flex justify-between p-4 !bg-gray-100 theme">
+	<p class="flex items-center text-sm font-normal text-gray-500">
+		<span class="text-black text-xs md:text-sm">
+			Experience the Enhanced QuranWBW. <button class="inline font-medium text-primary-600 underline underline-offset-2 decoration-600 decoration-solid hover:no-underline" on:click={() => __newSiteChangelogModalVisible.set(true)}> Read More</button>.
+		</span>
+	</p>
+</Banner>

@@ -1,5 +1,5 @@
 <script>
-	// import party from 'party-js';
+	import party from 'party-js';
 	import Modal from '$ui/FlowbiteSvelte/modal/Modal.svelte';
 	import { __newSiteChangelogModalVisible } from '$utils/stores';
 	import { linkClasses } from '$data/commonClasses';
@@ -37,27 +37,19 @@
 		'<span class="font-semibold">Advanced Audio Play:</span> Enhanced audio play features.'
 	];
 
-	// show the modal on first visit
 	$: {
-		const userSettings = JSON.parse(localStorage.getItem('userSettings'));
+		if ($__newSiteChangelogModalVisible) {
+			// __newSiteChangelogModalVisible.set(true);
+			// updateSettings({ type: 'newSiteChangelogModal', value: true });
 
-		if (userSettings.oneTimeModals.newSiteChangelogModal === false) {
-			__newSiteChangelogModalVisible.set(true);
-			updateSettings({ type: 'newSiteChangelogModal', value: true });
-
-			// setTimeout(function () {
-			// 	__newSiteChangelogModalVisible.set(true);
-			// 	updateSettings({ type: 'newSiteChangelogModal', value: true });
-			// }, 2000);
-
-			// // confettis for the update? why not!
-			// setTimeout(function () {
-			// 	party.confetti(document.body, {
-			// 		count: 80,
-			// 		spread: 100,
-			// 		size: 2
-			// 	});
-			// }, 2500);
+			// confettis for the update? why not!
+			setTimeout(function () {
+				party.confetti(document.body, {
+					count: 80,
+					spread: 100,
+					size: 2
+				});
+			}, 200);
 		}
 	}
 </script>
