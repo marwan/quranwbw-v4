@@ -4,14 +4,14 @@ export const websiteTagline = 'Word By Word Translation, Transliteration And Mor
 
 export const websiteTitle = `Quran ${websiteTagline} - ${websiteURL}`;
 
-export const wbwLanguages = 'English, Urdu, Hindi, Indonesian, Bangla, Turkish, Tamil, French, German, Russian, Ingush, Chinese, Malayalam and Divehi';
+export const wbwLanguages = 'English, Urdu, Hindi, Indonesian, Bangla, Turkish, Tamil, French, German, Russian, Ingush, Chinese, Malayalam, Divehi and Persian';
 
 export const apiEndpoint = 'https://api.quranwbw.com/v1';
 // export const apiEndpoint = 'http://localhost:7500/v1';
 
 export const staticEndpoint = 'https://static.quranwbw.com/data';
 
-export const apiVersion = 107;
+export const apiVersion = 108;
 
 export const wordsAudioURL = 'https://audios.quranwbw.com/words';
 
