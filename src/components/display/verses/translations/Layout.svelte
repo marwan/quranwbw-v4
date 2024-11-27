@@ -57,8 +57,8 @@
 		});
 	}
 
-	function isTranslationUrdu(id) {
-		return selectableVerseTranslations[id].language_id === 174 && !selectableVerseTranslations[id].is_roman;
+	function isTranslationUrduOrPersian(id) {
+		return [43, 174].includes(selectableVerseTranslations[id].language_id) && !selectableVerseTranslations[id].is_roman;
 	}
 
 	function isTranslationRTL(id) {
@@ -69,7 +69,7 @@
 </script>
 
 <div class="flex flex-col print:break-inside-avoid">
-	<span class="{isTranslationRTL(verseTranslation.resource_id) && 'direction-rtl'} {isTranslationUrdu(verseTranslation.resource_id) && 'font-Urdu'}">
+	<span class="{isTranslationRTL(verseTranslation.resource_id) && 'direction-rtl'} {isTranslationUrduOrPersian(verseTranslation.resource_id) && 'font-Urdu'}">
 		{@html verseTranslation.text.replace(/<sup/g, `<sup onclick='supClick(this)' title='Show footnote' data-chapter='${value.meta.chapter}' data-verse='${value.meta.verse}' data-translation=${verseTranslationID} class='${footnoteSupClasses}' `)}
 	</span>
 
@@ -84,7 +84,7 @@
 			<!-- close footnote button -->
 			<button on:click={() => hideFootnote(value.meta.chapter, value.meta.verse, verseTranslationID)} class="opacity-70" title="Close footnote"><CrossSolid size={6} /></button>
 		</div>
-		<div class="text {isTranslationRTL(verseTranslation.resource_id) && 'direction-rtl'} {isTranslationUrdu(verseTranslation.resource_id) && 'font-Urdu'}">...</div>
+		<div class="text {isTranslationRTL(verseTranslation.resource_id) && 'direction-rtl'} {isTranslationUrduOrPersian(verseTranslation.resource_id) && 'font-Urdu'}">...</div>
 	</div>
 
 	<!-- show translaton author name only if more than 1 was selected -->
