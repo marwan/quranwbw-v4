@@ -1,5 +1,5 @@
 <script>
-	import party from 'party-js';
+	// import party from 'party-js';
 	import Modal from '$ui/FlowbiteSvelte/modal/Modal.svelte';
 	import { __newSiteChangelogModalVisible } from '$utils/stores';
 	import { linkClasses } from '$data/commonClasses';
@@ -38,25 +38,28 @@
 	];
 
 	// show the modal on first visit
-	// $: {
-	// 	const userSettings = JSON.parse(localStorage.getItem('userSettings'));
+	$: {
+		const userSettings = JSON.parse(localStorage.getItem('userSettings'));
 
-	// 	if (userSettings.oneTimeModals.newSiteChangelogModal === false) {
-	// 		setTimeout(function () {
-	// 			__newSiteChangelogModalVisible.set(true);
-	// 			updateSettings({ type: 'newSiteChangelogModal', value: true });
-	// 		}, 2000);
+		if (userSettings.oneTimeModals.newSiteChangelogModal === false) {
+			__newSiteChangelogModalVisible.set(true);
+			updateSettings({ type: 'newSiteChangelogModal', value: true });
 
-	// 		// confettis for the update? why not!
-	// 		setTimeout(function () {
-	// 			party.confetti(document.body, {
-	// 				count: 80,
-	// 				spread: 100,
-	// 				size: 2
-	// 			});
-	// 		}, 2500);
-	// 	}
-	// }
+			// setTimeout(function () {
+			// 	__newSiteChangelogModalVisible.set(true);
+			// 	updateSettings({ type: 'newSiteChangelogModal', value: true });
+			// }, 2000);
+
+			// // confettis for the update? why not!
+			// setTimeout(function () {
+			// 	party.confetti(document.body, {
+			// 		count: 80,
+			// 		spread: 100,
+			// 		size: 2
+			// 	});
+			// }, 2500);
+		}
+	}
 </script>
 
 <Modal id="newSiteChangelogModal" bind:open={$__newSiteChangelogModalVisible} size="md" class="rounded-3xl text-black theme" bodyClass="p-6" dialogClass="fixed top-0 start-0 end-0 h-[-webkit-fill-available] md:inset-0 md:h-full z-50 w-full p-4 flex" center outsideclose>
