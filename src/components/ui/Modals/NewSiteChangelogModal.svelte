@@ -50,7 +50,7 @@
 <Modal id="newSiteChangelogModal" bind:open={$__newSiteChangelogModalVisible} size="md" class="rounded-3xl text-black theme" bodyClass="p-6" dialogClass="fixed top-0 start-0 end-0 h-[-webkit-fill-available] md:inset-0 md:h-full z-50 w-full p-4 flex" center outsideclose>
 	<div class="flex flex-col space-y-4">
 		<div class="flex flex-col space-y-2">
-			<div class="font-medium text-lg">QuranWBW v4 Update</div>
+			<div class="font-medium text-lg">QuranWBW v4.0 Update</div>
 			<div class="flex flex-col space-y-4 text-sm max-h-[60vh] overflow-y-scroll pr-2">
 				<span>Alhamdulillah, we are thrilled to announce the release of QuranWBW v4, featuring a completely redesigned website with significant performance enhancements and a multitude of new and improved features. Here are the highlights of this update:</span>
 

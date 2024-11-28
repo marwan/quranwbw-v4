@@ -28,15 +28,15 @@
 </div>
 
 <!-- banner for website updates: currently v4 launch -->
-<Banner id="newSiteBanner" position="fixed" divClass="z-10 flex justify-between p-4 !bg-gray-100 theme">
-	<p class="flex items-center text-sm font-normal text-gray-500 space-x-1">
+<Banner id="newSiteBanner" position="absolute" divClass="z-10 flex justify-between p-4 !bg-gray-100 theme">
+	<p class="flex items-center text-sm font-normal text-gray-500 space-x-1 truncate">
 		<span class="inline-flex p-2 bg-gray-200 rounded-full text-black">
 			<span class="opacity-70"><Megaphone size={3} /></span>
 			<span class="sr-only">Announcement</span>
 		</span>
 
 		<span class="text-black text-xs md:text-sm">
-			Experience the Enhanced QuranWBW. <button class="inline font-medium text-primary-600 underline underline-offset-2 decoration-600 decoration-solid hover:no-underline" on:click={() => __newSiteChangelogModalVisible.set(true)}> Read More {@html '&#x2192;'}</button>
+			Introducing QuranWBW v4.0. <button class="inline font-medium text-primary-600 underline underline-offset-2 decoration-600 decoration-solid hover:no-underline" on:click={() => __newSiteChangelogModalVisible.set(true)}> See What's New {@html '&#x2192;'}</button>
 		</span>
 	</p>
 </Banner>
