@@ -9,6 +9,8 @@ import { scrollSmoothly } from '$utils/scrollSmoothly';
 // getting the audio element
 let audio = document.querySelector('#player');
 
+if (audio === null) console.error('audio element is NULL!!!');
+
 // set global audio settings
 const audioSettings = get(__audioSettings);
 
