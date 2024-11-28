@@ -33,17 +33,16 @@
 
 	$: {
 		if (footnoteId !== undefined) {
-			const nodeId = $__currentPage === 'chapter' ? (footnoteVerse === 1 ? 1 : 0) : 0;
 			const selector = `.footnote-${footnoteChapter}-${footnoteVerse}-${footnoteTranslation}`;
-			const footnoteBlock = document.querySelectorAll(`${selector}`);
-			let footnoteBlockNumber = document.querySelectorAll(`${selector} .footnote-header .title .footnote-number`);
-			let footnoteBlockText = document.querySelectorAll(`${selector} .text`);
+			const footnoteBlock = document.querySelectorAll(`${selector}`)[0];
+			let footnoteBlockNumber = document.querySelectorAll(`${selector} .footnote-header .title .footnote-number`)[0];
+			let footnoteBlockText = document.querySelectorAll(`${selector} .text`)[0];
 
 			// update the footnote number, text and unhide this verse's footnote block
-			footnoteBlockNumber[nodeId].innerText = footnoteNumber;
-			footnoteBlockText[nodeId].innerHTML = footnoteText;
-			footnoteBlock[nodeId].classList.remove('hidden');
-			footnoteBlock[nodeId].classList.add('block');
+			footnoteBlockNumber.innerText = footnoteNumber;
+			footnoteBlockText.innerHTML = footnoteText;
+			footnoteBlock.classList.remove('hidden');
+			footnoteBlock.classList.add('block');
 		}
 	}
 
@@ -64,6 +63,15 @@
 	function isTranslationRTL(id) {
 		return rightToLeftVerseTranslations.includes(selectableVerseTranslations[id].resource_id);
 	}
+
+	// function detectVersesInFootnote(footnote) {
+	// 	const regex = /\d{0,9}(:\d{0,9})*/g;
+	// 	let matches = footnote.match(regex);
+	// 	matches = matches.filter(function (e) {
+	// 		return e;
+	// 	});
+	// 	if (matches.length > 0) console.log(matches);
+	// }
 
 	window.supClick = supClick;
 </script>

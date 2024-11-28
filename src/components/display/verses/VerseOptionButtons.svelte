@@ -53,8 +53,7 @@
 
 	// function to toggle words block for display mode #7
 	function wordsBlockToggler(verse) {
-		const nodeId = $__currentPage === 'chapter' ? (verse === 1 ? 1 : 0) : 0;
-		document.querySelectorAll(`#verse-${verse}-words`)[nodeId].classList.toggle('hidden');
+		document.querySelectorAll(`#verse-${verse}-words`)[0].classList.toggle('hidden');
 	}
 </script>
 
