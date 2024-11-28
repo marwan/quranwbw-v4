@@ -225,27 +225,31 @@ export function initializeAudioSettings(key) {
 }
 
 export function resetAudioSettings(props) {
-	audio.pause();
-	audio.currentTime = 0;
-	audioSettings.isPlaying = false;
-	audioSettings.playingWordKey = null;
+	try {
+		audio.pause();
+		audio.currentTime = 0;
+		audioSettings.isPlaying = false;
+		audioSettings.playingWordKey = null;
 
-	// if the reset function is called from the end of playVerseAudio function
-	// because we have 1 at the start and 1 at the end
-	if (props && props.location === 'end') {
-		audioSettings.timesRepeated = 0;
-		audioSettings.timesToRepeat = 1;
-		window.versesToPlayArray = [];
+		// if the reset function is called from the end of playVerseAudio function
+		// because we have 1 at the start and 1 at the end
+		if (props && props.location === 'end') {
+			audioSettings.timesRepeated = 0;
+			audioSettings.timesToRepeat = 1;
+			window.versesToPlayArray = [];
+		}
+
+		__audioSettings.set(audioSettings);
+
+		audio.removeEventListener('timeupdate', wordHighlighter);
+
+		// remove word highlight
+		document.querySelectorAll('.word').forEach((element) => {
+			element.classList.remove('bg-black/10');
+		});
+	} catch (error) {
+		console.log(error);
 	}
-
-	__audioSettings.set(audioSettings);
-
-	audio.removeEventListener('timeupdate', wordHighlighter);
-
-	// remove word highlight
-	document.querySelectorAll('.word').forEach((element) => {
-		element.classList.remove('bg-black/10');
-	});
 }
 
 export function showAudioModal(key) {
