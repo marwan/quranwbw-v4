@@ -1742,6 +1742,10 @@ input[type="range"].range-lg::-moz-range-thumb {
   grid-template-columns: repeat(7, minmax(0, 1fr));
 }
 
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .flex-row {
   flex-direction: row;
 }
@@ -1780,6 +1784,10 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .justify-start {
   justify-content: flex-start;
+}
+
+.\!justify-end {
+  justify-content: flex-end !important;
 }
 
 .justify-end {
@@ -1933,6 +1941,14 @@ input[type="range"].range-lg::-moz-range-thumb {
 .divide-gray-500 > :not([hidden]) ~ :not([hidden]) {
   --tw-divide-opacity: 1;
   border-color: rgb(107 114 128 / var(--tw-divide-opacity));
+}
+
+.justify-self-start {
+  justify-self: start;
+}
+
+.justify-self-end {
+  justify-self: end;
 }
 
 .overflow-auto {
