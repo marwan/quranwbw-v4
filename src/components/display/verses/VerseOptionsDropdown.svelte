@@ -21,12 +21,7 @@
 				document.querySelectorAll('.verseButtons').forEach((element) => {
 					element.classList.remove('z-10');
 				});
-
-				// for some reason, applying z-index directly by selecting the .verseButtons of the verseKey doesn't work, so have to do this check...
-				const verse = +$__verseKey.split(':')[1];
-
-				// the first verse of any chapter/page and the other verses will have different selectors
-				verse === 1 ? document.getElementsByClassName('verseButtons')[verse].classList.add('z-10') : document.getElementById($__verseKey).firstChild.classList.add('z-10');
+				document.getElementById($__verseKey).firstChild.classList.add('z-10');
 			}
 		} catch (error) {}
 	}

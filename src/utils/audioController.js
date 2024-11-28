@@ -322,7 +322,7 @@ export function setVersesToPlay(props) {
 		// chapter page, supp, bookmarks
 		else if (get(__currentPage) === 'chapter') {
 			const versesOnPage = document.getElementsByClassName('verse');
-			const startVerse = versesOnPage[1].id.split(':')[1];
+			const startVerse = versesOnPage[0].id.split(':')[1];
 			const endVerse = quranMetaData[get(__chapterNumber)].verses;
 
 			for (let verse = startVerse; verse <= endVerse; verse++) {
