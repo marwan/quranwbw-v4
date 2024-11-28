@@ -19,6 +19,6 @@ export const mushafWordFontLink = 'https://fonts.quranwbw.com/Hafs/KFGQPC-v4/COL
 
 export const mushafHeaderFontLink = 'https://v4.quranwbw.com/fonts/chapter-headers/QCF_SurahHeader_COLOR-Regular.woff2';
 
-export const mushafFontVersion = 3;
+export const mushafFontVersion = 4;
 
 export const errorLoadingDataMessage = 'Sorry, there was an error while loading the data. Please refresh the page and try again.';
