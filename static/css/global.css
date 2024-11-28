@@ -3869,6 +3869,12 @@ svg {
   --tw-ring-color: rgb(209 213 219 / var(--tw-ring-opacity));
 }
 
+@media (min-width: 374px) {
+  .xs\:block {
+    display: block;
+  }
+}
+
 @media (min-width: 640px) {
   .sm\:mx-auto {
     margin-left: auto;

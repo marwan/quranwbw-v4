@@ -69,9 +69,9 @@
 			<!-- main tabs -->
 			<div id="tab-buttons">
 				<div class="flex text-sm font-medium text-center opacity-70 justify-center space-x-1 md:space-x-4">
-					<button on:click={() => (activeTab = 1)} class="{tabClasses} {activeTab === 1 && activeTabClasses} flex flex-row space-x-1 items-center" type="button" role="tab" aria-controls="chapters-tab-panel" aria-selected="false">
+					<button on:click={() => (activeTab = 1)} class="{tabClasses} {activeTab === 1 && activeTabClasses} flex flex-row space-x-2 items-center" type="button" role="tab" aria-controls="chapters-tab-panel" aria-selected="false">
 						<!-- asc/dsc sort button -->
-						<div class="flex flex-row space-x-4">
+						<div class="flex flex-row">
 							<button class="inline-flex p-2 rounded-full text-black items-center {chapterSortIsAscending ? 'bg-gray-200' : 'bg-gray-300'}" on:click={() => sortChapters()}>
 								<span class="opacity-70"><AscendingSort size={3} /></span>
 								<span class="sr-only">Sort</span>
@@ -81,8 +81,14 @@
 						<span>{term('chapters')}</span>
 					</button>
 					<button on:click={() => (activeTab = 2)} class="{tabClasses} {activeTab === 2 && activeTabClasses}" type="button" role="tab" aria-controls="suggestions-tab-panel" aria-selected="false">Suggested</button>
-					<button on:click={() => (activeTab = 3)} class="{tabClasses} {activeTab === 3 && activeTabClasses} truncate" type="button" role="tab" aria-controls="bookmarks-tab-panel" aria-selected="false">Bookmarks {totalBookmarks > 0 ? `(${totalBookmarks})` : ''}</button>
-					<button on:click={() => (activeTab = 4)} class="{tabClasses} {activeTab === 4 && activeTabClasses} truncate" type="button" role="tab" aria-controls="notes-tab-panel" aria-selected="false">Notes {totalNotes > 0 ? `(${totalNotes})` : ''}</button>
+					<button on:click={() => (activeTab = 3)} class="{tabClasses} {activeTab === 3 && activeTabClasses} flex flex-row space-x-1 items-center truncate" type="button" role="tab" aria-controls="bookmarks-tab-panel" aria-selected="false">
+						<span>Bookmarks</span>
+						<span class="hidden xs:block">{totalBookmarks > 0 ? `(${totalBookmarks})` : ''}</span>
+					</button>
+					<button on:click={() => (activeTab = 4)} class="{tabClasses} {activeTab === 4 && activeTabClasses} flex flex-row space-x-1 items-center truncate" type="button" role="tab" aria-controls="notes-tab-panel" aria-selected="false">
+						<span>Notes</span>
+						<span class="hidden xs:block">{totalNotes > 0 ? `(${totalNotes})` : ''}</span>
+					</button>
 				</div>
 			</div>
 		</div>
