@@ -9,8 +9,6 @@ import { scrollSmoothly } from '$utils/scrollSmoothly';
 // getting the audio element
 let audio = document.querySelector('#player');
 
-if (audio === null) console.error('audio element is NULL!!!');
-
 // set global audio settings
 const audioSettings = get(__audioSettings);
 
@@ -228,6 +226,9 @@ export function initializeAudioSettings(key) {
 
 export function resetAudioSettings(props) {
 	try {
+		// incase the audio element which was set above is null (dom load delay issue on Safari), set it again
+		if (audio === null) audio = document.querySelector('#player');
+
 		audio.pause();
 		audio.currentTime = 0;
 		audioSettings.isPlaying = false;
