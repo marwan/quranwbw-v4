@@ -9,6 +9,9 @@ export default {
 			colors: {
 				...colors,
 				lightGray: '#ebebeb'
+			},
+			screens: {
+				xs: '374px'
 			}
 		}
 	},

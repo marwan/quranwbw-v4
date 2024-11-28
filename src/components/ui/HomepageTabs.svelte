@@ -2,6 +2,7 @@
 	import Mecca from '$svgs/Mecca.svelte';
 	import Madinah from '$svgs/Madinah.svelte';
 	import CrossSolid from '$svgs/CrossSolid.svelte';
+	import AscendingSort from '$svgs/AscendingSort.svelte';
 	import Tooltip from '$ui/FlowbiteSvelte/tooltip/Tooltip.svelte';
 	import { updateSettings } from '$utils/updateSettings';
 	import { quranMetaData, mostRead } from '$data/quranMeta';
@@ -11,8 +12,16 @@
 	import { term } from '$utils/terminologies';
 	import { fetchSingleVerseData } from '$utils/fetchData';
 
+	// chapter cards, tab styles
+	const cardGridClasses = 'grid md:grid-cols-2 lg:grid-cols-3 gap-3';
+	const cardInnerClasses = 'flex justify-between md:text-left border border-black/10 transition text-sm bg-gray-100 rounded-3xl p-5 hover:cursor-pointer hover:bg-lightGray';
+	const tabClasses = 'p-2 md:p-3 text-xs md:text-md cursor-pointer border-b-4 border-transparent';
+	const activeTabClasses = '!border-black/10';
 	let lastReadChapter = 1;
 	let lastReadVerse = 1;
+	let activeTab = 1; // chapters tab
+	let chapterSortIsAscending = true;
+	let chapterListOrder = [...quranMetaData];
 
 	$: {
 		if ($__lastRead.hasOwnProperty('key')) {
@@ -25,14 +34,6 @@
 	$: totalBookmarks = $__userBookmarks.length;
 	$: totalNotes = Object.keys($__userNotes).length;
 
-	// chapter cards, tab styles
-	const cardGridClasses = 'grid md:grid-cols-2 lg:grid-cols-3 gap-3';
-	const cardInnerClasses = 'flex justify-between md:text-left border border-black/10 transition text-sm bg-gray-100 rounded-3xl p-5 hover:cursor-pointer hover:bg-lightGray';
-	const tabClasses = 'p-2 md:p-3 text-xs md:text-md cursor-pointer border-b-4 border-transparent';
-	const activeTabClasses = '!border-black/10';
-
-	let activeTab = 1; // chapters tab
-
 	// remove the "invisible" class from chapter-icons once fonts are loaded so blank icon doesn't show up
 	document.fonts.ready.then(function () {
 		document.querySelectorAll('.chapter-icons').forEach((element) => {
@@ -42,6 +43,22 @@
 
 	// check if it's friday and night
 	checkTimeSpecificChapters();
+
+	// function to sort chapters list in ascending or desending order
+	function sortChapters() {
+		chapterSortIsAscending = !chapterSortIsAscending;
+		chapterListOrder = chapterSortIsAscending ? [...quranMetaData] : [...quranMetaData].reverse();
+
+		// we manually remove the 'invisible' class from chapter-icons because for some reason the icon for chapter 114 becomes invisible after sorting
+		// we also do this after a delay of 10ms, because doing it instantly doesn't do anything
+		try {
+			setTimeout(function () {
+				document.querySelectorAll('.chapter-icons').forEach((element) => {
+					element.classList.remove('invisible');
+				});
+			}, 10);
+		} catch (error) {}
+	}
 </script>
 
 <div id="homepage-tabs" style="margin-top: 15px;" class="theme-grayscale">
@@ -52,10 +69,26 @@
 			<!-- main tabs -->
 			<div id="tab-buttons">
 				<div class="flex text-sm font-medium text-center opacity-70 justify-center space-x-1 md:space-x-4">
-					<button on:click={() => (activeTab = 1)} class="{tabClasses} {activeTab === 1 && activeTabClasses}" type="button" role="tab" aria-controls="chapters-tab-panel" aria-selected="false">{term('chapters')}</button>
+					<button on:click={() => (activeTab = 1)} class="{tabClasses} {activeTab === 1 && activeTabClasses} flex flex-row space-x-2 items-center" type="button" role="tab" aria-controls="chapters-tab-panel" aria-selected="false">
+						<!-- asc/dsc sort button -->
+						<div class="flex flex-row">
+							<button class="inline-flex p-2 rounded-full text-black items-center {chapterSortIsAscending ? 'bg-gray-200' : 'bg-gray-300'}" on:click={() => sortChapters()}>
+								<span class="opacity-70"><AscendingSort size={3} /></span>
+								<span class="sr-only">Sort</span>
+							</button>
+							<Tooltip arrow={false} type="light" placement="top" class="z-30 w-max hidden md:block font-filter font-normal">Sort Asc/Dsc</Tooltip>
+						</div>
+						<span>{term('chapters')}</span>
+					</button>
 					<button on:click={() => (activeTab = 2)} class="{tabClasses} {activeTab === 2 && activeTabClasses}" type="button" role="tab" aria-controls="suggestions-tab-panel" aria-selected="false">Suggested</button>
-					<button on:click={() => (activeTab = 3)} class="{tabClasses} {activeTab === 3 && activeTabClasses} truncate" type="button" role="tab" aria-controls="bookmarks-tab-panel" aria-selected="false">Bookmarks {totalBookmarks > 0 ? `(${totalBookmarks})` : ''}</button>
-					<button on:click={() => (activeTab = 4)} class="{tabClasses} {activeTab === 4 && activeTabClasses} truncate" type="button" role="tab" aria-controls="notes-tab-panel" aria-selected="false">Notes {totalNotes > 0 ? `(${totalNotes})` : ''}</button>
+					<button on:click={() => (activeTab = 3)} class="{tabClasses} {activeTab === 3 && activeTabClasses} flex flex-row space-x-1 items-center truncate" type="button" role="tab" aria-controls="bookmarks-tab-panel" aria-selected="false">
+						<span>Bookmarks</span>
+						<span class="hidden xs:block">{totalBookmarks > 0 ? `(${totalBookmarks})` : ''}</span>
+					</button>
+					<button on:click={() => (activeTab = 4)} class="{tabClasses} {activeTab === 4 && activeTabClasses} flex flex-row space-x-1 items-center truncate" type="button" role="tab" aria-controls="notes-tab-panel" aria-selected="false">
+						<span>Notes</span>
+						<span class="hidden xs:block">{totalNotes > 0 ? `(${totalNotes})` : ''}</span>
+					</button>
 				</div>
 			</div>
 		</div>
@@ -66,15 +99,15 @@
 	<div id="content-tab" class="my-6 px-">
 		<!-- chapters tab -->
 		<div class="homepage-tab-panels {activeTab === 1 ? 'block' : 'hidden'}" id="chapters-tab-panel" role="tabpanel" aria-labelledby="chapters-tab">
-			<!-- chapter / page etc... selector -->
-			<div class="flex flex-col md:flex-row justify-between text-xs mb-0 md:mb-2">
-				<!-- time specific chapter buttons and search -->
-				<div class="flex flex-row space-x-1 mb-2 md:mb-0 md:space-x-2">
+			<!-- time specific chapters and continue reading button -->
+			<div class="flex flex-row justify-between text-xs mb-2 space-x-1 md:space-x-2">
+				<!-- time specific chapters buttons -->
+				<div class="flex flex-row space-x-1 md:space-x-2 w-full md:w-max">
 					<!-- show Al Kahf on Friday -->
 					{#if $__timeSpecificChapters.isFriday}
 						<div id="al-kahf" class="w-full md:w-max">
 							<a href="/18" class="py-2.5 w-full truncate {buttonClasses}">
-								<span>It's Friday:&nbsp;</span>
+								<span class="hidden md:block">It's Friday:&nbsp;</span>
 								Al-Kahf
 								<span class="hidden md:block">{@html '&#10230'}</span>
 							</a>
@@ -85,7 +118,7 @@
 					{#if $__timeSpecificChapters.isNight}
 						<div id="al-mulk" class="w-full md:w-max">
 							<a href="/67" class="py-2.5 w-full truncate {buttonClasses}">
-								<span>Night Reminder:&nbsp;</span>
+								<span class="hidden md:block">Night Reminder:&nbsp;</span>
 								Al-Mulk
 								<span class="hidden md:block">{@html '&#10230'}</span>
 							</a>
@@ -93,43 +126,46 @@
 					{/if}
 				</div>
 
-				<div class="hidden md:block mx-1"></div>
-
-				<!-- last read -->
+				<!-- continue reading button -->
 				{#if $__lastRead.hasOwnProperty('key')}
-					<div id="last-read" class="w-full md:w-max">
-						<a href="/{lastReadChapter}/{lastReadVerse}" class="py-2.5 w-full mb-4 md:mb-0 truncate {buttonOutlineClasses}">Continue Reading: {quranMetaData[lastReadChapter].transliteration}, {lastReadChapter}:{lastReadVerse} {@html '&#10230'}</a>
+					<div id="last-read" class="flex flex-row w-full md:w-max">
+						<a href="/{lastReadChapter}/{lastReadVerse}" class="py-2.5 w-full truncate {buttonOutlineClasses} !space-x-0">
+							<span class="hidden md:block">Continue Reading: {quranMetaData[lastReadChapter].transliteration}, {lastReadChapter}:{lastReadVerse} {@html '&#10230'}</span>
+							<span class="block md:hidden">Continue: {lastReadChapter}:{lastReadVerse} </span>
+						</a>
 					</div>
 				{/if}
 			</div>
 
 			<!-- surahs tab -->
 			<div class="{cardGridClasses} grid-cols-2">
-				{#each { length: 114 } as _, chapter}
-					<a href="/{chapter + 1}">
-						<div class="{cardInnerClasses} flex-col-reverse md:flex-row text-center items-center">
-							<div class="">
-								<!-- chapter name and icon -->
-								<div class="flex flex-row items-center space-x-1 justify-center md:justify-start truncate">
-									<div>{chapter + 1}. {quranMetaData[chapter + 1].transliteration}</div>
-									<div class="opacity-50"><svelte:component this={quranMetaData[chapter + 1].revelation === 1 ? Mecca : Madinah} /></div>
-									<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-filter font-normal">{quranMetaData[chapter + 1].revelation === 1 ? term('meccan') : term('medinan')} revelation</Tooltip>
-								</div>
+				{#each chapterListOrder as { id }, i}
+					{#if id > 0}
+						<a href="/{id}">
+							<div class="{cardInnerClasses} flex-col-reverse md:flex-row text-center items-center">
+								<div class="">
+									<!-- chapter name and icon -->
+									<div class="flex flex-row items-center space-x-1 justify-center md:justify-start truncate">
+										<div>{id}. {quranMetaData[id].transliteration}</div>
+										<div class="opacity-50"><svelte:component this={quranMetaData[id].revelation === 1 ? Mecca : Madinah} /></div>
+										<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-filter font-normal">{quranMetaData[id].revelation === 1 ? term('meccan') : term('medinan')} revelation</Tooltip>
+									</div>
 
-								<!-- chapter translation -->
-								<div class="block text-xs opacity-70 truncate">
-									{quranMetaData[chapter + 1].translation}
-								</div>
+									<!-- chapter translation -->
+									<div class="block text-xs opacity-70 truncate">
+										{quranMetaData[id].translation}
+									</div>
 
-								<!-- chapter verses -->
-								<div class="block text-xs opacity-70">
-									{quranMetaData[chapter + 1].verses}
-									{term('verses')}
+									<!-- chapter verses -->
+									<div class="block text-xs opacity-70">
+										{quranMetaData[id].verses}
+										{term('verses')}
+									</div>
 								</div>
+								<div class="invisible chapter-icons justify-items-end opacity-70 text-5xl">{@html `&#xE9${quranMetaData[id].icon};`}</div>
 							</div>
-							<div class="invisible chapter-icons justify-items-end opacity-70 text-5xl">{@html `&#xE9${quranMetaData[chapter + 1].icon};`}</div>
-						</div>
-					</a>
+						</a>
+					{/if}
 				{/each}
 			</div>
 		</div>
