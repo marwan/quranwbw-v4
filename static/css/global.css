@@ -1909,6 +1909,12 @@ input[type="range"].range-lg::-moz-range-thumb {
   margin-bottom: calc(2rem * var(--tw-space-y-reverse));
 }
 
+.\!space-x-0 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0 !important;
+  margin-right: calc(0px * var(--tw-space-x-reverse)) !important;
+  margin-left: calc(0px * calc(1 - var(--tw-space-x-reverse))) !important;
+}
+
 .divide-y > :not([hidden]) ~ :not([hidden]) {
   --tw-divide-y-reverse: 0;
   border-top-width: calc(1px * calc(1 - var(--tw-divide-y-reverse)));

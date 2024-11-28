@@ -122,7 +122,7 @@
 				<!-- continue reading button -->
 				{#if $__lastRead.hasOwnProperty('key')}
 					<div id="last-read" class="flex flex-row">
-						<a href="/{lastReadChapter}/{lastReadVerse}" class="py-2.5 w-full truncate {buttonOutlineClasses} space-x-0 w-full md:w-max">
+						<a href="/{lastReadChapter}/{lastReadVerse}" class="py-2.5 w-full truncate {buttonOutlineClasses} !space-x-0 w-full md:w-max">
 							<span class="hidden md:block">Continue Reading: {quranMetaData[lastReadChapter].transliteration}, {lastReadChapter}:{lastReadVerse} {@html '&#10230'}</span>
 							<span class="block md:hidden">Continue: {lastReadChapter}:{lastReadVerse} </span>
 						</a>
