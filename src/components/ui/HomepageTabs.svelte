@@ -44,7 +44,7 @@
 	// check if it's friday and night
 	checkTimeSpecificChapters();
 
-	// function to sort chapters list in asending or desending order
+	// function to sort chapters list in ascending or desending order
 	function sortChapters() {
 		chapterSortIsAscending = !chapterSortIsAscending;
 		chapterListOrder = chapterSortIsAscending ? [...quranMetaData] : [...quranMetaData].reverse();
@@ -83,15 +83,24 @@
 	<div id="content-tab" class="my-6 px-">
 		<!-- chapters tab -->
 		<div class="homepage-tab-panels {activeTab === 1 ? 'block' : 'hidden'}" id="chapters-tab-panel" role="tabpanel" aria-labelledby="chapters-tab">
-			<!-- chapter / page etc... selector -->
-			<div class="flex flex-col md:flex-row justify-between text-xs mb-0 md:mb-2">
-				<!-- time specific chapter buttons and search -->
-				<div class="flex flex-row space-x-1 mb-2 md:mb-0 md:space-x-2">
+			<!-- sort button, time specific chapters and continue reading button -->
+			<div class="flex flex-row justify-between text-xs mb-2 space-x-1 md:space-x-2">
+				<!-- sort button and time specific chapters buttons -->
+				<div class="flex flex-row space-x-1 md:space-x-2">
+					<!-- asc/dsc sort button -->
+					<div class="flex flex-row space-x-4">
+						<button class="inline-flex p-2 px-4 rounded-full text-black items-center {chapterSortIsAscending ? 'bg-gray-200' : 'bg-gray-300'}" on:click={() => sortChapters()}>
+							<span class="opacity-70"><AscendingSort size={3} /></span>
+							<span class="sr-only">Sort</span>
+						</button>
+						<Tooltip arrow={false} type="light" placement="top" class="z-30 w-max hidden md:block font-filter font-normal">Sort Asc/Dsc</Tooltip>
+					</div>
+
 					<!-- show Al Kahf on Friday -->
 					{#if $__timeSpecificChapters.isFriday}
 						<div id="al-kahf" class="w-full md:w-max">
 							<a href="/18" class="py-2.5 w-full truncate {buttonClasses}">
-								<span>It's Friday:&nbsp;</span>
+								<span class="hidden md:block">It's Friday:&nbsp;</span>
 								Al-Kahf
 								<span class="hidden md:block">{@html '&#10230'}</span>
 							</a>
@@ -102,7 +111,7 @@
 					{#if $__timeSpecificChapters.isNight}
 						<div id="al-mulk" class="w-full md:w-max">
 							<a href="/67" class="py-2.5 w-full truncate {buttonClasses}">
-								<span>Night Reminder:&nbsp;</span>
+								<span class="hidden md:block">Night Reminder:&nbsp;</span>
 								Al-Mulk
 								<span class="hidden md:block">{@html '&#10230'}</span>
 							</a>
@@ -110,31 +119,16 @@
 					{/if}
 				</div>
 
-				<div class="hidden md:block mx-1"></div>
-
-				<!-- last read -->
+				<!-- continue reading button -->
 				{#if $__lastRead.hasOwnProperty('key')}
-					<div id="last-read" class="flex flex-row space-x-2 mb-4 md:mb-0">
-						<a href="/{lastReadChapter}/{lastReadVerse}" class="py-2.5 w-full truncate {buttonOutlineClasses} w-full md:w-max">Continue Reading: {quranMetaData[lastReadChapter].transliteration}, {lastReadChapter}:{lastReadVerse} {@html '&#10230'}</a>
-
-						<div class="flex flex-row space-x-4">
-							<button class="inline-flex p-2 px-4 rounded-full text-black items-center {chapterSortIsAscending ? 'bg-gray-200' : 'bg-gray-300'}" on:click={() => sortChapters()}>
-								<span class="opacity-70"><AscendingSort /></span>
-								<span class="sr-only">Sort</span>
-							</button>
-							<Tooltip arrow={false} type="light" placement="top" class="z-30 w-max hidden md:block font-filter font-normal">Sort Asc/Dsc</Tooltip>
-						</div>
+					<div id="last-read" class="flex flex-row">
+						<a href="/{lastReadChapter}/{lastReadVerse}" class="py-2.5 w-full truncate {buttonOutlineClasses} space-x-0 w-full md:w-max">
+							<span class="hidden md:block">Continue Reading: {quranMetaData[lastReadChapter].transliteration}, {lastReadChapter}:{lastReadVerse} {@html '&#10230'}</span>
+							<span class="block md:hidden">Continue: {lastReadChapter}:{lastReadVerse} </span>
+						</a>
 					</div>
 				{/if}
 			</div>
-
-			<!-- asc/dsc sort button -->
-			<!-- <div class="flex flex-row space-x-4 py-4">
-				<button class="inline-flex p-2 bg-gray-200 rounded-full text-black" on:click={() => sortChapters()}>
-					<span class="opacity-70"><AscendingSort /></span>
-					<span class="sr-only">Announcement</span>
-				</button>
-			</div> -->
 
 			<!-- surahs tab -->
 			<div class="{cardGridClasses} grid-cols-2">
