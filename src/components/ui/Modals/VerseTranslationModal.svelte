@@ -29,6 +29,6 @@
 			<SingleArabicVerse key={$__verseKey} />
 		</div>
 
-		<Translations value={chapterData[$__verseKey]} />
+		<Translations isBody={false} value={chapterData[$__verseKey]} />
 	</div>
 </Modal>

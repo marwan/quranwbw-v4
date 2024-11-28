@@ -1,5 +1,6 @@
 <script>
 	export let value;
+	export let isBody = true; // if the translations are being rendered on the body, we add 'theme' class, else we do not
 
 	import Spinner from '$svgs/Spinner.svelte';
 	import Layout from '$display/verses/translations/Layout.svelte';
@@ -9,7 +10,7 @@
 	const fontSizes = JSON.parse($__userSettings).displaySettings.fontSizes;
 	let verseTranslationData;
 
-	$: verseTranslationClasses = `verseTranslationText flex flex-col space-y-4 leading-normal theme ${fontSizes.verseTranslationText}`;
+	$: verseTranslationClasses = `verseTranslationText flex flex-col space-y-4 leading-normal ${isBody && 'theme'} ${fontSizes.verseTranslationText}`;
 
 	// setting the variables depending on the page
 	$: chapterData = $__currentPage === 'mushaf' ? JSON.parse(localStorage.getItem('pageData')) : $__chapterData;
