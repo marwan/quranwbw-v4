@@ -23,7 +23,7 @@
 			const timesToRepeat = $__audioSettings.timesToRepeat;
 
 			// allow only playThisVerse option for non-chapter pages
-			if (!['chapter', 'page'].includes($__currentPage)) $__audioSettings.audioRange = 'playThisVerse';
+			if (!['chapter', 'mushaf'].includes($__currentPage)) $__audioSettings.audioRange = 'playThisVerse';
 
 			// this verse
 			if ($__audioSettings.audioRange === 'playThisVerse') {
@@ -112,7 +112,7 @@
 			<span class="text-sm">Your preferred range.</span>
 			<div class="flex flex-row space-x-2">
 				<!-- play this verse -->
-				<div class="flex items-center {!['chapter', 'page'].includes($__currentPage) && disabledClasses}">
+				<div class="flex items-center {!['chapter', 'mushaf'].includes($__currentPage) && disabledClasses}">
 					<Radio bind:group={$__audioSettings.audioRange} value="playThisVerse" custom>
 						<div class="{radioClasses} {$__audioSettings.audioRange === 'playThisVerse' && selectedRadioClasses}">
 							<div class="w-full">This {term('verse')}</div>
@@ -120,7 +120,7 @@
 					</Radio>
 				</div>
 				<!-- play from here -->
-				<div class="flex items-center {!['chapter', 'page'].includes($__currentPage) && disabledClasses}">
+				<div class="flex items-center {!['chapter', 'mushaf'].includes($__currentPage) && disabledClasses}">
 					<Radio bind:group={$__audioSettings.audioRange} value="playFromHere" custom>
 						<div class="{radioClasses} {$__audioSettings.audioRange === 'playFromHere' && selectedRadioClasses}">
 							<div class="w-full">From Here</div>

@@ -76,7 +76,7 @@
 			{/if}
 
 			<!-- display only the page name for mushaf page -->
-			{#if $__currentPage === 'page'}
+			{#if $__currentPage === 'mushaf'}
 				Page {$__pageNumber}
 				<ChevronDown />
 			{/if}
@@ -87,7 +87,7 @@
 			{/if}
 
 			<!-- display only the page name for non-chapter page -->
-			{#if !['chapter', 'page', 'supplications'].includes($__currentPage)}
+			{#if !['chapter', 'mushaf', 'supplications'].includes($__currentPage)}
 				{$__currentPage[0].toUpperCase() + $__currentPage.slice(1)}
 
 				<!-- if it's the morphology page, show morphology key as well -->
@@ -124,7 +124,7 @@
 	{/if}
 
 	<!-- mini nav for mushaf page -->
-	{#if $__currentPage === 'page'}
+	{#if $__currentPage === 'mushaf'}
 		<div id="bottom-nav" class="flex flex-row items-center justify-between border-t border-black/10 text-xs max-w-screen-lg mx-auto px-6 theme-grayscale">
 			<div class="flex flex-row items-center py-2">
 				{#if !$__topNavbarVisible}

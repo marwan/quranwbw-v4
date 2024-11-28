@@ -29,7 +29,7 @@
 	<Tooltip arrow={false} type="light" class="hidden md:block font-filter font-normal">{term('supplications')}</Tooltip>
 
 	<div class="flex items-center justify-center">
-		<a href={$__lastRead.hasOwnProperty('page') ? `/page/${$__lastRead.page}` : '/page/1'} class="inline-flex flex-col items-center justify-center w-12 h-12 bg-black/15 rounded-full group focus:ring-2 focus:ring-gray-300 focus:outline-none">
+		<a href={$__lastRead.hasOwnProperty('mushaf') ? `/page/${$__lastRead.page}` : '/page/1'} class="inline-flex flex-col items-center justify-center w-12 h-12 bg-black/15 rounded-full group focus:ring-2 focus:ring-gray-300 focus:outline-none">
 			<span class="opacity-70"><BookBold size={5} /></span>
 			<span class="sr-only">Mushaf</span>
 		</a>
@@ -51,7 +51,7 @@
 	<LeftNavigationButton />
 	<DisplayChangeButton />
 	<AudioButton />
-	{#if $__currentPage === 'page'}
+	{#if $__currentPage === 'mushaf'}
 		<MushafMinimalMode />
 	{:else}
 		<SettingsButton />

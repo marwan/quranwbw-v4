@@ -8,7 +8,7 @@
 	let chapterData;
 	$: chapter = +$__verseKey.split(':')[0];
 	$: verse = +$__verseKey.split(':')[1];
-	$: if ($__verseTranslationModalVisible) chapterData = $__currentPage === 'page' ? JSON.parse(localStorage.getItem('pageData')) : $__chapterData;
+	$: if ($__verseTranslationModalVisible) chapterData = $__currentPage === 'mushaf' ? JSON.parse(localStorage.getItem('pageData')) : $__chapterData;
 </script>
 
 <Modal

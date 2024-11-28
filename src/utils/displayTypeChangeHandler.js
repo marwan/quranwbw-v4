@@ -6,7 +6,7 @@ import { updateSettings } from '$utils/updateSettings';
 export function displayTypeChangeHandler(displayId) {
 	// non-mushaf modes
 	if ([1, 2, 3, 4, 5, 7].includes(displayId)) {
-		if (get(__currentPage) === 'page') {
+		if (get(__currentPage) === 'mushaf') {
 			const firstWordKey = document.getElementsByClassName('word')[0].id;
 			const chapter = firstWordKey.split(':')[0];
 			const verse = firstWordKey.split(':')[1];

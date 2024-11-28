@@ -15,7 +15,7 @@
 	<meta name="og:url" content={$page.url.href} />
 
 	<!-- disable pinch zoom on mushaf page -->
-	{#if $__currentPage === 'page'}
+	{#if $__currentPage === 'mushaf'}
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	{/if}
 </svelte:head>

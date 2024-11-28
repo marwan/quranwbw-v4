@@ -45,7 +45,7 @@
 	{/if}
 
 	<!-- mushaf page -->
-{:else if $__currentPage === 'page'}
+{:else if $__currentPage === 'mushaf'}
 	<div class={mushafBismillahClasses}>
 		{#if chapters[lines.indexOf(line)] === 2}
 			{bismillahTypes.uthmaniType1}

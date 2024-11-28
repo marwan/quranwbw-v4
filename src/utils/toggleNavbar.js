@@ -41,7 +41,7 @@ export function toggleNavbar() {
 	}
 
 	// for all other pages except mushaf page
-	else if (!['page'].includes(get(__currentPage))) {
+	else if (!['mushaf'].includes(get(__currentPage))) {
 		__topNavbarVisible.set(true);
 		__bottomToolbarVisible.set(true);
 	}

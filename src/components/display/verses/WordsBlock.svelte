@@ -21,7 +21,7 @@
 
 	// if mushaf fonts are selected, then dynamically load the fonts
 	if ([2, 3].includes($__fontType)) {
-		loadFont(`p${value.meta.page}`, `${mushafWordFontLink}/QCF4${`00${value.meta.page}`.slice(-3)}_COLOR-Regular.woff?v=${mushafFontVersion}`).then(() => {
+		loadFont(`p${value.meta.page}`, `${mushafWordFontLink}/QCF4${`00${value.meta.page}`.slice(-3)}_COLOR-Regular.woff?version=${mushafFontVersion}`).then(() => {
 			// we can by default hide the v4 words and show when the font is loaded...
 			document.querySelectorAll(`.p${value.meta.page}`).forEach((element) => {
 				element.classList.remove('invisible');
@@ -61,14 +61,14 @@
 		hover:cursor-pointer
 		${selectableThemes[$__websiteTheme].palette === 1 ? 'hover:bg-white/20' : 'hover:bg-black/10'}
 		${$__displayType === 1 ? 'text-center flex flex-col' : 'inline-flex flex-col'}
-		${selectableDisplays[$__displayType].layout === 'wbw' ? 'p-3' : [2, 3].includes($__fontType) ? ($__currentPage === 'page' ? 'p-0' : 'px-0 py-1') : 'p-1'}
+		${selectableDisplays[$__displayType].layout === 'wbw' ? 'p-3' : [2, 3].includes($__fontType) ? ($__currentPage === 'mushaf' ? 'p-0' : 'px-0 py-1') : 'p-1'}
 		${exampleVerse && '!p-0'}
 	`;
 
 	$: wordSpanClasses = `
 		arabicText leading-normal 
 		arabic-font-${$__fontType} 
-		${$__currentPage !== 'page' && fontSizes.arabicText} 
+		${$__currentPage !== 'mushaf' && fontSizes.arabicText} 
 		${displayIsContinuous && 'inline-block'}
 		${[1, 4].includes($__fontType) && 'text-black theme'}
 	`;
@@ -88,7 +88,7 @@
 {/each}
 
 <!-- end icon -->
-{#if $__currentPage != 'page' || ($__currentPage === 'page' && value.words.end_line === line)}
+{#if $__currentPage != 'mushaf' || ($__currentPage === 'mushaf' && value.words.end_line === line)}
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<div class={endIconClasses} on:click={() => wordClickHandler({ key, type: 'end' })}>

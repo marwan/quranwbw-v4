@@ -127,7 +127,7 @@
 				<div class="border-b border-black/10"></div>
 
 				<!-- display-type-setting -->
-				<div id="display-type-setting" class="{settingsBlockClasses} {!['chapter', 'page'].includes($__currentPage) && disabledClasses}">
+				<div id="display-type-setting" class="{settingsBlockClasses} {!['chapter', 'mushaf'].includes($__currentPage) && disabledClasses}">
 					<div class="flex flex-row justify-between items-center">
 						<div class="block">Display Type</div>
 						<Button class={selectorClasses} on:click={() => gotoIndividualSetting('display-type')}>{selectableDisplays[$__selectedDisplayId].displayName}</Button>
@@ -211,7 +211,7 @@
 				<div class="border-b border-black/10"></div>
 
 				<!-- arabic-word-size-setting -->
-				<div id="arabic-word-size-setting" class="{settingsBlockClasses} {$__currentPage === 'page' && disabledClasses}">
+				<div id="arabic-word-size-setting" class="{settingsBlockClasses} {$__currentPage === 'mushaf' && disabledClasses}">
 					<div class="flex flex-row justify-between items-center">
 						<span class="block">Arabic Word Size ({fontSizeCodes.arabicText.split('-')[1]})</span>
 						<div class="inline-flex rounded-3xl shadow-sm" role="group">

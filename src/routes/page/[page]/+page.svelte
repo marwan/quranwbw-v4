@@ -11,7 +11,7 @@
 	import { goto } from '$app/navigation';
 	import { __chapterNumber, __pageNumber, __currentPage, __fontType, __wordTranslation, __mushafPageDivisions, __lastRead, __displayType, __topNavbarVisible, __bottomToolbarVisible, __mushafMinimalModeEnabled } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';
-	import { apiEndpoint, errorLoadingDataMessage, mushafWordFontLink, mushafHeaderFontLink, mushafFontVersion } from '$data/websiteSettings';
+	import { apiEndpoint, apiVersion, errorLoadingDataMessage, mushafWordFontLink, mushafHeaderFontLink, mushafFontVersion } from '$data/websiteSettings';
 	import { quranMetaData, chapterHeaderCodes } from '$data/quranMeta';
 	import { selectableFontTypes } from '$data/options';
 	import { loadFont } from '$utils/loadFont';
@@ -19,7 +19,6 @@
 	import '$lib/swiped-events.min.js';
 
 	// page:line for which we need to center the verse rathen than justify
-	const pageAPIVersion = 92827327;
 	const centeredPageLines = ['528:9', '594:5', '602:5', '602:15', '603:10', '603:15', '604:4', '604:9', '604:14', '604:15'];
 	let pageData;
 	let startingLine;
@@ -33,8 +32,8 @@
 	$: {
 		if ([2, 3].includes($__fontType)) {
 			for (let thisPage = +page - 2; thisPage <= +page + 2; thisPage++) {
-				fetch(`${mushafWordFontLink}/QCF4${`00${thisPage}`.slice(-3)}_COLOR-Regular.woff?v=${mushafFontVersion}`);
-				fetch(`${apiEndpoint}/page?page=${thisPage}&word_type=${selectableFontTypes[$__fontType].apiId}&word_translation=${$__wordTranslation}&v=${pageAPIVersion}`);
+				fetch(`${mushafWordFontLink}/QCF4${`00${thisPage}`.slice(-3)}_COLOR-Regular.woff?version=${mushafFontVersion}`);
+				fetch(`${apiEndpoint}/page?page=${thisPage}&word_type=${selectableFontTypes[$__fontType].apiId}&word_translation=${$__wordTranslation}&version=${apiVersion}`);
 			}
 		}
 	}
@@ -45,7 +44,7 @@
 		(chapters = []), (verses = []), (lines = []);
 
 		pageData = (async () => {
-			const apiURL = `${apiEndpoint}/page?page=${page}&word_type=${selectableFontTypes[$__fontType].apiId}&word_translation=${$__wordTranslation}&v=${pageAPIVersion}`;
+			const apiURL = `${apiEndpoint}/page?page=${page}&word_type=${selectableFontTypes[$__fontType].apiId}&word_translation=${$__wordTranslation}&version=${apiVersion}`;
 			const response = await fetch(apiURL);
 			const data = await response.json();
 			const apiData = data.data.verses;
@@ -98,7 +97,7 @@
 			});
 
 			// dynamically load header font
-			loadFont('chapter-headers', `${mushafHeaderFontLink}?v=${mushafFontVersion}`).then(() => {
+			loadFont('chapter-headers', `${mushafHeaderFontLink}?version=${mushafFontVersion}`).then(() => {
 				document.querySelectorAll('.header').forEach((element) => {
 					element.classList.remove('invisible');
 				});
@@ -118,7 +117,7 @@
 	// only allow continious normal mode, but skip saving the settings
 	$__displayType = 4;
 
-	__currentPage.set('page');
+	__currentPage.set('mushaf');
 </script>
 
 <PageHead title={`Page ${page}`} />

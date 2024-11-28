@@ -310,7 +310,7 @@ export function setVersesToPlay(props) {
 	// for when the play was clicked from bottom toolbar
 	if (props && props.allVersesOnPage) {
 		// mushaf page
-		if (get(__currentPage) === 'page') {
+		if (get(__currentPage) === 'mushaf') {
 			const wordsOnPage = document.getElementsByClassName('word');
 
 			for (let word = 0; word <= wordsOnPage.length - 1; word++) {
@@ -345,7 +345,7 @@ export function setVersesToPlay(props) {
 	// for when the play was clicked from verse options / modal
 	else if (props && !props.allVersesOnPage) {
 		// for playFromHere, non chapter page
-		if (get(__currentPage) === 'page' && props.audioRange === 'playFromHere') {
+		if (get(__currentPage) === 'mushaf' && props.audioRange === 'playFromHere') {
 			const key = `${props.chapter}:${props.startVerse}`;
 			const wordsOnPage = document.getElementsByClassName('word');
 
@@ -372,7 +372,7 @@ export function setVersesToPlay(props) {
 
 function getWordsInVerse(key) {
 	// for mushaf mode, we have the JSON data in localStorage, and for other pages we have it set in the store __chapterData
-	const data = get(__currentPage) === 'page' ? JSON.parse(localStorage.getItem('pageData')) : get(__chapterData);
+	const data = get(__currentPage) === 'mushaf' ? JSON.parse(localStorage.getItem('pageData')) : get(__chapterData);
 
 	// get the total number of words in the verse
 	return data[key].meta.words;

@@ -102,7 +102,7 @@
 	<!-- mode change buttons -->
 	{#if $__currentPage === 'chapter'}
 		<DropdownItem class={dropdownItemClasses} href="/page/{page}">Mushaf Mode</DropdownItem>
-	{:else if $__currentPage === 'page'}
+	{:else if $__currentPage === 'mushaf'}
 		<DropdownItem class={dropdownItemClasses} href="/{$__verseKey.split(':')[0]}/{$__verseKey.split(':')[1]}">{term('chapter')} Mode</DropdownItem>
 	{/if}
 

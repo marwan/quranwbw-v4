@@ -135,7 +135,7 @@
 							<!-- stuff for current chapter -->
 							{#each Object.entries(searchResults) as [key, value]}
 								<!-- numbers -->
-								{#if $__chapterNumber !== 'page'}
+								{#if $__chapterNumber !== 'mushaf'}
 									{#if key === 'verse' && $__currentPage === 'chapter'}
 										<span class="text-xs font-semibold {searchResults && 'pt-2'}">Current {term('chapter')}</span>
 
@@ -151,13 +151,13 @@
 							<span class="text-xs font-semibold {searchResults && 'pt-2'}">Navigate</span>
 							{#each Object.entries(searchResults) as [key, value]}
 								<!-- numbers -->
-								{#if $__currentPage === 'page'}
+								{#if $__currentPage === 'mushaf'}
 									{#if key === 'chapter'}
 										<div class={linkClasses}>
 											<span>{@html '&#10230'}</span>
 											<a href="/page/{startPageOfChapters[value]}" class={linkTextClasses}>{term('chapter')} {value} ({quranMetaData[value].transliteration})</a>
 										</div>
-									{:else if key === 'page'}
+									{:else if key === 'mushaf'}
 										<div class={linkClasses}>
 											<span>{@html '&#10230'}</span>
 											<a href="/page/{value}" class={linkTextClasses}>Page {value}</a>
@@ -178,13 +178,13 @@
 											</div>
 										{/if}
 									{/await}
-								{:else if $__chapterNumber !== 'page'}
+								{:else if $__chapterNumber !== 'mushaf'}
 									{#if key === 'chapter'}
 										<div class={linkClasses}>
 											<span>{@html '&#10230'}</span>
 											<a href="/{value}" class={linkTextClasses}>{term('chapter')} {value} ({quranMetaData[value].transliteration})</a>
 										</div>
-									{:else if key === 'page'}
+									{:else if key === 'mushaf'}
 										<div class={linkClasses}>
 											<span>{@html '&#10230'}</span>
 											<a href="/{pageNumberKeys[value - 1].split(':')[0]}/{pageNumberKeys[value - 1].split(':')[1]}" class={linkTextClasses}>Page {value} ({quranMetaData[pageNumberKeys[value - 1].split(':')[0]].transliteration})</a>
@@ -245,7 +245,7 @@
 						<ul id="navbar-chapter-list" class="grow basis-1/2 overflow-y-scroll">
 							{#each { length: maxItemsToLoad } as _, chapter}
 								<li>
-									<a href={$__currentPage === 'page' ? `/page/${startPageOfChapters[chapter + 1]}` : `/${chapter + 1}`}>
+									<a href={$__currentPage === 'mushaf' ? `/page/${startPageOfChapters[chapter + 1]}` : `/${chapter + 1}`}>
 										<div class="{listItemClasses} {$__currentPage === 'chapter' ? (chapter + 1 === $__chapterNumber ? 'bg-black/5' : null) : null}">
 											{chapter + 1}. {quranMetaData[chapter + 1].transliteration}
 

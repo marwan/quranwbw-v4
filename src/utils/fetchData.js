@@ -86,7 +86,7 @@ export async function fetchSingleVerseData(verses, fontType) {
 
 // function to fetch timestamps for wbw highlighting
 export async function fetchTimestampData(chapter) {
-	const apiURL = `${staticEndpoint}/v4/timestamps/${chapter}.json?v=1`;
+	const apiURL = `${staticEndpoint}/v4/timestamps/${chapter}.json?version=1`;
 	const response = await fetch(apiURL);
 	const data = await response.json();
 	__timestampData.set(data);

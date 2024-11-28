@@ -12,8 +12,8 @@
 	$: verseTranslationClasses = `verseTranslationText flex flex-col space-y-4 leading-normal theme ${fontSizes.verseTranslationText}`;
 
 	// setting the variables depending on the page
-	$: chapterData = $__currentPage === 'page' ? JSON.parse(localStorage.getItem('pageData')) : $__chapterData;
-	$: chapterToFetch = $__currentPage === 'page' ? +$__verseKey.split(':')[0] : value.meta.chapter;
+	$: chapterData = $__currentPage === 'mushaf' ? JSON.parse(localStorage.getItem('pageData')) : $__chapterData;
+	$: chapterToFetch = $__currentPage === 'mushaf' ? +$__verseKey.split(':')[0] : value.meta.chapter;
 
 	// for chapter and mushaf page, we fetch the verse translations for the whole chapter in one API call from the Chapter.svelte file
 	// and for other pages like supplications & bookmarks, we fetch the translations for each verse because all can be different

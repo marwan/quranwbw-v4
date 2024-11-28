@@ -18,7 +18,7 @@
 		}
 
 		// page/mushaf (right to left navigation)
-		else if ($__currentPage === 'page') {
+		else if ($__currentPage === 'mushaf') {
 			linkHref = `page/${$__pageNumber + 1}`;
 			linkText = 'Next Page';
 			linkDisabled = $__pageNumber === 604 ? true : false;

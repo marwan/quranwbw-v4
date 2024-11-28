@@ -57,7 +57,7 @@
 
 	// distraction free mushaf mode, that is, hiding the top & bottom bar
 	$: {
-		if ($__mushafMinimalModeEnabled && $__currentPage === 'page') {
+		if ($__mushafMinimalModeEnabled && $__currentPage === 'mushaf') {
 			paddingTop = 'pt-0';
 			paddingBottom = 'pb-0';
 			__topNavbarVisible.set(false);
@@ -97,7 +97,7 @@
 
 	// update display and font type depending on the page
 	$: {
-		if ($__currentPage === 'page') {
+		if ($__currentPage === 'mushaf') {
 			__selectedDisplayId.set(6); // Mushaf Mode
 			if (![2, 3].includes($__fontType)) __fontType.set(2); // v4 font b&w
 		} else {
@@ -116,7 +116,7 @@
 	function setDefaultPaddings() {
 		paddingTop = $__currentPage === 'home' ? 'pt-16' : defaultPaddingTop;
 		paddingBottom = $__currentPage === 'chapter' ? 'pb-24' : $__currentPage === 'home' ? 'pb-20' : defaultPaddingBottom;
-		paddingX = $__currentPage === 'page' ? 'px-0 md:px-4' : $__currentPage === 'home' ? 'px-0' : 'px-4';
+		paddingX = $__currentPage === 'mushaf' ? 'px-0 md:px-4' : $__currentPage === 'home' ? 'px-0' : 'px-4';
 	}
 
 	// toggle bottom nav on scroll

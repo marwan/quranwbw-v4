@@ -40,7 +40,7 @@
 
 		// fetch word summary
 		fetchWordSummary = (async () => {
-			const response = await fetch(`${apiEndpoint}/morphology/summary?word=${$__morphologyKey}&v=2`);
+			const response = await fetch(`${apiEndpoint}/morphology/summary?word=${$__morphologyKey}&version=2`);
 			const data = await response.json();
 			return data.data;
 		})();

@@ -33,7 +33,7 @@
 		// else continue with playing options
 		else {
 			// for chapter & mushaf page, respect the user select play button functionality
-			if (['chapter', 'page'].includes($__currentPage)) {
+			if (['chapter', 'mushaf'].includes($__currentPage)) {
 				// 1. Play selected Ayah (default)
 				if ($__playButtonsFunctionality.verse === 1) playVerseAudio({ key, language: 'arabic', timesToRepeat: 1 });
 				// 2. Play from here

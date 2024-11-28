@@ -218,7 +218,7 @@ export function updateSettings(props) {
 
 		// for last read
 		case 'lastRead':
-			if (['chapter', 'page'].includes(get(__currentPage))) {
+			if (['chapter', 'mushaf'].includes(get(__currentPage))) {
 				__lastRead.set(props.value);
 				userSettings.lastRead = props.value;
 			}

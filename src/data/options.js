@@ -9,10 +9,10 @@ export const selectableDisplays = {
 };
 
 export const selectableFontTypes = {
-	1: { id: 1, font: 'Uthmanic Hafs Digital', apiId: 1, disallowedIn: ['page'] },
+	1: { id: 1, font: 'Uthmanic Hafs Digital', apiId: 1, disallowedIn: ['mushaf'] },
 	2: { id: 2, font: 'Uthmanic Hafs Mushaf', apiId: 2, disallowedIn: [] },
 	3: { id: 3, font: 'Uthmanic Hafs Tajweed Mushaf', apiId: 2, disallowedIn: [] },
-	4: { id: 4, font: 'Indopak Madinah', apiId: 3, disallowedIn: ['page'] }
+	4: { id: 4, font: 'Indopak Madinah', apiId: 3, disallowedIn: ['mushaf'] }
 };
 
 export const selectableThemes = {
