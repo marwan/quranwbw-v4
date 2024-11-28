@@ -69,7 +69,17 @@
 			<!-- main tabs -->
 			<div id="tab-buttons">
 				<div class="flex text-sm font-medium text-center opacity-70 justify-center space-x-1 md:space-x-4">
-					<button on:click={() => (activeTab = 1)} class="{tabClasses} {activeTab === 1 && activeTabClasses}" type="button" role="tab" aria-controls="chapters-tab-panel" aria-selected="false">{term('chapters')}</button>
+					<button on:click={() => (activeTab = 1)} class="{tabClasses} {activeTab === 1 && activeTabClasses} flex flex-row space-x-1 items-center" type="button" role="tab" aria-controls="chapters-tab-panel" aria-selected="false">
+						<!-- asc/dsc sort button -->
+						<div class="flex flex-row space-x-4">
+							<button class="inline-flex p-2 rounded-full text-black items-center {chapterSortIsAscending ? 'bg-gray-200' : 'bg-gray-300'}" on:click={() => sortChapters()}>
+								<span class="opacity-70"><AscendingSort size={3} /></span>
+								<span class="sr-only">Sort</span>
+							</button>
+							<Tooltip arrow={false} type="light" placement="top" class="z-30 w-max hidden md:block font-filter font-normal">Sort Asc/Dsc</Tooltip>
+						</div>
+						<span>{term('chapters')}</span>
+					</button>
 					<button on:click={() => (activeTab = 2)} class="{tabClasses} {activeTab === 2 && activeTabClasses}" type="button" role="tab" aria-controls="suggestions-tab-panel" aria-selected="false">Suggested</button>
 					<button on:click={() => (activeTab = 3)} class="{tabClasses} {activeTab === 3 && activeTabClasses} truncate" type="button" role="tab" aria-controls="bookmarks-tab-panel" aria-selected="false">Bookmarks {totalBookmarks > 0 ? `(${totalBookmarks})` : ''}</button>
 					<button on:click={() => (activeTab = 4)} class="{tabClasses} {activeTab === 4 && activeTabClasses} truncate" type="button" role="tab" aria-controls="notes-tab-panel" aria-selected="false">Notes {totalNotes > 0 ? `(${totalNotes})` : ''}</button>
@@ -83,19 +93,10 @@
 	<div id="content-tab" class="my-6 px-">
 		<!-- chapters tab -->
 		<div class="homepage-tab-panels {activeTab === 1 ? 'block' : 'hidden'}" id="chapters-tab-panel" role="tabpanel" aria-labelledby="chapters-tab">
-			<!-- sort button, time specific chapters and continue reading button -->
+			<!-- time specific chapters and continue reading button -->
 			<div class="flex flex-row justify-between text-xs mb-2 space-x-1 md:space-x-2">
-				<!-- sort button and time specific chapters buttons -->
-				<div class="flex flex-row space-x-1 md:space-x-2">
-					<!-- asc/dsc sort button -->
-					<div class="flex flex-row space-x-4">
-						<button class="inline-flex p-2 px-4 rounded-full text-black items-center {chapterSortIsAscending ? 'bg-gray-200' : 'bg-gray-300'}" on:click={() => sortChapters()}>
-							<span class="opacity-70"><AscendingSort size={3} /></span>
-							<span class="sr-only">Sort</span>
-						</button>
-						<Tooltip arrow={false} type="light" placement="top" class="z-30 w-max hidden md:block font-filter font-normal">Sort Asc/Dsc</Tooltip>
-					</div>
-
+				<!-- time specific chapters buttons -->
+				<div class="flex flex-row space-x-1 md:space-x-2 w-full md:w-max">
 					<!-- show Al Kahf on Friday -->
 					{#if $__timeSpecificChapters.isFriday}
 						<div id="al-kahf" class="w-full md:w-max">
@@ -121,8 +122,8 @@
 
 				<!-- continue reading button -->
 				{#if $__lastRead.hasOwnProperty('key')}
-					<div id="last-read" class="flex flex-row">
-						<a href="/{lastReadChapter}/{lastReadVerse}" class="py-2.5 w-full truncate {buttonOutlineClasses} !space-x-0 w-full md:w-max">
+					<div id="last-read" class="flex flex-row w-full md:w-max">
+						<a href="/{lastReadChapter}/{lastReadVerse}" class="py-2.5 w-full truncate {buttonOutlineClasses} !space-x-0">
 							<span class="hidden md:block">Continue Reading: {quranMetaData[lastReadChapter].transliteration}, {lastReadChapter}:{lastReadVerse} {@html '&#10230'}</span>
 							<span class="block md:hidden">Continue: {lastReadChapter}:{lastReadVerse} </span>
 						</a>
