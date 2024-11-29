@@ -10,38 +10,57 @@
 	import { term } from '$utils/terminologies';
 
 	let tafsirData;
+
+	// URLs for fetching Tafsir data
 	const tafsirUrls = {
 		1: 'https://cdn.jsdelivr.net/gh/spa5k/tafsir_api@main/tafsir',
 		2: 'https://static.quranwbw.com/data/v4/tafsirs'
 	};
 
+	// Reactive variables for selected Tafsir and verse details
 	$: selectedTafirId = $__verseTafsir || 30;
-	$: chapter = +$__verseKey.split(':')[0];
-	$: verse = +$__verseKey.split(':')[1];
+	$: chapter = Number($__verseKey.split(':')[0]);
+	$: verse = Number($__verseKey.split(':')[1]);
 
+	// Load Tafsir data when the modal is visible
 	$: {
 		if ($__tafsirModalVisible) {
-			tafsirData = (async () => {
-				const selectedTafsir = selectableTafsirs[selectedTafirId];
-				const response = await fetch(`${tafsirUrls[selectedTafsir.url]}/${selectedTafsir.slug}/${chapter}.json`);
-				const data = await response.json();
-				return data.ayahs;
-			})();
+			tafsirData = loadTafsirData();
 		}
 	}
 
+	// Function to load Tafsir data
+	async function loadTafsirData() {
+		try {
+			const selectedTafsir = selectableTafsirs[selectedTafirId];
+			const response = await fetch(`${tafsirUrls[selectedTafsir.url]}/${selectedTafsir.slug}/${chapter}.json`);
+			const data = await response.json();
+			return data.ayahs;
+		} catch (error) {
+			console.error(errorLoadingDataMessage);
+			return [];
+		}
+	}
+
+	// CSS classes for Tafsir text based on selected Tafsir language
 	$: tafsirTextClasses = `
 		flex flex-col space-y-4
 		${['Arabic', 'Urdu'].includes(selectableTafsirs[selectedTafirId].language) && 'direction-rtl text-lg'}
 		${['Urdu'].includes(selectableTafsirs[selectedTafirId].language) && 'font-Urdu'}
 	`;
 
-	// scroll to top if verse changes
+	// Scroll to top if verse changes
 	$: {
-		try {
-			if ($__tafsirModalVisible && verse) document.getElementById('tafsirModal').getElementsByTagName('div')[1].scrollTop = 0;
-		} catch (error) {
-			// ignore errors
+		if ($__tafsirModalVisible && verse) {
+			try {
+				const tafsirModal = document.getElementById('tafsirModal');
+				if (tafsirModal) {
+					tafsirModal.getElementsByTagName('div')[1].scrollTop = 0;
+				}
+			} catch (error) {
+				// Ignore errors
+				console.error(error);
+			}
 		}
 	}
 </script>

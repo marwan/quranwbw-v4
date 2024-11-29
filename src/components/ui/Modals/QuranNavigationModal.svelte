@@ -4,7 +4,7 @@
 	import CloseButton from '$ui/FlowbiteSvelte/utils/CloseButton.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
 	import Search from '$svgs/Search.svelte';
-	import { quranMetaData, startPageOfChapters, pageNumberKeys, juzNumberKeys } from '$data/quranMeta';
+	import { quranMetaData, startPageOfChapters, pageNumberKeys, juzNumberKeys, supplicationsFromQuran, mostRead } from '$data/quranMeta';
 	import { buttonClasses } from '$data/commonClasses';
 	import { __chapterNumber, __pageURL, __currentPage, __pageNumber, __quranNavigationModalVisible, __lastRead, __morphologyKey } from '$utils/stores';
 	import { inview } from 'svelte-inview';
@@ -12,12 +12,13 @@
 	import { staticEndpoint } from '$data/websiteSettings';
 	import { page } from '$app/stores';
 	import { term } from '$utils/terminologies';
-	import { supplicationsFromQuran, mostRead } from '$data/quranMeta';
 	import { getModalTransition } from '$utils/getModalTransition';
 
+	// CSS classes
 	const linkClasses = 'flex flex-row space-x-2 items-center';
 	const linkTextClasses = 'px-4 py-2 rounded-3xl bg-lightGray hover:bg-gray-200 w-fit text-sm';
 	const listItemClasses = 'py-2 px-2 text-sm hover:bg-black/5 w-full text-left font-normal rounded-3xl';
+
 	let maxChaptersLoaded = false;
 	let maxVersesLoaded = false;
 	let maxItemsToLoad = 20;
@@ -30,45 +31,59 @@
 	let lastReadVerse = 1;
 	let morphologyKey = '1:1';
 
+	// Extract last read chapter and verse from the user's last read data
 	$: {
 		if ($__lastRead.hasOwnProperty('key')) {
-			lastReadChapter = $__lastRead.key.split(':')[0];
-			lastReadVerse = $__lastRead.key.split(':')[1];
+			[lastReadChapter, lastReadVerse] = $__lastRead.key.split(':').map(Number);
 		}
 	}
 
-	$: if ($page.url.href || $__pageURL || $__chapterNumber || $__pageNumber) __quranNavigationModalVisible.set(false);
-	$: if ($__currentPage) searchedKey = '';
-	$: chapterVerses = quranMetaData[$__chapterNumber].verses;
+	// Hide the navigation modal when page URL or chapter/page number changes
+	$: if ($page.url.href || $__pageURL || $__chapterNumber || $__pageNumber) {
+		__quranNavigationModalVisible.set(false);
+	}
 
+	// Clear the searched key when the current page changes
+	$: if ($__currentPage) {
+		searchedKey = '';
+	}
+
+	// Get the number of verses in the current chapter
+	$: chapterVerses = quranMetaData[$__chapterNumber]?.verses ?? 0;
+
+	// Validate the searched key and fetch search results
 	$: (async () => {
 		searchResults = await validateKey(searchedKey);
 	})();
 
+	// Update the max number of verses to load
 	$: {
 		maxVersesLoaded = false;
-		maxVersesToLoad = chapterVerses > maxItemsToLoad ? maxItemsToLoad : chapterVerses;
+		maxVersesToLoad = Math.min(chapterVerses, maxItemsToLoad);
 	}
 
+	// Focus the search input box and load verse key data when the navigation modal is visible
 	$: {
 		if ($__quranNavigationModalVisible) {
-			// focus the search input box
-			setTimeout(function () {
+			// Focus the search input box
+			setTimeout(() => {
 				document.getElementById('searchKey').focus();
 			}, 1);
 
-			// load it externally because including it locally increases the bundle size
-			verseKeyData = (async () => {
+			// Load verse key data externally to reduce bundle size
+			(async () => {
 				const response = await fetch(`${staticEndpoint}/v4/meta/verseKeyData.json`);
-				const data = await response.json();
-				return data;
+				verseKeyData = await response.json();
 			})();
 		}
 	}
 
-	// setting stuff for the morphology page
-	$: if ($__morphologyKey) morphologyKey = `${$__morphologyKey.split(':')[0]}:${$__morphologyKey.split(':')[1]}`;
+	// Update morphology key for the morphology page
+	$: if ($__morphologyKey) {
+		morphologyKey = $__morphologyKey.split(':').slice(0, 2).join(':');
+	}
 
+	// Load all chapters when necessary
 	function loadMaxChapters() {
 		if (!maxChaptersLoaded) {
 			maxItemsToLoad = 114;
@@ -76,6 +91,7 @@
 		}
 	}
 
+	// Load all verses when necessary
 	function loadMaxVerses() {
 		if (!maxVersesLoaded) {
 			maxVersesToLoad = chapterVerses;

@@ -6,36 +6,46 @@
 	import { quranMetaData } from '$data/quranMeta';
 	import { __currentPage } from '$utils/stores';
 
+	// Retrieve URL parameters
 	const params = new URLSearchParams(window.location.search);
-	const defaultTranslation = 0;
+	const defaultTranslation = 0; // Default to Saheeh International
+
+	// Retrieve or set default values for search parameters
 	let searchResults;
-	let selectedTranslation = params.get('translation') === null ? defaultTranslation : +params.get('translation'); // default to Saheeh International
-	let searchText = params.get('text') === null ? '' : params.get('text'); // default to ""
+	let selectedTranslation = params.get('translation') === null ? defaultTranslation : +params.get('translation'); // Selected translation index
+	let searchText = params.get('text') === null ? '' : params.get('text'); // Search text
 
-	// in case it's not a number or out of range
-	if (isNaN(selectedTranslation) || selectedTranslation < 0 || selectedTranslation > 120) selectedTranslation = defaultTranslation;
+	// Ensure the selected translation index is valid
+	if (isNaN(selectedTranslation) || selectedTranslation < 0 || selectedTranslation > 120) {
+		selectedTranslation = defaultTranslation;
+	}
 
-	// fetch the search results from Al Quran Cloud API
+	// Function to fetch search results from Al Quran Cloud API
+	async function fetchSearchResults(text, translationIndex) {
+		const response = await fetch(`https://api.alquran.cloud/v1/search/${text}/all/${searchableTranslations[translationIndex].identifier}`);
+		const data = await response.json();
+		return data;
+	}
+
+	// Update the search results whenever searchText changes
 	$: {
 		if (searchText.length > 0) {
-			// update the params
+			// Update the URL parameters
 			goto(`/search?text=${searchText}&translation=${selectedTranslation}`, { replaceState: false });
 
-			searchResults = (async () => {
-				const response = await fetch(`https://api.alquran.cloud/v1/search/${searchText}/all/${searchableTranslations[selectedTranslation].identifier}`);
-				const data = await response.json();
-				return data;
-			})();
+			// Fetch and set search results
+			searchResults = fetchSearchResults(searchText, selectedTranslation);
 		}
 	}
 
-	// to make the searched text bolder
+	// Function to highlight the searched text in verse text
 	function highlightSearchedText(verseText) {
-		const searchTextReg = searchText.replace(/(\s+)/, '(<[^>]+>)*$1(<[^>]+>)*');
-		const pattern = new RegExp('(' + searchTextReg + ')', 'gi');
-		return verseText.replace(pattern, '<b>$1</b>');
+		const searchTextReg = searchText.replace(/(\s+)/g, '(<[^>]+>)*$1(<[^>]+>)*'); // Create regex for matching search text
+		const pattern = new RegExp(`(${searchTextReg})`, 'gi');
+		return verseText.replace(pattern, '<b>$1</b>'); // Replace matched text with bold tags
 	}
 
+	// Set the current page to 'search'
 	__currentPage.set('search');
 </script>
 

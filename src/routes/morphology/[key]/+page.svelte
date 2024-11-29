@@ -15,6 +15,7 @@
 	let fetchWordsData, fetchWordsData1, fetchWordSummary;
 	let chapter, verse, word;
 
+	// Split the key to get chapter, verse, and word numbers
 	$: {
 		const keySplit = data.key.split(':');
 		chapter = +keySplit[0];
@@ -26,35 +27,49 @@
 		__morphologyKey.set(`${chapter}:${verse}:${word}`);
 	}
 
-	// fetching verse data
+	// Fetch verse data based on chapter and verse
 	$: fetchData = fetchVersesData(`${chapter}:${verse}`, $__fontType, $__wordTranslation);
 
-	// fetch words
+	// Fetch words data for morphology
 	$: {
 		fetchWordsData = (async () => {
-			const response = await fetch(`${apiEndpoint}/morphology?words=${$__morphologyKey}&word_translation=${$__wordTranslation}`);
-			const data = await response.json();
-			fetchWordsData1 = data.data;
-			return data.data;
+			try {
+				const response = await fetch(`${apiEndpoint}/morphology?words=${$__morphologyKey}&word_translation=${$__wordTranslation}`);
+				const data = await response.json();
+				fetchWordsData1 = data.data;
+				return data.data;
+			} catch (error) {
+				console.error(errorLoadingDataMessage, error);
+				return [];
+			}
 		})();
 
-		// fetch word summary
+		// Fetch word summary data
 		fetchWordSummary = (async () => {
-			const response = await fetch(`${apiEndpoint}/morphology/summary?word=${$__morphologyKey}&version=2`);
-			const data = await response.json();
-			return data.data;
+			try {
+				const response = await fetch(`${apiEndpoint}/morphology/summary?word=${$__morphologyKey}&version=2`);
+				const data = await response.json();
+				return data.data;
+			} catch (error) {
+				console.error(errorLoadingDataMessage, error);
+				return {};
+			}
 		})();
 	}
 
-	// set the word root and show the modal
+	// Set the word root and show the lexicon modal
 	function showLexiconModal() {
-		__wordRoot.set(fetchWordsData1[0].morphology.root.root);
-		__lexiconModalVisible.set(true);
+		const root = fetchWordsData1?.[0]?.morphology?.root?.root;
+		if (root) {
+			__wordRoot.set(root);
+			__lexiconModalVisible.set(true);
+		}
 	}
 
-	// only allow display type 1 & 2, and don't save the layout in settings
+	// Restrict display types to 1 or 2
 	if (![1, 2].includes($__displayType)) $__displayType = 1;
 
+	// Set the current page to 'morphology'
 	__currentPage.set('morphology');
 </script>
 
