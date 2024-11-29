@@ -8,62 +8,60 @@
 	import { term } from '$utils/terminologies';
 	import { getModalTransition } from '$utils/getModalTransition';
 
+	// CSS classes for radio buttons
 	const radioClasses = 'inline-flex justify-between items-center py-2 px-4 w-full text-gray-500 bg-white rounded-lg border border-gray-200 cursor-pointer peer-checked:border-primary-600 peer-checked:text-primary-600 hover:text-gray-600 hover:bg-gray-100 theme-grayscale';
+
 	let invalidStartVerse = false;
 	let invalidEndVerse = false;
 	let invalidTimesToRepeat = false;
 
+	// Update settings and validate verses when audio modal is visible
 	$: {
 		if ($__audioModalVisible) {
-			const thisChapter = $__audioSettings.playingKey.split(':')[0];
-			const thisVerse = $__audioSettings.playingKey.split(':')[1];
+			const [thisChapter, thisVerse] = $__audioSettings.playingKey.split(':');
 			const versesInChapter = quranMetaData[thisChapter].verses;
-			const startVerse = $__audioSettings.startVerse;
-			const endVerse = $__audioSettings.endVerse;
-			const timesToRepeat = $__audioSettings.timesToRepeat;
+			const { startVerse, endVerse, timesToRepeat, audioRange } = $__audioSettings;
 
-			// allow only playThisVerse option for non-chapter pages
-			if (!['chapter', 'mushaf'].includes($__currentPage)) $__audioSettings.audioRange = 'playThisVerse';
-
-			// this verse
-			if ($__audioSettings.audioRange === 'playThisVerse') {
-				setVersesToPlay({ location: 'verseOptionsOrModal', chapter: thisChapter, startVerse: thisVerse, endVerse: thisVerse });
+			// Allow only "playThisVerse" option for non-chapter pages
+			if (!['chapter', 'mushaf'].includes($__currentPage)) {
+				$__audioSettings.audioRange = 'playThisVerse';
 			}
 
-			// from here
-			else if ($__audioSettings.audioRange === 'playFromHere') {
-				setVersesToPlay({ location: 'verseOptionsOrModal', chapter: thisChapter, startVerse: thisVerse, endVerse: versesInChapter, audioRange: 'playFromHere' });
+			// Set verses to play based on audio range setting
+			switch (audioRange) {
+				case 'playThisVerse':
+					setVersesToPlay({ location: 'verseOptionsOrModal', chapter: thisChapter, startVerse: thisVerse, endVerse: thisVerse });
+					break;
+				case 'playFromHere':
+					setVersesToPlay({ location: 'verseOptionsOrModal', chapter: thisChapter, startVerse: thisVerse, endVerse: versesInChapter, audioRange: 'playFromHere' });
+					break;
+				case 'playRange':
+					setVersesToPlay({ location: 'verseOptionsOrModal', chapter: thisChapter, startVerse, endVerse });
+					break;
 			}
 
-			// range
-			else if ($__audioSettings.audioRange === 'playRange') {
-				setVersesToPlay({ location: 'verseOptionsOrModal', chapter: thisChapter, startVerse: startVerse, endVerse: endVerse });
-			}
+			// Initialize endVerse as startVerse if undefined
+			$__audioSettings.endVerse ??= startVerse;
 
-			// make the endVerse same as startVerse initially
-			if (endVerse === undefined) $__audioSettings.endVerse = startVerse;
-
-			// checking for abnormal values in order to disable the play button
-			invalidStartVerse = startVerse < 1 || startVerse > versesInChapter ? true : false;
-			invalidEndVerse = endVerse < 1 || endVerse > versesInChapter || endVerse < startVerse ? true : false;
-			invalidTimesToRepeat = timesToRepeat < 1 || timesToRepeat > 20 || isNaN(timesToRepeat) ? true : false;
+			// Validate verse and repeat times
+			invalidStartVerse = startVerse < 1 || startVerse > versesInChapter;
+			invalidEndVerse = endVerse < 1 || endVerse > versesInChapter || endVerse < startVerse;
+			invalidTimesToRepeat = timesToRepeat < 1 || timesToRepeat > 20 || isNaN(timesToRepeat);
 		}
 	}
 
+	// Handle play button click
 	function playButtonHandler() {
-		// verse
-		if ($__audioSettings.audioType === 'verse') {
+		const { audioType, playingKey, audioRange } = $__audioSettings;
+		if (audioType === 'verse') {
 			playVerseAudio({
 				key: `${window.versesToPlayArray[0]}`,
-				timesToRepeat: $__audioSettings.audioRange,
+				timesToRepeat: audioRange,
 				language: 'arabic'
 			});
-		}
-
-		// word
-		else if ($__audioSettings.audioType === 'word') {
+		} else if (audioType === 'word') {
 			playWordAudio({
-				key: `${$__audioSettings.playingKey}:1`,
+				key: `${playingKey}:1`,
 				playAllWords: true
 			});
 		}

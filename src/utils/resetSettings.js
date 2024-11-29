@@ -4,19 +4,19 @@ import { setUserSettings } from '$src/hooks.client';
 import { get } from 'svelte/store';
 
 export function resetSettings() {
-	const currentUserBookmarks = get(__userBookmarks);
-	const currentUserNotes = get(__userNotes);
-	const currentLastRead = get(__lastRead);
+	const userBookmarks = get(__userBookmarks);
+	const userNotes = get(__userNotes);
+	const lastRead = get(__lastRead);
 
-	// remove current settings from localStorage and set new one
+	// Remove current settings from localStorage and set new ones
 	localStorage.removeItem('userSettings');
 	setUserSettings();
 
-	// restore important data
-	updateSettings({ type: 'userBookmarks', key: currentUserBookmarks, overide: true, set: true });
-	updateSettings({ type: 'userNotes', key: currentUserNotes, overide: true });
-	updateSettings({ type: 'lastRead', value: currentLastRead });
+	// Restore important data
+	updateSettings({ type: 'userBookmarks', key: userBookmarks, override: true, set: true });
+	updateSettings({ type: 'userNotes', key: userNotes, override: true });
+	updateSettings({ type: 'lastRead', value: lastRead });
 
-	// reload the page
+	// Reload the page
 	location.reload();
 }

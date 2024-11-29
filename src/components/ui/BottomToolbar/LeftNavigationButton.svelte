@@ -10,18 +10,16 @@
 	let linkDisabled;
 
 	$: {
-		// chapter (left to right navigation)
 		if ($__currentPage === 'chapter') {
+			// Set properties for chapter navigation (left to right)
 			linkHref = $__chapterNumber - 1;
 			linkText = `Previous ${term('chapter')}`;
-			linkDisabled = $__chapterNumber === 1 ? true : false;
-		}
-
-		// page/mushaf (right to left navigation)
-		else if ($__currentPage === 'mushaf') {
+			linkDisabled = $__chapterNumber === 1;
+		} else if ($__currentPage === 'mushaf') {
+			// Set properties for mushaf navigation (right to left)
 			linkHref = `page/${$__pageNumber + 1}`;
 			linkText = 'Next Page';
-			linkDisabled = $__pageNumber === 604 ? true : false;
+			linkDisabled = $__pageNumber === 604;
 		}
 	}
 </script>

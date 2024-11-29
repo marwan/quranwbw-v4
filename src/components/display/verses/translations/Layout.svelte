@@ -10,12 +10,12 @@
 	const translationFootnoteClasses = `hidden my-2 footnote-block px-2 py-2 border-2 border-gray-200 rounded-2xl theme-grayscale footnote-${value.meta.chapter}-${value.meta.verse}-${verseTranslationID}`;
 	const footnoteSupClasses = 'ml-1 mt-1 px-2 py-1 bg-gray-200 rounded-full font-semibold cursor-pointer system-font';
 
-	let footnoteId,
-		footnoteChapter,
-		footnoteVerse,
-		footnoteTranslation,
-		footnoteText = 'loading...',
-		footnoteNumber = '...';
+	let footnoteId;
+	let footnoteChapter;
+	let footnoteVerse;
+	let footnoteTranslation;
+	let footnoteText = 'loading...';
+	let footnoteNumber = '...';
 
 	async function supClick(event) {
 		footnoteText = 'loading...';
@@ -25,7 +25,7 @@
 		footnoteTranslation = +event.getAttribute('data-translation');
 		footnoteNumber = +event.innerText;
 
-		// fetch footnote
+		// Fetch footnote
 		const response = await fetch(`https://api.qurancdn.com/api/qdc/foot_notes/${footnoteId}`);
 		const data = await response.json();
 		footnoteText = data.foot_note.text;
@@ -34,11 +34,11 @@
 	$: {
 		if (footnoteId !== undefined) {
 			const selector = `.footnote-${footnoteChapter}-${footnoteVerse}-${footnoteTranslation}`;
-			const footnoteBlock = document.querySelectorAll(`${selector}`)[0];
-			let footnoteBlockNumber = document.querySelectorAll(`${selector} .footnote-header .title .footnote-number`)[0];
-			let footnoteBlockText = document.querySelectorAll(`${selector} .text`)[0];
+			const footnoteBlock = document.querySelector(selector);
+			const footnoteBlockNumber = footnoteBlock.querySelector('.footnote-header .title .footnote-number');
+			const footnoteBlockText = footnoteBlock.querySelector('.text');
 
-			// update the footnote number, text and unhide this verse's footnote block
+			// Update the footnote number, text, and unhide this verse's footnote block
 			footnoteBlockNumber.innerText = footnoteNumber;
 			footnoteBlockText.innerHTML = footnoteText;
 			footnoteBlock.classList.remove('hidden');
@@ -48,16 +48,17 @@
 
 	function hideFootnote(chapter, verse, translation) {
 		const selector = `.footnote-${chapter}-${verse}-${translation}`;
-		const footnoteBlock = document.querySelectorAll(`${selector}`);
+		const footnoteBlocks = document.querySelectorAll(selector);
 
-		footnoteBlock.forEach((element) => {
-			element.classList.remove('hidden', 'block');
+		footnoteBlocks.forEach((element) => {
+			element.classList.remove('block');
 			element.classList.add('hidden');
 		});
 	}
 
 	function isTranslationUrduOrPersian(id) {
-		return [43, 174].includes(selectableVerseTranslations[id].language_id) && !selectableVerseTranslations[id].is_roman;
+		const translation = selectableVerseTranslations[id];
+		return [43, 174].includes(translation.language_id) && !translation.is_roman;
 	}
 
 	function isTranslationRTL(id) {

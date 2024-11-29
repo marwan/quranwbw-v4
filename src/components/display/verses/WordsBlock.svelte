@@ -1,9 +1,4 @@
 <script>
-	export let key;
-	export let value;
-	export let line = null;
-	export let exampleVerse = false;
-
 	import VerseOptionsDropdown from '$display/verses/VerseOptionsDropdown.svelte';
 	import Word from '$display/verses/Word.svelte';
 	import Tooltip from '$ui/FlowbiteSvelte/tooltip/Tooltip.svelte';
@@ -15,48 +10,52 @@
 	import { updateSettings } from '$utils/updateSettings';
 	import { mushafWordFontLink, mushafFontVersion } from '$data/websiteSettings';
 
-	const fontSizes = JSON.parse($__userSettings).displaySettings.fontSizes;
+	export let key;
+	export let value;
+	export let line = null;
+	export let exampleVerse = false;
 
+	const fontSizes = JSON.parse($__userSettings).displaySettings.fontSizes;
 	$: displayIsContinuous = selectableDisplays[$__displayType].continuous;
 
-	// if mushaf fonts are selected, then dynamically load the fonts
+	// Dynamically load the fonts if mushaf fonts are selected
 	if ([2, 3].includes($__fontType)) {
 		loadFont(`p${value.meta.page}`, `${mushafWordFontLink}/QCF4${`00${value.meta.page}`.slice(-3)}_COLOR-Regular.woff?version=${mushafFontVersion}`).then(() => {
-			// we can by default hide the v4 words and show when the font is loaded...
+			// Hide the v4 words by default and show when the font is loaded...
 			document.querySelectorAll(`.p${value.meta.page}`).forEach((element) => {
 				element.classList.remove('invisible');
 			});
 		});
 	}
 
-	// handle what happens when a word is clicked depending on page type
-	// 1. if a word is clicked on the morphology page, show/goto that word's morphology
-	// 2. if a word is clicked on other pages, play the word's audio
-	// 3. if the end verse icon is clicked on any page, show the verse options dropdown
+	// Handle word clicks based on page type
+	// 1. On morphology page, navigate to word's morphology
+	// 2. On other pages, play word's audio
+	// 3. On any page, show verse options dropdown for end verse icon
 	function wordClickHandler(props) {
-		// only if its morphology page and a word is clicked
 		if ($__currentPage === 'morphology' && props.type === 'word') {
 			__morphologyKey.set(props.key);
 			goto(`/morphology/${props.key}`, { replaceState: false });
-		}
-
-		// for all other pages
-		else {
+		} else {
 			__verseKey.set(props.key);
-
-			// word in verse
 			if (props.type === 'word') {
-				wordAudioController({ key: props.key, chapter: +props.key.split(':')[0], verse: +props.key.split(':')[1] });
-			}
-
-			// end verse icon
-			else if (props.type === 'end') {
-				// for continuous modes, the verse options dropdown will open, but if its not a continuous mode then un/bookmark verse
-				if (!displayIsContinuous) updateSettings({ type: 'userBookmarks', key: props.key, set: true });
+				wordAudioController({
+					key: props.key,
+					chapter: +props.key.split(':')[0],
+					verse: +props.key.split(':')[1]
+				});
+			} else if (props.type === 'end') {
+				if (!displayIsContinuous)
+					updateSettings({
+						type: 'userBookmarks',
+						key: props.key,
+						set: true
+					});
 			}
 		}
 	}
 
+	// Common classes for words and end icons
 	$: wordAndEndIconCommonClasses = `
 		hover:cursor-pointer
 		${selectableThemes[$__websiteTheme].palette === 1 ? 'hover:bg-white/20' : 'hover:bg-black/10'}
@@ -65,6 +64,7 @@
 		${exampleVerse && '!p-0'}
 	`;
 
+	// Classes for word spans
 	$: wordSpanClasses = `
 		arabicText leading-normal 
 		arabic-font-${$__fontType} 
@@ -73,12 +73,14 @@
 		${[1, 4].includes($__fontType) && 'text-black theme'}
 	`;
 
+	// Classes for v4 hafs words
 	$: v4hafsClasses = `
 		invisible v4-words 
 		p${value.meta.page} 
 		${$__fontType === 3 ? 'theme-palette-tajweed' : 'theme-palette-normal'} 
 	`;
 
+	// Classes for end icons
 	$: endIconClasses = `rounded-lg ${wordAndEndIconCommonClasses}`;
 </script>
 

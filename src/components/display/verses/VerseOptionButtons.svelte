@@ -16,44 +16,60 @@
 	import { term } from '$utils/terminologies';
 	import { quranMetaData } from '$data/quranMeta';
 
-	const chapter = +key.split(':')[0];
-	const verse = +key.split(':')[1];
+	const chapter = parseInt(key.split(':')[0], 10);
+	const verse = parseInt(key.split(':')[1], 10);
 	const versesInChapter = quranMetaData[chapter].verses;
 	const buttonClasses = 'inline-flex items-center justify-center w-10 h-10 transition-colors duration-150 rounded-3xl focus:shadow-outline hover:bg-lightGray print:hidden';
 
-	// for chapter page, just show the key, else show the complete chapter transliteration & key
+	// For chapter page, just show the key, else show the complete chapter transliteration & key
 	$: verseKeyClasses = `${buttonClasses} w-fit px-4 bg-lightGray font-medium`;
 
-	// update userBookmarks whenever the __userSettings changes
+	// Update userBookmarks whenever the __userSettings changes
 	$: userBookmarks = JSON.parse($__userSettings).userBookmarks;
 
 	function audioHandler(key) {
-		// stop any audio if something is playing
-		if ($__audioSettings.isPlaying) resetAudioSettings({ location: 'end' });
-		// else continue with playing options
-		else {
-			// for chapter & mushaf page, respect the user select play button functionality
+		// Stop any audio if something is playing
+		if ($__audioSettings.isPlaying) {
+			resetAudioSettings({ location: 'end' });
+		} else {
+			// For chapter & mushaf page, respect the user select play button functionality
 			if (['chapter', 'mushaf'].includes($__currentPage)) {
-				// 1. Play selected Ayah (default)
-				if ($__playButtonsFunctionality.verse === 1) playVerseAudio({ key, language: 'arabic', timesToRepeat: 1 });
-				// 2. Play from here
-				else if ($__playButtonsFunctionality.verse === 2) {
-					setVersesToPlay({ location: 'verseOptionsOrModal', chapter: chapter, startVerse: verse, endVerse: versesInChapter, audioRange: 'playFromHere' });
-					playVerseAudio({ key: `${window.versesToPlayArray[0]}`, timesToRepeat: 1, language: 'arabic' });
-				}
-
-				// 3. Open Advance Play modal
-				else if ($__playButtonsFunctionality.verse === 3) showAudioModal(key);
+				handleAudioPlayOptions(key);
+			} else {
+				playVerseAudio({ key, language: 'arabic', timesToRepeat: 1 });
 			}
-
-			// for any other page, stick to default
-			else playVerseAudio({ key, language: 'arabic', timesToRepeat: 1 });
 		}
 	}
 
-	// function to toggle words block for display mode #7
+	function handleAudioPlayOptions(key) {
+		const { verse } = $__playButtonsFunctionality;
+
+		switch (verse) {
+			case 1:
+				playVerseAudio({ key, language: 'arabic', timesToRepeat: 1 });
+				break;
+			case 2:
+				setVersesToPlay({
+					location: 'verseOptionsOrModal',
+					chapter,
+					startVerse: verse,
+					endVerse: versesInChapter,
+					audioRange: 'playFromHere'
+				});
+				playVerseAudio({ key: `${window.versesToPlayArray[0]}`, timesToRepeat: 1, language: 'arabic' });
+				break;
+			case 3:
+				showAudioModal(key);
+				break;
+			default:
+				playVerseAudio({ key, language: 'arabic', timesToRepeat: 1 });
+				break;
+		}
+	}
+
+	// Function to toggle words block for display mode #7
 	function wordsBlockToggler(verse) {
-		document.querySelectorAll(`#verse-${verse}-words`)[0].classList.toggle('hidden');
+		document.querySelector(`#verse-${verse}-words`).classList.toggle('hidden');
 	}
 </script>
 
