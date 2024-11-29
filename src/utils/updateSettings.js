@@ -157,8 +157,8 @@ export function updateSettings(props) {
 			const key = props.key;
 			let userBookmarks = userSettings['userBookmarks'];
 
-			// if overide key was set, then just set the value key in localStorage
-			if (props.overide) {
+			// if override key was set, then just set the value key in localStorage
+			if (props.override) {
 				userSettings.userBookmarks = key;
 			}
 
@@ -189,8 +189,8 @@ export function updateSettings(props) {
 			const isWhitespaceString = (str) => !str.replace(/\s/g, '').length;
 			let userNotes = userSettings['userNotes'];
 
-			// if overide key was set, then just set the value key in localStorage
-			if (props.overide) {
+			// if override key was set, then just set the value key in localStorage
+			if (props.override) {
 				userSettings.userNotes = notes_key;
 			}
 

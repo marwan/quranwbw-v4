@@ -16,7 +16,7 @@
 	};
 
 	// Only allow display type 1, 2, & 7, and don't save the layout in settings if not allowed
-	if (!allowedDisplayTypes.includes(get(__displayType))) {
+	if (!allowedDisplayTypes.includes($__displayType)) {
 		__displayType.set(1);
 	}
 </script>
