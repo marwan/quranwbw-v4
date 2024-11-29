@@ -6,227 +6,154 @@ import { selectableReciters, selectableTranslationReciters, selectablePlaybackSp
 import { fetchTimestampData } from '$utils/fetchData';
 import { scrollSmoothly } from '$utils/scrollSmoothly';
 
-// getting the audio element
+// Getting the audio element
 let audio = document.querySelector('#player');
-
-// set global audio settings
 const audioSettings = get(__audioSettings);
 
-// function to play verse audio, either one time, or multiple
+// Function to play verse audio, either one time, or multiple times
 export async function playVerseAudio(props) {
 	resetAudioSettings();
+	const [playChapter, playVerse] = props.key.split(':').map(Number);
 
-	const playChapter = +props.key.split(':')[0];
-	const playVerse = +props.key.split(':')[1];
-
-	// fetch the timestamp data for wbw highlighting
 	await fetchTimestampData(playChapter);
 
-	// get the reciter URL from selectableReciters
-	let reciterAudioUrl;
+	const reciterAudioUrl = props.language === 'arabic' ? selectableReciters[get(__reciter)].url : selectableTranslationReciters[get(__translationReciter)].url;
 
-	if (props.language === 'arabic') reciterAudioUrl = selectableReciters[get(__reciter)].url;
-	// or if the user has opted to play the translation after arabic audio, the URL would have to be updated
-	if (props.language === 'translation') reciterAudioUrl = selectableTranslationReciters[get(__translationReciter)].url;
+	const currentVerseFileName = `${String(playChapter).padStart(3, '0')}${String(playVerse).padStart(3, '0')}.mp3`;
 
-	// generate mp3 file names for current and next verse
-	const currentVerseFileName = `${`00${playChapter}`.slice(-3)}${`00${playVerse}`.slice(-3)}.mp3`;
+	// Prefetch the next verse audio
+	fetch(`${reciterAudioUrl}/${String(playChapter).padStart(3, '0')}${String(playVerse + 1).padStart(3, '0')}.mp3`);
 
-	// fetch the next verse audio in advance
-	fetch(`${reciterAudioUrl}/${`00${playChapter}`.slice(-3)}${`00${playVerse + 1}`.slice(-3)}.mp3`);
-
-	// load and play the audio
 	audio.src = `${reciterAudioUrl}/${currentVerseFileName}`;
 	audio.currentTime = 0;
 	audio.load();
 	audio.playbackRate = selectablePlaybackSpeeds[get(__playbackSpeed)].speed;
 	audio.play();
 
-	// update the audio settings
 	audioSettings.isPlaying = true;
 	audioSettings.playingKey = props.key;
 	audioSettings.audioType = 'verse';
 
 	console.log('playing', props.language, `${props.key}`);
 
-	// attach the word highlighter function only for Arabic audio
-	if (props.language === 'arabic') {
-		// only attach wbw highlighting function if there's a timestamp slug
-		if (Object.prototype.hasOwnProperty.call(selectableReciters[get(__reciter)], 'timestampSlug')) {
-			audio.addEventListener('timeupdate', wordHighlighter);
-		}
-
+	if (props.language === 'arabic' && selectableReciters[get(__reciter)].timestampSlug) {
+		audio.addEventListener('timeupdate', wordHighlighter);
 		try {
 			scrollSmoothly(document.getElementById(`${audioSettings.playingKey}`).offsetTop - 75, 500);
 		} catch (error) {
-			// ...
+			// Handle the error if necessary
 		}
 	}
 
-	// things to do when the audio has ended
-	audio.onended = function () {
-		// detach the word highlighter function
+	audio.onended = async function () {
 		audio.removeEventListener('timeupdate', wordHighlighter);
-
 		const previousLanguage = props.language;
 
-		// play verse translation is the previous language prop = arabic
 		if (get(__playTranslation) && previousLanguage === 'arabic') {
-			return playVerseAudio({
-				key: `${props.key}`,
-				timesToRepeat: +props.timesToRepeat,
-				language: 'translation'
-			});
+			return playVerseAudio({ key: `${props.key}`, timesToRepeat: +props.timesToRepeat, language: 'translation' });
 		}
 
-		// repeating the audio if 'timesToRepeat' is more than 1
-		// for some reason, audio always repeats timesToPlay + 2 times hence need to do: timesToPlay - 2
 		if (audioSettings.timesRepeated <= audioSettings.timesToRepeat - 2) {
 			console.log('repeating verse: ', `${props.key}`);
-
 			audioSettings.timesRepeated++;
-
-			return playVerseAudio({
-				key: `${props.key}`,
-				timesToRepeat: +props.timesToRepeat,
-				language: 'arabic'
-			});
+			return playVerseAudio({ key: `${props.key}`, timesToRepeat: +props.timesToRepeat, language: 'arabic' });
 		}
 
 		audioSettings.timesRepeated = 0;
 
-		// if we have verses in the versesToPlay array, play those...
-		if (window.versesToPlayArray && window.versesToPlayArray.length > 0) {
+		if (window.versesToPlayArray?.length > 0) {
 			const index = window.versesToPlayArray.indexOf(audioSettings.playingKey);
-
-			// reset timesRepeated
-			audioSettings.timesRepeated = 0;
-
-			// remove the current verse
 			if (index > -1) window.versesToPlayArray.splice(index, 1);
 
-			// play the first verse in array
 			if (window.versesToPlayArray.length > 0) {
-				return playVerseAudio({
-					key: `${window.versesToPlayArray[0]}`,
-					timesToRepeat: +props.timesToRepeat,
-					language: 'arabic'
-				});
+				return playVerseAudio({ key: `${window.versesToPlayArray[0]}`, timesToRepeat: +props.timesToRepeat, language: 'arabic' });
 			}
 		}
 
-		// once everything is done, reset settings
 		resetAudioSettings({ location: 'end' });
 	};
 
-	// update the audio settings
 	__audioSettings.set(audioSettings);
 }
 
-// function to play word audio
+// Function to play word audio
 export function playWordAudio(props) {
 	resetAudioSettings();
+	const [wordChapter, wordVerse, wordNumber] = props.key.split(':').map(Number);
 
-	const wordChapter = +props.key.split(':')[0];
-	const wordVerse = +props.key.split(':')[1];
-	const wordNumber = +props.key.split(':')[2];
+	const currentWordFileName = `${wordChapter}/${String(wordChapter).padStart(3, '0')}_${String(wordVerse).padStart(3, '0')}_${String(wordNumber).padStart(3, '0')}.mp3`;
 
-	// generate mp3 file names for current word
-	const currentWordFileName = `${wordChapter}/${`00${wordChapter}`.slice(-3)}_${`00${wordVerse}`.slice(-3)}_${`00${wordNumber}`.slice(-3)}.mp3`;
-
-	// load and play the audio
 	audio.src = `${wordsAudioURL}/${currentWordFileName}`;
 	audio.currentTime = 0;
 	audio.load();
 	audio.playbackRate = selectablePlaybackSpeeds[get(__playbackSpeed)].speed;
 	audio.play();
 
-	// update the audio settings
 	audioSettings.isPlaying = true;
 	audioSettings.audioType = 'word';
 	audioSettings.playingKey = `${wordChapter}:${wordVerse}`;
 	audioSettings.playingWordKey = `${props.key}`;
 
 	audio.onended = function () {
-		// play all words in verse back to back if user opted for that from audio modal
 		if (props.playAllWords && wordNumber < getWordsInVerse(audioSettings.playingKey)) {
 			return playWordAudio({ key: `${wordChapter}:${wordVerse}:${wordNumber + 1}`, playAllWords: true });
 		}
-
 		resetAudioSettings({ location: 'end' });
 	};
 
-	// update the audio settings
 	__audioSettings.set(audioSettings);
 }
 
+// Function to update audio settings
 export function updateAudioSettings(event) {
-	// 1. update values based on clicked ID
+	const { id, value, valueAsNumber } = event.target;
 	try {
-		switch (event.target.id) {
+		switch (id) {
 			case 'startVerse':
-				audioSettings.startVerse = +event.target.value;
+				audioSettings.startVerse = +value;
 				break;
-
 			case 'endVerse':
-				audioSettings.endVerse = +event.target.value;
+				audioSettings.endVerse = +value;
 				break;
-
 			case 'timesToRepeat':
-				audioSettings.timesToRepeat = event.target.valueAsNumber;
+				audioSettings.timesToRepeat = valueAsNumber;
 				break;
 		}
 	} catch (error) {
 		console.error(error);
 	}
 
-	// making sure endVerse is not less than startVerse
 	if (audioSettings.endVerse < audioSettings.startVerse || audioSettings.endVerse === undefined) {
 		audioSettings.endVerse = audioSettings.startVerse;
 	}
 
-	// 3. update the global audio settings
 	__audioSettings.set(audioSettings);
 }
 
+// Initialize audio settings based on key
 export function initializeAudioSettings(key) {
-	// update the key, chapter, verse and update the store
 	audioSettings.playingKey = key;
-	audioSettings.playingChapter = +audioSettings.playingKey.split(':')[0];
-	audioSettings.playingVerse = +audioSettings.playingKey.split(':')[1];
+	[audioSettings.playingChapter, audioSettings.playingVerse] = key.split(':').map(Number);
 	__audioSettings.set(audioSettings);
 
 	const chapterTotalVerses = quranMetaData[audioSettings.playingChapter].verses;
-
-	// update the startVerse to be same as playingVerse on modal load only, not everytime the audio setting changes
-	if (audioSettings.startVerse > audioSettings.playingVerse) {
-		audioSettings.startVerse = audioSettings.playingVerse;
-	}
 
 	audioSettings.startVerse = audioSettings.playingVerse;
 
 	if (audioSettings.endVerse > chapterTotalVerses) {
 		audioSettings.endVerse = chapterTotalVerses;
 	}
-
 	if (audioSettings.endVerse < audioSettings.startVerse) {
 		audioSettings.endVerse = audioSettings.startVerse;
 	}
 
-	// set default audio type to verse
-	if (audioSettings.audioType !== 'verse') {
-		audioSettings.audioType = 'verse';
-	}
-
-	// set default audio range to playThisVerse
-	if (audioSettings.audioRange === undefined) {
-		audioSettings.audioRange = 'playThisVerse';
-	}
+	audioSettings.audioType = audioSettings.audioType ?? 'verse';
+	audioSettings.audioRange = audioSettings.audioRange ?? 'playThisVerse';
 }
 
+// Reset audio settings
 export function resetAudioSettings(props) {
 	try {
-		// incase the audio element which was set above is null (dom load delay issue on Safari), set it again
 		if (audio === null) audio = document.querySelector('#player');
 
 		audio.pause();
@@ -234,19 +161,15 @@ export function resetAudioSettings(props) {
 		audioSettings.isPlaying = false;
 		audioSettings.playingWordKey = null;
 
-		// if the reset function is called from the end of playVerseAudio function
-		// because we have 1 at the start and 1 at the end
-		if (props && props.location === 'end') {
+		if (props?.location === 'end') {
 			audioSettings.timesRepeated = 0;
 			audioSettings.timesToRepeat = 1;
 			window.versesToPlayArray = [];
 		}
 
 		__audioSettings.set(audioSettings);
-
 		audio.removeEventListener('timeupdate', wordHighlighter);
 
-		// remove word highlight
 		document.querySelectorAll('.word').forEach((element) => {
 			element.classList.remove('bg-black/10');
 		});
@@ -255,132 +178,126 @@ export function resetAudioSettings(props) {
 	}
 }
 
+// Show audio modal with key
 export function showAudioModal(key) {
-	// reset audio settings
 	resetAudioSettings();
-
-	// update default settings, if any
 	initializeAudioSettings(key);
-
-	// show the modal
 	__audioModalVisible.set(true);
 }
 
+// Word audio controller
 export function wordAudioController(props) {
-	// if verse audio is already playing, then set the verse's audio timestamp same as word timestamp
-	// ...this is incase the user would like to start from a certain section of the verse
 	const timestampSlug = selectableReciters[get(__reciter)].timestampSlug;
 
 	if (audioSettings.isPlaying && audioSettings.audioType === 'verse' && timestampSlug) {
-		// verse timestamp data with was fetch from the playVerseAudio function
 		const verseTimestamp = get(__timestampData).data[`${props.chapter}:${props.verse}`][timestampSlug];
 		const wordTimestamp = verseTimestamp.split('|')[props.key.split(':')[2]];
 
-		// set the verse audio time same as word timestamp
 		return (audio.currentTime = wordTimestamp);
 	}
 
-	// audio modal only when the end icon is clicked, else play word audio directly
 	props.type === 'end' ? showAudioModal(`${props.chapter}:${props.verse}`) : playWordAudio({ key: props.key });
 }
 
+// Highlight words during audio playback based on timestamps
 function wordHighlighter() {
 	try {
-		// get the total number of words in the verse
+		// Get the total number of words in the verse
 		const wordsInVerse = getWordsInVerse(audioSettings.playingKey);
 
-		// verse timestamp data with was fetch from the playVerseAudio function
+		// Retrieve verse timestamp data fetched in playVerseAudio function
 		const timestampSlug = selectableReciters[get(__reciter)].timestampSlug;
 		const verseTimestamp = get(__timestampData).data[audioSettings.playingKey][timestampSlug];
 
-		// loop through all the words
-		for (let word = 0; word <= wordsInVerse - 1; word++) {
+		// Loop through all the words to highlight them
+		for (let word = 0; word < wordsInVerse; word++) {
 			const wordTimestamp = verseTimestamp.split('|')[word];
 
-			// as long as the word timestamp is lower than the current audio time
+			// If the word timestamp is lower than the current audio time, update playingWordKey
 			if (wordTimestamp < audio.currentTime) {
 				audioSettings.playingWordKey = `${audioSettings.playingKey}:${word + 1}`;
 			}
 		}
 
-		// update the audio settings
+		// Update the audio settings
 		__audioSettings.set(audioSettings);
 	} catch (error) {
-		// console.log('wordHighlighter error: ', error);
+		// Error handling
+		console.error('wordHighlighter error:', error);
 	}
 }
 
-// function to generate an array of verses to play
+// Generate an array of verses to play
 export function setVersesToPlay(props) {
 	window.versesToPlayArray = [];
 
-	// for when the play was clicked from bottom toolbar
-	if (props && props.allVersesOnPage) {
-		// mushaf page
+	// Handle play action based on the current page and options
+	if (props?.allVersesOnPage) {
 		if (get(__currentPage) === 'mushaf') {
+			// For mushaf page
 			const wordsOnPage = document.getElementsByClassName('word');
-
-			for (let word = 0; word <= wordsOnPage.length - 1; word++) {
-				const verseKey = `${wordsOnPage[word].id.split(':')[0]}:${wordsOnPage[word].id.split(':')[1]}`;
-				window.versesToPlayArray.indexOf(verseKey) === -1 && window.versesToPlayArray.push(verseKey);
+			for (const wordElement of wordsOnPage) {
+				const verseKey = `${wordElement.id.split(':')[0]}:${wordElement.id.split(':')[1]}`;
+				if (!window.versesToPlayArray.includes(verseKey)) {
+					window.versesToPlayArray.push(verseKey);
+				}
 			}
-		}
-
-		// chapter page, supp, bookmarks
-		else if (get(__currentPage) === 'chapter') {
+		} else if (get(__currentPage) === 'chapter') {
+			// For chapter page
 			const versesOnPage = document.getElementsByClassName('verse');
-			const startVerse = versesOnPage[0].id.split(':')[1];
+			const startVerse = Number(versesOnPage[0].id.split(':')[1]);
 			const endVerse = quranMetaData[get(__chapterNumber)].verses;
 
 			for (let verse = startVerse; verse <= endVerse; verse++) {
 				const verseKey = `${get(__chapterNumber)}:${verse}`;
-				window.versesToPlayArray.indexOf(verseKey) === -1 && window.versesToPlayArray.push(verseKey);
+				if (!window.versesToPlayArray.includes(verseKey)) {
+					window.versesToPlayArray.push(verseKey);
+				}
 			}
-		}
-
-		// other pages (supplications, bookmarks)
-		else {
+		} else {
+			// For other pages (supplications, bookmarks)
 			const versesOnPage = document.getElementsByClassName('verse');
-
-			for (let verse = 0; verse <= versesOnPage.length - 1; verse++) {
-				const verseKey = versesOnPage[verse].id;
-				window.versesToPlayArray.indexOf(verseKey) === -1 && window.versesToPlayArray.push(verseKey);
+			for (const verseElement of versesOnPage) {
+				const verseKey = verseElement.id;
+				if (!window.versesToPlayArray.includes(verseKey)) {
+					window.versesToPlayArray.push(verseKey);
+				}
 			}
 		}
-	}
-
-	// for when the play was clicked from verse options / modal
-	else if (props && !props.allVersesOnPage) {
-		// for playFromHere, non chapter page
+	} else {
+		// Handle play action from verse options/modal
 		if (get(__currentPage) === 'mushaf' && props.audioRange === 'playFromHere') {
+			// For playFromHere, non-chapter page
 			const key = `${props.chapter}:${props.startVerse}`;
 			const wordsOnPage = document.getElementsByClassName('word');
 
-			for (let word = 0; word <= wordsOnPage.length - 1; word++) {
-				const verseKey = `${wordsOnPage[word].id.split(':')[0]}:${wordsOnPage[word].id.split(':')[1]}`;
-				window.versesToPlayArray.indexOf(verseKey) === -1 && window.versesToPlayArray.push(verseKey);
+			for (const wordElement of wordsOnPage) {
+				const verseKey = `${wordElement.id.split(':')[0]}:${wordElement.id.split(':')[1]}`;
+				if (!window.versesToPlayArray.includes(verseKey)) {
+					window.versesToPlayArray.push(verseKey);
+				}
 			}
 
-			// remove all verses before this key
-			window.versesToPlayArray = window.versesToPlayArray.splice(window.versesToPlayArray.indexOf(key), window.versesToPlayArray.length - 1);
-		}
-
-		// chapter page, supp, bookmarks
-		else {
+			// Remove all verses before the specified key
+			const startIndex = window.versesToPlayArray.indexOf(key);
+			window.versesToPlayArray = window.versesToPlayArray.slice(startIndex);
+		} else {
+			// For chapter page, supplications, bookmarks
 			for (let verse = props.startVerse; verse <= props.endVerse; verse++) {
 				const verseKey = `${props.chapter}:${verse}`;
-				window.versesToPlayArray.indexOf(verseKey) === -1 && window.versesToPlayArray.push(verseKey);
+				if (!window.versesToPlayArray.includes(verseKey)) {
+					window.versesToPlayArray.push(verseKey);
+				}
 			}
 		}
 	}
-
-	// console.log('versesToPlayArray', window.versesToPlayArray);
+	console.log('versesToPlayArray', window.versesToPlayArray);
 }
 
+// Get the total number of words in the verse based on the current mode
 function getWordsInVerse(key) {
-	// for mushaf mode, we have the JSON data in localStorage, and for other pages we have it set in the store __chapterData
 	const data = get(__currentPage) === 'mushaf' ? JSON.parse(localStorage.getItem('pageData')) : get(__chapterData);
 
-	// get the total number of words in the verse
+	// Return the total number of words in the specified verse
 	return data[key].meta.words;
 }
