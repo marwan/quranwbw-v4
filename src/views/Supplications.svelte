@@ -12,10 +12,7 @@
 	// Fetch supplication verses whenever necessary
 	$: fetchData = fetchVersesData(getSupplicationKeys(), $__fontType, $__wordTranslation, $__wordTransliteration);
 
-	/**
-	 * Function to get a string of all supplications chapter:verses
-	 * @returns {string} - A string of all supplications chapter:verses
-	 */
+	// Function to get a string of all supplications chapter:verses
 	function getSupplicationKeys() {
 		let keysArray = [];
 

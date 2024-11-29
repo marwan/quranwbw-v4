@@ -222,6 +222,11 @@
 											<span>{@html '&#10230'}</span>
 											<a href="/{value.split(':')[0]}/{value.split(':')[1]}" class={linkTextClasses}>{quranMetaData[value.split(':')[0]].transliteration}, {term('verse')} {value.split(':')[1]}</a>
 										</div>
+									{:else if key === 'supplications'}
+										<div class={linkClasses}>
+											<span>{@html '&#10230'}</span>
+											<a href="/{term('supplications').toLowerCase()}#{value}" class={linkTextClasses}>{quranMetaData[value.split(':')[0]].transliteration}, {value} ({term('supplications').slice(0, -1)}) </a>
+										</div>
 									{/if}
 								{/if}
 

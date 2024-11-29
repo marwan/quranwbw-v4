@@ -1,6 +1,7 @@
+/* eslint-disable no-case-declarations */
 import { get } from 'svelte/store';
 import { __currentPage, __chapterNumber } from '$utils/stores';
-import { quranMetaData } from '$data/quranMeta';
+import { quranMetaData, supplicationsFromQuran } from '$data/quranMeta';
 import { staticEndpoint } from '$data/websiteSettings';
 
 // Validates the search terms provided in the Quran navigation modal and returns structured results
@@ -14,6 +15,9 @@ export async function validateKey(key) {
 	} else {
 		await handleStringKey(key, results); // Processes string search terms
 	}
+
+	// Check for supplications from Quran
+	if (isSupplicationKey(key)) results.supplications = isSupplicationKey(key);
 
 	if (results.chapters && Object.keys(results.chapters).length === 0) {
 		delete results.chapters; // Removes empty chapters key if no chapters found
@@ -141,4 +145,14 @@ async function fetchVerseKeyData() {
 // Checks if a value is numeric
 function isNumeric(value) {
 	return /^-?\d+$/.test(value);
+}
+
+// Function to detect if a provided key is included in supplicationsFromQuran
+function isSupplicationKey(key) {
+	// Normalize key to use colons as delimiters
+	const normalizedKey = key.replace(/[-. ]/g, ':');
+
+	if (Object.prototype.hasOwnProperty.call(supplicationsFromQuran, normalizedKey)) {
+		return normalizedKey;
+	}
 }
