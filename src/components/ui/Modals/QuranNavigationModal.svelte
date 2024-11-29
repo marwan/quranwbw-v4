@@ -201,9 +201,16 @@
 											<a href="/{value}" class={linkTextClasses}>{term('chapter')} {value} ({quranMetaData[value].transliteration})</a>
 										</div>
 									{:else if key === 'page'}
+										<!-- for normal chapter:verse key (chapter page) -->
 										<div class={linkClasses}>
 											<span>{@html '&#10230'}</span>
 											<a href="/{pageNumberKeys[value - 1].split(':')[0]}/{pageNumberKeys[value - 1].split(':')[1]}" class={linkTextClasses}>Page {value} ({quranMetaData[pageNumberKeys[value - 1].split(':')[0]].transliteration})</a>
+										</div>
+
+										<!-- mushaf page -->
+										<div class={linkClasses}>
+											<span>{@html '&#10230'}</span>
+											<a href="/page/{value}" class={linkTextClasses}>Mushaf Page {value} ({quranMetaData[pageNumberKeys[value - 1].split(':')[0]].transliteration})</a>
 										</div>
 									{:else if key === 'juz'}
 										<div class={linkClasses}>
