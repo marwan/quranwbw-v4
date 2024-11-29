@@ -157,7 +157,7 @@
 											<span>{@html '&#10230'}</span>
 											<a href="/page/{startPageOfChapters[value]}" class={linkTextClasses}>{term('chapter')} {value} ({quranMetaData[value].transliteration})</a>
 										</div>
-									{:else if key === 'mushaf'}
+									{:else if key === 'page'}
 										<div class={linkClasses}>
 											<span>{@html '&#10230'}</span>
 											<a href="/page/{value}" class={linkTextClasses}>Page {value}</a>
@@ -184,7 +184,7 @@
 											<span>{@html '&#10230'}</span>
 											<a href="/{value}" class={linkTextClasses}>{term('chapter')} {value} ({quranMetaData[value].transliteration})</a>
 										</div>
-									{:else if key === 'mushaf'}
+									{:else if key === 'page'}
 										<div class={linkClasses}>
 											<span>{@html '&#10230'}</span>
 											<a href="/{pageNumberKeys[value - 1].split(':')[0]}/{pageNumberKeys[value - 1].split(':')[1]}" class={linkTextClasses}>Page {value} ({quranMetaData[pageNumberKeys[value - 1].split(':')[0]].transliteration})</a>
