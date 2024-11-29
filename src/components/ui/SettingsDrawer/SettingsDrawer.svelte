@@ -135,7 +135,7 @@
 			try {
 				document.getElementById('settings-drawer').scrollTop = mainSettingsScrollPos;
 			} catch (error) {
-				console.log(error);
+				// console.log(error);
 			}
 		}, 0);
 	}
@@ -152,7 +152,7 @@
 			try {
 				document.getElementById('individual-setting').scrollIntoView();
 			} catch (error) {
-				console.log(error);
+				// console.log(error);
 			}
 		}, 0);
 	}

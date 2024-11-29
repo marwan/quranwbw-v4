@@ -26,7 +26,7 @@
 				document.getElementById(verseKey).firstChild.classList.add('z-10');
 			}
 		} catch (error) {
-			console.error('Error updating z-index:', error);
+			// console.error('Error updating z-index:', error);
 		}
 	}
 

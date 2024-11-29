@@ -55,7 +55,7 @@
 			mushafJuz = `${term('juz')} ${$__mushafPageDivisions.juz}`;
 			mushafChapters = Object.values($__mushafPageDivisions.chapters).map((value) => quranMetaData[value].transliteration);
 		} catch (error) {
-			console.error(error);
+			// console.log(error);
 		}
 	}
 </script>
