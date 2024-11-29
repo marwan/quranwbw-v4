@@ -12,52 +12,51 @@
 	import { term } from '$utils/terminologies';
 	import { fetchSingleVerseData } from '$utils/fetchData';
 
-	// chapter cards, tab styles
+	// CSS classes for chapter cards and tabs
 	const cardGridClasses = 'grid md:grid-cols-2 lg:grid-cols-3 gap-3';
 	const cardInnerClasses = 'flex justify-between md:text-left border border-black/10 transition text-sm bg-gray-100 rounded-3xl p-5 hover:cursor-pointer hover:bg-lightGray';
 	const tabClasses = 'p-2 md:p-3 text-xs md:text-md cursor-pointer border-b-4 border-transparent';
 	const activeTabClasses = '!border-black/10';
+
 	let lastReadChapter = 1;
 	let lastReadVerse = 1;
-	let activeTab = 1; // chapters tab
+	let activeTab = 1; // Default to chapters tab
 	let chapterSortIsAscending = true;
 	let chapterListOrder = [...quranMetaData];
 
+	// Reactive variable to update last read chapter and verse
 	$: {
 		if ($__lastRead.hasOwnProperty('key')) {
-			lastReadChapter = $__lastRead.key.split(':')[0];
-			lastReadVerse = $__lastRead.key.split(':')[1];
+			[lastReadChapter, lastReadVerse] = $__lastRead.key.split(':').map(Number);
 		}
 	}
 
-	$: fetchData = activeTab === 3 && totalBookmarks !== 0 ? fetchSingleVerseData($__userBookmarks.toString(), 1) : null; // fetch bookmarks arabic verse
+	// Reactive variable to fetch bookmarks data when on the bookmarks tab
+	$: fetchData = activeTab === 3 && totalBookmarks !== 0 ? fetchSingleVerseData($__userBookmarks.toString(), 1) : null;
 	$: totalBookmarks = $__userBookmarks.length;
 	$: totalNotes = Object.keys($__userNotes).length;
 
-	// remove the "invisible" class from chapter-icons once fonts are loaded so blank icon doesn't show up
-	document.fonts.ready.then(function () {
+	// Remove 'invisible' class from chapter icons once fonts are loaded
+	document.fonts.ready.then(() => {
 		document.querySelectorAll('.chapter-icons').forEach((element) => {
 			element.classList.remove('invisible');
 		});
 	});
 
-	// check if it's friday and night
+	// Check if it's Friday and nighttime
 	checkTimeSpecificChapters();
 
-	// function to sort chapters list in ascending or desending order
+	// Function to sort the chapter list in ascending or descending order
 	function sortChapters() {
 		chapterSortIsAscending = !chapterSortIsAscending;
 		chapterListOrder = chapterSortIsAscending ? [...quranMetaData] : [...quranMetaData].reverse();
 
-		// we manually remove the 'invisible' class from chapter-icons because for some reason the icon for chapter 114 becomes invisible after sorting
-		// we also do this after a delay of 10ms, because doing it instantly doesn't do anything
-		try {
-			setTimeout(function () {
-				document.querySelectorAll('.chapter-icons').forEach((element) => {
-					element.classList.remove('invisible');
-				});
-			}, 10);
-		} catch (error) {}
+		// Ensure chapter icons are visible after sorting
+		setTimeout(() => {
+			document.querySelectorAll('.chapter-icons').forEach((element) => {
+				element.classList.remove('invisible');
+			});
+		}, 10);
 	}
 </script>
 

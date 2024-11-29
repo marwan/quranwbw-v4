@@ -13,7 +13,7 @@
 	import { __currentPage, __userSettings, __displayType, __chapterNumber, __chapterData, __chapterDataLoaded } from '$utils/stores';
 	import { buttonOutlineClasses } from '$data/commonClasses';
 
-	// load button click options
+	// Load button click options
 	const loadButtonOptions = {
 		rootMargin: '2000px',
 		unobserveOnEnter: true
@@ -36,30 +36,28 @@
 	let nextVersesStart;
 	let nextVersesEnd;
 
-	// function to load the next set of verses
+	// Function to load the next set of verses
 	function loadNextVerses() {
 		versesLoadType = 'next';
 
-		// importing the same component to be re-used when the "Load Next Verses" button is pressed
+		// Importing the same component to be re-used when the "Load Next Verses" button is pressed
 		import('./Chapter.svelte').then((res) => (Chapter = res.default));
 
-		// max verses to load when the next set is requested
+		// Max verses to load when the next set is requested
 		const versesToLoad = 5;
 
-		// get the last verse number from last prop value
+		// Get the last verse number from last prop value
 		const versesOnPage = document.getElementsByClassName('verse');
 		const lastVerseOnPage = +versesOnPage[versesOnPage.length - 1].id.split(':')[1];
 
-		// remove the existing button
+		// Remove the existing button
 		document.getElementById('loadVersesButton').remove();
 
-		// define the new starting and ending range
-		(nextVersesStart = lastVerseOnPage + 1), (nextVersesEnd = nextVersesStart + versesToLoad);
+		// Define the new starting and ending range
+		nextVersesStart = lastVerseOnPage + 1;
+		nextVersesEnd = Math.min(nextVersesStart + versesToLoad, chapterTotalVerses);
 
-		// if the end verse set above is greater than total verses, then set it as total verses
-		if (nextVersesEnd > chapterTotalVerses) nextVersesEnd = chapterTotalVerses;
-
-		// setting the nextVersesProps
+		// Setting the nextVersesProps
 		nextVersesProps = {
 			startVerse: nextVersesStart,
 			endVerse: nextVersesEnd

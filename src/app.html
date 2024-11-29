@@ -46,14 +46,26 @@
 
 		<!-- set the website theme - we put this code here to avoid the white flash and making people go blind -->
 		<script>
+			// Declare the theme variable
 			let theme;
 
 			try {
-				theme = JSON.parse(localStorage.getItem('userSettings')).displaySettings.websiteTheme;
+				// Try to retrieve the user settings from localStorage and parse the JSON string
+				const userSettings = JSON.parse(localStorage.getItem('userSettings'));
+
+				// Check if displaySettings and websiteTheme exist in the parsed object
+				if (userSettings && userSettings.displaySettings && userSettings.displaySettings.websiteTheme !== undefined) {
+					theme = userSettings.displaySettings.websiteTheme;
+				} else {
+					// Default theme in case the properties don't exist
+					theme = 1;
+				}
 			} catch (error) {
+				// If there's an error during JSON parsing or any other issue, fallback to default theme
 				theme = 1;
 			}
 
+			// Apply the theme class to the document's root element
 			document.documentElement.classList = `theme-${theme} ${window.bodyColors[theme]}`;
 		</script>
 		%sveltekit.head%

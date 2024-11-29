@@ -1,82 +1,95 @@
-// setting default user settings in localStorage
+// Setting default user settings in localStorage
 (async function () {
 	setUserSettings();
 })();
 
-// this function will also be used by resetSettings.js
+/**
+ * Sets the default user settings in localStorage.
+ * This function is also used by resetSettings.js.
+ */
 export function setUserSettings() {
 	let userSettings = JSON.parse(localStorage.getItem('userSettings'));
 	let arabicTextSize = 'text-2xl';
 
-	// for larger screens, make 4xl the default for arabic word, else keep the 2xl as default
-	if (window.matchMedia('(min-width: 1280px)').matches || window.matchMedia('(min-width: 1024px)').matches || window.matchMedia('(min-width: 768px)').matches) arabicTextSize = 'text-4xl';
+	// For larger screens, make 'text-4xl' the default for Arabic word, else keep 'text-2xl' as default.
+	if (window.matchMedia('(min-width: 1280px)').matches || window.matchMedia('(min-width: 1024px)').matches || window.matchMedia('(min-width: 768px)').matches) {
+		arabicTextSize = 'text-4xl';
+	}
 
-	// init if not set
-	if (userSettings === undefined || userSettings === null || userSettings === '') userSettings = {};
+	// Initialize userSettings if not set
+	if (!userSettings) userSettings = {};
 
-	// display settings
-	if (userSettings.displaySettings === undefined) userSettings.displaySettings = {}; // parent
-	if (userSettings.displaySettings.websiteTheme === undefined) userSettings.displaySettings.websiteTheme = 1; // light
-	if (userSettings.displaySettings.displayType === undefined) userSettings.displaySettings.displayType = 1; // WBW
-	if (userSettings.displaySettings.fontType === undefined) userSettings.displaySettings.fontType = 1; // Uthmanic Hafs Digital
-	if (userSettings.displaySettings.wordTranslationEnabled === undefined) userSettings.displaySettings.wordTranslationEnabled = true; // shown
-	if (userSettings.displaySettings.wordTransliterationEnabled === undefined) userSettings.displaySettings.wordTransliterationEnabled = true; // shown
-	if (userSettings.displaySettings.wordTooltip === undefined) userSettings.displaySettings.wordTooltip = 1; // none
-	if (userSettings.displaySettings.autoScrollSpeed === undefined) userSettings.displaySettings.autoScrollSpeed = 40; // x1
-	if (userSettings.displaySettings.wakeLockEnabled === undefined) userSettings.displaySettings.wakeLockEnabled = false; // false = enable sleep (default behaviour)
-	if (userSettings.displaySettings.englishTerminology === undefined) userSettings.displaySettings.englishTerminology = false; // Quran terminologies langauge (default is Arabic)
-	if (userSettings.displaySettings.hideNonDuaPart === undefined) userSettings.displaySettings.hideNonDuaPart = false; // show all words
+	// Display settings
+	if (!userSettings.displaySettings) userSettings.displaySettings = {}; // Parent
 
-	// font size settings (child of display settings)
-	if (userSettings.displaySettings.fontSizes === undefined) userSettings.displaySettings.fontSizes = {}; // parent
-	if (userSettings.displaySettings.fontSizes.arabicText === undefined) userSettings.displaySettings.fontSizes.arabicText = arabicTextSize;
-	if (userSettings.displaySettings.fontSizes.wordTranslationText === undefined) userSettings.displaySettings.fontSizes.wordTranslationText = 'text-sm';
-	if (userSettings.displaySettings.fontSizes.verseTranslationText === undefined) userSettings.displaySettings.fontSizes.verseTranslationText = 'text-sm';
+	userSettings.displaySettings.websiteTheme = userSettings.displaySettings.websiteTheme || 1; // Light
+	userSettings.displaySettings.displayType = userSettings.displaySettings.displayType || 1; // WBW
+	userSettings.displaySettings.fontType = userSettings.displaySettings.fontType || 1; // Uthmanic Hafs Digital
+	userSettings.displaySettings.wordTranslationEnabled = userSettings.displaySettings.wordTranslationEnabled !== undefined ? userSettings.displaySettings.wordTranslationEnabled : true; // Shown
+	userSettings.displaySettings.wordTransliterationEnabled = userSettings.displaySettings.wordTransliterationEnabled !== undefined ? userSettings.displaySettings.wordTransliterationEnabled : true; // Shown
+	userSettings.displaySettings.wordTooltip = userSettings.displaySettings.wordTooltip || 1; // None
+	userSettings.displaySettings.autoScrollSpeed = userSettings.displaySettings.autoScrollSpeed || 40; // x1
+	userSettings.displaySettings.wakeLockEnabled = userSettings.displaySettings.wakeLockEnabled !== undefined ? userSettings.displaySettings.wakeLockEnabled : false; // Enable sleep (default behaviour)
+	userSettings.displaySettings.englishTerminology = userSettings.displaySettings.englishTerminology !== undefined ? userSettings.displaySettings.englishTerminology : false; // Quran terminologies language (default is Arabic)
+	userSettings.displaySettings.hideNonDuaPart = userSettings.displaySettings.hideNonDuaPart !== undefined ? userSettings.displaySettings.hideNonDuaPart : false; // Show all words
 
-	// translation settings
-	if (userSettings.translations === undefined) userSettings.translations = {}; // parent
-	if (userSettings.translations.word === undefined) userSettings.translations.word = 1; // English
-	if (userSettings.translations.verse_v1 === undefined) userSettings.translations.verse_v1 = [1, 131]; // Transliteration, The Clear Quran
-	if (userSettings.translations.tafsir === undefined) userSettings.translations.tafsir = 30; // tafisr ibn kathir
+	// Font size settings (child of display settings)
+	if (!userSettings.displaySettings.fontSizes) userSettings.displaySettings.fontSizes = {}; // Parent
 
-	// transliteration settings
-	if (userSettings.transliteration === undefined) userSettings.transliteration = {}; // parent
-	if (userSettings.transliteration.word === undefined) userSettings.transliteration.word = 1; // normal
+	userSettings.displaySettings.fontSizes.arabicText = userSettings.displaySettings.fontSizes.arabicText || arabicTextSize;
+	userSettings.displaySettings.fontSizes.wordTranslationText = userSettings.displaySettings.fontSizes.wordTranslationText || 'text-sm';
+	userSettings.displaySettings.fontSizes.verseTranslationText = userSettings.displaySettings.fontSizes.verseTranslationText || 'text-sm';
 
-	// audio settings
-	if (userSettings.audioSettings === undefined) userSettings.audioSettings = {}; // parent
-	if (userSettings.audioSettings.reciter === undefined) userSettings.audioSettings.reciter = 10; // Mishary Rashid Alafasy
-	if (userSettings.audioSettings.translationReciter === undefined) userSettings.audioSettings.translationReciter = 1; // English - Ibrahim Walk (Sahih International)
-	if (userSettings.audioSettings.playbackSpeed === undefined) userSettings.audioSettings.playbackSpeed = 3; // x1
-	if (userSettings.audioSettings.playTranslation === undefined) userSettings.audioSettings.playTranslation = false; // verse translation
-	if (userSettings.audioSettings.versePlayButton === undefined) userSettings.audioSettings.versePlayButton = 1; // play selected verse
+	// Translation settings
+	if (!userSettings.translations) userSettings.translations = {}; // Parent
 
-	// quiz settings
-	if (userSettings.quiz === undefined) userSettings.quiz = {}; // parent
-	if (userSettings.quiz.correctAnswers === undefined) userSettings.quiz.correctAnswers = 0;
-	if (userSettings.quiz.wrongAnswers === undefined) userSettings.quiz.wrongAnswers = 0;
+	userSettings.translations.word = userSettings.translations.word || 1; // English
+	userSettings.translations.verse_v1 = userSettings.translations.verse_v1 || [1, 131]; // Transliteration, The Clear Quran
+	userSettings.translations.tafsir = userSettings.translations.tafsir || 30; // Tafsir Ibn Kathir
 
-	// last read
-	if (userSettings.lastRead === undefined) userSettings.lastRead = {};
+	// Transliteration settings
+	if (!userSettings.transliteration) userSettings.transliteration = {}; // Parent
 
-	// user bookmarks
-	if (userSettings.userBookmarks === undefined) userSettings.userBookmarks = [];
+	userSettings.transliteration.word = userSettings.transliteration.word || 1; // Normal
 
-	// user bookmarks
-	if (userSettings.userNotes === undefined) userSettings.userNotes = {};
+	// Audio settings
+	if (!userSettings.audioSettings) userSettings.audioSettings = {}; // Parent
 
-	// favourite chapters
-	if (userSettings.favouriteChapters === undefined) userSettings.favouriteChapters = [1, 5, 18];
+	userSettings.audioSettings.reciter = userSettings.audioSettings.reciter || 10; // Mishary Rashid Alafasy
+	userSettings.audioSettings.translationReciter = userSettings.audioSettings.translationReciter || 1; // English - Ibrahim Walk (Sahih International)
+	userSettings.audioSettings.playbackSpeed = userSettings.audioSettings.playbackSpeed || 3; // x1
+	userSettings.audioSettings.playTranslation = userSettings.audioSettings.playTranslation !== undefined ? userSettings.audioSettings.playTranslation : false; // Verse translation
+	userSettings.audioSettings.versePlayButton = userSettings.audioSettings.versePlayButton || 1; // Play selected verse
 
-	// Initial Setup
-	if (userSettings.initialSetupCompleted === undefined) userSettings.initialSetupCompleted = false;
+	// Quiz settings
+	if (!userSettings.quiz) userSettings.quiz = {}; // Parent
 
-	// chapter number
-	if (userSettings.chapter === undefined) userSettings.chapter = 1;
+	userSettings.quiz.correctAnswers = userSettings.quiz.correctAnswers || 0;
+	userSettings.quiz.wrongAnswers = userSettings.quiz.wrongAnswers || 0;
 
-	// one time modals (is shown?)
-	if (userSettings.oneTimeModals === undefined) userSettings.oneTimeModals = {}; // parent
-	if (userSettings.oneTimeModals.newSiteChangelogModal === undefined) userSettings.oneTimeModals.newSiteChangelogModal = false;
+	// Last read
+	userSettings.lastRead = userSettings.lastRead || {};
 
+	// User bookmarks
+	userSettings.userBookmarks = userSettings.userBookmarks || [];
+
+	// User notes
+	userSettings.userNotes = userSettings.userNotes || {};
+
+	// Favourite chapters
+	userSettings.favouriteChapters = userSettings.favouriteChapters || [1, 5, 18];
+
+	// Initial setup
+	userSettings.initialSetupCompleted = userSettings.initialSetupCompleted !== undefined ? userSettings.initialSetupCompleted : false;
+
+	// Chapter number
+	userSettings.chapter = userSettings.chapter || 1;
+
+	// One-time modals (is shown?)
+	if (!userSettings.oneTimeModals) userSettings.oneTimeModals = {}; // Parent
+
+	userSettings.oneTimeModals.newSiteChangelogModal = userSettings.oneTimeModals.newSiteChangelogModal !== undefined ? userSettings.oneTimeModals.newSiteChangelogModal : false;
+
+	// Save updated userSettings to localStorage
 	localStorage.setItem('userSettings', JSON.stringify(userSettings));
 }

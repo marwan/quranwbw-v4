@@ -1,6 +1,5 @@
 <script>
-	export let data, startVerse, endVerse;
-
+	// Import necessary components and utilities
 	import PageHead from '$misc/PageHead.svelte';
 	import Bismillah from '$display/Bismillah.svelte';
 	import Chapter from '$display/verses/modes/Chapter.svelte';
@@ -15,53 +14,54 @@
 	import { goto } from '$app/navigation';
 	import { term } from '$utils/terminologies';
 
-	// max verses to load if total verses in chapter are more than this
+	// Export data and verse range variables
+	export let data, startVerse, endVerse;
+
+	// Maximum number of verses to load if total verses in chapter exceed this threshold
 	const maxVersesThreshold = 5;
 
 	let chapterData;
 
-	// fetch verses whenever there's a change
+	// Fetch verses whenever there's a change in chapter or URL parameters
 	$: {
+		// Reset chapter data variables on chapter change
 		resetChapterDataVariables(+data.chapter);
 
+		// Update current chapter number
 		__chapterNumber.set(+data.chapter);
 
 		const chapterTotalVerses = quranMetaData[$__chapterNumber].verses;
 
-		// getting start and end range incase we need to load specific verses
-		(startVerse = parseURL()[0]), (endVerse = parseURL()[1]);
+		// Parse URL to get the range of verses to load
+		[startVerse, endVerse] = parseURL();
 
-		// Note: the below is only executed when start is 1 and end is total chapter verses, that is, user did not opt for a specific range
-		// if there were no specific range opted for, then start with 1 till threshold
-		// else we just skip this check and load as per URL parameters
+		// If no specific range is selected, load verses from 1 to threshold or total chapter verses
 		if (startVerse === 1 && endVerse === chapterTotalVerses) {
-			(startVerse = 1), (endVerse = chapterTotalVerses > maxVersesThreshold ? maxVersesThreshold : chapterTotalVerses);
+			startVerse = 1;
+			endVerse = chapterTotalVerses > maxVersesThreshold ? maxVersesThreshold : chapterTotalVerses;
 		}
 
-		// if the complete chapter data was already fetched for this chapter, fetch from the same endpoint again (which should be cached)
-		// else fetch the data for the given start and end verses
-		// if (localStorage.getItem('chapterDataLoaded') === 'true') {
-		// 	chapterData = fetchChapterData(true, $__chapterNumber);
-		// } else {
-		// 	chapterData = fetchChapterData(false, $__chapterNumber, startVerse, endVerse);
-		// }
-
+		// Fetch chapter data from API
 		chapterData = fetchChapterData($__chapterNumber);
 
-		// update the first verse on page
+		// Update the first verse on page
 		__firstVerseOnPage.set(startVerse);
 
-		// do nothing except re-run the block if any of the following store updates
+		// Check for store updates (page URL, display type, font type, word translation, transliteration)
 		if ($__pageURL || $__displayType || $__fontType || $__wordTranslation || $__wordTransliteration) {
-			// do nothing...
+			// Do nothing except re-run the block
 		}
 	}
 
-	$: if ($__verseTranslations) fetchVerseTranslationData($__chapterNumber);
+	// Fetch verse translation data if necessary
+	$: if ($__verseTranslations) {
+		fetchVerseTranslationData($__chapterNumber);
+	}
 
+	// Update the layout for the previous/next verse buttons
 	$: loadPrevNextVerseButtons = `flex ${selectableDisplays[JSON.parse($__userSettings).displaySettings.displayType].continuous ? 'flex-row-reverse' : 'flex-row'} space-x-4 justify-center pt-8 pb-6 theme`;
 
-	// update some variables on chapter change, for when the data has to be loaded from the API
+	// Function to reset chapter data variables when chapter changes
 	function resetChapterDataVariables(chapter) {
 		if (chapter !== $__chapterNumber) {
 			__chapterDataLoaded.set(false);
@@ -69,7 +69,7 @@
 		}
 	}
 
-	// load from the first verse on page minus 1, till the last verse which was already available on the page
+	// Function to load the previous set of verses
 	function loadPreviousVerse() {
 		const versesOnPage = document.getElementsByClassName('verse');
 		const firstVerseOnPage = +versesOnPage[0].id.split(':')[1];
@@ -77,6 +77,7 @@
 		goto(`/${$__chapterNumber}/${+firstVerseOnPage - 1}-${+lastVerseOnPage}`, { replaceState: false });
 	}
 
+	// Set the current page to 'chapter'
 	__currentPage.set('chapter');
 </script>
 

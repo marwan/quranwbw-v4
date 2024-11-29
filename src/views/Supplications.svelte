@@ -9,20 +9,21 @@
 	import { term } from '$utils/terminologies';
 	import { supplicationsFromQuran } from '$data/quranMeta';
 
-	// fetch supplication verses
+	// Fetch supplication verses whenever necessary
 	$: fetchData = fetchVersesData(getSupplicationKeys(), $__fontType, $__wordTranslation, $__wordTransliteration);
 
-	// function to a get string of all supplications chapter:verses
+	// Function to get a string of all supplications chapter:verses
 	function getSupplicationKeys() {
-		let array = [];
+		let keysArray = [];
 
 		for (const [key] of Object.entries(supplicationsFromQuran)) {
-			array.push(key);
+			keysArray.push(key);
 		}
 
-		return array.toString();
+		return keysArray.toString();
 	}
 
+	// Set the current page to 'supplications'
 	__currentPage.set('supplications');
 </script>
 

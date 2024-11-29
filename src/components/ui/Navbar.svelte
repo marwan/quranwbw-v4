@@ -14,50 +14,49 @@
 	let mushafChapters = [];
 	let mushafJuz = '...';
 
+	// Classes for the navbar
 	$: navbarClasses = `bg-white fixed w-full z-20 top-0 left-0 border-b border-black/10 text-black print:hidden theme ${$__currentPage === 'home' ? 'hidden' : 'block'}`;
 	$: topNavClasses = `${$__topNavbarVisible ? 'block' : 'hidden'} flex flex-row items-center justify-between max-w-screen-lg mx-auto px-4 py-2`;
 
-	// last read
+	// Update last read details
 	$: {
 		try {
-			lastReadPage = document.getElementById($__lastRead.key).getAttribute('data-page');
-			lastReadJuz = document.getElementById($__lastRead.key).getAttribute('data-juz');
+			const lastReadElement = document.getElementById($__lastRead.key);
+			lastReadPage = lastReadElement?.getAttribute('data-page');
+			lastReadJuz = lastReadElement?.getAttribute('data-juz');
 
 			if ($__lastRead.hasOwnProperty('key')) {
-				lastReadChapter = $__lastRead.key.split(':')[0];
-				lastReadVerse = $__lastRead.key.split(':')[1];
+				[lastReadChapter, lastReadVerse] = $__lastRead.key.split(':').map(Number);
 			}
-		} catch (error) {}
+		} catch (error) {
+			console.log(error);
+		}
 	}
 
-	// revelation
+	// Get the revelation type of the current chapter
 	$: chapterRevelation = quranMetaData[$__chapterNumber].revelation;
 
-	// scroll percentage
+	// Calculate the scroll progress percentage for the current chapter
 	$: chapterProgress = (lastReadVerse / quranMetaData[lastReadChapter].verses) * 100;
 
-	// chapter name in navbar
+	// Get the chapter name for the navbar
 	$: {
 		navbarChapterName = quranMetaData[$__chapterNumber].transliteration;
 
-		// chapters for which the Arabic and English names are same, the navbar should not show both
-		// quick fix using raw HTML for now, will improve later...
+		// Only show the translation if it's different from the transliteration
 		if (quranMetaData[$__chapterNumber].transliteration !== quranMetaData[$__chapterNumber].translation) {
 			navbarChapterName += `<span class="hidden md:inline-block">&nbsp;(${quranMetaData[$__chapterNumber].translation})</span>`;
 		}
 	}
 
-	// chapter names for mushaf page
+	// Update chapter names for the mushaf page
 	$: {
 		try {
 			mushafJuz = `${term('juz')} ${$__mushafPageDivisions.juz}`;
-			mushafChapters = [];
-
-			// join all the chapter names
-			for (const [key, value] of Object.entries($__mushafPageDivisions.chapters)) {
-				mushafChapters.push(quranMetaData[value].transliteration);
-			}
-		} catch (error) {}
+			mushafChapters = Object.values($__mushafPageDivisions.chapters).map((value) => quranMetaData[value].transliteration);
+		} catch (error) {
+			// console.log(error);
+		}
 	}
 </script>
 

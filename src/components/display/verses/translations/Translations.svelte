@@ -7,19 +7,18 @@
 	import { __currentPage, __verseKey, __verseTranslations, __verseTranslationData, __chapterData, __userSettings } from '$utils/stores';
 	import { fetchVerseTranslationData } from '$utils/fetchData';
 
-	const fontSizes = JSON.parse($__userSettings).displaySettings.fontSizes;
+	$: fontSizes = JSON.parse($__userSettings).displaySettings.fontSizes;
 	let verseTranslationData;
 
-	$: verseTranslationClasses = `verseTranslationText flex flex-col space-y-4 leading-normal ${isBody && 'theme'} ${fontSizes.verseTranslationText}`;
+	$: verseTranslationClasses = `verseTranslationText flex flex-col space-y-4 leading-normal ${isBody ? 'theme' : ''} ${fontSizes.verseTranslationText}`;
 
-	// setting the variables depending on the page
+	// Setting the variables depending on the page
 	$: chapterData = $__currentPage === 'mushaf' ? JSON.parse(localStorage.getItem('pageData')) : $__chapterData;
-	$: chapterToFetch = $__currentPage === 'mushaf' ? +$__verseKey.split(':')[0] : value.meta.chapter;
+	$: chapterToFetch = $__currentPage === 'mushaf' ? parseInt($__verseKey.split(':')[0], 10) : value.meta.chapter;
 
-	// for chapter and mushaf page, we fetch the verse translations for the whole chapter in one API call from the Chapter.svelte file
-	// and for other pages like supplications & bookmarks, we fetch the translations for each verse because all can be different
+	// Fetch verse translations for pages other than chapter
 	$: {
-		if (!['chapter'].includes($__currentPage)) {
+		if ($__currentPage !== 'chapter') {
 			(async () => {
 				verseTranslationData = await fetchVerseTranslationData(chapterToFetch);
 			})();

@@ -18,17 +18,20 @@
 	import { toggleMushafMinimalMode } from '$utils/toggleMushafMinimalMode';
 	import '$lib/swiped-events.min.js';
 
-	// page:line for which we need to center the verse rathen than justify
+	// Lines to be centered instead of justified
 	const centeredPageLines = ['528:9', '594:5', '602:5', '602:15', '603:10', '603:15', '604:4', '604:9', '604:14', '604:15'];
+
 	let pageData;
 	let startingLine;
 	let endingLine;
 	let chapters = [];
 	let verses = [];
 	let lines = [];
+
+	// Set the page number
 	$: page = +data.page;
 
-	// prefetch the previous and next data for better UX
+	// Prefetch adjacent pages for better UX
 	$: {
 		if ([2, 3].includes($__fontType)) {
 			for (let thisPage = +page - 2; thisPage <= +page + 2; thisPage++) {
@@ -38,10 +41,11 @@
 		}
 	}
 
-	// fetching the page data from API
+	// Fetching the page data from API
 	$: {
-		// empty all the arrays
-		(chapters = []), (verses = []), (lines = []);
+		chapters = [];
+		verses = [];
+		lines = [];
 
 		pageData = (async () => {
 			const apiURL = `${apiEndpoint}/page?page=${page}&word_type=${selectableFontTypes[$__fontType].apiId}&word_translation=${$__wordTranslation}&version=${apiVersion}`;
@@ -53,70 +57,58 @@
 			startingLine = apiData[Object.keys(apiData)[0]].words.line.split('|')[0];
 			endingLine = apiData[Object.keys(apiData)[Object.keys(apiData).length - 1]].words.end_line;
 
-			// get chapter numbers
-			for (const [key, value] of Object.entries(apiData)) {
+			// Get chapter numbers
+			for (const key of Object.keys(apiData)) {
 				const chapter = +key.split(':')[0];
-				if (chapters.indexOf(chapter) === -1) {
+				if (!chapters.includes(chapter)) {
 					chapters.push(chapter);
 				}
 			}
 
-			// get first verse of each chapters
-			if (chapters.length > 0) {
-				for (let chapter = 0; chapter <= chapters.length - 1; chapter++) {
-					for (let verse = 1; verse <= quranMetaData[chapters[chapter]].verses; verse++) {
-						if (apiData[`${chapters[chapter]}:${verse}`] !== undefined) {
-							verses.push(verse);
-							break;
-						}
+			// Get the first verse of each chapter
+			chapters.forEach((chapter) => {
+				for (let verse = 1; verse <= quranMetaData[chapter].verses; verse++) {
+					if (apiData[`${chapter}:${verse}`]) {
+						verses.push(verse);
+						break;
 					}
 				}
-			}
+			});
 
-			// get line numbers for chapters
-			if (chapters.length > 0) {
-				for (let chapter = 0; chapter <= chapters.length - 1; chapter++) {
-					lines.push(+apiData[`${chapters[chapter]}:${verses[chapter]}`].words.line.split('|')[0]);
-				}
-			}
+			// Get line numbers for chapters
+			chapters.forEach((chapter, index) => {
+				lines.push(+apiData[`${chapter}:${verses[index]}`].words.line.split('|')[0]);
+			});
 
-			// set the mushaf page divisions
+			// Set the mushaf page divisions
 			__mushafPageDivisions.set({
 				chapters: chapters,
 				juz: apiData[Object.keys(apiData)[0]].meta.juz
 			});
 
-			// goto previous page on left swipe
-			document.getElementById('page-block').addEventListener('swiped-left', function (e) {
-				goto(`/page/${page === 1 ? 1 : page - 1}`, { replaceState: false });
-			});
+			// Event listeners for swipe gestures
+			const pageBlock = document.getElementById('page-block');
+			pageBlock.addEventListener('swiped-left', () => goto(`/page/${page === 1 ? 1 : page - 1}`, { replaceState: false }));
+			pageBlock.addEventListener('swiped-right', () => goto(`/page/${page === 604 ? 604 : page + 1}`, { replaceState: false }));
 
-			// goto next page on right swipe
-			document.getElementById('page-block').addEventListener('swiped-right', function (e) {
-				goto(`/page/${page === 604 ? 604 : page + 1}`, { replaceState: false });
-			});
-
-			// dynamically load header font
+			// Dynamically load header font
 			loadFont('chapter-headers', `${mushafHeaderFontLink}?version=${mushafFontVersion}`).then(() => {
-				document.querySelectorAll('.header').forEach((element) => {
-					element.classList.remove('invisible');
-				});
+				document.querySelectorAll('.header').forEach((element) => element.classList.remove('invisible'));
 			});
 
 			return apiData;
 		})();
 
-		// set the page number
+		// Update the page number and last read page
 		__pageNumber.set(page);
-
-		// update the last read page
 		const key = JSON.parse(localStorage.getItem('userSettings')).lastRead.key;
 		updateSettings({ type: 'lastRead', value: { key: key !== undefined ? key : '1:1', page } });
 	}
 
-	// only allow continious normal mode, but skip saving the settings
+	// Only allow continuous normal mode, without saving the setting
 	$__displayType = 4;
 
+	// Set the current page to 'mushaf'
 	__currentPage.set('mushaf');
 </script>
 

@@ -16,6 +16,7 @@
 	import Range from '$ui/FlowbiteSvelte/forms/Range.svelte';
 	import CloseButton from '$ui/FlowbiteSvelte/utils/CloseButton.svelte';
 	import Button from '$ui/FlowbiteSvelte/buttons/Button.svelte';
+
 	import {
 		__currentPage,
 		__chapterData,
@@ -43,7 +44,9 @@
 		__hideNonDuaPart,
 		__playButtonsFunctionality
 	} from '$utils/stores';
+
 	import { selectableDisplays, selectableFontTypes, selectableThemes, selectableWordTranslations, selectableWordTransliterations, selectableVerseTransliterations, selectableReciters, selectableTranslationReciters, selectablePlaybackSpeeds, selectableTooltipOptions, selectableFontSizes, fontSizePresets, selectableVersePlayButtonOptions } from '$data/options';
+
 	import { updateSettings } from '$utils/updateSettings';
 	import { resetSettings } from '$utils/resetSettings';
 	import { disabledClasses, buttonClasses } from '$data/commonClasses';
@@ -53,6 +56,7 @@
 	import { term } from '$utils/terminologies';
 	import { getTailwindBreakpoint } from '$utils/getTailwindBreakpoint';
 
+	// Components mapping for individual settings
 	const individualSettingsComponents = {
 		'website-theme': WebsiteThemeSelector,
 		'display-type': DisplayTypeSelector,
@@ -69,16 +73,19 @@
 		'verse-play-button': VersePlayButtonSelector
 	};
 
+	// Transition parameters for drawer
 	const transitionParamsRight = {
 		x: 320,
 		duration: 200,
 		easing: sineIn
 	};
+
+	// CSS classes
 	const settingsBlockClasses = 'space-y-2 py-6';
 	const selectorClasses = 'w-32 border border-black/10 text-black text-left rounded-3xl focus:ring-gray-500 focus:border-gray-500 focus-within:ring-2 block p-2.5 truncate font-normal theme-grayscale';
 	const settingsDescriptionClasses = 'mb-6 text-xs opacity-70';
 	const toggleBtnClasses =
-		"relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-black/10 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-gray-600 theme-grayscale";
+		'relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[""] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-black/10 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-gray-600 theme-grayscale';
 
 	let settingsDrawerOpacity = 'opacity-100';
 	let settingsDrawerBackground = 'bg-white';
@@ -92,74 +99,90 @@
 	let verseTranlationTransliterationSizeValue = fontSizePresets.indexOf(JSON.parse($__userSettings).displaySettings.fontSizes.verseTranslationText);
 	let playbackSpeedValue = JSON.parse($__userSettings).audioSettings.playbackSpeed;
 
-	// update settings when slider updates
+	// Update settings when sliders are changed
 	$: updateSettings({ type: 'arabicText', value: selectableFontSizes[arabicWordSizeValue].value });
 	$: updateSettings({ type: 'wordTranslationText', value: selectableFontSizes[wordTranlationTransliterationSizeValue].value });
 	$: updateSettings({ type: 'verseTranslationText', value: selectableFontSizes[verseTranlationTransliterationSizeValue].value });
 	$: updateSettings({ type: 'playbackSpeed', value: playbackSpeedValue });
 
+	// Calculate maximum allowed font size based on breakpoint
 	$: maxFontSizeAllowed = ['default', 'sm'].includes(getTailwindBreakpoint()) ? 9 : 12;
-	$: wordTranslationKey = Object.keys(selectableWordTranslations).filter((item) => selectableWordTranslations[item].id === $__wordTranslation);
-	$: wordTransliterationKey = Object.keys(selectableWordTransliterations).filter((item) => selectableWordTransliterations[item].id === $__wordTransliteration);
-	$: if ($__currentPage || $__settingsDrawerHidden) goBackToMainSettings();
-	$: {
-		totalVerseTransliterationsSelected = 0;
 
-		$__verseTranslations.forEach((item) => {
-			if (selectableVerseTransliterations.includes(item)) totalVerseTransliterationsSelected++;
-		});
+	// Get translation and transliteration keys
+	$: wordTranslationKey = Object.keys(selectableWordTranslations).find((item) => selectableWordTranslations[item].id === $__wordTranslation);
+	$: wordTransliterationKey = Object.keys(selectableWordTransliterations).find((item) => selectableWordTransliterations[item].id === $__wordTransliteration);
+
+	// Hide settings drawer and go back to main settings on certain conditions
+	$: if ($__currentPage || $__settingsDrawerHidden) goBackToMainSettings();
+
+	// Count total selected verse transliterations
+	$: {
+		totalVerseTransliterationsSelected = $__verseTranslations.filter((item) => selectableVerseTransliterations.includes(item)).length;
 	}
 
-	// some basic detection
+	// Basic browser and platform detection
 	const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
-	const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+	const isMac = navigator.platform.toUpperCase().includes('MAC');
 	const isIOS = /(iPhone|iPod|iPad)/i.test(navigator.platform);
 
+	// Go back to main settings and restore scroll position
 	function goBackToMainSettings() {
 		allSettingsVisible = true;
 		individualSettingsVisible = false;
 
-		// scroll to last position
-		setTimeout(function () {
+		// Scroll to last known position
+		setTimeout(() => {
 			try {
 				document.getElementById('settings-drawer').scrollTop = mainSettingsScrollPos;
-			} catch (error) {}
+			} catch (error) {
+				// console.log(error);
+			}
 		}, 0);
 	}
 
+	// Navigate to an individual setting component
 	function gotoIndividualSetting(type) {
 		mainSettingsScrollPos = document.getElementById('settings-drawer').scrollTop;
 		allSettingsVisible = false;
 		individualSettingsVisible = true;
 		individualSettingsComponent = individualSettingsComponents[type];
 
-		setTimeout(function () {
+		// Scroll to the individual setting view
+		setTimeout(() => {
 			try {
 				document.getElementById('individual-setting').scrollIntoView();
-			} catch (error) {}
+			} catch (error) {
+				// console.log(error);
+			}
 		}, 0);
 	}
 
+	// Handle mouse enter event to show font size sliders
 	function onMouseEnter(selector) {
 		document.querySelectorAll('.fontSizeSliders').forEach((element) => {
 			element.classList.remove('bg-white', 'opacity-100');
 			element.classList.add('opacity-0', 'pointer-events-none');
 		});
+
 		settingsDrawerOpacity = 'opacity-0';
 		settingsDrawerBackground = 'bg-transparent';
-		document.getElementsByClassName('settings-backdrop')[0].classList.add('opacity-10');
-		document.getElementById(selector).classList.remove('opacity-0', 'pointer-events-none');
-		document.getElementById(selector).classList.add('opacity-100', 'bg-white', 'rounded-3xl', 'shadow-lg', 'px-2');
+		document.querySelector('.settings-backdrop').classList.add('opacity-10');
+
+		const selectedElement = document.getElementById(selector);
+		selectedElement.classList.remove('opacity-0', 'pointer-events-none');
+		selectedElement.classList.add('opacity-100', 'bg-white', 'rounded-3xl', 'shadow-lg', 'px-2');
 	}
 
+	// Handle mouse leave event to hide font size sliders
 	function onMouseLeave() {
 		document.querySelectorAll('.fontSizeSliders').forEach((element) => {
 			element.classList.remove('bg-white', 'opacity-0', 'rounded-3xl', 'shadow-lg', 'px-2', 'pointer-events-none');
 			element.classList.add('opacity-100');
 		});
+
 		settingsDrawerOpacity = 'opacity-100';
 		settingsDrawerBackground = 'bg-white';
-		document.getElementsByClassName('settings-backdrop')[0].classList.remove('opacity-10');
+		document.querySelector('.settings-backdrop').classList.remove('opacity-10');
 	}
 </script>
 

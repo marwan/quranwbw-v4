@@ -4,20 +4,27 @@ import { __currentPage, __lastRead } from '$utils/stores';
 import { updateSettings } from '$utils/updateSettings';
 
 export function displayTypeChangeHandler(displayId) {
-	// non-mushaf modes
-	if ([1, 2, 3, 4, 5, 7].includes(displayId)) {
-		if (get(__currentPage) === 'mushaf') {
-			const firstWordKey = document.getElementsByClassName('word')[0].id;
-			const chapter = firstWordKey.split(':')[0];
-			const verse = firstWordKey.split(':')[1];
-			goto(`/${chapter}/${verse}`);
-		}
+	const nonMushafModes = [1, 2, 3, 4, 5, 7];
+	const mushafMode = [6];
 
-		updateSettings({ type: 'displayType', value: displayId });
+	if (nonMushafModes.includes(displayId)) {
+		handleNonMushafMode(displayId);
+	} else if (mushafMode.includes(displayId)) {
+		handleMushafMode();
+	}
+}
+
+function handleNonMushafMode(displayId) {
+	if (get(__currentPage) === 'mushaf') {
+		const firstWordKey = document.querySelector('.word').id;
+		const [chapter, verse] = firstWordKey.split(':');
+		goto(`/${chapter}/${verse}`);
 	}
 
-	// mushaf mode
-	else if ([6].includes(displayId)) {
-		goto(`/page/${get(__lastRead).page}`);
-	}
+	updateSettings({ type: 'displayType', value: displayId });
+}
+
+function handleMushafMode() {
+	const lastReadPage = get(__lastRead).page;
+	goto(`/page/${lastReadPage}`);
 }

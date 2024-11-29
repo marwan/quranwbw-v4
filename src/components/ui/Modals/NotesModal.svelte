@@ -8,34 +8,53 @@
 	import { updateSettings } from '$utils/updateSettings';
 	import { getModalTransition } from '$utils/getModalTransition';
 
+	// Variables to hold the current note and modification time
 	let verseNote, noteModifiedAt;
 
+	// Extract chapter number from verse key
 	$: chapter = $__verseKey.split(':')[0];
 
+	// Reactive block to update note details and validation states
 	$: {
-		// by default make them null
-		(verseNote = null), (noteModifiedAt = null);
+		// Initialize note details as null by default
+		verseNote = null;
+		noteModifiedAt = null;
 
-		// if a note for the current key exists, update the variables
+		// Update note details if a note exists for the current key
 		if ($__userNotes.hasOwnProperty($__verseKey)) {
 			verseNote = $__userNotes[$__verseKey].note;
 			noteModifiedAt = timeAgo($__userNotes[$__verseKey].modified_at);
 
-			// to re-run the block
+			// Re-run the block when notes modal visibility changes
 			$__notesModalVisible;
 		}
 
-		if (noteModifiedAt === undefined) noteModifiedAt = 'just now';
+		// Set default modification time if undefined
+		if (noteModifiedAt === undefined) {
+			noteModifiedAt = 'just now';
+		}
 	}
 
+	// Function to update the note
 	function updateNote() {
 		const notesValue = document.getElementById('notes-value').value;
-		updateSettings({ type: 'userNotes', key: $__verseKey, value: notesValue, set: true });
+		updateSettings({
+			type: 'userNotes',
+			key: $__verseKey,
+			value: notesValue,
+			set: true
+		});
 	}
 
+	// Function to reset the note
 	function resetNote() {
 		verseNote = '';
-		updateSettings({ type: 'userNotes', key: $__verseKey, value: '', set: true });
+		updateSettings({
+			type: 'userNotes',
+			key: $__verseKey,
+			value: '',
+			set: true
+		});
 	}
 </script>
 

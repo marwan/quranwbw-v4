@@ -14,13 +14,14 @@
 	const loadAll = params.get('load_all') === 'true';
 	const totalAvailableWords = Object.keys(wordData).length;
 	const maxResultsToLoad = 50;
-	let lastWordToLoad = loadAll ? totalAvailableWords : totalAvailableWords > maxResultsToLoad ? maxResultsToLoad : totalAvailableWords;
+	let lastWordToLoad = calculateInitialLastWordToLoad(loadAll, totalAvailableWords, maxResultsToLoad);
+
+	function calculateInitialLastWordToLoad(loadAll, totalAvailableWords, maxResultsToLoad) {
+		return loadAll ? totalAvailableWords : Math.min(totalAvailableWords, maxResultsToLoad);
+	}
 
 	function updateLastWordToLoad() {
-		lastWordToLoad = lastWordToLoad + 50;
-		if (lastWordToLoad > totalAvailableWords) {
-			lastWordToLoad = totalAvailableWords;
-		}
+		lastWordToLoad = Math.min(lastWordToLoad + 50, totalAvailableWords);
 	}
 </script>
 

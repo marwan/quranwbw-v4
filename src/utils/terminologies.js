@@ -1,9 +1,7 @@
 import { get } from 'svelte/store';
 import { __englishTerminology } from '$utils/stores';
 
-// using true/false structure to save my time and efforts
 export const englishTerms = {
-	// if English
 	true: {
 		chapter: 'Chapter',
 		chapters: 'Chapters',
@@ -16,8 +14,6 @@ export const englishTerms = {
 		meccan: 'Meccan',
 		medinan: 'Medinan'
 	},
-
-	// if Arabic
 	false: {
 		chapter: 'Surah',
 		chapters: 'Surahs',
@@ -33,5 +29,6 @@ export const englishTerms = {
 };
 
 export function term(terminology) {
-	return englishTerms[get(__englishTerminology)][terminology];
+	const isEnglish = get(__englishTerminology);
+	return englishTerms[isEnglish][terminology];
 }

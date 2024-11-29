@@ -16,41 +16,51 @@
 	let selection = null;
 	let answerChecked = false;
 	let isAnswerCorrect = null;
-	let randomWord = Math.floor(Math.random() * 3) + 0;
+	let randomWord = Math.floor(Math.random() * 3);
 
-	// fetch words
-	$: {
-		fetchData = (async () => {
+	// Fetch random words
+	$: fetchData = (async () => {
+		try {
 			const response = await fetch(`${apiEndpoint}/random-words?randomID=${randomID}`);
 			const data = await response.json();
 			return data.data;
-		})();
-	}
+		} catch (error) {
+			console.error(errorLoadingDataMessage, error);
+			return [];
+		}
+	})();
 
+	// Check if the selected answer is correct
 	function checkAnswer() {
 		answerChecked = true;
 		isAnswerCorrect = selection === randomWord;
 
 		if (isAnswerCorrect) {
-			// confettis for correct answer? why not!
+			// Show confetti for correct answer
 			party.confetti(document.body, {
 				count: 80,
 				spread: 100,
 				size: 2
 			});
 
+			// Update correct answers count
 			updateSettings({ type: 'quizCorrectAnswers', value: $__quizCorrectAnswers + 1 });
-		} else updateSettings({ type: 'quizWrongAnswers', value: $__quizWrongAnswers + 1 });
+		} else {
+			// Update wrong answers count
+			updateSettings({ type: 'quizWrongAnswers', value: $__quizWrongAnswers + 1 });
+		}
 	}
 
+	// Set new random word and reset selections
 	function setRandomWord() {
 		randomID = Math.floor(Math.random() * 9999999) + 1;
-		randomWord = Math.floor(Math.random() * 3) + 0;
+		randomWord = Math.floor(Math.random() * 3);
 		selection = null;
 		isAnswerCorrect = null;
 		answerChecked = false;
 	}
 
+	// Set the current page
 	__currentPage.set('Guess The Word');
 </script>
 
