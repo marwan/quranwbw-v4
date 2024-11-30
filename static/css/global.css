@@ -1742,10 +1742,6 @@ input[type="range"].range-lg::-moz-range-thumb {
   grid-template-columns: repeat(7, minmax(0, 1fr));
 }
 
-.grid-cols-3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
 .flex-row {
   flex-direction: row;
 }
@@ -1784,10 +1780,6 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .justify-start {
   justify-content: flex-start;
-}
-
-.\!justify-end {
-  justify-content: flex-end !important;
 }
 
 .justify-end {
@@ -2050,11 +2042,6 @@ input[type="range"].range-lg::-moz-range-thumb {
 .rounded-e-lg {
   border-start-end-radius: 0.5rem;
   border-end-end-radius: 0.5rem;
-}
-
-.rounded-l-3xl {
-  border-top-left-radius: 1.5rem;
-  border-bottom-left-radius: 1.5rem;
 }
 
 .rounded-l-full {
@@ -2595,10 +2582,6 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .pb-24 {
   padding-bottom: 6rem;
-}
-
-.pb-28 {
-  padding-bottom: 7rem;
 }
 
 .pb-4 {
@@ -3171,7 +3154,7 @@ input[type="range"].range-lg::-moz-range-thumb {
 @font-face {
   font-family: "tajweed-rules";
 
-  src: url("../fonts/tajweed-rules/QCF4_TAJWEED_RULES-Regular.woff2") format("woff2"), url("../fonts/tajweed-rules/QCF4_TAJWEED_RULES-Regular.woff") format("woff");
+  src: url("../fonts/tajweed-rules/QCF4_TajweedRules-Regular.woff2") format("woff2"), url("../fonts/tajweed-rules/QCF4_TajweedRules-Regular.woff") format("woff");
 
   font-weight: normal;
 
@@ -3588,8 +3571,8 @@ svg {
   transition-duration: 150ms;
 }
 
-.after\:content-\[\'\'\]::after {
-  --tw-content: '';
+.after\:content-\[\"\"\]::after {
+  --tw-content: "";
   content: var(--tw-content);
 }
 

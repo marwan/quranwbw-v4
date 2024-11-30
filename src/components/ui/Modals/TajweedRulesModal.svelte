@@ -12,14 +12,14 @@
 	<table class="w-full text-sm text-left rtl:text-right">
 		<thead class="text-xs text-gray-700 uppercase bg-lightGray theme-grayscale">
 			<tr>
-				<th scope="col" class="px-6 py-3"> Icon/Color </th>
+				<th scope="col" class="px-6 py-3 w-fit"> Icon </th>
 				<th scope="col" class="px-6 py-3"> Description </th>
 			</tr>
 		</thead>
 		<tbody>
 			{#each Object.entries(tajweedRulings) as [id, ruling]}
-				<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-lightGray">
-					<td class="px-6 py-4 tajweed-rules text-2xl theme-palette-tajweed font-filter"> {ruling.code} </td>
+				<tr class="bg-white border-b hover:bg-gray-50">
+					<td class="py-4 w-fit tajweed-rules text-2xl text-center theme-palette-tajweed font-filter"> {ruling.code} </td>
 					<td class="px-6 py-4 theme-grayscale">
 						<div class="flex flex-col space-y-2">
 							<span class="font-bold">{ruling.title} </span>
