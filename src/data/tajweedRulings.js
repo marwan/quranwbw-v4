@@ -56,7 +56,7 @@ export const tajweedColorIds = {
 
 export const tajweedRulings = {
 	1: {
-		code: 'A',
+		code: 'ﱇ',
 		title: 'Normal Text',
 		description: null
 	},

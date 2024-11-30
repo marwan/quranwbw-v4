@@ -29,7 +29,7 @@
 
 @font-face {
   font-family: "tajweed-rules";
-  src: url("../fonts/tajweed-rules/QCF4_TAJWEED_RULES-Regular.woff2") format("woff2"), url("../fonts/tajweed-rules/QCF4_TAJWEED_RULES-Regular.woff") format("woff");
+  src: url("../fonts/tajweed-rules/QCF4_TajweedRules-Regular.woff2") format("woff2"), url("../fonts/tajweed-rules/QCF4_TajweedRules-Regular.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
