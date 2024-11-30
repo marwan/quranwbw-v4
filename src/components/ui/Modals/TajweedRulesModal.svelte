@@ -35,7 +35,7 @@
 			{:then tajweedRulesData}
 				{#each Object.entries(tajweedRulesData) as [key, value]}
 					<tr class="bg-white border-b hover:bg-gray-50">
-						<td class="py-4 w-fit tajweed-rules text-2xl text-center theme-palette-tajweed font-filter"> {value.code} </td>
+						<td class="py-4 w-fit tajweed-rules text-2xl text-center align-top theme-palette-tajweed font-filter"> {value.code} </td>
 						<td class="pl-2 pr-6 py-4 theme-grayscale">
 							<div class="flex flex-col space-y-2">
 								<span class="font-bold">{value.title} </span>
