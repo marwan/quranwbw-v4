@@ -11,7 +11,7 @@
 	import { checkTimeSpecificChapters } from '$utils/checkTimeSpecificChapters';
 	import { term } from '$utils/terminologies';
 	import { fetchSingleVerseData } from '$utils/fetchData';
-	import { splitDelimeter } from '$data/websiteSettings';
+	import { splitDelimiter } from '$data/websiteSettings';
 
 	// CSS classes for chapter cards and tabs
 	const cardGridClasses = 'grid md:grid-cols-2 lg:grid-cols-3 gap-3';
@@ -201,7 +201,7 @@
 									{#if activeTab === 3 && totalBookmarks !== 0}
 										<div class="text-sm opacity-70 truncate direction-rtl text-right arabic-font-1">
 											{#await fetchData then data}
-												{data[bookmark].words.arabic.split(splitDelimeter).join(' ')}
+												{data[bookmark].words.arabic.split(splitDelimiter).join(' ')}
 											{:catch error}
 												<p></p>
 											{/await}
