@@ -6,12 +6,12 @@ export const websiteTitle = `Quran ${websiteTagline} - ${websiteURL}`;
 
 export const wbwLanguages = 'English, Urdu, Hindi, Indonesian, Bangla, Turkish, Tamil, French, German, Russian, Ingush, Chinese, Malayalam, Divehi and Persian';
 
-export const apiEndpoint = 'https://api.quranwbw.com/v1';
+// export const apiEndpoint = 'https://api.quranwbw.com/v1';
 // export const apiEndpoint = 'http://localhost:7500/v1';
 
 export const staticEndpoint = 'https://static.quranwbw.com/data';
 
-export const apiVersion = 108;
+export const apiVersion = 109;
 
 export const wordsAudioURL = 'https://audios.quranwbw.com/words';
 
@@ -22,3 +22,5 @@ export const mushafHeaderFontLink = 'https://v4.quranwbw.com/fonts/chapter-heade
 export const mushafFontVersion = 4;
 
 export const errorLoadingDataMessage = 'Sorry, there was an error while loading the data. Please refresh the page and try again.';
+
+export const splitDelimeter = '||';

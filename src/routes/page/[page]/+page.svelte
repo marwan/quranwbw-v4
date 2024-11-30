@@ -16,6 +16,7 @@
 	import { selectableFontTypes } from '$data/options';
 	import { loadFont } from '$utils/loadFont';
 	import { toggleMushafMinimalMode } from '$utils/toggleMushafMinimalMode';
+	import { splitDelimeter } from '$data/websiteSettings';
 	import '$lib/swiped-events.min.js';
 
 	// Lines to be centered instead of justified
@@ -54,7 +55,7 @@
 			const apiData = data.data.verses;
 			localStorage.setItem('pageData', JSON.stringify(apiData));
 
-			startingLine = apiData[Object.keys(apiData)[0]].words.line.split('|')[0];
+			startingLine = apiData[Object.keys(apiData)[0]].words.line.split(splitDelimeter)[0];
 			endingLine = apiData[Object.keys(apiData)[Object.keys(apiData).length - 1]].words.end_line;
 
 			// Get chapter numbers
@@ -77,7 +78,7 @@
 
 			// Get line numbers for chapters
 			chapters.forEach((chapter, index) => {
-				lines.push(+apiData[`${chapter}:${verses[index]}`].words.line.split('|')[0]);
+				lines.push(+apiData[`${chapter}:${verses[index]}`].words.line.split(splitDelimeter)[0]);
 			});
 
 			// Set the mushaf page divisions

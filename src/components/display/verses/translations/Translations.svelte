@@ -43,8 +43,8 @@
 				<!-- ================== -->
 
 				<!-- data from Quran.com's API -->
+				<!-- after transliteration, show other translations -->
 				{#if $__verseTranslationData[value.meta.verse - 1].hasOwnProperty('translations')}
-					<!-- after transliteration, show other translations -->
 					{#each Object.entries($__verseTranslationData[Object.keys($__verseTranslationData)[value.meta.verse - 1]].translations) as [verseTranslationID, verseTranslation]}
 						{#if verseTranslation.resource_id !== 57}
 							<Layout verseTranslationID={verseTranslation.resource_id} {verseTranslation} {value} />

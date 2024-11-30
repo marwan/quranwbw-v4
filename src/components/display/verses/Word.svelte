@@ -17,15 +17,15 @@
 	import { supplicationsFromQuran } from '$data/quranMeta';
 	import { __currentPage, __fontType, __displayType, __userSettings, __audioSettings, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __morphologyKey, __wordTooltip, __verseKey, __websiteTheme, __hideNonDuaPart } from '$utils/stores';
 	// import { tajweedRulings, tajweedColorIds } from '$data/tajweedRulings';
-	import { apiEndpoint } from '$data/websiteSettings';
+	import { apiEndpoint, splitDelimeter } from '$data/websiteSettings';
 
 	const chapter = key.split(':')[0];
 	const verse = key.split(':')[1];
 	const wordKey = `${chapter}:${verse}:${word + 1}`;
 	const fontSizes = JSON.parse($__userSettings).displaySettings.fontSizes;
-	const arabicSplit = value.words.arabic.split('|');
-	const transliterationSplit = value.words.transliteration.split('|');
-	const translationSplit = value.words.translation.split('|');
+	const arabicSplit = value.words.arabic.split(splitDelimeter);
+	const transliterationSplit = value.words.transliteration.split(splitDelimeter);
+	const translationSplit = value.words.translation.split(splitDelimeter);
 	const v4PopoverEnabled = false;
 
 	// fix for Ba'da Ma Ja'aka for page 254
@@ -66,7 +66,7 @@
 	}
 </script>
 
-{#if $__currentPage != 'mushaf' || ($__currentPage === 'mushaf' && +value.words.line.split('|')[word] === line)}
+{#if $__currentPage != 'mushaf' || ($__currentPage === 'mushaf' && +value.words.line.split(splitDelimeter)[word] === line)}
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<div id={wordKey} class={wordDivClasses} on:click={() => wordClickHandler({ key: wordKey, type: 'word' })}>
