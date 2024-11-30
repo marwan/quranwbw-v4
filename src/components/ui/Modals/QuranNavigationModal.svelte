@@ -32,10 +32,8 @@
 	let morphologyKey = '1:1';
 
 	// Extract last read chapter and verse from the user's last read data
-	$: {
-		if ($__lastRead.hasOwnProperty('key')) {
-			[lastReadChapter, lastReadVerse] = $__lastRead.key.split(':').map(Number);
-		}
+	$: if ($__lastRead.hasOwnProperty('key')) {
+		[lastReadChapter, lastReadVerse] = $__lastRead.key.split(':').map(Number);
 	}
 
 	// Hide the navigation modal when page URL or chapter/page number changes
@@ -62,20 +60,19 @@
 		maxVersesToLoad = Math.min(chapterVerses, maxItemsToLoad);
 	}
 
-	// Focus the search input box and load verse key data when the navigation modal is visible
-	$: {
-		if ($__quranNavigationModalVisible) {
-			// Focus the search input box
-			setTimeout(() => {
-				document.getElementById('searchKey').focus();
-			}, 1);
+	// Load verse key data externally to reduce bundle size
+	$: if ($__quranNavigationModalVisible || ['mushaf', 'morphology'].includes($__currentPage)) {
+		(async () => {
+			const response = await fetch(`${staticEndpoint}/v4/meta/verseKeyData.json`);
+			verseKeyData = await response.json();
+		})();
+	}
 
-			// Load verse key data externally to reduce bundle size
-			(async () => {
-				const response = await fetch(`${staticEndpoint}/v4/meta/verseKeyData.json`);
-				verseKeyData = await response.json();
-			})();
-		}
+	// Focus the search input box
+	$: if ($__quranNavigationModalVisible) {
+		setTimeout(() => {
+			document.getElementById('searchKey').focus();
+		}, 1);
 	}
 
 	// Update morphology key for the morphology page
