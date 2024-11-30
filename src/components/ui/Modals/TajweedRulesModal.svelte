@@ -1,7 +1,7 @@
 <script>
 	import Modal from '$ui/FlowbiteSvelte/modal/Modal.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
-	import { __websiteTheme, __tajweedRulesModalVisible } from '$utils/stores';
+	import { __websiteTheme, __tajweedRulesModalVisible, __currentPage, __chapterNumber } from '$utils/stores';
 	import { term } from '$utils/terminologies';
 	import { getModalTransition } from '$utils/getModalTransition';
 	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
@@ -9,6 +9,8 @@
 
 	const modalTitle = `${term('tajweed')} Rules`;
 	let tajweedRulesData;
+
+	$: if ($__currentPage || $__chapterNumber) __tajweedRulesModalVisible.set(false);
 
 	$: {
 		if ($__tajweedRulesModalVisible) {
@@ -26,7 +28,7 @@
 		const keysLinks = [];
 
 		for (let i = 0; i <= keysSplit.length - 1; i++) {
-			keysLinks.push(`<a class='${linkClasses}' href='/morphology/${keysSplit[i]}'>${keysSplit[i]}</a>`);
+			keysLinks.push(`<a class='${linkClasses}' href='/${keysSplit[i].split(':')[0]}/${keysSplit[i].split(':')[1]}'>${keysSplit[i]}</a>`);
 		}
 
 		return keysLinks.join(', ');
