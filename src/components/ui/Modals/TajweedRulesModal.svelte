@@ -5,6 +5,7 @@
 	import { term } from '$utils/terminologies';
 	import { getModalTransition } from '$utils/getModalTransition';
 	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
+	import { linkClasses } from '$data/commonClasses';
 
 	const modalTitle = `${term('tajweed')} Rules`;
 	let tajweedRulesData;
@@ -25,7 +26,7 @@
 		<thead class="text-xs text-gray-700 uppercase bg-lightGray theme-grayscale">
 			<tr>
 				<th scope="col" class="px-6 py-3 w-fit"> Icon </th>
-				<th scope="col" class="px-6 py-3"> Description </th>
+				<th scope="col" class="pl-2 pr-6 py-3"> Description </th>
 			</tr>
 		</thead>
 		<tbody>
@@ -35,7 +36,7 @@
 				{#each Object.entries(tajweedRulesData) as [key, value]}
 					<tr class="bg-white border-b hover:bg-gray-50">
 						<td class="py-4 w-fit tajweed-rules text-2xl text-center theme-palette-tajweed font-filter"> {value.code} </td>
-						<td class="px-6 py-4 theme-grayscale">
+						<td class="pl-2 pr-6 py-4 theme-grayscale">
 							<div class="flex flex-col space-y-2">
 								<span class="font-bold">{value.title} </span>
 
@@ -51,4 +52,10 @@
 			{/await}
 		</tbody>
 	</table>
+
+	<!-- links to PDF files -->
+	<div class="mt-4 text-xs">
+		To learn the correct pronunciation of Arabic alphabets, please refer to
+		<a class={linkClasses} target="_blank" rel="noreferrer" href="https://static.quranwbw.com/data/v4/tajweed/Makharij%20Al%20Huroof.pdf">Makharij Al Huroof</a>.
+	</div>
 </Modal>
