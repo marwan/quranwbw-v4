@@ -102,29 +102,31 @@
 			<!-- time specific chapters and continue reading button -->
 			<div class="flex flex-row justify-between text-xs mb-2 space-x-1 md:space-x-2">
 				<!-- time specific chapters buttons -->
-				<div class="flex flex-row space-x-1 md:space-x-2 w-full md:w-max">
-					<!-- show Al Kahf on Friday -->
-					{#if $__timeSpecificChapters.isFriday}
-						<div id="al-kahf" class="w-full md:w-max">
-							<a href="/18" class="py-2.5 w-full truncate {buttonClasses}">
-								<span class="hidden md:block">It's Friday:&nbsp;</span>
-								Al-Kahf
-								<span class="hidden md:block">{@html '&#10230'}</span>
-							</a>
-						</div>
-					{/if}
+				<!-- show Al Kahf on Friday -->
+				{#if $__timeSpecificChapters.isFriday || $__timeSpecificChapters.isNight}
+					<div class="flex flex-row space-x-1 md:space-x-2 w-full md:w-max">
+						{#if $__timeSpecificChapters.isFriday}
+							<div id="al-kahf" class="w-full md:w-max">
+								<a href="/18" class="py-2.5 w-full truncate {buttonClasses}">
+									<span class="hidden md:block">It's Friday:&nbsp;</span>
+									Al-Kahf
+									<span class="hidden md:block">{@html '&#10230'}</span>
+								</a>
+							</div>
+						{/if}
 
-					<!-- show Al Mulk at night/evening -->
-					{#if $__timeSpecificChapters.isNight}
-						<div id="al-mulk" class="w-full md:w-max">
-							<a href="/67" class="py-2.5 w-full truncate {buttonClasses}">
-								<span class="hidden md:block">Night Reminder:&nbsp;</span>
-								Al-Mulk
-								<span class="hidden md:block">{@html '&#10230'}</span>
-							</a>
-						</div>
-					{/if}
-				</div>
+						<!-- show Al Mulk at night/evening -->
+						{#if $__timeSpecificChapters.isNight}
+							<div id="al-mulk" class="w-full md:w-max">
+								<a href="/67" class="py-2.5 w-full truncate {buttonClasses}">
+									<span class="hidden md:block">Night Reminder:&nbsp;</span>
+									Al-Mulk
+									<span class="hidden md:block">{@html '&#10230'}</span>
+								</a>
+							</div>
+						{/if}
+					</div>
+				{/if}
 
 				<!-- continue reading button -->
 				{#if $__lastRead.hasOwnProperty('key')}
