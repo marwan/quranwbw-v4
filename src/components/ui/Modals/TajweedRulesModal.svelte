@@ -45,7 +45,7 @@
 		</thead>
 		<tbody>
 			{#await tajweedRulesData}
-				<Spinner height="screen" margin="-mt-20" />
+				<Spinner size={10} />
 			{:then tajweedRulesData}
 				{#each Object.entries(tajweedRulesData) as [key, value]}
 					<tr class="bg-white border-b hover:bg-gray-50">
