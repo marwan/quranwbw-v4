@@ -13,11 +13,23 @@
 	$: {
 		if ($__tajweedRulesModalVisible) {
 			tajweedRulesData = (async () => {
-				const response = await fetch(`${apiEndpoint}/tajweed-rules?version=1`);
+				const response = await fetch(`${apiEndpoint}/tajweed-rules?version=3`);
 				const data = await response.json();
 				return data.data;
 			})();
 		}
+	}
+
+	// Take an input of a string with keys (eg: "2:27:7, 2:17:9") and convert each key to a hyperlink
+	function replaceKeysWithLinks(keys) {
+		const keysSplit = keys.split(', ');
+		const keysLinks = [];
+
+		for (let i = 0; i <= keysSplit.length - 1; i++) {
+			keysLinks.push(`<a class='${linkClasses}' href='/morphology/${keysSplit[i]}'>${keysSplit[i]}</a>`);
+		}
+
+		return keysLinks.join(', ');
 	}
 </script>
 
@@ -42,6 +54,10 @@
 
 								{#if value.description !== null}
 									<span>{@html value.description.replace(/\r\n/g, '<br/>')}</span>
+								{/if}
+
+								{#if value.examples !== null}
+									<span>Examples: {@html replaceKeysWithLinks(value.examples)}</span>
 								{/if}
 							</div>
 						</td>
