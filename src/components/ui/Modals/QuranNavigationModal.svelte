@@ -262,7 +262,7 @@
 		{#if $__currentPage !== 'home'}
 			<div class="flex flex-row space-x-4 max-h-56 {searchedKey.length > 0 ? 'hidden' : 'block'}">
 				<!-- chapter selector -->
-				{#if !['supplications', 'morphology'].includes($__currentPage)}
+				{#if !['morphology'].includes($__currentPage)}
 					<div class="flex flex-col space-y-2 w-full">
 						<div class="px-2 text-sm pb-2 border-b border-black/10 font-medium">{term('chapters')}</div>
 						<ul id="navbar-chapter-list" class="grow basis-1/2 overflow-y-scroll">
@@ -313,7 +313,7 @@
 				{/if}
 
 				<!-- supplications selector -->
-				{#if $__currentPage === 'supplications'}
+				<!-- {#if $__currentPage === 'supplications'}
 					<div class="flex flex-col space-y-2 w-full">
 						<div class="px-2 text-sm pb-2 border-b border-black/10 font-medium">{term('supplications')}</div>
 						<ul id="navbar-supplications-list" class="grow basis-1/2 px-2 overflow-y-scroll">
@@ -326,7 +326,7 @@
 							{/each}
 						</ul>
 					</div>
-				{/if}
+				{/if} -->
 
 				<!-- words selector -->
 				{#if $__currentPage === 'morphology'}
