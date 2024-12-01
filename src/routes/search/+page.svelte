@@ -1,48 +1,74 @@
 <script>
 	import PageHead from '$misc/PageHead.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
+	import Individual from '$display/verses/modes/Individual.svelte';
 	import { goto } from '$app/navigation';
-	import { searchableTranslations } from '$data/searchableTranslations';
-	import { quranMetaData } from '$data/quranMeta';
-	import { __currentPage } from '$utils/stores';
+	import { __currentPage, __fontType, __wordTranslation, __verseTranslations, __wordTransliteration } from '$utils/stores';
+	import { fetchVersesData } from '$utils/fetchData';
+	import { errorLoadingDataMessage } from '$data/websiteSettings';
 
 	// Retrieve URL parameters
 	const params = new URLSearchParams(window.location.search);
-	const defaultTranslation = 0; // Default to Saheeh International
 
 	// Retrieve or set default values for search parameters
-	let searchResults;
-	let selectedTranslation = params.get('translation') === null ? defaultTranslation : +params.get('translation'); // Selected translation index
-	let searchText = params.get('text') === null ? '' : params.get('text'); // Search text
+	let searchQuery = params.get('query') === null ? '' : params.get('query'); // Search text
+	let totalResults = 0;
+	let areResultsMoreThan200 = false;
 
-	// Ensure the selected translation index is valid
-	if (isNaN(selectedTranslation) || selectedTranslation < 0 || selectedTranslation > 120) {
-		selectedTranslation = defaultTranslation;
-	}
+	// Update the search results whenever query changes
+	$: if (searchQuery.length > 0) goto(`/search?query=${searchQuery}`, { replaceState: false });
 
-	// Function to fetch search results from Al Quran Cloud API
-	async function fetchSearchResults(text, translationIndex) {
-		const response = await fetch(`https://api.alquran.cloud/v1/search/${text}/all/${searchableTranslations[translationIndex].identifier}`);
-		const data = await response.json();
-		return data;
-	}
-
-	// Update the search results whenever searchText changes
-	$: {
-		if (searchText.length > 0) {
-			// Update the URL parameters
-			goto(`/search?text=${searchText}&translation=${selectedTranslation}`, { replaceState: false });
-
-			// Fetch and set search results
-			searchResults = fetchSearchResults(searchText, selectedTranslation);
+	$: fetchVerses = (async () => {
+		try {
+			const versesKeys = await fetch(`https://api.alquran.cloud/v1/search/${searchQuery}/all/en.hilali`);
+			const versesKeysResponse = await versesKeys.json();
+			if (versesKeysResponse.code === 404) return 404;
+			totalResults = versesKeysResponse.data.count;
+			generateUniqueKeys(versesKeysResponse.data);
+			return await fetchVersesData(generateUniqueKeys(versesKeysResponse.data), $__fontType, $__wordTranslation, $__wordTransliteration, $__verseTranslations);
+		} catch (error) {
+			console.error(errorLoadingDataMessage, error);
+			return {};
 		}
+	})();
+
+	function generateUniqueKeys(data) {
+		// Initialize an empty array to hold the unique keys
+		let keysArray = [];
+
+		// Initialize a set to track unique keys
+		let uniqueKeys = new Set();
+
+		// Loop through each record in the "matches" array
+		for (let i = 0; i < data.matches.length; i++) {
+			// Extract the surah number and number in surah
+			let surahNumber = data.matches[i].surah.number;
+			let numberInSurah = data.matches[i].numberInSurah;
+
+			// Create the key in the format <surahnumber>:<numberinsurah>
+			let key = `${surahNumber}:${numberInSurah}`;
+
+			// Add the key to the set and array if it's not already present
+			if (!uniqueKeys.has(key)) {
+				uniqueKeys.add(key);
+				keysArray.push(key);
+			}
+		}
+
+		return processVerses(keysArray.toString());
 	}
 
-	// Function to highlight the searched text in verse text
-	function highlightSearchedText(verseText) {
-		const searchTextReg = searchText.replace(/(\s+)/g, '(<[^>]+>)*$1(<[^>]+>)*'); // Create regex for matching search text
-		const pattern = new RegExp(`(${searchTextReg})`, 'gi');
-		return verseText.replace(pattern, '<b>$1</b>'); // Replace matched text with bold tags
+	function processVerses(data) {
+		// Split the verses by comma
+		let versesArray = data.split(',');
+
+		// Limit the array to 200 items if there are more than 200
+		if (versesArray.length > 200) {
+			versesArray = versesArray.slice(0, 200);
+			areResultsMoreThan200 = true;
+		}
+
+		return versesArray.toString();
 	}
 
 	// Set the current page to 'search'
@@ -51,25 +77,12 @@
 
 <PageHead title={'Search'} />
 
-<div class="theme mt-4 space-y-4">
-	<div class="flex max-w-2xl mx-auto theme-grayscale">
-		<div id="dropdown" class="z-10 w-44">
-			<select
-				id="dropdown"
-				bind:value={selectedTranslation}
-				on:change={(event) => (selectedTranslation = +event.target.value)}
-				class="truncate bg-gray-50 border border-black/10 text-gray-900 text-sm rounded-3xl rounded-r-none focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-gray-500 dark:focus:border-gray-500"
-			>
-				{#each Object.entries(searchableTranslations) as [id, translation]}
-					<option value={+id}>{translation.name} ({translation.englishName})</option>
-				{/each}
-			</select>
-		</div>
-
+<div class="mt-4 space-y-4">
+	<div class="flex max-w-2xl mx-auto">
 		<!-- search input form -->
-		<form on:submit|preventDefault={(event) => (searchText = document.getElementById('search-input').value)} class="flex items-center w-full">
+		<form on:submit|preventDefault={(event) => (searchQuery = document.getElementById('search-input').value)} class="flex items-center w-full">
 			<div class="relative w-full">
-				<input type="search" id="search-input" value={searchText} class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 border-s-gray-50 border-s-2 border border-black/10" placeholder="Search Abraham, Mary, Noah, Paradise..." required />
+				<input type="search" id="search-input" value={searchQuery} class="block p-2.5 pl-4 w-full z-20 text-sm text-gray-900 bg-gray-50 border border-black/10 rounded-l-3xl" placeholder="Search Abraham, Mary, Noah, Paradise..." required />
 			</div>
 			<button type="submit" class="p-2.5 px-4 text-sm font-medium text-white bg-gray-500 rounded-r-3xl border border-gray-500">
 				<svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -81,39 +94,36 @@
 	</div>
 
 	<!-- search instructions -->
-	{#if searchText.length === 0}
-		<div id="how-to-search" class="flex flex-col text-sm space-y-2 max-w-2xl mx-auto">
+	{#if searchQuery.length === 0}
+		<div id="how-to-search" class="flex flex-col text-sm space-y-2 max-w-2xl mx-auto theme">
 			<span><b>Note:</b> To prevent browser slowdowns, avoid searching for extremely short phrases or words, as they may return a large number of records. Additionally, note that phrases or words available in one translation may not be available in others. For instance, in the Saheeh International translation, the word "Abraham" yields 72 records, whereas "Ibrahim" returns none.</span>
 		</div>
 	{/if}
 
-	<!-- search results -->
-	{#if searchText.length > 0}
-		<div id="search-results">
-			{#await searchResults}
+	{#if searchQuery.length > 0}
+		<div>
+			{#await fetchVerses}
 				<Spinner />
-			{:then searchResults}
-				{#if searchResults.code === 200}
-					<div class="text-sm space-y-2 pt-4">
-						<div id="info" class="text-center text-xs">Displaying {searchResults.data.count} results for "{searchText}" from {searchableTranslations[selectedTranslation].name}.</div>
-						<div id="results">
-							{#each Object.entries(searchResults.data.matches) as [key, value]}
-								<a href="/{value.surah.number}/{value.numberInSurah}">
-									<div class="py-6 space-y-2 border-b dark:border-slate-700">
-										<div>{@html highlightSearchedText(value.text)}</div>
-										<div class="opacity-70">&mdash; {quranMetaData[value.surah.number].transliteration}, {value.surah.number}:{value.numberInSurah} ({value.edition.name})</div>
-									</div>
-								</a>
-							{/each}
-						</div>
+			{:then data}
+				{#if data !== 404}
+					<!-- search results info -->
+					<div class="flex flex-col space-y-4 text-center text-xs theme">
+						{#if areResultsMoreThan200}
+							<div>Displaying the first 200 results for "{searchQuery}" out of {totalResults} found.</div>
+						{:else}
+							<div>Displaying {totalResults} results for "{searchQuery}".</div>
+						{/if}
 					</div>
-				{:else if searchResults.code === 404}
-					<div id="info" class="text-xs text-center pt-4">Could not find anything for "{searchText}" in {searchableTranslations[selectedTranslation].name}. Try searching something else or switching the translation.</div>
+
+					{@const totalRecords = Object.keys(data).length}
+					<div id="individual-verses-block">
+						<Individual {data} startIndex={0} endIndex={totalRecords > 5 ? 5 : totalRecords} />
+					</div>
 				{:else}
-					<div id="info" class="text-xs text-center pt-4">There was an error with your search. Please try again later.</div>
+					<div class="flex items-center justify-center pt-28 theme">No results found for the given query.</div>
 				{/if}
 			{:catch error}
-				<div id="info" class="text-xs text-center pt-4">There was an error with your search. Please try again later.</div>
+				<p>{errorLoadingDataMessage}</p>
 			{/await}
 		</div>
 	{/if}
