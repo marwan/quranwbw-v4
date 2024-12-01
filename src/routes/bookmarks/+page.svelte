@@ -23,11 +23,10 @@
 	{:else}
 		{#await fetchData}
 			<Spinner height="screen" margin="-mt-20" />
-		{:then chapterData}
-			<div>
-				{#each Object.entries(chapterData) as [key, value]}
-					<Individual {key} {value} />
-				{/each}
+		{:then data}
+			{@const totalRecords = Object.keys(data).length}
+			<div id="individual-verses-block">
+				<Individual {data} startIndex={0} endIndex={totalRecords > 5 ? 5 : totalRecords} />
 			</div>
 		{:catch error}
 			<p>{errorLoadingDataMessage}</p>
