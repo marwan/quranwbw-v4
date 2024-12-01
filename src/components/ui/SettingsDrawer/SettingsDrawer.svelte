@@ -213,7 +213,7 @@
 					<div class="border-b border-black/10"></div>
 
 					<!-- display-type-setting -->
-					<div id="display-type-setting" class="{settingsBlockClasses} {!['chapter', 'mushaf', 'supplications', 'bookmarks', 'morphology'].includes($__currentPage) && disabledClasses}">
+					<div id="display-type-setting" class="{settingsBlockClasses} {!['chapter', 'mushaf', 'supplications', 'bookmarks', 'morphology', 'search'].includes($__currentPage) && disabledClasses}">
 						<div class="flex flex-row justify-between items-center">
 							<div class="block">Display Type</div>
 							<Button class={selectorClasses} on:click={() => gotoIndividualSetting('display-type')}>{selectableDisplays[$__selectedDisplayId].displayName}</Button>

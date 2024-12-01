@@ -95,7 +95,7 @@
 			{:then searchResults}
 				{#if searchResults.code === 200}
 					<div class="text-sm space-y-2 pt-4">
-						<div id="info" class="font-medium text-center">Showing {searchResults.data.count} results for "{searchText}" from {searchableTranslations[selectedTranslation].name}</div>
+						<div id="info" class="text-center text-xs">Displaying {searchResults.data.count} results for "{searchText}" from {searchableTranslations[selectedTranslation].name}.</div>
 						<div id="results">
 							{#each Object.entries(searchResults.data.matches) as [key, value]}
 								<a href="/{value.surah.number}/{value.numberInSurah}">
@@ -108,12 +108,12 @@
 						</div>
 					</div>
 				{:else if searchResults.code === 404}
-					<div id="info" class="text-sm text-center pt-4">Could not find anything for "{searchText}" in {searchableTranslations[selectedTranslation].name}. Try searching something else or switching the translation.</div>
+					<div id="info" class="text-xs text-center pt-4">Could not find anything for "{searchText}" in {searchableTranslations[selectedTranslation].name}. Try searching something else or switching the translation.</div>
 				{:else}
-					<div id="info" class="text-sm text-center pt-4">There was an error with your search. Please try again later.</div>
+					<div id="info" class="text-xs text-center pt-4">There was an error with your search. Please try again later.</div>
 				{/if}
 			{:catch error}
-				<div id="info" class="text-sm text-center pt-4">There was an error with your search. Please try again later.</div>
+				<div id="info" class="text-xs text-center pt-4">There was an error with your search. Please try again later.</div>
 			{/await}
 		</div>
 	{/if}
