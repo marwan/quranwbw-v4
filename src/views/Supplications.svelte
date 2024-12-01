@@ -3,14 +3,14 @@
 	import PageHead from '$misc/PageHead.svelte';
 	import Individual from '$display/verses/modes/Individual.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
-	import { __currentPage, __fontType, __displayType, __wordTranslation, __wordTransliteration } from '$utils/stores';
+	import { __currentPage, __fontType, __displayType, __wordTranslation, __verseTranslations, __wordTransliteration } from '$utils/stores';
 	import { fetchVersesData } from '$utils/fetchData';
 	import { errorLoadingDataMessage } from '$data/websiteSettings';
 	import { term } from '$utils/terminologies';
 	import { supplicationsFromQuran } from '$data/quranMeta';
 
 	// Fetch supplication verses whenever necessary
-	$: fetchData = fetchVersesData(getSupplicationKeys(), $__fontType, $__wordTranslation, $__wordTransliteration);
+	$: fetchData = fetchVersesData(getSupplicationKeys(), $__fontType, $__wordTranslation, $__wordTransliteration, $__verseTranslations);
 
 	// Function to get a string of all supplications chapter:verses
 	function getSupplicationKeys() {

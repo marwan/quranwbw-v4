@@ -7,7 +7,7 @@
 	import Table from '$display/morphology/Table.svelte';
 	import { quranMetaData } from '$data/quranMeta';
 	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
-	import { __currentPage, __fontType, __wordTranslation, __morphologyKey, __pageURL, __displayType, __lexiconModalVisible, __wordRoot } from '$utils/stores';
+	import { __currentPage, __fontType, __wordTranslation, __wordTransliteration, __morphologyKey, __pageURL, __displayType, __lexiconModalVisible, __wordRoot } from '$utils/stores';
 	import { buttonOutlineClasses } from '$data/commonClasses';
 	import { fetchVersesData } from '$utils/fetchData';
 	import { term } from '$utils/terminologies';
@@ -28,7 +28,7 @@
 	}
 
 	// Fetch verse data based on chapter and verse
-	$: fetchData = fetchVersesData(`${chapter}:${verse}`, $__fontType, $__wordTranslation);
+	$: fetchData = fetchVersesData(`${chapter}:${verse}`, $__fontType, $__wordTranslation, $__wordTransliteration);
 
 	// Fetch words data for morphology
 	$: {

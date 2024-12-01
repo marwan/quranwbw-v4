@@ -51,8 +51,11 @@ export async function fetchVerseTranslationData(chapter) {
 }
 
 // Fetch individual verses
-export async function fetchVersesData(verses, fontType, wordTranslation) {
+export async function fetchVersesData(verses, fontType, wordTranslation, extras) {
 	__chapterData.set(null);
+
+	// we don't actuall need this data, but just have to pass it in this function so the page can re-render
+	console.log(extras);
 
 	const apiURL =
 		`${apiEndpoint}/verses?` +

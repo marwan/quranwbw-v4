@@ -5,7 +5,7 @@
 	import Individual from '$display/verses/modes/Individual.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
 	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
-	import { __currentPage, __fontType, __wordTranslation, __wordTransliteration } from '$utils/stores';
+	import { __currentPage, __fontType, __wordTranslation, __verseTranslations, __wordTransliteration } from '$utils/stores';
 	import { fetchVersesData } from '$utils/fetchData';
 
 	const keyword = data.keyword;
@@ -19,7 +19,7 @@
 			const versesKeysResponse = await versesKeys.json();
 			if (versesKeysResponse.code === 404) return 404;
 			totalResults = versesKeysResponse.data.count;
-			return await fetchVersesData(processVerses(versesKeysResponse.data.verses), $__fontType, $__wordTranslation, $__wordTransliteration);
+			return await fetchVersesData(processVerses(versesKeysResponse.data.verses), $__fontType, $__wordTranslation, $__wordTransliteration, $__verseTranslations);
 		} catch (error) {
 			console.error(errorLoadingDataMessage, error);
 			return {};
