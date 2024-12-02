@@ -24,7 +24,7 @@
 				<span>QuranWBW.com is your companion for reading, listening to, and learning the Holy Quran, word by word. With features like word audios, Tajweed colors, and transliteration, you can delve into the Quran with ease. Additionally, explore multi-language translations, tafsir, and detailed word morphology.</span>
 
 				<span>
-					This website is a passion project, not a full-time endeavor. For issues, suggestions, or contributions, please visit our <a class={linkClasses} target="_blank" rel="noreferrer" href="https://github.com/marwan/quranwbw-v4">GitHub repository</a> or contact us at <a class={linkClasses} href="mailto:quranwbw@gmail.com">quranwbw@gmail.com</a>. You can also join our
+					This website is a passion project, not a full-time endeavor. For issues, suggestions, or contributions, please visit our <a class={linkClasses} target="_blank" rel="noreferrer" href="https://github.com/marwan/quranwbw">GitHub repository</a> or contact us at <a class={linkClasses} href="mailto:quranwbw@gmail.com">quranwbw@gmail.com</a>. You can also join our
 					<a class={linkClasses} target="_blank" rel="noreferrer" href="https://chat.whatsapp.com/CtrbWUB4GTyDdZWXWujVSl">WhatsApp group</a> for updates.
 				</span>
 			</div>
