@@ -17,7 +17,7 @@ export const wordsAudioURL = 'https://audios.quranwbw.com/words';
 
 export const mushafWordFontLink = 'https://fonts.quranwbw.com/Hafs/KFGQPC-v4/COLRv1';
 
-export const mushafHeaderFontLink = 'https://v4.quranwbw.com/fonts/chapter-headers/QCF_SurahHeader_COLOR-Regular.woff2';
+export const mushafHeaderFontLink = 'https://quranwbw.com/fonts/chapter-headers/QCF_SurahHeader_COLOR-Regular.woff2';
 
 export const mushafFontVersion = 4;
 
