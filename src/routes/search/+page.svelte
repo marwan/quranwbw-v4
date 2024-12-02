@@ -37,12 +37,24 @@
 
 	$: fetchVerses = (async () => {
 		try {
+			let versesKeys;
+			let versesKeysResponse;
+			let versesKeyData;
+			let urlParameters = `query=${searchQuery}&size=${resultsPerPage}&page=${searchPage}&filter_translations=${selectedTranslation}`;
+
 			totalResults = 0;
 			areResultsMoreThan200 = false;
-			const versesKeys = await fetch(`${apiEndpoint}/search-translations?query=${searchQuery}&size=${resultsPerPage}&page=${searchPage}&filter_translations=${selectedTranslation}`);
-			const versesKeysResponse = await versesKeys.json();
-			const versesKeyData = versesKeysResponse.data;
-			if (versesKeyData.result.verses.length === 0) return 404;
+			versesKeys = await fetch(`https://api.qurancdn.com/api/qdc/search?${urlParameters}`);
+			versesKeysResponse = await versesKeys.json();
+			versesKeyData = versesKeysResponse;
+
+			// We first check the Quran.com's default search API and show the results from it, however if it yeilds no data, we then make a request to our API
+			if (versesKeyData.result.verses.length === 0) {
+				versesKeys = await fetch(`${apiEndpoint}/search-translations?${urlParameters}`);
+				versesKeysResponse = await versesKeys.json();
+				versesKeyData = versesKeysResponse.data;
+			}
+
 			pagePagination = versesKeyData.pagination;
 			totalResults = versesKeyData.pagination.total_records;
 			return await fetchVersesData(generateKeys(versesKeyData), $__fontType, $__wordTranslation, $__wordTransliteration, selectedTranslation);
