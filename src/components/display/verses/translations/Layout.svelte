@@ -79,7 +79,12 @@
 	// Function to modify the verse text
 	function verseTextModifier(verseText) {
 		let updatedVerseText = verseText;
-		updatedVerseText = highlightSearchedText(searchQuery, updatedVerseText);
+
+		// If query parameter was set (from the search page), highlight the query in the verse translation
+		if (params.get('query') !== null) {
+			updatedVerseText = highlightSearchedText(searchQuery, updatedVerseText);
+		}
+
 		updatedVerseText = updatedVerseText.replace(/<sup/g, `<sup onclick='supClick(this)' title='Show footnote' data-chapter='${value.meta.chapter}' data-verse='${value.meta.verse}' data-translation=${verseTranslationID} class='${footnoteSupClasses}'`);
 		return updatedVerseText;
 	}
