@@ -60,7 +60,7 @@
 					{/each}
 				</ul>
 
-				<span>We hope you enjoy the new and improved QuranWBW experience! In case you'd still like to use the old website, you may visit <a class={linkClasses} target="_blank" rel="noreferrer" href="https://v3.quranwbw.com">v3.quranwbw.com</a> </span>
+				<span>We hope you enjoy the new and improved QuranWBW experience! In case you'd still like to use the old website, you may visit <a class={linkClasses} target="_blank" rel="noreferrer" href="https://old.quranwbw.com">old.quranwbw.com</a> </span>
 				<br />
 			</div>
 		</div>

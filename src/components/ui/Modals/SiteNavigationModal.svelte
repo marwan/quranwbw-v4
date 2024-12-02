@@ -88,7 +88,7 @@
 				</a>
 
 				<!-- legacy site link -->
-				<a href="https://v3.quranwbw.com/" target="_blank" class={linkClasses}>
+				<a href="https://old.quranwbw.com/" target="_blank" class={linkClasses}>
 					<LegacySite size={4} />
 					<span class={linkTextClasses}>Old Website</span>
 				</a>
