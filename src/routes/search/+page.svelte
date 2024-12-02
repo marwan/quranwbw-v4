@@ -37,7 +37,7 @@
 		try {
 			totalResults = 0;
 			areResultsMoreThan200 = false;
-			const versesKeys = await fetch(`http://api.quranwbw.com/v1/search-translations?query=${searchQuery}&size=${resultsPerPage}&page=${searchPage}&filter_translations=${$__verseTranslations.toString()}`);
+			const versesKeys = await fetch(`https://api.quranwbw.com/v1/search-translations?query=${searchQuery}&size=${resultsPerPage}&page=${searchPage}&filter_translations=${$__verseTranslations.toString()}`);
 			const versesKeysResponse = await versesKeys.json();
 			const versesKeyData = versesKeysResponse.data;
 			if (versesKeyData.result.verses.length === 0) return 404;
