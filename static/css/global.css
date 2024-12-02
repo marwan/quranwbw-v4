@@ -2548,6 +2548,11 @@ input[type="range"].range-lg::-moz-range-thumb {
   padding-bottom: 2rem;
 }
 
+.py-\[0\.94rem\] {
+  padding-top: 0.94rem;
+  padding-bottom: 0.94rem;
+}
+
 .pb-0 {
   padding-bottom: 0px;
 }

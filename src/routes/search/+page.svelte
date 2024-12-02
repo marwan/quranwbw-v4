@@ -2,6 +2,7 @@
 	import PageHead from '$misc/PageHead.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
 	import Translation from '$svgs/Translation.svelte';
+	import Search2 from '$svgs/Search2.svelte';
 	import Individual from '$display/verses/modes/Individual.svelte';
 	import VerseTranslationSelector from '$ui/SettingsDrawer/VerseTranslationSelector.svelte';
 	import { goto } from '$app/navigation';
@@ -88,13 +89,10 @@
 		<!-- search input form -->
 		<form on:submit|preventDefault={(event) => (searchQuery = document.getElementById('search-input').value)} class="flex items-center w-full">
 			<div class="relative w-full">
-				<input type="search" id="search-input" value={searchQuery} class="block p-3 pl-4 w-full z-20 text-sm text-gray-900 bg-gray-50 border border-black/10" placeholder="Search Abraham, Mary, Noah, Paradise..." required />
+				<input type="search" id="search-input" value={searchQuery} class="block p-3 py-3.5 pl-4 w-full z-20 text-sm text-gray-900 bg-gray-50 border border-black/10" placeholder="Search Abraham, Mary, Noah, Paradise..." required />
 			</div>
-			<button type="submit" class="p-3 px-4 text-sm font-medium text-white bg-gray-500 rounded-r-3xl border border-gray-500">
-				<svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-					<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-				</svg>
-				<span class="sr-only">Search</span>
+			<button type="submit" title="Search" class="py-[0.94rem] px-5 text-gray-600 bg-lightGray hover:bg-gray-200 rounded-r-3xl items-center">
+				<Search2 size={5} />
 			</button>
 		</form>
 	</div>
