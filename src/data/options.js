@@ -94,9 +94,7 @@ export const selectableVerseTranslations = {
 	131: {
 		resource_id: 131,
 		resource_name: 'The Clear Quran (Mustafa Khattab)',
-		language_id: 38,
-		searchable: true,
-		identifier: 'en.itani'
+		language_id: 38
 	},
 	20: {
 		resource_id: 20,

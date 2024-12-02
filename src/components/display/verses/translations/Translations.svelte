@@ -7,8 +7,8 @@
 	import { __currentPage, __verseKey, __verseTranslations, __verseTranslationData, __chapterData, __userSettings } from '$utils/stores';
 	import { fetchVerseTranslationData } from '$utils/fetchData';
 
-	const params = new URLSearchParams(window.location.search);
-	const translationsToFetch = params.get('translation') === null ? $__verseTranslations.toString() : +params.get('translation');
+	// const params = new URLSearchParams(window.location.search);
+	// const translationsToFetch = params.get('translation') === null ? $__verseTranslations.toString() : +params.get('translation');
 	let verseTranslationData;
 
 	$: fontSizes = JSON.parse($__userSettings).displaySettings.fontSizes;
@@ -21,7 +21,7 @@
 	// Fetch verse translations for pages other than chapter
 	$: if ($__currentPage !== 'chapter') {
 		(async () => {
-			verseTranslationData = await fetchVerseTranslationData(chapterToFetch, translationsToFetch);
+			verseTranslationData = await fetchVerseTranslationData(chapterToFetch, $__verseTranslations.toString());
 		})();
 	}
 </script>

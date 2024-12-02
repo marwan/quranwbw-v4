@@ -1,82 +1,62 @@
 <script>
 	import PageHead from '$misc/PageHead.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
+	import Translation from '$svgs/Translation.svelte';
 	import Individual from '$display/verses/modes/Individual.svelte';
+	import VerseTranslationSelector from '$ui/SettingsDrawer/VerseTranslationSelector.svelte';
 	import { goto } from '$app/navigation';
-	import { __currentPage, __fontType, __wordTranslation, __verseTranslations, __wordTransliteration } from '$utils/stores';
+	import { __currentPage, __fontType, __wordTranslation, __verseTranslations, __wordTransliteration, __settingsSelectorModal } from '$utils/stores';
 	import { fetchVersesData } from '$utils/fetchData';
 	import { defaultSearchTranslation, errorLoadingDataMessage } from '$data/websiteSettings';
 	import { selectableVerseTranslations } from '$data/options';
+	import { buttonOutlineClasses } from '$data/commonClasses';
+	import { term } from '$utils/terminologies';
 
 	// Retrieve URL parameters
 	const params = new URLSearchParams(window.location.search);
 
 	// Retrieve or set default values for search parameters
+
 	let searchQuery = params.get('query') === null ? '' : params.get('query'); // Search text
+	let selectedTranslation = params.get('translation') === null ? defaultSearchTranslation : +params.get('translation'); // Selected translation index
+	let searchPage = params.get('page') === null ? 1 : +params.get('page'); // Selected page
+
+	let resultsPerPage = 5;
 	let totalResults;
 	let areResultsMoreThan200;
-	let selectedTranslation = params.get('translation') === null ? defaultSearchTranslation : +params.get('translation'); // Selected translation index
+	let pagePagination = null;
 
 	// Basic checks
 	$: if (selectedTranslation in selectableVerseTranslations === false) selectedTranslation = defaultSearchTranslation;
 	$: if (selectableVerseTranslations[selectedTranslation].identifier === undefined) selectedTranslation = defaultSearchTranslation;
 
 	// Update the search results whenever query changes
-	$: if (searchQuery.length > 0) goto(`/search?query=${searchQuery}&translation=${selectedTranslation}`, { replaceState: false });
+	$: if (searchQuery.length > 0) goto(`/search?query=${searchQuery}&page=${searchPage}&translation=${$__verseTranslations.toString()}`, { replaceState: false });
 
 	$: fetchVerses = (async () => {
 		try {
 			totalResults = 0;
 			areResultsMoreThan200 = false;
-			const versesKeys = await fetch(`https://api.alquran.cloud/v1/search/${searchQuery}/all/${selectableVerseTranslations[selectedTranslation].identifier}`);
+			const versesKeys = await fetch(`https://api.qurancdn.com/api/qdc/search?query=${searchQuery}&size=${resultsPerPage}&page=${searchPage}&filter_translations=${$__verseTranslations.toString()}`);
 			const versesKeysResponse = await versesKeys.json();
-			if (versesKeysResponse.code === 404) return 404;
-			totalResults = versesKeysResponse.data.count;
-			generateUniqueKeys(versesKeysResponse.data);
-			return await fetchVersesData(generateUniqueKeys(versesKeysResponse.data), $__fontType, $__wordTranslation, $__wordTransliteration, $__verseTranslations);
+			if (versesKeysResponse.result.verses.length === 0) return 404;
+			pagePagination = versesKeysResponse.pagination;
+			totalResults = versesKeysResponse.pagination.total_records;
+			return await fetchVersesData(generateKeys(versesKeysResponse), $__fontType, $__wordTranslation, $__wordTransliteration, $__verseTranslations);
 		} catch (error) {
 			console.error(errorLoadingDataMessage, error);
 			return {};
 		}
 	})();
 
-	function generateUniqueKeys(data) {
-		// Initialize an empty array to hold the unique keys
-		let keysArray = [];
+	function generateKeys(data) {
+		const verseKeys = [];
 
-		// Initialize a set to track unique keys
-		let uniqueKeys = new Set();
+		Object.keys(data.result.verses).forEach(function (key) {
+			verseKeys.push(data.result.verses[key].verse_key);
+		});
 
-		// Loop through each record in the "matches" array
-		for (let i = 0; i < data.matches.length; i++) {
-			// Extract the surah number and number in surah
-			let surahNumber = data.matches[i].surah.number;
-			let numberInSurah = data.matches[i].numberInSurah;
-
-			// Create the key in the format <surahnumber>:<numberinsurah>
-			let key = `${surahNumber}:${numberInSurah}`;
-
-			// Add the key to the set and array if it's not already present
-			if (!uniqueKeys.has(key)) {
-				uniqueKeys.add(key);
-				keysArray.push(key);
-			}
-		}
-
-		return processVerses(keysArray.toString());
-	}
-
-	function processVerses(data) {
-		// Split the verses by comma
-		let versesArray = data.split(',');
-
-		// Limit the array to 200 items if there are more than 200
-		if (versesArray.length > 200) {
-			versesArray = versesArray.slice(0, 200);
-			areResultsMoreThan200 = true;
-		}
-
-		return versesArray.toString();
+		return verseKeys.toString();
 	}
 
 	// Set the current page to 'search'
@@ -87,22 +67,16 @@
 
 <div class="mt-4 space-y-4">
 	<div class="flex max-w-2xl mx-auto">
-		<div id="dropdown" class="z-10 w-44">
-			<select id="dropdown" bind:value={selectedTranslation} on:change={(event) => (selectedTranslation = +event.target.value)} class="truncate bg-gray-50 border border-black/10 text-gray-900 text-sm rounded-3xl rounded-r-none block w-full p-2.5 pl-4">
-				{#each Object.entries(selectableVerseTranslations) as [id, translation]}
-					{#if translation.searchable}
-						<option value={+translation.resource_id}>{translation.resource_name}</option>
-					{/if}
-				{/each}
-			</select>
-		</div>
+		<button class="py-3 pl-6 pr-4 text-gray-600 bg-lightGray hover:bg-gray-200 rounded-l-3xl items-center" title="Translations" on:click={() => __settingsSelectorModal.set({ component: VerseTranslationSelector, visible: true, title: `${term('verse')} Translation` })}>
+			<Translation size={5} />
+		</button>
 
 		<!-- search input form -->
 		<form on:submit|preventDefault={(event) => (searchQuery = document.getElementById('search-input').value)} class="flex items-center w-full">
 			<div class="relative w-full">
-				<input type="search" id="search-input" value={searchQuery} class="block p-2.5 pl-4 w-full z-20 text-sm text-gray-900 bg-gray-50 border border-black/10" placeholder="Search Abraham, Mary, Noah, Paradise..." required />
+				<input type="search" id="search-input" value={searchQuery} class="block p-3 pl-4 w-full z-20 text-sm text-gray-900 bg-gray-50 border border-black/10" placeholder="Search Abraham, Mary, Noah, Paradise..." required />
 			</div>
-			<button type="submit" class="p-2.5 px-4 text-sm font-medium text-white bg-gray-500 rounded-r-3xl border border-gray-500">
+			<button type="submit" class="p-3 px-4 text-sm font-medium text-white bg-gray-500 rounded-r-3xl border border-gray-500">
 				<svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
 					<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
 				</svg>
@@ -127,9 +101,9 @@
 					<!-- search results info -->
 					<div class="flex flex-col space-y-4 text-center text-xs theme">
 						{#if areResultsMoreThan200}
-							<div>Displaying the first 200 results for "{searchQuery}" out of {totalResults} found from {selectableVerseTranslations[selectedTranslation].resource_name}.</div>
+							<div>Displaying the first 200 results for "{searchQuery}" out of {totalResults} found.</div>
 						{:else}
-							<div>Displaying {totalResults} results for "{searchQuery}" from {selectableVerseTranslations[selectedTranslation].resource_name}.</div>
+							<div>Displaying {totalResults} results for "{searchQuery}".</div>
 						{/if}
 					</div>
 
@@ -137,8 +111,25 @@
 					<div id="individual-verses-block">
 						<Individual {data} startIndex={0} endIndex={totalRecords > 5 ? 5 : totalRecords} />
 					</div>
+
+					<!-- pagination -->
+					{#if pagePagination !== null}
+						<div class="flex flex-row space-x-4 mt-8 justify-center">
+							{#if pagePagination.current_page > 1}
+								<button class="{buttonOutlineClasses} text-xs" on:click={() => (searchPage = pagePagination.current_page - 1)}>{@html '&#x2190;'} {pagePagination.current_page - 1}</button>
+							{/if}
+
+							{#if pagePagination.current_page !== pagePagination.total_pages}
+								<button>Page {pagePagination.current_page}</button>
+							{/if}
+
+							{#if pagePagination.next_page !== null}
+								<button class="{buttonOutlineClasses} text-xs" on:click={() => (searchPage = pagePagination.next_page)}>{pagePagination.next_page} {@html '&#x2192;'}</button>
+							{/if}
+						</div>
+					{/if}
 				{:else}
-					<div class="flex items-center justify-center pt-28 theme">No results found for the given query from {selectableVerseTranslations[selectedTranslation].resource_name}.</div>
+					<div class="flex text-center items-center justify-center pt-18 theme text-xs max-w-2xl mx-auto">Unfortunately, your query did not yield any results from the selected translations. Please try using a different keyword or consider switching to another translation for better results.</div>
 				{/if}
 			{:catch error}
 				<p>{errorLoadingDataMessage}</p>
