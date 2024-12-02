@@ -7,9 +7,11 @@
 	import { __currentPage, __verseKey, __verseTranslations, __verseTranslationData, __chapterData, __userSettings } from '$utils/stores';
 	import { fetchVerseTranslationData } from '$utils/fetchData';
 
-	$: fontSizes = JSON.parse($__userSettings).displaySettings.fontSizes;
+	const params = new URLSearchParams(window.location.search);
+	const translationsToFetch = params.get('translation') === null ? $__verseTranslations.toString() : +params.get('translation');
 	let verseTranslationData;
 
+	$: fontSizes = JSON.parse($__userSettings).displaySettings.fontSizes;
 	$: verseTranslationClasses = `verseTranslationText flex flex-col space-y-4 leading-normal ${isBody ? 'theme' : ''} ${fontSizes.verseTranslationText}`;
 
 	// Setting the variables depending on the page
@@ -17,12 +19,10 @@
 	$: chapterToFetch = $__currentPage === 'mushaf' ? parseInt($__verseKey.split(':')[0], 10) : value.meta.chapter;
 
 	// Fetch verse translations for pages other than chapter
-	$: {
-		if ($__currentPage !== 'chapter') {
-			(async () => {
-				verseTranslationData = await fetchVerseTranslationData(chapterToFetch);
-			})();
-		}
+	$: if ($__currentPage !== 'chapter') {
+		(async () => {
+			verseTranslationData = await fetchVerseTranslationData(chapterToFetch, translationsToFetch);
+		})();
 	}
 </script>
 

@@ -5,22 +5,30 @@
 	import { goto } from '$app/navigation';
 	import { __currentPage, __fontType, __wordTranslation, __verseTranslations, __wordTransliteration } from '$utils/stores';
 	import { fetchVersesData } from '$utils/fetchData';
-	import { errorLoadingDataMessage } from '$data/websiteSettings';
+	import { defaultSearchTranslation, errorLoadingDataMessage } from '$data/websiteSettings';
+	import { selectableVerseTranslations } from '$data/options';
 
 	// Retrieve URL parameters
 	const params = new URLSearchParams(window.location.search);
 
 	// Retrieve or set default values for search parameters
 	let searchQuery = params.get('query') === null ? '' : params.get('query'); // Search text
-	let totalResults = 0;
-	let areResultsMoreThan200 = false;
+	let totalResults;
+	let areResultsMoreThan200;
+	let selectedTranslation = params.get('translation') === null ? defaultSearchTranslation : +params.get('translation'); // Selected translation index
+
+	// Basic checks
+	$: if (selectedTranslation in selectableVerseTranslations === false) selectedTranslation = defaultSearchTranslation;
+	$: if (selectableVerseTranslations[selectedTranslation].identifier === undefined) selectedTranslation = defaultSearchTranslation;
 
 	// Update the search results whenever query changes
-	$: if (searchQuery.length > 0) goto(`/search?query=${searchQuery}`, { replaceState: false });
+	$: if (searchQuery.length > 0) goto(`/search?query=${searchQuery}&translation=${selectedTranslation}`, { replaceState: false });
 
 	$: fetchVerses = (async () => {
 		try {
-			const versesKeys = await fetch(`https://api.alquran.cloud/v1/search/${searchQuery}/all/en.hilali`);
+			totalResults = 0;
+			areResultsMoreThan200 = false;
+			const versesKeys = await fetch(`https://api.alquran.cloud/v1/search/${searchQuery}/all/${selectableVerseTranslations[selectedTranslation].identifier}`);
 			const versesKeysResponse = await versesKeys.json();
 			if (versesKeysResponse.code === 404) return 404;
 			totalResults = versesKeysResponse.data.count;
@@ -79,10 +87,25 @@
 
 <div class="mt-4 space-y-4">
 	<div class="flex max-w-2xl mx-auto">
+		<div id="dropdown" class="z-10 w-44">
+			<select
+				id="dropdown"
+				bind:value={selectedTranslation}
+				on:change={(event) => (selectedTranslation = +event.target.value)}
+				class="truncate bg-gray-50 border border-black/10 text-gray-900 text-sm rounded-3xl rounded-r-none focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-gray-500 dark:focus:border-gray-500"
+			>
+				{#each Object.entries(selectableVerseTranslations) as [id, translation]}
+					{#if translation.searchable}
+						<option value={+translation.resource_id}>{translation.resource_name}</option>
+					{/if}
+				{/each}
+			</select>
+		</div>
+
 		<!-- search input form -->
 		<form on:submit|preventDefault={(event) => (searchQuery = document.getElementById('search-input').value)} class="flex items-center w-full">
 			<div class="relative w-full">
-				<input type="search" id="search-input" value={searchQuery} class="block p-2.5 pl-4 w-full z-20 text-sm text-gray-900 bg-gray-50 border border-black/10 rounded-l-3xl" placeholder="Search Abraham, Mary, Noah, Paradise..." required />
+				<input type="search" id="search-input" value={searchQuery} class="block p-2.5 pl-4 w-full z-20 text-sm text-gray-900 bg-gray-50 border border-black/10" placeholder="Search Abraham, Mary, Noah, Paradise..." required />
 			</div>
 			<button type="submit" class="p-2.5 px-4 text-sm font-medium text-white bg-gray-500 rounded-r-3xl border border-gray-500">
 				<svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -109,9 +132,9 @@
 					<!-- search results info -->
 					<div class="flex flex-col space-y-4 text-center text-xs theme">
 						{#if areResultsMoreThan200}
-							<div>Displaying the first 200 results for "{searchQuery}" out of {totalResults} found.</div>
+							<div>Displaying the first 200 results for "{searchQuery}" out of {totalResults} found from {selectableVerseTranslations[selectedTranslation].resource_name}.</div>
 						{:else}
-							<div>Displaying {totalResults} results for "{searchQuery}".</div>
+							<div>Displaying {totalResults} results for "{searchQuery}" from {selectableVerseTranslations[selectedTranslation].resource_name}.</div>
 						{/if}
 					</div>
 
@@ -120,7 +143,7 @@
 						<Individual {data} startIndex={0} endIndex={totalRecords > 5 ? 5 : totalRecords} />
 					</div>
 				{:else}
-					<div class="flex items-center justify-center pt-28 theme">No results found for the given query.</div>
+					<div class="flex items-center justify-center pt-28 theme">No results found for the given query from {selectableVerseTranslations[selectedTranslation].resource_name}.</div>
 				{/if}
 			{:catch error}
 				<p>{errorLoadingDataMessage}</p>

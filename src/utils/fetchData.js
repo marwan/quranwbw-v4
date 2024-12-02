@@ -34,14 +34,14 @@ export async function fetchChapterData(chapter, download = false) {
 }
 
 // Get verse translations from Quran.com's API as a separate request compared to the rest of the verse data (from our API)
-export async function fetchVerseTranslationData(chapter) {
+export async function fetchVerseTranslationData(chapter, translations = get(__verseTranslations).toString()) {
 	__verseTranslationData.set(null);
 
 	const apiURL =
 		`https://api.qurancdn.com/api/qdc/verses/by_chapter/${chapter}?` +
 		new URLSearchParams({
 			per_page: 286,
-			translations: get(__verseTranslations).toString()
+			translations: translations
 		});
 
 	const response = await fetch(apiURL);
