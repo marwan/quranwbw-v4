@@ -24,5 +24,3 @@ export const mushafFontVersion = 4;
 export const errorLoadingDataMessage = 'Sorry, there was an error while loading the data. Please refresh the page and try again.';
 
 export const splitDelimiter = '||';
-
-export const defaultSearchTranslation = 20; // Default to Saheeh International

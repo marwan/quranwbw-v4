@@ -9,7 +9,7 @@
 	import { __chapterNumber, __pageURL, __currentPage, __pageNumber, __quranNavigationModalVisible, __lastRead, __morphologyKey } from '$utils/stores';
 	import { inview } from 'svelte-inview';
 	import { validateKey } from '$utils/validateKey';
-	import { staticEndpoint, defaultSearchTranslation } from '$data/websiteSettings';
+	import { staticEndpoint } from '$data/websiteSettings';
 	import { page } from '$app/stores';
 	import { term } from '$utils/terminologies';
 	import { getModalTransition } from '$utils/getModalTransition';
@@ -250,7 +250,7 @@
 							<span class="text-xs font-semibold {searchResults && 'pt-2'}">Search Quran</span>
 							<div class={linkClasses}>
 								<span>{@html '&#10230'}</span>
-								<a href="/search?query={searchedKey}&translation={defaultSearchTranslation}" class={linkTextClasses}>"{searchedKey}"</a>
+								<a href="/search?query={searchedKey}" class={linkTextClasses}>"{searchedKey}"</a>
 							</div>
 						{/if}
 					</div>

@@ -7,8 +7,7 @@
 	import { goto } from '$app/navigation';
 	import { __currentPage, __fontType, __wordTranslation, __verseTranslations, __wordTransliteration, __settingsSelectorModal } from '$utils/stores';
 	import { fetchVersesData } from '$utils/fetchData';
-	import { defaultSearchTranslation, errorLoadingDataMessage } from '$data/websiteSettings';
-	import { selectableVerseTranslations } from '$data/options';
+	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
 	import { buttonOutlineClasses } from '$data/commonClasses';
 	import { term } from '$utils/terminologies';
 
@@ -17,33 +16,36 @@
 
 	// Retrieve or set default values for search parameters
 	let searchQuery = params.get('query') === null ? '' : params.get('query'); // Search text
-	let selectedTranslation = params.get('translation') === null ? defaultSearchTranslation : +params.get('translation'); // Selected translation index
+	let selectedTranslation = params.get('translation') === null ? $__verseTranslations.toString() : params.get('translation'); // Selected translation index
 	let searchPage = params.get('page') === null ? 1 : +params.get('page'); // Selected page
-
-	let resultsPerPage = 5;
+	let resultsPerPage = 50;
 	let totalResults;
 	let areResultsMoreThan200;
 	let pagePagination = null;
 
 	// Basic checks
-	$: if (selectedTranslation in selectableVerseTranslations === false) selectedTranslation = defaultSearchTranslation;
-	$: if (selectableVerseTranslations[selectedTranslation].identifier === undefined) selectedTranslation = defaultSearchTranslation;
 	$: if (searchPage < 1 || isNaN(searchPage)) searchPage = 1;
 
 	// Update the search results whenever query changes
-	$: if (searchQuery.length > 0) goto(`/search?query=${searchQuery}&page=${searchPage}&translation=${$__verseTranslations.toString()}`, { replaceState: false });
+	$: if (searchQuery.length > 0 || $__verseTranslations) goto(`/search?query=${searchQuery}&page=${searchPage}&translation=${selectedTranslation}`, { replaceState: false });
+
+	// Set the page back to 1 everytime the verse translation changes
+	$: if ($__verseTranslations) {
+		searchPage = 1;
+		selectedTranslation = $__verseTranslations.toString();
+	}
 
 	$: fetchVerses = (async () => {
 		try {
 			totalResults = 0;
 			areResultsMoreThan200 = false;
-			const versesKeys = await fetch(`https://api.quranwbw.com/v1/search-translations?query=${searchQuery}&size=${resultsPerPage}&page=${searchPage}&filter_translations=${$__verseTranslations.toString()}`);
+			const versesKeys = await fetch(`${apiEndpoint}/search-translations?query=${searchQuery}&size=${resultsPerPage}&page=${searchPage}&filter_translations=${selectedTranslation}`);
 			const versesKeysResponse = await versesKeys.json();
 			const versesKeyData = versesKeysResponse.data;
 			if (versesKeyData.result.verses.length === 0) return 404;
 			pagePagination = versesKeyData.pagination;
 			totalResults = versesKeyData.pagination.total_records;
-			return await fetchVersesData(generateKeys(versesKeyData), $__fontType, $__wordTranslation, $__wordTransliteration, $__verseTranslations);
+			return await fetchVersesData(generateKeys(versesKeyData), $__fontType, $__wordTranslation, $__wordTransliteration, selectedTranslation);
 		} catch (error) {
 			console.error(errorLoadingDataMessage, error);
 			return {};
@@ -120,7 +122,9 @@
 								<button class="{buttonOutlineClasses} text-xs" on:click={() => (searchPage = pagePagination.current_page - 1)}>{@html '&#x2190;'} {pagePagination.current_page - 1}</button>
 							{/if}
 
-							<button>Page {pagePagination.current_page}</button>
+							{#if pagePagination.total_pages > 1}
+								<button>Page {pagePagination.current_page}</button>
+							{/if}
 
 							{#if pagePagination.next_page !== null}
 								<button class="{buttonOutlineClasses} text-xs" on:click={() => (searchPage = pagePagination.next_page)}>{pagePagination.next_page} {@html '&#x2192;'}</button>

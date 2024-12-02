@@ -99,9 +99,7 @@ export const selectableVerseTranslations = {
 	20: {
 		resource_id: 20,
 		resource_name: 'Saheeh International',
-		language_id: 38,
-		searchable: true,
-		identifier: 'en.sahih'
+		language_id: 38
 	},
 	84: {
 		resource_id: 84,
@@ -116,30 +114,22 @@ export const selectableVerseTranslations = {
 	95: {
 		resource_id: 95,
 		resource_name: 'Abul Alaa Maududi',
-		language_id: 38,
-		searchable: true,
-		identifier: 'en.maududi'
+		language_id: 38
 	},
 	19: {
 		resource_id: 19,
 		resource_name: 'Pickthall',
-		language_id: 38,
-		searchable: true,
-		identifier: 'en.pickthall'
+		language_id: 38
 	},
 	22: {
 		resource_id: 22,
 		resource_name: 'Yusuf Ali',
-		language_id: 38,
-		searchable: true,
-		identifier: 'en.yusufali'
+		language_id: 38
 	},
 	203: {
 		resource_id: 203,
 		resource_name: 'Hilali & Khan',
-		language_id: 38,
-		searchable: true,
-		identifier: 'en.hilali'
+		language_id: 38
 	},
 
 	// french
