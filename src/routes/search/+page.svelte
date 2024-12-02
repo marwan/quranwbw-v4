@@ -88,12 +88,7 @@
 <div class="mt-4 space-y-4">
 	<div class="flex max-w-2xl mx-auto">
 		<div id="dropdown" class="z-10 w-44">
-			<select
-				id="dropdown"
-				bind:value={selectedTranslation}
-				on:change={(event) => (selectedTranslation = +event.target.value)}
-				class="truncate bg-gray-50 border border-black/10 text-gray-900 text-sm rounded-3xl rounded-r-none focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-gray-500 dark:focus:border-gray-500"
-			>
+			<select id="dropdown" bind:value={selectedTranslation} on:change={(event) => (selectedTranslation = +event.target.value)} class="truncate bg-gray-50 border border-black/10 text-gray-900 text-sm rounded-3xl rounded-r-none block w-full p-2.5 pl-4">
 				{#each Object.entries(selectableVerseTranslations) as [id, translation]}
 					{#if translation.searchable}
 						<option value={+translation.resource_id}>{translation.resource_name}</option>
