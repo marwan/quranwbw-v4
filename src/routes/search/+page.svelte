@@ -16,7 +16,6 @@
 	const params = new URLSearchParams(window.location.search);
 
 	// Retrieve or set default values for search parameters
-
 	let searchQuery = params.get('query') === null ? '' : params.get('query'); // Search text
 	let selectedTranslation = params.get('translation') === null ? defaultSearchTranslation : +params.get('translation'); // Selected translation index
 	let searchPage = params.get('page') === null ? 1 : +params.get('page'); // Selected page
@@ -29,6 +28,7 @@
 	// Basic checks
 	$: if (selectedTranslation in selectableVerseTranslations === false) selectedTranslation = defaultSearchTranslation;
 	$: if (selectableVerseTranslations[selectedTranslation].identifier === undefined) selectedTranslation = defaultSearchTranslation;
+	$: if (searchPage < 1 || isNaN(searchPage)) searchPage = 1;
 
 	// Update the search results whenever query changes
 	$: if (searchQuery.length > 0) goto(`/search?query=${searchQuery}&page=${searchPage}&translation=${$__verseTranslations.toString()}`, { replaceState: false });
@@ -37,12 +37,13 @@
 		try {
 			totalResults = 0;
 			areResultsMoreThan200 = false;
-			const versesKeys = await fetch(`https://api.qurancdn.com/api/qdc/search?query=${searchQuery}&size=${resultsPerPage}&page=${searchPage}&filter_translations=${$__verseTranslations.toString()}`);
+			const versesKeys = await fetch(`http://api.quranwbw.com/v1/search-translations?query=${searchQuery}&size=${resultsPerPage}&page=${searchPage}&filter_translations=${$__verseTranslations.toString()}`);
 			const versesKeysResponse = await versesKeys.json();
-			if (versesKeysResponse.result.verses.length === 0) return 404;
-			pagePagination = versesKeysResponse.pagination;
-			totalResults = versesKeysResponse.pagination.total_records;
-			return await fetchVersesData(generateKeys(versesKeysResponse), $__fontType, $__wordTranslation, $__wordTransliteration, $__verseTranslations);
+			const versesKeyData = versesKeysResponse.data;
+			if (versesKeyData.result.verses.length === 0) return 404;
+			pagePagination = versesKeyData.pagination;
+			totalResults = versesKeyData.pagination.total_records;
+			return await fetchVersesData(generateKeys(versesKeyData), $__fontType, $__wordTranslation, $__wordTransliteration, $__verseTranslations);
 		} catch (error) {
 			console.error(errorLoadingDataMessage, error);
 			return {};
@@ -119,9 +120,7 @@
 								<button class="{buttonOutlineClasses} text-xs" on:click={() => (searchPage = pagePagination.current_page - 1)}>{@html '&#x2190;'} {pagePagination.current_page - 1}</button>
 							{/if}
 
-							{#if pagePagination.current_page !== pagePagination.total_pages}
-								<button>Page {pagePagination.current_page}</button>
-							{/if}
+							<button>Page {pagePagination.current_page}</button>
 
 							{#if pagePagination.next_page !== null}
 								<button class="{buttonOutlineClasses} text-xs" on:click={() => (searchPage = pagePagination.next_page)}>{pagePagination.next_page} {@html '&#x2192;'}</button>
