@@ -5,8 +5,8 @@
 	export let placeholder = 'Choose option ...';
 	export let underline = false;
 	export let size = 'md';
-	export let defaultClass = 'text-gray-900 disabled:text-gray-400 bg-gray-50 border border-black/10 rounded-lg focus:ring-gray-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:disabled:text-gray-500 dark:focus:ring-gray-500 dark:focus:border-primary-500';
-	export let underlineClass = 'text-gray-500 disabled:text-gray-400 bg-transparent border-0 border-b-2 border-black/10 appearance-none dark:text-gray-400 dark:disabled:text-gray-500 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-black/10 peer';
+	export let defaultClass = 'text-grayyy-900 disabled:text-grayyy-400 bg-grayyy-50 border border-blackkk/10 rounded-lg focus:ring-grayyy-500 focus:border-primary-500 dark:bg-grayyy-700 dark:border-grayyy-600 dark:placeholder-grayyy-400 dark:text-white dark:disabled:text-grayyy-500 dark:focus:ring-grayyy-500 dark:focus:border-primary-500';
+	export let underlineClass = 'text-grayyy-500 disabled:text-grayyy-400 bg-transparent border-0 border-b-2 border-blackkk/10 appearance-none dark:text-grayyy-400 dark:disabled:text-grayyy-500 dark:border-grayyy-700 focus:outline-none focus:ring-0 focus:border-blackkk/10 peer';
 	const common = 'block w-full';
 	const sizes = {
 		sm: 'text-sm p-2',
@@ -38,6 +38,6 @@
 @prop export let placeholder: string = 'Choose option ...';
 @prop export let underline: boolean = false;
 @prop export let size: 'sm' | 'md' | 'lg' = 'md';
-@prop export let defaultClass: string = 'text-gray-900 disabled:text-gray-400 bg-gray-50 border border-black/10 rounded-lg focus:ring-gray-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:disabled:text-gray-500 dark:focus:ring-gray-500 dark:focus:border-primary-500';
-@prop export let underlineClass: string = 'text-gray-500 disabled:text-gray-400 bg-transparent border-0 border-b-2 border-black/10 appearance-none dark:text-gray-400 dark:disabled:text-gray-500 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-black/10 peer';
+@prop export let defaultClass: string = 'text-grayyy-900 disabled:text-grayyy-400 bg-grayyy-50 border border-blackkk/10 rounded-lg focus:ring-grayyy-500 focus:border-primary-500 dark:bg-grayyy-700 dark:border-grayyy-600 dark:placeholder-grayyy-400 dark:text-white dark:disabled:text-grayyy-500 dark:focus:ring-grayyy-500 dark:focus:border-primary-500';
+@prop export let underlineClass: string = 'text-grayyy-500 disabled:text-grayyy-400 bg-transparent border-0 border-b-2 border-blackkk/10 appearance-none dark:text-grayyy-400 dark:disabled:text-grayyy-500 dark:border-grayyy-700 focus:outline-none focus:ring-0 focus:border-blackkk/10 peer';
 -->

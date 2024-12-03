@@ -2,7 +2,7 @@
 	import Wrapper from '../utils/Wrapper.svelte';
 	import { twMerge } from 'tailwind-merge';
 	import { getContext } from 'svelte';
-	export let defaultClass = 'font-medium py-2 px-4 text-sm hover:bg-black/5 dark:hover:bg-gray-600';
+	export let defaultClass = 'font-medium py-2 px-4 text-sm hover:bg-blackkk/5 dark:hover:bg-grayyy-600';
 	export let href = undefined;
 	export let activeClass = undefined;
 	// export let active: boolean = false;
@@ -34,7 +34,7 @@
 @component
 [Go to docs](https://flowbite-svelte.com/)
 ## Props
-@prop export let defaultClass: string = 'font-medium py-2 px-4 text-sm hover:bg-black/5 dark:hover:bg-gray-600';
+@prop export let defaultClass: string = 'font-medium py-2 px-4 text-sm hover:bg-blackkk/5 dark:hover:bg-grayyy-600';
 @prop export let href: string | undefined = undefined;
 @prop export let activeClass: string | undefined = undefined;
 @prop export let active: boolean = false;

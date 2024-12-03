@@ -160,7 +160,7 @@
 	</div> -->
 
 	<div class="flex justify-center -mt-12 pb-16">
-		<button class="w-fit flex flex-row space-x-2 py-3 px-3 text-black/70 opacityyy-70 bg-grayyy-200 hover:bg-grayyy-300 rounded-xl items-center cursor-pointer theme" on:click={toggleMushafMinimalMode}>
+		<button class="w-fit flex flex-row space-x-2 py-3 px-3 text-blackkk/70 opacityyy-70 bg-grayyy-200 hover:bg-grayyy-300 rounded-xl items-center cursor-pointer theme" on:click={toggleMushafMinimalMode}>
 			<Minimize size={3} />
 		</button>
 		<Tooltip arrow={false} type="light" class="z-30 hidden md:block font-filter font-normal">Minimal Mode</Tooltip>

@@ -13,15 +13,15 @@
 	export let size = undefined;
 	export let defaultClass = 'block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right';
 	export let color = 'base';
-	export let floatClass = 'flex absolute inset-y-0 items-center text-gray-500 dark:text-gray-400';
+	export let floatClass = 'flex absolute inset-y-0 items-center text-grayyy-500 dark:text-grayyy-400';
 	const borderClasses = {
-		base: 'border-gray-300 dark:border-gray-600'
+		base: 'border-grayyy-300 dark:border-grayyy-600'
 	};
 	const ringClasses = {
-		base: 'focus:border-gray-500 focus:ring-gray-500 dark:focus:border-gray-500 dark:focus:ring-gray-500'
+		base: 'focus:border-grayyy-500 focus:ring-grayyy-500 dark:focus:border-grayyy-500 dark:focus:ring-grayyy-500'
 	};
 	const colorClasses = {
-		base: 'bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400'
+		base: 'bg-grayyy-50 text-grayyy-900 dark:bg-grayyy-700 dark:text-white dark:placeholder-grayyy-400'
 	};
 	// tinted if put in component having its own background
 	let background = getContext('background');
@@ -61,5 +61,5 @@
 @prop export let size: FormSizeType | undefined = undefined;
 @prop export let defaultClass: string = 'block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right';
 @prop export let color: 'base' | 'green' | 'red' = 'base';
-@prop export let floatClass: string = 'flex absolute inset-y-0 items-center text-gray-500 dark:text-gray-400';
+@prop export let floatClass: string = 'flex absolute inset-y-0 items-center text-grayyy-500 dark:text-grayyy-400';
 -->

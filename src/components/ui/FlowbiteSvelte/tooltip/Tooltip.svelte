@@ -4,9 +4,9 @@
 	export let type = 'dark';
 	export let defaultClass = 'py-2 px-3 text-sm font-medium';
 	const types = {
-		dark: 'bg-gray-900 text-white dark:bg-gray-700',
-		light: 'border-black/10 bg-white text-gray-900',
-		auto: ' bg-white text-gray-900 dark:bg-gray-700 dark:text-white border-black/10 dark:border-gray-700',
+		dark: 'bg-grayyy-900 text-white dark:bg-grayyy-700',
+		light: 'border-blackkk/10 bg-white text-grayyy-900',
+		auto: ' bg-white text-grayyy-900 dark:bg-grayyy-700 dark:text-white border-blackkk/10 dark:border-grayyy-700',
 		custom: ''
 	};
 	let toolTipClass;

@@ -1,34 +1,35 @@
-<script>import { twMerge } from 'tailwind-merge';
-export let color = 'gray';
-export let defaultClass = 'text-sm rtl:text-right font-medium block';
-export let show = true;
-let node;
-const colorClasses = {
-    gray: 'text-gray-900 dark:text-gray-300',
-    green: 'text-green-700 dark:text-green-500',
-    red: 'text-red-700 dark:text-red-500',
-    disabled: 'text-gray-400 dark:text-gray-500'
-};
-// function checkDisabled(node: HTMLLabelElement) {
-$: {
-    const control = node?.control;
-    color = control?.disabled ? 'disabled' : color;
-}
-$: labelClass = twMerge(defaultClass, colorClasses[color], $$props.class);
+<script>
+	import { twMerge } from 'tailwind-merge';
+	export let color = 'grayyy';
+	export let defaultClass = 'text-sm rtl:text-right font-medium block';
+	export let show = true;
+	let node;
+	const colorClasses = {
+		grayyy: 'text-grayyy-900 dark:text-grayyy-300',
+		green: 'text-green-700 dark:text-green-500',
+		red: 'text-red-700 dark:text-red-500',
+		disabled: 'text-grayyy-400 dark:text-grayyy-500'
+	};
+	// function checkDisabled(node: HTMLLabelElement) {
+	$: {
+		const control = node?.control;
+		color = control?.disabled ? 'disabled' : color;
+	}
+	$: labelClass = twMerge(defaultClass, colorClasses[color], $$props.class);
 </script>
 
 {#if show}
-  <!-- svelte-ignore a11y-label-has-associated-control -->
-  <label bind:this={node} {...$$restProps} class={labelClass}><slot /></label>
+	<!-- svelte-ignore a11y-label-has-associated-control -->
+	<label bind:this={node} {...$$restProps} class={labelClass}><slot /></label>
 {:else}
-  <slot />
+	<slot />
 {/if}
 
 <!--
 @component
 [Go to docs](https://flowbite-svelte.com/)
 ## Props
-@prop export let color: 'gray' | 'green' | 'red' | 'disabled' = 'gray';
+@prop export let color: 'grayyy' | 'green' | 'red' | 'disabled' = 'grayyy';
 @prop export let defaultClass: string = 'text-sm rtl:text-right font-medium block';
 @prop export let show: boolean = true;
 -->

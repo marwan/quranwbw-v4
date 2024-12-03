@@ -227,7 +227,7 @@ export const tajweedRulings = {
 	32: {
 		code: 'M',
 		title: 'ldgham Bi-Ghunnah – (الإدغام بغنّة)',
-		description: 'Ghunnah / Nasalization after the idgham (silent - gray) letter in previous word.'
+		description: 'Ghunnah / Nasalization after the idgham (silent - grayyy) letter in previous word.'
 	},
 
 	// 3 assorted colors
