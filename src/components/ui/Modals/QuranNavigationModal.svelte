@@ -250,7 +250,7 @@
 							<span class="text-xs font-semibold {searchResults && 'pt-2'}">Search Quran</span>
 							<div class={linkClasses}>
 								<span>{@html '&#10230'}</span>
-								<a href="/search?text={searchedKey}&translation=0" class={linkTextClasses}>"{searchedKey}"</a>
+								<a href="/search?query={searchedKey}" class={linkTextClasses}>"{searchedKey}"</a>
 							</div>
 						{/if}
 					</div>

@@ -7,6 +7,10 @@
 	import { __userSettings, __verseTranslations, __currentPage } from '$utils/stores';
 	import { selectableVerseTranslations, rightToLeftVerseTranslations } from '$data/options';
 
+	// Retrieve URL parameters
+	const params = new URLSearchParams(window.location.search);
+	const searchQuery = params.get('query') === null ? '' : params.get('query');
+
 	const translationFootnoteClasses = `hidden my-2 footnote-block px-2 py-2 border-2 border-gray-200 rounded-2xl theme-grayscale footnote-${value.meta.chapter}-${value.meta.verse}-${verseTranslationID}`;
 	const footnoteSupClasses = 'ml-1 mt-1 px-2 py-1 bg-gray-200 rounded-full font-semibold cursor-pointer system-font';
 
@@ -65,6 +69,26 @@
 		return rightToLeftVerseTranslations.includes(selectableVerseTranslations[id].resource_id);
 	}
 
+	// Function to highlight the searched text in verse text
+	function highlightSearchedText(searchQuery, verseText) {
+		const regex = new RegExp(`(?<!<[^>]*)\\b(${searchQuery})\\b(?![^<]*>)`, 'gi');
+		const result = verseText.replace(regex, (match) => `<b>${match}</b>`);
+		return result;
+	}
+
+	// Function to modify the verse text
+	function verseTextModifier(verseText) {
+		let updatedVerseText = verseText;
+
+		// If query parameter was set (from the search page), highlight the query in the verse translation
+		if (params.get('query') !== null) {
+			updatedVerseText = highlightSearchedText(searchQuery, updatedVerseText);
+		}
+
+		updatedVerseText = updatedVerseText.replace(/<sup/g, `<sup onclick='supClick(this)' title='Show footnote' data-chapter='${value.meta.chapter}' data-verse='${value.meta.verse}' data-translation=${verseTranslationID} class='${footnoteSupClasses}'`);
+		return updatedVerseText;
+	}
+
 	// function detectVersesInFootnote(footnote) {
 	// 	const regex = /\d{0,9}(:\d{0,9})*/g;
 	// 	let matches = footnote.match(regex);
@@ -79,7 +103,7 @@
 
 <div class="flex flex-col print:break-inside-avoid">
 	<span class="{isTranslationRTL(verseTranslation.resource_id) && 'direction-rtl'} {isTranslationUrduOrPersian(verseTranslation.resource_id) && 'font-Urdu'}">
-		{@html verseTranslation.text.replace(/<sup/g, `<sup onclick='supClick(this)' title='Show footnote' data-chapter='${value.meta.chapter}' data-verse='${value.meta.verse}' data-translation=${verseTranslationID} class='${footnoteSupClasses}' `)}
+		{@html verseTextModifier(verseTranslation.text)}
 	</span>
 
 	<!-- translation footnotes -->
