@@ -33,26 +33,28 @@
 
 	$: fetchVerses = (async () => {
 		try {
-			const urlParameters = `query=${searchQuery}&size=${resultsPerPage}&page=${searchPage}&filter_translations=${selectedTranslations}`;
-			let versesKeyData;
+			if (searchQuery.length > 0) {
+				const urlParameters = `query=${searchQuery}&size=${resultsPerPage}&page=${searchPage}&filter_translations=${selectedTranslations}`;
+				let versesKeyData;
 
-			// Fetching from Quran.com default search API
-			let response = await fetch(`https://api.qurancdn.com/api/qdc/search?${urlParameters}`);
-			let data = await response.json();
-			versesKeyData = data;
+				// Fetching from Quran.com default search API
+				let response = await fetch(`https://api.qurancdn.com/api/qdc/search?${urlParameters}`);
+				let data = await response.json();
+				versesKeyData = data;
 
-			// If no data, then fetch from our API
-			if (!versesKeyData.result.verses.length) {
-				response = await fetch(`${apiEndpoint}/search-translations?${urlParameters}`);
-				data = await response.json();
-				versesKeyData = data.data;
+				// If no data, then fetch from our API
+				if (!versesKeyData.result.verses.length) {
+					response = await fetch(`${apiEndpoint}/search-translations?${urlParameters}`);
+					data = await response.json();
+					versesKeyData = data.data;
+				}
+
+				const { pagination } = versesKeyData;
+				totalResults = pagination.total_records;
+				pagePagination = pagination;
+
+				return await fetchVersesData(generateKeys(versesKeyData), $__fontType, $__wordTranslation, $__wordTransliteration, selectedTranslations);
 			}
-
-			const { pagination } = versesKeyData;
-			totalResults = pagination.total_records;
-			pagePagination = pagination;
-
-			return await fetchVersesData(generateKeys(versesKeyData), $__fontType, $__wordTranslation, $__wordTransliteration, selectedTranslations);
 		} catch (error) {
 			console.error(errorLoadingDataMessage, error);
 			return {};
