@@ -51,41 +51,28 @@ export async function fetchVerseTranslationData(chapter, translations = get(__ve
 }
 
 // Fetch individual verses
-export async function fetchVersesData(verses, fontType, wordTranslation, extras) {
-	__chapterData.set(null);
+export async function fetchVersesData(props) {
+	if (!props.skipSave) __chapterData.set(null);
 
-	// we don't actuall need this data, but just have to pass it in this function so the page can re-render
-	console.log(extras);
+	// Set default props, we still try to get the props from function invokations for reactivity
+	if (!props.fontType) props.fontType = get(__fontType);
+	if (!props.wordTranslation) props.wordTranslation = get(__wordTranslation);
+	if (!props.wordTransliteration) props.wordTransliteration = get(__wordTransliteration);
 
 	const apiURL =
 		`${apiEndpoint}/verses?` +
 		new URLSearchParams({
-			verses: verses,
-			word_type: selectableFontTypes[fontType].apiId,
-			word_translation: wordTranslation,
-			word_transliteration: get(__wordTransliteration),
+			verses: props.verses,
+			word_type: selectableFontTypes[props.fontType].apiId,
+			word_translation: props.wordTranslation,
+			word_transliteration: props.wordTransliteration,
 			verse_translation: '1,3',
 			version: apiVersion
 		});
 
 	const response = await fetch(apiURL);
 	const data = await response.json();
-	__chapterData.set(data.data.verses);
-	return data.data.verses;
-}
-
-// Fetch single verses
-export async function fetchSingleVerseData(verses, fontType) {
-	const apiURL =
-		`${apiEndpoint}/verses?` +
-		new URLSearchParams({
-			verses: verses,
-			word_type: selectableFontTypes[fontType].apiId,
-			version: apiVersion
-		});
-
-	const response = await fetch(apiURL);
-	const data = await response.json();
+	if (!props.skipSave) __chapterData.set(data.data.verses);
 	return data.data.verses;
 }
 

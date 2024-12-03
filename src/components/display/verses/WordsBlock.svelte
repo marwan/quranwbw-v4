@@ -41,7 +41,7 @@
 
 		// If the user clicks on a word in a non-Morphology page
 		else if ($__currentPage !== 'morphology' && props.type === 'word') {
-			// __morphologyKey.set(props.key);
+			__morphologyKey.set(props.key);
 			__morphologyModalVisible.set(true);
 		}
 

@@ -5,24 +5,7 @@
 	import { selectableFontTypes } from '$data/options';
 	import { updateSettings } from '$utils/updateSettings';
 	import { selectedRadioClasses } from '$data/commonClasses';
-
-	// fetching verse data
-	// $: fetchData = fetchVersesData('1:1', $__fontType, 1, 1, true);
 </script>
-
-<!-- <div id="exampleVerse" class="scale-70 my-6 justify-center">
-	{#await fetchData}
-		<Spinner size="10" />
-	{:then fetchData}
-		<div class="flex flex-wrap justify-center direction-rtl">
-			{#each Object.entries(fetchData) as [key, value]}
-				<WordsBlock {key} {value} exampleVerse="true" />
-			{/each}
-		</div>
-	{:catch error}
-		<p>Error fetching the example verse.</p>
-	{/await}
-</div> -->
 
 <div class="grid gap-3 w-full theme-grayscale">
 	{#each Object.entries(selectableFontTypes) as [id, font]}

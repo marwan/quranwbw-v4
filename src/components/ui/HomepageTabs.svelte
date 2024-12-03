@@ -10,7 +10,7 @@
 	import { buttonClasses, buttonOutlineClasses } from '$data/commonClasses';
 	import { checkTimeSpecificChapters } from '$utils/checkTimeSpecificChapters';
 	import { term } from '$utils/terminologies';
-	import { fetchSingleVerseData } from '$utils/fetchData';
+	import { fetchVersesData } from '$utils/fetchData';
 	import { splitDelimiter } from '$data/websiteSettings';
 
 	// CSS classes for chapter cards and tabs
@@ -33,7 +33,7 @@
 	}
 
 	// Reactive variable to fetch bookmarks data when on the bookmarks tab
-	$: fetchData = activeTab === 3 && totalBookmarks !== 0 ? fetchSingleVerseData($__userBookmarks.toString(), 1) : null;
+	$: fetchData = activeTab === 3 && totalBookmarks !== 0 ? fetchVersesData({ verses: $__userBookmarks.toString(), fontType: 1 }) : null;
 	$: totalBookmarks = $__userBookmarks.length;
 	$: totalNotes = Object.keys($__userNotes).length;
 

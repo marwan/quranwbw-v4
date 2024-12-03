@@ -3,12 +3,8 @@
 	import MorphologyView from '$src/routes/morphology/[key]/MorphologyView.svelte';
 	import { __morphologyModalVisible, __morphologyKey } from '$utils/stores';
 
-	// $: wordKeyData = {
-	// 	key: $__morphologyKey
-	// };
-
 	$: wordKeyData = {
-		key: '1:1:1'
+		key: $__morphologyKey
 	};
 </script>
 

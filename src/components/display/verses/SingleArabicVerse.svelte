@@ -2,12 +2,12 @@
 	export let key;
 
 	import Spinner from '$svgs/Spinner.svelte';
-	import { fetchSingleVerseData } from '$utils/fetchData';
+	import { fetchVersesData } from '$utils/fetchData';
 	import { __fontType } from '$utils/stores';
 	import { splitDelimiter } from '$data/websiteSettings';
 
 	$: fontType = [1, 2, 3].includes($__fontType) ? 1 : 4;
-	$: fetchData = fetchSingleVerseData(key, fontType);
+	$: fetchData = fetchVersesData({ verses: key, fontType: fontType, skipSave: true });
 </script>
 
 {#await fetchData}
