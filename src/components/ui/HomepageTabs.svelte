@@ -61,7 +61,7 @@
 	}
 </script>
 
-<div id="homepage-tabs" style="margin-top: 15px;" class="theme-grayyyscale">
+<div id="homepage-tabs" style="margin-top: 0px;" class="theme-grayyyscale">
 	<div class="flex items-center justify-center px-2 mb-4">
 		<!-- <div class="hidden md:block flex-1 border-t border-blackkk/10"></div> -->
 

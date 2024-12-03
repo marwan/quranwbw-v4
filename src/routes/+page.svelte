@@ -15,12 +15,13 @@
 
 <div class="max-w-4xl mx-auto flex flex-col space-y-6 md:px-4 theme">
 	<div class="flex flex-col mt-4 mb-4 theme-grayyyscale">
-		<a href="/" class="flex flex-col items-center justify-center" aria-label="Home">
-			<Quran size={100} />
-			<Logo />
+		<a href="/" class="flex flex-row space-x-1 items-center justify-center" aria-label="Home">
+			<div><Quran size={50} /></div>
+			<div class="flex flex-col">
+				<Logo />
+				<div class="text-xs text-center opacityyy-70">Word By Word & Morphology</div>
+			</div>
 		</a>
-		<!-- <div class="text-xs text-center opacityyy-70">{websiteTagline}</div> -->
-		<div class="text-xs text-center opacityyy-70">Word By Word & Morphology</div>
 	</div>
 
 	<!-- chapter and most read tabs -->
