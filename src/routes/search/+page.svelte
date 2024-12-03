@@ -127,11 +127,15 @@
 			{#await fetchVerses}
 				<Spinner />
 			{:then data}
-				{#if data !== 404}
+				{#if data !== undefined}
 					<!-- search results info -->
 					<div class="flex flex-col space-y-4 text-center text-xs theme">
 						<div>{generateTranslationText(selectedTranslations)}</div>
-						<div>Displaying {totalResults} results for "{searchQuery}".</div>
+						{#if pagePagination.total_pages > 1}
+							<div>Displaying {totalResults} results for "{searchQuery}" (page {pagePagination.current_page}).</div>
+						{:else}
+							<div>Displaying {totalResults} results for "{searchQuery}".</div>
+						{/if}
 					</div>
 
 					{@const totalRecords = Object.keys(data).length}
