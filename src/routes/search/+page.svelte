@@ -11,34 +11,29 @@
 	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
 	import { buttonOutlineClasses } from '$data/commonClasses';
 	import { term } from '$utils/terminologies';
+	import { selectableVerseTranslations } from '$data/options';
 
-	// Retrieve URL parameters
 	const params = new URLSearchParams(window.location.search);
-
-	// Retrieve or set default values for search parameters
-	let searchQuery = params.get('query') === null ? '' : params.get('query'); // Search text
-	let selectedTranslation = params.get('translation') === null ? $__verseTranslations.toString() : params.get('translation'); // Selected translation index
-	let searchPage = params.get('page') === null ? 1 : +params.get('page'); // Selected page
+	let searchQuery = params.get('query') === null || params.get('query') === '' ? '' : params.get('query'); // Search text
+	let previousSearchQuery = '';
+	let selectedTranslations = $__verseTranslations.toString();
+	let searchPage = params.get('page') === null || params.get('page') === '' ? 1 : +params.get('page'); // Selected page
 	let resultsPerPage = 50;
 	let totalResults;
-	let areResultsMoreThan200;
 	let pagePagination = null;
 
 	// Basic checks
 	$: if (searchPage < 1 || isNaN(searchPage)) searchPage = 1;
 
 	// Update the search results whenever query changes
-	$: if (searchQuery.length > 0 || $__verseTranslations) goto(`/search?query=${searchQuery}&page=${searchPage}&translation=${selectedTranslation}`, { replaceState: false });
+	$: if (searchQuery.length > 0) goto(`/search?query=${searchQuery}&page=${searchPage}`, { replaceState: false });
 
-	// Set the page back to 1 everytime the verse translation changes
-	$: if ($__verseTranslations) {
-		searchPage = 1;
-		selectedTranslation = $__verseTranslations.toString();
-	}
+	// Update the selected translations whenever user changes it
+	$: if ($__verseTranslations) selectedTranslations = $__verseTranslations.toString();
 
 	$: fetchVerses = (async () => {
 		try {
-			const urlParameters = `query=${searchQuery}&size=${resultsPerPage}&page=${searchPage}&filter_translations=${selectedTranslation}`;
+			const urlParameters = `query=${searchQuery}&size=${resultsPerPage}&page=${searchPage}&filter_translations=${selectedTranslations}`;
 			let versesKeyData;
 
 			// Fetching from Quran.com default search API
@@ -57,7 +52,7 @@
 			totalResults = pagination.total_records;
 			pagePagination = pagination;
 
-			return await fetchVersesData(generateKeys(versesKeyData), $__fontType, $__wordTranslation, $__wordTransliteration, selectedTranslation);
+			return await fetchVersesData(generateKeys(versesKeyData), $__fontType, $__wordTranslation, $__wordTransliteration, selectedTranslations);
 		} catch (error) {
 			console.error(errorLoadingDataMessage, error);
 			return {};
@@ -74,7 +69,28 @@
 		return verseKeys.toString();
 	}
 
-	// Set the current page to 'search'
+	function generateTranslationText(idsString) {
+		if (idsString === '') return '';
+
+		const ids = idsString.split(',').map((id) => parseInt(id.trim()));
+		const resourceNames = ids.map((id) => selectableVerseTranslations[id]?.resource_name).filter((name) => name);
+
+		if (resourceNames.length === 2) {
+			return `Searching in ${resourceNames[0]} and ${resourceNames[1]}.`;
+		}
+
+		const firstResourceName = resourceNames[0];
+		const othersCount = resourceNames.length - 1;
+
+		return `Searching in ${firstResourceName}${othersCount > 0 ? `, and ${othersCount} other${othersCount > 1 ? 's' : ''}` : ''}.`;
+	}
+
+	function updateSearchQuery(query) {
+		previousSearchQuery = searchQuery;
+		searchQuery = query;
+		if (previousSearchQuery !== searchPage) searchPage = 1;
+	}
+
 	__currentPage.set('search');
 </script>
 
@@ -87,9 +103,9 @@
 		</button>
 
 		<!-- search input form -->
-		<form on:submit|preventDefault={(event) => (searchQuery = document.getElementById('search-input').value)} class="flex items-center w-full">
+		<form on:submit|preventDefault={() => updateSearchQuery(document.getElementById('search-input').value)} class="flex items-center w-full">
 			<div class="relative w-full">
-				<input type="search" id="search-input" value={searchQuery} class="block p-3 py-3.5 pl-4 w-full z-20 text-sm text-gray-900 bg-gray-50 border border-black/10" placeholder="Search Abraham, Mary, Noah, Paradise..." required />
+				<input type="search" id="search-input" value={searchQuery} class="block p-3 py-3.5 pl-4 w-full z-20 text-sm text-gray-900 bg-gray-50 border border-black/10" placeholder="Search Ibrahim, Mary, Jannat, كتاب..." required />
 			</div>
 			<button type="submit" title="Search" class="py-[0.94rem] px-5 text-gray-600 bg-lightGray hover:bg-gray-200 rounded-r-3xl items-center">
 				<Search2 size={5} />
@@ -99,8 +115,8 @@
 
 	<!-- search instructions -->
 	{#if searchQuery.length === 0}
-		<div id="how-to-search" class="flex flex-col text-sm space-y-2 max-w-2xl mx-auto theme">
-			<span><b>Note:</b> To prevent browser slowdowns, avoid searching for extremely short phrases or words, as they may return a large number of records. Additionally, note that phrases or words available in one translation may not be available in others. For instance, in the Saheeh International translation, the word "Abraham" yields 72 records, whereas "Ibrahim" returns none.</span>
+		<div id="how-to-search" class="flex flex-col text-center text-xs space-y-2 max-w-2xl mx-auto theme">
+			<span>Explore {Object.keys(selectableVerseTranslations).length} translations from diverse languages and authors. Search for any text, regardless of English or Arabic terminology, and find the nearest or related results. Additionally, you can select specific translations using the button on the left. </span>
 		</div>
 	{/if}
 
@@ -112,11 +128,8 @@
 				{#if data !== 404}
 					<!-- search results info -->
 					<div class="flex flex-col space-y-4 text-center text-xs theme">
-						{#if areResultsMoreThan200}
-							<div>Displaying the first 200 results for "{searchQuery}" out of {totalResults} found.</div>
-						{:else}
-							<div>Displaying {totalResults} results for "{searchQuery}".</div>
-						{/if}
+						<div>{generateTranslationText(selectedTranslations)}</div>
+						<div>Displaying {totalResults} results for "{searchQuery}".</div>
 					</div>
 
 					{@const totalRecords = Object.keys(data).length}
