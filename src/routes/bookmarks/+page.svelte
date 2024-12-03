@@ -2,12 +2,20 @@
 	import PageHead from '$misc/PageHead.svelte';
 	import Individual from '$display/verses/modes/Individual.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
-	import { __currentPage, __fontType, __displayType, __wordTranslation, __verseTranslations, __wordTransliteration, __userBookmarks } from '$utils/stores';
+	import { __currentPage, __fontType, __displayType, __userBookmarks, __wordTranslation, __wordTransliteration, __verseTranslations } from '$utils/stores';
 	import { fetchVersesData } from '$utils/fetchData';
 	import { errorLoadingDataMessage } from '$data/websiteSettings';
 
 	// fetch verses whenever there's a change
-	$: fetchData = $__userBookmarks.length > 0 && fetchVersesData($__userBookmarks.toString(), $__fontType, $__wordTranslation, $__wordTransliteration, $__verseTranslations);
+	$: fetchData =
+		$__userBookmarks.length > 0 &&
+		fetchVersesData({
+			verses: $__userBookmarks.toString(),
+			fontType: $__fontType,
+			wordTranslation: $__wordTranslation,
+			wordTransliteration: $__wordTransliteration,
+			verseTranslations: $__verseTranslations
+		});
 
 	// only allow display type 1 & 2, and don't save the layout in settings
 	if ([3, 4, 5].includes($__displayType)) $__displayType = 1;

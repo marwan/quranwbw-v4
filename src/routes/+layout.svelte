@@ -14,6 +14,7 @@
 	import SettingsSelectorModal from '$ui/Modals/SettingsSelectorModal.svelte';
 	import NewSiteChangelogModal from '$ui/Modals/NewSiteChangelogModal.svelte';
 	import VerseTranslationModal from '$ui/Modals/VerseTranslationModal.svelte';
+	import MorphologyModal from '$ui/Modals/MorphologyModal.svelte';
 
 	import { __websiteOnline, __currentPage, __chapterNumber, __settingsDrawerHidden, __wakeLockEnabled, __userToken, __fontType, __wordTranslation, __verseTranslations, __selectedDisplayId, __mushafMinimalModeEnabled, __topNavbarVisible, __bottomToolbarVisible } from '$utils/stores';
 	import { checkOldBookmarks } from '$utils/checkOldBookmarks';
@@ -154,6 +155,7 @@
 	<!-- <LexiconModal /> -->
 	<NewSiteChangelogModal />
 	<VerseTranslationModal />
+	<MorphologyModal />
 	<BottomToolbar />
 	<slot />
 </div>

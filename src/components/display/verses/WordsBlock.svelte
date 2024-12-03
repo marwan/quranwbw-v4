@@ -4,7 +4,7 @@
 	import Tooltip from '$ui/FlowbiteSvelte/tooltip/Tooltip.svelte';
 	import { goto } from '$app/navigation';
 	import { selectableDisplays, selectableThemes } from '$data/options';
-	import { __currentPage, __fontType, __displayType, __userSettings, __audioSettings, __morphologyKey, __verseKey, __websiteTheme } from '$utils/stores';
+	import { __currentPage, __fontType, __displayType, __userSettings, __audioSettings, __morphologyKey, __verseKey, __websiteTheme, __morphologyModalVisible } from '$utils/stores';
 	import { loadFont } from '$utils/loadFont';
 	import { wordAudioController } from '$utils/audioController';
 	import { updateSettings } from '$utils/updateSettings';
@@ -33,10 +33,20 @@
 	// 2. On other pages, play word's audio
 	// 3. On any page, show verse options dropdown for end verse icon
 	function wordClickHandler(props) {
+		// For morphology page
 		if ($__currentPage === 'morphology' && props.type === 'word') {
 			__morphologyKey.set(props.key);
 			goto(`/morphology/${props.key}`, { replaceState: false });
-		} else {
+		}
+
+		// If the user clicks on a word in a non-Morphology page
+		// else if ($__currentPage !== 'morphology' && props.type === 'word') {
+		// 	__morphologyKey.set(props.key);
+		// 	__morphologyModalVisible.set(true);
+		// }
+
+		// All other options
+		else {
 			__verseKey.set(props.key);
 			if (props.type === 'word') {
 				wordAudioController({
