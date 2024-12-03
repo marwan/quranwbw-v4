@@ -7,11 +7,11 @@
 	import { selectedRadioClasses } from '$data/commonClasses';
 </script>
 
-<div class="grid gap-3 w-full theme-grayscale">
+<div class="grid gap-3 w-full theme-grayyyscale">
 	{#each Object.entries(selectableFontTypes) as [id, font]}
 		{#if !font.disallowedIn.includes($__currentPage)}
 			<Radio name="fontType" bind:group={$__fontType} value={font.id} on:change={(event) => updateSettings({ type: 'fontType', value: +event.target.value })} custom>
-				<div class="inline-flex justify-between items-center p-5 w-full text-gray-500 bg-white rounded-lg border border-gray-200 cursor-pointer peer-checked:border-primary-600 peer-checked:text-primary-600 hover:text-gray-600 hover:bg-gray-100 {$__fontType === font.id && selectedRadioClasses}">
+				<div class="inline-flex justify-between items-center p-5 w-full text-black text-grayyy-500 bg-white rounded-lg border border-grayyy-200 cursor-pointer peer-checked:border-primary-600 peer-checked:text-primary-600 hover:text-black text-grayyy-600 hover:bg-grayyy-100 {$__fontType === font.id && selectedRadioClasses}">
 					<div class="w-full">{font.font}</div>
 
 					{#if $__fontType === font.id}

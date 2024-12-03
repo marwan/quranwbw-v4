@@ -14,7 +14,7 @@
 	import { term } from '$utils/terminologies';
 	import { getModalTransition } from '$utils/getModalTransition';
 
-	const linkClasses = 'w-full flex flex-row space-x-2 py-4 px-4 text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-xl items-center cursor-pointer theme-grayscale';
+	const linkClasses = 'w-full flex flex-row space-x-2 py-4 px-4 text-black text-grayyy-600 bg-grayyy-100 hover:bg-grayyy-200 rounded-xl items-center cursor-pointer theme-grayyyscale';
 	const linkTextClasses = 'text-xs md:text-sm text-left w-[-webkit-fill-available] truncate';
 
 	// hide the modal when page changes

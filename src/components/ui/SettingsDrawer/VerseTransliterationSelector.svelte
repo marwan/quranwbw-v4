@@ -7,7 +7,7 @@
 	import { selectedRadioClasses } from '$data/commonClasses';
 </script>
 
-<div class="grid gap-3 w-full theme-grayscale">
+<div class="grid gap-3 w-full theme-grayyyscale">
 	{#each Object.entries(verseTranslationsLanguages) as [id, language]}
 		{#if language.language_id === 11115}
 			<div class="flex flex-col space-y-2 pb-6">
@@ -17,7 +17,7 @@
 						{#if translation.language_id === language.language_id}
 							<div class="flex items-center w-full">
 								<Checkbox on:click={() => updateSettings({ type: 'verseTranslation', value: translation.resource_id })} custom>
-									<div class="inline-flex justify-between items-center p-5 w-full text-gray-500 bg-white rounded-lg border border-gray-200 cursor-pointer peer-checked:border-primary-600 peer-checked:text-primary-600 hover:text-gray-600 hover:bg-gray-100 {$__verseTranslations.includes(translation.resource_id) && selectedRadioClasses}">
+									<div class="inline-flex justify-between items-center p-5 w-full text-black text-grayyy-500 bg-white rounded-lg border border-grayyy-200 cursor-pointer peer-checked:border-primary-600 peer-checked:text-primary-600 hover:text-black text-grayyy-600 hover:bg-grayyy-100 {$__verseTranslations.includes(translation.resource_id) && selectedRadioClasses}">
 										<div class="w-full">{translation.resource_name}</div>
 
 										{#if $__verseTranslations.includes(translation.resource_id)}
@@ -34,4 +34,4 @@
 	{/each}
 </div>
 
-<div class="text-xs opacity-70">Relying solely on transliteration to recite the Quran is not recommended, as it can lead to pronunciation errors. To fully appreciate and receive the reward and blessings of recitation, one should learn to read the Quran in Arabic.</div>
+<div class="text-xs opacityyy-70">Relying solely on transliteration to recite the Quran is not recommended, as it can lead to pronunciation errors. To fully appreciate and receive the reward and blessings of recitation, one should learn to read the Quran in Arabic.</div>

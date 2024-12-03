@@ -14,13 +14,13 @@
 <PageHead title={`Quran ${websiteTagline}`} />
 
 <div class="max-w-4xl mx-auto flex flex-col space-y-6 md:px-4 theme">
-	<div class="flex flex-col mt-4 mb-4 theme-grayscale">
+	<div class="flex flex-col mt-4 mb-4 theme-grayyyscale">
 		<a href="/" class="flex flex-col items-center justify-center" aria-label="Home">
 			<Quran size={100} />
 			<Logo />
 		</a>
-		<!-- <div class="text-xs text-center opacity-70">{websiteTagline}</div> -->
-		<div class="text-xs text-center opacity-70">Word By Word & Morphology</div>
+		<!-- <div class="text-xs text-center opacityyy-70">{websiteTagline}</div> -->
+		<div class="text-xs text-center opacityyy-70">Word By Word & Morphology</div>
 	</div>
 
 	<!-- chapter and most read tabs -->
@@ -28,10 +28,10 @@
 </div>
 
 <!-- banner for website updates: currently v4 launch -->
-<Banner id="newSiteBanner" position="absolute" divClass="z-10 flex justify-between p-4 !bg-gray-100 theme">
-	<p class="flex items-center text-sm font-normal text-gray-500 space-x-1 truncate">
-		<span class="inline-flex p-2 bg-gray-200 rounded-full text-black">
-			<span class="opacity-70"><Megaphone size={3} /></span>
+<Banner id="newSiteBanner" position="absolute" divClass="z-10 flex justify-between p-4 !bg-grayyy-100 theme">
+	<p class="flex items-center text-sm font-normal text-black text-grayyy-500 space-x-1 truncate">
+		<span class="inline-flex p-2 bg-grayyy-200 rounded-full text-black">
+			<span class="opacityyy-70"><Megaphone size={3} /></span>
 			<span class="sr-only">Announcement</span>
 		</span>
 

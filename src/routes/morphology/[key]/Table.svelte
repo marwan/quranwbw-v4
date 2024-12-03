@@ -27,11 +27,11 @@
 
 {#if totalAvailableWords > 0}
 	<div class="flex flex-col">
-		<div class="relative space-y-6 sm:rounded-3xl theme-grayscale">
-			<h1 class="text-md md:text-2xl text-center opacity-70">{tableTitles[tableType].title} ({totalAvailableWords})</h1>
+		<div class="relative space-y-6 sm:rounded-3xl theme-grayyyscale">
+			<h1 class="text-md md:text-2xl text-center opacityyy-70">{tableTitles[tableType].title} ({totalAvailableWords})</h1>
 			<div class="max-h-[32em] overflow-auto">
-				<table class="w-full text-sm text-left rtl:text-right text-gray-500 rounded-md">
-					<thead class="text-xs text-gray-700 uppercase bg-lightGray sticky top-0">
+				<table class="w-full text-sm text-left rtl:text-right text-black text-grayyy-500 rounded-md">
+					<thead class="text-xs text-black text-grayyy-700 uppercase bg-lightGrayyy sticky top-0">
 						<tr>
 							<th scope="col" class="px-6 py-3"> # </th>
 							<th scope="col" class="px-6 py-3"> Word </th>
@@ -43,7 +43,7 @@
 					</thead>
 					<tbody>
 						{#each Array.from(Array(lastWordToLoad + 1).keys()).slice(1) as word}
-							<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-lightGray">
+							<tr class="bg-white border-b dark:bg-grayyy-800 dark:border-grayyy-700 hover:bg-grayyy-50 dark:hover:bg-lightGrayyy">
 								<td class="px-6 py-4"> {word} </td>
 								<td class="px-6 py-4 arabic-font-{$__fontType} text-xl md:text-2xl"> {wordData[word - 1].arabic} </td>
 								<td class="px-6 py-4"> {wordData[word - 1].translation} </td>
@@ -65,5 +65,5 @@
 		</div>
 	</div>
 {:else}
-	<div class="text-center my-8 text-sm opacity-70">{tableTitles[tableType].error}</div>
+	<div class="text-center my-8 text-sm opacityyy-70">{tableTitles[tableType].error}</div>
 {/if}

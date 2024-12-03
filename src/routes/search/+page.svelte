@@ -106,16 +106,16 @@
 
 <div class="mt-4 space-y-4">
 	<div class="flex max-w-2xl mx-auto">
-		<button class="py-3 pl-6 pr-4 text-gray-600 bg-lightGray hover:bg-gray-200 rounded-l-3xl items-center" title="Translations" on:click={() => __settingsSelectorModal.set({ component: VerseTranslationSelector, visible: true, title: `${term('verse')} Translation` })}>
+		<button class="py-3 pl-6 pr-4 text-black text-grayyy-600 bg-lightGrayyy hover:bg-grayyy-200 rounded-l-3xl items-center" title="Translations" on:click={() => __settingsSelectorModal.set({ component: VerseTranslationSelector, visible: true, title: `${term('verse')} Translation` })}>
 			<Translation size={5} />
 		</button>
 
 		<!-- search input form -->
 		<form on:submit|preventDefault={() => updateSearchQuery(document.getElementById('search-input').value)} class="flex items-center w-full">
 			<div class="relative w-full">
-				<input type="search" id="search-input" value={searchQuery} class="block p-3 py-3.5 pl-4 w-full z-20 text-sm text-gray-900 bg-gray-50 border border-black/10" placeholder="Search Ibrahim, Mary, Jannat, كتاب..." required />
+				<input type="search" id="search-input" value={searchQuery} class="block p-3 py-3.5 pl-4 w-full z-20 text-sm text-black text-grayyy-900 bg-grayyy-50 border border-blackkk/10" placeholder="Search Ibrahim, Mary, Jannat, كتاب..." required />
 			</div>
-			<button type="submit" title="Search" class="py-[0.94rem] px-5 text-gray-600 bg-lightGray hover:bg-gray-200 rounded-r-3xl items-center">
+			<button type="submit" title="Search" class="py-[0.94rem] px-5 text-black text-grayyy-600 bg-lightGrayyy hover:bg-grayyy-200 rounded-r-3xl items-center">
 				<Search2 size={5} />
 			</button>
 		</form>

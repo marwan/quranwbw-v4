@@ -23,13 +23,13 @@
 
 <!-- play/pause button -->
 <div class="flex items-center justify-center">
-	<button type="button" title={$__audioSettings.isPlaying ? 'Pause' : 'Play'} on:click={() => audioHandler()} class="inline-flex flex-col items-center justify-center w-12 h-12 bg-black/15 rounded-full group focus:ring-2 focus:ring-gray-300 focus:outline-none">
-		<span class="opacity-70"><svelte:component this={$__audioSettings.isPlaying ? Pause : PlaySolid} size={5} /></span>
+	<button type="button" title={$__audioSettings.isPlaying ? 'Pause' : 'Play'} on:click={() => audioHandler()} class="inline-flex flex-col items-center justify-center w-12 h-12 bg-blackkk/15 rounded-full group focus:ring-2 focus:ring-grayyy-300 focus:outline-none">
+		<span class="opacityyy-70"><svelte:component this={$__audioSettings.isPlaying ? Pause : PlaySolid} size={5} /></span>
 		<span class="sr-only">{$__audioSettings.isPlaying ? 'Pause' : 'Play'}</span>
 
 		<!-- show badge when a verse is playing -->
 		{#if $__audioSettings.isPlaying && $__audioSettings.audioType === 'verse'}
-			<div class="absolute inline-flex items-center justify-center z-30 text-xs px-2 text-white bg-gray-500 border-2 border-white rounded-3xl -top-3 theme-grayscale">{$__audioSettings.playingKey}</div>
+			<div class="absolute inline-flex items-center justify-center z-30 text-xs px-2 text-black bg-grayyy-500 border-2 border-white rounded-3xl -top-3 theme-grayyyscale">{$__audioSettings.playingKey}</div>
 		{/if}
 	</button>
 </div>

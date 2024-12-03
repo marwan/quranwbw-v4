@@ -19,10 +19,10 @@
 	const chapter = parseInt(key.split(':')[0], 10);
 	const verse = parseInt(key.split(':')[1], 10);
 	const versesInChapter = quranMetaData[chapter].verses;
-	const buttonClasses = 'inline-flex items-center justify-center w-10 h-10 transition-colors duration-150 rounded-3xl focus:shadow-outline hover:bg-lightGray print:hidden';
+	const buttonClasses = 'inline-flex items-center justify-center w-10 h-10 transition-colors duration-150 rounded-3xl focus:shadow-outline hover:bg-lightGrayyy print:hidden';
 
 	// For chapter page, just show the key, else show the complete chapter transliteration & key
-	$: verseKeyClasses = `${buttonClasses} w-fit px-4 bg-lightGray font-medium`;
+	$: verseKeyClasses = `${buttonClasses} w-fit px-4 bg-lightGrayyy font-medium`;
 
 	// Update userBookmarks whenever the __userSettings changes
 	$: userBookmarks = JSON.parse($__userSettings).userBookmarks;
@@ -79,9 +79,9 @@
 		<div class="flex flex-row space-x-2">
 			<a href={$__currentPage === 'chapter' ? `#${key}` : `/${chapter}/${verse}`} class={verseKeyClasses} data-html2canvas-ignore>
 				{#if $__currentPage === 'chapter'}
-					<div class="opacity-70 text-xs">{key}</div>
+					<div class="opacityyy-70 text-xs">{key}</div>
 				{:else}
-					<div class="opacity-70 text-xs">{quranMetaData[chapter].transliteration}, {key}</div>
+					<div class="opacityyy-70 text-xs">{quranMetaData[chapter].transliteration}, {key}</div>
 				{/if}
 			</a>
 			<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-filter font-normal">{term('verse')} {key}</Tooltip>
@@ -91,7 +91,7 @@
 		<div class="flex flex-row space-x-2">
 			<!-- play verse button -->
 			<button on:click={() => audioHandler(key)} class={buttonClasses} aria-label="Play">
-				<div class="opacity-70">
+				<div class="opacityyy-70">
 					<svelte:component this={$__audioSettings.isPlaying && $__audioSettings.playingKey === key ? Pause : Play} size={3.5} />
 				</div>
 			</button>
@@ -107,7 +107,7 @@
 					class={buttonClasses}
 					aria-label="Note"
 				>
-					<div class="opacity-70">
+					<div class="opacityyy-70">
 						<Notes size={5} />
 					</div>
 				</button>
@@ -117,7 +117,7 @@
 			<!-- bookmark/unbookmark button -->
 			{#if userBookmarks.includes(key)}
 				<button on:click={() => updateSettings({ type: 'userBookmarks', key, set: true })} class={buttonClasses} aria-label="Bookmark">
-					<div class="opacity-70">
+					<div class="opacityyy-70">
 						<svelte:component this={userBookmarks.includes(key) ? Bookmarked : Bookmark} size={3.5} />
 					</div>
 				</button>
@@ -126,7 +126,7 @@
 
 			<!-- verses option dropdown -->
 			<button id="verse-options-{verse}" class={buttonClasses} aria-label="Options" on:click={() => __verseKey.set(key)}>
-				<div class="opacity-70">
+				<div class="opacityyy-70">
 					<DotsHorizontal size={6} />
 				</div>
 			</button>
@@ -139,7 +139,7 @@
 	{#if $__displayType === 7}
 		<div class="flex flex-row">
 			<button class={buttonClasses} aria-label="Toggle Words" on:click={() => wordsBlockToggler(verse)}>
-				<div class="opacity-70">
+				<div class="opacityyy-70">
 					<EyeOutline />
 				</div>
 			</button>

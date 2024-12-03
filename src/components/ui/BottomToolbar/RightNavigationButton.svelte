@@ -25,7 +25,7 @@
 </script>
 
 <!-- next chapter / previous page -->
-<a href="/{linkHref}" class="inline-flex flex-col items-center justify-center px-5 rounded-e-full hover:bg-lightGray group {linkDisabled ? disabledClasses : 'opacity-70'}">
+<a href="/{linkHref}" class="inline-flex flex-col items-center justify-center px-5 rounded-e-full hover:bg-lightGrayyy group {linkDisabled ? disabledClasses : 'opacityyy-70'}">
 	<ChevronRight />
 	<span class="sr-only">{linkText}</span>
 </a>

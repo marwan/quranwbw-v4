@@ -79,11 +79,11 @@
 				</button>
 
 				<!-- options -->
-				<div id="options" class="pt-8 theme-grayscale">
+				<div id="options" class="pt-8 theme-grayyyscale">
 					<p class="mb-5 text-sm">Guess the correct translation:</p>
 					<div class="grid gap-4 md:gap-6 w-full md:grid-cols-2">
 						{#each Object.entries(fetchData) as [key, value]}
-							<div class="rounded border border-black/10 {selection === +key ? 'border-gray-400' : null} {answerChecked === true && selection !== +key ? disabledClasses : null}">
+							<div class="rounded border border-blackkk/10 {selection === +key ? 'border-grayyy-400' : null} {answerChecked === true && selection !== +key ? disabledClasses : null}">
 								<Radio name="bordered" bind:group={selection} value={+key} class="w-full p-4 flex flex-row font-normal cursor-pointer">
 									<div class="flex flex-row mr-auto ml-2">{fetchData[key].word_english}</div>
 
@@ -101,7 +101,7 @@
 
 				<!-- answer-results -->
 				{#if answerChecked === true && isAnswerCorrect !== null}
-					<div id="answer-results" class="flex justify-center text-center font-medium text-md theme-grayscale">
+					<div id="answer-results" class="flex justify-center text-center font-medium text-md theme-grayyyscale">
 						<span>
 							{isAnswerCorrect ? 'Your answer was correct.' : `Sorry, the correct answer was "${fetchData[randomWord].word_english}".`}
 						</span>

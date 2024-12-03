@@ -82,10 +82,10 @@
 
 	// CSS classes
 	const settingsBlockClasses = 'space-y-2 py-6';
-	const selectorClasses = 'w-32 border border-black/10 text-black text-left rounded-3xl focus:ring-gray-500 focus:border-gray-500 focus-within:ring-2 block p-2.5 truncate font-normal theme-grayscale';
-	const settingsDescriptionClasses = 'mb-6 text-xs opacity-70';
+	const selectorClasses = 'w-32 border border-blackkk/10 text-black text-left rounded-3xl focus:ring-grayyy-500 focus:border-grayyy-500 focus-within:ring-2 block p-2.5 truncate font-normal theme-grayyyscale';
+	const settingsDescriptionClasses = 'mb-6 text-xs opacityyy-70';
 	const toggleBtnClasses =
-		'relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[""] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-black/10 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-gray-600 theme-grayscale';
+		'relative w-14 h-7 bg-grayyy-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-grayyy-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[""] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-blackkk/10 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-grayyy-600 theme-grayyyscale';
 
 	let settingsDrawerOpacity = 'opacity-100';
 	let settingsDrawerBackground = 'bg-white';
@@ -166,7 +166,7 @@
 
 		settingsDrawerOpacity = 'opacity-0';
 		settingsDrawerBackground = 'bg-transparent';
-		document.querySelector('.settings-backdrop').classList.add('opacity-10');
+		document.querySelector('.settings-backdrop').classList.add('opacityyy-10');
 
 		const selectedElement = document.getElementById(selector);
 		selectedElement.classList.remove('opacity-0', 'pointer-events-none');
@@ -182,7 +182,7 @@
 
 		settingsDrawerOpacity = 'opacity-100';
 		settingsDrawerBackground = 'bg-white';
-		document.querySelector('.settings-backdrop').classList.remove('opacity-10');
+		document.querySelector('.settings-backdrop').classList.remove('opacityyy-10');
 	}
 </script>
 
@@ -191,7 +191,7 @@
 	<!-- all-settings -->
 	{#if allSettingsVisible}
 		<div id="all-settings">
-			<div class="flex z-30 top-0 sticky bg-white border-b-2 border-black/10 mb-4 {settingsDrawerOpacity}">
+			<div class="flex z-30 top-0 sticky bg-white border-b-2 border-blackkk/10 mb-4 {settingsDrawerOpacity}">
 				<h5 id="drawer-label" class="inline-flex items-center my-4 text-3xl font-semibold">Settings</h5>
 				<CloseButton on:click={() => ($__settingsDrawerHidden = true)} class="my-4 rounded-3xl" />
 			</div>
@@ -210,7 +210,7 @@
 						<p class={settingsDescriptionClasses}>An assortment of website themes to please your vision.</p>
 					</div>
 
-					<div class="border-b border-black/10"></div>
+					<div class="border-b border-blackkk/10"></div>
 
 					<!-- display-type-setting -->
 					<div id="display-type-setting" class="{settingsBlockClasses} {!['chapter', 'mushaf', 'supplications', 'bookmarks', 'morphology', 'search'].includes($__currentPage) && disabledClasses}">
@@ -221,7 +221,7 @@
 						<p class={settingsDescriptionClasses}>Different {term('verse')} layouts that you can choose from.</p>
 					</div>
 
-					<div class="border-b border-black/10"></div>
+					<div class="border-b border-blackkk/10"></div>
 
 					<!-- word-tooltip-setting -->
 					<div id="word-tooltip-setting" class={settingsBlockClasses}>
@@ -232,7 +232,7 @@
 						<p class={settingsDescriptionClasses}>Choose what is displayed when you hover a word.</p>
 					</div>
 
-					<div class="border-b border-black/10"></div>
+					<div class="border-b border-blackkk/10"></div>
 
 					<!-- word-translation-toggle-setting -->
 					<div id="word-translation-toggle-setting" class={settingsBlockClasses}>
@@ -247,7 +247,7 @@
 						<p class={settingsDescriptionClasses}>Toggle the word translation which is shown below the Arabic word.</p>
 					</div>
 
-					<div class="border-b border-black/10"></div>
+					<div class="border-b border-blackkk/10"></div>
 
 					<!-- word-transliteration-toggle-setting -->
 					<div id="word-transliteration-toggle-setting" class={settingsBlockClasses}>
@@ -263,7 +263,7 @@
 
 					<!-- prevent sleep toggle, only show if the browser supports it  -->
 					{#if 'wakeLock' in navigator}
-						<div class="border-b border-black/10"></div>
+						<div class="border-b border-blackkk/10"></div>
 
 						<!-- prevent-sleep-toggle-setting -->
 						<div id="prevent-sleep-toggle-setting" class={settingsBlockClasses}>
@@ -281,7 +281,7 @@
 			</div>
 
 			<!-- font-settings-block -->
-			<div id="font-settings-block" class="py-5 border-t-2 border-black/10">
+			<div id="font-settings-block" class="py-5 border-t-2 border-blackkk/10">
 				<h3 class="block mb-2 font-medium text-xl {settingsDrawerOpacity}">Font</h3>
 
 				<div class="flex flex-col flex-wrap text-base">
@@ -301,7 +301,7 @@
 						{/if}
 					</div>
 
-					<div class="border-b border-black/10 {settingsDrawerOpacity}"></div>
+					<div class="border-b border-blackkk/10 {settingsDrawerOpacity}"></div>
 
 					<!-- arabic-word-size-setting -->
 					<div id="arabic-word-size-setting" class="fontSizeSliders {settingsBlockClasses} {$__currentPage === 'mushaf' && disabledClasses}">
@@ -309,12 +309,12 @@
 							<span class="block">Arabic Word Size ({selectableFontSizes[arabicWordSizeValue].value.split('-')[1]})</span>
 							<!-- svelte-ignore a11y-mouse-events-have-key-events -->
 							<div class="flex flex-col space-y-2 rounded-3xl w-full" role="group" on:mouseenter={() => onMouseEnter('arabic-word-size-setting')} on:mouseleave={() => onMouseLeave()}>
-								<Range min="1" max={maxFontSizeAllowed} bind:value={arabicWordSizeValue} class="theme-grayscale" />
+								<Range min="1" max={maxFontSizeAllowed} bind:value={arabicWordSizeValue} class="theme-grayyyscale" />
 							</div>
 						</div>
 					</div>
 
-					<div class="border-b border-black/10 {settingsDrawerOpacity}"></div>
+					<div class="border-b border-blackkk/10 {settingsDrawerOpacity}"></div>
 
 					<!-- word-translation-size-setting . -->
 					<div id="word-translation-size-setting" class="fontSizeSliders {settingsBlockClasses} {$__currentPage === 'mushaf' && disabledClasses}">
@@ -322,12 +322,12 @@
 							<span class="block">Word Translation/Transliteration Size ({selectableFontSizes[wordTranlationTransliterationSizeValue].value.split('-')[1]})</span>
 							<!-- svelte-ignore a11y-mouse-events-have-key-events -->
 							<div class="flex flex-col space-y-2 rounded-3xl w-full" role="group" on:mouseenter={() => onMouseEnter('word-translation-size-setting')} on:mouseleave={() => onMouseLeave()}>
-								<Range min="1" max={maxFontSizeAllowed} bind:value={wordTranlationTransliterationSizeValue} class="theme-grayscale" />
+								<Range min="1" max={maxFontSizeAllowed} bind:value={wordTranlationTransliterationSizeValue} class="theme-grayyyscale" />
 							</div>
 						</div>
 					</div>
 
-					<div class="border-b border-black/10 {settingsDrawerOpacity}"></div>
+					<div class="border-b border-blackkk/10 {settingsDrawerOpacity}"></div>
 
 					<!-- verse-translation-size-setting -->
 					<div id="verse-translation-size-setting" class="fontSizeSliders {settingsBlockClasses} {$__currentPage === 'mushaf' && disabledClasses}">
@@ -335,7 +335,7 @@
 							<span class="block">{term('verse')} Translation/Transliteration Size ({selectableFontSizes[verseTranlationTransliterationSizeValue].value.split('-')[1]})</span>
 							<!-- svelte-ignore a11y-mouse-events-have-key-events -->
 							<div class="flex flex-col space-y-2 rounded-3xl w-full" role="group" on:mouseenter={() => onMouseEnter('verse-translation-size-setting')} on:mouseleave={() => onMouseLeave()}>
-								<Range min="1" max={maxFontSizeAllowed} bind:value={verseTranlationTransliterationSizeValue} class="theme-grayscale" />
+								<Range min="1" max={maxFontSizeAllowed} bind:value={verseTranlationTransliterationSizeValue} class="theme-grayyyscale" />
 							</div>
 						</div>
 					</div>
@@ -343,7 +343,7 @@
 			</div>
 
 			<!-- translation-settings-block -->
-			<div id="translation-settings-block" class="py-5 border-t-2 border-black/10 {settingsDrawerOpacity}">
+			<div id="translation-settings-block" class="py-5 border-t-2 border-blackkk/10 {settingsDrawerOpacity}">
 				<h3 class="block mb-2 font-medium text-xl">Translation, Transliteration & {term('tafsir')}</h3>
 
 				<div class="flex flex-col flex-wrap text-base">
@@ -356,7 +356,7 @@
 						<p class={settingsDescriptionClasses}>Word translation which will be displaced under the Arabic word text.</p>
 					</div>
 
-					<div class="border-b border-black/10"></div>
+					<div class="border-b border-blackkk/10"></div>
 
 					<!-- word-transliteration-setting -->
 					<div id="word-transliteration-setting" class={settingsBlockClasses}>
@@ -367,7 +367,7 @@
 						<p class={settingsDescriptionClasses}>Word transliteration of various types.</p>
 					</div>
 
-					<div class="border-b border-black/10"></div>
+					<div class="border-b border-blackkk/10"></div>
 
 					<!-- verse-translation-setting -->
 					<div id="verse-translation-setting" class={settingsBlockClasses}>
@@ -378,7 +378,7 @@
 						<p class={settingsDescriptionClasses}>{term('verse')} translations from multiple authors and languages.</p>
 					</div>
 
-					<div class="border-b border-black/10"></div>
+					<div class="border-b border-blackkk/10"></div>
 
 					<!-- verse-transliteration-setting -->
 					<div id="verse-transliteration-setting" class={settingsBlockClasses}>
@@ -389,7 +389,7 @@
 						<p class={settingsDescriptionClasses}>{term('verse')} transliteration of various types.</p>
 					</div>
 
-					<div class="border-b border-black/10"></div>
+					<div class="border-b border-blackkk/10"></div>
 
 					<!-- tafsir-setting -->
 					<div id="tafsir-setting" class={settingsBlockClasses}>
@@ -403,7 +403,7 @@
 			</div>
 
 			<!-- audio-settings-block -->
-			<div id="audio-settings-block" class="py-5 border-t-2 border-black/10 {settingsDrawerOpacity}">
+			<div id="audio-settings-block" class="py-5 border-t-2 border-blackkk/10 {settingsDrawerOpacity}">
 				<h3 class="block mb-2 font-medium text-xl">Audio</h3>
 
 				<div class="flex flex-col flex-wrap text-base">
@@ -416,7 +416,7 @@
 						<p class={settingsDescriptionClasses}>The reciter whose audio will be played when you choose to listen to a {term('verse')}.</p>
 					</div>
 
-					<div class="border-b border-black/10"></div>
+					<div class="border-b border-blackkk/10"></div>
 
 					<!-- translation-reciter-setting -->
 					<div id="translation-reciter-setting" class={settingsBlockClasses}>
@@ -427,19 +427,19 @@
 						<p class={settingsDescriptionClasses}>The translation reciter whose audio will be played after the {term('verse')} audio.</p>
 					</div>
 
-					<div class="border-b border-black/10"></div>
+					<div class="border-b border-blackkk/10"></div>
 
 					<!-- playback-speed-setting -->
 					<div id="playback-speed-setting" class={settingsBlockClasses}>
 						<div class="flex flex-col justify-between space-y-4">
 							<span class="block">Playback Speed ({selectablePlaybackSpeeds[playbackSpeedValue].speed})</span>
 							<div class="flex flex-col space-y-2 rounded-3xl w-full" role="group">
-								<Range min="1" max="7" bind:value={playbackSpeedValue} class="theme-grayscale" />
+								<Range min="1" max="7" bind:value={playbackSpeedValue} class="theme-grayyyscale" />
 							</div>
 						</div>
 					</div>
 
-					<div class="border-b border-black/10"></div>
+					<div class="border-b border-blackkk/10"></div>
 
 					<!-- play-translation-setting -->
 					<div id="play-translation-setting" class={settingsBlockClasses}>
@@ -453,7 +453,7 @@
 						<p class={settingsDescriptionClasses}>Whether the translation audio should be played after the Arabic audio.</p>
 					</div>
 
-					<div class="border-b border-black/10"></div>
+					<div class="border-b border-blackkk/10"></div>
 
 					<!-- verse-play-button-setting -->
 					<div id="verse-play-button-setting" class={settingsBlockClasses}>
@@ -467,7 +467,7 @@
 			</div>
 
 			<!-- miscellaneous-settings-block -->
-			<div id="miscellaneous-settings-block" class="py-5 border-t-2 border-black/10 {settingsDrawerOpacity}">
+			<div id="miscellaneous-settings-block" class="py-5 border-t-2 border-blackkk/10 {settingsDrawerOpacity}">
 				<h3 class="block mb-2 font-medium text-xl">Miscellaneous</h3>
 
 				<div class="flex flex-col flex-wrap text-base">
@@ -483,7 +483,7 @@
 						<p class={settingsDescriptionClasses}>Switch between the English and Arabic terminologies used on the website.</p>
 					</div>
 
-					<div class="border-b border-black/10"></div>
+					<div class="border-b border-blackkk/10"></div>
 
 					<!-- non-dua-part-toggle -->
 					<div id="non-dua-part-toggle" class={settingsBlockClasses}>
@@ -500,7 +500,7 @@
 			</div>
 
 			<!-- reset settings button -->
-			<div class="flex flex-col justify-center border-t border-black/10 py-6 space-y-4 {settingsDrawerOpacity}">
+			<div class="flex flex-col justify-center border-t border-blackkk/10 py-6 space-y-4 {settingsDrawerOpacity}">
 				<button on:click={() => resetSettings()} class="text-sm {buttonClasses}">Reset Settings</button>
 				<p class={settingsDescriptionClasses}>Your bookmarks and notes will remain unaffected.</p>
 			</div>
@@ -510,7 +510,7 @@
 	<!-- individual-setting -->
 	{#if individualSettingsVisible}
 		<div id="individual-setting" transition:fly={{ duration: 150, x: 0, easing: sineIn }}>
-			<div class="flex z-30 top-0 sticky bg-white border-b-2 border-black/10 mb-4">
+			<div class="flex z-30 top-0 sticky bg-white border-b-2 border-blackkk/10 mb-4">
 				<button id="drawer-label" class="inline-flex items-center my-4 text-3xl font-semibold" on:click={() => goBackToMainSettings()}>← Back</button>
 				<CloseButton on:click={() => ($__settingsDrawerHidden = true)} class="my-4 rounded-3xl" />
 			</div>

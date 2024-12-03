@@ -6,7 +6,7 @@
 	import { disabledClasses } from '$data/commonClasses';
 </script>
 
-<button id="changeDisplayButton" type="button" title="Display Type" class="inline-flex flex-col items-center justify-center px-5 relative inline-flex items-center hover:bg-lightGray group {['chapter', 'mushaf'].includes($__currentPage) ? 'opacity-70' : disabledClasses}" on:click={() => __settingsSelectorModal.set({ component: DisplayTypeSelector, visible: true, title: 'Display Type' })}>
+<button id="changeDisplayButton" type="button" title="Display Type" class="inline-flex flex-col items-center justify-center px-5 relative inline-flex items-center hover:bg-lightGrayyy group {['chapter', 'mushaf'].includes($__currentPage) ? 'opacityyy-70' : disabledClasses}" on:click={() => __settingsSelectorModal.set({ component: DisplayTypeSelector, visible: true, title: 'Display Type' })}>
 	<Eye />
 	<span class="sr-only">Display Type</span>
 </button>

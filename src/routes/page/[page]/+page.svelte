@@ -142,9 +142,9 @@
 			<!-- page number -->
 			<div class="max-w-3xl md:max-w-[40rem] mx-auto justify-center text-sm theme">
 				<div class="flex items-center">
-					<div class="flex-1 border-t-2 border-black/10"></div>
-					<span class="px-3 opacity-70">{page}</span>
-					<div class="flex-1 border-t-2 border-black/10"></div>
+					<div class="flex-1 border-t-2 border-blackkk/10"></div>
+					<span class="px-3 opacityyy-70">{page}</span>
+					<div class="flex-1 border-t-2 border-blackkk/10"></div>
 				</div>
 			</div>
 		</div>
@@ -160,7 +160,7 @@
 	</div> -->
 
 	<div class="flex justify-center -mt-12 pb-16">
-		<button class="w-fit flex flex-row space-x-2 py-3 px-3 text-black/70 opacity-70 bg-gray-200 hover:bg-gray-300 rounded-xl items-center cursor-pointer theme" on:click={toggleMushafMinimalMode}>
+		<button class="w-fit flex flex-row space-x-2 py-3 px-3 text-black/70 opacityyy-70 bg-grayyy-200 hover:bg-grayyy-300 rounded-xl items-center cursor-pointer theme" on:click={toggleMushafMinimalMode}>
 			<Minimize size={3} />
 		</button>
 		<Tooltip arrow={false} type="light" class="z-30 hidden md:block font-filter font-normal">Minimal Mode</Tooltip>

@@ -37,8 +37,8 @@
 
 	$: wordDivClasses = `
 	  word rounded-lg ${wordAndEndIconCommonClasses} text-center print:break-inside-avoid
-	  ${$__audioSettings.playingWordKey === wordKey || ($__currentPage === 'morphology' && $__morphologyKey === wordKey) ? (selectableThemes[$__websiteTheme].palette === 1 ? 'bg-white/20' : 'bg-black/10') : null}
-		${$__currentPage === 'supplications' && word + 1 < supplicationsFromQuran[key] ? ($__hideNonDuaPart ? 'hidden' : 'opacity-30') : null}
+	  ${$__audioSettings.playingWordKey === wordKey || ($__currentPage === 'morphology' && $__morphologyKey === wordKey) ? (selectableThemes[$__websiteTheme].palette === 1 ? 'bg-whiteee/20' : 'bg-blackkk/10') : null}
+		${$__currentPage === 'supplications' && word + 1 < supplicationsFromQuran[key] ? ($__hideNonDuaPart ? 'hidden' : 'opacityyy-30') : null}
 	`;
 
 	$: wordTranslationClasses = `
@@ -122,7 +122,7 @@
 
 	<!-- word tooltip -->
 	{#if $__wordTooltip > 1}
-		<Tooltip arrow={false} type="light" class="z-30 hidden md:block text-center inline-flex font-sans theme-grayscale font-normal">
+		<Tooltip arrow={false} type="light" class="z-30 hidden md:block text-center inline-flex font-sans theme-grayyyscale font-normal">
 			{#if $__wordTooltip === 2}
 				{@html transliterationSplit[word]}
 			{:else if $__wordTooltip === 3}

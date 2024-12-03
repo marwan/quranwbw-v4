@@ -10,10 +10,10 @@
 	$: reciterImageClasses = `rounded-full size-10 grayscale ${[2, 3, 4].includes($__websiteTheme) && 'invert'}`;
 </script>
 
-<div class="grid gap-3 w-full theme-grayscale">
+<div class="grid gap-3 w-full theme-grayyyscale">
 	{#each Object.entries(selectableReciters) as [id, reciter]}
 		<Radio name="reciter" bind:group={$__reciter} value={reciter.id} on:change={(event) => updateSettings({ type: 'reciter', value: +event.target.value })} custom>
-			<div class="inline-flex justify-between items-center px-5 py-3 w-full text-gray-500 bg-white rounded-lg border border-gray-200 cursor-pointer peer-checked:border-primary-600 peer-checked:text-primary-600 hover:text-gray-600 hover:bg-gray-100 {$__reciter === reciter.id && selectedRadioClasses}">
+			<div class="inline-flex justify-between items-center px-5 py-3 w-full text-black text-grayyy-500 bg-white rounded-lg border border-grayyy-200 cursor-pointer peer-checked:border-primary-600 peer-checked:text-primary-600 hover:text-black text-grayyy-600 hover:bg-grayyy-100 {$__reciter === reciter.id && selectedRadioClasses}">
 				<div class="flex flex-row space-x-2 items-center w-full">
 					<img src="{staticEndpoint}/v4/images/reciters/{reciter.image}" class={reciterImageClasses} alt={reciter.reciter} />
 					<span>{reciter.reciter}</span>

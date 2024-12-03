@@ -68,7 +68,7 @@
 	// Common classes for words and end icons
 	$: wordAndEndIconCommonClasses = `
 		hover:cursor-pointer
-		${selectableThemes[$__websiteTheme].palette === 1 ? 'hover:bg-white/20' : 'hover:bg-black/10'}
+		${selectableThemes[$__websiteTheme].palette === 1 ? 'hover:bg-whiteee/20' : 'hover:bg-blackkk/10'}
 		${$__displayType === 1 ? 'text-center flex flex-col' : 'inline-flex flex-col'}
 		${selectableDisplays[$__displayType].layout === 'wbw' ? 'p-3' : [2, 3].includes($__fontType) ? ($__currentPage === 'mushaf' ? 'p-0' : 'px-0 py-1') : 'p-1'}
 		${exampleVerse && '!p-0'}
@@ -119,7 +119,7 @@
 	{/if}
 
 	<!-- end icon tooltip -->
-	<Tooltip arrow={false} type="light" class="z-30 inline-flex font-sans theme-grayscale font-normal">
+	<Tooltip arrow={false} type="light" class="z-30 inline-flex font-sans theme-grayyyscale font-normal">
 		End of {key}
 	</Tooltip>
 {/if}

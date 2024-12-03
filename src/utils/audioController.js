@@ -171,7 +171,7 @@ export function resetAudioSettings(props) {
 		audio.removeEventListener('timeupdate', wordHighlighter);
 
 		document.querySelectorAll('.word').forEach((element) => {
-			element.classList.remove('bg-black/10');
+			element.classList.remove('bg-blackkk/10');
 		});
 	} catch (error) {
 		console.log(error);

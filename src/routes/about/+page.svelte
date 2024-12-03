@@ -12,7 +12,7 @@
 	<div class="my-6 space-y-4 pb-4">
 		<div class="flex flex-col space-y-6text-sm">
 			<div id="about-start" class="flex flex-col space-y-6 text-center">
-				<div class="text-md md:text-xl font-medium opacity-70 italic w-4/5 mx-auto">
+				<div class="text-md md:text-xl font-medium opacityyy-70 italic w-4/5 mx-auto">
 					"Indeed, this (book) is a reminder, so he who wills may take to his Lord a way. And you do not will except that Allah wills. Indeed, Allah is ever Knowing and Wise."
 					<a href="/76/29-30" class={linkClasses}>(76:29-30)</a>
 				</div>
@@ -61,21 +61,21 @@
 
 				<span>All data used on this website belongs to their respective owners and authors. Permission must be obtained from them before copying any content.</span>
 
-				<div class="border-b border-black/10"></div>
+				<div class="border-b border-blackkk/10"></div>
 
-				<span class="text-xs opacity-70"
+				<span class="text-xs opacityyy-70"
 					>*The Mushaf fonts are developed by and are a property of <a class={linkClasses} target="_blank" rel="noreferrer" href="https://qurancomplex.gov.sa/">King Fahad Glorious Quran Printing Complex</a> based in Madinah, Saudi Arabia. Tajweed Colors are based on
 					<a class={linkClasses} target="_blank" rel="noreferrer" href="https://easyquran.com/ar/">Tajweed Quran (Easy Quran) Mushaf by Dar-Al-Marifa</a> developed by Dr. Eng. Taha Subhi, Damascus - Syria. Tajweed Color Font Features on King Fahad Glorious Quran Printing Complex V4 Mushaf fonts invented and developed by
 					<a class={linkClasses} target="_blank" rel="noreferrer" href="https://zoopernet.com">Ayman Siddiqui</a>
 					and co-developed by team : Rania, Amena, Naveed Ahmed, Mohammed Zahid, Tooba and Anza for Sadaqa-e-jaria (non-commercial) purposes only. Permitted to develop with prior permissions secured from King Fahad Glorious Quran Printing Complex and Dar-Al-Marifa by <a class={linkClasses} target="_blank" rel="noreferrer" href="https://quran.com">Quran.com</a> (Quran Foundation) team.</span
 				>
 
-				<span class="text-xs opacity-70">
+				<span class="text-xs opacityyy-70">
 					**We express our heartfelt gratitude to everyone who contributed to the Chinese word-by-word Quran translation, particularly Brother Ma Zhiren for his meticulous translation work completed in 2014, Brother Adam Voo from Malaysia and Brother Usama Nonnenmacher for digitalizing the data, and Brothers Max Ma from Canada and Suleyman Abdullah from China for their collaboration. May Allah
 					reward them all abundantly in this world and the hereafter. We pray that Allah blesses our Chinese brothers and sisters through the Quran app.
 				</span>
 
-				<span class="text-xs opacity-70"
+				<span class="text-xs opacityyy-70"
 					>***Original sources for the Malayalam translations are
 					<a class={linkClasses} target="_blank" rel="noreferrer" href="https://amanithafseer.com">Amani Thafseer</a>
 					and

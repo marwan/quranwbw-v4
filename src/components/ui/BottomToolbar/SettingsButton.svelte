@@ -5,7 +5,7 @@
 	import { __settingsDrawerHidden } from '$utils/stores';
 </script>
 
-<button type="button" title="Settings" on:click={() => ($__settingsDrawerHidden = false)} class="opacity-70 inline-flex flex-col items-center justify-center px-5 hover:bg-lightGray group">
+<button type="button" title="Settings" on:click={() => ($__settingsDrawerHidden = false)} class="opacityyy-70 inline-flex flex-col items-center justify-center px-5 hover:bg-lightGrayyy group">
 	<Settings />
 	<span class="sr-only">Settings</span>
 </button>
