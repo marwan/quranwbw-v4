@@ -27,39 +27,39 @@
 	$: setContext('color', color);
 	// your script goes here
 	const bgColors = {
-		grayyy: 'bg-grayyy-50 dark:bg-grayyy-800',
-		light: 'bg-grayyy-50 dark:bg-grayyy-700',
-		dark: 'bg-grayyy-50 dark:bg-grayyy-800',
-		default: `${window.theme('background')} dark:bg-grayyy-800`,
-		dropdown: `${window.theme('background')} dark:bg-grayyy-700`,
-		navbar: `${window.theme('background')} dark:bg-grayyy-900`,
-		navbarUl: 'bg-grayyy-50 dark:bg-grayyy-800',
-		form: 'bg-grayyy-50 dark:bg-grayyy-700',
-		primary: 'bg-primary-50 dark:bg-grayyy-800 ',
+		grayyy: 'bg-grayyy-50',
+		light: 'bg-grayyy-50',
+		dark: 'bg-grayyy-50',
+		default: `${window.theme('background')}`,
+		dropdown: `${window.theme('background')}`,
+		navbar: `${window.theme('background')}`,
+		navbarUl: 'bg-grayyy-50',
+		form: 'bg-grayyy-50',
+		primary: 'bg-primary-50',
 		none: ''
 	};
 	const textColors = {
-		grayyy: 'text-grayyy-800 ',
-		light: 'text-grayyy-700 ',
-		dark: 'text-grayyy-700 ',
-		default: 'text-grayyy-500 ',
-		dropdown: 'text-grayyy-700 ',
-		navbar: 'text-grayyy-700 ',
-		navbarUl: 'text-grayyy-700 ',
-		form: 'text-grayyy-900 ',
-		primary: 'text-primary-800 dark:text-primary-400',
+		grayyy: 'text-grayyy-800',
+		light: 'text-grayyy-700',
+		dark: 'text-grayyy-700',
+		default: 'text-grayyy-500',
+		dropdown: 'text-grayyy-700',
+		navbar: 'text-grayyy-700',
+		navbarUl: 'text-grayyy-700',
+		form: 'text-grayyy-900',
+		primary: 'text-primary-800',
 		none: ''
 	};
 	const borderColors = {
-		grayyy: `${window.theme('border')} dark:${window.theme('border')} ${window.theme('border')} dark:${window.theme('border')}`,
+		grayyy: `${window.theme('border')} ${window.theme('border')}`,
 		light: `${window.theme('border')} ${window.theme('border')}`,
 		dark: `${window.theme('border')} ${window.theme('border')}`,
-		default: `${window.theme('border')} dark:${window.theme('border')} ${window.theme('border')} dark:${window.theme('border')}`,
-		dropdown: `${window.theme('border')} dark:${window.theme('border')} ${window.theme('border')} dark:${window.theme('border')}`,
-		navbar: `${window.theme('border')} dark:${window.theme('border')} ${window.theme('border')} dark:${window.theme('border')}`,
-		navbarUl: `${window.theme('border')} dark:${window.theme('border')} ${window.theme('border')} dark:${window.theme('border')}`,
-		form: `${window.theme('border')} dark:${window.theme('border')} ${window.theme('border')} dark:${window.theme('border')}`,
-		primary: 'border-primary-500 dark:border-primary-200  divide-primary-500 dark:divide-primary-200 ',
+		default: `border-b ${window.theme('border')} ${window.theme('border')}`,
+		dropdown: `${window.theme('border')} ${window.theme('border')}`,
+		navbar: `${window.theme('border')} ${window.theme('border')}`,
+		navbarUl: `${window.theme('border')} ${window.theme('border')}`,
+		form: `${window.theme('border')} ${window.theme('border')}`,
+		primary: 'border-primary-500 divide-primary-500',
 		none: ''
 	};
 	let divClass;
