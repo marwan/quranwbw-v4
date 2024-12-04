@@ -104,7 +104,7 @@
 			<div id="navigatation-inputs" class="flex flex-col mb-4 justify-start">
 				<div class="flex flex-row w-full h-fit items-center">
 					<form on:submit|preventDefault={() => (searchedKey = document.getElementById('searchKey').value)} class="flex flex-row w-full">
-						<Input id="searchKey" type="text" bind:value={searchedKey} autocomplete="off" {placeholder} size="md" class="rounded-3xl !text-center pl-10 px-8">
+						<Input id="searchKey" type="text" bind:value={searchedKey} autocomplete="off" {placeholder} size="md" class="bg-transparent rounded-3xl !text-center pl-10 px-8">
 							<Search slot="left" size={7} classes="pl-2 pt-1 {searchedKey.length > 0 && 'hidden'}" />
 							<CloseButton slot="right" on:click={() => (searchedKey = '')} class="pr-2 opacityyy-50 {searchedKey.length === 0 && 'hidden'}" />
 						</Input>

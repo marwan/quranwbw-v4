@@ -145,11 +145,11 @@
 					<div class="flex flex-row space-x-4">
 						<div class="flex flex-row space-x-2">
 							<span class="m-auto text-sm mr-2">From {term('verse')}</span>
-							<input type="number" min="1" max={quranMetaData[$__chapterNumber].verses} bind:value={$__audioSettings.startVerse} id="startVerse" on:change={updateAudioSettings} aria-describedby="helper-text-explanation" class="w-16 text-xs border {window.theme('border')} rounded-3xl {window.theme('input')} block p-2.5 mb-0" placeholder="start" />
+							<input type="number" min="1" max={quranMetaData[$__chapterNumber].verses} bind:value={$__audioSettings.startVerse} id="startVerse" on:change={updateAudioSettings} aria-describedby="helper-text-explanation" class="bg-transparent w-16 text-xs rounded-3xl border {window.theme('border')} {window.theme('input')} block p-2.5 mb-0" placeholder="start" />
 						</div>
 						<div class="flex flex-row space-x-2">
 							<span class="m-auto text-sm mr-2">Till {term('verse')}</span>
-							<input type="number" min={$__audioSettings.startVerse} max={quranMetaData[$__chapterNumber].verses} bind:value={quranMetaData[$__chapterNumber].verses} id="endVerse" on:change={updateAudioSettings} aria-describedby="helper-text-explanation" class="w-16 text-xs border {window.theme('border')} rounded-3xl {window.theme('input')} block p-2.5 mb-0" placeholder="end" />
+							<input type="number" min={$__audioSettings.startVerse} max={quranMetaData[$__chapterNumber].verses} bind:value={quranMetaData[$__chapterNumber].verses} id="endVerse" on:change={updateAudioSettings} aria-describedby="helper-text-explanation" class="bg-transparent w-16 text-xs rounded-3xl border {window.theme('border')} {window.theme('input')} block p-2.5 mb-0" placeholder="end" />
 						</div>
 					</div>
 				</div>
@@ -163,7 +163,7 @@
 			<div class="flex flex-row space-x-4">
 				<div class="flex flex-row space-x-2">
 					<span class="m-auto text-sm mr-2">Repeat each {term($__audioSettings.audioType)}</span>
-					<input id="timesToRepeat" type="number" bind:value={$__audioSettings.timesToRepeat} min="1" max="20" on:change={updateAudioSettings} class="w-16 text-xs border {window.theme('border')} rounded-3xl {window.theme('input')} block p-2.5 mb-0" />
+					<input id="timesToRepeat" type="number" bind:value={$__audioSettings.timesToRepeat} min="1" max="20" on:change={updateAudioSettings} class="bg-transparent w-16 text-xs rounded-3xl border {window.theme('border')} {window.theme('input')} block p-2.5 mb-0" />
 					<span class="m-auto text-sm">{$__audioSettings.timesToRepeat > 1 ? 'times' : 'time'} </span>
 				</div>
 			</div>
