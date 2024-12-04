@@ -16,7 +16,7 @@
 		<link crossorigin="anonymous" rel="manifest" href="%sveltekit.assets%/manifest.json" />
 		<link crossorigin="anonymous" rel="icon" type="image/png" href="%sveltekit.assets%/images/favicon.png" />
 		<link crossorigin="anonymous" href="%sveltekit.assets%/images/apple-touch-icon.png" rel="apple-touch-icon" />
-		<link crossorigin="anonymous" rel="stylesheet" href="%sveltekit.assets%/css/global.css?version=19" />
+		<link crossorigin="anonymous" rel="stylesheet" href="%sveltekit.assets%/css/global.css?version=20" />
 
 		<!-- 
 		If the user's browser do not support Optional chaining (?.), redirect to old v3 website
@@ -41,11 +41,11 @@
 				// White theme
 				if (currentTheme === 1) {
 					if (type === 'background') return 'bg-white';
-					if (type === 'border') return 'border-black/70';
+					if (type === 'border') return 'border-black/20';
 				}
 
 				// Sepia theme
-				if (currentTheme === 5) {
+				else if (currentTheme === 5) {
 					if (type === 'background') return 'bg-[#e4d6bd]';
 					if (type === 'border') return 'border-[#bdb19b]';
 				}
