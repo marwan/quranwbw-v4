@@ -83,7 +83,7 @@ export function playWordAudio(props) {
 
 	const currentWordFileName = `${wordChapter}/${String(wordChapter).padStart(3, '0')}_${String(wordVerse).padStart(3, '0')}_${String(wordNumber).padStart(3, '0')}.mp3`;
 
-	audio.src = `${wordsAudioURL}/${currentWordFileName}`;
+	audio.src = `${wordsAudioURL}/${currentWordFileName}?version=2`;
 	audio.currentTime = 0;
 	audio.load();
 	audio.playbackRate = selectablePlaybackSpeeds[get(__playbackSpeed)].speed;
