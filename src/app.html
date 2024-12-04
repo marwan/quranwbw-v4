@@ -47,86 +47,90 @@
 		<!-- function to return theme colors -->
 		<script>
 			function theme(type) {
-				const currentTheme = +JSON.parse(localStorage.getItem('userSettings')).displaySettings.websiteTheme;
+				try {
+					const currentTheme = +JSON.parse(localStorage.getItem('userSettings')).displaySettings.websiteTheme;
 
-				// White theme
-				if (currentTheme === 1) {
-					// colors used: white, black (and its different variations)
-					if (type === 'background') return window.websiteColors[currentTheme];
-					if (type === 'background-black') return 'bg-black';
-					if (type === 'background-light') return 'bg-black/5';
-					if (type === 'text') return 'text-black';
-					if (type === 'border') return 'border-black/10';
-					if (type === 'icon') return '#000000';
-					if (type === 'input') return 'focus:border-black focus:ring-black';
-					if (type === 'checked') return 'peer-checked:border-2 peer-checked:border-black peer-checked:border-black';
-					if (type === 'toggles') return 'bg-black/5 after:bg-white peer-checked:bg-black';
-					if (type === 'scrollbar') return 'scrollbar scrollbar-thumb-sky-700';
-					if (type === 'hover') return 'hover:bg-black/5';
-				}
+					// White theme
+					if (currentTheme === 1) {
+						// colors used: white, black (and its different variations)
+						if (type === 'background') return window.websiteColors[currentTheme];
+						if (type === 'background-black') return 'bg-black';
+						if (type === 'background-light') return 'bg-black/5';
+						if (type === 'text') return 'text-black';
+						if (type === 'border') return 'border-black/10';
+						if (type === 'icon') return '#000000';
+						if (type === 'input') return 'focus:border-black focus:ring-black';
+						if (type === 'checked') return 'peer-checked:border-2 peer-checked:border-black peer-checked:border-black';
+						if (type === 'toggles') return 'bg-black/5 after:bg-white peer-checked:bg-black';
+						if (type === 'scrollbar') return 'scrollbar scrollbar-thumb-sky-700';
+						if (type === 'hover') return 'hover:bg-black/5';
+					}
 
-				// Blue theme
-				else if (currentTheme === 2) {
-					// colors used: #02021b, #c2c2c2 (and its different variations)
-					if (type === 'background') return window.websiteColors[currentTheme];
-					if (type === 'background-black') return 'bg-[#c2c2c2]';
-					if (type === 'background-light') return 'bg-[#c2c2c2]/5';
-					if (type === 'text') return 'text-[#c2c2c2]';
-					if (type === 'border') return 'border-[#c2c2c2]/10';
-					if (type === 'icon') return '#c2c2c2';
-					if (type === 'input') return 'focus:border-[#c2c2c2] focus:ring-[#c2c2c2]';
-					if (type === 'checked') return 'peer-checked:border-2 peer-checked:border-[#c2c2c2] peer-checked:border-[#c2c2c2]';
-					if (type === 'toggles') return 'bg-[#c2c2c2]/5 after:bg-white peer-checked:bg-[#c2c2c2]';
-					if (type === 'scrollbar') return 'scrollbar scrollbar-thumb-sky-700';
-					if (type === 'hover') return 'hover:bg-[#c2c2c2]/5';
-				}
+					// Blue theme
+					else if (currentTheme === 2) {
+						// colors used: #02021b, #c2c2c2 (and its different variations)
+						if (type === 'background') return window.websiteColors[currentTheme];
+						if (type === 'background-black') return 'bg-[#c2c2c2]';
+						if (type === 'background-light') return 'bg-[#c2c2c2]/5';
+						if (type === 'text') return 'text-[#c2c2c2]';
+						if (type === 'border') return 'border-[#c2c2c2]/10';
+						if (type === 'icon') return '#c2c2c2';
+						if (type === 'input') return 'focus:border-[#c2c2c2] focus:ring-[#c2c2c2]';
+						if (type === 'checked') return 'peer-checked:border-2 peer-checked:border-[#c2c2c2] peer-checked:border-[#c2c2c2]';
+						if (type === 'toggles') return 'bg-[#c2c2c2]/5 after:bg-white peer-checked:bg-[#c2c2c2]';
+						if (type === 'scrollbar') return 'scrollbar scrollbar-thumb-sky-700';
+						if (type === 'hover') return 'hover:bg-[#c2c2c2]/5';
+					}
 
-				// Green theme
-				else if (currentTheme === 3) {
-					// colors used: #001617, #dddddd (and its different variations)
-					if (type === 'background') return window.websiteColors[currentTheme];
-					if (type === 'background-black') return 'bg-[#dddddd]';
-					if (type === 'background-light') return 'bg-[#dddddd]/5';
-					if (type === 'text') return 'text-[#dddddd]';
-					if (type === 'border') return 'border-[#dddddd]/10';
-					if (type === 'icon') return '#dddddd';
-					if (type === 'input') return 'focus:border-[#dddddd] focus:ring-[#dddddd]';
-					if (type === 'checked') return 'peer-checked:border-2 peer-checked:border-[#dddddd] peer-checked:border-[#dddddd]';
-					if (type === 'toggles') return 'bg-[#dddddd]/5 after:bg-white peer-checked:bg-[#dddddd]';
-					if (type === 'scrollbar') return 'scrollbar scrollbar-thumb-sky-700';
-					if (type === 'hover') return 'hover:bg-[#dddddd]/5';
-				}
+					// Green theme
+					else if (currentTheme === 3) {
+						// colors used: #001617, #dddddd (and its different variations)
+						if (type === 'background') return window.websiteColors[currentTheme];
+						if (type === 'background-black') return 'bg-[#dddddd]';
+						if (type === 'background-light') return 'bg-[#dddddd]/5';
+						if (type === 'text') return 'text-[#dddddd]';
+						if (type === 'border') return 'border-[#dddddd]/10';
+						if (type === 'icon') return '#dddddd';
+						if (type === 'input') return 'focus:border-[#dddddd] focus:ring-[#dddddd]';
+						if (type === 'checked') return 'peer-checked:border-2 peer-checked:border-[#dddddd] peer-checked:border-[#dddddd]';
+						if (type === 'toggles') return 'bg-[#dddddd]/5 after:bg-white peer-checked:bg-[#dddddd]';
+						if (type === 'scrollbar') return 'scrollbar scrollbar-thumb-sky-700';
+						if (type === 'hover') return 'hover:bg-[#dddddd]/5';
+					}
 
-				// Black (OLED) theme
-				else if (currentTheme === 4) {
-					// colors used: black, #dddddd (and its different variations)
-					if (type === 'background') return window.websiteColors[currentTheme];
-					if (type === 'background-black') return 'bg-[#dddddd]';
-					if (type === 'background-light') return 'bg-[#dddddd]/5';
-					if (type === 'text') return 'text-[#dddddd]';
-					if (type === 'border') return 'border-[#dddddd]/10';
-					if (type === 'icon') return '#dddddd';
-					if (type === 'input') return 'focus:border-[#dddddd] focus:ring-[#dddddd]';
-					if (type === 'checked') return 'peer-checked:border-2 peer-checked:border-[#dddddd] peer-checked:border-[#dddddd]';
-					if (type === 'toggles') return 'bg-[#dddddd]/5 after:bg-white peer-checked:bg-[#dddddd]';
-					if (type === 'scrollbar') return 'scrollbar scrollbar-thumb-sky-700';
-					if (type === 'hover') return 'hover:bg-[#dddddd]/5';
-				}
+					// Black (OLED) theme
+					else if (currentTheme === 4) {
+						// colors used: black, #dddddd (and its different variations)
+						if (type === 'background') return window.websiteColors[currentTheme];
+						if (type === 'background-black') return 'bg-[#dddddd]';
+						if (type === 'background-light') return 'bg-[#dddddd]/5';
+						if (type === 'text') return 'text-[#dddddd]';
+						if (type === 'border') return 'border-[#dddddd]/10';
+						if (type === 'icon') return '#dddddd';
+						if (type === 'input') return 'focus:border-[#dddddd] focus:ring-[#dddddd]';
+						if (type === 'checked') return 'peer-checked:border-2 peer-checked:border-[#dddddd] peer-checked:border-[#dddddd]';
+						if (type === 'toggles') return 'bg-[#dddddd]/5 after:bg-white peer-checked:bg-[#dddddd]';
+						if (type === 'scrollbar') return 'scrollbar scrollbar-thumb-sky-700';
+						if (type === 'hover') return 'hover:bg-[#dddddd]/5';
+					}
 
-				// Sepia theme
-				else if (currentTheme === 5) {
-					// colors used: #e4d6bd, #553c0f (and its different variations)
-					if (type === 'background') return window.websiteColors[currentTheme];
-					if (type === 'background-black') return 'bg-[#553c0f]';
-					if (type === 'background-light') return 'bg-[#553c0f]/5';
-					if (type === 'text') return 'text-[#553c0f]';
-					if (type === 'border') return 'border-[#553c0f]/10';
-					if (type === 'icon') return '#553c0f';
-					if (type === 'input') return 'focus:border-[#553c0f] focus:ring-[#553c0f]';
-					if (type === 'checked') return 'peer-checked:border-2 peer-checked:border-[#553c0f] peer-checked:border-[#553c0f]';
-					if (type === 'toggles') return 'bg-[#553c0f]/5 after:bg-white peer-checked:bg-[#553c0f]';
-					if (type === 'scrollbar') return 'scrollbar scrollbar-thumb-sky-700';
-					if (type === 'hover') return 'hover:bg-[#553c0f]/5';
+					// Sepia theme
+					else if (currentTheme === 5) {
+						// colors used: #e4d6bd, #553c0f (and its different variations)
+						if (type === 'background') return window.websiteColors[currentTheme];
+						if (type === 'background-black') return 'bg-[#553c0f]';
+						if (type === 'background-light') return 'bg-[#553c0f]/5';
+						if (type === 'text') return 'text-[#553c0f]';
+						if (type === 'border') return 'border-[#553c0f]/10';
+						if (type === 'icon') return '#553c0f';
+						if (type === 'input') return 'focus:border-[#553c0f] focus:ring-[#553c0f]';
+						if (type === 'checked') return 'peer-checked:border-2 peer-checked:border-[#553c0f] peer-checked:border-[#553c0f]';
+						if (type === 'toggles') return 'bg-[#553c0f]/5 after:bg-white peer-checked:bg-[#553c0f]';
+						if (type === 'scrollbar') return 'scrollbar scrollbar-thumb-sky-700';
+						if (type === 'hover') return 'hover:bg-[#553c0f]/5';
+					}
+				} catch (error) {
+					// ...
 				}
 			}
 
