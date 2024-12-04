@@ -9,7 +9,7 @@
 	import { getModalTransition } from '$utils/getModalTransition';
 
 	// CSS classes for radio buttons
-	const radioClasses = `inline-flex justify-between items-center py-2 px-4 w-full text-grayyy-500 ${window.theme('background')} rounded-lg border ${window.theme('border')} cursor-pointer peer-checked:border-primary-600 peer-checked:text-primary-600 hover:text-grayyy-600 hover:bg-grayyy-100`;
+	const radioClasses = `inline-flex justify-between items-center py-2 px-4 w-full text-grayyy-500 ${window.theme('background')} rounded-lg border ${window.theme('border')} cursor-pointer ${window.theme('checked')} hover:text-grayyy-600 hover:bg-grayyy-100`;
 
 	let invalidStartVerse = false;
 	let invalidEndVerse = false;

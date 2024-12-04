@@ -17,7 +17,7 @@
 						{#if translation.language_id === language.language_id}
 							<div class="flex items-center w-full">
 								<Checkbox class="w-full" on:click={() => updateSettings({ type: 'verseTranslation', value: translation.resource_id })} custom>
-									<div class="inline-flex justify-between items-center p-5 w-full text-grayyy-500 {window.theme('background')} rounded-lg border {window.theme('border')} cursor-pointer peer-checked:border-primary-600 peer-checked:text-primary-600 hover:text-grayyy-600 hover:bg-grayyy-100 {$__verseTranslations.includes(translation.resource_id) && selectedRadioClasses}">
+									<div class="inline-flex justify-between items-center p-5 w-full text-grayyy-500 {window.theme('background')} rounded-lg border {window.theme('border')} cursor-pointer {window.theme('checked')} hover:text-grayyy-600 hover:bg-grayyy-100 {$__verseTranslations.includes(translation.resource_id) && selectedRadioClasses}">
 										<div class="w-full">{translation.resource_name}</div>
 
 										{#if $__verseTranslations.includes(translation.resource_id)}

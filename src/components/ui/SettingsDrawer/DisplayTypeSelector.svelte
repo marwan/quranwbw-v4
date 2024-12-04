@@ -11,7 +11,7 @@
 	{#each Object.entries(selectableDisplays) as [id, displayOption]}
 		{#if !displayOption.disallowedIn.includes($__currentPage)}
 			<Radio name="displayType" bind:group={$__selectedDisplayId} value={displayOption.displayID} on:change={(event) => displayTypeChangeHandler(+event.target.value)} custom>
-				<div class="inline-flex justify-between items-center p-5 w-full text-grayyy-500 {window.theme('background')} rounded-lg border {window.theme('border')} cursor-pointer peer-checked:border-primary-600 peer-checked:text-primary-600 hover:text-grayyy-600 hover:bg-grayyy-100 {$__selectedDisplayId === displayOption.displayID && selectedRadioClasses}">
+				<div class="inline-flex justify-between items-center p-5 w-full text-grayyy-500 {window.theme('background')} rounded-lg border {window.theme('border')} cursor-pointer {window.theme('checked')} hover:text-grayyy-600 hover:bg-grayyy-100 {$__selectedDisplayId === displayOption.displayID && selectedRadioClasses}">
 					<div class="w-full">{displayOption.displayName}</div>
 
 					{#if $__selectedDisplayId === displayOption.displayID}
