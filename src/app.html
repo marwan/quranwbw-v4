@@ -16,7 +16,7 @@
 		<link crossorigin="anonymous" rel="manifest" href="%sveltekit.assets%/manifest.json" />
 		<link crossorigin="anonymous" rel="icon" type="image/png" href="%sveltekit.assets%/images/favicon.png" />
 		<link crossorigin="anonymous" href="%sveltekit.assets%/images/apple-touch-icon.png" rel="apple-touch-icon" />
-		<link crossorigin="anonymous" rel="stylesheet" href="%sveltekit.assets%/css/global.css?version=25" />
+		<link crossorigin="anonymous" rel="stylesheet" href="%sveltekit.assets%/css/global.css?version=26" />
 
 		<!-- 
 		If the user's browser do not support Optional chaining (?.), redirect to old v3 website
@@ -40,8 +40,10 @@
 				2: `bg-[#02021b]`,
 				3: `bg-[#001617]`,
 				4: `bg-black`,
-				5: `bg-[#e4d6bd]`,
-				6: `bg-white`
+				5: `bg-[#e9e3d7]`,
+				6: `bg-white`,
+				7: `bg-[#20161f]`,
+				8: `bg-[#e1e1e1]`
 			};
 		</script>
 
@@ -138,7 +140,7 @@
 
 					// White & Gold theme
 					else if (currentTheme === 6) {
-						// colors used: white, black (and its different variations)
+						// colors used: white, #b1901f (and its different variations)
 						if (type === 'background') return window.websiteColors[currentTheme];
 						if (type === 'background-black') return 'bg-[#b1901f]';
 						if (type === 'background-light') return 'bg-[#b1901f]/5';
@@ -151,6 +153,40 @@
 						if (type === 'toggles') return 'bg-[#b1901f]/5 after:bg-white peer-checked:bg-[#b1901f]';
 						if (type === 'scrollbar') return 'scrollbar scrollbar-thumb-sky-700';
 						if (type === 'hover') return 'hover:bg-[#b1901f]/5';
+					}
+
+					// Coffee theme
+					else if (currentTheme === 7) {
+						// colors used: #20161f, black (and its different variations)
+						if (type === 'background') return window.websiteColors[currentTheme];
+						if (type === 'background-black') return 'bg-[#c59f60]';
+						if (type === 'background-light') return 'bg-[#c59f60]/5';
+						if (type === 'text') return 'text-[#c59f60]';
+						if (type === 'link') return 'text-[#c59f60]';
+						if (type === 'border') return 'border-[#c59f60]/20';
+						if (type === 'icon') return '#c59f60';
+						if (type === 'input') return 'focus:border-[#c59f60] focus:ring-[#c59f60]';
+						if (type === 'checked') return 'peer-checked:border-2 peer-checked:border-[#c59f60] peer-checked:border-[#c59f60]';
+						if (type === 'toggles') return 'bg-[#c59f60]/5 after:bg-white peer-checked:bg-[#c59f60]';
+						if (type === 'scrollbar') return 'scrollbar scrollbar-thumb-sky-700';
+						if (type === 'hover') return 'hover:bg-[#c59f60]/5';
+					}
+
+					// Silver theme
+					else if (currentTheme === 8) {
+						// colors used: #d5d5d7, black (and its different variations)
+						if (type === 'background') return window.websiteColors[currentTheme];
+						if (type === 'background-black') return 'bg-black';
+						if (type === 'background-light') return 'bg-black/5';
+						if (type === 'text') return 'text-black';
+						if (type === 'link') return 'text-black';
+						if (type === 'border') return 'border-black/20';
+						if (type === 'icon') return '#000000';
+						if (type === 'input') return 'focus:border-black focus:ring-black';
+						if (type === 'checked') return 'peer-checked:border-2 peer-checked:border-black peer-checked:border-black';
+						if (type === 'toggles') return 'bg-black/5 after:bg-white peer-checked:bg-black';
+						if (type === 'scrollbar') return 'scrollbar scrollbar-thumb-sky-700';
+						if (type === 'hover') return 'hover:bg-black/5';
 					}
 				} catch (error) {
 					// ...
