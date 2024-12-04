@@ -122,7 +122,7 @@
 
 	<!-- word tooltip -->
 	{#if $__wordTooltip > 1}
-		<Tooltip arrow={false} type="light" class="z-30 hidden md:block text-center inline-flex font-sans theme-grayyyscale font-normal">
+		<Tooltip arrow={false} type="light" class="z-30 hidden md:block text-center inline-flex font-sans font-normal">
 			{#if $__wordTooltip === 2}
 				{@html transliterationSplit[word]}
 			{:else if $__wordTooltip === 3}

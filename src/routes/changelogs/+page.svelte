@@ -17,14 +17,14 @@
 		})();
 	}
 
-	$: userAvatarClasses = `rounded-full inline-flex w-5 h-5 ${[2, 3, 4].includes($__websiteTheme) && 'invert'}`;
+	$: userAvatarClasses = `rounded-full inline-flex w-5 h-5`;
 
 	__currentPage.set('changelogs');
 </script>
 
 <PageHead title={'Changelogs'} />
 
-<div class="flex flex-col space-y-6 text-sm theme">
+<div class="flex flex-col space-y-6 text-sm">
 	<!-- commits -->
 	<div id="commits">
 		<div class="mt-6 mb-2 space-y-4 pb-2">

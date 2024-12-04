@@ -27,5 +27,5 @@
 		</div>
 	</div>
 
-	<div class="border-b {window.theme('border')} theme"></div>
+	<div class="border-b {window.theme('border')}"></div>
 {/if}

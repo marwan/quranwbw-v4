@@ -7,7 +7,7 @@
 	import { displayTypeChangeHandler } from '$utils/displayTypeChangeHandler';
 </script>
 
-<div class="grid gap-3 w-full theme-grayyyscale">
+<div class="grid gap-3 w-full">
 	{#each Object.entries(selectableDisplays) as [id, displayOption]}
 		{#if !displayOption.disallowedIn.includes($__currentPage)}
 			<Radio name="displayType" bind:group={$__selectedDisplayId} value={displayOption.displayID} on:change={(event) => displayTypeChangeHandler(+event.target.value)} custom>

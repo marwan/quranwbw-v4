@@ -82,9 +82,9 @@
 
 	// CSS classes
 	const settingsBlockClasses = 'space-y-2 py-6';
-	const selectorClasses = `w-32 border ${window.theme('border')} text-left rounded-3xl focus:ring-grayyy-500 focus:${window.theme('border')} focus-within:ring-2 block p-2.5 truncate font-normal theme-grayyyscale`;
+	const selectorClasses = `w-32 border ${window.theme('border')} text-left rounded-3xl focus:ring-grayyy-500 focus:${window.theme('border')} focus-within:ring-2 block p-2.5 truncate font-normal`;
 	const settingsDescriptionClasses = 'mb-6 text-xs opacityyy-70';
-	const toggleBtnClasses = `relative w-14 h-7 ${window.theme('toggles')} peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-grayyy-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[""] after:absolute after:top-0.5 after:start-[4px] after:${window.theme('background')} after:${window.theme('border')} after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-grayyy-600 theme-grayyyscale`;
+	const toggleBtnClasses = `relative w-14 h-7 ${window.theme('toggles')} peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-grayyy-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[""] after:absolute after:top-0.5 after:start-[4px] after:${window.theme('background')} after:${window.theme('border')} after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-grayyy-600`;
 
 	let settingsDrawerOpacity = 'opacity-100';
 	let settingsDrawerBackground = `${window.theme('background')}`;
@@ -186,7 +186,7 @@
 </script>
 
 <!-- settings drawer -->
-<Drawer placement="right" transitionType="fly" transitionParams={transitionParamsRight} bind:hidden={$__settingsDrawerHidden} class="theme w-full md:w-1/2 lg:w-[430px] md:rounded-tl-3xl md:rounded-bl-3xl pt-0 {settingsDrawerBackground}" id="settings-drawer">
+<Drawer placement="right" transitionType="fly" transitionParams={transitionParamsRight} bind:hidden={$__settingsDrawerHidden} class="w-full md:w-1/2 lg:w-[430px] md:rounded-tl-3xl md:rounded-bl-3xl pt-0 {settingsDrawerBackground}" id="settings-drawer">
 	<!-- all-settings -->
 	{#if allSettingsVisible}
 		<div id="all-settings">

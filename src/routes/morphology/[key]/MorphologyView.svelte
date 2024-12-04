@@ -74,7 +74,7 @@
 
 <div class="space-y-12 my-8">
 	{#if $__currentPage === 'morphology'}
-		<div id="verse-navigator" class="flex flex-row justify-center space-x-8 text-sm theme">
+		<div id="verse-navigator" class="flex flex-row justify-center space-x-8 text-sm">
 			<!-- previous chapter -->
 			{#if verse === 1 && chapter > 1}
 				<a href="/morphology/{+chapter - 1}:1" class={buttonOutlineClasses}>{@html '&#x2190;'} {term('chapter')} {+chapter - 1}</a>
@@ -111,7 +111,7 @@
 		{/await}
 	</div>
 
-	<div id="word-summary" class="text-center opacityyy-70 mx-auto md:w-3/4 text-sm pb-6 border-b-2 {window.theme('border')} md:text-lg theme">
+	<div id="word-summary" class="text-center opacityyy-70 mx-auto md:w-3/4 text-sm pb-6 border-b-2 {window.theme('border')} md:text-lg">
 		{#await fetchWordSummary}
 			<span>...</span>
 		{:then fetchWordSummary}
@@ -129,10 +129,10 @@
 			<Spinner />
 		{:then fetchWordsData}
 			{#if !Object.values(fetchWordsData[0].morphology.verbs).every((o) => o === null)}
-				<div id="word-forms" class="pb-8 border-b-2 {window.theme('border')} theme">
+				<div id="word-forms" class="pb-8 border-b-2 {window.theme('border')}">
 					{#if Object.keys(fetchWordsData[0].morphology.root.words_with_same_root).length > 0}
 						<div class="flex flex-col">
-							<div id="different-verbs" class="theme-grayyyscale">
+							<div id="different-verbs">
 								<div class="mx-auto text-center">
 									<div class="relative grid gap-8 grid-cols-2 row-gap-5 md:row-gap-8 md:grid-cols-6">
 										{#each Object.entries(fetchWordsData[0].morphology.verbs) as [key, value]}
@@ -155,11 +155,11 @@
 				</div>
 			{/if}
 
-			<div id="word-root-data" class="pb-8 border-b-2 {window.theme('border')} theme">
+			<div id="word-root-data" class="pb-8 border-b-2 {window.theme('border')}">
 				<Table wordData={fetchWordsData[0].morphology.root.words_with_same_root} tableType={1} />
 			</div>
 
-			<div id="exact-word-data" class="pb-8 border-b-2 {window.theme('border')} theme">
+			<div id="exact-word-data" class="pb-8 border-b-2 {window.theme('border')}">
 				<Table wordData={fetchWordsData[0].morphology.exact_words_in_quran} tableType={2} />
 			</div>
 		{:catch error}

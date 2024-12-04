@@ -7,10 +7,10 @@
 	import { selectedRadioClasses } from '$data/commonClasses';
 	import { staticEndpoint } from '$data/websiteSettings';
 
-	$: reciterImageClasses = `rounded-full size-10 grayscale ${[2, 3, 4].includes($__websiteTheme) && 'invert'}`;
+	$: reciterImageClasses = `rounded-full size-10`;
 </script>
 
-<div class="grid gap-3 w-full theme-grayyyscale">
+<div class="grid gap-3 w-full">
 	{#each Object.entries(selectableReciters) as [id, reciter]}
 		<Radio name="reciter" bind:group={$__reciter} value={reciter.id} on:change={(event) => updateSettings({ type: 'reciter', value: +event.target.value })} custom>
 			<div class="inline-flex justify-between items-center px-5 py-3 w-full text-grayyy-500 {window.theme('background')} rounded-lg border {window.theme('border')} cursor-pointer peer-checked:border-primary-600 peer-checked:text-primary-600 hover:text-grayyy-600 hover:bg-grayyy-100 {$__reciter === reciter.id && selectedRadioClasses}">

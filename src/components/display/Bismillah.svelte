@@ -14,7 +14,7 @@
 
 	const chapterBismillahClasses = `
 		flex flex-col text-center flex-wrap block pt-6 pb-4 
-		${[1, 2, 3].includes($__fontType) ? `bismillah ${$__chapterNumber === 2 ? 'text-3xl' : 'text-2xl md:text-3xl'}` : 'arabic-font-4 text-3xl md:text-4xl theme'}
+		${[1, 2, 3].includes($__fontType) ? `bismillah ${$__chapterNumber === 2 ? 'text-3xl' : 'text-2xl md:text-3xl'}` : 'arabic-font-4 text-3xl md:text-4xl'}
 	`;
 
 	const mushafBismillahClasses = `

@@ -6,7 +6,7 @@
 	__currentPage.set('error');
 </script>
 
-<div class="flex flex-col space-y-4 items-center justify-center text-center pt-28 theme">
+<div class="flex flex-col space-y-4 items-center justify-center text-center pt-28">
 	{#if $page.status === 404}
 		<span>The content you were looking for was not found.</span>
 	{:else}

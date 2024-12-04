@@ -10,7 +10,7 @@
 		flex flex-col text-center mx-auto w-full mt-8 
 		${selectableDisplays[`${$__displayType}`].continuous ? 'mb-4' : 'mb-1'} 
 		border ${window.theme('border')}
-		py-2 px-4 text-sm cursor-pointer rounded-full bg-lightGrayyy theme
+		py-2 px-4 text-sm cursor-pointer rounded-full bg-lightGrayyy
 	`;
 </script>
 
@@ -18,6 +18,6 @@
 {#if $__currentPage === 'chapter'}
 	{#if pageNumberKeys.includes(key)}
 		<div class={dividerClasses}>Page {page}</div>
-		<Tooltip arrow={false} type="light" placement="top" class="z-30 theme-grayyyscale font-normal">Start of Page {page}</Tooltip>
+		<Tooltip arrow={false} type="light" placement="top" class="z-30 font-normal">Start of Page {page}</Tooltip>
 	{/if}
 {/if}

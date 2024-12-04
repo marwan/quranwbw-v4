@@ -73,7 +73,7 @@
 	}
 </script>
 
-<div class="verseButtons flex flex-row justify-between z-10 theme">
+<div class="verseButtons flex flex-row justify-between z-10">
 	<div class="flex flex-row w-full space-x-2">
 		<!-- verse key -->
 		<div class="flex flex-row space-x-2">

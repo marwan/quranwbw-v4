@@ -15,9 +15,9 @@
 	bind:open={$__verseTranslationModalVisible}
 	title="{quranMetaData[chapter].transliteration}, {chapter}:{verse}"
 	id="verseTranslationModal"
-	class="!rounded-b-none md:!rounded-3xl theme"
+	class="!rounded-b-none md:!rounded-3xl"
 	bodyClass="p-6 space-y-4 flex-1 overflow-y-auto overscroll-contain border {window.theme('border')}"
-	headerClass="flex justify-between items-center p-6 rounded-t-3xl theme-grayyyscale"
+	headerClass="flex justify-between items-center p-6 rounded-t-3xl"
 	classFooter="rounded-b-3xl flex flex-row justify-between"
 	size="lg"
 	position="bottom"

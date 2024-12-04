@@ -58,13 +58,13 @@
 	}
 </script>
 
-<Modal id="notesModal" bind:open={$__notesModalVisible} transitionParams={getModalTransition('bottom')} size="xs" class="!rounded-b-none md:!rounded-3xl theme" bodyClass="p-6" position="bottom" center outsideclose>
+<Modal id="notesModal" bind:open={$__notesModalVisible} transitionParams={getModalTransition('bottom')} size="xs" class="!rounded-b-none md:!rounded-3xl" bodyClass="p-6" position="bottom" center outsideclose>
 	<!-- Modal content -->
 	<h3 id="notes-modal-title" class="mb-8 text-xl font-medium">{quranMetaData[chapter].transliteration}, {$__verseKey}</h3>
-	<textarea id="notes-value" rows="8" value={verseNote} class="block p-2.5 w-full text-sm bg-grayyy-50 rounded-3xl border {window.theme('border')} focus:ring-grayyy-500 focus:{window.theme('border')} placeholder-black theme-grayyyscale" placeholder="Write your thoughts here..."></textarea>
+	<textarea id="notes-value" rows="8" value={verseNote} class="block p-2.5 w-full text-sm bg-grayyy-50 rounded-3xl border {window.theme('border')} focus:ring-grayyy-500 focus:{window.theme('border')} placeholder-black" placeholder="Write your thoughts here..."></textarea>
 
 	{#if noteModifiedAt !== null}
-		<div id="notes-last-modified" class="text-xs mt-4 theme-grayyyscale">Modified {noteModifiedAt}.</div>
+		<div id="notes-last-modified" class="text-xs mt-4">Modified {noteModifiedAt}.</div>
 	{/if}
 
 	<div class="flex flex-row">

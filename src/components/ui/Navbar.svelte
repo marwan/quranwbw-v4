@@ -15,7 +15,7 @@
 	let mushafJuz = '...';
 
 	// Classes for the navbar
-	$: navbarClasses = `${window.theme('background')} border-b ${window.theme('border')} fixed w-full z-20 top-0 left-0 print:hidden theme ${$__currentPage === 'home' ? 'hidden' : 'block'}`;
+	$: navbarClasses = `${window.theme('background')} border-b ${window.theme('border')} fixed w-full z-20 top-0 left-0 print:hidden ${$__currentPage === 'home' ? 'hidden' : 'block'}`;
 	$: topNavClasses = `
 		${$__topNavbarVisible ? 'block' : 'hidden'} 
 		${['chapter', 'mushaf'].includes($__currentPage) && `border-b ${window.theme('border')} `}
@@ -108,7 +108,7 @@
 
 	<!-- mini nav for chapter page -->
 	{#if $__currentPage === 'chapter'}
-		<div id="bottom-nav" class="flex flex-row items-center justify-between text-xs max-w-screen-lg mx-auto px-6 theme-grayyyscale">
+		<div id="bottom-nav" class="flex flex-row items-center justify-between text-xs max-w-screen-lg mx-auto px-6">
 			<div id="navbar-bottom-chapter-revalation" class="flex flex-row items-center py-2">
 				{#if !$__topNavbarVisible}
 					<span>{@html navbarChapterName}</span>
@@ -128,7 +128,7 @@
 
 	<!-- mini nav for mushaf page -->
 	{#if $__currentPage === 'mushaf'}
-		<div id="bottom-nav" class="flex flex-row items-center justify-between border-t {window.theme('border')} text-xs max-w-screen-lg mx-auto px-6 theme-grayyyscale">
+		<div id="bottom-nav" class="flex flex-row items-center justify-between border-t {window.theme('border')} text-xs max-w-screen-lg mx-auto px-6">
 			<div class="flex flex-row items-center py-2">
 				{#if !$__topNavbarVisible}
 					<span>Page {$__pageNumber} -&nbsp;</span>

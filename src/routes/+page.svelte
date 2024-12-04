@@ -13,8 +13,8 @@
 
 <PageHead title={`Quran ${websiteTagline}`} />
 
-<div class="max-w-4xl mx-auto flex flex-col space-y-6 md:px-4 theme">
-	<div class="flex flex-col mt-8 mb-4 theme-grayyyscale">
+<div class="max-w-4xl mx-auto flex flex-col space-y-6 md:px-4">
+	<div class="flex flex-col mt-8 mb-4">
 		<a href="/" class="flex flex-row space-x-1 items-center justify-center" aria-label="Home">
 			<div><Quran size={50} /></div>
 			<div class="flex flex-col">
@@ -29,7 +29,7 @@
 </div>
 
 <!-- banner for website updates: currently v4 launch -->
-<Banner id="newSiteBanner" position="absolute" divClass="z-10 flex justify-between p-4 !bg-grayyy-100 theme">
+<Banner id="newSiteBanner" position="absolute" divClass="z-10 flex justify-between p-4 !bg-grayyy-100">
 	<p class="flex items-center text-sm font-normal text-grayyy-500 space-x-1 truncate">
 		<span class="inline-flex p-2 bg-grayyy-200 rounded-full border {window.theme('border')}">
 			<span class="opacityyy-70"><Megaphone size={3} /></span>

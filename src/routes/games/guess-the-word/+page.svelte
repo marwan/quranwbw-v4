@@ -66,7 +66,7 @@
 
 <PageHead title={'Guess The Word'} />
 
-<div class="space-y-12 my-6 md:my-8 theme">
+<div class="space-y-12 my-6 md:my-8">
 	<div id="word">
 		{#await fetchData}
 			<Spinner />
@@ -79,7 +79,7 @@
 				</button>
 
 				<!-- options -->
-				<div id="options" class="pt-8 theme-grayyyscale">
+				<div id="options" class="pt-8">
 					<p class="mb-5 text-sm">Guess the correct translation:</p>
 					<div class="grid gap-4 md:gap-6 w-full md:grid-cols-2">
 						{#each Object.entries(fetchData) as [key, value]}
@@ -101,7 +101,7 @@
 
 				<!-- answer-results -->
 				{#if answerChecked === true && isAnswerCorrect !== null}
-					<div id="answer-results" class="flex justify-center text-center font-medium text-md theme-grayyyscale">
+					<div id="answer-results" class="flex justify-center text-center font-medium text-md">
 						<span>
 							{isAnswerCorrect ? 'Your answer was correct.' : `Sorry, the correct answer was "${fetchData[randomWord].word_english}".`}
 						</span>

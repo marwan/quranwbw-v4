@@ -7,7 +7,7 @@
 	import { selectedRadioClasses } from '$data/commonClasses';
 </script>
 
-<div class="grid gap-3 w-full theme-grayyyscale">
+<div class="grid gap-3 w-full">
 	{#each Object.entries(selectableFontTypes) as [id, font]}
 		{#if !font.disallowedIn.includes($__currentPage)}
 			<Radio name="fontType" bind:group={$__fontType} value={font.id} on:change={(event) => updateSettings({ type: 'fontType', value: +event.target.value })} custom>

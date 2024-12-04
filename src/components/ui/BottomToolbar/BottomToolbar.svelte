@@ -4,7 +4,7 @@
 </script>
 
 <div id="bottom-toolbar" class="print:hidden {['home', 'chapter', 'mushaf'].includes($__currentPage) ? 'block' : 'hidden'}">
-	<div class="fixed z-20 w-full h-16 max-w-xs md:max-w-lg shadow-sm -translate-x-1/2 {window.theme('background')} border {window.theme('border')} rounded-full bottom-4 left-1/2 theme {$__bottomToolbarVisible ? 'block' : 'hidden'}">
+	<div class="fixed z-20 w-full h-16 max-w-xs md:max-w-lg shadow-sm -translate-x-1/2 {window.theme('background')} border {window.theme('border')} rounded-full bottom-4 left-1/2 {$__bottomToolbarVisible ? 'block' : 'hidden'}">
 		<div class="grid h-full max-w-lg grid-cols-5 mx-auto">
 			<BottomToolbarButtons />
 		</div>

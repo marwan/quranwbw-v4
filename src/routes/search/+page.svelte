@@ -123,7 +123,7 @@
 
 	<!-- search instructions -->
 	{#if searchQuery.length === 0}
-		<div id="how-to-search" class="flex flex-col text-center text-xs space-y-2 max-w-2xl mx-auto theme">
+		<div id="how-to-search" class="flex flex-col text-center text-xs space-y-2 max-w-2xl mx-auto">
 			<span>Explore {Object.keys(selectableVerseTranslations).length} translations from diverse languages and authors. Search for any text, regardless of English or Arabic terminology, and find the nearest or related results. Additionally, you can select specific translations using the button on the left. </span>
 		</div>
 	{/if}
@@ -135,7 +135,7 @@
 			{:then data}
 				{#if data !== undefined}
 					<!-- search results info -->
-					<div class="flex flex-col space-y-4 text-center text-xs theme">
+					<div class="flex flex-col space-y-4 text-center text-xs">
 						<div>{generateTranslationText(selectedTranslations)}</div>
 						{#if pagePagination.total_pages > 1}
 							<div>Displaying {totalResults} results for "{searchQuery}" (page {pagePagination.current_page}).</div>
@@ -166,7 +166,7 @@
 						</div>
 					{/if}
 				{:else}
-					<div class="flex text-center items-center justify-center pt-18 theme text-xs max-w-2xl mx-auto">Unfortunately, your query did not yield any results from the selected translations. Please try using a different keyword or consider switching to another translation for better results.</div>
+					<div class="flex text-center items-center justify-center pt-18 text-xs max-w-2xl mx-auto">Unfortunately, your query did not yield any results from the selected translations. Please try using a different keyword or consider switching to another translation for better results.</div>
 				{/if}
 			{:catch error}
 				<p>{errorLoadingDataMessage}</p>

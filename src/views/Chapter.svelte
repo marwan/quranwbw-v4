@@ -59,7 +59,7 @@
 	}
 
 	// Update the layout for the previous/next verse buttons
-	$: loadPrevNextVerseButtons = `flex ${selectableDisplays[JSON.parse($__userSettings).displaySettings.displayType].continuous ? 'flex-row-reverse' : 'flex-row'} space-x-4 justify-center pt-8 pb-6 theme`;
+	$: loadPrevNextVerseButtons = `flex ${selectableDisplays[JSON.parse($__userSettings).displaySettings.displayType].continuous ? 'flex-row-reverse' : 'flex-row'} space-x-4 justify-center pt-8 pb-6`;
 
 	// Function to reset chapter data variables when chapter changes
 	function resetChapterDataVariables(chapter) {

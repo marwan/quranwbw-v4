@@ -61,7 +61,7 @@
 	}
 </script>
 
-<div id="homepage-tabs" style="margin-top: 0px;" class="theme-grayyyscale">
+<div id="homepage-tabs" style="margin-top: 0px;">
 	<div class="flex items-center justify-center px-2 md:px-0 mb-4">
 		<div class="flex flex-row justify-center px-4">
 			<!-- main tabs -->
@@ -92,7 +92,7 @@
 		</div>
 	</div>
 
-	<div class="hidden md:block border-b {window.theme('border')} -mt-4 px-4 mx-auto theme-grayyyscale"></div>
+	<div class="hidden md:block border-b {window.theme('border')} -mt-4 px-4 mx-auto"></div>
 
 	<div id="content-tab" class="my-6 px-">
 		<!-- chapters tab -->

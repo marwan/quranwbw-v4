@@ -7,7 +7,7 @@
 	import { selectedRadioClasses } from '$data/commonClasses';
 </script>
 
-<div class="grid gap-3 w-full theme-grayyyscale">
+<div class="grid gap-3 w-full">
 	{#each Object.entries(verseTranslationsLanguages) as [id, language]}
 		{#if language.language_id !== 11115}
 			<div class="flex flex-col space-y-2 pb-6">

@@ -35,9 +35,9 @@
 	}
 </script>
 
-<Modal title={modalTitle} bind:open={$__tajweedRulesModalVisible} transitionParams={getModalTransition('bottom')} class="!rounded-b-none md:!rounded-3xl" bodyClass="p-6 space-y-4 flex-1 overflow-y-auto overscroll-contain" headerClass="flex justify-between items-center p-6 rounded-t-3xl theme-grayyyscale" position="bottom" center outsideclose>
+<Modal title={modalTitle} bind:open={$__tajweedRulesModalVisible} transitionParams={getModalTransition('bottom')} class="!rounded-b-none md:!rounded-3xl" bodyClass="p-6 space-y-4 flex-1 overflow-y-auto overscroll-contain" headerClass="flex justify-between items-center p-6 rounded-t-3xl" position="bottom" center outsideclose>
 	<table class="w-full text-sm text-left rtl:text-right">
-		<thead class="text-xs text-grayyy-700 uppercase bg-lightGrayyy theme-grayyyscale">
+		<thead class="text-xs text-grayyy-700 uppercase bg-lightGrayyy">
 			<tr>
 				<th scope="col" class="px-6 py-3 w-fit"> Icon </th>
 				<th scope="col" class="pl-2 pr-6 py-3"> Description </th>
@@ -50,7 +50,7 @@
 				{#each Object.entries(tajweedRulesData) as [key, value]}
 					<tr class="{window.theme('background')} border-b {window.theme('border')} hover:bg-grayyy-50">
 						<td class="py-4 w-fit tajweed-rules text-2xl text-center align-top theme-palette-tajweed font-filter"> {value.code} </td>
-						<td class="pl-2 pr-6 py-4 theme-grayyyscale">
+						<td class="pl-2 pr-6 py-4">
 							<div class="flex flex-col space-y-2">
 								<span class="font-bold">{value.title} </span>
 
