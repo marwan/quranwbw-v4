@@ -113,7 +113,7 @@
 		<!-- search input form -->
 		<form on:submit|preventDefault={() => updateSearchQuery(document.getElementById('search-input').value)} class="flex items-center w-full">
 			<div class="relative w-full">
-				<input type="search" id="search-input" value={searchQuery} class="block p-3 py-3.5 pl-4 w-full z-20 text-sm text-grayyy-900 bg-grayyy-50 border {window.theme('border')}" placeholder="Search Ibrahim, Mary, Jannat, كتاب..." required />
+				<input type="search" id="search-input" value={searchQuery} class="block p-3 py-3.5 pl-4 w-full z-20 text-sm text-grayyy-900 bg-grayyy-50 border {window.theme('border')} {window.theme('input')}" placeholder="Search Ibrahim, Mary, Jannat, كتاب..." required />
 			</div>
 			<button type="submit" title="Search" class="py-[0.94rem] px-5 text-grayyy-600 bg-lightGrayyy hover:bg-grayyy-200 rounded-r-3xl border {window.theme('border')} items-center">
 				<Search2 size={5} />

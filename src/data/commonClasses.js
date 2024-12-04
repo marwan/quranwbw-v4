@@ -1,6 +1,6 @@
 export const disabledClasses = 'opacityyy-30 cursor-not-allowed pointer-events-none select-none';
 
-const commonButtonClasses = `inline-flex items-center justify-center space-x-2 py-2 px-4 border ${window.theme('border')} focus:outline-none focus:ring-4 focus:ring-grayyy-200 rounded-3xl transition-colors duration-150 cursor-pointer`;
+const commonButtonClasses = `inline-flex items-center justify-center space-x-2 py-2 px-4 border ${window.theme('border')} ${window.theme('input')} rounded-3xl transition-colors duration-150 cursor-pointer`;
 
 export const buttonClasses = `${commonButtonClasses} bg-grayyy-500 hover:bg-grayyy-600`;
 

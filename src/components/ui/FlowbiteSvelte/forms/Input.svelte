@@ -13,15 +13,15 @@
 	export let size = undefined;
 	export let defaultClass = 'block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right';
 	export let color = 'base';
-	export let floatClass = 'flex absolute inset-y-0 items-center text-grayyy-500 dark:text-grayyy-400';
+	export let floatClass = 'flex absolute inset-y-0 items-center text-grayyy-500';
 	const borderClasses = {
-		base: `${window.theme('border')} dark:${window.theme('border')}`
+		base: `border ${window.theme('border')}`
 	};
 	const ringClasses = {
-		base: `focus:${window.theme('border')} focus:ring-grayyy-500 dark:focus:${window.theme('border')} dark:focus:ring-grayyy-500`
+		base: `${window.theme('input')}`
 	};
 	const colorClasses = {
-		base: 'bg-grayyy-50 text-grayyy-900 dark:bg-grayyy-700 dark:dark:placeholder-grayyy-400'
+		base: 'bg-grayyy-50 text-grayyy-900'
 	};
 	// tinted if put in component having its own background
 	let background = getContext('background');
@@ -34,7 +34,7 @@
 	let inputClass;
 	$: {
 		const _color = color === 'base' && background ? 'tinted' : color;
-		inputClass = twMerge([defaultClass, inputPadding[_size], ($$slots.left && leftPadding[_size]) || ($$slots.right && rightPadding[_size]), ringClasses[color], colorClasses[_color], borderClasses[_color], textSizes[_size], group || 'rounded-lg', group && 'first:rounded-s-lg last:rounded-e-lg', group && 'border-s-0 first:border-s last:border-e', $$props.class]);
+		inputClass = twMerge([defaultClass, inputPadding[_size], ($$slots.left && leftPadding[_size]) || ($$slots.right && rightPadding[_size]), ringClasses[color], colorClasses[_color], borderClasses[color], textSizes[_size], group || 'rounded-lg', group && 'first:rounded-s-lg last:rounded-e-lg', group && 'border-s-0 first:border-s last:border-e', $$props.class]);
 	}
 </script>
 
