@@ -8,4 +8,4 @@
 	<Maximize />
 	<span class="sr-only">Minimal Mode</span>
 </button>
-<Tooltip triggeredBy="#mushafMinimalModeButton" arrow={false} type="light" class="hidden md:block font-filter font-normal">Minimal Mode</Tooltip>
+<Tooltip triggeredBy="#mushafMinimalModeButton" arrow={false} type="light" class="hidden md:block font-normal">Minimal Mode</Tooltip>

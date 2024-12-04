@@ -18,4 +18,4 @@
 	<List />
 	<span class="sr-only">{term('chapter')} Mode</span>
 </a>
-<Tooltip arrow={false} type="light" class="hidden md:block font-filter font-normal">{term('chapter')} Mode</Tooltip>
+<Tooltip arrow={false} type="light" class="hidden md:block font-normal">{term('chapter')} Mode</Tooltip>

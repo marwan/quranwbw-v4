@@ -163,6 +163,6 @@
 		<button class="w-fit flex flex-row space-x-2 py-3 px-3 rounded-xl items-center cursor-pointer {window.theme('hover')}" on:click={toggleMushafMinimalMode}>
 			<Minimize size={3} />
 		</button>
-		<Tooltip arrow={false} type="light" class="z-30 hidden md:block font-filter font-normal">Minimal Mode</Tooltip>
+		<Tooltip arrow={false} type="light" class="z-30 hidden md:block font-normal">Minimal Mode</Tooltip>
 	</div>
 {/if}

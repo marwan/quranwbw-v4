@@ -33,4 +33,4 @@
 		{/if}
 	</button>
 </div>
-<Tooltip arrow={false} type="light" class="hidden md:block font-filter font-normal">{$__audioSettings.isPlaying ? 'Pause' : 'Play'}</Tooltip>
+<Tooltip arrow={false} type="light" class="hidden md:block font-normal">{$__audioSettings.isPlaying ? 'Pause' : 'Play'}</Tooltip>

@@ -84,7 +84,7 @@
 					<div class="opacityyy-70 text-xs">{quranMetaData[chapter].transliteration}, {key}</div>
 				{/if}
 			</a>
-			<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-filter font-normal">{term('verse')} {key}</Tooltip>
+			<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-normal">{term('verse')} {key}</Tooltip>
 		</div>
 
 		<!-- other verse buttons -->
@@ -95,7 +95,7 @@
 					<svelte:component this={$__audioSettings.isPlaying && $__audioSettings.playingKey === key ? Pause : Play} size={3.5} />
 				</div>
 			</button>
-			<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-filter font-normal">Play</Tooltip>
+			<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-normal">Play</Tooltip>
 
 			<!-- notes button -->
 			{#if $__userNotes.hasOwnProperty(key)}
@@ -111,7 +111,7 @@
 						<Notes size={5} />
 					</div>
 				</button>
-				<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-filter font-normal">Notes</Tooltip>
+				<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-normal">Notes</Tooltip>
 			{/if}
 
 			<!-- bookmark/unbookmark button -->
@@ -121,7 +121,7 @@
 						<svelte:component this={userBookmarks.includes(key) ? Bookmarked : Bookmark} size={3.5} />
 					</div>
 				</button>
-				<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-filter font-normal">Bookmark</Tooltip>
+				<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-normal">Bookmark</Tooltip>
 			{/if}
 
 			<!-- verses option dropdown -->
@@ -131,7 +131,7 @@
 				</div>
 			</button>
 			<VerseOptionsDropdown page={value.meta.page} />
-			<Tooltip triggeredBy="#verse-options-{verse}" arrow={false} type="light" placement="top" class="z-30 hidden md:block font-filter font-normal">Options</Tooltip>
+			<Tooltip triggeredBy="#verse-options-{verse}" arrow={false} type="light" placement="top" class="z-30 hidden md:block font-normal">Options</Tooltip>
 		</div>
 	</div>
 
@@ -143,7 +143,7 @@
 					<EyeOutline />
 				</div>
 			</button>
-			<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-filter font-normal">Toggle Words</Tooltip>
+			<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-normal">Toggle Words</Tooltip>
 		</div>
 	{/if}
 </div>

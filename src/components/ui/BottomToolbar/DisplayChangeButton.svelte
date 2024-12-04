@@ -10,4 +10,4 @@
 	<Eye />
 	<span class="sr-only">Display Type</span>
 </button>
-<Tooltip triggeredBy="#changeDisplayButton" arrow={false} type="light" class="hidden md:block font-filter font-normal">Display Type</Tooltip>
+<Tooltip triggeredBy="#changeDisplayButton" arrow={false} type="light" class="hidden md:block font-normal">Display Type</Tooltip>

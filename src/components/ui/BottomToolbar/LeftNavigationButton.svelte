@@ -29,4 +29,4 @@
 	<ChevronLeft />
 	<span class="sr-only">{linkText}</span>
 </a>
-<Tooltip arrow={false} type="light" class="w-max hidden md:block font-filter font-normal">{linkText}</Tooltip>
+<Tooltip arrow={false} type="light" class="w-max hidden md:block font-normal">{linkText}</Tooltip>

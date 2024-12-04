@@ -16,7 +16,7 @@
 		<link crossorigin="anonymous" rel="manifest" href="%sveltekit.assets%/manifest.json" />
 		<link crossorigin="anonymous" rel="icon" type="image/png" href="%sveltekit.assets%/images/favicon.png" />
 		<link crossorigin="anonymous" href="%sveltekit.assets%/images/apple-touch-icon.png" rel="apple-touch-icon" />
-		<link crossorigin="anonymous" rel="stylesheet" href="%sveltekit.assets%/css/global.css?version=22" />
+		<link crossorigin="anonymous" rel="stylesheet" href="%sveltekit.assets%/css/global.css?version=23" />
 
 		<!-- 
 		If the user's browser do not support Optional chaining (?.), redirect to old v3 website
@@ -33,7 +33,7 @@
 			}
 		</script>
 
-		<!-- setting background colors for themes -->
+		<!-- background colors -->
 		<script>
 			window.websiteColors = {
 				1: `bg-white`,
@@ -42,9 +42,12 @@
 				4: `bg-black`,
 				5: `bg-[#e4d6bd]`
 			};
+		</script>
 
+		<!-- function to return theme colors -->
+		<script>
 			function theme(type) {
-				const currentTheme = 1;
+				const currentTheme = +JSON.parse(localStorage.getItem('userSettings')).displaySettings.websiteTheme;
 
 				// White theme
 				if (currentTheme === 1) {

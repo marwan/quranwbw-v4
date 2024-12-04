@@ -9,4 +9,4 @@
 	<Settings />
 	<span class="sr-only">Settings</span>
 </button>
-<Tooltip arrow={false} type="light" class="hidden md:block font-filter font-normal">Settings</Tooltip>
+<Tooltip arrow={false} type="light" class="hidden md:block font-normal">Settings</Tooltip>

@@ -74,7 +74,7 @@
 								<span class="opacityyy-70"><AscendingSort size={3} /></span>
 								<span class="sr-only">Sort</span>
 							</button>
-							<Tooltip arrow={false} type="light" placement="top" class="z-30 w-max hidden md:block font-filter font-normal">Sort Asc/Dsc</Tooltip>
+							<Tooltip arrow={false} type="light" placement="top" class="z-30 w-max hidden md:block font-normal">Sort Asc/Dsc</Tooltip>
 						</div>
 						<span>{term('chapters')}</span>
 					</button>
@@ -148,7 +148,7 @@
 									<div class="flex flex-row items-center space-x-1 justify-center md:justify-start truncate">
 										<div>{id}. {quranMetaData[id].transliteration}</div>
 										<div class="opacityyy-50"><svelte:component this={quranMetaData[id].revelation === 1 ? Mecca : Madinah} /></div>
-										<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-filter font-normal">{quranMetaData[id].revelation === 1 ? term('meccan') : term('medinan')} revelation</Tooltip>
+										<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-normal">{quranMetaData[id].revelation === 1 ? term('meccan') : term('medinan')} revelation</Tooltip>
 									</div>
 
 									<!-- chapter translation -->

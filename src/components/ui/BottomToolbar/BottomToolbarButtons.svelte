@@ -20,13 +20,13 @@
 		<Search2Bold size={4} />
 		<span class="sr-only">Search</span>
 	</button>
-	<Tooltip arrow={false} type="light" class="hidden md:block font-filter font-normal">Search</Tooltip>
+	<Tooltip arrow={false} type="light" class="hidden md:block font-normal">Search</Tooltip>
 
 	<a href={`/${term('supplications').toLowerCase()}`} class="opacityyy-70 inline-flex flex-col items-center justify-center px-5 group {window.theme('hover')}">
 		<SupplicationBold size={4} />
 		<span class="sr-only">Supplication</span>
 	</a>
-	<Tooltip arrow={false} type="light" class="hidden md:block font-filter font-normal">{term('supplications')}</Tooltip>
+	<Tooltip arrow={false} type="light" class="hidden md:block font-normal">{term('supplications')}</Tooltip>
 
 	<div class="flex items-center justify-center">
 		<a href={$__lastRead.hasOwnProperty('mushaf') ? `/page/${$__lastRead.page}` : '/page/1'} class="inline-flex flex-col items-center justify-center w-12 h-12 rounded-full group {window.theme('input')} {window.theme('background-light')}">
@@ -34,19 +34,19 @@
 			<span class="sr-only">Mushaf</span>
 		</a>
 	</div>
-	<Tooltip arrow={false} type="light" class="hidden md:block font-filter font-normal">Mushaf</Tooltip>
+	<Tooltip arrow={false} type="light" class="hidden md:block font-normal">Mushaf</Tooltip>
 
 	<a href="/morphology/1:1" class="opacityyy-70 inline-flex flex-col items-center justify-center px-5 group {window.theme('hover')}">
 		<MorphologyBold size={4} />
 		<span class="sr-only">Morphology</span>
 	</a>
-	<Tooltip arrow={false} type="light" class="hidden md:block font-filter font-normal">Morphology</Tooltip>
+	<Tooltip arrow={false} type="light" class="hidden md:block font-normal">Morphology</Tooltip>
 
 	<button class="opacityyy-70 inline-flex flex-col items-center rounded-e-full justify-center px-5 group {window.theme('hover')}" on:click={() => __siteNavigationModalVisible.set(true)}>
 		<MenuBold size={4} />
 		<span class="sr-only">Menu</span>
 	</button>
-	<Tooltip arrow={false} type="light" class="hidden md:block font-filter font-normal">Menu</Tooltip>
+	<Tooltip arrow={false} type="light" class="hidden md:block font-normal">Menu</Tooltip>
 {:else}
 	<LeftNavigationButton />
 	<DisplayChangeButton />

@@ -73,8 +73,9 @@ export function updateSettings(props) {
 		case 'websiteTheme':
 			__websiteTheme.set(props.value);
 			userSettings.displaySettings.websiteTheme = props.value;
-			document.documentElement.classList = '';
-			document.documentElement.classList = `theme-${props.value} ${window.bodyColors[props.value]}`;
+			location.reload();
+			// document.documentElement.classList = '';
+			// document.documentElement.classList = `theme-${props.value} ${window.bodyColors[props.value]}`;
 			break;
 
 		// for word translation view
