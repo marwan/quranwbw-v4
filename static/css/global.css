@@ -2164,6 +2164,19 @@ input[type="range"].range-lg::-moz-range-thumb {
   border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
 
+.border-black\/70 {
+  border-color: rgb(0 0 0 / 0.7);
+}
+
+.border-\[\#e4d6bd\]\/70 {
+  border-color: rgb(228 214 189 / 0.7);
+}
+
+.border-\[\#bdb19b\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(189 177 155 / var(--tw-border-opacity));
+}
+
 .bg-\[\#000000\] {
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
@@ -2209,6 +2222,10 @@ input[type="range"].range-lg::-moz-range-thumb {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#e4d6bd\]\/70 {
+  background-color: rgb(228 214 189 / 0.7);
 }
 
 .bg-opacity-50 {
