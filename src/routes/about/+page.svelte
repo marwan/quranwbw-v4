@@ -3,6 +3,176 @@
 	import { __currentPage } from '$utils/stores';
 	import { linkClasses } from '$data/commonClasses';
 
+	const creditlinks = [
+		{
+			text: 'Dr. Shehnaz Shaikh, Ms. Kausar Khatri',
+			href: 'http://emuslim.com/Quran/Translation_English.asp',
+			description: 'for their English',
+			additionalLinks: [
+				{
+					text: 'Dr. Farhat Hashmi',
+					href: 'https://www.farhathashmi.com',
+					description: 'for her Urdu word by word compilation'
+				}
+			]
+		},
+		{
+			text: 'Quran.com',
+			href: 'https://quran.com',
+			description: 'for their API'
+		},
+		{
+			text: 'Tafsir Center for Quranic Studies',
+			href: 'https://tafsir.net/',
+			description: 'via',
+			additionalLinks: [
+				{
+					text: 'Wahy App',
+					href: 'https://web.wahy.net/',
+					description: 'for granting us special permission to use their word by word audio files'
+				}
+			]
+		},
+		{
+			text: 'King Fahd Glorious Quran Printing Complex',
+			href: 'http://qurancomplex.gov.sa/',
+			description: 'for their Quran text*'
+		},
+		{
+			text: 'Tanzil.net',
+			href: 'http://tanzil.net/trans/',
+			description: 'for their collection of Quranic resources'
+		},
+		{
+			text: 'EveryAyah.com',
+			href: 'http://everyayah.com',
+			description: '/',
+			additionalLinks: [
+				{
+					text: 'QuranCentral.com',
+					href: 'https://qurancentral.com',
+					description: '/ '
+				},
+				{
+					text: 'QuranicAudio.com',
+					href: 'https://quranicaudio.com',
+					description: 'for their collection of Quranic audios'
+				}
+			]
+		},
+		{
+			text: 'Ayman Siddiqui',
+			href: 'https://zoopernet.com',
+			description: 'for all the help including providing various website data and fonts & website testing'
+		},
+		{
+			text: 'Collin Fair',
+			href: 'https://github.com/cpfair',
+			description: 'for his word timestamps for Quranic audios'
+		},
+		{
+			text: 'Usman Pervez (IslamOne android app)',
+			href: 'https://play.google.com/store/apps/details?id=com.atq.quranemajeedapp.org.islamone&hl=en',
+			description: 'for various data like Urdu WBW and Tafhim-ul-Quran'
+		},
+		{
+			text: 'Greentech Apps (Al Quran Tafsir & by Word app)',
+			href: 'https://gtaf.org',
+			description: 'for their English, Indonesian, Bangla, Chinese**, Malayalam*** and Divehi words database and corpus data'
+		},
+		{
+			text: 'Dr. Kais Dukes',
+			href: 'https://github.com/kaisdukes',
+			description: 'for his morphological description of the Quranic words'
+		},
+		{
+			text: 'Ata Rafi',
+			href: 'https://www.typemybook.com/download/complete-quran-kareem-text/',
+			description: 'for sharing the IndoPak text originally by',
+			additionalLinks: [
+				{
+					text: 'InPage™',
+					href: 'http://inpage.com/',
+					description: ''
+				}
+			]
+		},
+		{
+			text: 'Azrul Azwar (Quran WbW iOS app)',
+			href: 'https://apps.apple.com/us/app/quran-word-by-word/id588198510',
+			description: 'for the words databases in many different languages'
+		},
+		{
+			text: 'CSALT',
+			href: 'http://csalt.itu.edu.pk/urdufont/index.html',
+			description: 'for their Mehr Nastaliq Urdu font'
+		},
+		{
+			text: 'Al-Huda International',
+			href: 'https://www.alhudapk.com/products/hindi-section.html',
+			description: 'for their Hindi word by word PDF files'
+		},
+		{
+			text: 'Quran411.com',
+			href: 'https://www.quran411.com/',
+			description: 'for their English transliteration originally by M.A.H. Eliyasee'
+		},
+		{
+			text: 'SoundVision.com',
+			href: 'https://www.soundvision.com/article/a-thematic-introduction-to-the-surahs-of-the-qur-an',
+			description: 'for their thematic introduction to the surahs of the Quran'
+		},
+		{
+			text: 'TamililQuran.com',
+			href: 'http://www.tamililquran.com/',
+			description: 'for their Tamil word by word database originally by',
+			additionalLinks: [
+				{
+					text: 'Darul Huda',
+					href: 'https://www.darulhuda.net/',
+					description: ''
+				}
+			]
+		},
+		{
+			text: 'Al Quran Cloud',
+			href: 'https://alquran.cloud/',
+			description: 'and',
+			additionalLinks: [
+				{
+					text: 'Fawaz Ahmed',
+					href: 'https://github.com/fawazahmed0',
+					description: 'for their Quran translations API'
+				}
+			]
+		},
+		{
+			text: 'Dr. Usama Nonnenmacher',
+			href: 'https://drusaman.github.io/',
+			description: 'for his excellent work on the French word by word data'
+		},
+		{
+			text: 'Spark (spa5k)',
+			href: 'https://github.com/spa5k/tafsir_api',
+			description: 'for his Tafsir API'
+		},
+		{
+			text: 'Quran Pro',
+			href: 'https://quran-pro.com/',
+			description: 'for their pictures of different reciters'
+		},
+		{
+			text: 'Flaticon',
+			href: 'https://www.flaticon.com/uicons/',
+			description: 'for their great range of interface icons'
+		},
+		{
+			text: 'Quranic Universal Library (QUL)',
+			href: 'https://qul.tarteel.ai/',
+			description: 'for their Persian words database'
+		}
+	];
+
 	__currentPage.set('about');
 </script>
 
@@ -33,30 +203,17 @@
 				<span>QuranWBW.com owes its existence to the contributions of the following remarkable individuals and organizations:</span>
 
 				<ul class="list-disc ml-5 space-y-2">
-					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="http://emuslim.com/Quran/Translation_English.asp">Dr. Shehnaz Shaikh, Ms. Kausar Khatri</a> for their English and <a class={linkClasses} target="_blank" rel="noreferrer" href="https://www.farhathashmi.com">Dr. Farhat Hashmi</a> for her Urdu word by word compilation.</li>
-					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://quran.com">Quran.com</a> for their API.</li>
-					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://tafsir.net/">Tafsir Center for Quranic Studies</a> via <a class={linkClasses} href="https://web.wahy.net/">Wahy App</a> for granting us special permission to use their word by word audio files.</li>
-					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="http://qurancomplex.gov.sa/">King Fahd Glorious Quran Printing Complex</a> for their Quran text*.</li>
-					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="http://tanzil.net/trans/">Tanzil.net</a> for their collection of Quranic resources.</li>
-					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="http://everyayah.com">EveryAyah.com</a>, <a class={linkClasses} href="https://qurancentral.com">QuranCentral.com</a> and <a class={linkClasses} href="https://quranicaudio.com">QuranicAudio.com</a> for their collection of Quranic audios.</li>
-					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://zoopernet.com">Ayman Siddiqui</a> for all the help including providing various website data and fonts & website testing.</li>
-					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://github.com/cpfair">Collin Fair</a> for his word timestamps for Quranic audios.</li>
-					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://play.google.com/store/apps/details?id=com.atq.quranemajeedapp.org.islamone&hl=en">Usman Pervez (IslamOne android app)</a> for various data like Urdu WBW and Tafhim-ul-Quran.</li>
-					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://gtaf.org">Greentech Apps (Al Quran Tafsir & by Word app)</a> for their English, Indonesian, Bangla, Chinese**, Malayalam*** and Divehi words database and corpus data.</li>
-					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://github.com/kaisdukes">Dr. Kais Dukes</a> for his morphological description of the Quranic words.</li>
-					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://www.typemybook.com/download/complete-quran-kareem-text/">Ata Rafi</a> for sharing the IndoPak text originally by <a class={linkClasses} target="_blank" rel="noreferrer" href="http://inpage.com/">InPage™</a>.</li>
-					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://apps.apple.com/us/app/quran-word-by-word/id588198510">Azrul Azwar (Quran WbW iOS app)</a> for the words databases in many different languages.</li>
-					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="http://csalt.itu.edu.pk/urdufont/index.html">CSALT</a> for their Mehr Nastaliq Urdu font.</li>
-					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://www.alhudapk.com/products/hindi-section.html">Al-Huda International</a> for their Hindi word by word PDF files.</li>
-					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://www.quran411.com/">Quran411.com</a> for their English transliteration orginally by M.A.H. Eliyasee.</li>
-					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://www.soundvision.com/article/a-thematic-introduction-to-the-surahs-of-the-qur-an">SoundVision.com</a> for their thematic introduction to the surahs of the Quran.</li>
-					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="http://www.tamililquran.com/">TamililQuran.com</a> for their Tamil word by word database orginally by <a class={linkClasses} target="_blank" rel="noreferrer" href="https://www.darulhuda.net/">Darul Huda</a>.</li>
-					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://alquran.cloud/">Al Quran Cloud</a> and <a class={linkClasses} target="_blank" rel="noreferrer" href="https://github.com/fawazahmed0">Fawaz Ahmed</a> for their Quran translations API.</li>
-					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://drusaman.github.io/">Dr. Usama Nonnenmacher</a> for his excellent work on the French word by word data.</li>
-					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://github.com/spa5k/tafsir_api">Spark (spa5k)</a> for his Tafsir API.</li>
-					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://quran-pro.com/">Quran Pro</a> for their pictures of different recitors.</li>
-					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://www.flaticon.com/uicons/">Flaticon</a> for their great range of interface icons.</li>
-					<li><a class={linkClasses} target="_blank" rel="noreferrer" href="https://qul.tarteel.ai/">Quranic Universal Library (QUL)</a> for their Persian words database.</li>
+					{#each creditlinks as link}
+						<li>
+							<a class={linkClasses} target="_blank" rel="noreferrer" href={link.href}>{link.text}</a>
+							{link.description}
+							{#if link.additionalLinks}
+								{#each link.additionalLinks as sublink}
+									<a class={linkClasses} target="_blank" rel="noreferrer" href={sublink.href}>{sublink.text}</a> {sublink.description}
+								{/each}
+							{/if}
+						</li>
+					{/each}
 				</ul>
 
 				<span>All data used on this website belongs to their respective owners and authors. Permission must be obtained from them before copying any content.</span>
