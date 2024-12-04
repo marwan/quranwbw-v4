@@ -2671,14 +2671,9 @@ input[type="range"].range-lg::-moz-range-thumb {
   color: rgb(185 28 28 / var(--tw-text-opacity));
 }
 
-.text-white {
+.text-green-800 {
   --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.text-blue-700 {
-  --tw-text-opacity: 1;
-  color: rgb(29 78 216 / var(--tw-text-opacity));
+  color: rgb(22 101 52 / var(--tw-text-opacity));
 }
 
 .underline {
@@ -3192,6 +3187,86 @@ svg {
   color: rgb(0, 255, 0);
 }
 
+.focus-within\:dark:focus-within [role="tooltip"] > [data-popper-arrow]:before {
+  border-style: solid;
+  border-color: #4b5563;
+}
+
+.focus-within\:dark:focus-within [role="tooltip"] > [data-popper-arrow]:after {
+  border-style: solid;
+  border-color: #4b5563;
+}
+
+.focus-within\:dark:focus-within [type='checkbox']:checked,.focus-within\:dark:focus-within [type='radio']:checked {
+  border-color: transparent;
+  background-color: currentColor;
+  background-size: 0.55em 0.55em;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.focus-within\:dark:focus-within [type='radio']:checked {
+  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='3'/%3e%3c/svg%3e");
+  background-size: 1em 1em;
+}
+
+.focus-within\:dark:focus-within input[type=file]::file-selector-button {
+  color: white;
+  background: #4b5563;
+}
+
+.focus-within\:dark:focus-within input[type=file]::file-selector-button:hover {
+  background: #6b7280;
+}
+
+.focus-within\:dark:focus-within input[type="range"]:disabled::-webkit-slider-thumb {
+  background: #6b7280;
+}
+
+.focus-within\:dark:focus-within input[type="range"]:disabled::-moz-range-thumb {
+  background: #6b7280;
+}
+
+.dark\:dark:where(.dark, .dark *) [role="tooltip"] > [data-popper-arrow]:before {
+  border-style: solid;
+  border-color: #4b5563;
+}
+
+.dark\:dark:where(.dark, .dark *) [role="tooltip"] > [data-popper-arrow]:after {
+  border-style: solid;
+  border-color: #4b5563;
+}
+
+.dark\:dark:where(.dark, .dark *) [type='checkbox']:checked,.dark\:dark:where(.dark, .dark *) [type='radio']:checked {
+  border-color: transparent;
+  background-color: currentColor;
+  background-size: 0.55em 0.55em;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.dark\:dark:where(.dark, .dark *) [type='radio']:checked {
+  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='3'/%3e%3c/svg%3e");
+  background-size: 1em 1em;
+}
+
+.dark\:dark:where(.dark, .dark *) input[type=file]::file-selector-button {
+  color: white;
+  background: #4b5563;
+}
+
+.dark\:dark:where(.dark, .dark *) input[type=file]::file-selector-button:hover {
+  background: #6b7280;
+}
+
+.dark\:dark:where(.dark, .dark *) input[type="range"]:disabled::-webkit-slider-thumb {
+  background: #6b7280;
+}
+
+.dark\:dark:where(.dark, .dark *) input[type="range"]:disabled::-moz-range-thumb {
+  background: #6b7280;
+}
+
 .after\:absolute::after {
   content: var(--tw-content);
   position: absolute;
@@ -3276,11 +3351,6 @@ svg {
   z-index: 10;
 }
 
-.focus-within\:text-white:focus-within {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
 .focus-within\:outline-none:focus-within {
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -3307,6 +3377,10 @@ svg {
   cursor: pointer;
 }
 
+.hover\:border:hover {
+  border-width: 1px;
+}
+
 .hover\:bg-lightGray:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(235 235 235 / var(--tw-bg-opacity));
@@ -3320,11 +3394,6 @@ svg {
 .hover\:text-gray-900:hover {
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity));
-}
-
-.hover\:text-white:hover {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .hover\:no-underline:hover {
@@ -3752,11 +3821,6 @@ svg {
 .dark\:placeholder-gray-400:where(.dark, .dark *)::placeholder {
   --tw-placeholder-opacity: 1;
   color: rgb(156 163 175 / var(--tw-placeholder-opacity));
-}
-
-.dark\:focus-within\:text-white:focus-within:where(.dark, .dark *) {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .dark\:hover\:bg-lightGray:hover:where(.dark, .dark *) {

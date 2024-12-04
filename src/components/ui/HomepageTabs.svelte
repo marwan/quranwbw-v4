@@ -162,7 +162,7 @@
 										{term('verses')}
 									</div>
 								</div>
-								<div class="invisible chapter-icons justify-items-end opacityyy-70 text-5xl">{@html `&#xE9${quranMetaData[id].icon};`}</div>
+								<div class="invisible chapter-icons justify-items-end opacityyy-70 text-5xl" style="color: {window.theme('icon')}">{@html `&#xE9${quranMetaData[id].icon};`}</div>
 							</div>
 						</a>
 					{/if}

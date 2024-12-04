@@ -2,7 +2,7 @@
 	export let size = 4;
 </script>
 
-<svg class="w-{size} h-{size} rotate-45" fill="currentColor" height="24" width="24" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+<svg class="w-{size} h-{size} rotate-45" fill={window.theme('icon')} height="24" width="24" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
 	<path
 		id="Puzzle"
 		d="M46.2080002,33c1.7324982,0,3.3242989,0.7958984,4.3671989,2.1836014

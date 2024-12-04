@@ -106,7 +106,7 @@
 		</div>
 
 		<!-- single or range -->
-		<div id="single-or-range-block" class="flex flex-col space-y-4 py-4 border-t {$__audioSettings.audioType === 'word' ? 'hidden' : null}">
+		<div id="single-or-range-block" class="flex flex-col space-y-4 py-4 border-t {window.theme('border')} {$__audioSettings.audioType === 'word' ? 'hidden' : null}">
 			<span class="text-sm">Your preferred range.</span>
 			<div class="flex flex-row space-x-2">
 				<!-- play this verse -->
@@ -140,7 +140,7 @@
 		{#if $__currentPage === 'chapter' && $__audioSettings.audioType === 'verse'}
 			<div id="audio-range-options" class={$__audioSettings.audioRange === 'playRange' ? 'block' : 'hidden'}>
 				<!-- from / till -->
-				<div class="flex flex-col space-y-4 py-4 border-t">
+				<div class="flex flex-col space-y-4 py-4 border-t {window.theme('border')}">
 					<!-- <span class="text-xs  ">Select the range of verses or words to be played.</span> -->
 					<div class="flex flex-row space-x-4">
 						<div class="flex flex-row space-x-2">
@@ -169,7 +169,7 @@
 
 	<!-- repeat times -->
 	{#if $__audioSettings.audioType === 'verse'}
-		<div class="flex flex-col space-y-4 py-4 border-t">
+		<div class="flex flex-col space-y-4 py-4 border-t {window.theme('border')}">
 			<div class="flex flex-row space-x-4">
 				<div class="flex flex-row space-x-2">
 					<span class="m-auto text-sm mr-2">Repeat each {term($__audioSettings.audioType)}</span>
