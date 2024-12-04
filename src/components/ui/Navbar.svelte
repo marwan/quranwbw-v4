@@ -16,7 +16,11 @@
 
 	// Classes for the navbar
 	$: navbarClasses = `${window.theme('background')} border-b ${window.theme('border')} fixed w-full z-20 top-0 left-0 text-black print:hidden theme ${$__currentPage === 'home' ? 'hidden' : 'block'}`;
-	$: topNavClasses = `${$__topNavbarVisible ? 'block' : 'hidden'} border-b ${window.theme('border')} flex flex-row items-center justify-between max-w-screen-lg mx-auto px-4 py-2`;
+	$: topNavClasses = `
+		${$__topNavbarVisible ? 'block' : 'hidden'} 
+		${['chapter', 'mushaf'].includes($__currentPage) && `border-b ${window.theme('border')} `}
+		flex flex-row items-center justify-between max-w-screen-lg mx-auto px-4 py-2
+	`;
 
 	// Update last read details
 	$: {
