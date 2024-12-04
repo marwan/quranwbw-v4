@@ -10,7 +10,7 @@
 <div class="grid gap-3 w-full theme-grayyyscale">
 	{#each Object.entries(selectableTooltipOptions) as [id, options]}
 		<Radio name="wordTooltip" bind:group={$__wordTooltip} value={options.id} on:change={(event) => updateSettings({ type: 'wordTooltip', value: +event.target.value })} custom>
-			<div class="inline-flex justify-between items-center p-5 w-full text-black text-grayyy-500 {window.theme('background')} rounded-lg border border-grayyy-200 cursor-pointer peer-checked:border-primary-600 peer-checked:text-primary-600 hover:text-black text-grayyy-600 hover:bg-grayyy-100 {$__wordTooltip === options.id && selectedRadioClasses}">
+			<div class="inline-flex justify-between items-center p-5 w-full text-black text-grayyy-500 {window.theme('background')} rounded-lg border {window.theme('border')} cursor-pointer peer-checked:border-primary-600 peer-checked:text-primary-600 hover:text-black text-grayyy-600 hover:bg-grayyy-100 {$__wordTooltip === options.id && selectedRadioClasses}">
 				<div class="w-full">{options.name}</div>
 
 				{#if $__wordTooltip === options.id}

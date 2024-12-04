@@ -15,10 +15,10 @@
 	export let color = 'base';
 	export let floatClass = 'flex absolute inset-y-0 items-center text-grayyy-500 dark:text-grayyy-400';
 	const borderClasses = {
-		base: 'border-grayyy-300 dark:border-grayyy-600'
+		base: `${window.theme('border')} dark:${window.theme('border')}`
 	};
 	const ringClasses = {
-		base: 'focus:border-grayyy-500 focus:ring-grayyy-500 dark:focus:border-grayyy-500 dark:focus:ring-grayyy-500'
+		base: `focus:${window.theme('border')} focus:ring-grayyy-500 dark:focus:${window.theme('border')} dark:focus:ring-grayyy-500`
 	};
 	const colorClasses = {
 		base: 'bg-grayyy-50 text-grayyy-900 dark:bg-grayyy-700 dark:text-white dark:placeholder-grayyy-400'

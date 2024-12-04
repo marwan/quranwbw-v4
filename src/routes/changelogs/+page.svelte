@@ -36,7 +36,7 @@
 			{:then fetchCommitsData}
 				<div class="text-sm">
 					{#each Object.entries(fetchCommitsData) as [key, value]}
-						<div class="py-6 space-y-2 border-b border-blackkk/10">
+						<div class="py-6 space-y-2 border-b {window.theme('border')}">
 							<div class="space-y-2">
 								<div><a href={value.html_url} target="_blank">{value.commit.message}</a></div>
 								<div>

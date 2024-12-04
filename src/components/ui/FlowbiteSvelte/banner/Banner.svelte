@@ -11,7 +11,7 @@
 	const dispatch = createEventDispatcher();
 	$: dispatch(open ? 'open' : 'close');
 	const divClasses = {
-		default: 'top-0 start-0 w-full border-b border-grayyy-200 bg-grayyy-50'
+		default: `top-0 start-0 w-full border-b ${window.theme('border')} bg-grayyy-50`
 	};
 	const insideDivClasses = {
 		default: 'items-center mx-auto'
@@ -45,6 +45,6 @@
 @prop export let position: 'static' | 'fixed' | 'absolute' | 'relative' | 'sticky' = 'sticky';
 @prop export let dismissable: boolean = true;
 @prop export let bannerType: 'default' | 'bottom' | 'cta' | 'signup' | 'info' = 'default';
-@prop export let divClass: string = 'z-10 flex justify-between p-4 dark:bg-grayyy-700 dark:border-grayyy-600';
+@prop export let divClass: string = 'z-10 flex justify-between p-4 dark:bg-grayyy-700 dark:${window.theme('border')}';
 @prop export let innerClass: string = 'flex';
 -->

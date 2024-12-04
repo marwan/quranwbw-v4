@@ -51,14 +51,14 @@
 		none: ''
 	};
 	const borderColors = {
-		grayyy: 'border-blackkk/10 dark:border-grayyy-800 divide-grayyy-300 dark:divide-grayyy-800',
-		light: 'border-grayyy-500 divide-grayyy-500',
-		dark: 'border-grayyy-500 divide-grayyy-500',
-		default: 'border-blackkk/10 dark:border-grayyy-700 divide-grayyy-200 dark:divide-grayyy-700',
-		dropdown: 'border-grayyy-100 dark:border-grayyy-600 divide-grayyy-100 dark:divide-grayyy-600',
-		navbar: 'border-grayyy-100 dark:border-grayyy-700 divide-grayyy-100 dark:divide-grayyy-700',
-		navbarUl: 'border-grayyy-100 dark:border-grayyy-700 divide-grayyy-100 dark:divide-grayyy-700',
-		form: 'border-blackkk/10 dark:border-grayyy-700 divide-grayyy-300 dark:divide-grayyy-700',
+		grayyy: `${window.theme('border')} dark:${window.theme('border')} divide-grayyy-300 dark:divide-grayyy-800`,
+		light: `${window.theme('border')} divide-grayyy-500`,
+		dark: `${window.theme('border')} divide-grayyy-500`,
+		default: `${window.theme('border')} dark:${window.theme('border')} divide-grayyy-200 dark:divide-grayyy-700`,
+		dropdown: `${window.theme('border')} dark:${window.theme('border')} divide-grayyy-100 dark:divide-grayyy-600`,
+		navbar: `${window.theme('border')} dark:${window.theme('border')} divide-grayyy-100 dark:divide-grayyy-700`,
+		navbarUl: `${window.theme('border')} dark:${window.theme('border')} divide-grayyy-100 dark:divide-grayyy-700`,
+		form: `${window.theme('border')} dark:${window.theme('border')} divide-grayyy-300 dark:divide-grayyy-700`,
 		primary: 'border-primary-500 dark:border-primary-200  divide-primary-500 dark:divide-primary-200 ',
 		none: ''
 	};

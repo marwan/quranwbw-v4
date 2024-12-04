@@ -61,7 +61,7 @@
 
 				<span>All data used on this website belongs to their respective owners and authors. Permission must be obtained from them before copying any content.</span>
 
-				<div class="border-b border-blackkk/10"></div>
+				<div class="border-b {window.theme('border')}"></div>
 
 				<span class="text-xs opacityyy-70"
 					>*The Mushaf fonts are developed by and are a property of <a class={linkClasses} target="_blank" rel="noreferrer" href="https://qurancomplex.gov.sa/">King Fahad Glorious Quran Printing Complex</a> based in Madinah, Saudi Arabia. Tajweed Colors are based on

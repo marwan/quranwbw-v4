@@ -2133,6 +2133,11 @@ input[type="range"].range-lg::-moz-range-thumb {
   border-top-width: 2px;
 }
 
+.border-black {
+  --tw-border-opacity: 1;
+  border-color: rgb(0 0 0 / var(--tw-border-opacity));
+}
+
 .border-black\/10 {
   border-color: rgb(0 0 0 / 0.1);
 }
@@ -2199,13 +2204,9 @@ input[type="range"].range-lg::-moz-range-thumb {
   background-color: #282828c4;
 }
 
-.bg-\[\#e4d6bdc9\] {
-  background-color: #e4d6bdc9;
-}
-
-.bg-\[\#f9f9f9\] {
+.bg-\[\#e4d6bd\] {
   --tw-bg-opacity: 1;
-  background-color: rgb(249 249 249 / var(--tw-bg-opacity));
+  background-color: rgb(228 214 189 / var(--tw-bg-opacity));
 }
 
 .bg-blue-400 {

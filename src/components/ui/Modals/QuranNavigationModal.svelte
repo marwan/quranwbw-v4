@@ -264,7 +264,7 @@
 				<!-- chapter selector -->
 				{#if !['morphology'].includes($__currentPage)}
 					<div class="flex flex-col space-y-2 w-full">
-						<div class="px-2 text-sm pb-2 border-b border-blackkk/10 font-medium">{term('chapters')}</div>
+						<div class="px-2 text-sm pb-2 border-b {window.theme('border')} font-medium">{term('chapters')}</div>
 						<ul id="navbar-chapter-list" class="grow basis-1/2 overflow-y-scroll">
 							{#each { length: maxItemsToLoad } as _, chapter}
 								<li>
@@ -292,7 +292,7 @@
 				<!-- verse selector -->
 				{#if $__currentPage === 'chapter'}
 					<div class="flex flex-col space-y-2 w-44">
-						<div class="mx-4 text-sm pb-2 border-b border-blackkk/10 font-medium">{term('verses')}</div>
+						<div class="mx-4 text-sm pb-2 border-b {window.theme('border')} font-medium">{term('verses')}</div>
 						<ul id="navbar-verse-list" class="grow basis-1/2 px-2 overflow-y-scroll">
 							{#key $__chapterNumber}
 								{#each { length: maxVersesToLoad } as _, verse}
@@ -315,7 +315,7 @@
 				<!-- supplications selector -->
 				<!-- {#if $__currentPage === 'supplications'}
 					<div class="flex flex-col space-y-2 w-full">
-						<div class="px-2 text-sm pb-2 border-b border-blackkk/10 font-medium">{term('supplications')}</div>
+						<div class="px-2 text-sm pb-2 border-b {window.theme('border')} font-medium">{term('supplications')}</div>
 						<ul id="navbar-supplications-list" class="grow basis-1/2 px-2 overflow-y-scroll">
 							{#each Object.entries(supplicationsFromQuran) as [key, value]}
 								<li>
@@ -331,7 +331,7 @@
 				<!-- words selector -->
 				{#if $__currentPage === 'morphology'}
 					<div class="flex flex-col space-y-2 w-full">
-						<div class="px-2 text-sm pb-2 border-b border-blackkk/10 font-medium">Words</div>
+						<div class="px-2 text-sm pb-2 border-b {window.theme('border')} font-medium">Words</div>
 						{#await verseKeyData then verseKeyData}
 							<ul id="navbar-words-list" class="grow basis-1/2 px-2 overflow-y-scroll">
 								{#each { length: verseKeyData[morphologyKey].words } as _, word}

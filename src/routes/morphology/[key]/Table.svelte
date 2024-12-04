@@ -43,7 +43,7 @@
 					</thead>
 					<tbody>
 						{#each Array.from(Array(lastWordToLoad + 1).keys()).slice(1) as word}
-							<tr class="{window.theme('background')} border-b dark:bg-grayyy-800 dark:border-grayyy-700 hover:bg-grayyy-50 dark:hover:bg-lightGrayyy">
+							<tr class="{window.theme('background')} border-b dark:bg-grayyy-800 dark:{window.theme('border')} hover:bg-grayyy-50 dark:hover:bg-lightGrayyy">
 								<td class="px-6 py-4"> {word} </td>
 								<td class="px-6 py-4 arabic-font-{$__fontType} text-xl md:text-2xl"> {wordData[word - 1].arabic} </td>
 								<td class="px-6 py-4"> {wordData[word - 1].translation} </td>

@@ -35,20 +35,37 @@
 
 		<!-- setting background colors for themes -->
 		<script>
+			function theme(type) {
+				const currentTheme = 1;
+
+				// White theme
+				if (currentTheme === 1) {
+					if (type === 'background') return 'bg-white';
+					if (type === 'border') return 'border-black';
+				}
+
+				// Sepia theme
+				if (currentTheme === 5) {
+					if (type === 'background') return 'bg-[#e4d6bd]';
+					if (type === 'border') return 'border-black';
+				}
+			}
+
+			window.theme = theme;
+
 			window.bodyColors = {
-				// 1: 'bg-[#f9f9f9]', // white
-				1: `bg-white`, // white
+				1: `${window.theme('background')}`, // white
 				2: 'bg-[#02021b]', // blue
 				3: 'bg-[#001617]', // green
 				4: 'bg-[#000000]', // black
-				5: 'bg-[#e4d6bdc9]' // sepia
+				5: `${window.theme('background')}` // sepia
 			};
 		</script>
 
 		<!-- set the website theme - we put this code here to avoid the white flash and making people go blind -->
 		<script>
 			// Declare the theme variable
-			let theme;
+			let currentTheme;
 
 			try {
 				// Try to retrieve the user settings from localStorage and parse the JSON string
@@ -56,18 +73,18 @@
 
 				// Check if displaySettings and websiteTheme exist in the parsed object
 				if (userSettings && userSettings.displaySettings && userSettings.displaySettings.websiteTheme !== undefined) {
-					theme = userSettings.displaySettings.websiteTheme;
+					currentTheme = userSettings.displaySettings.websiteTheme;
 				} else {
 					// Default theme in case the properties don't exist
-					theme = 1;
+					currentTheme = 1;
 				}
 			} catch (error) {
 				// If there's an error during JSON parsing or any other issue, fallback to default theme
-				theme = 1;
+				currentTheme = 1;
 			}
 
 			// Apply the theme class to the document's root element
-			document.documentElement.classList = `theme-${theme} ${window.bodyColors[theme]}`;
+			document.documentElement.classList = `theme-${currentTheme} ${window.bodyColors[currentTheme]}`;
 		</script>
 		%sveltekit.head%
 	</head>

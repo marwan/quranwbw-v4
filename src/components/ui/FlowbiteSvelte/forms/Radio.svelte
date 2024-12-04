@@ -5,7 +5,7 @@
 		primary: 'text-black focus:ring-black'
 	};
 	export const labelClass = (inline, extraClass) => twMerge(inline ? 'inline-flex' : 'flex', 'items-center', extraClass);
-	export const inputClass = (custom, color, rounded, tinted, spacing, extraClass) => twMerge('w-4 h-4 bg-grayyy-100 border-blackkk/10 dark:ring-offset-grayyy-800 focus:ring-2', spacing, tinted ? 'dark:bg-grayyy-600 dark:border-grayyy-500' : 'dark:bg-grayyy-700 dark:border-grayyy-600', custom && 'sr-only peer', rounded && 'rounded', colorClasses[color], extraClass);
+	export const inputClass = (custom, color, rounded, tinted, spacing, extraClass) => twMerge(`w-4 h-4 bg-grayyy-100 ${window.theme('border')} dark:ring-offset-grayyy-800 focus:ring-2`, spacing, tinted ? `dark:bg-grayyy-600 dark:${window.theme('border')}` : `dark:bg-grayyy-700 dark:${window.theme('border')}`, custom && 'sr-only peer', rounded && 'rounded', colorClasses[color], extraClass);
 </script>
 
 <script>

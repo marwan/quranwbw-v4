@@ -15,9 +15,9 @@
 
 	// CSS classes for chapter cards and tabs
 	const cardGridClasses = 'grid md:grid-cols-2 lg:grid-cols-3 gap-3';
-	const cardInnerClasses = 'flex justify-between md:text-left border border-blackkk/10 transition text-sm bg-grayyy-100 rounded-3xl p-5 hover:cursor-pointer hover:bg-lightGrayyy';
+	const cardInnerClasses = `flex justify-between md:text-left border ${window.theme('border')} transition text-sm bg-grayyy-100 rounded-3xl p-5 hover:cursor-pointer hover:bg-lightGrayyy`;
 	const tabClasses = 'p-2 md:p-3 text-xs md:text-md cursor-pointer border-b-4 border-transparent';
-	const activeTabClasses = '!border-blackkk/10';
+	const activeTabClasses = `!${window.theme('border')}`;
 
 	let lastReadChapter = 1;
 	let lastReadVerse = 1;
@@ -63,7 +63,7 @@
 
 <div id="homepage-tabs" style="margin-top: 0px;" class="theme-grayyyscale">
 	<div class="flex items-center justify-center px-2 mb-4">
-		<!-- <div class="hidden md:block flex-1 border-t border-blackkk/10"></div> -->
+		<!-- <div class="hidden md:block flex-1 border-t {window.theme('border')}"></div> -->
 
 		<div class="flex flex-row justify-center px-4">
 			<!-- main tabs -->

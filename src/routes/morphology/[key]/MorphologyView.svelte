@@ -111,7 +111,7 @@
 		{/await}
 	</div>
 
-	<div id="word-summary" class="text-center opacityyy-70 mx-auto md:w-3/4 text-sm pb-6 border-b-2 border-blackkk/10 md:text-lg theme">
+	<div id="word-summary" class="text-center opacityyy-70 mx-auto md:w-3/4 text-sm pb-6 border-b-2 {window.theme('border')} md:text-lg theme">
 		{#await fetchWordSummary}
 			<span>...</span>
 		{:then fetchWordSummary}
@@ -129,7 +129,7 @@
 			<Spinner />
 		{:then fetchWordsData}
 			{#if !Object.values(fetchWordsData[0].morphology.verbs).every((o) => o === null)}
-				<div id="word-forms" class="pb-8 border-b-2 border-blackkk/10 theme">
+				<div id="word-forms" class="pb-8 border-b-2 {window.theme('border')} theme">
 					{#if Object.keys(fetchWordsData[0].morphology.root.words_with_same_root).length > 0}
 						<div class="flex flex-col">
 							<div id="different-verbs" class="theme-grayyyscale">
@@ -155,11 +155,11 @@
 				</div>
 			{/if}
 
-			<div id="word-root-data" class="pb-8 border-b-2 border-blackkk/10 theme">
+			<div id="word-root-data" class="pb-8 border-b-2 {window.theme('border')} theme">
 				<Table wordData={fetchWordsData[0].morphology.root.words_with_same_root} tableType={1} />
 			</div>
 
-			<div id="exact-word-data" class="pb-8 border-b-2 border-blackkk/10 theme">
+			<div id="exact-word-data" class="pb-8 border-b-2 {window.theme('border')} theme">
 				<Table wordData={fetchWordsData[0].morphology.exact_words_in_quran} tableType={2} />
 			</div>
 		{:catch error}
