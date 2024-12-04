@@ -13,7 +13,7 @@
 	export let size = undefined;
 	export let defaultClass = 'block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right';
 	export let color = 'base';
-	export let floatClass = 'flex absolute inset-y-0 items-center text-grayyy-500';
+	export let floatClass = 'flex absolute inset-y-0 items-center';
 	const borderClasses = {
 		base: `border ${window.theme('border')}`
 	};
@@ -21,7 +21,7 @@
 		base: `${window.theme('input')}`
 	};
 	const colorClasses = {
-		base: 'bg-grayyy-50 text-grayyy-900'
+		base: 'bg-grayyy-50'
 	};
 	// tinted if put in component having its own background
 	let background = getContext('background');
@@ -61,5 +61,5 @@
 @prop export let size: FormSizeType | undefined = undefined;
 @prop export let defaultClass: string = 'block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right';
 @prop export let color: 'base' | 'green' | 'red' = 'base';
-@prop export let floatClass: string = 'flex absolute inset-y-0 items-center text-grayyy-500 dark:text-grayyy-400';
+@prop export let floatClass: string = 'flex absolute inset-y-0 items-center dark:text-grayyy-400';
 -->

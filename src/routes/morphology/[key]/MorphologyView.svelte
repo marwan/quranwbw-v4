@@ -141,7 +141,7 @@
 													<div class="flex items-center justify-center mb-2">
 														<p id="verb-1" class="text-xl md:text-2xl pb-4 leading-5 arabic-font-{$__fontType}">{value}</p>
 													</div>
-													<p class="text-xs text-grayyy-900 capitalize">{key.replace('_', ' ')}</p>
+													<p class="text-xs capitalize">{key.replace('_', ' ')}</p>
 												</div>
 											{/if}
 										{/each}

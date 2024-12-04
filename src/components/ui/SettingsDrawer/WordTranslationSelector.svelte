@@ -10,7 +10,7 @@
 <div class="grid gap-3 w-full">
 	{#each Object.entries(selectableWordTranslations) as [id, translation]}
 		<Radio name="wordTranslation" bind:group={$__wordTranslation} value={translation.id} on:change={(event) => updateSettings({ type: 'wordTranslation', value: +event.target.value })} custom>
-			<div class="inline-flex justify-between items-center p-5 w-full text-grayyy-500 {window.theme('background')} rounded-lg border {window.theme('border')} cursor-pointer {window.theme('checked')} {window.theme('hover')} {$__wordTranslation === translation.id && selectedRadioClasses}">
+			<div class="inline-flex justify-between items-center p-5 w-full {window.theme('background')} rounded-lg border {window.theme('border')} cursor-pointer {window.theme('checked')} {window.theme('hover')} {$__wordTranslation === translation.id && selectedRadioClasses}">
 				<div class="w-full">{translation.language}</div>
 
 				{#if $__wordTranslation === translation.id}

@@ -8,7 +8,7 @@
 	{#if $$slots.title || title}
 		<div class="py-2 px-3 bg-grayyy-100 rounded-t-md border-b {window.theme('border')} dark:{window.theme('border')} dark:bg-grayyy-700">
 			<slot name="title">
-				<h3 class="font-semibold text-grayyy-900 dark:text-white">{title}</h3>
+				<h3 class="font-semibold dark:text-white">{title}</h3>
 			</slot>
 		</div>
 	{/if}

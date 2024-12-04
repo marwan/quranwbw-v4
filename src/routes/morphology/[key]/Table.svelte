@@ -30,7 +30,7 @@
 		<div class="relative space-y-6 sm:rounded-3xl">
 			<h1 class="text-md md:text-2xl text-center opacityyy-70">{tableTitles[tableType].title} ({totalAvailableWords})</h1>
 			<div class="max-h-[32em] overflow-auto">
-				<table class="w-full text-sm text-left rtl:text-right text-grayyy-500 rounded-md">
+				<table class="w-full text-sm text-left rtl:text-right rounded-md">
 					<thead class="text-xs uppercase sticky top-0 {window.theme('background-light')}">
 						<tr>
 							<th scope="col" class="px-6 py-3"> # </th>

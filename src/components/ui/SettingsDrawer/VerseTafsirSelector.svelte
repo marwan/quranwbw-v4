@@ -16,7 +16,7 @@
 					{#if tafsir.language === language.language}
 						<div class="flex items-center w-full">
 							<Radio name="verseTafsir" bind:group={$__verseTafsir} value={tafsir.id} on:change={(event) => updateSettings({ type: 'verseTafsir', value: +event.target.value })} custom>
-								<div class="inline-flex justify-between items-center p-5 w-full text-grayyy-500 {window.theme('background')} rounded-lg border {window.theme('border')} cursor-pointer {window.theme('checked')} {window.theme('hover')} {$__verseTafsir === tafsir.id && selectedRadioClasses}">
+								<div class="inline-flex justify-between items-center p-5 w-full {window.theme('background')} rounded-lg border {window.theme('border')} cursor-pointer {window.theme('checked')} {window.theme('hover')} {$__verseTafsir === tafsir.id && selectedRadioClasses}">
 									<div class="flex flex-col space-y-2 w-full">
 										<span>{tafsir.name}</span>
 										<!-- <span class="text-xs font-normal">{tafsir.author}</span> -->

@@ -5,8 +5,8 @@
 	export let defaultClass = 'py-2 px-3 text-sm font-medium';
 	const types = {
 		dark: 'bg-grayyy-900 dark:bg-grayyy-700',
-		light: `${window.theme('border')} ${window.theme('background')} text-grayyy-900`,
-		auto: ` ${window.theme('background')} text-grayyy-900 dark:bg-grayyy-700 dark:${window.theme('border')} dark:${window.theme('border')}`,
+		light: `${window.theme('border')} ${window.theme('background')}`,
+		auto: ` ${window.theme('background')} dark:bg-grayyy-700 dark:${window.theme('border')} dark:${window.theme('border')}`,
 		custom: ''
 	};
 	let toolTipClass;
