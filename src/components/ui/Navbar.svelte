@@ -123,7 +123,7 @@
 			</div>
 		</div>
 
-		<div id="chapter-progress-bar" class="fixed inset-x-0 z-20 h-1 bg-blackkk/30 rounded-r-3xl" style="width: {chapterProgress}%" />
+		<div id="chapter-progress-bar" class="fixed inset-x-0 z-20 h-1 rounded-r-3xl {window.theme('background-black')}" style="width: {chapterProgress}%" />
 	{/if}
 
 	<!-- mini nav for mushaf page -->

@@ -29,9 +29,9 @@
 </div>
 
 <!-- banner for website updates: currently v4 launch -->
-<Banner id="newSiteBanner" position="absolute" divClass="z-10 flex justify-between p-4 !bg-grayyy-100">
+<Banner id="newSiteBanner" position="absolute" divClass="z-10 flex justify-between p-4">
 	<p class="flex items-center text-sm font-normal text-grayyy-500 space-x-1 truncate">
-		<span class="inline-flex p-2 bg-grayyy-200 rounded-full border {window.theme('border')}">
+		<span class="inline-flex p-2 rounded-full border {window.theme('border')}">
 			<span class="opacityyy-70"><Megaphone size={3} /></span>
 			<span class="sr-only">Announcement</span>
 		</span>

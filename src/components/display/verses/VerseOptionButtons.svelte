@@ -22,7 +22,7 @@
 	const buttonClasses = `inline-flex items-center justify-center w-10 h-10 transition-colors duration-150 rounded-3xl focus:shadow-outline print:hidden ${window.theme('hover')}`;
 
 	// For chapter page, just show the key, else show the complete chapter transliteration & key
-	$: verseKeyClasses = `${buttonClasses} w-fit px-4 border ${window.theme('border')} bg-lightGrayyy font-medium`;
+	$: verseKeyClasses = `${buttonClasses} w-fit px-4 border font-medium ${window.theme('border')}`;
 
 	// Update userBookmarks whenever the __userSettings changes
 	$: userBookmarks = JSON.parse($__userSettings).userBookmarks;

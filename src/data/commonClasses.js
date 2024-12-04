@@ -8,8 +8,8 @@ export const buttonOutlineClasses = `bg-transparent ${commonButtonClasses} borde
 
 export const tabPillClasses = `py-2 px-4 text-xs cursor-pointer rounded-3xl ${window.theme('hover')}`;
 
-export const labelPillClasses = 'bg-grayyy-300 text-grayyy-800 text-sm font-normal me-2 px-2.5 py-0.5 rounded-full';
+export const labelPillClasses = `${window.theme('background-light')} text-grayyy-800 text-sm font-normal me-2 px-2.5 py-0.5 rounded-full`;
 
 export const linkClasses = 'font-semibold underline';
 
-export const selectedRadioClasses = `bg-grayyy-200 ${window.theme('border')}`;
+export const selectedRadioClasses = `${window.theme('background-light')} ${window.theme('border')}`;

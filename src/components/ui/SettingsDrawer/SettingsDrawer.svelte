@@ -308,7 +308,7 @@
 							<span class="block">Arabic Word Size ({selectableFontSizes[arabicWordSizeValue].value.split('-')[1]})</span>
 							<!-- svelte-ignore a11y-mouse-events-have-key-events -->
 							<div class="flex flex-col space-y-2 rounded-3xl w-full" role="group" on:mouseenter={() => onMouseEnter('arabic-word-size-setting')} on:mouseleave={() => onMouseLeave()}>
-								<Range min="1" max={maxFontSizeAllowed} bind:value={arabicWordSizeValue} class={window.theme('sliders')} />
+								<Range min="1" max={maxFontSizeAllowed} bind:value={arabicWordSizeValue} class={window.theme('background-black')} />
 							</div>
 						</div>
 					</div>
@@ -321,7 +321,7 @@
 							<span class="block">Word Translation/Transliteration Size ({selectableFontSizes[wordTranlationTransliterationSizeValue].value.split('-')[1]})</span>
 							<!-- svelte-ignore a11y-mouse-events-have-key-events -->
 							<div class="flex flex-col space-y-2 rounded-3xl w-full" role="group" on:mouseenter={() => onMouseEnter('word-translation-size-setting')} on:mouseleave={() => onMouseLeave()}>
-								<Range min="1" max={maxFontSizeAllowed} bind:value={wordTranlationTransliterationSizeValue} class={window.theme('sliders')} />
+								<Range min="1" max={maxFontSizeAllowed} bind:value={wordTranlationTransliterationSizeValue} class={window.theme('background-black')} />
 							</div>
 						</div>
 					</div>
@@ -334,7 +334,7 @@
 							<span class="block">{term('verse')} Translation/Transliteration Size ({selectableFontSizes[verseTranlationTransliterationSizeValue].value.split('-')[1]})</span>
 							<!-- svelte-ignore a11y-mouse-events-have-key-events -->
 							<div class="flex flex-col space-y-2 rounded-3xl w-full" role="group" on:mouseenter={() => onMouseEnter('verse-translation-size-setting')} on:mouseleave={() => onMouseLeave()}>
-								<Range min="1" max={maxFontSizeAllowed} bind:value={verseTranlationTransliterationSizeValue} class={window.theme('sliders')} />
+								<Range min="1" max={maxFontSizeAllowed} bind:value={verseTranlationTransliterationSizeValue} class={window.theme('background-black')} />
 							</div>
 						</div>
 					</div>
@@ -433,7 +433,7 @@
 						<div class="flex flex-col justify-between space-y-4">
 							<span class="block">Playback Speed ({selectablePlaybackSpeeds[playbackSpeedValue].speed})</span>
 							<div class="flex flex-col space-y-2 rounded-3xl w-full" role="group">
-								<Range min="1" max="7" bind:value={playbackSpeedValue} class={window.theme('sliders')} />
+								<Range min="1" max="7" bind:value={playbackSpeedValue} class={window.theme('background-black')} />
 							</div>
 						</div>
 					</div>
