@@ -84,7 +84,7 @@
 	const settingsBlockClasses = 'space-y-2 py-6';
 	const selectorClasses = `w-32 border ${window.theme('border')} text-black text-left rounded-3xl focus:ring-grayyy-500 focus:${window.theme('border')} focus-within:ring-2 block p-2.5 truncate font-normal theme-grayyyscale`;
 	const settingsDescriptionClasses = 'mb-6 text-xs opacityyy-70';
-	const toggleBtnClasses = `relative w-14 h-7 bg-grayyy-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-grayyy-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[""] after:absolute after:top-0.5 after:start-[4px] after:${window.theme('background')} after:${window.theme('border')} after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-grayyy-600 theme-grayyyscale`;
+	const toggleBtnClasses = `relative w-14 h-7 ${window.theme('toggles')} peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-grayyy-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[""] after:absolute after:top-0.5 after:start-[4px] after:${window.theme('background')} after:${window.theme('border')} after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-grayyy-600 theme-grayyyscale`;
 
 	let settingsDrawerOpacity = 'opacity-100';
 	let settingsDrawerBackground = `${window.theme('background')}`;
@@ -308,7 +308,7 @@
 							<span class="block">Arabic Word Size ({selectableFontSizes[arabicWordSizeValue].value.split('-')[1]})</span>
 							<!-- svelte-ignore a11y-mouse-events-have-key-events -->
 							<div class="flex flex-col space-y-2 rounded-3xl w-full" role="group" on:mouseenter={() => onMouseEnter('arabic-word-size-setting')} on:mouseleave={() => onMouseLeave()}>
-								<Range min="1" max={maxFontSizeAllowed} bind:value={arabicWordSizeValue} class="theme-grayyyscale" />
+								<Range min="1" max={maxFontSizeAllowed} bind:value={arabicWordSizeValue} class={window.theme('sliders')} />
 							</div>
 						</div>
 					</div>
@@ -321,7 +321,7 @@
 							<span class="block">Word Translation/Transliteration Size ({selectableFontSizes[wordTranlationTransliterationSizeValue].value.split('-')[1]})</span>
 							<!-- svelte-ignore a11y-mouse-events-have-key-events -->
 							<div class="flex flex-col space-y-2 rounded-3xl w-full" role="group" on:mouseenter={() => onMouseEnter('word-translation-size-setting')} on:mouseleave={() => onMouseLeave()}>
-								<Range min="1" max={maxFontSizeAllowed} bind:value={wordTranlationTransliterationSizeValue} class="theme-grayyyscale" />
+								<Range min="1" max={maxFontSizeAllowed} bind:value={wordTranlationTransliterationSizeValue} class={window.theme('sliders')} />
 							</div>
 						</div>
 					</div>
@@ -334,7 +334,7 @@
 							<span class="block">{term('verse')} Translation/Transliteration Size ({selectableFontSizes[verseTranlationTransliterationSizeValue].value.split('-')[1]})</span>
 							<!-- svelte-ignore a11y-mouse-events-have-key-events -->
 							<div class="flex flex-col space-y-2 rounded-3xl w-full" role="group" on:mouseenter={() => onMouseEnter('verse-translation-size-setting')} on:mouseleave={() => onMouseLeave()}>
-								<Range min="1" max={maxFontSizeAllowed} bind:value={verseTranlationTransliterationSizeValue} class="theme-grayyyscale" />
+								<Range min="1" max={maxFontSizeAllowed} bind:value={verseTranlationTransliterationSizeValue} class={window.theme('sliders')} />
 							</div>
 						</div>
 					</div>
@@ -433,7 +433,7 @@
 						<div class="flex flex-col justify-between space-y-4">
 							<span class="block">Playback Speed ({selectablePlaybackSpeeds[playbackSpeedValue].speed})</span>
 							<div class="flex flex-col space-y-2 rounded-3xl w-full" role="group">
-								<Range min="1" max="7" bind:value={playbackSpeedValue} class="theme-grayyyscale" />
+								<Range min="1" max="7" bind:value={playbackSpeedValue} class={window.theme('sliders')} />
 							</div>
 						</div>
 					</div>

@@ -41,13 +41,18 @@
 				// White theme
 				if (currentTheme === 1) {
 					if (type === 'background') return 'bg-white';
-					if (type === 'border') return 'border-black/20';
+					// if (type === 'border') return 'border-black/10';
+					if (type === 'border') return 'border-black';
+					if (type === 'sliders') return 'bg-black';
+					if (type === 'toggles') return 'bg-black';
 				}
 
 				// Sepia theme
 				else if (currentTheme === 5) {
 					if (type === 'background') return 'bg-[#e4d6bd]';
 					if (type === 'border') return 'border-[#bdb19b]';
+					if (type === 'sliders') return 'bg-black';
+					if (type === 'toggles') return 'bg-black';
 				}
 			}
 

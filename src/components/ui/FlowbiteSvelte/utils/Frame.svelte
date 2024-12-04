@@ -7,7 +7,6 @@
 	export let tag = $$restProps.href ? 'a' : 'div';
 	export let color = 'default';
 	export let rounded = false;
-	export let border = false;
 	export let shadow = false;
 	// For components development
 	export let node = undefined;
@@ -51,19 +50,19 @@
 		none: ''
 	};
 	const borderColors = {
-		grayyy: `${window.theme('border')} ${window.theme('border')}`,
-		light: `${window.theme('border')} ${window.theme('border')}`,
-		dark: `${window.theme('border')} ${window.theme('border')}`,
+		grayyy: `${window.theme('border')}`,
+		light: `${window.theme('border')}`,
+		dark: `${window.theme('border')}`,
 		default: `border-b ${window.theme('border')} ${window.theme('border')}`,
-		dropdown: `${window.theme('border')} ${window.theme('border')}`,
-		navbar: `${window.theme('border')} ${window.theme('border')}`,
-		navbarUl: `${window.theme('border')} ${window.theme('border')}`,
-		form: `${window.theme('border')} ${window.theme('border')}`,
+		dropdown: `border ${window.theme('border')}`,
+		navbar: `${window.theme('border')}`,
+		navbarUl: `${window.theme('border')}`,
+		form: `${window.theme('border')}`,
 		primary: 'border-primary-500 divide-primary-500',
 		none: ''
 	};
 	let divClass;
-	$: divClass = twMerge(bgColors[color], textColors[color], rounded && 'rounded-3xl', border && 'border', borderColors[color], shadow && 'shadow-md', $$props.class);
+	$: divClass = twMerge(bgColors[color], textColors[color], rounded && 'rounded-3xl', `border ${window.theme('border')}`, borderColors[color], shadow && 'shadow-mddd', $$props.class);
 </script>
 
 {#if transition && open}

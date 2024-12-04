@@ -2138,10 +2138,6 @@ input[type="range"].range-lg::-moz-range-thumb {
   border-color: rgb(0 0 0 / 0.1);
 }
 
-.border-black\/30 {
-  border-color: rgb(0 0 0 / 0.3);
-}
-
 .border-inherit {
   border-color: inherit;
 }
@@ -2160,8 +2156,9 @@ input[type="range"].range-lg::-moz-range-thumb {
   border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
 
-.border-black\/20 {
-  border-color: rgb(0 0 0 / 0.2);
+.border-black {
+  --tw-border-opacity: 1;
+  border-color: rgb(0 0 0 / var(--tw-border-opacity));
 }
 
 .bg-\[\#000000\] {
@@ -2209,6 +2206,11 @@ input[type="range"].range-lg::-moz-range-thumb {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 
 .bg-opacity-50 {
