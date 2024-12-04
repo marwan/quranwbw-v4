@@ -4,7 +4,7 @@ const commonButtonClasses = `inline-flex items-center justify-center space-x-2 p
 
 export const buttonClasses = `${commonButtonClasses} bg-grayyy-500 hover:bg-grayyy-600`;
 
-export const buttonOutlineClasses = `${commonButtonClasses} bg-transparent hover:bg-grayyy-600 hover:text-black`;
+export const buttonOutlineClasses = `${commonButtonClasses} bg-transparent hover:bg-grayyy-600 hover:text-blackkk`;
 
 export const tabPillClasses = 'py-2 px-4 text-xs cursor-pointer rounded-3xl hover:bg-lightGrayyy bg-lightGrayyy';
 
