@@ -9,8 +9,8 @@
 	const dividerClasses = `
 		flex flex-col text-center mx-auto w-full mt-8 
 		${selectableDisplays[`${$__displayType}`].continuous ? 'mb-4' : 'mb-1'} 
-		border ${window.theme('border')}
-		py-2 px-4 text-sm cursor-pointer rounded-full bg-lightGrayyy
+		py-2 px-4 text-sm cursor-pointer rounded-full
+		${window.theme('background-light')}
 	`;
 </script>
 
