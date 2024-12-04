@@ -26,39 +26,27 @@
 	$: setContext('color', color);
 	// your script goes here
 	const bgColors = {
-		grayyy: 'bg-grayyy-50',
-		light: 'bg-grayyy-50',
-		dark: 'bg-grayyy-50',
 		default: `${window.theme('background')}`,
 		dropdown: `${window.theme('background')}`,
 		navbar: `${window.theme('background')}`,
 		navbarUl: 'bg-grayyy-50',
 		form: 'bg-grayyy-50',
-		primary: 'bg-primary-50',
 		none: ''
 	};
 	const textColors = {
-		grayyy: 'text-grayyy-800',
-		light: 'text-grayyy-700',
-		dark: 'text-grayyy-700',
 		default: 'text-grayyy-500',
 		dropdown: 'text-grayyy-700',
 		navbar: 'text-grayyy-700',
 		navbarUl: 'text-grayyy-700',
 		form: 'text-grayyy-900',
-		primary: 'text-primary-800',
 		none: ''
 	};
 	const borderColors = {
-		grayyy: `${window.theme('border')}`,
-		light: `${window.theme('border')}`,
-		dark: `${window.theme('border')}`,
-		default: `border-b ${window.theme('border')} ${window.theme('border')}`,
-		dropdown: `border ${window.theme('border')}`,
+		default: `border-b ${window.theme('border')}`,
+		dropdown: `${window.theme('border')}`,
 		navbar: `${window.theme('border')}`,
 		navbarUl: `${window.theme('border')}`,
 		form: `${window.theme('border')}`,
-		primary: 'border-primary-500 divide-primary-500',
 		none: ''
 	};
 	let divClass;

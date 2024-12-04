@@ -16,7 +16,7 @@
 
 	// CSS classes
 	const linkClasses = 'flex flex-row space-x-2 items-center';
-	const linkTextClasses = 'px-4 py-2 rounded-3xl bg-lightGrayyy hover:bg-grayyy-200 w-fit text-sm';
+	const linkTextClasses = `px-4 py-2 rounded-3xl border ${window.theme('border')} bg-lightGrayyy hover:bg-grayyy-200 w-fit text-sm`;
 	const listItemClasses = 'py-2 px-2 text-sm hover:bg-blackkk/5 w-full text-left font-normal rounded-3xl';
 
 	let maxChaptersLoaded = false;
