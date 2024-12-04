@@ -48,7 +48,7 @@
 				<Spinner size={10} />
 			{:then tajweedRulesData}
 				{#each Object.entries(tajweedRulesData) as [key, value]}
-					<tr class="bg-whiteee border-b hover:bg-grayyy-50">
+					<tr class="{window.theme('background')} border-b hover:bg-grayyy-50">
 						<td class="py-4 w-fit tajweed-rules text-2xl text-center align-top theme-palette-tajweed font-filter"> {value.code} </td>
 						<td class="pl-2 pr-6 py-4 theme-grayyyscale">
 							<div class="flex flex-col space-y-2">

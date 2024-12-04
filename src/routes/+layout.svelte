@@ -137,6 +137,12 @@
 	window.addEventListener('offline', () => {
 		__websiteOnline.set(false);
 	});
+
+	function theme(type) {
+		if (type === 'background') return 'bg-white';
+	}
+
+	window.theme = theme;
 </script>
 
 <div class="max-w-screen-lg mx-auto {paddingTop} {paddingBottom} {paddingX}">

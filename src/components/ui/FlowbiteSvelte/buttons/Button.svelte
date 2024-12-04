@@ -13,11 +13,11 @@
 	export let checked = undefined;
 	// export let disabled: boolean = false;
 	const colorClasses = {
-		alternative: 'text-grayyy-900 bg-whiteee border border-blackkk/10 hover:bg-blackkk/5 dark:bg-grayyy-800 dark:text-grayyy-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-grayyy-700',
+		alternative: `text-grayyy-900 ${window.theme('background')} border border-blackkk/10 hover:bg-blackkk/5 dark:bg-grayyy-800 dark:text-grayyy-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-grayyy-700`,
 		blue: 'text-white bg-blue-700 hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700',
 		dark: 'text-white bg-grayyy-800 hover:bg-grayyy-900 dark:bg-grayyy-800 dark:hover:bg-grayyy-700',
 		green: 'text-white bg-green-700 hover:bg-green-800 dark:bg-green-600 dark:hover:bg-green-700',
-		light: 'text-grayyy-900 bg-whiteee border border-blackkk/10 hover:bg-blackkk/5 dark:bg-grayyy-800 dark:text-white dark:border-grayyy-600 dark:hover:bg-grayyy-700 dark:hover:border-grayyy-600',
+		light: `text-grayyy-900 ${window.theme('background')} border border-blackkk/10 hover:bg-blackkk/5 dark:bg-grayyy-800 dark:text-white dark:border-grayyy-600 dark:hover:bg-grayyy-700 dark:hover:border-grayyy-600`,
 		primary: 'text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700',
 		purple: 'text-white bg-purple-700 hover:bg-purple-800 dark:bg-purple-600 dark:hover:bg-purple-700',
 		red: 'text-white bg-red-700 hover:bg-red-800 dark:bg-red-600 dark:hover:bg-red-700',
@@ -65,7 +65,7 @@
 		blue: 'text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600',
 		dark: 'text-grayyy-900 hover:text-white border border-grayyy-800 hover:bg-grayyy-900 focus-within:bg-grayyy-900 focus-within:text-white dark:border-grayyy-600 dark:hover:text-white dark:hover:bg-grayyy-600',
 		green: 'text-green-700 hover:text-white border border-green-700 hover:bg-green-800 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600',
-		light: 'text-grayyy-500 hover:text-grayyy-900 bg-whiteee border border-blackkk/10 dark:border-grayyy-600 dark:hover:text-white dark:text-grayyy-400 hover:bg-grayyy-50 dark:bg-grayyy-700 dark:hover:bg-grayyy-600',
+		light: `text-grayyy-500 hover:text-grayyy-900 ${window.theme('background')} border border-blackkk/10 dark:border-grayyy-600 dark:hover:text-white dark:text-grayyy-400 hover:bg-grayyy-50 dark:bg-grayyy-700 dark:hover:bg-grayyy-600`,
 		primary: 'text-primary-700 hover:text-white border border-primary-700 hover:bg-primary-700 dark:border-primary-500 dark:text-primary-500 dark:hover:text-white dark:hover:bg-primary-600',
 		purple: 'text-purple-700 hover:text-white border border-purple-700 hover:bg-purple-800 dark:border-purple-400 dark:text-purple-400 dark:hover:text-white dark:hover:bg-purple-500',
 		red: 'text-red-700 hover:text-white border border-red-700 hover:bg-red-800 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600',

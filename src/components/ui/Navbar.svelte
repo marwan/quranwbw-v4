@@ -15,7 +15,7 @@
 	let mushafJuz = '...';
 
 	// Classes for the navbar
-	$: navbarClasses = `bg-whiteee fixed w-full z-20 top-0 left-0 border-b border-blackkk/10 text-black print:hidden theme ${$__currentPage === 'home' ? 'hidden' : 'block'}`;
+	$: navbarClasses = `${window.theme('background')} fixed w-full z-20 top-0 left-0 border-b border-blackkk/10 text-black print:hidden theme ${$__currentPage === 'home' ? 'hidden' : 'block'}`;
 	$: topNavClasses = `${$__topNavbarVisible ? 'block' : 'hidden'} flex flex-row items-center justify-between max-w-screen-lg mx-auto px-4 py-2`;
 
 	// Update last read details

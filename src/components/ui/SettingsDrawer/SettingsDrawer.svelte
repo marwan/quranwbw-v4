@@ -84,11 +84,10 @@
 	const settingsBlockClasses = 'space-y-2 py-6';
 	const selectorClasses = 'w-32 border border-blackkk/10 text-black text-left rounded-3xl focus:ring-grayyy-500 focus:border-grayyy-500 focus-within:ring-2 block p-2.5 truncate font-normal theme-grayyyscale';
 	const settingsDescriptionClasses = 'mb-6 text-xs opacityyy-70';
-	const toggleBtnClasses =
-		'relative w-14 h-7 bg-grayyy-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-grayyy-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[""] after:absolute after:top-0.5 after:start-[4px] after:bg-whiteee after:border-blackkk/10 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-grayyy-600 theme-grayyyscale';
+	const toggleBtnClasses = `relative w-14 h-7 bg-grayyy-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-grayyy-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[""] after:absolute after:top-0.5 after:start-[4px] after:${window.theme('background')} after:border-blackkk/10 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-grayyy-600 theme-grayyyscale`;
 
 	let settingsDrawerOpacity = 'opacity-100';
-	let settingsDrawerBackground = 'bg-whiteee';
+	let settingsDrawerBackground = `${window.theme('background')}`;
 	let individualSettingsComponent;
 	let mainSettingsScrollPos = 0;
 	let allSettingsVisible = true;
@@ -160,7 +159,7 @@
 	// Handle mouse enter event to show font size sliders
 	function onMouseEnter(selector) {
 		document.querySelectorAll('.fontSizeSliders').forEach((element) => {
-			element.classList.remove('bg-whiteee', 'opacity-100');
+			element.classList.remove(`${window.theme('background')}`, 'opacity-100');
 			element.classList.add('opacity-0', 'pointer-events-none');
 		});
 
@@ -170,18 +169,18 @@
 
 		const selectedElement = document.getElementById(selector);
 		selectedElement.classList.remove('opacity-0', 'pointer-events-none');
-		selectedElement.classList.add('opacity-100', 'bg-whiteee', 'rounded-3xl', 'shadow-lg', 'px-2');
+		selectedElement.classList.add('opacity-100', `${window.theme('background')}`, 'rounded-3xl', 'shadow-lg', 'px-2');
 	}
 
 	// Handle mouse leave event to hide font size sliders
 	function onMouseLeave() {
 		document.querySelectorAll('.fontSizeSliders').forEach((element) => {
-			element.classList.remove('bg-whiteee', 'opacity-0', 'rounded-3xl', 'shadow-lg', 'px-2', 'pointer-events-none');
+			element.classList.remove(`${window.theme('background')}`, 'opacity-0', 'rounded-3xl', 'shadow-lg', 'px-2', 'pointer-events-none');
 			element.classList.add('opacity-100');
 		});
 
 		settingsDrawerOpacity = 'opacity-100';
-		settingsDrawerBackground = 'bg-whiteee';
+		settingsDrawerBackground = `${window.theme('background')}`;
 		document.querySelector('.settings-backdrop').classList.remove('opacityyy-10');
 	}
 </script>
@@ -191,7 +190,7 @@
 	<!-- all-settings -->
 	{#if allSettingsVisible}
 		<div id="all-settings">
-			<div class="flex z-30 top-0 sticky bg-whiteee border-b-2 border-blackkk/10 mb-4 {settingsDrawerOpacity}">
+			<div class="flex z-30 top-0 sticky {window.theme('background')} border-b-2 border-blackkk/10 mb-4 {settingsDrawerOpacity}">
 				<h5 id="drawer-label" class="inline-flex items-center my-4 text-3xl font-semibold">Settings</h5>
 				<CloseButton on:click={() => ($__settingsDrawerHidden = true)} class="my-4 rounded-3xl" />
 			</div>
@@ -510,7 +509,7 @@
 	<!-- individual-setting -->
 	{#if individualSettingsVisible}
 		<div id="individual-setting" transition:fly={{ duration: 150, x: 0, easing: sineIn }}>
-			<div class="flex z-30 top-0 sticky bg-whiteee border-b-2 border-blackkk/10 mb-4">
+			<div class="flex z-30 top-0 sticky {window.theme('background')} border-b-2 border-blackkk/10 mb-4">
 				<button id="drawer-label" class="inline-flex items-center my-4 text-3xl font-semibold" on:click={() => goBackToMainSettings()}>← Back</button>
 				<CloseButton on:click={() => ($__settingsDrawerHidden = true)} class="my-4 rounded-3xl" />
 			</div>

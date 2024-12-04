@@ -68,7 +68,7 @@
 	// Common classes for words and end icons
 	$: wordAndEndIconCommonClasses = `
 		hover:cursor-pointer
-		${selectableThemes[$__websiteTheme].palette === 1 ? 'hover:bg-whiteee/20' : 'hover:bg-blackkk/10'}
+		${selectableThemes[$__websiteTheme].palette === 1 ? `hover:${window.theme('background')}/20` : 'hover:bg-blackkk/10'}
 		${$__displayType === 1 ? 'text-center flex flex-col' : 'inline-flex flex-col'}
 		${selectableDisplays[$__displayType].layout === 'wbw' ? 'p-3' : [2, 3].includes($__fontType) ? ($__currentPage === 'mushaf' ? 'p-0' : 'px-0 py-1') : 'p-1'}
 		${exampleVerse && '!p-0'}
