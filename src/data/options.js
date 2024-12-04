@@ -20,7 +20,8 @@ export const selectableThemes = {
 	2: { id: 2, name: 'Blue', palette: 1 },
 	3: { id: 3, name: 'Green', palette: 1 },
 	4: { id: 4, name: 'Black', palette: 1 },
-	5: { id: 5, name: 'Sepia', palette: 2 }
+	5: { id: 5, name: 'Sepia', palette: 2 },
+	6: { id: 6, name: 'Light & Gold', palette: 2 }
 };
 
 export const verseTranslationsLanguages = [

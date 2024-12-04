@@ -2138,6 +2138,10 @@ input[type="range"].range-lg::-moz-range-thumb {
   border-color: rgb(85 60 15 / 0.1);
 }
 
+.border-\[\#b1901f\]\/10 {
+  border-color: rgb(177 144 31 / 0.1);
+}
+
 .border-\[\#c2c2c2\]\/10 {
   border-color: rgb(194 194 194 / 0.1);
 }
@@ -2156,6 +2160,10 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .border-transparent {
   border-color: transparent;
+}
+
+.border-\[\#b1901f\]\/20 {
+  border-color: rgb(177 144 31 / 0.2);
 }
 
 .bg-\[\#001617\] {
@@ -2179,6 +2187,10 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .bg-\[\#553c0f\]\/5 {
   background-color: rgb(85 60 15 / 0.05);
+}
+
+.bg-\[\#b1901f\]\/5 {
+  background-color: rgb(177 144 31 / 0.05);
 }
 
 .bg-\[\#c2c2c2\] {
@@ -2234,6 +2246,11 @@ input[type="range"].range-lg::-moz-range-thumb {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#b1901f\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(177 144 31 / var(--tw-bg-opacity));
 }
 
 .bg-opacity-50 {
@@ -3313,6 +3330,11 @@ svg {
   border-color: rgb(85 60 15 / var(--tw-border-opacity));
 }
 
+.peer:checked ~ .peer-checked\:border-\[\#b1901f\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(177 144 31 / var(--tw-border-opacity));
+}
+
 .peer:checked ~ .peer-checked\:border-\[\#c2c2c2\] {
   --tw-border-opacity: 1;
   border-color: rgb(194 194 194 / var(--tw-border-opacity));
@@ -3331,6 +3353,11 @@ svg {
 .peer:checked ~ .peer-checked\:bg-\[\#553c0f\] {
   --tw-bg-opacity: 1;
   background-color: rgb(85 60 15 / var(--tw-bg-opacity));
+}
+
+.peer:checked ~ .peer-checked\:bg-\[\#b1901f\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(177 144 31 / var(--tw-bg-opacity));
 }
 
 .peer:checked ~ .peer-checked\:bg-\[\#c2c2c2\] {
@@ -3402,6 +3429,11 @@ svg {
   border-color: rgb(85 60 15 / var(--tw-border-opacity));
 }
 
+.focus\:border-\[\#b1901f\]:focus {
+  --tw-border-opacity: 1;
+  border-color: rgb(177 144 31 / var(--tw-border-opacity));
+}
+
 .focus\:border-\[\#c2c2c2\]:focus {
   --tw-border-opacity: 1;
   border-color: rgb(194 194 194 / var(--tw-border-opacity));
@@ -3436,6 +3468,11 @@ svg {
 .focus\:ring-\[\#553c0f\]:focus {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(85 60 15 / var(--tw-ring-opacity));
+}
+
+.focus\:ring-\[\#b1901f\]:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(177 144 31 / var(--tw-ring-opacity));
 }
 
 .focus\:ring-\[\#c2c2c2\]:focus {

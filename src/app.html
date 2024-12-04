@@ -16,7 +16,7 @@
 		<link crossorigin="anonymous" rel="manifest" href="%sveltekit.assets%/manifest.json" />
 		<link crossorigin="anonymous" rel="icon" type="image/png" href="%sveltekit.assets%/images/favicon.png" />
 		<link crossorigin="anonymous" href="%sveltekit.assets%/images/apple-touch-icon.png" rel="apple-touch-icon" />
-		<link crossorigin="anonymous" rel="stylesheet" href="%sveltekit.assets%/css/global.css?version=23" />
+		<link crossorigin="anonymous" rel="stylesheet" href="%sveltekit.assets%/css/global.css?version=24" />
 
 		<!-- 
 		If the user's browser do not support Optional chaining (?.), redirect to old v3 website
@@ -40,7 +40,8 @@
 				2: `bg-[#02021b]`,
 				3: `bg-[#001617]`,
 				4: `bg-black`,
-				5: `bg-[#e4d6bd]`
+				5: `bg-[#e4d6bd]`,
+				6: `bg-white`
 			};
 		</script>
 
@@ -128,6 +129,22 @@
 						if (type === 'toggles') return 'bg-[#553c0f]/5 after:bg-white peer-checked:bg-[#553c0f]';
 						if (type === 'scrollbar') return 'scrollbar scrollbar-thumb-sky-700';
 						if (type === 'hover') return 'hover:bg-[#553c0f]/5';
+					}
+
+					// White & Gold theme
+					else if (currentTheme === 6) {
+						// colors used: white, black (and its different variations)
+						if (type === 'background') return window.websiteColors[currentTheme];
+						if (type === 'background-black') return 'bg-[#b1901f]';
+						if (type === 'background-light') return 'bg-[#b1901f]/5';
+						if (type === 'text') return 'text-black';
+						if (type === 'border') return 'border-[#b1901f]/20';
+						if (type === 'icon') return '#b1901f';
+						if (type === 'input') return 'focus:border-[#b1901f] focus:ring-[#b1901f]';
+						if (type === 'checked') return 'peer-checked:border-2 peer-checked:border-[#b1901f] peer-checked:border-[#b1901f]';
+						if (type === 'toggles') return 'bg-[#b1901f]/5 after:bg-white peer-checked:bg-[#b1901f]';
+						if (type === 'scrollbar') return 'scrollbar scrollbar-thumb-sky-700';
+						if (type === 'hover') return 'hover:bg-black/5';
 					}
 				} catch (error) {
 					// ...
