@@ -84,7 +84,7 @@
 	const settingsBlockClasses = 'space-y-2 py-6';
 	const selectorClasses = `w-32 border ${window.theme('border')} text-left rounded-3xl ${window.theme('input')} focus-within:ring-2 block p-2.5 truncate font-normal`;
 	const settingsDescriptionClasses = 'mb-6 text-xs opacityyy-70';
-	const toggleBtnClasses = `relative w-14 h-7 ${window.theme('toggles')} peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-grayyy-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[""] after:absolute after:top-0.5 after:start-[4px] after:${window.theme('background')} after:${window.theme('border')} after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-grayyy-600`;
+	const toggleBtnClasses = `relative w-14 h-7 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full after:content-[""] after:absolute after:top-0.5 after:start-[4px] after:border after:rounded-full after:h-6 after:w-6 after:transition-all ${window.theme('toggles')}`;
 
 	let settingsDrawerOpacity = 'opacity-100';
 	let settingsDrawerBackground = `${window.theme('background')}`;
