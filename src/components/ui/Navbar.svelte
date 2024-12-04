@@ -15,8 +15,8 @@
 	let mushafJuz = '...';
 
 	// Classes for the navbar
-	$: navbarClasses = `${window.theme('background')} fixed w-full z-20 top-0 left-0 border-b ${window.theme('border')} text-black print:hidden theme ${$__currentPage === 'home' ? 'hidden' : 'block'}`;
-	$: topNavClasses = `${$__topNavbarVisible ? 'block' : 'hidden'} flex flex-row items-center justify-between max-w-screen-lg mx-auto px-4 py-2`;
+	$: navbarClasses = `${window.theme('background')} border-b ${window.theme('border')} fixed w-full z-20 top-0 left-0 text-black print:hidden theme ${$__currentPage === 'home' ? 'hidden' : 'block'}`;
+	$: topNavClasses = `${$__topNavbarVisible ? 'block' : 'hidden'} border-b ${window.theme('border')} flex flex-row items-center justify-between max-w-screen-lg mx-auto px-4 py-2`;
 
 	// Update last read details
 	$: {
@@ -104,7 +104,7 @@
 
 	<!-- mini nav for chapter page -->
 	{#if $__currentPage === 'chapter'}
-		<div id="bottom-nav" class="flex flex-row items-center justify-between border-t {window.theme('border')} text-xs max-w-screen-lg mx-auto px-6 theme-grayyyscale">
+		<div id="bottom-nav" class="flex flex-row items-center justify-between text-xs max-w-screen-lg mx-auto px-6 theme-grayyyscale">
 			<div id="navbar-bottom-chapter-revalation" class="flex flex-row items-center py-2">
 				{#if !$__topNavbarVisible}
 					<span>{@html navbarChapterName}</span>
