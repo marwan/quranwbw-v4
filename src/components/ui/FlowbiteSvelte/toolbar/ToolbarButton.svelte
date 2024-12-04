@@ -8,7 +8,7 @@
 	export let size = 'md';
 	export let href = undefined;
 	const colors = {
-		default: 'hover:bg-blackkk/5 text-black'
+		default: 'hover:bg-blackkk/5'
 	};
 	const sizing = {
 		xs: 'm-0.5 rounded-full p-0.5',

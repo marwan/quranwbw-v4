@@ -13,14 +13,14 @@
 	export let checked = undefined;
 	// export let disabled: boolean = false;
 	const colorClasses = {
-		alternative: `text-grayyy-900 ${window.theme('background')} border ${window.theme('border')} hover:bg-blackkk/5 dark:bg-grayyy-800 dark:text-grayyy-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:text-white dark:hover:text-white dark:hover:bg-grayyy-700`,
-		dark: 'text-white bg-grayyy-800 hover:bg-grayyy-900 dark:bg-grayyy-800 dark:hover:bg-grayyy-700',
-		primary: 'text-white bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700',
+		alternative: `text-grayyy-900 ${window.theme('background')} border ${window.theme('border')} hover:bg-blackkk/5 dark:bg-grayyy-800 dark:text-grayyy-400 hover:text-primary-700 focus-within:text-primary-700 dark:focus-within:dark:hover:dark:hover:bg-grayyy-700`,
+		dark: 'bg-grayyy-800 hover:bg-grayyy-900 dark:bg-grayyy-800 dark:hover:bg-grayyy-700',
+		primary: 'bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700',
 		none: ''
 	};
 	const colorCheckedClasses = {
 		alternative: `text-primary-700 border dark:text-primary-500 bg-grayyy-100 dark:bg-grayyy-700 ${window.theme('border')} shadow-grayyy-300 dark:shadow-grayyy-800 shadow-inner`,
-		dark: 'text-white bg-grayyy-500 dark:bg-grayyy-600 shadow-grayyy-800 dark:shadow-grayyy-900 shadow-inner',
+		dark: 'bg-grayyy-500 dark:bg-grayyy-600 shadow-grayyy-800 dark:shadow-grayyy-900 shadow-inner',
 		primary: 'text-primary-900 bg-primary-400 dark:bg-primary-500 shadow-primary-700 dark:shadow-primary-800 shadow-inner',
 		none: ''
 	};
@@ -37,9 +37,9 @@
 		none: ''
 	};
 	const outlineClasses = {
-		alternative: `text-grayyy-900 dark:text-grayyy-400 hover:text-white border ${window.theme('border')} hover:bg-grayyy-900 focus-within:bg-grayyy-900 focus-within:text-white focus-within:ring-grayyy-300 dark:${window.theme('border')} dark:hover:text-white dark:hover:bg-grayyy-600 dark:focus-within:ring-grayyy-800`,
-		dark: `text-grayyy-900 hover:text-white border ${window.theme('border')} hover:bg-grayyy-900 focus-within:bg-grayyy-900 focus-within:text-white dark:${window.theme('border')} dark:hover:text-white dark:hover:bg-grayyy-600`,
-		primary: 'text-primary-700 hover:text-white border border-primary-700 hover:bg-primary-700 dark:border-primary-500 dark:text-primary-500 dark:hover:text-white dark:hover:bg-primary-600',
+		alternative: `text-grayyy-900 dark:text-grayyy-400 hover:border ${window.theme('border')} hover:bg-grayyy-900 focus-within:bg-grayyy-900 focus-within:focus-within:ring-grayyy-300 dark:${window.theme('border')} dark:hover:dark:hover:bg-grayyy-600 dark:focus-within:ring-grayyy-800`,
+		dark: `text-grayyy-900 hover:border ${window.theme('border')} hover:bg-grayyy-900 focus-within:bg-grayyy-900 focus-within:dark:${window.theme('border')} dark:hover:dark:hover:bg-grayyy-600`,
+		primary: 'text-primary-700 hover:border border-primary-700 hover:bg-primary-700 dark:border-primary-500 dark:text-primary-500 dark:hover:dark:hover:bg-primary-600',
 		none: ''
 	};
 	const sizeClasses = {
@@ -62,8 +62,8 @@
 		outline && !checked && outlineClasses[color],
 		!outline && checked && colorCheckedClasses[color],
 		!outline && !checked && colorClasses[color],
-		color === 'alternative' && (group && !checked ? `dark:bg-grayyy-700 dark:text-white dark:${window.theme('border')} dark:hover:${window.theme('border')} dark:hover:bg-grayyy-600` : `dark:bg-transparent dark:${window.theme('border')} dark:hover:${window.theme('border')}`),
-		outline && color === 'dark' && (group ? (checked ? `bg-grayyy-900 ${window.theme('border')} dark:border-white dark:bg-grayyy-600` : `dark:text-white ${window.theme('border')} dark:border-white`) : `dark:text-grayyy-400 dark:${window.theme('border')}`),
+		color === 'alternative' && (group && !checked ? `dark:bg-grayyy-700 dark:dark:${window.theme('border')} dark:hover:${window.theme('border')} dark:hover:bg-grayyy-600` : `dark:bg-transparent dark:${window.theme('border')} dark:hover:${window.theme('border')}`),
+		outline && color === 'dark' && (group ? (checked ? `bg-grayyy-900 ${window.theme('border')} dark:border-white dark:bg-grayyy-600` : `dark:${window.theme('border')} dark:border-white`) : `dark:text-grayyy-400 dark:${window.theme('border')}`),
 		coloredFocusClasses[color],
 		hasBorder() && group && 'border-s-0 first:border-s',
 		group ? (pill && 'first:rounded-s-full last:rounded-e-full') || 'first:rounded-s-lg last:rounded-e-lg' : (pill && 'rounded-full') || 'rounded-lg',

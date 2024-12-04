@@ -14,14 +14,14 @@
 	import { term } from '$utils/terminologies';
 	import { getModalTransition } from '$utils/getModalTransition';
 
-	const linkClasses = `w-full flex flex-row space-x-2 py-4 px-4 border ${window.theme('border')} text-black text-grayyy-600 bg-grayyy-100 hover:bg-grayyy-200 rounded-xl items-center cursor-pointer theme-grayyyscale`;
+	const linkClasses = `w-full flex flex-row space-x-2 py-4 px-4 border ${window.theme('border')} text-grayyy-600 bg-grayyy-100 hover:bg-grayyy-200 rounded-xl items-center cursor-pointer theme-grayyyscale`;
 	const linkTextClasses = 'text-xs md:text-sm text-left w-[-webkit-fill-available] truncate';
 
 	// hide the modal when page changes
 	$: if ($__currentPage) __siteNavigationModalVisible.set(false);
 </script>
 
-<Modal id="siteNavigationModal" bind:open={$__siteNavigationModalVisible} transitionParams={getModalTransition('basic')} size="xs" class="rounded-3xl text-black theme" bodyClass="p-6" center outsideclose>
+<Modal id="siteNavigationModal" bind:open={$__siteNavigationModalVisible} transitionParams={getModalTransition('basic')} size="xs" class="rounded-3xl theme" bodyClass="p-6" center outsideclose>
 	<div class="flex flex-col space-y-4">
 		<!-- modals / popups -->
 		<div class="flex flex-col space-y-2">

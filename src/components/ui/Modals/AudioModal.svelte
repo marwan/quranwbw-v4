@@ -9,7 +9,7 @@
 	import { getModalTransition } from '$utils/getModalTransition';
 
 	// CSS classes for radio buttons
-	const radioClasses = `inline-flex justify-between items-center py-2 px-4 w-full text-black text-grayyy-500 ${window.theme('background')} rounded-lg border ${window.theme('border')} cursor-pointer peer-checked:border-primary-600 peer-checked:text-primary-600 hover:text-black text-grayyy-600 hover:bg-grayyy-100 theme-grayyyscale`;
+	const radioClasses = `inline-flex justify-between items-center py-2 px-4 w-full text-grayyy-500 ${window.theme('background')} rounded-lg border ${window.theme('border')} cursor-pointer peer-checked:border-primary-600 peer-checked:text-primary-600 hover:text-grayyy-600 hover:bg-grayyy-100 theme-grayyyscale`;
 
 	let invalidStartVerse = false;
 	let invalidEndVerse = false;
@@ -70,7 +70,7 @@
 	}
 </script>
 
-<Modal id="audioModal" bind:open={$__audioModalVisible} transitionParams={getModalTransition('bottom')} size="xs" class="!rounded-b-none md:!rounded-3xl !text-black theme" bodyClass="p-6" placement="center" position="bottom" autoclose outsideclose>
+<Modal id="audioModal" bind:open={$__audioModalVisible} transitionParams={getModalTransition('bottom')} size="xs" class="!rounded-b-none md:!rounded-3xl !theme" bodyClass="p-6" placement="center" position="bottom" autoclose outsideclose>
 	<!-- Modal content -->
 	<div class="flex flex-row space-x-4 mb-4 text-xl" style="margin-top: 0px;">
 		<h3 id="audio-modal-title" class="font-medium">{quranMetaData[$__audioSettings.playingChapter || 1].transliteration}, {$__audioSettings.playingKey}</h3>

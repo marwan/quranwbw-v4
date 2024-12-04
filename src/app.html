@@ -41,6 +41,7 @@
 				// White theme
 				if (currentTheme === 1) {
 					if (type === 'background') return 'bg-white';
+					if (type === 'text') return 'text-red-700';
 					// if (type === 'border') return 'border-black/10';
 					if (type === 'border') return 'border-black';
 					if (type === 'sliders') return 'bg-black';
@@ -50,6 +51,7 @@
 				// Sepia theme
 				else if (currentTheme === 5) {
 					if (type === 'background') return 'bg-[#e4d6bd]';
+					if (type === 'text') return 'text-red-700';
 					if (type === 'border') return 'border-[#bdb19b]';
 					if (type === 'sliders') return 'bg-black';
 					if (type === 'toggles') return 'bg-black';
@@ -58,7 +60,7 @@
 
 			window.theme = theme;
 
-			window.bodyColors = {
+			window.websiteColors = {
 				1: `${window.theme('background')}`, // white
 				2: 'bg-[#02021b]', // blue
 				3: 'bg-[#001617]', // green
@@ -89,11 +91,15 @@
 			}
 
 			// Apply the theme class to the document's root element
-			document.documentElement.classList = `theme-${currentTheme} ${window.bodyColors[currentTheme]}`;
+			document.documentElement.classList = `theme-${currentTheme} ${window.websiteColors[currentTheme]}`;
 		</script>
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">
+		<script>
+			document.body.classList.add(`${window.theme('text')}`);
+		</script>
+
 		<div style="display: contents">%sveltekit.body%</div>
 		<!-- global audio player -->
 		<audio id="player"></audio>

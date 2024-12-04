@@ -44,7 +44,7 @@
 	$: wordTranslationClasses = `
 		wordTranslationText flex flex-col direction-ltr
 		${fontSizes.wordTranslationText}
-		text-black theme
+		theme
 	`;
 
 	let hoveredWordKey = null;

@@ -2,7 +2,7 @@
 	// this part is shared between Radio and Checkbox
 	import { twMerge } from 'tailwind-merge';
 	const colorClasses = {
-		primary: 'text-black focus:ring-black'
+		primary: 'focus:ring-black'
 	};
 	export const labelClass = (inline, extraClass) => twMerge(inline ? 'inline-flex' : 'flex', 'items-center', extraClass);
 	export const inputClass = (custom, color, rounded, tinted, spacing, extraClass) => twMerge(`w-4 h-4 bg-grayyy-100 ${window.theme('border')} dark:ring-offset-grayyy-800 focus:ring-2`, spacing, tinted ? `dark:bg-grayyy-600 dark:${window.theme('border')}` : `dark:bg-grayyy-700 dark:${window.theme('border')}`, custom && 'sr-only peer', rounded && 'rounded', colorClasses[color], extraClass);

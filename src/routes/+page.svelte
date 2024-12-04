@@ -30,13 +30,13 @@
 
 <!-- banner for website updates: currently v4 launch -->
 <Banner id="newSiteBanner" position="absolute" divClass="z-10 flex justify-between p-4 !bg-grayyy-100 theme">
-	<p class="flex items-center text-sm font-normal text-black text-grayyy-500 space-x-1 truncate">
-		<span class="inline-flex p-2 bg-grayyy-200 rounded-full text-black">
+	<p class="flex items-center text-sm font-normal text-grayyy-500 space-x-1 truncate">
+		<span class="inline-flex p-2 bg-grayyy-200 rounded-full">
 			<span class="opacityyy-70"><Megaphone size={3} /></span>
 			<span class="sr-only">Announcement</span>
 		</span>
 
-		<span class="text-black text-xs md:text-sm">
+		<span class="text-xs md:text-sm">
 			Introducing QuranWBW v4.0. <button class="inline font-medium text-primary-600 underline underline-offset-2 decoration-600 decoration-solid hover:no-underline" on:click={() => __newSiteChangelogModalVisible.set(true)}> See What's New {@html '&#x2192;'}</button>
 		</span>
 	</p>

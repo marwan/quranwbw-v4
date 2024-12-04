@@ -70,7 +70,7 @@
 					<button on:click={() => (activeTab = 1)} class="{tabClasses} {activeTab === 1 && activeTabClasses} flex flex-row space-x-2 items-center" type="button">
 						<!-- asc/dsc sort button -->
 						<div class="flex flex-row">
-							<button class="inline-flex p-2 rounded-full text-black items-center border {window.theme('border')} {chapterSortIsAscending ? 'bg-grayyy-200' : 'bg-grayyy-300'}" on:click={() => sortChapters()}>
+							<button class="inline-flex p-2 rounded-full items-center border {window.theme('border')} {chapterSortIsAscending ? 'bg-grayyy-200' : 'bg-grayyy-300'}" on:click={() => sortChapters()}>
 								<span class="opacityyy-70"><AscendingSort size={3} /></span>
 								<span class="sr-only">Sort</span>
 							</button>

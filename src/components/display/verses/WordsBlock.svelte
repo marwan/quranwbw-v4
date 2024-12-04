@@ -80,7 +80,7 @@
 		arabic-font-${$__fontType} 
 		${$__currentPage !== 'mushaf' && fontSizes.arabicText} 
 		${displayIsContinuous && 'inline-block'}
-		${[1, 4].includes($__fontType) && 'text-black theme'}
+		${[1, 4].includes($__fontType) && 'theme'}
 	`;
 
 	// Classes for v4 hafs words
