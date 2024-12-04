@@ -51,14 +51,14 @@
 		none: ''
 	};
 	const borderColors = {
-		grayyy: `${window.theme('border')} dark:${window.theme('border')} divide-grayyy-300 dark:divide-grayyy-800`,
-		light: `${window.theme('border')} divide-grayyy-500`,
-		dark: `${window.theme('border')} divide-grayyy-500`,
-		default: `${window.theme('border')} dark:${window.theme('border')} divide-grayyy-200 dark:divide-grayyy-700`,
-		dropdown: `${window.theme('border')} dark:${window.theme('border')} divide-grayyy-100 dark:divide-grayyy-600`,
-		navbar: `${window.theme('border')} dark:${window.theme('border')} divide-grayyy-100 dark:divide-grayyy-700`,
-		navbarUl: `${window.theme('border')} dark:${window.theme('border')} divide-grayyy-100 dark:divide-grayyy-700`,
-		form: `${window.theme('border')} dark:${window.theme('border')} divide-grayyy-300 dark:divide-grayyy-700`,
+		grayyy: `${window.theme('border')} dark:${window.theme('border')} ${window.theme('border')} dark:${window.theme('border')}`,
+		light: `${window.theme('border')} ${window.theme('border')}`,
+		dark: `${window.theme('border')} ${window.theme('border')}`,
+		default: `${window.theme('border')} dark:${window.theme('border')} ${window.theme('border')} dark:${window.theme('border')}`,
+		dropdown: `${window.theme('border')} dark:${window.theme('border')} ${window.theme('border')} dark:${window.theme('border')}`,
+		navbar: `${window.theme('border')} dark:${window.theme('border')} ${window.theme('border')} dark:${window.theme('border')}`,
+		navbarUl: `${window.theme('border')} dark:${window.theme('border')} ${window.theme('border')} dark:${window.theme('border')}`,
+		form: `${window.theme('border')} dark:${window.theme('border')} ${window.theme('border')} dark:${window.theme('border')}`,
 		primary: 'border-primary-500 dark:border-primary-200  divide-primary-500 dark:divide-primary-200 ',
 		none: ''
 	};
