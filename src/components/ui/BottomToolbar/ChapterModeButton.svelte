@@ -14,7 +14,7 @@
 	}
 </script>
 
-<a href="/{chapter}/{verse}" class="opacityyy-70 inline-flex flex-col items-center justify-center px-5 hover:bg-lightGrayyy group">
+<a href="/{chapter}/{verse}" class="opacityyy-70 inline-flex flex-col items-center justify-center px-5 group {window.theme('hover')}">
 	<List />
 	<span class="sr-only">{term('chapter')} Mode</span>
 </a>

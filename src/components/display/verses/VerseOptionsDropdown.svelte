@@ -10,7 +10,7 @@
 	import { updateSettings } from '$utils/updateSettings';
 	import { term } from '$utils/terminologies';
 
-	const dropdownItemClasses = 'font-normal rounded-3xl hover:bg-blackkk/5';
+	const dropdownItemClasses = `font-normal rounded-3xl ${window.theme('hover')}`;
 	let dropdownOpen = false;
 
 	// We need to manually add and/or remove z-index from the verse options dropdown because it becomes transparent due to our themes which we achieve via CSS filters

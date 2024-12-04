@@ -19,7 +19,7 @@
 	const chapter = parseInt(key.split(':')[0], 10);
 	const verse = parseInt(key.split(':')[1], 10);
 	const versesInChapter = quranMetaData[chapter].verses;
-	const buttonClasses = 'inline-flex items-center justify-center w-10 h-10 transition-colors duration-150 rounded-3xl focus:shadow-outline hover:bg-lightGrayyy print:hidden';
+	const buttonClasses = `inline-flex items-center justify-center w-10 h-10 transition-colors duration-150 rounded-3xl focus:shadow-outline print:hidden ${window.theme('hover')}`;
 
 	// For chapter page, just show the key, else show the complete chapter transliteration & key
 	$: verseKeyClasses = `${buttonClasses} w-fit px-4 border ${window.theme('border')} bg-lightGrayyy font-medium`;

@@ -16,7 +16,7 @@
 		<link crossorigin="anonymous" rel="manifest" href="%sveltekit.assets%/manifest.json" />
 		<link crossorigin="anonymous" rel="icon" type="image/png" href="%sveltekit.assets%/images/favicon.png" />
 		<link crossorigin="anonymous" href="%sveltekit.assets%/images/apple-touch-icon.png" rel="apple-touch-icon" />
-		<link crossorigin="anonymous" rel="stylesheet" href="%sveltekit.assets%/css/global.css?version=21" />
+		<link crossorigin="anonymous" rel="stylesheet" href="%sveltekit.assets%/css/global.css?version=22" />
 
 		<!-- 
 		If the user's browser do not support Optional chaining (?.), redirect to old v3 website
@@ -40,15 +40,26 @@
 
 				// White theme
 				if (currentTheme === 1) {
+					// if (type === 'background') return 'bg-white';
+					// if (type === 'text') return 'text-red-700';
+					// if (type === 'border') return 'border-black';
+					// if (type === 'sliders') return 'bg-red-700';
+					// if (type === 'icon') return '#047857';
+					// if (type === 'input') return 'focus:border-red-700 focus:ring-red-700';
+					// if (type === 'checked') return 'peer-checked:border-2 peer-checked:border-red-700 peer-checked:border-red-700';
+					// if (type === 'toggles') return 'bg-red-700 after:bg-white peer-checked:bg-red-700';
+					// if (type === 'scrollbar') return 'scrollbar scrollbar-thumb-sky-700';
+
 					if (type === 'background') return 'bg-white';
-					if (type === 'text') return 'text-red-700';
-					// if (type === 'border') return 'border-black/10';
-					if (type === 'border') return 'border-black';
-					if (type === 'sliders') return 'bg-red-700';
-					if (type === 'icon') return '#047857';
-					if (type === 'input') return 'focus:border-red-700 focus:ring-red-700';
-					if (type === 'checked') return 'peer-checked:border-2 peer-checked:border-red-700 peer-checked:border-red-700';
-					if (type === 'toggles') return 'bg-red-700 after:bg-white peer-checked:bg-red-700';
+					if (type === 'text') return 'text-black';
+					if (type === 'border') return 'border-black/10';
+					if (type === 'sliders') return 'bg-black';
+					if (type === 'icon') return '#000000';
+					if (type === 'input') return 'focus:border-black focus:ring-black';
+					if (type === 'checked') return 'peer-checked:border-2 peer-checked:border-black peer-checked:border-black';
+					if (type === 'toggles') return 'bg-black after:bg-white peer-checked:bg-black';
+					if (type === 'scrollbar') return 'scrollbar scrollbar-thumb-sky-700';
+					if (type === 'hover') return 'hover:bg-black/5';
 				}
 
 				// Sepia theme
@@ -60,7 +71,8 @@
 					if (type === 'icon') return '#047857';
 					if (type === 'input') return 'focus:border-red-700 focus:ring-red-700';
 					if (type === 'checked') return 'peer-checked:border-red-700 peer-checked:border-red-700';
-					if (type === 'toggles') return 'bg-red-700';
+					if (type === 'toggles') return 'scrollbar scrollbar-thumb-sky-700';
+					if (type === 'scrollbar') return 'scrollbar scrollbar-thumb-sky-700';
 				}
 			}
 
@@ -97,13 +109,14 @@
 			}
 
 			// Apply the theme class to the document's root element
-			document.documentElement.classList = `theme-${currentTheme} ${window.websiteColors[currentTheme]}`;
+			document.documentElement.classList += `theme-${currentTheme} ${window.websiteColors[currentTheme]}`;
 		</script>
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<script>
 			document.body.classList.add(`${window.theme('text')}`);
+			// document.body.classList.add(`${window.theme('scrollbar')}`);
 		</script>
 
 		<div style="display: contents">%sveltekit.body%</div>

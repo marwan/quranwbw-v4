@@ -66,12 +66,12 @@
 
 <nav id="navbar" class={navbarClasses}>
 	<div id="top-nav" class={topNavClasses} aria-label="Home">
-		<a href="/" class="flex flex-row items-center p-3 cursor-pointer hover:bg-lightGrayyy rounded-3xl" aria-label="Home">
+		<a href="/" class="flex flex-row items-center p-3 cursor-pointer rounded-3xl {window.theme('hover')}" aria-label="Home">
 			<Home />
 			<span class="text-xs pl-2 hidden md:block">Home</span>
 		</a>
 
-		<button class="flex items-center p-3 text-sm {window.theme('border')} w-auto p-2 hover:bg-lightGrayyy rounded-3xl" on:click={() => __quranNavigationModalVisible.set(true)}>
+		<button class="flex items-center p-3 text-sm w-auto p-2 rounded-3xl {window.theme('border')} {window.theme('hover')}" on:click={() => __quranNavigationModalVisible.set(true)}>
 			<!-- display the chapter name on chapter page -->
 			{#if $__currentPage === 'chapter'}
 				{@html navbarChapterName}
@@ -100,7 +100,7 @@
 			{/if}
 		</button>
 
-		<button class="flex flex-row items-center p-3 cursor-pointer hover:bg-lightGrayyy rounded-3xl" type="button" aria-label="Menu" on:click={() => __siteNavigationModalVisible.set(true)}>
+		<button class="flex flex-row items-center p-3 cursor-pointer rounded-3xl {window.theme('hover')}" type="button" aria-label="Menu" on:click={() => __siteNavigationModalVisible.set(true)}>
 			<span class="text-xs pr-2 hidden md:block">Menu</span>
 			<Menu />
 		</button>

@@ -15,7 +15,7 @@
 
 	// CSS classes for chapter cards and tabs
 	const cardGridClasses = 'grid md:grid-cols-2 lg:grid-cols-3 gap-3';
-	const cardInnerClasses = `flex justify-between md:text-left border ${window.theme('border')} transition text-sm bg-grayyy-100 rounded-3xl p-5 hover:cursor-pointer hover:bg-lightGrayyy`;
+	const cardInnerClasses = `flex justify-between md:text-left transition text-sm rounded-3xl p-5 hover:cursor-pointer border ${window.theme('border')} ${window.theme('hover')}`;
 	const tabClasses = 'p-2 md:p-3 text-xs md:text-md cursor-pointer border-b-4 border-transparent';
 	const activeTabClasses = `!${window.theme('border')}`;
 
@@ -70,7 +70,7 @@
 					<button on:click={() => (activeTab = 1)} class="{tabClasses} {activeTab === 1 && activeTabClasses} flex flex-row space-x-2 items-center" type="button">
 						<!-- asc/dsc sort button -->
 						<div class="flex flex-row">
-							<button class="inline-flex p-2 rounded-full items-center border {window.theme('border')} {chapterSortIsAscending ? 'bg-grayyy-200' : 'bg-grayyy-300'}" on:click={() => sortChapters()}>
+							<button class="inline-flex p-2 rounded-full items-center border {window.theme('border')} {window.theme('hover')}" on:click={() => sortChapters()}>
 								<span class="opacityyy-70"><AscendingSort size={3} /></span>
 								<span class="sr-only">Sort</span>
 							</button>
