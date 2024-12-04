@@ -16,7 +16,7 @@
 		<link crossorigin="anonymous" rel="manifest" href="%sveltekit.assets%/manifest.json" />
 		<link crossorigin="anonymous" rel="icon" type="image/png" href="%sveltekit.assets%/images/favicon.png" />
 		<link crossorigin="anonymous" href="%sveltekit.assets%/images/apple-touch-icon.png" rel="apple-touch-icon" />
-		<link crossorigin="anonymous" rel="stylesheet" href="%sveltekit.assets%/css/global.css?version=24" />
+		<link crossorigin="anonymous" rel="stylesheet" href="%sveltekit.assets%/css/global.css?version=25" />
 
 		<!-- 
 		If the user's browser do not support Optional chaining (?.), redirect to old v3 website
@@ -58,6 +58,7 @@
 						if (type === 'background-black') return 'bg-black';
 						if (type === 'background-light') return 'bg-black/5';
 						if (type === 'text') return 'text-black';
+						if (type === 'link') return '';
 						if (type === 'border') return 'border-black/10';
 						if (type === 'icon') return '#000000';
 						if (type === 'input') return 'focus:border-black focus:ring-black';
@@ -74,6 +75,7 @@
 						if (type === 'background-black') return 'bg-[#c2c2c2]';
 						if (type === 'background-light') return 'bg-[#c2c2c2]/5';
 						if (type === 'text') return 'text-[#c2c2c2]';
+						if (type === 'link') return '';
 						if (type === 'border') return 'border-[#c2c2c2]/10';
 						if (type === 'icon') return '#c2c2c2';
 						if (type === 'input') return 'focus:border-[#c2c2c2] focus:ring-[#c2c2c2]';
@@ -90,6 +92,7 @@
 						if (type === 'background-black') return 'bg-[#dddddd]';
 						if (type === 'background-light') return 'bg-[#dddddd]/5';
 						if (type === 'text') return 'text-[#dddddd]';
+						if (type === 'link') return '';
 						if (type === 'border') return 'border-[#dddddd]/10';
 						if (type === 'icon') return '#dddddd';
 						if (type === 'input') return 'focus:border-[#dddddd] focus:ring-[#dddddd]';
@@ -106,6 +109,7 @@
 						if (type === 'background-black') return 'bg-[#dddddd]';
 						if (type === 'background-light') return 'bg-[#dddddd]/5';
 						if (type === 'text') return 'text-[#dddddd]';
+						if (type === 'link') return '';
 						if (type === 'border') return 'border-[#dddddd]/10';
 						if (type === 'icon') return '#dddddd';
 						if (type === 'input') return 'focus:border-[#dddddd] focus:ring-[#dddddd]';
@@ -122,6 +126,7 @@
 						if (type === 'background-black') return 'bg-[#553c0f]';
 						if (type === 'background-light') return 'bg-[#553c0f]/5';
 						if (type === 'text') return 'text-[#553c0f]';
+						if (type === 'link') return '';
 						if (type === 'border') return 'border-[#553c0f]/10';
 						if (type === 'icon') return '#553c0f';
 						if (type === 'input') return 'focus:border-[#553c0f] focus:ring-[#553c0f]';
@@ -138,13 +143,14 @@
 						if (type === 'background-black') return 'bg-[#b1901f]';
 						if (type === 'background-light') return 'bg-[#b1901f]/5';
 						if (type === 'text') return 'text-black';
+						if (type === 'link') return 'text-[#b1901f]';
 						if (type === 'border') return 'border-[#b1901f]/20';
 						if (type === 'icon') return '#b1901f';
 						if (type === 'input') return 'focus:border-[#b1901f] focus:ring-[#b1901f]';
 						if (type === 'checked') return 'peer-checked:border-2 peer-checked:border-[#b1901f] peer-checked:border-[#b1901f]';
 						if (type === 'toggles') return 'bg-[#b1901f]/5 after:bg-white peer-checked:bg-[#b1901f]';
 						if (type === 'scrollbar') return 'scrollbar scrollbar-thumb-sky-700';
-						if (type === 'hover') return 'hover:bg-black/5';
+						if (type === 'hover') return 'hover:bg-[#b1901f]/5';
 					}
 				} catch (error) {
 					// ...

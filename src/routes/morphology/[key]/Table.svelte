@@ -2,7 +2,7 @@
 	export let wordData, tableType;
 
 	import { __fontType } from '$utils/stores';
-	import { buttonClasses } from '$data/commonClasses';
+	import { buttonClasses, linkClasses } from '$data/commonClasses';
 	import { term } from '$utils/terminologies';
 
 	const tableTitles = {
@@ -48,8 +48,8 @@
 								<td class="px-6 py-4 arabic-font-{$__fontType} text-xl md:text-2xl"> {wordData[word - 1].arabic} </td>
 								<td class="px-6 py-4"> {wordData[word - 1].translation} </td>
 								<td class="px-6 py-4"> {wordData[word - 1].transliteration} </td>
-								<td class="px-6 py-4"> <a class="underline" href="/{wordData[word - 1].key.split(':')[0]}/{wordData[word - 1].key.split(':')[1]}">{wordData[word - 1].key.split(':')[0]}:{wordData[word - 1].key.split(':')[1]}</a> </td>
-								<td class="px-6 py-4"> <a class="underline" href="/morphology/{wordData[word - 1].key}">{wordData[word - 1].key}</a> </td>
+								<td class="px-6 py-4"> <a class={linkClasses} href="/{wordData[word - 1].key.split(':')[0]}/{wordData[word - 1].key.split(':')[1]}">{wordData[word - 1].key.split(':')[0]}:{wordData[word - 1].key.split(':')[1]}</a> </td>
+								<td class="px-6 py-4"> <a class={linkClasses} href="/morphology/{wordData[word - 1].key}">{wordData[word - 1].key}</a> </td>
 							</tr>
 						{/each}
 					</tbody>

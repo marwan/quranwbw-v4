@@ -7,6 +7,7 @@
 	import Banner from '$ui/FlowbiteSvelte/banner/Banner.svelte';
 	import { websiteTagline } from '$data/websiteSettings';
 	import { __currentPage, __lastRead, __newSiteChangelogModalVisible } from '$utils/stores';
+	import { linkClasses } from '$data/commonClasses';
 
 	__currentPage.set('home');
 </script>
@@ -37,7 +38,7 @@
 		</span>
 
 		<span class="text-xs md:text-sm">
-			Introducing QuranWBW v4.0. <button class="inline font-medium text-primary-600 underline underline-offset-2 decoration-600 decoration-solid hover:no-underline" on:click={() => __newSiteChangelogModalVisible.set(true)}> See What's New {@html '&#x2192;'}</button>
+			Introducing QuranWBW v4.0. <button class={linkClasses} on:click={() => __newSiteChangelogModalVisible.set(true)}> See What's New {@html '&#x2192;'}</button>
 		</span>
 	</p>
 </Banner>

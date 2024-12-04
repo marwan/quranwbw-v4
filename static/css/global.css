@@ -2730,6 +2730,11 @@ input[type="range"].range-lg::-moz-range-thumb {
   color: rgb(185 28 28 / var(--tw-text-opacity));
 }
 
+.text-\[\#b1901f\] {
+  --tw-text-opacity: 1;
+  color: rgb(177 144 31 / var(--tw-text-opacity));
+}
+
 .underline {
   text-decoration-line: underline;
 }
@@ -3413,6 +3418,10 @@ svg {
 .hover\:bg-lightGray:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(235 235 235 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-\[\#b1901f\]\/5:hover {
+  background-color: rgb(177 144 31 / 0.05);
 }
 
 .hover\:text-gray-900:hover {
