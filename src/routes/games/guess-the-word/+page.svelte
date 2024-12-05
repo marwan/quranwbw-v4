@@ -83,8 +83,8 @@
 					<p class="mb-5 text-sm">Guess the correct translation:</p>
 					<div class="grid gap-4 md:gap-6 w-full md:grid-cols-2">
 						{#each Object.entries(fetchData) as [key, value]}
-							<div class="rounded border {window.theme('border')} {selection === +key ? `${window.theme('border')}` : null} {answerChecked === true && selection !== +key ? disabledClasses : null}">
-								<Radio name="bordered" bind:group={selection} value={+key} class="w-full p-4 flex flex-row font-normal cursor-pointer">
+							<Radio name="bordered" bind:group={selection} value={+key} class={answerChecked === true && selection !== +key ? disabledClasses : null} custom>
+								<div class="inline-flex justify-between items-center p-5 w-full {window.theme('bgMain')} rounded-lg border {window.theme('border')} cursor-pointer {window.theme('checked')} {window.theme('hover')} {selection === +key ? `${window.theme('border')}` : null}">
 									<div class="flex flex-row mr-auto ml-2">{fetchData[key].word_english}</div>
 
 									<!-- check / cross icon -->
@@ -93,8 +93,8 @@
 											<svelte:component this={selection === randomWord ? Check : Cross} size={5} />
 										</div>
 									{/if}
-								</Radio>
-							</div>
+								</div>
+							</Radio>
 						{/each}
 					</div>
 				</div>
@@ -103,7 +103,7 @@
 				{#if answerChecked === true && isAnswerCorrect !== null}
 					<div id="answer-results" class="flex justify-center text-center font-medium text-md">
 						<span>
-							{isAnswerCorrect ? 'Your answer was correct.' : `Sorry, the correct answer was "${fetchData[randomWord].word_english}".`}
+							{isAnswerCorrect ? 'Your answer was correct 😀' : `Sorry, the correct answer was "${fetchData[randomWord].word_english}" 😟`}
 						</span>
 					</div>
 				{/if}
