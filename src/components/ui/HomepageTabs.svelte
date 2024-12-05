@@ -69,12 +69,12 @@
 		<div class="flex flex-row justify-center px-4">
 			<!-- main tabs -->
 			<div id="tab-buttons">
-				<div class="flex text-sm font-medium text-center opacityyy-70 justify-center space-x-1 md:space-x-4">
+				<div class="flex text-sm font-medium text-center justify-center space-x-1 md:space-x-4">
 					<button on:click={() => (activeTab = 1)} class="{activeTab === 1 ? tabActiveBorder : tabDefaultBorder} flex flex-row space-x-2 items-center" type="button">
 						<!-- asc/dsc sort button -->
 						<div class="flex flex-row">
 							<button class="inline-flex p-2 rounded-full items-center {window.theme('bgSecondaryMain')}" on:click={() => sortChapters()}>
-								<span class="opacityyy-70"><AscendingSort size={3} /></span>
+								<span><AscendingSort size={3} /></span>
 								<span class="sr-only">Sort</span>
 							</button>
 							<Tooltip arrow={false} type="light" placement="top" class="z-30 w-max hidden md:block font-normal">Sort Asc/Dsc</Tooltip>
@@ -150,22 +150,22 @@
 									<!-- chapter name and icon -->
 									<div class="flex flex-row items-center space-x-1 justify-center md:justify-start truncate">
 										<div>{id}. {quranMetaData[id].transliteration}</div>
-										<div class="opacityyy-50"><svelte:component this={quranMetaData[id].revelation === 1 ? Mecca : Madinah} /></div>
+										<div><svelte:component this={quranMetaData[id].revelation === 1 ? Mecca : Madinah} /></div>
 										<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-normal">{quranMetaData[id].revelation === 1 ? term('meccan') : term('medinan')} revelation</Tooltip>
 									</div>
 
 									<!-- chapter translation -->
-									<div class="block text-xs opacityyy-70 truncate">
+									<div class="block text-xs truncate opacity-70">
 										{quranMetaData[id].translation}
 									</div>
 
 									<!-- chapter verses -->
-									<div class="block text-xs opacityyy-70">
+									<div class="block text-xs opacity-70">
 										{quranMetaData[id].verses}
 										{term('verses')}
 									</div>
 								</div>
-								<div class="invisible chapter-icons justify-items-end opacityyy-70 text-5xl" style="color: {window.theme('icon')}">{@html `&#xE9${quranMetaData[id].icon};`}</div>
+								<div class="invisible chapter-icons justify-items-end text-5xl" style="color: {window.theme('icon')}">{@html `&#xE9${quranMetaData[id].icon};`}</div>
 							</div>
 						</a>
 					{/if}
@@ -180,12 +180,12 @@
 					{#each Object.entries(mostRead) as [id, item]}
 						<a href={item.url} class="!justify-start {cardInnerClasses} flex-col">
 							<span class="text-sm">{quranMetaData[item.chapter].transliteration} ({item.verses})</span>
-							<div class="block text-xs opacityyy-70">{item.title}</div>
+							<div class="block text-xs opacity-70">{item.title}</div>
 						</a>
 					{/each}
 				</div>
 
-				<div class="px-2 text-xs opacityyy-70">Suggestions listed here are based on the most frequently read chapters and verses by muslim audience, as well as virtues derived from Hadiths. While some Hadiths highlighting these virtues may be considered weak by some scholars, using them for beneficial knowledge is also a widely accepted opinion.</div>
+				<div class="px-2 text-xs">Suggestions listed here are based on the most frequently read chapters and verses by muslim audience, as well as virtues derived from Hadiths. While some Hadiths highlighting these virtues may be considered weak by some scholars, using them for beneficial knowledge is also a widely accepted opinion.</div>
 			</div>
 		</div>
 
@@ -193,7 +193,7 @@
 		<div class="bookmarks-tab-panels space-y-12 {activeTab === 3 ? 'block' : 'hidden'}" id="bookmarks-tab-panel" role="tabpanel" aria-labelledby="bookmarks-tab">
 			<div id="bookmark-cards" class="flex flex-col space-y-4">
 				{#if totalBookmarks === 0}
-					<div class="flex items-center justify-center text-sm opacityyy-70">You currently do not have any bookmarks.</div>
+					<div class="flex items-center justify-center text-sm">You currently do not have any bookmarks.</div>
 				{:else}
 					<div class="{cardGridClasses} grid-cols-1">
 						{#each $__userBookmarks as bookmark}
@@ -202,7 +202,7 @@
 									<div class="text-sm">{quranMetaData[bookmark.split(':')[0]].transliteration} ({bookmark})</div>
 
 									{#if activeTab === 3 && totalBookmarks !== 0}
-										<div class="text-sm opacityyy-70 truncate direction-rtl text-right arabic-font-1">
+										<div class="text-sm truncate direction-rtl text-right arabic-font-1 opacity-70">
 											{#await fetchData then data}
 												{data[bookmark].words.arabic.split(splitDelimiter).join(' ')}
 											{:catch error}
@@ -225,13 +225,13 @@
 		<div class="notes-tab-panels space-y-12 {activeTab === 4 ? 'block' : 'hidden'}" id="notes-tab-panel" role="tabpanel" aria-labelledby="notes-tab">
 			<div id="notes-cards" class="flex flex-col space-y-4">
 				{#if totalNotes === 0}
-					<div class="flex items-center justify-center text-sm opacityyy-70">You currently do not have any saved notes.</div>
+					<div class="flex items-center justify-center text-sm">You currently do not have any saved notes.</div>
 				{:else}
 					<div class="{cardGridClasses} grid-cols-1">
 						{#each Object.entries($__userNotes) as [verse, note]}
 							<a href="{verse.split(':')[0]}/{verse.split(':')[1]}" class="!justify-start {cardInnerClasses} w-full flex-col">
 								<div class="text-sm">{quranMetaData[verse.split(':')[0]].transliteration} ({verse})</div>
-								<span class="text-xs opacityyy-70 truncate">{note.note}</span>
+								<span class="text-xs truncate opacity-70">{note.note}</span>
 							</a>
 						{/each}
 					</div>

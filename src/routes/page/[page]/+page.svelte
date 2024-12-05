@@ -143,7 +143,7 @@
 			<div class="max-w-3xl md:max-w-[40rem] mx-auto justify-center text-sm">
 				<div class="flex items-center">
 					<div class="flex-1 border-t-2 {window.theme('border')}"></div>
-					<span class="px-3 opacityyy-70">{page}</span>
+					<span class="px-3">{page}</span>
 					<div class="flex-1 border-t-2 {window.theme('border')}"></div>
 				</div>
 			</div>

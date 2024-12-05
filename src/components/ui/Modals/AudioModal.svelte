@@ -99,7 +99,7 @@
 			</div>
 
 			{#if $__audioSettings.audioType === 'word'}
-				<span class="flex flex-col space-y-3 text-sm pt-2 opacityyy-70">
+				<span class="flex flex-col space-y-3 text-sm pt-2">
 					<span>This feature allows you to hear each word in the {term('verse')} individually. To listen to specific words, simply click on them. Please note, this option plays the words sequentially without accounting for the connecting silent letters between them. For a seamless and accurate recitation, it is recommended to play the entire {term('verse')}.</span>
 				</span>
 			{/if}

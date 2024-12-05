@@ -41,7 +41,7 @@
 								<div><a href={value.html_url} target="_blank">{value.commit.message}</a></div>
 								<div>
 									<img class={userAvatarClasses} src={value.author.avatar_url} alt={value.author.login} />
-									<span class="opacityyy-70">{value.author.login} commited {timeAgo(value.commit.committer.date)} <span class="hidden md:inline-block">({value.sha.substring(0, 7)})</span></span>
+									<span>{value.author.login} commited {timeAgo(value.commit.committer.date)} <span class="hidden md:inline-block">({value.sha.substring(0, 7)})</span></span>
 								</div>
 							</div>
 						</div>

@@ -16,13 +16,13 @@
 </script>
 
 {#if $__currentPage === 'home'}
-	<button class="opacityyy-70 inline-flex flex-col items-center rounded-s-full justify-center px-5 group {window.theme('hover')}" on:click={() => __quranNavigationModalVisible.set(true)}>
+	<button class="inline-flex flex-col items-center rounded-s-full justify-center px-5 group {window.theme('hover')}" on:click={() => __quranNavigationModalVisible.set(true)}>
 		<Search2Bold size={4} />
 		<span class="sr-only">Search</span>
 	</button>
 	<Tooltip arrow={false} type="light" class="hidden md:block font-normal">Search</Tooltip>
 
-	<a href={`/${term('supplications').toLowerCase()}`} class="opacityyy-70 inline-flex flex-col items-center justify-center px-5 group {window.theme('hover')}">
+	<a href={`/${term('supplications').toLowerCase()}`} class="inline-flex flex-col items-center justify-center px-5 group {window.theme('hover')}">
 		<SupplicationBold size={4} />
 		<span class="sr-only">Supplication</span>
 	</a>
@@ -30,19 +30,19 @@
 
 	<div class="flex items-center justify-center">
 		<a href={$__lastRead.hasOwnProperty('mushaf') ? `/page/${$__lastRead.page}` : '/page/1'} class="inline-flex flex-col items-center justify-center w-12 h-12 rounded-full group {window.theme('input')} {window.theme('bgSecondaryMain')}">
-			<span class="opacityyy-70"><BookBold size={5} /></span>
+			<span><BookBold size={5} /></span>
 			<span class="sr-only">Mushaf</span>
 		</a>
 	</div>
 	<Tooltip arrow={false} type="light" class="hidden md:block font-normal">Mushaf</Tooltip>
 
-	<a href="/morphology/1:1" class="opacityyy-70 inline-flex flex-col items-center justify-center px-5 group {window.theme('hover')}">
+	<a href="/morphology/1:1" class="inline-flex flex-col items-center justify-center px-5 group {window.theme('hover')}">
 		<MorphologyBold size={4} />
 		<span class="sr-only">Morphology</span>
 	</a>
 	<Tooltip arrow={false} type="light" class="hidden md:block font-normal">Morphology</Tooltip>
 
-	<button class="opacityyy-70 inline-flex flex-col items-center rounded-e-full justify-center px-5 group {window.theme('hover')}" on:click={() => __siteNavigationModalVisible.set(true)}>
+	<button class="inline-flex flex-col items-center rounded-e-full justify-center px-5 group {window.theme('hover')}" on:click={() => __siteNavigationModalVisible.set(true)}>
 		<MenuBold size={4} />
 		<span class="sr-only">Menu</span>
 	</button>

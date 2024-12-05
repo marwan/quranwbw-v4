@@ -20,7 +20,7 @@
 			<div><Quran size={50} /></div>
 			<div class="flex flex-col">
 				<Logo />
-				<div class="text-xs text-center opacityyy-70">Word By Word & Morphology</div>
+				<div class="text-xs text-center">Word By Word & Morphology</div>
 			</div>
 		</a>
 	</div>
@@ -33,7 +33,7 @@
 <Banner id="newSiteBanner" position="absolute" divClass="z-10 flex justify-between p-4">
 	<p class="flex items-center text-sm font-normal space-x-1 truncate">
 		<span class="inline-flex p-2 rounded-full border {window.theme('border')}">
-			<span class="opacityyy-70"><Megaphone size={3} /></span>
+			<span><Megaphone size={3} /></span>
 			<span class="sr-only">Announcement</span>
 		</span>
 

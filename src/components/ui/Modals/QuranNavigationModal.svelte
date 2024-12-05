@@ -106,14 +106,14 @@
 					<form on:submit|preventDefault={() => (searchedKey = document.getElementById('searchKey').value)} class="flex flex-row w-full">
 						<Input id="searchKey" type="text" bind:value={searchedKey} autocomplete="off" {placeholder} size="md" class="bg-transparent rounded-3xl !text-center pl-10 px-8">
 							<Search slot="left" size={7} classes="pl-2 pt-1 {searchedKey.length > 0 && 'hidden'}" />
-							<CloseButton slot="right" on:click={() => (searchedKey = '')} class="pr-2 opacityyy-50 {searchedKey.length === 0 && 'hidden'}" />
+							<CloseButton slot="right" on:click={() => (searchedKey = '')} class="pr-2 {searchedKey.length === 0 && 'hidden'}" />
 						</Input>
 					</form>
 				</div>
 
 				<!-- instructions -->
 				{#if searchedKey.length === 0}
-					<div class="text-xs opacityyy-70 pt-2 {$__currentPage === 'home' && 'pb-4'}">
+					<div class="text-xs pt-2 opacity-70 {$__currentPage === 'home' && 'pb-4'}">
 						To navigate, enter either a {term('chapter').toLowerCase()}, page, or {term('juz')} number. Alternatively, you can use an {term('verse').toLowerCase()} or word key, separated by a colon, period, dash, or a space (e.g., 2:255, 2.286, 18-10, or 2 1 1).
 					</div>
 				{/if}

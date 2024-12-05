@@ -115,13 +115,13 @@
 			</div>
 
 			<!-- close footnote button -->
-			<button on:click={() => hideFootnote(value.meta.chapter, value.meta.verse, verseTranslationID)} class="opacityyy-70" title="Close footnote"><CrossSolid size={6} /></button>
+			<button on:click={() => hideFootnote(value.meta.chapter, value.meta.verse, verseTranslationID)} title="Close footnote"><CrossSolid size={6} /></button>
 		</div>
 		<div class="text {isTranslationRTL(verseTranslation.resource_id) && 'direction-rtl'} {isTranslationUrduOrPersian(verseTranslation.resource_id) && 'font-Urdu'}">...</div>
 	</div>
 
 	<!-- show translaton author name only if more than 1 was selected -->
 	{#if $__verseTranslations.length > 1}
-		<span class="opacityyy-70 {isTranslationRTL(verseTranslation.resource_id) && 'direction-rtl'}">&mdash; {selectableVerseTranslations[verseTranslation.resource_id].resource_name}</span>
+		<span class="opacity-70 {isTranslationRTL(verseTranslation.resource_id) && 'direction-rtl'}">&mdash; {selectableVerseTranslations[verseTranslation.resource_id].resource_name}</span>
 	{/if}
 </div>

@@ -79,9 +79,9 @@
 		<div class="flex flex-row space-x-2">
 			<a href={$__currentPage === 'chapter' ? `#${key}` : `/${chapter}/${verse}`} class={verseKeyClasses} data-html2canvas-ignore>
 				{#if $__currentPage === 'chapter'}
-					<div class="opacityyy-70 text-xs">{key}</div>
+					<div class="text-xs">{key}</div>
 				{:else}
-					<div class="opacityyy-70 text-xs">{quranMetaData[chapter].transliteration}, {key}</div>
+					<div class="text-xs">{quranMetaData[chapter].transliteration}, {key}</div>
 				{/if}
 			</a>
 			<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-normal">{term('verse')} {key}</Tooltip>
@@ -91,7 +91,7 @@
 		<div class="flex flex-row space-x-2">
 			<!-- play verse button -->
 			<button on:click={() => audioHandler(key)} class={buttonClasses} aria-label="Play">
-				<div class="opacityyy-70">
+				<div>
 					<svelte:component this={$__audioSettings.isPlaying && $__audioSettings.playingKey === key ? Pause : Play} size={3.5} />
 				</div>
 			</button>
@@ -107,7 +107,7 @@
 					class={buttonClasses}
 					aria-label="Note"
 				>
-					<div class="opacityyy-70">
+					<div>
 						<Notes size={5} />
 					</div>
 				</button>
@@ -117,7 +117,7 @@
 			<!-- bookmark/unbookmark button -->
 			{#if userBookmarks.includes(key)}
 				<button on:click={() => updateSettings({ type: 'userBookmarks', key, set: true })} class={buttonClasses} aria-label="Bookmark">
-					<div class="opacityyy-70">
+					<div>
 						<svelte:component this={userBookmarks.includes(key) ? Bookmarked : Bookmark} size={3.5} />
 					</div>
 				</button>
@@ -126,7 +126,7 @@
 
 			<!-- verses option dropdown -->
 			<button id="verse-options-{verse}" class={buttonClasses} aria-label="Options" on:click={() => __verseKey.set(key)}>
-				<div class="opacityyy-70">
+				<div>
 					<DotsHorizontal size={6} />
 				</div>
 			</button>
@@ -139,7 +139,7 @@
 	{#if $__displayType === 7}
 		<div class="flex flex-row">
 			<button class={buttonClasses} aria-label="Toggle Words" on:click={() => wordsBlockToggler(verse)}>
-				<div class="opacityyy-70">
+				<div>
 					<EyeOutline />
 				</div>
 			</button>

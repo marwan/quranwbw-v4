@@ -111,7 +111,7 @@
 		{/await}
 	</div>
 
-	<div id="word-summary" class="text-center opacityyy-70 mx-auto md:w-3/4 text-sm pb-6 border-b-2 {window.theme('border')} md:text-lg">
+	<div id="word-summary" class="text-center mx-auto md:w-3/4 text-sm pb-6 border-b-2 {window.theme('border')} md:text-lg">
 		{#await fetchWordSummary}
 			<span>...</span>
 		{:then fetchWordSummary}
@@ -150,7 +150,7 @@
 							</div>
 						</div>
 					{:else}
-						<div class="text-center my-8 text-sm opacityyy-70">Root data for this word is not available.</div>
+						<div class="text-center my-8 text-sm">Root data for this word is not available.</div>
 					{/if}
 				</div>
 			{/if}
