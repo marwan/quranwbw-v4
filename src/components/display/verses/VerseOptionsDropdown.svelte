@@ -13,23 +13,6 @@
 	const dropdownItemClasses = `font-normal rounded-3xl ${window.theme('hover')}`;
 	let dropdownOpen = false;
 
-	// We need to manually add and/or remove z-index from the verse options dropdown because it becomes transparent due to our themes which we achieve via CSS filters
-	// We remove z-index from all button blocks, and add it to the button block of the verse for which the dropdown was opened
-	$: updateZIndex($__verseKey);
-
-	function updateZIndex(verseKey) {
-		try {
-			if (dropdownOpen) {
-				document.querySelectorAll('.verseButtons').forEach((element) => {
-					element.classList.remove('z-10');
-				});
-				document.getElementById(verseKey).firstChild.classList.add('z-10');
-			}
-		} catch (error) {
-			// console.error('Error updating z-index:', error);
-		}
-	}
-
 	// Update userBookmarks whenever the __userSettings changes
 	$: userBookmarks = JSON.parse($__userSettings).userBookmarks;
 

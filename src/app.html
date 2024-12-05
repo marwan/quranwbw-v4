@@ -54,8 +54,9 @@
 					const currentTheme = +JSON.parse(localStorage.getItem('userSettings')).displaySettings.websiteTheme;
 
 					// White theme (light)
+					// primary: white
+					// secondary: #000000
 					if (currentTheme === 1) {
-						// colors used: white, black (and its different variations)
 						if (type === 'background') return window.websiteColors[currentTheme];
 						if (type === 'background-black') return 'bg-black';
 						if (type === 'background-light') return 'bg-black/5';
@@ -67,11 +68,13 @@
 						if (type === 'checked') return 'peer-checked:border-2 peer-checked:border-black peer-checked:border-black';
 						if (type === 'toggles') return 'bg-black/5 after:bg-white peer-checked:bg-black';
 						if (type === 'hover') return 'hover:bg-black/5';
+						if (type === 'via') return 'via-[#000000]'; // for homepage tab divider
 					}
 
 					// Blue theme (dark)
+					// primary: #02021b
+					// secondary: #c2c2c2
 					else if (currentTheme === 2) {
-						// colors used: #02021b, #c2c2c2 (and its different variations)
 						if (type === 'background') return window.websiteColors[currentTheme];
 						if (type === 'background-black') return 'bg-[#c2c2c2]';
 						if (type === 'background-light') return 'bg-[#c2c2c2]/5';
@@ -83,11 +86,13 @@
 						if (type === 'checked') return 'peer-checked:border-2 peer-checked:border-[#c2c2c2] peer-checked:border-[#c2c2c2]';
 						if (type === 'toggles') return 'bg-[#c2c2c2]/5 after:bg-white peer-checked:bg-[#c2c2c2]';
 						if (type === 'hover') return 'hover:bg-[#c2c2c2]/5';
+						if (type === 'via') return 'via-[#c2c2c2]'; // for homepage tab divider
 					}
 
 					// Green theme (dark)
+					// primary: #001617
+					// secondary: #dddddd
 					else if (currentTheme === 3) {
-						// colors used: #001617, #dddddd (and its different variations)
 						if (type === 'background') return window.websiteColors[currentTheme];
 						if (type === 'background-black') return 'bg-[#dddddd]';
 						if (type === 'background-light') return 'bg-[#dddddd]/5';
@@ -99,11 +104,13 @@
 						if (type === 'checked') return 'peer-checked:border-2 peer-checked:border-[#dddddd] peer-checked:border-[#dddddd]';
 						if (type === 'toggles') return 'bg-[#dddddd]/5 after:bg-white peer-checked:bg-[#dddddd]';
 						if (type === 'hover') return 'hover:bg-[#dddddd]/5';
+						if (type === 'via') return 'via-[#dddddd]'; // for homepage tab divider
 					}
 
 					// Black (OLED) theme (dark)
+					// primary: black
+					// secondary: #dddddd
 					else if (currentTheme === 4) {
-						// colors used: black, #dddddd (and its different variations)
 						if (type === 'background') return window.websiteColors[currentTheme];
 						if (type === 'background-black') return 'bg-[#dddddd]';
 						if (type === 'background-light') return 'bg-[#dddddd]/5';
@@ -115,11 +122,13 @@
 						if (type === 'checked') return 'peer-checked:border-2 peer-checked:border-[#dddddd] peer-checked:border-[#dddddd]';
 						if (type === 'toggles') return 'bg-[#dddddd]/5 after:bg-white peer-checked:bg-[#dddddd]';
 						if (type === 'hover') return 'hover:bg-[#dddddd]/5';
+						if (type === 'via') return 'via-[#dddddd]'; // for homepage tab divider
 					}
 
 					// Sepia theme (Sepia)
+					// primary: #e9e3d7
+					// secondary: #553c0f
 					else if (currentTheme === 5) {
-						// colors used: #e4d6bd, #553c0f (and its different variations)
 						if (type === 'background') return window.websiteColors[currentTheme];
 						if (type === 'background-black') return 'bg-[#553c0f]';
 						if (type === 'background-light') return 'bg-[#553c0f]/5';
@@ -131,11 +140,13 @@
 						if (type === 'checked') return 'peer-checked:border-2 peer-checked:border-[#553c0f] peer-checked:border-[#553c0f]';
 						if (type === 'toggles') return 'bg-[#553c0f]/5 after:bg-white peer-checked:bg-[#553c0f]';
 						if (type === 'hover') return 'hover:bg-[#553c0f]/5';
+						if (type === 'via') return 'via-[#553c0f]'; // for homepage tab divider
 					}
 
 					// Gold theme (light)
+					// primary: white
+					// secondary: #b1901f
 					else if (currentTheme === 6) {
-						// colors used: white, #b1901f (and its different variations)
 						if (type === 'background') return window.websiteColors[currentTheme];
 						if (type === 'background-black') return 'bg-[#b1901f]';
 						if (type === 'background-light') return 'bg-[#b1901f]/5';
@@ -147,11 +158,13 @@
 						if (type === 'checked') return 'peer-checked:border-2 peer-checked:border-[#b1901f] peer-checked:border-[#b1901f]';
 						if (type === 'toggles') return 'bg-[#b1901f]/5 after:bg-white peer-checked:bg-[#b1901f]';
 						if (type === 'hover') return 'hover:bg-[#b1901f]/5';
+						if (type === 'via') return 'via-[#b1901f]'; // for homepage tab divider
 					}
 
 					// Coffee theme (dark)
+					// primary: #20161f
+					// secondary: #c59f60
 					else if (currentTheme === 7) {
-						// colors used: #20161f, black (and its different variations)
 						if (type === 'background') return window.websiteColors[currentTheme];
 						if (type === 'background-black') return 'bg-[#c59f60]';
 						if (type === 'background-light') return 'bg-[#c59f60]/5';
@@ -163,11 +176,13 @@
 						if (type === 'checked') return 'peer-checked:border-2 peer-checked:border-[#c59f60] peer-checked:border-[#c59f60]';
 						if (type === 'toggles') return 'bg-[#c59f60]/5 after:bg-white peer-checked:bg-[#c59f60]';
 						if (type === 'hover') return 'hover:bg-[#c59f60]/5';
+						if (type === 'via') return 'via-[#c59f60]'; // for homepage tab divider
 					}
 
 					// Silver theme (light)
+					// primary: #e1e1e1
+					// secondary: #000000
 					else if (currentTheme === 8) {
-						// colors used: #d5d5d7, black (and its different variations)
 						if (type === 'background') return window.websiteColors[currentTheme];
 						if (type === 'background-black') return 'bg-black';
 						if (type === 'background-light') return 'bg-black/5';
@@ -179,6 +194,7 @@
 						if (type === 'checked') return 'peer-checked:border-2 peer-checked:border-black peer-checked:border-black';
 						if (type === 'toggles') return 'bg-black/5 after:bg-white peer-checked:bg-black';
 						if (type === 'hover') return 'hover:bg-black/5';
+						if (type === 'via') return 'via-[#000000]'; // for homepage tab divider
 					}
 				} catch (error) {
 					// ...

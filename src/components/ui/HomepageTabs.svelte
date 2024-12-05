@@ -95,7 +95,7 @@
 		</div>
 	</div>
 
-	<div class="hidden md:block border-b {window.theme('border')} -mt-4 px-4 mx-auto"></div>
+	<div class="hidden md:block h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent to-transparent opacity-20 -mt-4 mx-auto {window.theme('via')}"></div>
 
 	<div id="content-tab" class="my-6 px-">
 		<!-- chapters tab -->

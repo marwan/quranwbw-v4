@@ -2130,6 +2130,10 @@ input[type="range"].range-lg::-moz-range-thumb {
   border-top-width: 1px;
 }
 
+.border-t-0 {
+  border-top-width: 0px;
+}
+
 .border-t-2 {
   border-top-width: 2px;
 }
@@ -2282,6 +2286,50 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .bg-opacity-75 {
   --tw-bg-opacity: 0.75;
+}
+
+.bg-gradient-to-r {
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+}
+
+.from-transparent {
+  --tw-gradient-from: transparent var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(0 0 0 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.via-\[\#000000\] {
+  --tw-gradient-to: rgb(0 0 0 / 0)  var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), #000000 var(--tw-gradient-via-position), var(--tw-gradient-to);
+}
+
+.via-\[\#553c0f\] {
+  --tw-gradient-to: rgb(85 60 15 / 0)  var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), #553c0f var(--tw-gradient-via-position), var(--tw-gradient-to);
+}
+
+.via-\[\#b1901f\] {
+  --tw-gradient-to: rgb(177 144 31 / 0)  var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), #b1901f var(--tw-gradient-via-position), var(--tw-gradient-to);
+}
+
+.via-\[\#c2c2c2\] {
+  --tw-gradient-to: rgb(194 194 194 / 0)  var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), #c2c2c2 var(--tw-gradient-via-position), var(--tw-gradient-to);
+}
+
+.via-\[\#c59f60\] {
+  --tw-gradient-to: rgb(197 159 96 / 0)  var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), #c59f60 var(--tw-gradient-via-position), var(--tw-gradient-to);
+}
+
+.via-\[\#dddddd\] {
+  --tw-gradient-to: rgb(221 221 221 / 0)  var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), #dddddd var(--tw-gradient-via-position), var(--tw-gradient-to);
+}
+
+.to-transparent {
+  --tw-gradient-to: transparent var(--tw-gradient-to-position);
 }
 
 .\!p-0 {
@@ -2773,6 +2821,10 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .opacity-100 {
   opacity: 1;
+}
+
+.opacity-20 {
+  opacity: 0.2;
 }
 
 .opacity-30 {
