@@ -145,11 +145,21 @@
 					<div class="flex flex-row space-x-4">
 						<div class="flex flex-row space-x-2">
 							<span class="m-auto text-sm mr-2">From {term('verse')}</span>
-							<input type="number" min="1" max={quranMetaData[$__chapterNumber].verses} bind:value={$__audioSettings.startVerse} id="startVerse" on:change={updateAudioSettings} aria-describedby="helper-text-explanation" class="bg-transparent w-16 text-xs rounded-3xl border {window.theme('border')} {window.theme('input')} block p-2.5 mb-0" placeholder="start" />
+							<input type="number" min="1" max={quranMetaData[$__chapterNumber].verses} bind:value={$__audioSettings.startVerse} id="startVerse" on:change={updateAudioSettings} aria-describedby="helper-text-explanation" class="bg-transparent w-16 text-xs rounded-3xl border {window.theme('border')} {window.theme('input')} {window.theme('placeholder')} block p-2.5 mb-0" placeholder="start" />
 						</div>
 						<div class="flex flex-row space-x-2">
 							<span class="m-auto text-sm mr-2">Till {term('verse')}</span>
-							<input type="number" min={$__audioSettings.startVerse} max={quranMetaData[$__chapterNumber].verses} bind:value={quranMetaData[$__chapterNumber].verses} id="endVerse" on:change={updateAudioSettings} aria-describedby="helper-text-explanation" class="bg-transparent w-16 text-xs rounded-3xl border {window.theme('border')} {window.theme('input')} block p-2.5 mb-0" placeholder="end" />
+							<input
+								type="number"
+								min={$__audioSettings.startVerse}
+								max={quranMetaData[$__chapterNumber].verses}
+								bind:value={quranMetaData[$__chapterNumber].verses}
+								id="endVerse"
+								on:change={updateAudioSettings}
+								aria-describedby="helper-text-explanation"
+								class="bg-transparent w-16 text-xs rounded-3xl border {window.theme('border')} {window.theme('input')} {window.theme('placeholder')} {window.theme('placeholder')} block p-2.5 mb-0"
+								placeholder="end"
+							/>
 						</div>
 					</div>
 				</div>

@@ -203,7 +203,7 @@
 	<!-- I already have a token -->
 	{#if tokenTab === 1 && $__userToken === null}
 		<div id="already-have-a-token" class="flex flex-row justify-center">
-			<input id="token-value" type="text" class="rounded-l-full rounded-r-none w-full text-center text-xs" placeholder="Your token here..." />
+			<input id="token-value" type="text" class="rounded-l-full rounded-r-none w-full text-center text-xs {window.theme('placeholder')}" placeholder="Your token here..." />
 			<button id="validate-token" on:click={() => validateToken()} class="w-full {buttonClasses} rounded-l-none border-0 {tokenValidationInProcess === true && disabledClasses}">
 				<span>{!tokenValidationInProcess ? 'Validate Token' : 'Validating token...'}</span>
 			</button>

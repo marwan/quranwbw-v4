@@ -3256,6 +3256,54 @@ svg {
   color: rgb(0, 255, 0);
 }
 
+.placeholder\:text-\[\#553c0f\]\/50::-moz-placeholder {
+  color: rgb(85 60 15 / 0.5);
+}
+
+.placeholder\:text-\[\#553c0f\]\/50::placeholder {
+  color: rgb(85 60 15 / 0.5);
+}
+
+.placeholder\:text-\[\#b1901f\]\/50::-moz-placeholder {
+  color: rgb(177 144 31 / 0.5);
+}
+
+.placeholder\:text-\[\#b1901f\]\/50::placeholder {
+  color: rgb(177 144 31 / 0.5);
+}
+
+.placeholder\:text-\[\#c2c2c2\]\/50::-moz-placeholder {
+  color: rgb(194 194 194 / 0.5);
+}
+
+.placeholder\:text-\[\#c2c2c2\]\/50::placeholder {
+  color: rgb(194 194 194 / 0.5);
+}
+
+.placeholder\:text-\[\#c59f60\]\/50::-moz-placeholder {
+  color: rgb(197 159 96 / 0.5);
+}
+
+.placeholder\:text-\[\#c59f60\]\/50::placeholder {
+  color: rgb(197 159 96 / 0.5);
+}
+
+.placeholder\:text-\[\#dddddd\]\/50::-moz-placeholder {
+  color: rgb(221 221 221 / 0.5);
+}
+
+.placeholder\:text-\[\#dddddd\]\/50::placeholder {
+  color: rgb(221 221 221 / 0.5);
+}
+
+.placeholder\:text-black\/50::-moz-placeholder {
+  color: rgb(0 0 0 / 0.5);
+}
+
+.placeholder\:text-black\/50::placeholder {
+  color: rgb(0 0 0 / 0.5);
+}
+
 .after\:absolute::after {
   content: var(--tw-content);
   position: absolute;
