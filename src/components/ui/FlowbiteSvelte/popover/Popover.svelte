@@ -4,11 +4,11 @@
 	export let defaultClass = 'py-2 px-3';
 </script>
 
-<Popper activeContent border shadow rounded {...$$restProps} class="dark:!${window.theme('border')} {$$props.class}" on:show>
+<Popper activeContent border shadow rounded {...$$restProps} class={$$props.class} on:show>
 	{#if $$slots.title || title}
-		<div class="py-2 px-3 bg-grayyy-100 rounded-t-md border-b {window.theme('border')} dark:{window.theme('border')} dark:bg-grayyy-700">
+		<div class="py-2 px-3 bg-grayyy-100 rounded-t-md border-b {window.theme('border')}">
 			<slot name="title">
-				<h3 class="font-semibold dark:text-white">{title}</h3>
+				<h3 class="font-semibold">{title}</h3>
 			</slot>
 		</div>
 	{/if}

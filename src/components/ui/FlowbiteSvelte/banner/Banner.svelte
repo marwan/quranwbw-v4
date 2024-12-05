@@ -45,6 +45,6 @@
 @prop export let position: 'static' | 'fixed' | 'absolute' | 'relative' | 'sticky' = 'sticky';
 @prop export let dismissable: boolean = true;
 @prop export let bannerType: 'default' | 'bottom' | 'cta' | 'signup' | 'info' = 'default';
-@prop export let divClass: string = 'z-10 flex justify-between p-4 dark:bg-grayyy-700 dark:${window.theme('border')}';
+@prop export let divClass: string = 'z-10 flex justify-between p-4';
 @prop export let innerClass: string = 'flex';
 -->

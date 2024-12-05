@@ -131,7 +131,7 @@
 				{#if $$slots.header || title}
 					<Frame class={headerCls} {color}>
 						<slot name="header">
-							<h3 class="text-xl font-semibold {color === 'default' ? '' : 'dark:text-white'} p-0">
+							<h3 class="text-xl font-semibold p-0">
 								{title}
 							</h3>
 						</slot>
@@ -168,7 +168,7 @@
 @prop export let autoclose: boolean = false;
 @prop export let outsideclose: boolean = false;
 @prop export let dismissable: boolean = true;
-@prop export let backdropClass: string = 'fixed inset-0 z-40 bg-grayyy-900 bg-opacity-50 dark:bg-opacity-80';
+@prop export let backdropClass: string = 'fixed inset-0 z-40 bg-grayyy-900 bg-opacity-50';
 @prop export let classBackdrop: string | undefined = undefined;
 @prop export let dialogClass: string = 'fixed top-0 start-0 end-0 h-modal md:inset-0 md:h-full z-50 w-full p-4 flex';
 @prop export let classDialog: string | undefined = undefined;

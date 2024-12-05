@@ -15,7 +15,6 @@
 	import Drawer from '$ui/FlowbiteSvelte/drawer/Drawer.svelte';
 	import Range from '$ui/FlowbiteSvelte/forms/Range.svelte';
 	import CloseButton from '$ui/FlowbiteSvelte/utils/CloseButton.svelte';
-	import Button from '$ui/FlowbiteSvelte/buttons/Button.svelte';
 
 	import {
 		__currentPage,
@@ -82,7 +81,7 @@
 
 	// CSS classes
 	const settingsBlockClasses = 'space-y-2 py-6';
-	const selectorClasses = `w-32 border ${window.theme('border')} text-left rounded-3xl ${window.theme('input')} focus-within:ring-2 block p-2.5 truncate font-normal`;
+	const selectorClasses = `w-32 border ${window.theme('border')} text-left rounded-3xl ${window.theme('input')} focus-within:ring-2 block p-2.5 truncate text-sm`;
 	const settingsDescriptionClasses = 'mb-6 text-xs opacity-70';
 	const toggleBtnClasses = `relative w-14 h-7 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full after:content-[""] after:absolute after:top-0.5 after:start-[4px] after:border after:rounded-full after:h-6 after:w-6 after:transition-all ${window.theme('toggles')}`;
 
@@ -204,7 +203,7 @@
 					<div id="website-theme-setting" class={settingsBlockClasses}>
 						<div class="flex flex-row justify-between items-center">
 							<div class="block">Theme</div>
-							<Button class={selectorClasses} on:click={() => gotoIndividualSetting('website-theme')}>{selectableThemes[$__websiteTheme].name}</Button>
+							<button class={selectorClasses} on:click={() => gotoIndividualSetting('website-theme')}>{selectableThemes[$__websiteTheme].name}</button>
 						</div>
 						<p class={settingsDescriptionClasses}>An assortment of website themes to please your vision.</p>
 					</div>
@@ -215,7 +214,7 @@
 					<div id="display-type-setting" class="{settingsBlockClasses} {!['chapter', 'mushaf', 'supplications', 'bookmarks', 'morphology', 'search'].includes($__currentPage) && disabledClasses}">
 						<div class="flex flex-row justify-between items-center">
 							<div class="block">Display Type</div>
-							<Button class={selectorClasses} on:click={() => gotoIndividualSetting('display-type')}>{selectableDisplays[$__selectedDisplayId].displayName}</Button>
+							<button class={selectorClasses} on:click={() => gotoIndividualSetting('display-type')}>{selectableDisplays[$__selectedDisplayId].displayName}</button>
 						</div>
 						<p class={settingsDescriptionClasses}>Different {term('verse')} layouts that you can choose from.</p>
 					</div>
@@ -226,7 +225,7 @@
 					<div id="word-tooltip-setting" class={settingsBlockClasses}>
 						<div class="flex flex-row justify-between items-center">
 							<div class="block">Word Tooltip</div>
-							<Button class={selectorClasses} on:click={() => gotoIndividualSetting('word-tooltip')}>{selectableTooltipOptions[$__wordTooltip].name}</Button>
+							<button class={selectorClasses} on:click={() => gotoIndividualSetting('word-tooltip')}>{selectableTooltipOptions[$__wordTooltip].name}</button>
 						</div>
 						<p class={settingsDescriptionClasses}>Choose what is displayed when you hover a word.</p>
 					</div>
@@ -288,7 +287,7 @@
 					<div id="quran-font-setting" class="{settingsBlockClasses} {settingsDrawerOpacity}">
 						<div class="flex flex-row justify-between items-center">
 							<div class="block">Quran Font</div>
-							<Button class={selectorClasses} on:click={() => gotoIndividualSetting('quran-font')}>{selectableFontTypes[$__fontType].font}</Button>
+							<button class={selectorClasses} on:click={() => gotoIndividualSetting('quran-font')}>{selectableFontTypes[$__fontType].font}</button>
 						</div>
 						<p class={settingsDescriptionClasses}>Multiple Quranic fonts to choose from depending on your mushaf or region preference.</p>
 
@@ -350,7 +349,7 @@
 					<div id="word-translation-setting" class={settingsBlockClasses}>
 						<div class="flex flex-row justify-between items-center">
 							<div class="block">Word Translation</div>
-							<Button class={selectorClasses} on:click={() => gotoIndividualSetting('word-translation')}>{selectableWordTranslations[wordTranslationKey].language}</Button>
+							<button class={selectorClasses} on:click={() => gotoIndividualSetting('word-translation')}>{selectableWordTranslations[wordTranslationKey].language}</button>
 						</div>
 						<p class={settingsDescriptionClasses}>Word translation which will be displaced under the Arabic word text.</p>
 					</div>
@@ -361,7 +360,7 @@
 					<div id="word-transliteration-setting" class={settingsBlockClasses}>
 						<div class="flex flex-row justify-between items-center">
 							<div class="block">Word Transliteration</div>
-							<Button class={selectorClasses} on:click={() => gotoIndividualSetting('word-transliteration')}>{selectableWordTransliterations[wordTransliterationKey].language}</Button>
+							<button class={selectorClasses} on:click={() => gotoIndividualSetting('word-transliteration')}>{selectableWordTransliterations[wordTransliterationKey].language}</button>
 						</div>
 						<p class={settingsDescriptionClasses}>Word transliteration of various types.</p>
 					</div>
@@ -372,7 +371,7 @@
 					<div id="verse-translation-setting" class={settingsBlockClasses}>
 						<div class="flex flex-row justify-between items-center">
 							<div class="block">{term('verse')} Translation</div>
-							<Button class={selectorClasses} on:click={() => gotoIndividualSetting('verse-translation')}>{$__verseTranslations.length - totalVerseTransliterationsSelected} selected</Button>
+							<button class={selectorClasses} on:click={() => gotoIndividualSetting('verse-translation')}>{$__verseTranslations.length - totalVerseTransliterationsSelected} selected</button>
 						</div>
 						<p class={settingsDescriptionClasses}>{term('verse')} translations from multiple authors and languages.</p>
 					</div>
@@ -383,7 +382,7 @@
 					<div id="verse-transliteration-setting" class={settingsBlockClasses}>
 						<div class="flex flex-row justify-between items-center">
 							<div class="block">{term('verse')} Transliteration</div>
-							<Button class={selectorClasses} on:click={() => gotoIndividualSetting('verse-transliteration')}>{totalVerseTransliterationsSelected} selected</Button>
+							<button class={selectorClasses} on:click={() => gotoIndividualSetting('verse-transliteration')}>{totalVerseTransliterationsSelected} selected</button>
 						</div>
 						<p class={settingsDescriptionClasses}>{term('verse')} transliteration of various types.</p>
 					</div>
@@ -394,7 +393,7 @@
 					<div id="tafsir-setting" class={settingsBlockClasses}>
 						<div class="flex flex-row justify-between items-center">
 							<div class="block">{term('tafsir')}</div>
-							<Button class={selectorClasses} on:click={() => gotoIndividualSetting('verse-tafsir')}>{selectableTafsirs[$__verseTafsir].name}</Button>
+							<button class={selectorClasses} on:click={() => gotoIndividualSetting('verse-tafsir')}>{selectableTafsirs[$__verseTafsir].name}</button>
 						</div>
 						<p class={settingsDescriptionClasses}>{term('verse')} {term('tafsir')} from multiple authors and languages.</p>
 					</div>
@@ -410,7 +409,7 @@
 					<div id="verse-reciter-setting" class={settingsBlockClasses}>
 						<div class="flex flex-row justify-between items-center">
 							<div class="block">{term('verse')} Reciter</div>
-							<Button class={selectorClasses} on:click={() => gotoIndividualSetting('verse-reciter')}>{selectableReciters[$__reciter].reciter}</Button>
+							<button class={selectorClasses} on:click={() => gotoIndividualSetting('verse-reciter')}>{selectableReciters[$__reciter].reciter}</button>
 						</div>
 						<p class={settingsDescriptionClasses}>The reciter whose audio will be played when you choose to listen to a {term('verse')}.</p>
 					</div>
@@ -421,7 +420,7 @@
 					<div id="translation-reciter-setting" class={settingsBlockClasses}>
 						<div class="flex flex-row justify-between items-center">
 							<div class="block">Translation Reciter</div>
-							<Button class={selectorClasses} on:click={() => gotoIndividualSetting('translation-reciter')}>{selectableTranslationReciters[$__translationReciter].reciter}</Button>
+							<button class={selectorClasses} on:click={() => gotoIndividualSetting('translation-reciter')}>{selectableTranslationReciters[$__translationReciter].reciter}</button>
 						</div>
 						<p class={settingsDescriptionClasses}>The translation reciter whose audio will be played after the {term('verse')} audio.</p>
 					</div>
@@ -458,7 +457,7 @@
 					<div id="verse-play-button-setting" class={settingsBlockClasses}>
 						<div class="flex flex-row justify-between items-center">
 							<div class="block">{term('verse')} Play Button</div>
-							<Button class={selectorClasses} on:click={() => gotoIndividualSetting('verse-play-button')}>{selectableVersePlayButtonOptions[$__playButtonsFunctionality.verse].name}</Button>
+							<button class={selectorClasses} on:click={() => gotoIndividualSetting('verse-play-button')}>{selectableVersePlayButtonOptions[$__playButtonsFunctionality.verse].name}</button>
 						</div>
 						<p class={settingsDescriptionClasses}>Select what happens when you click on the play button for a {term('verse')}.</p>
 					</div>

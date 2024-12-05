@@ -1,12 +1,10 @@
 <script>
 	import Popper from '../utils/Popper.svelte';
 	import { twMerge } from 'tailwind-merge';
-	export let type = 'dark';
+	export let type = 'light';
 	export let defaultClass = 'py-2 px-3 text-sm font-medium';
 	const types = {
-		dark: 'bg-grayyy-900 dark:bg-grayyy-700',
 		light: `${window.theme('border')} ${window.theme('bgMain')}`,
-		auto: ` ${window.theme('bgMain')} dark:bg-grayyy-700 dark:${window.theme('border')} dark:${window.theme('border')}`,
 		custom: ''
 	};
 	let toolTipClass;

@@ -61,5 +61,5 @@
 @prop export let size: FormSizeType | undefined = undefined;
 @prop export let defaultClass: string = 'block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right';
 @prop export let color: 'base' | 'green' | 'red' = 'base';
-@prop export let floatClass: string = 'flex absolute inset-y-0 items-center dark:text-grayyy-400';
+@prop export let floatClass: string = 'flex absolute inset-y-0 items-center';
 -->

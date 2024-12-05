@@ -5,10 +5,10 @@
 	export let show = true;
 	let node;
 	const colorClasses = {
-		grayyy: 'text-grayyy-900 dark:text-grayyy-300',
-		green: 'text-green-700 dark:text-green-500',
-		red: 'text-red-700 dark:text-red-500',
-		disabled: 'text-grayyy-400 dark:text-grayyy-500'
+		grayyy: 'text-grayyy-900',
+		green: 'text-green-700',
+		red: 'text-red-700',
+		disabled: 'text-grayyy-400'
 	};
 	// function checkDisabled(node: HTMLLabelElement) {
 	$: {
