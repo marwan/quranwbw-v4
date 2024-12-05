@@ -16,7 +16,7 @@
 		<link crossorigin="anonymous" rel="manifest" href="%sveltekit.assets%/manifest.json" />
 		<link crossorigin="anonymous" rel="icon" type="image/png" href="%sveltekit.assets%/images/favicon.png" />
 		<link crossorigin="anonymous" href="%sveltekit.assets%/images/apple-touch-icon.png" rel="apple-touch-icon" />
-		<link crossorigin="anonymous" rel="stylesheet" href="%sveltekit.assets%/css/global.css?version=27" />
+		<link crossorigin="anonymous" rel="stylesheet" href="%sveltekit.assets%/css/global.css?version=28" />
 
 		<!-- 
 		If the user's browser do not support Optional chaining (?.), redirect to old v3 website
@@ -52,15 +52,18 @@
 			function theme(type) {
 				try {
 					const userSettings = JSON.parse(localStorage.getItem('userSettings'));
-					const currentTheme = userSettings ? +userSettings.displaySettings.websiteTheme : null;
+					const currentTheme = userSettings ? +userSettings.displaySettings.websiteTheme : 6;
 
 					const themes = {
+						// White theme (light)
+						// primary: white
+						// secondary: #000000
 						1: {
 							bgMain: `${window.websiteColors[currentTheme]}`,
 							bgSecondary: 'bg-black',
 							bgSecondaryMain: 'bg-black/5',
 							text: 'text-black',
-							link: '',
+							textSecondary: '',
 							border: 'border-black/10',
 							icon: '#000000',
 							input: 'focus:border-black focus:ring-black',
@@ -69,12 +72,16 @@
 							hover: 'hover:bg-black/5',
 							via: 'via-[#000000]'
 						},
+
+						// Blue theme (dark)
+						// primary: #02021b
+						// secondary: #c2c2c2
 						2: {
 							bgMain: `${window.websiteColors[currentTheme]}`,
 							bgSecondary: 'bg-[#c2c2c2]',
 							bgSecondaryMain: 'bg-[#c2c2c2]/5',
 							text: 'text-[#c2c2c2]',
-							link: '',
+							textSecondary: '',
 							border: 'border-[#c2c2c2]/10',
 							icon: '#c2c2c2',
 							input: 'focus:border-[#c2c2c2] focus:ring-[#c2c2c2]',
@@ -83,12 +90,16 @@
 							hover: 'hover:bg-[#c2c2c2]/5',
 							via: 'via-[#c2c2c2]'
 						},
+
+						// Green theme (dark)
+						// primary: #001617
+						// secondary: #dddddd
 						3: {
 							bgMain: `${window.websiteColors[currentTheme]}`,
 							bgSecondary: 'bg-[#dddddd]',
 							bgSecondaryMain: 'bg-[#dddddd]/5',
 							text: 'text-[#dddddd]',
-							link: '',
+							textSecondary: '',
 							border: 'border-[#dddddd]/10',
 							icon: '#dddddd',
 							input: 'focus:border-[#dddddd] focus:ring-[#dddddd]',
@@ -97,12 +108,16 @@
 							hover: 'hover:bg-[#dddddd]/5',
 							via: 'via-[#dddddd]'
 						},
+
+						// Black (OLED) theme (dark)
+						// primary: black
+						// secondary: #dddddd
 						4: {
 							bgMain: `${window.websiteColors[currentTheme]}`,
 							bgSecondary: 'bg-[#dddddd]',
 							bgSecondaryMain: 'bg-[#dddddd]/5',
 							text: 'text-[#dddddd]',
-							link: '',
+							textSecondary: '',
 							border: 'border-[#dddddd]/10',
 							icon: '#dddddd',
 							input: 'focus:border-[#dddddd] focus:ring-[#dddddd]',
@@ -111,12 +126,16 @@
 							hover: 'hover:bg-[#dddddd]/5',
 							via: 'via-[#dddddd]'
 						},
+
+						// Sepia theme (Sepia)
+						// primary: #e9e3d7
+						// secondary: #553c0f
 						5: {
 							bgMain: `${window.websiteColors[currentTheme]}`,
 							bgSecondary: 'bg-[#553c0f]',
 							bgSecondaryMain: 'bg-[#553c0f]/5',
 							text: 'text-[#553c0f]',
-							link: '',
+							textSecondary: '',
 							border: 'border-[#553c0f]/10',
 							icon: '#553c0f',
 							input: 'focus:border-[#553c0f] focus:ring-[#553c0f]',
@@ -125,12 +144,16 @@
 							hover: 'hover:bg-[#553c0f]/5',
 							via: 'via-[#553c0f]'
 						},
+
+						// Gold theme (light)
+						// primary: white
+						// secondary: #b1901f
 						6: {
 							bgMain: `${window.websiteColors[currentTheme]}`,
 							bgSecondary: 'bg-[#b1901f]',
 							bgSecondaryMain: 'bg-[#b1901f]/5',
 							text: 'text-black',
-							link: 'text-[#b1901f]',
+							textSecondary: 'text-[#b1901f]',
 							border: 'border-[#b1901f]/20',
 							icon: '#b1901f',
 							input: 'focus:border-[#b1901f] focus:ring-[#b1901f]',
@@ -139,12 +162,16 @@
 							hover: 'hover:bg-[#b1901f]/5',
 							via: 'via-[#b1901f]'
 						},
+
+						// Coffee theme (dark)
+						// primary: #20161f
+						// secondary: #c59f60
 						7: {
 							bgMain: `${window.websiteColors[currentTheme]}`,
 							bgSecondary: 'bg-[#c59f60]',
 							bgSecondaryMain: 'bg-[#c59f60]/5',
 							text: 'text-[#c59f60]',
-							link: 'text-[#c59f60]',
+							textSecondary: 'text-[#c59f60]',
 							border: 'border-[#c59f60]/20',
 							icon: '#c59f60',
 							input: 'focus:border-[#c59f60] focus:ring-[#c59f60]',
@@ -153,12 +180,16 @@
 							hover: 'hover:bg-[#c59f60]/5',
 							via: 'via-[#c59f60]'
 						},
+
+						// Silver theme (light)
+						// primary: #e1e1e1
+						// secondary: #000000
 						8: {
 							bgMain: `${window.websiteColors[currentTheme]}`,
 							bgSecondary: 'bg-black',
 							bgSecondaryMain: 'bg-black/5',
 							text: 'text-black',
-							link: 'text-black',
+							textSecondary: 'text-black',
 							border: 'border-black/20',
 							icon: '#000000',
 							input: 'focus:border-black focus:ring-black',

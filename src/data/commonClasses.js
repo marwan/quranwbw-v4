@@ -10,6 +10,6 @@ export const tabPillClasses = `py-2 px-4 text-xs cursor-pointer rounded-3xl ${wi
 
 export const labelPillClasses = `${window.theme('bgSecondaryMain')} text-sm font-normal me-2 px-2.5 py-0.5 rounded-full`;
 
-export const linkClasses = `font-semibold underline ${window.theme('link')}`;
+export const linkClasses = `font-semibold underline ${window.theme('textSecondary')}`;
 
 export const selectedRadioClasses = `${window.theme('bgSecondaryMain')} ${window.theme('border')}`;
