@@ -16,7 +16,7 @@
 		<link crossorigin="anonymous" rel="manifest" href="%sveltekit.assets%/manifest.json" />
 		<link crossorigin="anonymous" rel="icon" type="image/png" href="%sveltekit.assets%/images/favicon.png" />
 		<link crossorigin="anonymous" href="%sveltekit.assets%/images/apple-touch-icon.png" rel="apple-touch-icon" />
-		<link crossorigin="anonymous" rel="stylesheet" href="%sveltekit.assets%/css/global.css?version=26" />
+		<link crossorigin="anonymous" rel="stylesheet" href="%sveltekit.assets%/css/global.css?version=27" />
 
 		<!-- 
 		If the user's browser do not support Optional chaining (?.), redirect to old v3 website
@@ -53,7 +53,7 @@
 				try {
 					const currentTheme = +JSON.parse(localStorage.getItem('userSettings')).displaySettings.websiteTheme;
 
-					// White theme
+					// White theme (light)
 					if (currentTheme === 1) {
 						// colors used: white, black (and its different variations)
 						if (type === 'background') return window.websiteColors[currentTheme];
@@ -70,7 +70,7 @@
 						if (type === 'hover') return 'hover:bg-black/5';
 					}
 
-					// Blue theme
+					// Blue theme (dark)
 					else if (currentTheme === 2) {
 						// colors used: #02021b, #c2c2c2 (and its different variations)
 						if (type === 'background') return window.websiteColors[currentTheme];
@@ -87,7 +87,7 @@
 						if (type === 'hover') return 'hover:bg-[#c2c2c2]/5';
 					}
 
-					// Green theme
+					// Green theme (dark)
 					else if (currentTheme === 3) {
 						// colors used: #001617, #dddddd (and its different variations)
 						if (type === 'background') return window.websiteColors[currentTheme];
@@ -104,7 +104,7 @@
 						if (type === 'hover') return 'hover:bg-[#dddddd]/5';
 					}
 
-					// Black (OLED) theme
+					// Black (OLED) theme (dark)
 					else if (currentTheme === 4) {
 						// colors used: black, #dddddd (and its different variations)
 						if (type === 'background') return window.websiteColors[currentTheme];
@@ -121,7 +121,7 @@
 						if (type === 'hover') return 'hover:bg-[#dddddd]/5';
 					}
 
-					// Sepia theme
+					// Sepia theme (Sepia)
 					else if (currentTheme === 5) {
 						// colors used: #e4d6bd, #553c0f (and its different variations)
 						if (type === 'background') return window.websiteColors[currentTheme];
@@ -138,7 +138,7 @@
 						if (type === 'hover') return 'hover:bg-[#553c0f]/5';
 					}
 
-					// White & Gold theme
+					// Gold theme (light)
 					else if (currentTheme === 6) {
 						// colors used: white, #b1901f (and its different variations)
 						if (type === 'background') return window.websiteColors[currentTheme];
@@ -155,7 +155,7 @@
 						if (type === 'hover') return 'hover:bg-[#b1901f]/5';
 					}
 
-					// Coffee theme
+					// Coffee theme (dark)
 					else if (currentTheme === 7) {
 						// colors used: #20161f, black (and its different variations)
 						if (type === 'background') return window.websiteColors[currentTheme];
@@ -172,7 +172,7 @@
 						if (type === 'hover') return 'hover:bg-[#c59f60]/5';
 					}
 
-					// Silver theme
+					// Silver theme (light)
 					else if (currentTheme === 8) {
 						// colors used: #d5d5d7, black (and its different variations)
 						if (type === 'background') return window.websiteColors[currentTheme];
