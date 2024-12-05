@@ -16,8 +16,11 @@
 	// CSS classes for chapter cards and tabs
 	const cardGridClasses = 'grid md:grid-cols-2 lg:grid-cols-3 gap-3';
 	const cardInnerClasses = `flex justify-between md:text-left transition text-sm rounded-3xl p-5 hover:cursor-pointer border ${window.theme('border')} ${window.theme('hover')}`;
-	const tabClasses = 'p-2 md:p-3 text-xs md:text-md cursor-pointer border-b-4 border-transparent';
-	const activeTabClasses = `!${window.theme('border')}`;
+
+	// Tab classes
+	const commontabClasses = 'p-2 md:p-3 text-xs md:text-md cursor-pointer border-b-4';
+	const tabDefaultBorder = `${commontabClasses} border-transparent`;
+	const tabActiveBorder = `${commontabClasses} ${window.theme('border')}`;
 
 	let lastReadChapter = 1;
 	let lastReadVerse = 1;
@@ -67,7 +70,7 @@
 			<!-- main tabs -->
 			<div id="tab-buttons">
 				<div class="flex text-sm font-medium text-center opacityyy-70 justify-center space-x-1 md:space-x-4">
-					<button on:click={() => (activeTab = 1)} class="{tabClasses} {activeTab === 1 && activeTabClasses} flex flex-row space-x-2 items-center" type="button">
+					<button on:click={() => (activeTab = 1)} class="{activeTab === 1 ? tabActiveBorder : tabDefaultBorder} flex flex-row space-x-2 items-center" type="button">
 						<!-- asc/dsc sort button -->
 						<div class="flex flex-row">
 							<button class="inline-flex p-2 rounded-full items-center {window.theme('background-light')}" on:click={() => sortChapters()}>
@@ -78,12 +81,12 @@
 						</div>
 						<span>{term('chapters')}</span>
 					</button>
-					<button on:click={() => (activeTab = 2)} class="{tabClasses} {activeTab === 2 && activeTabClasses}" type="button">Suggested</button>
-					<button on:click={() => (activeTab = 3)} class="{tabClasses} {activeTab === 3 && activeTabClasses} flex flex-row space-x-1 items-center truncate" type="button">
+					<button on:click={() => (activeTab = 2)} class={activeTab === 2 ? tabActiveBorder : tabDefaultBorder} type="button">Suggested</button>
+					<button on:click={() => (activeTab = 3)} class="{activeTab === 3 ? tabActiveBorder : tabDefaultBorder} flex flex-row space-x-1 items-center truncate" type="button">
 						<span>Bookmarks</span>
 						<span class="hidden xs:block">{totalBookmarks > 0 ? `(${totalBookmarks})` : ''}</span>
 					</button>
-					<button on:click={() => (activeTab = 4)} class="{tabClasses} {activeTab === 4 && activeTabClasses} flex flex-row space-x-1 items-center truncate" type="button">
+					<button on:click={() => (activeTab = 4)} class="{activeTab === 4 ? tabActiveBorder : tabDefaultBorder} flex flex-row space-x-1 items-center truncate" type="button">
 						<span>Notes</span>
 						<span class="hidden xs:block">{totalNotes > 0 ? `(${totalNotes})` : ''}</span>
 					</button>

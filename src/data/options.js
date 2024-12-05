@@ -21,7 +21,7 @@ export const selectableThemes = {
 	3: { id: 3, name: 'Green', palette: 1 },
 	4: { id: 4, name: 'Black', palette: 1 },
 	5: { id: 5, name: 'Sepia', palette: 2 },
-	6: { id: 6, name: 'Light & Gold', palette: 2 },
+	6: { id: 6, name: 'Gold', palette: 2 },
 	7: { id: 7, name: 'Coffee', palette: 1 },
 	8: { id: 8, name: 'Silver', palette: 1 }
 };
