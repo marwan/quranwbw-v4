@@ -3,7 +3,7 @@
 	export let size = 4;
 </script>
 
-<svg class="w-{size} h-{size}" version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+<svg class="w-{size} h-{size}" version="1.2" viewBox="0 0 512 512" width="24" height="24">
 	<path
 		id="🔍"
 		fill={window.theme('icon')}

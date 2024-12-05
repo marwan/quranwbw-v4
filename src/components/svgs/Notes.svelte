@@ -2,6 +2,4 @@
 	export let size = 4;
 </script>
 
-<svg class="w-{size} h-{size}" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill={window.theme('icon')} viewBox="0 0 24 24">
-	<path fill-rule="evenodd" d="M3 5.983C3 4.888 3.895 4 5 4h14c1.105 0 2 .888 2 1.983v8.923a1.992 1.992 0 0 1-2 1.983h-6.6l-2.867 2.7c-.955.899-2.533.228-2.533-1.08v-1.62H5c-1.105 0-2-.888-2-1.983V5.983Zm5.706 3.809a1 1 0 1 0-1.412 1.417 1 1 0 1 0 1.412-1.417Zm2.585.002a1 1 0 1 1 .003 1.414 1 1 0 0 1-.003-1.414Zm5.415-.002a1 1 0 1 0-1.412 1.417 1 1 0 1 0 1.412-1.417Z" clip-rule="evenodd" />
-</svg>
+<svg class="w-{size} h-{size}" fill={window.theme('icon')} id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path d="M12.009,23.665c-.476,0-.956-.168-1.338-.508l-3.748-3.157h-2.923c-2.206,0-4-1.794-4-4V4C0,1.794,1.794,0,4,0h16c2.206,0,4,1.794,4,4v12c0,2.206-1.794,4-4,4h-2.852l-3.847,3.18c-.361,.322-.825,.485-1.292,.485Z" /></svg>

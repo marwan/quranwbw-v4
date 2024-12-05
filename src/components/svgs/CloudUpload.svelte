@@ -1,4 +1,4 @@
-<svg class="w-4 h-4" viewBox="0 -4 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+<svg class="w-4 h-4" viewBox="0 -4 32 32" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
 	<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 		<g id="Icon-Set-Filled" transform="translate(-466.000000, -1144.000000)" fill={window.theme('icon')}>
 			<path
