@@ -1,11 +1,9 @@
 <script>
-	export let individualSettingsClasses;
-
 	import Radio from '$ui/FlowbiteSvelte/forms/Radio.svelte';
 	import Check from '$svgs/Check.svelte';
 	import { __selectedDisplayId, __currentPage } from '$utils/stores';
 	import { selectableDisplays } from '$data/options';
-	import { selectedRadioClasses } from '$data/commonClasses';
+	import { selectedRadioClasses, individualSettingsClasses } from '$data/commonClasses';
 	import { displayTypeChangeHandler } from '$utils/displayTypeChangeHandler';
 </script>
 

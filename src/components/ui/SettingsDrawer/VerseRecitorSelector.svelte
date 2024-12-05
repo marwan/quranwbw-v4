@@ -1,12 +1,10 @@
 <script>
-	export let individualSettingsClasses;
-
 	import Radio from '$ui/FlowbiteSvelte/forms/Radio.svelte';
 	import Check from '$svgs/Check.svelte';
 	import { __reciter, __websiteTheme } from '$utils/stores';
 	import { selectableReciters } from '$data/options';
 	import { updateSettings } from '$utils/updateSettings';
-	import { selectedRadioClasses } from '$data/commonClasses';
+	import { selectedRadioClasses, individualSettingsClasses } from '$data/commonClasses';
 	import { staticEndpoint } from '$data/websiteSettings';
 
 	$: reciterImageClasses = `rounded-full size-10`;

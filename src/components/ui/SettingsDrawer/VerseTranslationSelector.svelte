@@ -1,12 +1,10 @@
 <script>
-	export let individualSettingsClasses;
-
 	import Checkbox from '$ui/FlowbiteSvelte/forms/Checkbox.svelte';
 	import Check from '$svgs/Check.svelte';
 	import { __verseTranslations } from '$utils/stores';
 	import { selectableVerseTranslations, verseTranslationsLanguages } from '$data/options';
 	import { updateSettings } from '$utils/updateSettings';
-	import { selectedRadioClasses } from '$data/commonClasses';
+	import { selectedRadioClasses, individualSettingsClasses } from '$data/commonClasses';
 </script>
 
 <div class="grid gap-3 w-full">

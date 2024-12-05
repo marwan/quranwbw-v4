@@ -1,12 +1,10 @@
 <script>
-	export let individualSettingsClasses;
-
 	import Radio from '$ui/FlowbiteSvelte/forms/Radio.svelte';
 	import Check from '$svgs/Check.svelte';
 	import { __wordTooltip } from '$utils/stores';
 	import { selectableTooltipOptions } from '$data/options';
 	import { updateSettings } from '$utils/updateSettings';
-	import { selectedRadioClasses } from '$data/commonClasses';
+	import { selectedRadioClasses, individualSettingsClasses } from '$data/commonClasses';
 </script>
 
 <div class="grid gap-3 w-full">

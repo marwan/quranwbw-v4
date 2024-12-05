@@ -85,7 +85,6 @@
 	const settingsDescriptionClasses = 'mb-6 text-xs opacity-70';
 	const toggleBtnClasses = `relative w-14 h-7 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full after:content-[""] after:absolute after:top-0.5 after:start-[4px] after:border after:rounded-full after:h-6 after:w-6 after:transition-all ${window.theme('toggle')}`;
 	const rangeClasses = `appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-6 [&::-webkit-slider-thumb]:w-6 [&::-webkit-slider-thumb]:rounded-full ${window.theme('slider')}`;
-	const individualSettingsClasses = `inline-flex justify-between items-center p-5 w-full rounded-lg cursor-pointer border ${window.theme('border')} ${window.theme('bgMain')} ${window.theme('checked')} ${window.theme('hover')}`;
 
 	let settingsDrawerOpacity = 'opacity-100';
 	let settingsDrawerBackground = `${window.theme('bgMain')}`;
@@ -515,7 +514,7 @@
 				<CloseButton on:click={() => ($__settingsDrawerHidden = true)} class="my-4 rounded-3xl" />
 			</div>
 
-			<svelte:component this={individualSettingsComponent} {individualSettingsClasses} />
+			<svelte:component this={individualSettingsComponent} />
 		</div>
 	{/if}
 </Drawer>
