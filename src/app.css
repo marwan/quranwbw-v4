@@ -152,19 +152,6 @@ label {
   border-radius: 2px;
 } */
 
-/* settings drawer's range slider */
-input[type=range]::-webkit-slider-thumb {
-  background: #4b5563;
-}
-
-input[type="range"]::-moz-range-thumb {
-  background-color: #4b5563;
-}
-
-input[type="range"]::-moz-range-progress {
-  background-color: transparent;
-}
-
 
 input:disabled {
   color: #ccc;

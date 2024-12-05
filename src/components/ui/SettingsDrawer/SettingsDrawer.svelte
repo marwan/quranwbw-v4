@@ -83,7 +83,8 @@
 	const settingsBlockClasses = 'space-y-2 py-6';
 	const selectorClasses = `w-32 border ${window.theme('border')} text-left rounded-3xl ${window.theme('input')} focus-within:ring-2 block p-2.5 truncate text-sm`;
 	const settingsDescriptionClasses = 'mb-6 text-xs opacity-70';
-	const toggleBtnClasses = `relative w-14 h-7 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full after:content-[""] after:absolute after:top-0.5 after:start-[4px] after:border after:rounded-full after:h-6 after:w-6 after:transition-all ${window.theme('toggles')}`;
+	const toggleBtnClasses = `relative w-14 h-7 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full after:content-[""] after:absolute after:top-0.5 after:start-[4px] after:border after:rounded-full after:h-6 after:w-6 after:transition-all ${window.theme('toggle')}`;
+	const rangeClasses = `appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-6 [&::-webkit-slider-thumb]:w-6 [&::-webkit-slider-thumb]:rounded-full ${window.theme('slider')}`;
 
 	let settingsDrawerOpacity = 'opacity-100';
 	let settingsDrawerBackground = `${window.theme('bgMain')}`;
@@ -307,7 +308,7 @@
 							<span class="block">Arabic Word Size ({selectableFontSizes[arabicWordSizeValue].value.split('-')[1]})</span>
 							<!-- svelte-ignore a11y-mouse-events-have-key-events -->
 							<div class="flex flex-col space-y-2 rounded-3xl w-full" role="group" on:mouseenter={() => onMouseEnter('arabic-word-size-setting')} on:mouseleave={() => onMouseLeave()}>
-								<Range min="1" max={maxFontSizeAllowed} bind:value={arabicWordSizeValue} class={window.theme('bgSecondary')} />
+								<Range min="1" max={maxFontSizeAllowed} bind:value={arabicWordSizeValue} class={rangeClasses} />
 							</div>
 						</div>
 					</div>
@@ -320,7 +321,7 @@
 							<span class="block">Word Translation/Transliteration Size ({selectableFontSizes[wordTranlationTransliterationSizeValue].value.split('-')[1]})</span>
 							<!-- svelte-ignore a11y-mouse-events-have-key-events -->
 							<div class="flex flex-col space-y-2 rounded-3xl w-full" role="group" on:mouseenter={() => onMouseEnter('word-translation-size-setting')} on:mouseleave={() => onMouseLeave()}>
-								<Range min="1" max={maxFontSizeAllowed} bind:value={wordTranlationTransliterationSizeValue} class={window.theme('bgSecondary')} />
+								<Range min="1" max={maxFontSizeAllowed} bind:value={wordTranlationTransliterationSizeValue} class={rangeClasses} />
 							</div>
 						</div>
 					</div>
@@ -333,7 +334,7 @@
 							<span class="block">{term('verse')} Translation/Transliteration Size ({selectableFontSizes[verseTranlationTransliterationSizeValue].value.split('-')[1]})</span>
 							<!-- svelte-ignore a11y-mouse-events-have-key-events -->
 							<div class="flex flex-col space-y-2 rounded-3xl w-full" role="group" on:mouseenter={() => onMouseEnter('verse-translation-size-setting')} on:mouseleave={() => onMouseLeave()}>
-								<Range min="1" max={maxFontSizeAllowed} bind:value={verseTranlationTransliterationSizeValue} class={window.theme('bgSecondary')} />
+								<Range min="1" max={maxFontSizeAllowed} bind:value={verseTranlationTransliterationSizeValue} class={rangeClasses} />
 							</div>
 						</div>
 					</div>
@@ -432,7 +433,7 @@
 						<div class="flex flex-col justify-between space-y-4">
 							<span class="block">Playback Speed ({selectablePlaybackSpeeds[playbackSpeedValue].speed})</span>
 							<div class="flex flex-col space-y-2 rounded-3xl w-full" role="group">
-								<Range min="1" max="7" bind:value={playbackSpeedValue} class={window.theme('bgSecondary')} />
+								<Range min="1" max="7" bind:value={playbackSpeedValue} class={rangeClasses} />
 							</div>
 						</div>
 					</div>
