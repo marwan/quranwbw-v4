@@ -16,7 +16,7 @@
 		<link crossorigin="anonymous" rel="manifest" href="%sveltekit.assets%/manifest.json" />
 		<link crossorigin="anonymous" rel="icon" type="image/png" href="%sveltekit.assets%/images/favicon.png" />
 		<link crossorigin="anonymous" href="%sveltekit.assets%/images/apple-touch-icon.png" rel="apple-touch-icon" />
-		<link crossorigin="anonymous" rel="stylesheet" href="%sveltekit.assets%/css/global.css?version=29" />
+		<link crossorigin="anonymous" rel="stylesheet" href="%sveltekit.assets%/css/global.css?version=30" />
 
 		<!-- 
 		If the user's browser do not support Optional chaining (?.), redirect to old v3 website
@@ -33,186 +33,168 @@
 			}
 		</script>
 
-		<!-- background colors -->
+		<!-- Themes related stuff -->
 		<script>
 			window.websiteColors = {
-				1: `bg-white`,
-				2: `bg-[#02021b]`,
-				3: `bg-[#001617]`,
-				4: `bg-black`,
-				5: `bg-[#e9e3d7]`,
-				6: `bg-white`,
-				7: `bg-[#20161f]`,
-				8: `bg-[#e1e1e1]`
+				1: 'bg-[#FFFFFF]',
+				2: 'bg-[#02021b]',
+				3: 'bg-[#001617]',
+				4: 'bg-[#000000]',
+				5: 'bg-[#e9e3d7]',
+				6: 'bg-[#FFFFFF]',
+				7: 'bg-[#20161f]',
+				8: 'bg-[#e1e1e1]'
 			};
-		</script>
 
-		<!-- function to return theme colors -->
-		<script>
 			function theme(type) {
 				try {
 					const userSettings = JSON.parse(localStorage.getItem('userSettings'));
 					const currentTheme = userSettings ? +userSettings.displaySettings.websiteTheme : 6;
 
 					const themes = {
-						// White theme (light)
-						// primary: white
-						// secondary: #000000
 						1: {
-							bgMain: `${window.websiteColors[currentTheme]}`,
-							bgSecondary: 'bg-black',
-							bgSecondaryMain: 'bg-black/5',
-							text: 'text-black',
-							textSecondary: '',
-							border: 'border-black/10',
+							themeName: 'white',
+							bgMain: 'bg-[#FFFFFF]',
+							bgSecondary: 'bg-[#000000]',
+							bgSecondaryLight: 'bg-[#000000]/5',
+							bgSecondaryDark: 'bg-[#000000]/5',
+							text: 'text-[#000000]',
+							textSecondary: 'text-[#000000]',
+							border: 'border-[#000000]/10',
 							icon: '#000000',
-							input: 'focus:border-black focus:ring-black',
-							checked: 'peer-checked:border-2 peer-checked:border-black peer-checked:border-black',
-							toggle: 'bg-black/5 after:bg-white peer-checked:bg-black',
-							slider: 'bg-black/10 [&::-webkit-slider-thumb]:!bg-black',
-							hover: 'hover:bg-black/5',
+							input: 'focus:border-[#000000] focus:ring-[#000000]',
+							checked: 'peer-checked:border-2 peer-checked:border-[#000000] peer-checked:border-[#000000]',
+							toggle: 'bg-[#000000]/5 after:bg-[#FFFFFF] peer-checked:bg-[#000000]',
+							slider: 'bg-[#000000]/10 [&::-webkit-slider-thumb]:!bg-[#000000]',
+							hover: 'hover:bg-[#000000]/5',
 							via: 'via-[#000000]',
-							placeholder: 'placeholder:text-black/50'
+							placeholder: 'placeholder:text-[#000000]/50'
 						},
-
-						// Blue theme (dark)
-						// primary: #02021b
-						// secondary: #c2c2c2
 						2: {
-							bgMain: `${window.websiteColors[currentTheme]}`,
+							themeName: 'blue',
+							bgMain: 'bg-[#02021b]',
 							bgSecondary: 'bg-[#c2c2c2]',
-							bgSecondaryMain: 'bg-[#c2c2c2]/5',
+							bgSecondaryLight: 'bg-[#c2c2c2]/5',
+							bgSecondaryDark: 'bg-[#c2c2c2]/5',
 							text: 'text-[#c2c2c2]',
-							textSecondary: '',
+							textSecondary: 'text-[#c2c2c2]',
 							border: 'border-[#c2c2c2]/10',
 							icon: '#c2c2c2',
 							input: 'focus:border-[#c2c2c2] focus:ring-[#c2c2c2]',
 							checked: 'peer-checked:border-2 peer-checked:border-[#c2c2c2] peer-checked:border-[#c2c2c2]',
-							toggle: 'bg-[#c2c2c2]/5 after:bg-white peer-checked:bg-[#c2c2c2]',
+							toggle: 'bg-[#c2c2c2]/5 after:bg-[#02021b] peer-checked:bg-[#c2c2c2]',
 							slider: 'bg-[#c2c2c2]/10 [&::-webkit-slider-thumb]:!bg-[#c2c2c2]',
 							hover: 'hover:bg-[#c2c2c2]/5',
 							via: 'via-[#c2c2c2]',
 							placeholder: 'placeholder:text-[#c2c2c2]/50'
 						},
-
-						// Green theme (dark)
-						// primary: #001617
-						// secondary: #dddddd
 						3: {
-							bgMain: `${window.websiteColors[currentTheme]}`,
+							themeName: 'green',
+							bgMain: 'bg-[#001617]',
 							bgSecondary: 'bg-[#dddddd]',
-							bgSecondaryMain: 'bg-[#dddddd]/5',
+							bgSecondaryLight: 'bg-[#dddddd]/5',
+							bgSecondaryDark: 'bg-[#dddddd]/5',
 							text: 'text-[#dddddd]',
-							textSecondary: '',
+							textSecondary: 'text-[#dddddd]',
 							border: 'border-[#dddddd]/10',
 							icon: '#dddddd',
 							input: 'focus:border-[#dddddd] focus:ring-[#dddddd]',
 							checked: 'peer-checked:border-2 peer-checked:border-[#dddddd] peer-checked:border-[#dddddd]',
-							toggle: 'bg-[#dddddd]/5 after:bg-white peer-checked:bg-[#dddddd]',
+							toggle: 'bg-[#dddddd]/5 after:bg-[#001617] peer-checked:bg-[#dddddd]',
 							slider: 'bg-[#dddddd]/10 [&::-webkit-slider-thumb]:!bg-[#dddddd]',
 							hover: 'hover:bg-[#dddddd]/5',
 							via: 'via-[#dddddd]',
 							placeholder: 'placeholder:text-[#dddddd]/50'
 						},
-
-						// Black (OLED) theme (dark)
-						// primary: black
-						// secondary: #dddddd
 						4: {
-							bgMain: `${window.websiteColors[currentTheme]}`,
+							themeName: 'black',
+							bgMain: 'bg-[#000000]',
 							bgSecondary: 'bg-[#dddddd]',
-							bgSecondaryMain: 'bg-[#dddddd]/5',
+							bgSecondaryLight: 'bg-[#dddddd]/5',
+							bgSecondaryDark: 'bg-[#dddddd]/5',
 							text: 'text-[#dddddd]',
-							textSecondary: '',
+							textSecondary: 'text-[#dddddd]',
 							border: 'border-[#dddddd]/10',
 							icon: '#dddddd',
 							input: 'focus:border-[#dddddd] focus:ring-[#dddddd]',
 							checked: 'peer-checked:border-2 peer-checked:border-[#dddddd] peer-checked:border-[#dddddd]',
-							toggle: 'bg-[#dddddd]/5 after:bg-white peer-checked:bg-[#dddddd]',
+							toggle: 'bg-[#dddddd]/5 after:bg-[#000000] peer-checked:bg-[#dddddd]',
 							slider: 'bg-[#dddddd]/10 [&::-webkit-slider-thumb]:!bg-[#dddddd]',
 							hover: 'hover:bg-[#dddddd]/5',
 							via: 'via-[#dddddd]',
 							placeholder: 'placeholder:text-[#dddddd]/50'
 						},
-
-						// Sepia theme (Sepia)
-						// primary: #e9e3d7
-						// secondary: #553c0f
 						5: {
-							bgMain: `${window.websiteColors[currentTheme]}`,
+							themeName: 'sepia',
+							bgMain: 'bg-[#e9e3d7]',
 							bgSecondary: 'bg-[#553c0f]',
-							bgSecondaryMain: 'bg-[#553c0f]/5',
+							bgSecondaryLight: 'bg-[#553c0f]/5',
+							bgSecondaryDark: 'bg-[#553c0f]/5',
 							text: 'text-[#553c0f]',
-							textSecondary: '',
+							textSecondary: 'text-[#553c0f]',
 							border: 'border-[#553c0f]/10',
 							icon: '#553c0f',
 							input: 'focus:border-[#553c0f] focus:ring-[#553c0f]',
 							checked: 'peer-checked:border-2 peer-checked:border-[#553c0f] peer-checked:border-[#553c0f]',
-							toggle: 'bg-[#553c0f]/5 after:bg-white peer-checked:bg-[#553c0f]',
+							toggle: 'bg-[#553c0f]/5 after:bg-[#e9e3d7] peer-checked:bg-[#553c0f]',
 							slider: 'bg-[#553c0f]/10 [&::-webkit-slider-thumb]:!bg-[#553c0f]',
 							hover: 'hover:bg-[#553c0f]/5',
 							via: 'via-[#553c0f]',
 							placeholder: 'placeholder:text-[#553c0f]/50'
 						},
-
-						// Gold theme (light)
-						// primary: white
-						// secondary: #b1901f
 						6: {
-							bgMain: `${window.websiteColors[currentTheme]}`,
+							themeName: 'gold',
+							bgMain: 'bg-[#FFFFFF]',
 							bgSecondary: 'bg-[#b1901f]',
-							bgSecondaryMain: 'bg-[#b1901f]/5',
-							text: 'text-black',
+							bgSecondaryLight: 'bg-[#b1901f]/5',
+							bgSecondaryDark: 'bg-[#b1901f]/5',
+							text: 'text-[#000000]',
 							textSecondary: 'text-[#b1901f]',
-							border: 'border-[#b1901f]/20',
+							border: 'border-[#b1901f]/10',
 							icon: '#b1901f',
 							input: 'focus:border-[#b1901f] focus:ring-[#b1901f]',
 							checked: 'peer-checked:border-2 peer-checked:border-[#b1901f] peer-checked:border-[#b1901f]',
-							toggle: 'bg-[#b1901f]/5 after:bg-white peer-checked:bg-[#b1901f]',
+							toggle: 'bg-[#b1901f]/5 after:bg-[#FFFFFF] peer-checked:bg-[#b1901f]',
 							slider: 'bg-[#b1901f]/10 [&::-webkit-slider-thumb]:!bg-[#b1901f]',
 							hover: 'hover:bg-[#b1901f]/5',
 							via: 'via-[#b1901f]',
 							placeholder: 'placeholder:text-[#b1901f]/50'
 						},
-
-						// Coffee theme (dark)
-						// primary: #20161f
-						// secondary: #c59f60
 						7: {
-							bgMain: `${window.websiteColors[currentTheme]}`,
+							themeName: 'coffee',
+							bgMain: 'bg-[#20161f]',
 							bgSecondary: 'bg-[#c59f60]',
-							bgSecondaryMain: 'bg-[#c59f60]/5',
+							bgSecondaryLight: 'bg-[#c59f60]/5',
+							bgSecondaryDark: 'bg-[#c59f60]/5',
 							text: 'text-[#c59f60]',
 							textSecondary: 'text-[#c59f60]',
-							border: 'border-[#c59f60]/20',
+							border: 'border-[#c59f60]/10',
 							icon: '#c59f60',
 							input: 'focus:border-[#c59f60] focus:ring-[#c59f60]',
 							checked: 'peer-checked:border-2 peer-checked:border-[#c59f60] peer-checked:border-[#c59f60]',
-							toggle: 'bg-[#c59f60]/5 after:bg-white peer-checked:bg-[#c59f60]',
+							toggle: 'bg-[#c59f60]/5 after:bg-[#20161f] peer-checked:bg-[#c59f60]',
 							slider: 'bg-[#c59f60]/10 [&::-webkit-slider-thumb]:!bg-[#c59f60]',
 							hover: 'hover:bg-[#c59f60]/5',
 							via: 'via-[#c59f60]',
 							placeholder: 'placeholder:text-[#c59f60]/50'
 						},
-
-						// Silver theme (light)
-						// primary: #e1e1e1
-						// secondary: #000000
 						8: {
-							bgMain: `${window.websiteColors[currentTheme]}`,
-							bgSecondary: 'bg-black',
-							bgSecondaryMain: 'bg-black/5',
-							text: 'text-black',
-							textSecondary: 'text-black',
-							border: 'border-black/20',
+							themeName: 'silver',
+							bgMain: 'bg-[#e1e1e1]',
+							bgSecondary: 'bg-[#000000]',
+							bgSecondaryLight: 'bg-[#000000]/5',
+							bgSecondaryDark: 'bg-[#000000]/5',
+							text: 'text-[#000000]',
+							textSecondary: 'text-[#000000]',
+							border: 'border-[#000000]/10',
 							icon: '#000000',
-							input: 'focus:border-black focus:ring-black',
-							checked: 'peer-checked:border-2 peer-checked:border-black peer-checked:border-black',
-							toggle: 'bg-black/5 after:bg-white peer-checked:bg-black',
-							slider: 'bg-black/10 [&::-webkit-slider-thumb]:!bg-black',
-							hover: 'hover:bg-black/5',
+							input: 'focus:border-[#000000] focus:ring-[#000000]',
+							checked: 'peer-checked:border-2 peer-checked:border-[#000000] peer-checked:border-[#000000]',
+							toggle: 'bg-[#000000]/5 after:bg-[#e1e1e1] peer-checked:bg-[#000000]',
+							slider: 'bg-[#000000]/10 [&::-webkit-slider-thumb]:!bg-[#000000]',
+							hover: 'hover:bg-[#000000]/5',
 							via: 'via-[#000000]',
-							placeholder: 'placeholder:text-black/50'
+							placeholder: 'placeholder:text-[#000000]/50'
 						}
 					};
 

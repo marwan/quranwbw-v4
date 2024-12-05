@@ -10,7 +10,7 @@
 		flex flex-col text-center mx-auto w-full mt-8 
 		${selectableDisplays[`${$__displayType}`].continuous ? 'mb-4' : 'mb-1'} 
 		py-2 px-4 text-sm cursor-pointer rounded-full
-		${window.theme('bgSecondaryMain')}
+		${window.theme('bgSecondaryLight')}
 	`;
 </script>
 

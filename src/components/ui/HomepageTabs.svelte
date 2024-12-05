@@ -73,7 +73,7 @@
 					<button on:click={() => (activeTab = 1)} class="{activeTab === 1 ? tabActiveBorder : tabDefaultBorder} flex flex-row space-x-2 items-center" type="button">
 						<!-- asc/dsc sort button -->
 						<div class="flex flex-row">
-							<button class="inline-flex p-2 rounded-full items-center {window.theme('bgSecondaryMain')}" on:click={() => sortChapters()}>
+							<button class="inline-flex p-2 rounded-full items-center {window.theme('bgSecondaryLight')}" on:click={() => sortChapters()}>
 								<span><AscendingSort size={3} /></span>
 								<span class="sr-only">Sort</span>
 							</button>

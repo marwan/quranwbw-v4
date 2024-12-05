@@ -269,7 +269,7 @@
 							{#each { length: maxItemsToLoad } as _, chapter}
 								<li>
 									<a href={$__currentPage === 'mushaf' ? `/page/${startPageOfChapters[chapter + 1]}` : `/${chapter + 1}`}>
-										<div class="{listItemClasses} {$__currentPage === 'chapter' ? (chapter + 1 === $__chapterNumber ? `${window.theme('bgSecondaryMain')}` : null) : null}">
+										<div class="{listItemClasses} {$__currentPage === 'chapter' ? (chapter + 1 === $__chapterNumber ? `${window.theme('bgSecondaryLight')}` : null) : null}">
 											{chapter + 1}. {quranMetaData[chapter + 1].transliteration}
 
 											{#if $__currentPage === 'chapter'}
