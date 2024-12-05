@@ -31,7 +31,7 @@
 			<h1 class="text-md md:text-2xl text-center">{tableTitles[tableType].title} ({totalAvailableWords})</h1>
 			<div class="max-h-[32em] overflow-auto">
 				<table class="w-full text-sm text-left rtl:text-right rounded-md">
-					<thead class="text-xs uppercase sticky top-0 {window.theme('bgSecondaryLight')}">
+					<thead class="text-xs uppercase top-0 {window.theme('bgSecondaryLight')}">
 						<tr>
 							<th scope="col" class="px-6 py-3"> # </th>
 							<th scope="col" class="px-6 py-3"> Word </th>
