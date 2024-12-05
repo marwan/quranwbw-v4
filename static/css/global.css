@@ -1807,10 +1807,6 @@ input[type="range"].range-lg::-moz-range-thumb {
   gap: 1rem;
 }
 
-.gap-8 {
-  gap: 2rem;
-}
-
 .gap-x-8 {
   -moz-column-gap: 2rem;
        column-gap: 2rem;
