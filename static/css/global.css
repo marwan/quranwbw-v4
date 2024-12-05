@@ -2846,60 +2846,6 @@ input[type="range"].range-lg::-moz-range-thumb {
   transition-duration: 300ms;
 }
 
-.scrollbar::-webkit-scrollbar-track {
-  background-color: var(--scrollbar-track);
-  border-radius: var(--scrollbar-track-radius);
-}
-
-.scrollbar::-webkit-scrollbar-track:hover {
-  background-color: var(--scrollbar-track-hover, var(--scrollbar-track));
-}
-
-.scrollbar::-webkit-scrollbar-track:active {
-  background-color: var(--scrollbar-track-active, var(--scrollbar-track-hover, var(--scrollbar-track)));
-}
-
-.scrollbar::-webkit-scrollbar-thumb {
-  background-color: var(--scrollbar-thumb);
-  border-radius: var(--scrollbar-thumb-radius);
-}
-
-.scrollbar::-webkit-scrollbar-thumb:hover {
-  background-color: var(--scrollbar-thumb-hover, var(--scrollbar-thumb));
-}
-
-.scrollbar::-webkit-scrollbar-thumb:active {
-  background-color: var(--scrollbar-thumb-active, var(--scrollbar-thumb-hover, var(--scrollbar-thumb)));
-}
-
-.scrollbar::-webkit-scrollbar-corner {
-  background-color: var(--scrollbar-corner);
-  border-radius: var(--scrollbar-corner-radius);
-}
-
-.scrollbar::-webkit-scrollbar-corner:hover {
-  background-color: var(--scrollbar-corner-hover, var(--scrollbar-corner));
-}
-
-.scrollbar::-webkit-scrollbar-corner:active {
-  background-color: var(--scrollbar-corner-active, var(--scrollbar-corner-hover, var(--scrollbar-corner)));
-}
-
-.scrollbar {
-  scrollbar-width: auto;
-  scrollbar-color: var(--scrollbar-thumb, initial) var(--scrollbar-track, initial);
-}
-
-.scrollbar::-webkit-scrollbar {
-  display: block;
-  width: var(--scrollbar-width, 16px);
-  height: var(--scrollbar-height, 16px);
-}
-
-.scrollbar-thumb-sky-700 {
-  --scrollbar-thumb: #0369a1 !important;
-}
-
 @font-face {
   font-family: "Uthmani-Hafs";
 
@@ -2990,9 +2936,56 @@ input[type="range"].range-lg::-moz-range-thumb {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #d1d5db;
   height: 70px;
   border-radius: 15px;
+}
+
+/* light */
+
+html.theme-1 ::-webkit-scrollbar-thumb {
+  background: #000000;
+}
+
+/* blue */
+
+html.theme-2 ::-webkit-scrollbar-thumb {
+  background: #c2c2c2;
+}
+
+/* green */
+
+html.theme-3 ::-webkit-scrollbar-thumb {
+  background: #c2c2c2;
+}
+
+/* black */
+
+html.theme-4 ::-webkit-scrollbar-thumb {
+  background: #c2c2c2;
+}
+
+/* sepia */
+
+html.theme-5 ::-webkit-scrollbar-thumb {
+  background: #553c0f;
+}
+
+/* gold */
+
+html.theme-6 ::-webkit-scrollbar-thumb {
+  background: #b1901f;
+}
+
+/* coffee */
+
+html.theme-7 ::-webkit-scrollbar-thumb {
+  background: #c59f60;
+}
+
+/* silver */
+
+html.theme-8 ::-webkit-scrollbar-thumb {
+  background: #000000;
 }
 
 /* for some reason, Tailwind applies bottom-right padding to the below elements, so have to manually reset them */

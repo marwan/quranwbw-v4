@@ -64,9 +64,48 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #d1d5db;
   height: 70px;
   border-radius: 15px;
+}
+
+/* light */
+html.theme-1 ::-webkit-scrollbar-thumb {
+  background: #000000;
+}
+
+/* blue */
+html.theme-2 ::-webkit-scrollbar-thumb {
+  background: #c2c2c2;
+}
+
+/* green */
+html.theme-3 ::-webkit-scrollbar-thumb {
+  background: #c2c2c2;
+}
+
+/* black */
+html.theme-4 ::-webkit-scrollbar-thumb {
+  background: #c2c2c2;
+}
+
+/* sepia */
+html.theme-5 ::-webkit-scrollbar-thumb {
+  background: #553c0f;
+}
+
+/* gold */
+html.theme-6 ::-webkit-scrollbar-thumb {
+  background: #b1901f;
+}
+
+/* coffee */
+html.theme-7 ::-webkit-scrollbar-thumb {
+  background: #c59f60;
+}
+
+/* silver */
+html.theme-8 ::-webkit-scrollbar-thumb {
+  background: #000000;
 }
 
 /* for some reason, Tailwind applies bottom-right padding to the below elements, so have to manually reset them */
