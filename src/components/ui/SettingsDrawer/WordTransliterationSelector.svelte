@@ -21,7 +21,4 @@
 	{/each}
 </div>
 
-<!-- <div class="text-xs opacityyy-70">
-	Relying exclusively on transliteration is not the ideal method to recite the Quran, as it can lead to pronunciation errors. To fully appreciate and accurately convey the Quranic text, it is essential to learn to read the Quran in its original Arabic. This ensures the correct pronunciation and intonation, enabling one to receive the full reward and blessings associated with recitation. By
-	mastering the Arabic script, you not only deepen your understanding and connection with the sacred text but also preserve its divine essence and beauty.
-</div> -->
+<div class="text-xs pt-6 opacity-70">Relying solely on transliteration to recite the Quran is not recommended, as it can lead to pronunciation errors. To fully appreciate and receive the reward and blessings of recitation, one should learn to read the Quran in Arabic.</div>

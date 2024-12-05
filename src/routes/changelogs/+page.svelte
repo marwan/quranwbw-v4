@@ -4,7 +4,6 @@
 	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
 	import { __currentPage, __websiteTheme } from '$utils/stores';
 	import { timeAgo } from '$utils/timeAgo';
-	import { linkClasses } from '$data/commonClasses';
 
 	let fetchCommitsData;
 
@@ -28,7 +27,7 @@
 	<!-- commits -->
 	<div id="commits">
 		<div class="mt-6 mb-2 space-y-4 pb-2">
-			<div class="text-xl">Following are the most recent 100 updates made on QuranWBW.com.</div>
+			<div class="text-sm">Following are the most recent 100 updates made on QuranWBW.com.</div>
 		</div>
 		<div id="commits-list">
 			{#await fetchCommitsData}
@@ -36,12 +35,12 @@
 			{:then fetchCommitsData}
 				<div class="text-sm">
 					{#each Object.entries(fetchCommitsData) as [key, value]}
-						<div class="py-6 space-y-2 border-b {window.theme('border')}">
+						<div class="py-6 space-y-2 border-b {window.theme('hover')} {window.theme('border')}">
 							<div class="space-y-2">
 								<div><a href={value.html_url} target="_blank">{value.commit.message}</a></div>
 								<div>
 									<img class={userAvatarClasses} src={value.author.avatar_url} alt={value.author.login} />
-									<span>{value.author.login} commited {timeAgo(value.commit.committer.date)} <span class="hidden md:inline-block">({value.sha.substring(0, 7)})</span></span>
+									<span class="opacity-70">{value.author.login} commited {timeAgo(value.commit.committer.date)} <span class="hidden md:inline-block">({value.sha.substring(0, 7)})</span></span>
 								</div>
 							</div>
 						</div>
