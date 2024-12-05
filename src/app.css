@@ -245,37 +245,57 @@ svg {
 }
 
 /* tajweed palettes */
-.theme-1 .theme-palette-tajweed, .theme-5 .theme-palette-tajweed, .theme-6 .theme-palette-tajweed, .theme-8 .theme-palette-tajweed  {
+.theme-1 .theme-palette-tajweed, .theme-6 .theme-palette-tajweed  {
   font-palette: --palette0;
 }
 
 .theme-2 .theme-palette-tajweed, .theme-3 .theme-palette-tajweed, .theme-4 .theme-palette-tajweed, .theme-7 .theme-palette-tajweed {
   font-palette: --palette1;
 }
-/* .theme-5 .theme-palette-tajweed {
+.theme-5 .theme-palette-tajweed, .theme-8 .theme-palette-tajweed {
   font-palette: --palette2;
-} */
+}
 
 /* normal palettes */
-.theme-1 .theme-palette-normal, .theme-5 .theme-palette-normal, .theme-6 .theme-palette-normal, .theme-8 .theme-palette-normal {
+.theme-1 .theme-palette-normal, .theme-6 .theme-palette-normal {
   font-palette: --palette3;
 }
 
 .theme-2 .theme-palette-normal, .theme-3 .theme-palette-normal, .theme-4 .theme-palette-normal, .theme-7 .theme-palette-normal {
   font-palette: --palette4;
 }
-/* 
-.theme-5 .theme-palette-normal {
+.theme-5 .theme-palette-normal, .theme-8 .theme-palette-normal {
   font-palette: --palette5;
-} */
+}
+
 
 /* chapter header */
-.theme-1 .header, .theme-5 .header, .theme-6 .header, .theme-8 .header {
+.theme-1 .header {
   font-palette: --palette0;
 }
 
-.theme-2 .header, .theme-3 .header, .theme-4 .header, .theme-7 .header {
+.theme-2.header {
+  font-palette: --palette3;
+}
+
+.theme-3 .header, .theme-4 .header {
   font-palette: --palette1;
+}
+
+.theme-5 .header {
+  font-palette: --palette5;
+}
+
+.theme-6 .header {
+  font-palette: --palette2;
+}
+
+.theme-7.header {
+  font-palette: --palette5;
+}
+
+.theme-8 .header {
+  font-palette: --palette3;
 }
 
 /* for lexicon modal because the data is fetched externally and it has it's own classes */
