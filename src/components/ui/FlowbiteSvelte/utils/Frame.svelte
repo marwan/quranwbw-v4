@@ -29,16 +29,16 @@
 		default: `${window.theme('bgMain')}`,
 		dropdown: `${window.theme('bgMain')}`,
 		navbar: `${window.theme('bgMain')}`,
-		navbarUl: 'bg-grayyy-50',
-		form: 'bg-grayyy-50',
+		navbarUl: '',
+		form: '',
 		none: ''
 	};
 	const textColors = {
-		default: 'text-grayyy-500',
-		dropdown: 'text-grayyy-700',
-		navbar: 'text-grayyy-700',
-		navbarUl: 'text-grayyy-700',
-		form: 'text-grayyy-900',
+		default: '',
+		dropdown: '',
+		navbar: '',
+		navbarUl: '',
+		form: '',
 		none: ''
 	};
 	const borderColors = {

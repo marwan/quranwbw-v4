@@ -21,7 +21,7 @@
 		base: `${window.theme('input')}`
 	};
 	const colorClasses = {
-		base: 'bg-grayyy-50'
+		base: ''
 	};
 	// tinted if put in component having its own background
 	let background = getContext('background');

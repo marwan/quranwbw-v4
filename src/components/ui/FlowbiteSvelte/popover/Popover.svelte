@@ -6,7 +6,7 @@
 
 <Popper activeContent border shadow rounded {...$$restProps} class={$$props.class} on:show>
 	{#if $$slots.title || title}
-		<div class="py-2 px-3 bg-grayyy-100 rounded-t-md border-b {window.theme('border')}">
+		<div class="py-2 px-3 rounded-t-md border-b {window.theme('border')}">
 			<slot name="title">
 				<h3 class="font-semibold">{title}</h3>
 			</slot>

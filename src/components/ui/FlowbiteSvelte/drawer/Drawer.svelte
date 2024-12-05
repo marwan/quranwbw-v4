@@ -71,7 +71,7 @@
 @prop export let bottomOffset: string = 'inset-x-0 bottom-0';
 @prop export let width: string = 'w-80';
 @prop export let backdrop: boolean = true;
-@prop export let bgColor: string = 'bg-grayyy-900';
+@prop export let bgColor: string = '';
 @prop export let bgOpacity: string = 'bg-opacity-75';
 @prop export let placement: 'left' | 'right' | 'top' | 'bottom' = 'left';
 @prop export let id: string = 'drawer-example';
