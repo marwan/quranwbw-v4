@@ -1,4 +1,6 @@
 <script>
+	export let individualSettingsClasses;
+
 	import Radio from '$ui/FlowbiteSvelte/forms/Radio.svelte';
 	import Check from '$svgs/Check.svelte';
 	import { __selectedDisplayId, __currentPage } from '$utils/stores';
@@ -11,7 +13,7 @@
 	{#each Object.entries(selectableDisplays) as [id, displayOption]}
 		{#if !displayOption.disallowedIn.includes($__currentPage)}
 			<Radio name="displayType" bind:group={$__selectedDisplayId} value={displayOption.displayID} on:change={(event) => displayTypeChangeHandler(+event.target.value)} custom>
-				<div class="inline-flex justify-between items-center p-5 w-full {window.theme('bgMain')} rounded-lg border {window.theme('border')} cursor-pointer {window.theme('checked')} {window.theme('hover')} {$__selectedDisplayId === displayOption.displayID && selectedRadioClasses}">
+				<div class="{individualSettingsClasses} {$__selectedDisplayId === displayOption.displayID && selectedRadioClasses}">
 					<div class="w-full">{displayOption.displayName}</div>
 
 					{#if $__selectedDisplayId === displayOption.displayID}

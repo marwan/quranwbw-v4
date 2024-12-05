@@ -1,4 +1,6 @@
 <script>
+	export let individualSettingsClasses;
+
 	import Radio from '$ui/FlowbiteSvelte/forms/Radio.svelte';
 	import Check from '$svgs/Check.svelte';
 	import { __currentPage, __fontType, __displayType, __chapterData, __chapterNumber } from '$utils/stores';
@@ -11,7 +13,7 @@
 	{#each Object.entries(selectableFontTypes) as [id, font]}
 		{#if !font.disallowedIn.includes($__currentPage)}
 			<Radio name="fontType" bind:group={$__fontType} value={font.id} on:change={(event) => updateSettings({ type: 'fontType', value: +event.target.value })} custom>
-				<div class="inline-flex justify-between items-center p-5 w-full {window.theme('bgMain')} rounded-lg border {window.theme('border')} cursor-pointer {window.theme('checked')} {window.theme('hover')} {$__fontType === font.id && selectedRadioClasses}">
+				<div class="{individualSettingsClasses} {$__fontType === font.id && selectedRadioClasses}">
 					<div class="w-full">{font.font}</div>
 
 					{#if $__fontType === font.id}

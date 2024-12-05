@@ -1,4 +1,6 @@
 <script>
+	export let individualSettingsClasses;
+
 	import Radio from '$ui/FlowbiteSvelte/forms/Radio.svelte';
 	import Check from '$svgs/Check.svelte';
 	import { __translationReciter } from '$utils/stores';
@@ -10,7 +12,7 @@
 <div class="grid gap-3 w-full">
 	{#each Object.entries(selectableTranslationReciters) as [id, reciter]}
 		<Radio name="reciter" bind:group={$__translationReciter} value={reciter.id} on:change={(event) => updateSettings({ type: 'translationReciter', value: +event.target.value })} custom>
-			<div class="inline-flex justify-between items-center p-5 w-full {window.theme('bgMain')} rounded-lg border {window.theme('border')} cursor-pointer {window.theme('checked')} {window.theme('hover')} {$__translationReciter === reciter.id && selectedRadioClasses}">
+			<div class="{individualSettingsClasses} {$__translationReciter === reciter.id && selectedRadioClasses}">
 				<div class="w-full">{reciter.reciter}</div>
 
 				{#if $__translationReciter === reciter.id}

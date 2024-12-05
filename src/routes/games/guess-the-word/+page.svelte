@@ -84,7 +84,7 @@
 					<div class="grid gap-4 md:gap-6 w-full md:grid-cols-2">
 						{#each Object.entries(fetchData) as [key, value]}
 							<Radio name="bordered" bind:group={selection} value={+key} class={answerChecked === true && selection !== +key ? disabledClasses : null} custom>
-								<div class="inline-flex justify-between items-center p-5 w-full {window.theme('bgMain')} rounded-lg border {window.theme('border')} cursor-pointer {window.theme('checked')} {window.theme('hover')} {selection === +key ? `${window.theme('border')}` : null}">
+								<div class="inline-flex justify-between items-center p-5 w-full rounded-lg cursor-pointer border {window.theme('border')} {window.theme('bgMain')} {window.theme('checked')} {window.theme('hover')} {selection === +key ? `${window.theme('border')}` : null}">
 									<div class="flex flex-row mr-auto ml-2">{fetchData[key].word_english}</div>
 
 									<!-- check / cross icon -->

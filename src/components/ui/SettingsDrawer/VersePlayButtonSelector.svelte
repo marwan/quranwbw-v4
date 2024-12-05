@@ -1,4 +1,6 @@
 <script>
+	export let individualSettingsClasses;
+
 	import Radio from '$ui/FlowbiteSvelte/forms/Radio.svelte';
 	import Check from '$svgs/Check.svelte';
 	import { __playButtonsFunctionality } from '$utils/stores';
@@ -10,7 +12,7 @@
 <div class="grid gap-3 w-full">
 	{#each Object.entries(selectableVersePlayButtonOptions) as [id, options]}
 		<Radio name="wordTooltip" bind:group={$__playButtonsFunctionality.verse} value={options.id} on:change={(event) => updateSettings({ type: 'versePlayButton', value: +event.target.value })} custom>
-			<div class="inline-flex justify-between items-center p-5 w-full {window.theme('bgMain')} rounded-lg border {window.theme('border')} cursor-pointer {window.theme('checked')} {window.theme('hover')} {$__playButtonsFunctionality.verse === options.id && selectedRadioClasses}">
+			<div class="{individualSettingsClasses} {$__playButtonsFunctionality.verse === options.id && selectedRadioClasses}">
 				<div class="w-full">{options.name}</div>
 
 				{#if $__playButtonsFunctionality.verse === options.id}

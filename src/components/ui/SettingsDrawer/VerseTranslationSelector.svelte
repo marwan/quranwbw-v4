@@ -1,4 +1,6 @@
 <script>
+	export let individualSettingsClasses;
+
 	import Checkbox from '$ui/FlowbiteSvelte/forms/Checkbox.svelte';
 	import Check from '$svgs/Check.svelte';
 	import { __verseTranslations } from '$utils/stores';
@@ -17,7 +19,7 @@
 						{#if translation.language_id === language.language_id}
 							<div class="flex items-center w-full">
 								<Checkbox class="w-full" on:click={() => updateSettings({ type: 'verseTranslation', value: translation.resource_id })} custom>
-									<div class="inline-flex justify-between items-center p-5 w-full {window.theme('bgMain')} rounded-lg border {window.theme('border')} cursor-pointer {window.theme('checked')} {window.theme('hover')} {$__verseTranslations.includes(translation.resource_id) && selectedRadioClasses}">
+									<div class="{individualSettingsClasses} {$__verseTranslations.includes(translation.resource_id) && selectedRadioClasses}">
 										<div class="w-full">{translation.resource_name}</div>
 
 										{#if $__verseTranslations.includes(translation.resource_id)}

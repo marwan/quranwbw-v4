@@ -2179,10 +2179,6 @@ input[type="range"].range-lg::-moz-range-thumb {
   background-color: rgb(0 0 0 / 0.1);
 }
 
-.bg-\[\#000000\]\/20 {
-  background-color: rgb(0 0 0 / 0.2);
-}
-
 .bg-\[\#000000\]\/5 {
   background-color: rgb(0 0 0 / 0.05);
 }
@@ -2215,10 +2211,6 @@ input[type="range"].range-lg::-moz-range-thumb {
   background-color: rgb(85 60 15 / 0.1);
 }
 
-.bg-\[\#553c0f\]\/20 {
-  background-color: rgb(85 60 15 / 0.2);
-}
-
 .bg-\[\#553c0f\]\/5 {
   background-color: rgb(85 60 15 / 0.05);
 }
@@ -2237,10 +2229,6 @@ input[type="range"].range-lg::-moz-range-thumb {
   background-color: rgb(177 144 31 / 0.1);
 }
 
-.bg-\[\#b1901f\]\/20 {
-  background-color: rgb(177 144 31 / 0.2);
-}
-
 .bg-\[\#b1901f\]\/5 {
   background-color: rgb(177 144 31 / 0.05);
 }
@@ -2252,10 +2240,6 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .bg-\[\#c2c2c2\]\/10 {
   background-color: rgb(194 194 194 / 0.1);
-}
-
-.bg-\[\#c2c2c2\]\/20 {
-  background-color: rgb(194 194 194 / 0.2);
 }
 
 .bg-\[\#c2c2c2\]\/5 {
@@ -2271,10 +2255,6 @@ input[type="range"].range-lg::-moz-range-thumb {
   background-color: rgb(197 159 96 / 0.1);
 }
 
-.bg-\[\#c59f60\]\/20 {
-  background-color: rgb(197 159 96 / 0.2);
-}
-
 .bg-\[\#c59f60\]\/5 {
   background-color: rgb(197 159 96 / 0.05);
 }
@@ -2286,10 +2266,6 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .bg-\[\#dddddd\]\/10 {
   background-color: rgb(221 221 221 / 0.1);
-}
-
-.bg-\[\#dddddd\]\/20 {
-  background-color: rgb(221 221 221 / 0.2);
 }
 
 .bg-\[\#dddddd\]\/5 {
