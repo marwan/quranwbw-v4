@@ -51,153 +51,128 @@
 		<script>
 			function theme(type) {
 				try {
-					const currentTheme = +JSON.parse(localStorage.getItem('userSettings')).displaySettings.websiteTheme;
+					const userSettings = JSON.parse(localStorage.getItem('userSettings'));
+					const currentTheme = userSettings ? +userSettings.displaySettings.websiteTheme : null;
 
-					// White theme (light)
-					// primary: white
-					// secondary: #000000
-					if (currentTheme === 1) {
-						if (type === 'background') return window.websiteColors[currentTheme];
-						if (type === 'background-black') return 'bg-black';
-						if (type === 'background-light') return 'bg-black/5';
-						if (type === 'text') return 'text-black';
-						if (type === 'link') return '';
-						if (type === 'border') return 'border-black/10';
-						if (type === 'icon') return '#000000';
-						if (type === 'input') return 'focus:border-black focus:ring-black';
-						if (type === 'checked') return 'peer-checked:border-2 peer-checked:border-black peer-checked:border-black';
-						if (type === 'toggles') return 'bg-black/5 after:bg-white peer-checked:bg-black';
-						if (type === 'hover') return 'hover:bg-black/5';
-						if (type === 'via') return 'via-[#000000]'; // for homepage tab divider
-					}
+					const themes = {
+						1: {
+							bgMain: `${window.websiteColors[currentTheme]}`,
+							bgSecondary: 'bg-black',
+							bgSecondaryMain: 'bg-black/5',
+							text: 'text-black',
+							link: '',
+							border: 'border-black/10',
+							icon: '#000000',
+							input: 'focus:border-black focus:ring-black',
+							checked: 'peer-checked:border-2 peer-checked:border-black peer-checked:border-black',
+							toggles: 'bg-black/5 after:bg-white peer-checked:bg-black',
+							hover: 'hover:bg-black/5',
+							via: 'via-[#000000]'
+						},
+						2: {
+							bgMain: `${window.websiteColors[currentTheme]}`,
+							bgSecondary: 'bg-[#c2c2c2]',
+							bgSecondaryMain: 'bg-[#c2c2c2]/5',
+							text: 'text-[#c2c2c2]',
+							link: '',
+							border: 'border-[#c2c2c2]/10',
+							icon: '#c2c2c2',
+							input: 'focus:border-[#c2c2c2] focus:ring-[#c2c2c2]',
+							checked: 'peer-checked:border-2 peer-checked:border-[#c2c2c2] peer-checked:border-[#c2c2c2]',
+							toggles: 'bg-[#c2c2c2]/5 after:bg-white peer-checked:bg-[#c2c2c2]',
+							hover: 'hover:bg-[#c2c2c2]/5',
+							via: 'via-[#c2c2c2]'
+						},
+						3: {
+							bgMain: `${window.websiteColors[currentTheme]}`,
+							bgSecondary: 'bg-[#dddddd]',
+							bgSecondaryMain: 'bg-[#dddddd]/5',
+							text: 'text-[#dddddd]',
+							link: '',
+							border: 'border-[#dddddd]/10',
+							icon: '#dddddd',
+							input: 'focus:border-[#dddddd] focus:ring-[#dddddd]',
+							checked: 'peer-checked:border-2 peer-checked:border-[#dddddd] peer-checked:border-[#dddddd]',
+							toggles: 'bg-[#dddddd]/5 after:bg-white peer-checked:bg-[#dddddd]',
+							hover: 'hover:bg-[#dddddd]/5',
+							via: 'via-[#dddddd]'
+						},
+						4: {
+							bgMain: `${window.websiteColors[currentTheme]}`,
+							bgSecondary: 'bg-[#dddddd]',
+							bgSecondaryMain: 'bg-[#dddddd]/5',
+							text: 'text-[#dddddd]',
+							link: '',
+							border: 'border-[#dddddd]/10',
+							icon: '#dddddd',
+							input: 'focus:border-[#dddddd] focus:ring-[#dddddd]',
+							checked: 'peer-checked:border-2 peer-checked:border-[#dddddd] peer-checked:border-[#dddddd]',
+							toggles: 'bg-[#dddddd]/5 after:bg-white peer-checked:bg-[#dddddd]',
+							hover: 'hover:bg-[#dddddd]/5',
+							via: 'via-[#dddddd]'
+						},
+						5: {
+							bgMain: `${window.websiteColors[currentTheme]}`,
+							bgSecondary: 'bg-[#553c0f]',
+							bgSecondaryMain: 'bg-[#553c0f]/5',
+							text: 'text-[#553c0f]',
+							link: '',
+							border: 'border-[#553c0f]/10',
+							icon: '#553c0f',
+							input: 'focus:border-[#553c0f] focus:ring-[#553c0f]',
+							checked: 'peer-checked:border-2 peer-checked:border-[#553c0f] peer-checked:border-[#553c0f]',
+							toggles: 'bg-[#553c0f]/5 after:bg-white peer-checked:bg-[#553c0f]',
+							hover: 'hover:bg-[#553c0f]/5',
+							via: 'via-[#553c0f]'
+						},
+						6: {
+							bgMain: `${window.websiteColors[currentTheme]}`,
+							bgSecondary: 'bg-[#b1901f]',
+							bgSecondaryMain: 'bg-[#b1901f]/5',
+							text: 'text-black',
+							link: 'text-[#b1901f]',
+							border: 'border-[#b1901f]/20',
+							icon: '#b1901f',
+							input: 'focus:border-[#b1901f] focus:ring-[#b1901f]',
+							checked: 'peer-checked:border-2 peer-checked:border-[#b1901f] peer-checked:border-[#b1901f]',
+							toggles: 'bg-[#b1901f]/5 after:bg-white peer-checked:bg-[#b1901f]',
+							hover: 'hover:bg-[#b1901f]/5',
+							via: 'via-[#b1901f]'
+						},
+						7: {
+							bgMain: `${window.websiteColors[currentTheme]}`,
+							bgSecondary: 'bg-[#c59f60]',
+							bgSecondaryMain: 'bg-[#c59f60]/5',
+							text: 'text-[#c59f60]',
+							link: 'text-[#c59f60]',
+							border: 'border-[#c59f60]/20',
+							icon: '#c59f60',
+							input: 'focus:border-[#c59f60] focus:ring-[#c59f60]',
+							checked: 'peer-checked:border-2 peer-checked:border-[#c59f60] peer-checked:border-[#c59f60]',
+							toggles: 'bg-[#c59f60]/5 after:bg-white peer-checked:bg-[#c59f60]',
+							hover: 'hover:bg-[#c59f60]/5',
+							via: 'via-[#c59f60]'
+						},
+						8: {
+							bgMain: `${window.websiteColors[currentTheme]}`,
+							bgSecondary: 'bg-black',
+							bgSecondaryMain: 'bg-black/5',
+							text: 'text-black',
+							link: 'text-black',
+							border: 'border-black/20',
+							icon: '#000000',
+							input: 'focus:border-black focus:ring-black',
+							checked: 'peer-checked:border-2 peer-checked:border-black peer-checked:border-black',
+							toggles: 'bg-black/5 after:bg-white peer-checked:bg-black',
+							hover: 'hover:bg-black/5',
+							via: 'via-[#000000]'
+						}
+					};
 
-					// Blue theme (dark)
-					// primary: #02021b
-					// secondary: #c2c2c2
-					else if (currentTheme === 2) {
-						if (type === 'background') return window.websiteColors[currentTheme];
-						if (type === 'background-black') return 'bg-[#c2c2c2]';
-						if (type === 'background-light') return 'bg-[#c2c2c2]/5';
-						if (type === 'text') return 'text-[#c2c2c2]';
-						if (type === 'link') return '';
-						if (type === 'border') return 'border-[#c2c2c2]/10';
-						if (type === 'icon') return '#c2c2c2';
-						if (type === 'input') return 'focus:border-[#c2c2c2] focus:ring-[#c2c2c2]';
-						if (type === 'checked') return 'peer-checked:border-2 peer-checked:border-[#c2c2c2] peer-checked:border-[#c2c2c2]';
-						if (type === 'toggles') return 'bg-[#c2c2c2]/5 after:bg-white peer-checked:bg-[#c2c2c2]';
-						if (type === 'hover') return 'hover:bg-[#c2c2c2]/5';
-						if (type === 'via') return 'via-[#c2c2c2]'; // for homepage tab divider
-					}
-
-					// Green theme (dark)
-					// primary: #001617
-					// secondary: #dddddd
-					else if (currentTheme === 3) {
-						if (type === 'background') return window.websiteColors[currentTheme];
-						if (type === 'background-black') return 'bg-[#dddddd]';
-						if (type === 'background-light') return 'bg-[#dddddd]/5';
-						if (type === 'text') return 'text-[#dddddd]';
-						if (type === 'link') return '';
-						if (type === 'border') return 'border-[#dddddd]/10';
-						if (type === 'icon') return '#dddddd';
-						if (type === 'input') return 'focus:border-[#dddddd] focus:ring-[#dddddd]';
-						if (type === 'checked') return 'peer-checked:border-2 peer-checked:border-[#dddddd] peer-checked:border-[#dddddd]';
-						if (type === 'toggles') return 'bg-[#dddddd]/5 after:bg-white peer-checked:bg-[#dddddd]';
-						if (type === 'hover') return 'hover:bg-[#dddddd]/5';
-						if (type === 'via') return 'via-[#dddddd]'; // for homepage tab divider
-					}
-
-					// Black (OLED) theme (dark)
-					// primary: black
-					// secondary: #dddddd
-					else if (currentTheme === 4) {
-						if (type === 'background') return window.websiteColors[currentTheme];
-						if (type === 'background-black') return 'bg-[#dddddd]';
-						if (type === 'background-light') return 'bg-[#dddddd]/5';
-						if (type === 'text') return 'text-[#dddddd]';
-						if (type === 'link') return '';
-						if (type === 'border') return 'border-[#dddddd]/10';
-						if (type === 'icon') return '#dddddd';
-						if (type === 'input') return 'focus:border-[#dddddd] focus:ring-[#dddddd]';
-						if (type === 'checked') return 'peer-checked:border-2 peer-checked:border-[#dddddd] peer-checked:border-[#dddddd]';
-						if (type === 'toggles') return 'bg-[#dddddd]/5 after:bg-white peer-checked:bg-[#dddddd]';
-						if (type === 'hover') return 'hover:bg-[#dddddd]/5';
-						if (type === 'via') return 'via-[#dddddd]'; // for homepage tab divider
-					}
-
-					// Sepia theme (Sepia)
-					// primary: #e9e3d7
-					// secondary: #553c0f
-					else if (currentTheme === 5) {
-						if (type === 'background') return window.websiteColors[currentTheme];
-						if (type === 'background-black') return 'bg-[#553c0f]';
-						if (type === 'background-light') return 'bg-[#553c0f]/5';
-						if (type === 'text') return 'text-[#553c0f]';
-						if (type === 'link') return '';
-						if (type === 'border') return 'border-[#553c0f]/10';
-						if (type === 'icon') return '#553c0f';
-						if (type === 'input') return 'focus:border-[#553c0f] focus:ring-[#553c0f]';
-						if (type === 'checked') return 'peer-checked:border-2 peer-checked:border-[#553c0f] peer-checked:border-[#553c0f]';
-						if (type === 'toggles') return 'bg-[#553c0f]/5 after:bg-white peer-checked:bg-[#553c0f]';
-						if (type === 'hover') return 'hover:bg-[#553c0f]/5';
-						if (type === 'via') return 'via-[#553c0f]'; // for homepage tab divider
-					}
-
-					// Gold theme (light)
-					// primary: white
-					// secondary: #b1901f
-					else if (currentTheme === 6) {
-						if (type === 'background') return window.websiteColors[currentTheme];
-						if (type === 'background-black') return 'bg-[#b1901f]';
-						if (type === 'background-light') return 'bg-[#b1901f]/5';
-						if (type === 'text') return 'text-black';
-						if (type === 'link') return 'text-[#b1901f]';
-						if (type === 'border') return 'border-[#b1901f]/20';
-						if (type === 'icon') return '#b1901f';
-						if (type === 'input') return 'focus:border-[#b1901f] focus:ring-[#b1901f]';
-						if (type === 'checked') return 'peer-checked:border-2 peer-checked:border-[#b1901f] peer-checked:border-[#b1901f]';
-						if (type === 'toggles') return 'bg-[#b1901f]/5 after:bg-white peer-checked:bg-[#b1901f]';
-						if (type === 'hover') return 'hover:bg-[#b1901f]/5';
-						if (type === 'via') return 'via-[#b1901f]'; // for homepage tab divider
-					}
-
-					// Coffee theme (dark)
-					// primary: #20161f
-					// secondary: #c59f60
-					else if (currentTheme === 7) {
-						if (type === 'background') return window.websiteColors[currentTheme];
-						if (type === 'background-black') return 'bg-[#c59f60]';
-						if (type === 'background-light') return 'bg-[#c59f60]/5';
-						if (type === 'text') return 'text-[#c59f60]';
-						if (type === 'link') return 'text-[#c59f60]';
-						if (type === 'border') return 'border-[#c59f60]/20';
-						if (type === 'icon') return '#c59f60';
-						if (type === 'input') return 'focus:border-[#c59f60] focus:ring-[#c59f60]';
-						if (type === 'checked') return 'peer-checked:border-2 peer-checked:border-[#c59f60] peer-checked:border-[#c59f60]';
-						if (type === 'toggles') return 'bg-[#c59f60]/5 after:bg-white peer-checked:bg-[#c59f60]';
-						if (type === 'hover') return 'hover:bg-[#c59f60]/5';
-						if (type === 'via') return 'via-[#c59f60]'; // for homepage tab divider
-					}
-
-					// Silver theme (light)
-					// primary: #e1e1e1
-					// secondary: #000000
-					else if (currentTheme === 8) {
-						if (type === 'background') return window.websiteColors[currentTheme];
-						if (type === 'background-black') return 'bg-black';
-						if (type === 'background-light') return 'bg-black/5';
-						if (type === 'text') return 'text-black';
-						if (type === 'link') return 'text-black';
-						if (type === 'border') return 'border-black/20';
-						if (type === 'icon') return '#000000';
-						if (type === 'input') return 'focus:border-black focus:ring-black';
-						if (type === 'checked') return 'peer-checked:border-2 peer-checked:border-black peer-checked:border-black';
-						if (type === 'toggles') return 'bg-black/5 after:bg-white peer-checked:bg-black';
-						if (type === 'hover') return 'hover:bg-black/5';
-						if (type === 'via') return 'via-[#000000]'; // for homepage tab divider
-					}
+					return themes[currentTheme][type] || '';
 				} catch (error) {
-					// ...
+					console.error('An error occurred while fetching the theme:', error);
+					return '';
 				}
 			}
 
@@ -226,7 +201,7 @@
 			}
 
 			// Apply the theme class to the document's root element
-			document.documentElement.classList += `theme-${currentTheme} ${window.theme('background')}`;
+			document.documentElement.classList += `theme-${currentTheme} ${window.theme('bgMain')}`;
 		</script>
 		%sveltekit.head%
 	</head>

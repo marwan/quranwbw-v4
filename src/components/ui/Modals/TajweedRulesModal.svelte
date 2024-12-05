@@ -37,7 +37,7 @@
 
 <Modal title={modalTitle} bind:open={$__tajweedRulesModalVisible} transitionParams={getModalTransition('bottom')} class="!rounded-b-none md:!rounded-3xl" bodyClass="p-6 space-y-4 flex-1 overflow-y-auto overscroll-contain" headerClass="flex justify-between items-center p-6 rounded-t-3xl" position="bottom" center outsideclose>
 	<table class="w-full text-sm text-left rtl:text-right">
-		<thead class="text-xs uppercase {window.theme('background-light')}">
+		<thead class="text-xs uppercase {window.theme('bgSecondaryMain')}">
 			<tr>
 				<th scope="col" class="px-6 py-3 w-fit"> Icon </th>
 				<th scope="col" class="pl-2 pr-6 py-3"> Description </th>
@@ -48,7 +48,7 @@
 				<Spinner size={10} />
 			{:then tajweedRulesData}
 				{#each Object.entries(tajweedRulesData) as [key, value]}
-					<tr class="{window.theme('background')} border-b {window.theme('border')} {window.theme('hover')}">
+					<tr class="{window.theme('bgMain')} border-b {window.theme('border')} {window.theme('hover')}">
 						<td class="py-4 w-fit tajweed-rules text-2xl text-center align-top theme-palette-tajweed"> {value.code} </td>
 						<td class="pl-2 pr-6 py-4">
 							<div class="flex flex-col space-y-2">

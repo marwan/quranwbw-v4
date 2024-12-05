@@ -87,7 +87,7 @@
 	const toggleBtnClasses = `relative w-14 h-7 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full after:content-[""] after:absolute after:top-0.5 after:start-[4px] after:border after:rounded-full after:h-6 after:w-6 after:transition-all ${window.theme('toggles')}`;
 
 	let settingsDrawerOpacity = 'opacity-100';
-	let settingsDrawerBackground = `${window.theme('background')}`;
+	let settingsDrawerBackground = `${window.theme('bgMain')}`;
 	let individualSettingsComponent;
 	let mainSettingsScrollPos = 0;
 	let allSettingsVisible = true;
@@ -159,7 +159,7 @@
 	// Handle mouse enter event to show font size sliders
 	function onMouseEnter(selector) {
 		document.querySelectorAll('.fontSizeSliders').forEach((element) => {
-			element.classList.remove(`${window.theme('background')}`, 'opacity-100');
+			element.classList.remove(`${window.theme('bgMain')}`, 'opacity-100');
 			element.classList.add('opacity-0', 'pointer-events-none');
 		});
 
@@ -169,18 +169,18 @@
 
 		const selectedElement = document.getElementById(selector);
 		selectedElement.classList.remove('opacity-0', 'pointer-events-none');
-		selectedElement.classList.add('opacity-100', `${window.theme('background')}`, 'rounded-3xl', 'shadow-lg', 'px-2');
+		selectedElement.classList.add('opacity-100', `${window.theme('bgMain')}`, 'rounded-3xl', 'shadow-lg', 'px-2');
 	}
 
 	// Handle mouse leave event to hide font size sliders
 	function onMouseLeave() {
 		document.querySelectorAll('.fontSizeSliders').forEach((element) => {
-			element.classList.remove(`${window.theme('background')}`, 'opacity-0', 'rounded-3xl', 'shadow-lg', 'px-2', 'pointer-events-none');
+			element.classList.remove(`${window.theme('bgMain')}`, 'opacity-0', 'rounded-3xl', 'shadow-lg', 'px-2', 'pointer-events-none');
 			element.classList.add('opacity-100');
 		});
 
 		settingsDrawerOpacity = 'opacity-100';
-		settingsDrawerBackground = `${window.theme('background')}`;
+		settingsDrawerBackground = `${window.theme('bgMain')}`;
 		document.querySelector('.settings-backdrop').classList.remove('opacityyy-10');
 	}
 </script>
@@ -190,7 +190,7 @@
 	<!-- all-settings -->
 	{#if allSettingsVisible}
 		<div id="all-settings">
-			<div class="flex z-30 top-0 sticky {window.theme('background')} border-b-2 {window.theme('border')} mb-4 {settingsDrawerOpacity}">
+			<div class="flex z-30 top-0 sticky {window.theme('bgMain')} border-b-2 {window.theme('border')} mb-4 {settingsDrawerOpacity}">
 				<h5 id="drawer-label" class="inline-flex items-center my-4 text-3xl font-semibold">Settings</h5>
 				<CloseButton on:click={() => ($__settingsDrawerHidden = true)} class="my-4 rounded-3xl" />
 			</div>
@@ -308,7 +308,7 @@
 							<span class="block">Arabic Word Size ({selectableFontSizes[arabicWordSizeValue].value.split('-')[1]})</span>
 							<!-- svelte-ignore a11y-mouse-events-have-key-events -->
 							<div class="flex flex-col space-y-2 rounded-3xl w-full" role="group" on:mouseenter={() => onMouseEnter('arabic-word-size-setting')} on:mouseleave={() => onMouseLeave()}>
-								<Range min="1" max={maxFontSizeAllowed} bind:value={arabicWordSizeValue} class={window.theme('background-black')} />
+								<Range min="1" max={maxFontSizeAllowed} bind:value={arabicWordSizeValue} class={window.theme('bgSecondary')} />
 							</div>
 						</div>
 					</div>
@@ -321,7 +321,7 @@
 							<span class="block">Word Translation/Transliteration Size ({selectableFontSizes[wordTranlationTransliterationSizeValue].value.split('-')[1]})</span>
 							<!-- svelte-ignore a11y-mouse-events-have-key-events -->
 							<div class="flex flex-col space-y-2 rounded-3xl w-full" role="group" on:mouseenter={() => onMouseEnter('word-translation-size-setting')} on:mouseleave={() => onMouseLeave()}>
-								<Range min="1" max={maxFontSizeAllowed} bind:value={wordTranlationTransliterationSizeValue} class={window.theme('background-black')} />
+								<Range min="1" max={maxFontSizeAllowed} bind:value={wordTranlationTransliterationSizeValue} class={window.theme('bgSecondary')} />
 							</div>
 						</div>
 					</div>
@@ -334,7 +334,7 @@
 							<span class="block">{term('verse')} Translation/Transliteration Size ({selectableFontSizes[verseTranlationTransliterationSizeValue].value.split('-')[1]})</span>
 							<!-- svelte-ignore a11y-mouse-events-have-key-events -->
 							<div class="flex flex-col space-y-2 rounded-3xl w-full" role="group" on:mouseenter={() => onMouseEnter('verse-translation-size-setting')} on:mouseleave={() => onMouseLeave()}>
-								<Range min="1" max={maxFontSizeAllowed} bind:value={verseTranlationTransliterationSizeValue} class={window.theme('background-black')} />
+								<Range min="1" max={maxFontSizeAllowed} bind:value={verseTranlationTransliterationSizeValue} class={window.theme('bgSecondary')} />
 							</div>
 						</div>
 					</div>
@@ -433,7 +433,7 @@
 						<div class="flex flex-col justify-between space-y-4">
 							<span class="block">Playback Speed ({selectablePlaybackSpeeds[playbackSpeedValue].speed})</span>
 							<div class="flex flex-col space-y-2 rounded-3xl w-full" role="group">
-								<Range min="1" max="7" bind:value={playbackSpeedValue} class={window.theme('background-black')} />
+								<Range min="1" max="7" bind:value={playbackSpeedValue} class={window.theme('bgSecondary')} />
 							</div>
 						</div>
 					</div>
@@ -509,7 +509,7 @@
 	<!-- individual-setting -->
 	{#if individualSettingsVisible}
 		<div id="individual-setting" transition:fly={{ duration: 150, x: 0, easing: sineIn }}>
-			<div class="flex z-30 top-0 sticky {window.theme('background')} border-b-2 {window.theme('border')} mb-4">
+			<div class="flex z-30 top-0 sticky {window.theme('bgMain')} border-b-2 {window.theme('border')} mb-4">
 				<button id="drawer-label" class="inline-flex items-center my-4 text-3xl font-semibold" on:click={() => goBackToMainSettings()}>← Back</button>
 				<CloseButton on:click={() => ($__settingsDrawerHidden = true)} class="my-4 rounded-3xl" />
 			</div>

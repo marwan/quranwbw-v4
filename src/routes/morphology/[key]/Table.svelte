@@ -31,7 +31,7 @@
 			<h1 class="text-md md:text-2xl text-center opacityyy-70">{tableTitles[tableType].title} ({totalAvailableWords})</h1>
 			<div class="max-h-[32em] overflow-auto">
 				<table class="w-full text-sm text-left rtl:text-right rounded-md">
-					<thead class="text-xs uppercase sticky top-0 {window.theme('background-light')}">
+					<thead class="text-xs uppercase sticky top-0 {window.theme('bgSecondaryMain')}">
 						<tr>
 							<th scope="col" class="px-6 py-3"> # </th>
 							<th scope="col" class="px-6 py-3"> Word </th>
@@ -43,7 +43,7 @@
 					</thead>
 					<tbody>
 						{#each Array.from(Array(lastWordToLoad + 1).keys()).slice(1) as word}
-							<tr class="{window.theme('background')} border-b {window.theme('border')} {window.theme('hover')}">
+							<tr class="{window.theme('bgMain')} border-b {window.theme('border')} {window.theme('hover')}">
 								<td class="px-6 py-4"> {word} </td>
 								<td class="px-6 py-4 arabic-font-{$__fontType} text-xl md:text-2xl"> {wordData[word - 1].arabic} </td>
 								<td class="px-6 py-4"> {wordData[word - 1].translation} </td>

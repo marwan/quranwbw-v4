@@ -26,9 +26,9 @@
 	$: setContext('color', color);
 	// your script goes here
 	const bgColors = {
-		default: `${window.theme('background')}`,
-		dropdown: `${window.theme('background')}`,
-		navbar: `${window.theme('background')}`,
+		default: `${window.theme('bgMain')}`,
+		dropdown: `${window.theme('bgMain')}`,
+		navbar: `${window.theme('bgMain')}`,
 		navbarUl: 'bg-grayyy-50',
 		form: 'bg-grayyy-50',
 		none: ''

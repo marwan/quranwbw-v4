@@ -37,7 +37,7 @@
 
 	$: wordDivClasses = `
 	  word rounded-lg ${wordAndEndIconCommonClasses} text-center print:break-inside-avoid
-	  ${$__audioSettings.playingWordKey === wordKey || ($__currentPage === 'morphology' && $__morphologyKey === wordKey) ? (selectableThemes[$__websiteTheme].palette === 1 ? `${window.theme('background-light')}` : `${window.theme('background-light')}`) : null}
+	  ${$__audioSettings.playingWordKey === wordKey || ($__currentPage === 'morphology' && $__morphologyKey === wordKey) ? (selectableThemes[$__websiteTheme].palette === 1 ? `${window.theme('bgSecondaryMain')}` : `${window.theme('bgSecondaryMain')}`) : null}
 		${$__currentPage === 'supplications' && word + 1 < supplicationsFromQuran[key] ? ($__hideNonDuaPart ? 'hidden' : 'opacityyy-30') : null}
 	`;
 

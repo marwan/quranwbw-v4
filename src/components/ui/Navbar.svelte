@@ -15,7 +15,7 @@
 	let mushafJuz = '...';
 
 	// Classes for the navbar
-	$: navbarClasses = `${window.theme('background')} border-b ${window.theme('border')} fixed w-full z-20 top-0 left-0 print:hidden ${$__currentPage === 'home' ? 'hidden' : 'block'}`;
+	$: navbarClasses = `${window.theme('bgMain')} border-b ${window.theme('border')} fixed w-full z-20 top-0 left-0 print:hidden ${$__currentPage === 'home' ? 'hidden' : 'block'}`;
 	$: topNavClasses = `
 		${$__topNavbarVisible ? 'block' : 'hidden'} 
 		${['chapter', 'mushaf'].includes($__currentPage) && `border-b ${window.theme('border')} `}
@@ -123,7 +123,7 @@
 			</div>
 		</div>
 
-		<div id="chapter-progress-bar" class="fixed inset-x-0 z-20 h-1 rounded-r-3xl {window.theme('background-black')}" style="width: {chapterProgress}%" />
+		<div id="chapter-progress-bar" class="fixed inset-x-0 z-20 h-1 rounded-r-3xl {window.theme('bgSecondary')}" style="width: {chapterProgress}%" />
 	{/if}
 
 	<!-- mini nav for mushaf page -->

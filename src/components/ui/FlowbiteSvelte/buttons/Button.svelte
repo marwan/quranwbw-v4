@@ -13,7 +13,7 @@
 	export let checked = undefined;
 	// export let disabled: boolean = false;
 	const colorClasses = {
-		alternative: `text-grayyy-900 ${window.theme('background')} border ${window.theme('border')} ${window.theme('hover')} dark:bg-grayyy-800 dark:text-grayyy-400 hover:text-primary-700 focus-within:text-primary-700`,
+		alternative: `text-grayyy-900 ${window.theme('bgMain')} border ${window.theme('border')} ${window.theme('hover')} dark:bg-grayyy-800 dark:text-grayyy-400 hover:text-primary-700 focus-within:text-primary-700`,
 		primary: 'bg-primary-700 hover:bg-primary-800 dark:bg-primary-600 dark:hover:bg-primary-700',
 		none: ''
 	};
