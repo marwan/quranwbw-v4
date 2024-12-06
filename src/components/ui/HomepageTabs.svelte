@@ -73,7 +73,7 @@
 					<button on:click={() => (activeTab = 1)} class="{activeTab === 1 ? tabActiveBorder : tabDefaultBorder} flex flex-row space-x-2 items-center" type="button">
 						<!-- asc/dsc sort button -->
 						<div class="flex flex-row">
-							<button class="inline-flex p-2 rounded-full items-center {window.theme('bgSecondaryLight')}" on:click={() => sortChapters()}>
+							<button class="inline-flex p-2 rounded-full items-center {window.theme('bgSecondaryDark')}" on:click={() => sortChapters()}>
 								<span><AscendingSort size={3} /></span>
 								<span class="sr-only">Sort</span>
 							</button>
@@ -108,7 +108,7 @@
 					<div class="flex flex-row space-x-1 md:space-x-2 w-full md:w-max">
 						{#if $__timeSpecificChapters.isFriday}
 							<div id="al-kahf" class="w-full md:w-max">
-								<a href="/18" class="py-2.5 w-full truncate {buttonClasses}">
+								<a href="/18" class="py-2.5 w-full truncate {buttonOutlineClasses}">
 									<span class="hidden md:block">It's Friday:&nbsp;</span>
 									Al-Kahf
 									<span class="hidden md:block">{@html '&#10230'}</span>
@@ -119,7 +119,7 @@
 						<!-- show Al Mulk at night/evening -->
 						{#if $__timeSpecificChapters.isNight}
 							<div id="al-mulk" class="w-full md:w-max">
-								<a href="/67" class="py-2.5 w-full truncate {buttonClasses}">
+								<a href="/67" class="py-2.5 w-full truncate {buttonOutlineClasses}">
 									<span class="hidden md:block">Night Reminder:&nbsp;</span>
 									Al-Mulk
 									<span class="hidden md:block">{@html '&#10230'}</span>
@@ -132,7 +132,7 @@
 				<!-- continue reading button -->
 				{#if $__lastRead.hasOwnProperty('key')}
 					<div id="last-read" class="flex flex-row w-full md:w-max">
-						<a href="/{lastReadChapter}/{lastReadVerse}" class="py-2.5 w-full truncate {buttonOutlineClasses} !space-x-0">
+						<a href="/{lastReadChapter}/{lastReadVerse}" class="py-2.5 w-full truncate {buttonClasses} !space-x-0">
 							<span class="hidden md:block">Continue Reading: {quranMetaData[lastReadChapter].transliteration}, {lastReadChapter}:{lastReadVerse} {@html '&#10230'}</span>
 							<span class="block md:hidden">Continue: {lastReadChapter}:{lastReadVerse} </span>
 						</a>
