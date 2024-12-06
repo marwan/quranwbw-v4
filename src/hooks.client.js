@@ -22,7 +22,7 @@ export function setUserSettings() {
 	// Display settings
 	if (!userSettings.displaySettings) userSettings.displaySettings = {}; // Parent
 
-	userSettings.displaySettings.websiteTheme = userSettings.displaySettings.websiteTheme || 6; // Gold
+	userSettings.displaySettings.websiteTheme = userSettings.displaySettings.websiteTheme || 1; // Gold
 	userSettings.displaySettings.displayType = userSettings.displaySettings.displayType || 1; // WBW
 	userSettings.displaySettings.fontType = userSettings.displaySettings.fontType || 1; // Uthmanic Hafs Digital
 	userSettings.displaySettings.wordTranslationEnabled = userSettings.displaySettings.wordTranslationEnabled !== undefined ? userSettings.displaySettings.wordTranslationEnabled : true; // Shown

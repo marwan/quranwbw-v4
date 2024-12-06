@@ -1,27 +1,30 @@
+import { selectableThemes } from '$data/options';
+
 // This function takes an array of color code pairs and generates a structured JSON object with theme data for each pair.
 // Each theme includes various CSS class strings for different UI elements, such as background, text, border, icons, inputs, toggles, sliders, and placeholders, using the provided color codes.
 function generateThemes() {
 	const colorSets = [
-		// theme name, primary color, secondary color, optional text color to over the secondary color
-		['white', '#FFFFFF', '#000000'],
-		['blue', '#02021b', '#c2c2c2'],
-		['green', '#001617', '#dddddd'],
-		['black', '#000000', '#dddddd'],
-		['sepia', '#e9e3d7', '#553c0f'],
-		['gold', '#FFFFFF', '#b1901f', '#000000'],
-		['coffee', '#20161f', '#c59f60'],
-		['silver', '#e1e1e1', '#000000']
+		// primary color, secondary color, optional text color to over the secondary color
+		['#FFFFFF', '#b1901f', '#000000'],
+		['#FFFFFF', '#000000'],
+		['#e1e1e1', '#000000'],
+		['#e9e3d7', '#553c0f'],
+		['#20161f', '#c59f60'],
+		['#02021b', '#c2c2c2'],
+		['#001617', '#dddddd'],
+		['#000000', '#dddddd']
 	];
 
 	const themes = {};
 	const websiteColors = {};
+	const cssStyles = [];
 
 	colorSets.forEach((colors, index) => {
-		const [themeName, color1, color2, color3] = colors;
+		const [color1, color2, color3] = colors;
 		const themeIndex = index + 1;
 
 		themes[index + 1] = {
-			themeName: `${themeName}`,
+			themeName: `${selectableThemes[themeIndex].name}`,
 			bgMain: `bg-[${color1}]`,
 			bgSecondary: `bg-[${color2}]`,
 			bgSecondaryLight: `bg-[${color2}]/5`,
@@ -40,6 +43,7 @@ function generateThemes() {
 		};
 
 		websiteColors[themeIndex] = `bg-[${color1}]`;
+		cssStyles.push(`html.theme-${themeIndex} ::-webkit-scrollbar-thumb { background: ${color2}; } /* ${selectableThemes[themeIndex].name} */`);
 	});
 
 	window.websiteColors = websiteColors;
@@ -48,6 +52,7 @@ function generateThemes() {
 	// console.log(`const themes = ${JSON.stringify(themes)}`);
 	console.log(themes);
 	console.log(window.websiteColors);
+	console.log(cssStyles.join('\n'));
 }
 
 window.generateThemes = generateThemes;

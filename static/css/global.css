@@ -2871,25 +2871,20 @@ input[type="range"].range-lg::-moz-range-thumb {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-.shadow-sm {
-  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
 .shadow-md {
   --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-.blur {
-  --tw-blur: blur(8px);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+.shadow-sm {
+  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-.sepia {
-  --tw-sepia: sepia(100%);
+.blur {
+  --tw-blur: blur(8px);
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
@@ -3013,53 +3008,53 @@ input[type="range"].range-lg::-moz-range-thumb {
   border-radius: 15px;
 }
 
-/* light */
-
 html.theme-1 ::-webkit-scrollbar-thumb {
-  background: #000000;
-}
-
-/* blue */
-
-html.theme-2 ::-webkit-scrollbar-thumb {
-  background: #c2c2c2;
-}
-
-/* green */
-
-html.theme-3 ::-webkit-scrollbar-thumb {
-  background: #c2c2c2;
-}
-
-/* black */
-
-html.theme-4 ::-webkit-scrollbar-thumb {
-  background: #c2c2c2;
-}
-
-/* sepia */
-
-html.theme-5 ::-webkit-scrollbar-thumb {
-  background: #553c0f;
-}
-
-/* gold */
-
-html.theme-6 ::-webkit-scrollbar-thumb {
   background: #b1901f;
 }
 
-/* coffee */
+/* Golden Glint */
 
-html.theme-7 ::-webkit-scrollbar-thumb {
+html.theme-2 ::-webkit-scrollbar-thumb {
+  background: #000000;
+}
+
+/* Classic Light */
+
+html.theme-3 ::-webkit-scrollbar-thumb {
+  background: #000000;
+}
+
+/* Silver Lining */
+
+html.theme-4 ::-webkit-scrollbar-thumb {
+  background: #553c0f;
+}
+
+/* Vintage Sepia */
+
+html.theme-5 ::-webkit-scrollbar-thumb {
   background: #c59f60;
 }
 
-/* silver */
+/* Mocha Night */
+
+html.theme-6 ::-webkit-scrollbar-thumb {
+  background: #c2c2c2;
+}
+
+/* Midnight Blue */
+
+html.theme-7 ::-webkit-scrollbar-thumb {
+  background: #dddddd;
+}
+
+/* Forest Green */
 
 html.theme-8 ::-webkit-scrollbar-thumb {
-  background: #000000;
+  background: #dddddd;
 }
+
+/* Oled Black */
 
 /* for some reason, Tailwind applies bottom-right padding to the below elements, so have to manually reset them */
 

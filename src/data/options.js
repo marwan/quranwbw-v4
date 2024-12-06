@@ -18,14 +18,14 @@ export const selectableFontTypes = {
 export const themeColors = ['light', 'dark'];
 
 export const selectableThemes = {
-	1: { id: 1, name: 'Classic Light', palette: 2, color: 'light' },
-	2: { id: 2, name: 'Midnight Blue', palette: 1, color: 'dark' },
-	3: { id: 3, name: 'Forest Green', palette: 1, color: 'dark' },
-	4: { id: 4, name: 'Oled Black', palette: 1, color: 'dark' },
-	5: { id: 5, name: 'Vintage Sepia', palette: 2, color: 'light' },
-	6: { id: 6, name: 'Golden Glint', palette: 2, color: 'light' },
-	7: { id: 7, name: 'Mocha Night', palette: 1, color: 'dark' },
-	8: { id: 8, name: 'Silver Lining', palette: 1, color: 'light' }
+	1: { id: 1, name: 'Golden Glint', palette: 2, color: 'light' },
+	2: { id: 2, name: 'Classic Light', palette: 2, color: 'light' },
+	3: { id: 3, name: 'Silver Lining', palette: 1, color: 'light' },
+	4: { id: 4, name: 'Vintage Sepia', palette: 2, color: 'light' },
+	5: { id: 5, name: 'Mocha Night', palette: 1, color: 'dark' },
+	6: { id: 6, name: 'Midnight Blue', palette: 1, color: 'dark' },
+	7: { id: 7, name: 'Forest Green', palette: 1, color: 'dark' },
+	8: { id: 8, name: 'Oled Black', palette: 1, color: 'dark' }
 };
 
 export const verseTranslationsLanguages = [
