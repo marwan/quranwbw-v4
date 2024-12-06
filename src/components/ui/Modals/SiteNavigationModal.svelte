@@ -1,6 +1,6 @@
 <script>
 	import Modal from '$ui/FlowbiteSvelte/modal/Modal.svelte';
-	import Settings2 from '$svgs/Settings2.svelte';
+	import Settings from '$svgs/Settings.svelte';
 	import TajweedRules from '$svgs/TajweedRules.svelte';
 	import Supplication from '$svgs/Supplication.svelte';
 	import Bookmark from '$svgs/Bookmark.svelte';
@@ -41,7 +41,7 @@
 					}}
 					class={linkClasses}
 				>
-					<Settings2 size={4} />
+					<Settings size={4} />
 					<span class={linkTextClasses}>Settings</span>
 				</button>
 
