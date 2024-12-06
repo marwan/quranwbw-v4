@@ -5,7 +5,7 @@
 	import AudioButton from '$ui/BottomToolbar/AudioButton.svelte';
 	import SettingsButton from '$ui/BottomToolbar/SettingsButton.svelte';
 	import MushafMinimalMode from '$ui/BottomToolbar/MushafMinimalMode.svelte';
-	import MenuBold from '$svgs/MenuBold.svelte';
+	import Menu from '$svgs/Menu.svelte';
 	import Search2Bold from '$svgs/Search2Bold.svelte';
 	import SupplicationBold from '$svgs/SupplicationBold.svelte';
 	import MorphologyBold from '$svgs/MorphologyBold.svelte';
@@ -43,7 +43,7 @@
 	<Tooltip arrow={false} type="light" class="hidden md:block font-normal">Morphology</Tooltip>
 
 	<button class="inline-flex flex-col items-center rounded-e-full justify-center px-5 group {window.theme('hover')}" on:click={() => __siteNavigationModalVisible.set(true)}>
-		<MenuBold size={4} />
+		<Menu size={4} />
 		<span class="sr-only">Menu</span>
 	</button>
 	<Tooltip arrow={false} type="light" class="hidden md:block font-normal">Menu</Tooltip>
