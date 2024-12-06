@@ -106,6 +106,17 @@ export const selectableThemes = {
 		paletteHeader: 1,
 		color1: '#000000',
 		color2: '#dddddd'
+	},
+	9: {
+		id: 9,
+		name: 'Dark Luxury',
+		palette: 1,
+		color: 'dark',
+		paletteNormal: 4,
+		paletteTajweed: 1,
+		paletteHeader: 1,
+		color1: '#09090b',
+		color2: '#dca54c'
 	}
 };
 

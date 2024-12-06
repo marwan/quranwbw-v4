@@ -76,6 +76,7 @@ html.theme-5 ::-webkit-scrollbar-thumb { background: #c59f60; } /* Mocha Night *
 html.theme-6 ::-webkit-scrollbar-thumb { background: #c2c2c2; } /* Midnight Blue */
 html.theme-7 ::-webkit-scrollbar-thumb { background: #dddddd; } /* Forest Green */
 html.theme-8 ::-webkit-scrollbar-thumb { background: #dddddd; } /* Oled Black */
+html.theme-9 ::-webkit-scrollbar-thumb { background: #dca54c; } /* Dark Luxury */
 
 /* for some reason, Tailwind applies bottom-right padding to the below elements, so have to manually reset them */
 input, select, textarea {
@@ -231,6 +232,7 @@ svg {
 .theme-6 .theme-palette-normal { font-palette: --palette4; } /* Midnight Blue */
 .theme-7 .theme-palette-normal { font-palette: --palette4; } /* Forest Green */
 .theme-8 .theme-palette-normal { font-palette: --palette4; } /* Oled Black */
+.theme-9 .theme-palette-normal { font-palette: --palette4; } /* Dark Luxury */
 
 .theme-1 .theme-palette-tajweed { font-palette: --palette0; } /* Golden Glint */
 .theme-2 .theme-palette-tajweed { font-palette: --palette0; } /* Classic Light */
@@ -240,6 +242,7 @@ svg {
 .theme-6 .theme-palette-tajweed { font-palette: --palette1; } /* Midnight Blue */
 .theme-7 .theme-palette-tajweed { font-palette: --palette1; } /* Forest Green */
 .theme-8 .theme-palette-tajweed { font-palette: --palette1; } /* Oled Black */
+.theme-9 .theme-palette-tajweed { font-palette: --palette1; } /* Dark Luxury */
 
 .theme-1 .header { font-palette: --palette2; } /* Golden Glint */
 .theme-2 .header { font-palette: --palette0; } /* Classic Light */
@@ -249,6 +252,7 @@ svg {
 .theme-6 .header { font-palette: --palette3; } /* Midnight Blue */
 .theme-7 .header { font-palette: --palette1; } /* Forest Green */
 .theme-8 .header { font-palette: --palette1; } /* Oled Black */
+.theme-9 .header { font-palette: --palette1; } /* Dark Luxury */
 
 .theme-6 .gold-ayah-icon {
   font-palette: --AyahIconGoldTheme;
