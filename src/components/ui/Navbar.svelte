@@ -66,7 +66,7 @@
 
 <nav id="navbar" class={navbarClasses}>
 	<div id="top-nav" class={topNavClasses} aria-label="Home">
-		<a href="/" class="flex flex-row items-center p-3 cursor-pointer rounded-3xl {window.theme('hover')}" aria-label="Home">
+		<a href="/" class="flex flex-row items-center p-3 cursor-pointer rounded-3xl {window.theme('bgSecondaryLight')}" aria-label="Home">
 			<Home />
 			<span class="text-xs pl-2 hidden md:block">Home</span>
 		</a>
@@ -100,7 +100,7 @@
 			{/if}
 		</button>
 
-		<button class="flex flex-row items-center p-3 cursor-pointer rounded-3xl {window.theme('hover')}" type="button" aria-label="Menu" on:click={() => __siteNavigationModalVisible.set(true)}>
+		<button class="flex flex-row items-center p-3 cursor-pointer rounded-3xl {window.theme('bgSecondaryLight')}" type="button" aria-label="Menu" on:click={() => __siteNavigationModalVisible.set(true)}>
 			<span class="text-xs pr-2 hidden md:block">Menu</span>
 			<Menu />
 		</button>

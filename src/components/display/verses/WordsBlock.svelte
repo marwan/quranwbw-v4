@@ -3,7 +3,7 @@
 	import Word from '$display/verses/Word.svelte';
 	import Tooltip from '$ui/FlowbiteSvelte/tooltip/Tooltip.svelte';
 	import { goto } from '$app/navigation';
-	import { selectableDisplays, selectableThemes } from '$data/options';
+	import { selectableDisplays } from '$data/options';
 	import { __currentPage, __fontType, __displayType, __userSettings, __audioSettings, __morphologyKey, __verseKey, __websiteTheme, __morphologyModalVisible } from '$utils/stores';
 	import { loadFont } from '$utils/loadFont';
 	import { wordAudioController } from '$utils/audioController';

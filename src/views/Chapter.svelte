@@ -10,7 +10,7 @@
 	import { selectableDisplays } from '$data/options';
 	import { errorLoadingDataMessage } from '$data/websiteSettings';
 	import { __userSettings, __currentPage, __chapterNumber, __displayType, __fontType, __wordTranslation, __wordTransliteration, __verseTranslations, __pageURL, __firstVerseOnPage, __chapterDataLoaded, __verseTranslationData } from '$utils/stores';
-	import { buttonOutlineClasses } from '$data/commonClasses';
+	import { buttonClasses } from '$data/commonClasses';
 	import { goto } from '$app/navigation';
 	import { term } from '$utils/terminologies';
 
@@ -94,8 +94,8 @@
 			<!-- buttons to start chapter from start and load previous verse -->
 			{#if startVerse > 1}
 				<div class={loadPrevNextVerseButtons}>
-					<a href="/{$__chapterNumber}" class="text-sm {buttonOutlineClasses}"> Start of {term('chapter')} </a>
-					<button on:click={loadPreviousVerse} class="text-sm {buttonOutlineClasses}"> Previous {term('verse')} </button>
+					<a href="/{$__chapterNumber}" class="text-sm {buttonClasses}"> Start of {term('chapter')} </a>
+					<button on:click={loadPreviousVerse} class="text-sm {buttonClasses}"> Previous {term('verse')} </button>
 				</div>
 			{/if}
 

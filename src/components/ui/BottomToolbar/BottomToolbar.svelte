@@ -1,10 +1,13 @@
 <script>
 	import BottomToolbarButtons from '$ui/BottomToolbar/BottomToolbarButtons.svelte';
 	import { __currentPage, __bottomToolbarVisible } from '$utils/stores';
+
+	const toolbarOuterClasses = `print:hidden ${['home', 'chapter', 'mushaf'].includes($__currentPage) ? 'block' : 'hidden'}`;
+	const toolbarInnerClasses = `fixed z-20 w-full h-16 max-w-xs md:max-w-lg shadow-md -translate-x-1/2 rounded-full bottom-4 left-1/2 border ${window.theme('border')} ${window.theme('bgMain')} ${$__bottomToolbarVisible ? 'block' : 'hidden'}`;
 </script>
 
-<div id="bottom-toolbar" class="print:hidden {['home', 'chapter', 'mushaf'].includes($__currentPage) ? 'block' : 'hidden'}">
-	<div class="fixed z-20 w-full h-16 max-w-xs md:max-w-lg shadow-sm -translate-x-1/2 {window.theme('bgMain')} border {window.theme('border')} rounded-full bottom-4 left-1/2 {$__bottomToolbarVisible ? 'block' : 'hidden'}">
+<div id="bottom-toolbar" class={toolbarOuterClasses}>
+	<div class={toolbarInnerClasses}>
 		<div class="grid h-full max-w-lg grid-cols-5 mx-auto">
 			<BottomToolbarButtons />
 		</div>

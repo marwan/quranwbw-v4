@@ -15,15 +15,17 @@ export const selectableFontTypes = {
 	4: { id: 4, font: 'Indopak Madinah', apiId: 3, disallowedIn: ['mushaf'] }
 };
 
+export const themeColors = ['light', 'dark'];
+
 export const selectableThemes = {
-	1: { id: 1, name: 'Light', palette: 2 },
-	2: { id: 2, name: 'Blue', palette: 1 },
-	3: { id: 3, name: 'Green', palette: 1 },
-	4: { id: 4, name: 'Black', palette: 1 },
-	5: { id: 5, name: 'Sepia', palette: 2 },
-	6: { id: 6, name: 'Gold', palette: 2 },
-	7: { id: 7, name: 'Coffee', palette: 1 },
-	8: { id: 8, name: 'Silver', palette: 1 }
+	1: { id: 1, name: 'Classic Light', palette: 2, color: 'light' },
+	2: { id: 2, name: 'Midnight Blue', palette: 1, color: 'dark' },
+	3: { id: 3, name: 'Forest Green', palette: 1, color: 'dark' },
+	4: { id: 4, name: 'Oled Black', palette: 1, color: 'dark' },
+	5: { id: 5, name: 'Vintage Sepia', palette: 2, color: 'light' },
+	6: { id: 6, name: 'Golden Glint', palette: 2, color: 'light' },
+	7: { id: 7, name: 'Mocha Night', palette: 1, color: 'dark' },
+	8: { id: 8, name: 'Silver Lining', palette: 1, color: 'light' }
 };
 
 export const verseTranslationsLanguages = [
