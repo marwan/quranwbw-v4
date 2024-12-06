@@ -9,7 +9,7 @@
 	import Search2Bold from '$svgs/Search2Bold.svelte';
 	import SupplicationBold from '$svgs/SupplicationBold.svelte';
 	import MorphologyBold from '$svgs/MorphologyBold.svelte';
-	import BookBold from '$svgs/BookBold.svelte';
+	import BookFilled from '$svgs/BookFilled.svelte';
 	import Tooltip from '$ui/FlowbiteSvelte/tooltip/Tooltip.svelte';
 	import { term } from '$utils/terminologies';
 	import { __currentPage, __siteNavigationModalVisible, __quranNavigationModalVisible, __lastRead } from '$utils/stores';
@@ -30,7 +30,7 @@
 
 	<div class="flex items-center justify-center">
 		<a href={$__lastRead.hasOwnProperty('mushaf') ? `/page/${$__lastRead.page}` : '/page/1'} class="inline-flex flex-col items-center justify-center w-12 h-12 rounded-full group {window.theme('input')} {window.theme('bgSecondaryDark')}">
-			<span><BookBold size={5} /></span>
+			<span><BookFilled size={5} /></span>
 			<span class="sr-only">Mushaf</span>
 		</a>
 	</div>

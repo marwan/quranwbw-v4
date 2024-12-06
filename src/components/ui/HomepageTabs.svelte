@@ -3,6 +3,8 @@
 	import Madinah from '$svgs/Madinah.svelte';
 	import CrossSolid from '$svgs/CrossSolid.svelte';
 	import AscendingSort from '$svgs/AscendingSort.svelte';
+	import Moon from '$svgs/Moon.svelte';
+	import Cave from '$svgs/Cave.svelte';
 	import Tooltip from '$ui/FlowbiteSvelte/tooltip/Tooltip.svelte';
 	import { updateSettings } from '$utils/updateSettings';
 	import { quranMetaData, mostRead } from '$data/quranMeta';
@@ -109,6 +111,7 @@
 						{#if $__timeSpecificChapters.isFriday}
 							<div id="al-kahf" class="w-full md:w-max">
 								<a href="/18" class="py-2.5 w-full truncate {buttonOutlineClasses}">
+									<span class="mr-1 md:-mr-1 -mt-1"><Cave size={4} /></span>
 									<span class="hidden md:block">It's Friday:&nbsp;</span>
 									Al-Kahf
 									<span class="hidden md:block">{@html '&#10230'}</span>
@@ -120,6 +123,7 @@
 						{#if $__timeSpecificChapters.isNight}
 							<div id="al-mulk" class="w-full md:w-max">
 								<a href="/67" class="py-2.5 w-full truncate {buttonOutlineClasses}">
+									<span class="mr-1 md:-mr-1"><Moon size={3.5} /></span>
 									<span class="hidden md:block">Night Reminder:&nbsp;</span>
 									Al-Mulk
 									<span class="hidden md:block">{@html '&#10230'}</span>

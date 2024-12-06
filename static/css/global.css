@@ -1217,6 +1217,10 @@ input[type="range"].range-lg::-moz-range-thumb {
   margin-bottom: 2rem;
 }
 
+.-mt-1 {
+  margin-top: -0.25rem;
+}
+
 .-mt-12 {
   margin-top: -3rem;
 }
@@ -1283,6 +1287,10 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .ml-auto {
   margin-left: auto;
+}
+
+.mr-1 {
+  margin-right: 0.25rem;
 }
 
 .mr-2 {
@@ -3965,6 +3973,10 @@ svg {
   .md\:my-8 {
     margin-top: 2rem;
     margin-bottom: 2rem;
+  }
+
+  .md\:-mr-1 {
+    margin-right: -0.25rem;
   }
 
   .md\:mt-6 {

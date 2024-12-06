@@ -3,12 +3,12 @@
 
 	import VerseOptionsDropdown from '$display/verses/VerseOptionsDropdown.svelte';
 	import Bookmark from '$svgs/Bookmark.svelte';
-	import Bookmarked from '$svgs/Bookmarked.svelte';
+	import BookmarkFilled from '$svgs/BookmarkFilled.svelte';
 	import PlaySolid from '$svgs/PlaySolid.svelte';
 	import Pause from '$svgs/Pause.svelte';
-	import Notes from '$svgs/Notes.svelte';
+	import NotesFilled from '$svgs/NotesFilled.svelte';
 	import DotsHorizontal from '$svgs/DotsHorizontal.svelte';
-	import EyeOutline from '$svgs/EyeOutline.svelte';
+	import Eye from '$svgs/Eye.svelte';
 	import Tooltip from '$ui/FlowbiteSvelte/tooltip/Tooltip.svelte';
 	import { playVerseAudio, resetAudioSettings, setVersesToPlay, showAudioModal } from '$utils/audioController';
 	import { __currentPage, __userSettings, __audioSettings, __verseKey, __userNotes, __notesModalVisible, __playButtonsFunctionality, __displayType } from '$utils/stores';
@@ -107,9 +107,7 @@
 					class={buttonClasses}
 					aria-label="Note"
 				>
-					<div>
-						<Notes size={3.5} />
-					</div>
+					<div><NotesFilled size={3.5} /></div>
 				</button>
 				<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-normal">Notes</Tooltip>
 			{/if}
@@ -118,7 +116,7 @@
 			{#if userBookmarks.includes(key)}
 				<button on:click={() => updateSettings({ type: 'userBookmarks', key, set: true })} class={buttonClasses} aria-label="Bookmark">
 					<div>
-						<svelte:component this={userBookmarks.includes(key) ? Bookmarked : Bookmark} size={3.5} />
+						<svelte:component this={userBookmarks.includes(key) ? BookmarkFilled : Bookmark} size={3.5} />
 					</div>
 				</button>
 				<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-normal">Bookmark</Tooltip>
@@ -140,7 +138,7 @@
 		<div class="flex flex-row">
 			<button class={buttonClasses} aria-label="Toggle Words" on:click={() => wordsBlockToggler(verse)}>
 				<div>
-					<EyeOutline />
+					<Eye />
 				</div>
 			</button>
 			<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-normal">Toggle Words</Tooltip>
