@@ -91,7 +91,11 @@
 	`;
 
 	// Classes for end icons
-	$: endIconClasses = `rounded-lg ${wordAndEndIconCommonClasses}`;
+	$: endIconClasses = `
+		rounded-lg 
+		${wordAndEndIconCommonClasses}
+		${$__websiteTheme === 1 && `${window.theme('textSecondary')}`}
+	`;
 </script>
 
 <!-- words -->
