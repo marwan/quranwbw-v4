@@ -254,9 +254,7 @@ svg {
 .theme-8 .header { font-palette: --palette1; } /* Oled Black */
 .theme-9 .header { font-palette: --palette1; } /* Dark Luxury */
 
-.theme-6 .gold-ayah-icon {
-  font-palette: --AyahIconGoldTheme;
-}
+.theme-1 .gold-ayah-icon { font-palette: --AyahIconGoldTheme; }
 
 /* for lexicon modal because the data is fetched externally and it has it's own classes */
 #lexiconModal .entryFree {

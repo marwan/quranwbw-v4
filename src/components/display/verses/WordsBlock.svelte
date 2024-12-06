@@ -110,7 +110,7 @@
 				{value.words.end}
 				<!-- 2: Uthmanic Hafs Mushaf -->
 			{:else if [2, 3].includes($__fontType)}
-				<span style="font-family: p{value.meta.page}" class={v4hafsClasses}>{value.words.end}</span>
+				<span style="font-family: p{value.meta.page}" class="{v4hafsClasses} gold-ayah-icon">{value.words.end}</span>
 			{/if}
 		</span>
 	</div>
