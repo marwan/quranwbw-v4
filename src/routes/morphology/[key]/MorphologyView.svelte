@@ -7,9 +7,10 @@
 	import { quranMetaData } from '$data/quranMeta';
 	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
 	import { __currentPage, __fontType, __wordTranslation, __verseTranslations, __wordTransliteration, __morphologyKey, __lexiconModalVisible, __wordRoot } from '$utils/stores';
-	import { buttonOutlineClasses } from '$data/commonClasses';
+	import { buttonClasses, buttonOutlineClasses } from '$data/commonClasses';
 	import { fetchVersesData } from '$utils/fetchData';
 	import { term } from '$utils/terminologies';
+	import { wordAudioController } from '$utils/audioController';
 
 	let fetchWordsData, fetchWordSummary;
 	let chapter, verse, word;
@@ -119,6 +120,19 @@
 				<span>{@html fetchWordSummary.summary}</span>
 				<!-- <button class="text-lg font-bold underline" on:click={() => showLexiconModal()}>View Lanes Lexicon Data &rarr;</button> -->
 			</div>
+
+			<!-- word audio button -->
+			<!-- <div class="pt-4 text-xs">
+				<button
+					class={buttonClasses}
+					on:click={() =>
+						wordAudioController({
+							key: data.key,
+							chapter: +data.key.split(':')[0],
+							verse: +data.key.split(':')[1]
+						})}>Listen To Word</button
+				>
+			</div> -->
 		{:catch error}
 			<p>{errorLoadingDataMessage}</p>
 		{/await}

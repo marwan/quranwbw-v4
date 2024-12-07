@@ -7,7 +7,6 @@
 	export let wordAndEndIconCommonClasses;
 	export let wordSpanClasses;
 	export let v4hafsClasses;
-	export let exampleVerse = false;
 
 	import Tooltip from '$ui/FlowbiteSvelte/tooltip/Tooltip.svelte';
 	// import Popover from '$ui/FlowbiteSvelte/popover/Popover.svelte';
@@ -15,7 +14,7 @@
 
 	import { selectableThemes } from '$data/options';
 	import { supplicationsFromQuran } from '$data/quranMeta';
-	import { __currentPage, __fontType, __displayType, __userSettings, __audioSettings, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __morphologyKey, __wordTooltip, __verseKey, __websiteTheme, __hideNonDuaPart } from '$utils/stores';
+	import { __currentPage, __fontType, __displayType, __userSettings, __audioSettings, __wordTranslation, __wordTranslationEnabled, __wordTransliterationEnabled, __morphologyKey, __wordTooltip, __verseKey, __websiteTheme, __hideNonDuaPart, __morphologyModalVisible } from '$utils/stores';
 	// import { tajweedRulings, tajweedColorIds } from '$data/tajweedRulings';
 	import { apiEndpoint, splitDelimiter } from '$data/websiteSettings';
 
@@ -37,7 +36,7 @@
 
 	$: wordDivClasses = `
 	  word rounded-lg ${wordAndEndIconCommonClasses} text-center print:break-inside-avoid
-	  ${$__audioSettings.playingWordKey === wordKey || ($__currentPage === 'morphology' && $__morphologyKey === wordKey) ? (selectableThemes[$__websiteTheme].palette === 1 ? `${window.theme('bgSecondaryDark')}` : `${window.theme('bgSecondaryDark')}`) : null}
+	  ${$__audioSettings.playingWordKey === wordKey || ($__currentPage === 'morphology' && $__morphologyKey === wordKey) || ($__morphologyModalVisible && $__morphologyKey === wordKey) ? (selectableThemes[$__websiteTheme].palette === 1 ? `${window.theme('bgSecondaryDark')}` : `${window.theme('bgSecondaryDark')}`) : null}
 		${$__currentPage === 'supplications' && word + 1 < supplicationsFromQuran[key] ? ($__hideNonDuaPart ? 'hidden' : 'opacity-30') : null}
 	`;
 
@@ -88,7 +87,7 @@
 		</span>
 
 		<!-- word translation and transliteration, only for wbw modes -->
-		{#if [1, 3, 7].includes($__displayType) && !exampleVerse}
+		{#if [1, 3, 7].includes($__displayType)}
 			<div class={wordTranslationClasses} data-fontSize={fontSizes.wordTranslationText}>
 				<span class="leading-normal {$__wordTransliterationEnabled ? 'block' : 'hidden'}">{transliterationSplit[word]}</span>
 				<span class="leading-normal {$__wordTranslation === 2 && 'font-Urdu'} {$__wordTranslationEnabled ? 'block' : 'hidden'}">{translationSplit[word]}</span>
