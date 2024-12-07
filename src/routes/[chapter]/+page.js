@@ -25,8 +25,8 @@ export async function load({ params }) {
 }
 
 function getIdByKeyword(keyword) {
-	// Check if the input is a string, without numbers and spaces, and not basic words
-	if (typeof keyword !== 'string' || /\d/.test(keyword) || /\s/.test(keyword) || keyword.toLowerCase() === 'the' || keyword.toLowerCase() === 'of') {
+	// Basic checks
+	if (keyword.length < 3 || typeof keyword !== 'string' || /\d/.test(keyword) || /\s/.test(keyword) || keyword.toLowerCase() === 'the' || keyword.toLowerCase() === 'of') {
 		return null;
 	}
 
@@ -38,13 +38,15 @@ function getIdByKeyword(keyword) {
 	keyword = keyword.toLowerCase();
 	for (let item of quranMetaData) {
 		if (item.id > 0) {
+			const transliteration = item.transliteration.replace(/[^a-zA-Z]/g, '').toLowerCase();
+
 			// First check alternate names
 			if (item.alternateNames !== undefined && item.alternateNames.includes(keyword)) {
 				return item.id;
 			}
 
 			// Then check other names
-			if (item.arabic.toLowerCase().includes(keyword) || item.translation.toLowerCase().includes(keyword) || item.transliteration.toLowerCase().includes(keyword)) {
+			if (item.arabic.toLowerCase().includes(keyword) || item.translation.toLowerCase().includes(keyword) || transliteration.includes(keyword)) {
 				return item.id;
 			}
 		}
