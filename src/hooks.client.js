@@ -88,7 +88,7 @@ export function setUserSettings() {
 	// One-time modals (is shown?)
 	if (!userSettings.oneTimeModals) userSettings.oneTimeModals = {}; // Parent
 
-	userSettings.oneTimeModals.newSiteChangelogModal = userSettings.oneTimeModals.newSiteChangelogModal !== undefined ? userSettings.oneTimeModals.newSiteChangelogModal : false;
+	userSettings.oneTimeModals.changelogModal = userSettings.oneTimeModals.changelogModal !== undefined ? userSettings.oneTimeModals.changelogModal : false;
 
 	// Save updated userSettings to localStorage
 	localStorage.setItem('userSettings', JSON.stringify(userSettings));

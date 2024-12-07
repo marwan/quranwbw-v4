@@ -150,8 +150,8 @@ export function updateSettings(props) {
 			break;
 
 		// for v4 features modal
-		case 'newSiteChangelogModal':
-			userSettings.oneTimeModals.newSiteChangelogModal = props.value;
+		case 'changelogModal':
+			userSettings.oneTimeModals.changelogModal = props.value;
 			break;
 
 		case 'userBookmarks':

@@ -13,7 +13,7 @@
 	import QuranNavigationModal from '$ui/Modals/QuranNavigationModal.svelte';
 	import SiteNavigationModal from '$ui/Modals/SiteNavigationModal.svelte';
 	import SettingsSelectorModal from '$ui/Modals/SettingsSelectorModal.svelte';
-	import NewSiteChangelogModal from '$ui/Modals/NewSiteChangelogModal.svelte';
+	import ChangelogModal from '$ui/Modals/ChangelogModal.svelte';
 	import VerseTranslationModal from '$ui/Modals/VerseTranslationModal.svelte';
 	import MorphologyModal from '$ui/Modals/MorphologyModal.svelte';
 
@@ -154,7 +154,7 @@
 	<SiteNavigationModal />
 	<SettingsSelectorModal />
 	<!-- <LexiconModal /> -->
-	<NewSiteChangelogModal />
+	<ChangelogModal />
 	<VerseTranslationModal />
 	<MorphologyModal />
 	<BottomToolbar />

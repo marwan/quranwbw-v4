@@ -6,8 +6,9 @@
 	import Megaphone from '$svgs/Megaphone.svelte';
 	import Banner from '$ui/FlowbiteSvelte/banner/Banner.svelte';
 	import { websiteTagline } from '$data/websiteSettings';
-	import { __currentPage, __lastRead, __newSiteChangelogModalVisible } from '$utils/stores';
+	import { __currentPage, __lastRead, __changelogModalVisible } from '$utils/stores';
 	import { linkClasses } from '$data/commonClasses';
+	import { websiteChangelogs } from '$data/changelogs';
 
 	__currentPage.set('home');
 </script>
@@ -38,7 +39,7 @@
 		</span>
 
 		<span class="text-xs md:text-sm">
-			Introducing QuranWBW v4.0. <button class={linkClasses} on:click={() => __newSiteChangelogModalVisible.set(true)}> See What's New {@html '&#x2192;'}</button>
+			{websiteChangelogs[0].bannerTitle} <button class={linkClasses} on:click={() => __changelogModalVisible.set(true)}> See What's New {@html '&#x2192;'}</button>
 		</span>
 	</p>
 </Banner>
