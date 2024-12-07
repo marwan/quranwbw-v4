@@ -4,7 +4,7 @@ export const websiteChangelogs = [
 	{
 		version: 'v4.0.1',
 		title: 'Shine with Golden Glint',
-		date: '07-Dec-2024',
+		date: 'Dec 7, 2024',
 		description: [
 			"Golden Glint has arrived, bringing a dazzling upgrade to our signature gold look. We've infused various elements with shimmering gold accents that'll make your reading experience feel extra special. Not on the new theme yet? No worries! Just head over to settings and switch to bask in the glow.",
 			"But wait, there's more! We've polished up other themes and even added a couple of new ones for you to explore. Dive in and let your screen shine bright with our latest update!"
@@ -13,7 +13,7 @@ export const websiteChangelogs = [
 	{
 		version: 'v4.0',
 		title: 'Introducing QuranWBW v4.0',
-		date: '02-Dec-2024',
+		date: 'Dec 2, 2024',
 		description: [
 			'Alhamdulillah, we are thrilled to announce the release of QuranWBW v4, featuring a completely redesigned website with significant performance enhancements and a multitude of new and improved features.',
 			`We hope you enjoy the new and improved QuranWBW experience! In case you'd still like to use the old website, you may visit <a class="${linkClasses}" target="_blank" rel="noreferrer" href="https://old.quranwbw.com">old.quranwbw.com</a>.`,
