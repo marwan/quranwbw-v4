@@ -4,14 +4,22 @@ import { isValidVerseKey } from '$utils/validateKey';
 import { quranMetaData } from '$data/quranMeta';
 
 export async function load({ params }) {
-	// // if a chapter slug was provided
-	if (getIdByKeyword(params.chapter) !== null) {
-		goto(`/${getIdByKeyword(params.chapter)}`, { replaceState: false });
+	// if a colon/dash/period exists and the param is a valid key
+	if (params.chapter.includes(':') || params.chapter.includes('-') || params.chapter.includes('.')) {
+		let updatedParam;
+		updatedParam = params.chapter.replace('-', ':');
+		updatedParam = updatedParam.replace('.', ':');
+		const chapter = updatedParam.split(':')[0];
+		const verse = updatedParam.split(':')[1];
+
+		if (isValidVerseKey(`${chapter}:${verse}`)) {
+			goto(`/${chapter}/${verse}`, { replaceState: false });
+		}
 	}
 
-	// if a colon exists and the param is a valid key
-	if (params.chapter.includes(':') && isValidVerseKey(params.chapter)) {
-		goto(`/${params.chapter.split(':')[0]}/${params.chapter.split(':')[1]}`, { replaceState: false });
+	// if a chapter slug was provided
+	if (getIdByKeyword(params.chapter) !== null) {
+		goto(`/${getIdByKeyword(params.chapter)}`, { replaceState: false });
 	}
 
 	// basic chapter number check
