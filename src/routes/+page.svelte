@@ -15,9 +15,9 @@
 <PageHead title={`Quran ${websiteTagline}`} />
 
 <div class="max-w-4xl mx-auto flex flex-col space-y-6 md:px-4">
-	<div class="flex flex-col mt-8 mb-4">
-		<a href="/" class="flex flex-row space-x-1 items-center justify-center" style="color: {window.theme('icon')}" aria-label="Home">
-			<div><Quran size={50} /></div>
+	<div class="flex flex-col mt-4 mb-4">
+		<a href="/" class="flex flex-col items-center justify-center" style="color: {window.theme('icon')}" aria-label="Home">
+			<div><Quran size={70} /></div>
 			<div class="flex flex-col">
 				<Logo />
 				<div class="text-xs text-center">Word By Word & Morphology</div>

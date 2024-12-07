@@ -26,7 +26,7 @@ function generateThemes() {
 			icon: `${color2}`,
 			input: `focus:border-[${color2}] focus:ring-[${color2}]`,
 			checked: `peer-checked:border-2 peer-checked:border-[${color2}] peer-checked:border-[${color2}]`,
-			toggle: `bg-[${color2}]/5 after:bg-[${color1}] peer-checked:bg-[${color2}]`,
+			toggle: `bg-[${color2}]/5 after:bg-[${color1}] after:border-[${color1}] peer-checked:bg-[${color2}]`,
 			slider: `bg-[${color2}]/10 [&::-webkit-slider-thumb]:!bg-[${color2}]`,
 			hover: `hover:bg-[${color2}]/5`,
 			via: `via-[${color2}]`,
