@@ -3,7 +3,7 @@
 	import Word from '$display/verses/Word.svelte';
 	import Tooltip from '$ui/FlowbiteSvelte/tooltip/Tooltip.svelte';
 	import { goto } from '$app/navigation';
-	import { selectableDisplays, selectableThemes } from '$data/options';
+	import { selectableDisplays } from '$data/options';
 	import { __currentPage, __fontType, __displayType, __userSettings, __audioSettings, __morphologyKey, __verseKey, __websiteTheme, __morphologyModalVisible } from '$utils/stores';
 	import { loadFont } from '$utils/loadFont';
 	import { wordAudioController } from '$utils/audioController';
@@ -68,7 +68,7 @@
 	// Common classes for words and end icons
 	$: wordAndEndIconCommonClasses = `
 		hover:cursor-pointer
-		${selectableThemes[$__websiteTheme].palette === 1 ? 'hover:bg-white/20' : 'hover:bg-black/10'}
+		${window.theme('hover')}
 		${$__displayType === 1 ? 'text-center flex flex-col' : 'inline-flex flex-col'}
 		${selectableDisplays[$__displayType].layout === 'wbw' ? 'p-3' : [2, 3].includes($__fontType) ? ($__currentPage === 'mushaf' ? 'p-0' : 'px-0 py-1') : 'p-1'}
 		${exampleVerse && '!p-0'}
@@ -80,18 +80,26 @@
 		arabic-font-${$__fontType} 
 		${$__currentPage !== 'mushaf' && fontSizes.arabicText} 
 		${displayIsContinuous && 'inline-block'}
-		${[1, 4].includes($__fontType) && 'text-black theme'}
 	`;
 
 	// Classes for v4 hafs words
+	// If tajweed fonts were select, apply tajweed palette
+	// But in Mocha Night & Dark Luxury themes, if non-tajweed fonts were selected, use custom palette to match theme
 	$: v4hafsClasses = `
 		invisible v4-words 
 		p${value.meta.page} 
 		${$__fontType === 3 ? 'theme-palette-tajweed' : 'theme-palette-normal'} 
+		${$__fontType === 2 && $__websiteTheme === 5 ? 'mocha-night-font-color' : ''}
+		${$__fontType === 2 && $__websiteTheme === 9 ? 'dark-luxury-font-color' : ''}
 	`;
 
 	// Classes for end icons
-	$: endIconClasses = `rounded-lg ${wordAndEndIconCommonClasses}`;
+	// In Golden Glint theme, the end icon should be gold
+	$: endIconClasses = `
+		rounded-lg 
+		${wordAndEndIconCommonClasses}
+		${$__websiteTheme === 1 && `${window.theme('textSecondary')}`}
+	`;
 </script>
 
 <!-- words -->
@@ -110,7 +118,7 @@
 				{value.words.end}
 				<!-- 2: Uthmanic Hafs Mushaf -->
 			{:else if [2, 3].includes($__fontType)}
-				<span style="font-family: p{value.meta.page}" class={v4hafsClasses}>{value.words.end}</span>
+				<span style="font-family: p{value.meta.page}" class="{v4hafsClasses} custom-ayah-icon-color">{value.words.end}</span>
 			{/if}
 		</span>
 	</div>
@@ -119,7 +127,7 @@
 	{/if}
 
 	<!-- end icon tooltip -->
-	<Tooltip arrow={false} type="light" class="z-30 inline-flex font-sans theme-grayscale font-normal">
+	<Tooltip arrow={false} type="light" class="z-30 inline-flex font-sans font-normal">
 		End of {key}
 	</Tooltip>
 {/if}

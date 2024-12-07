@@ -2,6 +2,7 @@
 	import '$utils/checkURLParameters';
 	import '$utils/keyDownHandler';
 	import '$utils/devTools';
+	import '$utils/generateThemes';
 	import Navbar from '$ui/Navbar.svelte';
 	import SettingsDrawer from '$ui/SettingsDrawer/SettingsDrawer.svelte';
 	import BottomToolbar from '$ui/BottomToolbar/BottomToolbar.svelte';
@@ -12,7 +13,7 @@
 	import QuranNavigationModal from '$ui/Modals/QuranNavigationModal.svelte';
 	import SiteNavigationModal from '$ui/Modals/SiteNavigationModal.svelte';
 	import SettingsSelectorModal from '$ui/Modals/SettingsSelectorModal.svelte';
-	import NewSiteChangelogModal from '$ui/Modals/NewSiteChangelogModal.svelte';
+	import ChangelogModal from '$ui/Modals/ChangelogModal.svelte';
 	import VerseTranslationModal from '$ui/Modals/VerseTranslationModal.svelte';
 	import MorphologyModal from '$ui/Modals/MorphologyModal.svelte';
 
@@ -153,7 +154,7 @@
 	<SiteNavigationModal />
 	<SettingsSelectorModal />
 	<!-- <LexiconModal /> -->
-	<NewSiteChangelogModal />
+	<ChangelogModal />
 	<VerseTranslationModal />
 	<MorphologyModal />
 	<BottomToolbar />

@@ -1,6 +1,6 @@
 <script>
 	import Modal from '$ui/FlowbiteSvelte/modal/Modal.svelte';
-	import Settings2 from '$svgs/Settings2.svelte';
+	import Settings from '$svgs/Settings.svelte';
 	import TajweedRules from '$svgs/TajweedRules.svelte';
 	import Supplication from '$svgs/Supplication.svelte';
 	import Bookmark from '$svgs/Bookmark.svelte';
@@ -14,14 +14,14 @@
 	import { term } from '$utils/terminologies';
 	import { getModalTransition } from '$utils/getModalTransition';
 
-	const linkClasses = 'w-full flex flex-row space-x-2 py-4 px-4 text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-xl items-center cursor-pointer theme-grayscale';
+	const linkClasses = `w-full flex flex-row space-x-2 py-4 px-4 rounded-xl items-center cursor-pointer ${window.theme('bgSecondaryLight')}`;
 	const linkTextClasses = 'text-xs md:text-sm text-left w-[-webkit-fill-available] truncate';
 
 	// hide the modal when page changes
 	$: if ($__currentPage) __siteNavigationModalVisible.set(false);
 </script>
 
-<Modal id="siteNavigationModal" bind:open={$__siteNavigationModalVisible} transitionParams={getModalTransition('basic')} size="xs" class="rounded-3xl text-black theme" bodyClass="p-6" center outsideclose>
+<Modal id="siteNavigationModal" bind:open={$__siteNavigationModalVisible} transitionParams={getModalTransition('basic')} size="xs" class="rounded-3xl" bodyClass="p-6" center outsideclose>
 	<div class="flex flex-col space-y-4">
 		<!-- modals / popups -->
 		<div class="flex flex-col space-y-2">
@@ -41,7 +41,7 @@
 					}}
 					class={linkClasses}
 				>
-					<Settings2 size={4} />
+					<Settings size={4} />
 					<span class={linkTextClasses}>Settings</span>
 				</button>
 

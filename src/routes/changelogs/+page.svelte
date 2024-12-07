@@ -1,55 +1,47 @@
 <script>
 	import PageHead from '$misc/PageHead.svelte';
-	import Spinner from '$svgs/Spinner.svelte';
-	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
-	import { __currentPage, __websiteTheme } from '$utils/stores';
-	import { timeAgo } from '$utils/timeAgo';
-	import { linkClasses } from '$data/commonClasses';
+	import { __currentPage, __websiteTheme, __changelogModalVisible } from '$utils/stores';
+	import { websiteChangelogs } from '$data/changelogs';
+	import { buttonClasses } from '$data/commonClasses';
 
-	let fetchCommitsData;
-
-	// fetch the commits from our API
-	$: {
-		fetchCommitsData = (async () => {
-			const response = await fetch(`${apiEndpoint}/repo/commits`);
-			const data = await response.json();
-			return data.data;
-		})();
-	}
-
-	$: userAvatarClasses = `rounded-full inline-flex w-5 h-5 ${[2, 3, 4].includes($__websiteTheme) && 'invert'}`;
+	$: if ($__currentPage) __changelogModalVisible.set(false);
 
 	__currentPage.set('changelogs');
 </script>
 
 <PageHead title={'Changelogs'} />
 
-<div class="flex flex-col space-y-6 text-sm theme">
-	<!-- commits -->
-	<div id="commits">
-		<div class="mt-6 mb-2 space-y-4 pb-2">
-			<div class="text-xl">Following are the most recent 100 updates made on QuranWBW.com.</div>
-		</div>
-		<div id="commits-list">
-			{#await fetchCommitsData}
-				<Spinner />
-			{:then fetchCommitsData}
-				<div class="text-sm">
-					{#each Object.entries(fetchCommitsData) as [key, value]}
-						<div class="py-6 space-y-2 border-b border-black/10">
-							<div class="space-y-2">
-								<div><a href={value.html_url} target="_blank">{value.commit.message}</a></div>
-								<div>
-									<img class={userAvatarClasses} src={value.author.avatar_url} alt={value.author.login} />
-									<span class="opacity-70">{value.author.login} commited {timeAgo(value.commit.committer.date)} <span class="hidden md:inline-block">({value.sha.substring(0, 7)})</span></span>
-								</div>
-							</div>
-						</div>
+<div class="flex flex-col space-y-6 text-sm">
+	<div id="changelog-list" class="text-sm">
+		{#each Object.entries(websiteChangelogs) as [key, changelog]}
+			<div class="py-6 space-y-2 border-b {window.theme('border')}">
+				<div id="changelog-title" class="font-medium text-lg">
+					<span>Update {changelog.version} - {changelog.title}</span>
+
+					{#if changelog.date !== null}
+						<span class="opacity-70">({changelog.date})</span>
+					{/if}
+				</div>
+				<div id="changelog-description" class="flex flex-col space-y-4">
+					{#each changelog.description as description}
+						<span>{@html description}</span>
 					{/each}
 				</div>
-			{:catch error}
-				<p>{errorLoadingDataMessage}</p>
-			{/await}
-		</div>
+
+				{#if changelog.updates !== undefined}
+					<div id="changelog-updates">
+						<ul class="list-disc ml-5 space-y-2 pt-2">
+							{#each changelog.updates as update}
+								<li>{@html update}</li>
+							{/each}
+						</ul>
+					</div>
+				{/if}
+			</div>
+		{/each}
+	</div>
+
+	<div class="flex justify-center">
+		<a class="{buttonClasses} w-fit" href="https://github.com/marwan/quranwbw" target="_blank">View Our Github Repository {@html '&#x2192;'}</a>
 	</div>
 </div>

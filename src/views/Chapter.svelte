@@ -10,7 +10,7 @@
 	import { selectableDisplays } from '$data/options';
 	import { errorLoadingDataMessage } from '$data/websiteSettings';
 	import { __userSettings, __currentPage, __chapterNumber, __displayType, __fontType, __wordTranslation, __wordTransliteration, __verseTranslations, __pageURL, __firstVerseOnPage, __chapterDataLoaded, __verseTranslationData } from '$utils/stores';
-	import { buttonOutlineClasses } from '$data/commonClasses';
+	import { buttonClasses } from '$data/commonClasses';
 	import { goto } from '$app/navigation';
 	import { term } from '$utils/terminologies';
 
@@ -59,7 +59,7 @@
 	}
 
 	// Update the layout for the previous/next verse buttons
-	$: loadPrevNextVerseButtons = `flex ${selectableDisplays[JSON.parse($__userSettings).displaySettings.displayType].continuous ? 'flex-row-reverse' : 'flex-row'} space-x-4 justify-center pt-8 pb-6 theme`;
+	$: loadPrevNextVerseButtons = `flex ${selectableDisplays[JSON.parse($__userSettings).displaySettings.displayType].continuous ? 'flex-row-reverse' : 'flex-row'} space-x-4 justify-center pt-8 pb-6`;
 
 	// Function to reset chapter data variables when chapter changes
 	function resetChapterDataVariables(chapter) {
@@ -94,8 +94,8 @@
 			<!-- buttons to start chapter from start and load previous verse -->
 			{#if startVerse > 1}
 				<div class={loadPrevNextVerseButtons}>
-					<a href="/{$__chapterNumber}" class="text-sm {buttonOutlineClasses}"> Start of {term('chapter')} </a>
-					<button on:click={loadPreviousVerse} class="text-sm {buttonOutlineClasses}"> Previous {term('verse')} </button>
+					<a href="/{$__chapterNumber}" class="text-sm {buttonClasses}"> Start of {term('chapter')} </a>
+					<button on:click={loadPreviousVerse} class="text-sm {buttonClasses}"> Previous {term('verse')} </button>
 				</div>
 			{/if}
 

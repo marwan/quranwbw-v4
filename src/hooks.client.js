@@ -22,7 +22,7 @@ export function setUserSettings() {
 	// Display settings
 	if (!userSettings.displaySettings) userSettings.displaySettings = {}; // Parent
 
-	userSettings.displaySettings.websiteTheme = userSettings.displaySettings.websiteTheme || 1; // Light
+	userSettings.displaySettings.websiteTheme = userSettings.displaySettings.websiteTheme || 1; // Gold
 	userSettings.displaySettings.displayType = userSettings.displaySettings.displayType || 1; // WBW
 	userSettings.displaySettings.fontType = userSettings.displaySettings.fontType || 1; // Uthmanic Hafs Digital
 	userSettings.displaySettings.wordTranslationEnabled = userSettings.displaySettings.wordTranslationEnabled !== undefined ? userSettings.displaySettings.wordTranslationEnabled : true; // Shown
@@ -88,7 +88,7 @@ export function setUserSettings() {
 	// One-time modals (is shown?)
 	if (!userSettings.oneTimeModals) userSettings.oneTimeModals = {}; // Parent
 
-	userSettings.oneTimeModals.newSiteChangelogModal = userSettings.oneTimeModals.newSiteChangelogModal !== undefined ? userSettings.oneTimeModals.newSiteChangelogModal : false;
+	userSettings.oneTimeModals.changelogModal = userSettings.oneTimeModals.changelogModal !== undefined ? userSettings.oneTimeModals.changelogModal : false;
 
 	// Save updated userSettings to localStorage
 	localStorage.setItem('userSettings', JSON.stringify(userSettings));

@@ -69,9 +69,9 @@
 	bind:open={$__tafsirModalVisible}
 	title="{quranMetaData[chapter].transliteration}, {chapter}:{verse}"
 	id="tafsirModal"
-	class="!rounded-b-none md:!rounded-3xl theme"
-	bodyClass="p-6 space-y-4 flex-1 overflow-y-auto overscroll-contain theme-grayscale"
-	headerClass="flex justify-between items-center p-6 rounded-t-3xl text-black theme-grayscale"
+	class="!rounded-b-none md:!rounded-3xl"
+	bodyClass="p-6 space-y-4 flex-1 overflow-y-auto overscroll-contain border {window.theme('border')}"
+	headerClass="flex justify-between items-center p-6 rounded-t-3xl"
 	classFooter="rounded-b-3xl flex flex-row justify-between"
 	size="lg"
 	position="bottom"
@@ -88,7 +88,7 @@
 		{#await tafsirData}
 			<Spinner />
 		{:then tafsirData}
-			<div class="text-sm text-black flex flex-col space-y-6">
+			<div class="text-sm flex flex-col space-y-6">
 				<div class="flex flex-col space-y-4">
 					<div class={tafsirTextClasses}>
 						{#each Object.entries(tafsirData) as [id, tafsir]}

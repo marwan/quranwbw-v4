@@ -4,7 +4,7 @@
 	export let line = null;
 	export let startVerse = null;
 
-	import { __currentPage, __chapterNumber, __fontType } from '$utils/stores';
+	import { __currentPage, __chapterNumber, __fontType, __websiteTheme } from '$utils/stores';
 
 	const bismillahTypes = {
 		uthmaniType1: 'ﲚﲛﲞﲤ',
@@ -12,14 +12,24 @@
 		indopakType: '﷽'
 	};
 
-	const chapterBismillahClasses = `
-		flex flex-col text-center flex-wrap block pt-6 pb-4 
-		${[1, 2, 3].includes($__fontType) ? `bismillah ${$__chapterNumber === 2 ? 'text-3xl' : 'text-2xl md:text-3xl'}` : 'arabic-font-4 text-3xl md:text-4xl theme'}
+	const commonClasses = `
+		${$__fontType === 2 && $__websiteTheme === 5 ? 'mocha-night-font-color' : ''}
+		${$__fontType === 2 && $__websiteTheme === 9 ? 'dark-luxury-font-color' : ''}
 	`;
 
+	const chapterBismillahClasses = `
+		${window.theme('text')}
+		flex flex-col text-center flex-wrap block pt-6 pb-4 
+		${[1, 2, 3].includes($__fontType) ? `bismillah ${$__chapterNumber === 2 ? 'text-3xl' : 'text-2xl md:text-3xl'}` : 'arabic-font-4 text-3xl md:text-4xl'}
+		${commonClasses}
+		`;
+
+	// If tajweed fonts were select, apply tajweed palette
+	// But in Mocha Night & Dark Luxury themes, if non-tajweed fonts were selected, use custom palette to match theme
 	const mushafBismillahClasses = `
 		bismillah flex flex-col text-center leading-normal flex-wrap space-y-4 block md:mt-6 text-[5vw] md:text-[32px] lg:text-[36px] 
 		${$__fontType === 3 ? 'theme-palette-tajweed' : 'theme-palette-normal'}
+		${commonClasses}
 	`;
 </script>
 

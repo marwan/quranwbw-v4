@@ -11,8 +11,8 @@
 	const params = new URLSearchParams(window.location.search);
 	const searchQuery = params.get('query') === null ? '' : params.get('query');
 
-	const translationFootnoteClasses = `hidden my-2 footnote-block px-2 py-2 border-2 border-gray-200 rounded-2xl theme-grayscale footnote-${value.meta.chapter}-${value.meta.verse}-${verseTranslationID}`;
-	const footnoteSupClasses = 'ml-1 mt-1 px-2 py-1 bg-gray-200 rounded-full font-semibold cursor-pointer system-font';
+	const translationFootnoteClasses = `hidden my-2 footnote-block px-2 py-2 border-2 ${window.theme('border')} rounded-2xl footnote-${value.meta.chapter}-${value.meta.verse}-${verseTranslationID}`;
+	const footnoteSupClasses = `ml-1 mt-1 px-2 py-1 rounded-full font-semibold cursor-pointer system-font ${window.theme('bgSecondaryDark')}`;
 
 	let footnoteId;
 	let footnoteChapter;
@@ -115,7 +115,7 @@
 			</div>
 
 			<!-- close footnote button -->
-			<button on:click={() => hideFootnote(value.meta.chapter, value.meta.verse, verseTranslationID)} class="opacity-70" title="Close footnote"><CrossSolid size={6} /></button>
+			<button on:click={() => hideFootnote(value.meta.chapter, value.meta.verse, verseTranslationID)} title="Close footnote"><CrossSolid size={6} /></button>
 		</div>
 		<div class="text {isTranslationRTL(verseTranslation.resource_id) && 'direction-rtl'} {isTranslationUrduOrPersian(verseTranslation.resource_id) && 'font-Urdu'}">...</div>
 	</div>

@@ -3,6 +3,8 @@
 	import Madinah from '$svgs/Madinah.svelte';
 	import CrossSolid from '$svgs/CrossSolid.svelte';
 	import AscendingSort from '$svgs/AscendingSort.svelte';
+	import Moon from '$svgs/Moon.svelte';
+	import Cave from '$svgs/Cave.svelte';
 	import Tooltip from '$ui/FlowbiteSvelte/tooltip/Tooltip.svelte';
 	import { updateSettings } from '$utils/updateSettings';
 	import { quranMetaData, mostRead } from '$data/quranMeta';
@@ -15,9 +17,12 @@
 
 	// CSS classes for chapter cards and tabs
 	const cardGridClasses = 'grid md:grid-cols-2 lg:grid-cols-3 gap-3';
-	const cardInnerClasses = 'flex justify-between md:text-left border border-black/10 transition text-sm bg-gray-100 rounded-3xl p-5 hover:cursor-pointer hover:bg-lightGray';
-	const tabClasses = 'p-2 md:p-3 text-xs md:text-md cursor-pointer border-b-4 border-transparent';
-	const activeTabClasses = '!border-black/10';
+	const cardInnerClasses = `flex justify-between md:text-left transition text-sm rounded-3xl p-5 hover:cursor-pointer border ${window.theme('border')} ${window.theme('hover')}`;
+
+	// Tab classes
+	const commontabClasses = 'p-2 md:p-3 text-xs md:text-md cursor-pointer border-b-4';
+	const tabDefaultBorder = `${commontabClasses} border-transparent`;
+	const tabActiveBorder = `${commontabClasses} ${window.theme('border')}`;
 
 	let lastReadChapter = 1;
 	let lastReadVerse = 1;
@@ -61,31 +66,29 @@
 	}
 </script>
 
-<div id="homepage-tabs" style="margin-top: 15px;" class="theme-grayscale">
-	<div class="flex items-center justify-center px-2 mb-4">
-		<!-- <div class="hidden md:block flex-1 border-t border-black/10"></div> -->
-
+<div id="homepage-tabs" style="margin-top: 0px;">
+	<div class="flex items-center justify-center px-2 md:px-0 mb-4">
 		<div class="flex flex-row justify-center px-4">
 			<!-- main tabs -->
 			<div id="tab-buttons">
-				<div class="flex text-sm font-medium text-center opacity-70 justify-center space-x-1 md:space-x-4">
-					<button on:click={() => (activeTab = 1)} class="{tabClasses} {activeTab === 1 && activeTabClasses} flex flex-row space-x-2 items-center" type="button">
+				<div class="flex text-sm font-medium text-center justify-center space-x-1 md:space-x-4">
+					<button on:click={() => (activeTab = 1)} class="{activeTab === 1 ? tabActiveBorder : tabDefaultBorder} flex flex-row space-x-2 items-center" type="button">
 						<!-- asc/dsc sort button -->
 						<div class="flex flex-row">
-							<button class="inline-flex p-2 rounded-full text-black items-center {chapterSortIsAscending ? 'bg-gray-200' : 'bg-gray-300'}" on:click={() => sortChapters()}>
-								<span class="opacity-70"><AscendingSort size={3} /></span>
+							<button class="inline-flex p-2 rounded-full items-center {window.theme('bgSecondaryDark')}" on:click={() => sortChapters()}>
+								<span><AscendingSort size={3} /></span>
 								<span class="sr-only">Sort</span>
 							</button>
-							<Tooltip arrow={false} type="light" placement="top" class="z-30 w-max hidden md:block font-filter font-normal">Sort Asc/Dsc</Tooltip>
+							<Tooltip arrow={false} type="light" placement="top" class="z-30 w-max hidden md:block font-normal">Sort Asc/Dsc</Tooltip>
 						</div>
 						<span>{term('chapters')}</span>
 					</button>
-					<button on:click={() => (activeTab = 2)} class="{tabClasses} {activeTab === 2 && activeTabClasses}" type="button">Suggested</button>
-					<button on:click={() => (activeTab = 3)} class="{tabClasses} {activeTab === 3 && activeTabClasses} flex flex-row space-x-1 items-center truncate" type="button">
+					<button on:click={() => (activeTab = 2)} class={activeTab === 2 ? tabActiveBorder : tabDefaultBorder} type="button">Suggested</button>
+					<button on:click={() => (activeTab = 3)} class="{activeTab === 3 ? tabActiveBorder : tabDefaultBorder} flex flex-row space-x-1 items-center truncate" type="button">
 						<span>Bookmarks</span>
 						<span class="hidden xs:block">{totalBookmarks > 0 ? `(${totalBookmarks})` : ''}</span>
 					</button>
-					<button on:click={() => (activeTab = 4)} class="{tabClasses} {activeTab === 4 && activeTabClasses} flex flex-row space-x-1 items-center truncate" type="button">
+					<button on:click={() => (activeTab = 4)} class="{activeTab === 4 ? tabActiveBorder : tabDefaultBorder} flex flex-row space-x-1 items-center truncate" type="button">
 						<span>Notes</span>
 						<span class="hidden xs:block">{totalNotes > 0 ? `(${totalNotes})` : ''}</span>
 					</button>
@@ -94,7 +97,7 @@
 		</div>
 	</div>
 
-	<div class="hidden md:block border-b -mt-4 px-4 mx-auto w-[98%] theme-grayscale"></div>
+	<div class="hidden md:block h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent to-transparent opacity-20 -mt-4 mx-auto {window.theme('via')}"></div>
 
 	<div id="content-tab" class="my-6 px-">
 		<!-- chapters tab -->
@@ -107,7 +110,8 @@
 					<div class="flex flex-row space-x-1 md:space-x-2 w-full md:w-max">
 						{#if $__timeSpecificChapters.isFriday}
 							<div id="al-kahf" class="w-full md:w-max">
-								<a href="/18" class="py-2.5 w-full truncate {buttonClasses}">
+								<a href="/18" class="py-2.5 w-full truncate {buttonOutlineClasses}">
+									<span class="mr-1 md:-mr-1 -mt-1"><Cave size={4} /></span>
 									<span class="hidden md:block">It's Friday:&nbsp;</span>
 									Al-Kahf
 									<span class="hidden md:block">{@html '&#10230'}</span>
@@ -118,7 +122,8 @@
 						<!-- show Al Mulk at night/evening -->
 						{#if $__timeSpecificChapters.isNight}
 							<div id="al-mulk" class="w-full md:w-max">
-								<a href="/67" class="py-2.5 w-full truncate {buttonClasses}">
+								<a href="/67" class="py-2.5 w-full truncate {buttonOutlineClasses}">
+									<span class="mr-1 md:-mr-1"><Moon size={3.5} /></span>
 									<span class="hidden md:block">Night Reminder:&nbsp;</span>
 									Al-Mulk
 									<span class="hidden md:block">{@html '&#10230'}</span>
@@ -131,7 +136,7 @@
 				<!-- continue reading button -->
 				{#if $__lastRead.hasOwnProperty('key')}
 					<div id="last-read" class="flex flex-row w-full md:w-max">
-						<a href="/{lastReadChapter}/{lastReadVerse}" class="py-2.5 w-full truncate {buttonOutlineClasses} !space-x-0">
+						<a href="/{lastReadChapter}/{lastReadVerse}" class="py-2.5 w-full truncate {buttonClasses} !space-x-0">
 							<span class="hidden md:block">Continue Reading: {quranMetaData[lastReadChapter].transliteration}, {lastReadChapter}:{lastReadVerse} {@html '&#10230'}</span>
 							<span class="block md:hidden">Continue: {lastReadChapter}:{lastReadVerse} </span>
 						</a>
@@ -149,12 +154,12 @@
 									<!-- chapter name and icon -->
 									<div class="flex flex-row items-center space-x-1 justify-center md:justify-start truncate">
 										<div>{id}. {quranMetaData[id].transliteration}</div>
-										<div class="opacity-50"><svelte:component this={quranMetaData[id].revelation === 1 ? Mecca : Madinah} /></div>
-										<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-filter font-normal">{quranMetaData[id].revelation === 1 ? term('meccan') : term('medinan')} revelation</Tooltip>
+										<div><svelte:component this={quranMetaData[id].revelation === 1 ? Mecca : Madinah} /></div>
+										<Tooltip arrow={false} type="light" placement="top" class="z-30 hidden md:block font-normal">{quranMetaData[id].revelation === 1 ? term('meccan') : term('medinan')} revelation</Tooltip>
 									</div>
 
 									<!-- chapter translation -->
-									<div class="block text-xs opacity-70 truncate">
+									<div class="block text-xs truncate opacity-70">
 										{quranMetaData[id].translation}
 									</div>
 
@@ -164,7 +169,7 @@
 										{term('verses')}
 									</div>
 								</div>
-								<div class="invisible chapter-icons justify-items-end opacity-70 text-5xl">{@html `&#xE9${quranMetaData[id].icon};`}</div>
+								<div class="invisible chapter-icons justify-items-end text-5xl" style="color: {window.theme('icon')}">{@html `&#xE9${quranMetaData[id].icon};`}</div>
 							</div>
 						</a>
 					{/if}
@@ -192,7 +197,7 @@
 		<div class="bookmarks-tab-panels space-y-12 {activeTab === 3 ? 'block' : 'hidden'}" id="bookmarks-tab-panel" role="tabpanel" aria-labelledby="bookmarks-tab">
 			<div id="bookmark-cards" class="flex flex-col space-y-4">
 				{#if totalBookmarks === 0}
-					<div class="flex items-center justify-center text-sm opacity-70">You currently do not have any bookmarks.</div>
+					<div class="flex items-center justify-center text-sm">You currently do not have any bookmarks.</div>
 				{:else}
 					<div class="{cardGridClasses} grid-cols-1">
 						{#each $__userBookmarks as bookmark}
@@ -201,7 +206,7 @@
 									<div class="text-sm">{quranMetaData[bookmark.split(':')[0]].transliteration} ({bookmark})</div>
 
 									{#if activeTab === 3 && totalBookmarks !== 0}
-										<div class="text-sm opacity-70 truncate direction-rtl text-right arabic-font-1">
+										<div class="text-sm truncate direction-rtl text-right arabic-font-1 opacity-70">
 											{#await fetchData then data}
 												{data[bookmark].words.arabic.split(splitDelimiter).join(' ')}
 											{:catch error}
@@ -224,13 +229,13 @@
 		<div class="notes-tab-panels space-y-12 {activeTab === 4 ? 'block' : 'hidden'}" id="notes-tab-panel" role="tabpanel" aria-labelledby="notes-tab">
 			<div id="notes-cards" class="flex flex-col space-y-4">
 				{#if totalNotes === 0}
-					<div class="flex items-center justify-center text-sm opacity-70">You currently do not have any saved notes.</div>
+					<div class="flex items-center justify-center text-sm">You currently do not have any saved notes.</div>
 				{:else}
 					<div class="{cardGridClasses} grid-cols-1">
 						{#each Object.entries($__userNotes) as [verse, note]}
 							<a href="{verse.split(':')[0]}/{verse.split(':')[1]}" class="!justify-start {cardInnerClasses} w-full flex-col">
 								<div class="text-sm">{quranMetaData[verse.split(':')[0]].transliteration} ({verse})</div>
-								<span class="text-xs opacity-70 truncate">{note.note}</span>
+								<span class="text-xs truncate opacity-70">{note.note}</span>
 							</a>
 						{/each}
 					</div>

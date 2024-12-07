@@ -52,7 +52,7 @@ let __websiteOnline,
 	__siteNavigationModalVisible,
 	__settingsSelectorModal,
 	__lexiconModalVisible,
-	__newSiteChangelogModalVisible,
+	__changelogModalVisible,
 	__verseTranslationModalVisible,
 	__morphologyModalVisible,
 	__wakeLockEnabled,
@@ -213,7 +213,7 @@ if (browser) {
 		visible: false
 	});
 	__lexiconModalVisible = writable(false);
-	__newSiteChangelogModalVisible = writable(false);
+	__changelogModalVisible = writable(false);
 	__verseTranslationModalVisible = writable(false);
 	__morphologyModalVisible = writable(false);
 
@@ -301,7 +301,7 @@ export {
 	__siteNavigationModalVisible,
 	__settingsSelectorModal,
 	__lexiconModalVisible,
-	__newSiteChangelogModalVisible,
+	__changelogModalVisible,
 	__verseTranslationModalVisible,
 	__morphologyModalVisible,
 	__wakeLockEnabled,

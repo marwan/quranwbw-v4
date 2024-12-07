@@ -9,7 +9,7 @@
 	import { getModalTransition } from '$utils/getModalTransition';
 
 	// CSS classes for radio buttons
-	const radioClasses = 'inline-flex justify-between items-center py-2 px-4 w-full text-gray-500 bg-white rounded-lg border border-gray-200 cursor-pointer peer-checked:border-primary-600 peer-checked:text-primary-600 hover:text-gray-600 hover:bg-gray-100 theme-grayscale';
+	const radioClasses = `inline-flex justify-between items-center py-2 px-4 w-full ${window.theme('bgMain')} rounded-lg border ${window.theme('border')} cursor-pointer ${window.theme('checked')} ${window.theme('hover')}`;
 
 	let invalidStartVerse = false;
 	let invalidEndVerse = false;
@@ -70,7 +70,7 @@
 	}
 </script>
 
-<Modal id="audioModal" bind:open={$__audioModalVisible} transitionParams={getModalTransition('bottom')} size="xs" class="!rounded-b-none md:!rounded-3xl !text-black theme" bodyClass="p-6" placement="center" position="bottom" autoclose outsideclose>
+<Modal id="audioModal" bind:open={$__audioModalVisible} transitionParams={getModalTransition('bottom')} size="xs" class="!rounded-b-none md:!rounded-3xl !theme" bodyClass="p-6" placement="center" position="bottom" autoclose outsideclose>
 	<!-- Modal content -->
 	<div class="flex flex-row space-x-4 mb-4 text-xl" style="margin-top: 0px;">
 		<h3 id="audio-modal-title" class="font-medium">{quranMetaData[$__audioSettings.playingChapter || 1].transliteration}, {$__audioSettings.playingKey}</h3>
@@ -99,14 +99,14 @@
 			</div>
 
 			{#if $__audioSettings.audioType === 'word'}
-				<span class="flex flex-col space-y-3 text-sm pt-2 opacity-70">
+				<span class="flex flex-col space-y-3 text-sm pt-2">
 					<span>This feature allows you to hear each word in the {term('verse')} individually. To listen to specific words, simply click on them. Please note, this option plays the words sequentially without accounting for the connecting silent letters between them. For a seamless and accurate recitation, it is recommended to play the entire {term('verse')}.</span>
 				</span>
 			{/if}
 		</div>
 
 		<!-- single or range -->
-		<div id="single-or-range-block" class="flex flex-col space-y-4 py-4 border-t {$__audioSettings.audioType === 'word' ? 'hidden' : null}">
+		<div id="single-or-range-block" class="flex flex-col space-y-4 py-4 border-t {window.theme('border')} {$__audioSettings.audioType === 'word' ? 'hidden' : null}">
 			<span class="text-sm">Your preferred range.</span>
 			<div class="flex flex-row space-x-2">
 				<!-- play this verse -->
@@ -140,16 +140,26 @@
 		{#if $__currentPage === 'chapter' && $__audioSettings.audioType === 'verse'}
 			<div id="audio-range-options" class={$__audioSettings.audioRange === 'playRange' ? 'block' : 'hidden'}>
 				<!-- from / till -->
-				<div class="flex flex-col space-y-4 py-4 border-t">
+				<div class="flex flex-col space-y-4 py-4 border-t {window.theme('border')}">
 					<!-- <span class="text-xs  ">Select the range of verses or words to be played.</span> -->
 					<div class="flex flex-row space-x-4">
 						<div class="flex flex-row space-x-2">
 							<span class="m-auto text-sm mr-2">From {term('verse')}</span>
-							<input type="number" min="1" max={quranMetaData[$__chapterNumber].verses} bind:value={$__audioSettings.startVerse} id="startVerse" on:change={updateAudioSettings} aria-describedby="helper-text-explanation" class="w-16 text-xs border border-black/10 rounded-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 mb-0" placeholder="start" />
+							<input type="number" min="1" max={quranMetaData[$__chapterNumber].verses} bind:value={$__audioSettings.startVerse} id="startVerse" on:change={updateAudioSettings} aria-describedby="helper-text-explanation" class="bg-transparent w-16 text-xs rounded-3xl border {window.theme('border')} {window.theme('input')} {window.theme('placeholder')} block p-2.5 mb-0" placeholder="start" />
 						</div>
 						<div class="flex flex-row space-x-2">
 							<span class="m-auto text-sm mr-2">Till {term('verse')}</span>
-							<input type="number" min={$__audioSettings.startVerse} max={quranMetaData[$__chapterNumber].verses} bind:value={quranMetaData[$__chapterNumber].verses} id="endVerse" on:change={updateAudioSettings} aria-describedby="helper-text-explanation" class="w-16 text-xs border border-black/10 rounded-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 mb-0" placeholder="end" />
+							<input
+								type="number"
+								min={$__audioSettings.startVerse}
+								max={quranMetaData[$__chapterNumber].verses}
+								bind:value={quranMetaData[$__chapterNumber].verses}
+								id="endVerse"
+								on:change={updateAudioSettings}
+								aria-describedby="helper-text-explanation"
+								class="bg-transparent w-16 text-xs rounded-3xl border {window.theme('border')} {window.theme('input')} {window.theme('placeholder')} {window.theme('placeholder')} block p-2.5 mb-0"
+								placeholder="end"
+							/>
 						</div>
 					</div>
 				</div>
@@ -159,11 +169,11 @@
 
 	<!-- repeat times -->
 	{#if $__audioSettings.audioType === 'verse'}
-		<div class="flex flex-col space-y-4 py-4 border-t">
+		<div class="flex flex-col space-y-4 py-4 border-t {window.theme('border')}">
 			<div class="flex flex-row space-x-4">
 				<div class="flex flex-row space-x-2">
 					<span class="m-auto text-sm mr-2">Repeat each {term($__audioSettings.audioType)}</span>
-					<input id="timesToRepeat" type="number" bind:value={$__audioSettings.timesToRepeat} min="1" max="20" on:change={updateAudioSettings} class="w-16 text-xs border border-black/10 rounded-3xl focus:ring-gray-500 focus:border-gray-500 block p-2.5 mb-0" />
+					<input id="timesToRepeat" type="number" bind:value={$__audioSettings.timesToRepeat} min="1" max="20" on:change={updateAudioSettings} class="bg-transparent w-16 text-xs rounded-3xl border {window.theme('border')} {window.theme('input')} block p-2.5 mb-0" />
 					<span class="m-auto text-sm">{$__audioSettings.timesToRepeat > 1 ? 'times' : 'time'} </span>
 				</div>
 			</div>

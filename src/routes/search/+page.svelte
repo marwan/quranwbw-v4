@@ -106,16 +106,16 @@
 
 <div class="mt-4 space-y-4">
 	<div class="flex max-w-2xl mx-auto">
-		<button class="py-3 pl-6 pr-4 text-gray-600 bg-lightGray hover:bg-gray-200 rounded-l-3xl items-center" title="Translations" on:click={() => __settingsSelectorModal.set({ component: VerseTranslationSelector, visible: true, title: `${term('verse')} Translation` })}>
+		<button class="py-3 pl-6 pr-4 rounded-l-3xl items-center border {window.theme('border')} {window.theme('bgSecondaryDark')} {window.theme('hover')}" title="Translations" on:click={() => __settingsSelectorModal.set({ component: VerseTranslationSelector, visible: true, title: `${term('verse')} Translation` })}>
 			<Translation size={5} />
 		</button>
 
 		<!-- search input form -->
 		<form on:submit|preventDefault={() => updateSearchQuery(document.getElementById('search-input').value)} class="flex items-center w-full">
 			<div class="relative w-full">
-				<input type="search" id="search-input" value={searchQuery} class="block p-3 py-3.5 pl-4 w-full z-20 text-sm text-gray-900 bg-gray-50 border border-black/10" placeholder="Search Ibrahim, Mary, Jannat, كتاب..." required />
+				<input type="search" id="search-input" value={searchQuery} class="bg-transparent block py-4 pl-4 w-full z-20 text-sm border {window.theme('placeholder')} {window.theme('border')} {window.theme('input')}" placeholder="Search Ibrahim, Mary, Jannat, كتاب..." required />
 			</div>
-			<button type="submit" title="Search" class="py-[0.94rem] px-5 text-gray-600 bg-lightGray hover:bg-gray-200 rounded-r-3xl items-center">
+			<button type="submit" title="Search" class="py-4 px-5 rounded-r-3xl items-center border {window.theme('border')} {window.theme('bgSecondaryDark')} {window.theme('hover')}">
 				<Search2 size={5} />
 			</button>
 		</form>
@@ -123,7 +123,7 @@
 
 	<!-- search instructions -->
 	{#if searchQuery.length === 0}
-		<div id="how-to-search" class="flex flex-col text-center text-xs space-y-2 max-w-2xl mx-auto theme">
+		<div id="how-to-search" class="flex flex-col text-center text-xs space-y-2 max-w-2xl mx-auto">
 			<span>Explore {Object.keys(selectableVerseTranslations).length} translations from diverse languages and authors. Search for any text, regardless of English or Arabic terminology, and find the nearest or related results. Additionally, you can select specific translations using the button on the left. </span>
 		</div>
 	{/if}
@@ -135,7 +135,7 @@
 			{:then data}
 				{#if data !== undefined}
 					<!-- search results info -->
-					<div class="flex flex-col space-y-4 text-center text-xs theme">
+					<div class="flex flex-col space-y-4 text-center text-xs">
 						<div>{generateTranslationText(selectedTranslations)}</div>
 						{#if pagePagination.total_pages > 1}
 							<div>Displaying {totalResults} results for "{searchQuery}" (page {pagePagination.current_page}).</div>
@@ -166,7 +166,7 @@
 						</div>
 					{/if}
 				{:else}
-					<div class="flex text-center items-center justify-center pt-18 theme text-xs max-w-2xl mx-auto">Unfortunately, your query did not yield any results from the selected translations. Please try using a different keyword or consider switching to another translation for better results.</div>
+					<div class="flex text-center items-center justify-center pt-18 text-xs max-w-2xl mx-auto">Unfortunately, your query did not yield any results from the selected translations. Please try using a different keyword or consider switching to another translation for better results.</div>
 				{/if}
 			{:catch error}
 				<p>{errorLoadingDataMessage}</p>

@@ -13,15 +13,15 @@
 	export let size = undefined;
 	export let defaultClass = 'block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right';
 	export let color = 'base';
-	export let floatClass = 'flex absolute inset-y-0 items-center text-gray-500 dark:text-gray-400';
+	export let floatClass = 'flex absolute inset-y-0 items-center';
 	const borderClasses = {
-		base: 'border-gray-300 dark:border-gray-600'
+		base: `border ${window.theme('border')}`
 	};
 	const ringClasses = {
-		base: 'focus:border-gray-500 focus:ring-gray-500 dark:focus:border-gray-500 dark:focus:ring-gray-500'
+		base: `${window.theme('input')}`
 	};
 	const colorClasses = {
-		base: 'bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400'
+		base: ''
 	};
 	// tinted if put in component having its own background
 	let background = getContext('background');
@@ -34,7 +34,7 @@
 	let inputClass;
 	$: {
 		const _color = color === 'base' && background ? 'tinted' : color;
-		inputClass = twMerge([defaultClass, inputPadding[_size], ($$slots.left && leftPadding[_size]) || ($$slots.right && rightPadding[_size]), ringClasses[color], colorClasses[_color], borderClasses[_color], textSizes[_size], group || 'rounded-lg', group && 'first:rounded-s-lg last:rounded-e-lg', group && 'border-s-0 first:border-s last:border-e', $$props.class]);
+		inputClass = twMerge([defaultClass, inputPadding[_size], ($$slots.left && leftPadding[_size]) || ($$slots.right && rightPadding[_size]), ringClasses[color], colorClasses[_color], borderClasses[color], textSizes[_size], group || 'rounded-lg', group && 'first:rounded-s-lg last:rounded-e-lg', group && 'border-s-0 first:border-s last:border-e', $$props.class]);
 	}
 </script>
 
@@ -61,5 +61,5 @@
 @prop export let size: FormSizeType | undefined = undefined;
 @prop export let defaultClass: string = 'block w-full disabled:cursor-not-allowed disabled:opacity-50 rtl:text-right';
 @prop export let color: 'base' | 'green' | 'red' = 'base';
-@prop export let floatClass: string = 'flex absolute inset-y-0 items-center text-gray-500 dark:text-gray-400';
+@prop export let floatClass: string = 'flex absolute inset-y-0 items-center';
 -->

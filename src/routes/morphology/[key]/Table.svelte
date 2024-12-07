@@ -2,7 +2,7 @@
 	export let wordData, tableType;
 
 	import { __fontType } from '$utils/stores';
-	import { buttonClasses } from '$data/commonClasses';
+	import { buttonClasses, linkClasses } from '$data/commonClasses';
 	import { term } from '$utils/terminologies';
 
 	const tableTitles = {
@@ -27,11 +27,11 @@
 
 {#if totalAvailableWords > 0}
 	<div class="flex flex-col">
-		<div class="relative space-y-6 sm:rounded-3xl theme-grayscale">
-			<h1 class="text-md md:text-2xl text-center opacity-70">{tableTitles[tableType].title} ({totalAvailableWords})</h1>
+		<div class="relative space-y-6 sm:rounded-3xl">
+			<h1 class="text-md md:text-2xl text-center">{tableTitles[tableType].title} ({totalAvailableWords})</h1>
 			<div class="max-h-[32em] overflow-auto">
-				<table class="w-full text-sm text-left rtl:text-right text-gray-500 rounded-md">
-					<thead class="text-xs text-gray-700 uppercase bg-lightGray sticky top-0">
+				<table class="w-full text-sm text-left rtl:text-right rounded-md">
+					<thead class="text-xs uppercase top-0 {window.theme('bgSecondaryLight')}">
 						<tr>
 							<th scope="col" class="px-6 py-3"> # </th>
 							<th scope="col" class="px-6 py-3"> Word </th>
@@ -43,13 +43,13 @@
 					</thead>
 					<tbody>
 						{#each Array.from(Array(lastWordToLoad + 1).keys()).slice(1) as word}
-							<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-lightGray">
+							<tr class="{window.theme('bgMain')} border-b {window.theme('border')} {window.theme('hover')}">
 								<td class="px-6 py-4"> {word} </td>
 								<td class="px-6 py-4 arabic-font-{$__fontType} text-xl md:text-2xl"> {wordData[word - 1].arabic} </td>
 								<td class="px-6 py-4"> {wordData[word - 1].translation} </td>
 								<td class="px-6 py-4"> {wordData[word - 1].transliteration} </td>
-								<td class="px-6 py-4"> <a class="underline" href="/{wordData[word - 1].key.split(':')[0]}/{wordData[word - 1].key.split(':')[1]}">{wordData[word - 1].key.split(':')[0]}:{wordData[word - 1].key.split(':')[1]}</a> </td>
-								<td class="px-6 py-4"> <a class="underline" href="/morphology/{wordData[word - 1].key}">{wordData[word - 1].key}</a> </td>
+								<td class="px-6 py-4"> <a class={linkClasses} href="/{wordData[word - 1].key.split(':')[0]}/{wordData[word - 1].key.split(':')[1]}">{wordData[word - 1].key.split(':')[0]}:{wordData[word - 1].key.split(':')[1]}</a> </td>
+								<td class="px-6 py-4"> <a class={linkClasses} href="/morphology/{wordData[word - 1].key}">{wordData[word - 1].key}</a> </td>
 							</tr>
 						{/each}
 					</tbody>
@@ -65,5 +65,5 @@
 		</div>
 	</div>
 {:else}
-	<div class="text-center my-8 text-sm opacity-70">{tableTitles[tableType].error}</div>
+	<div class="text-center my-8 text-sm">{tableTitles[tableType].error}</div>
 {/if}

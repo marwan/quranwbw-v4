@@ -25,5 +25,5 @@
 		<Translations {value} />
 	</div>
 
-	<div class="border-b border-black/10 theme"></div>
+	<div class="border-b {window.theme('border')}"></div>
 {/if}

@@ -6,21 +6,24 @@
 	import Megaphone from '$svgs/Megaphone.svelte';
 	import Banner from '$ui/FlowbiteSvelte/banner/Banner.svelte';
 	import { websiteTagline } from '$data/websiteSettings';
-	import { __currentPage, __lastRead, __newSiteChangelogModalVisible } from '$utils/stores';
+	import { __currentPage, __lastRead, __changelogModalVisible } from '$utils/stores';
+	import { linkClasses } from '$data/commonClasses';
+	import { websiteChangelogs } from '$data/changelogs';
 
 	__currentPage.set('home');
 </script>
 
 <PageHead title={`Quran ${websiteTagline}`} />
 
-<div class="max-w-4xl mx-auto flex flex-col space-y-6 md:px-4 theme">
-	<div class="flex flex-col mt-4 mb-4 theme-grayscale">
-		<a href="/" class="flex flex-col items-center justify-center" aria-label="Home">
-			<Quran size={100} />
-			<Logo />
+<div class="max-w-4xl mx-auto flex flex-col space-y-6 md:px-4">
+	<div class="flex flex-col mt-4 mb-4">
+		<a href="/" class="flex flex-col items-center justify-center" style="color: {window.theme('icon')}" aria-label="Home">
+			<div><Quran size={70} /></div>
+			<div class="flex flex-col">
+				<Logo />
+				<div class="text-xs text-center">Word By Word & Morphology</div>
+			</div>
 		</a>
-		<!-- <div class="text-xs text-center opacity-70">{websiteTagline}</div> -->
-		<div class="text-xs text-center opacity-70">Word By Word & Morphology</div>
 	</div>
 
 	<!-- chapter and most read tabs -->
@@ -28,15 +31,15 @@
 </div>
 
 <!-- banner for website updates: currently v4 launch -->
-<Banner id="newSiteBanner" position="absolute" divClass="z-10 flex justify-between p-4 !bg-gray-100 theme">
-	<p class="flex items-center text-sm font-normal text-gray-500 space-x-1 truncate">
-		<span class="inline-flex p-2 bg-gray-200 rounded-full text-black">
-			<span class="opacity-70"><Megaphone size={3} /></span>
+<Banner id="newSiteBanner" position="absolute" divClass="z-10 flex justify-between p-4">
+	<p class="flex items-center text-sm font-normal space-x-1 truncate">
+		<span class="inline-flex p-2 rounded-full border {window.theme('border')}">
+			<span><Megaphone size={3} /></span>
 			<span class="sr-only">Announcement</span>
 		</span>
 
-		<span class="text-black text-xs md:text-sm">
-			Introducing QuranWBW v4.0. <button class="inline font-medium text-primary-600 underline underline-offset-2 decoration-600 decoration-solid hover:no-underline" on:click={() => __newSiteChangelogModalVisible.set(true)}> See What's New {@html '&#x2192;'}</button>
+		<span class="text-xs md:text-sm">
+			{websiteChangelogs[0].title}. <button class={linkClasses} on:click={() => __changelogModalVisible.set(true)}> See What's New {@html '&#x2192;'}</button>
 		</span>
 	</p>
 </Banner>

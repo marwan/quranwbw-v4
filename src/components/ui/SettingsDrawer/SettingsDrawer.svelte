@@ -15,7 +15,6 @@
 	import Drawer from '$ui/FlowbiteSvelte/drawer/Drawer.svelte';
 	import Range from '$ui/FlowbiteSvelte/forms/Range.svelte';
 	import CloseButton from '$ui/FlowbiteSvelte/utils/CloseButton.svelte';
-	import Button from '$ui/FlowbiteSvelte/buttons/Button.svelte';
 
 	import {
 		__currentPage,
@@ -82,13 +81,13 @@
 
 	// CSS classes
 	const settingsBlockClasses = 'space-y-2 py-6';
-	const selectorClasses = 'w-32 border border-black/10 text-black text-left rounded-3xl focus:ring-gray-500 focus:border-gray-500 focus-within:ring-2 block p-2.5 truncate font-normal theme-grayscale';
+	const selectorClasses = `w-32 border ${window.theme('border')} text-left rounded-3xl ${window.theme('input')} focus-within:ring-2 block p-2.5 truncate text-sm`;
 	const settingsDescriptionClasses = 'mb-6 text-xs opacity-70';
-	const toggleBtnClasses =
-		'relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gray-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[""] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-black/10 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-gray-600 theme-grayscale';
+	const toggleBtnClasses = `relative w-14 h-7 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full after:content-[""] after:absolute after:top-0.5 after:start-[4px] after:border after:rounded-full after:h-6 after:w-6 after:transition-all ${window.theme('toggle')}`;
+	const rangeClasses = `appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-6 [&::-webkit-slider-thumb]:w-6 [&::-webkit-slider-thumb]:rounded-full ${window.theme('slider')}`;
 
 	let settingsDrawerOpacity = 'opacity-100';
-	let settingsDrawerBackground = 'bg-white';
+	let settingsDrawerBackground = `${window.theme('bgMain')}`;
 	let individualSettingsComponent;
 	let mainSettingsScrollPos = 0;
 	let allSettingsVisible = true;
@@ -160,38 +159,38 @@
 	// Handle mouse enter event to show font size sliders
 	function onMouseEnter(selector) {
 		document.querySelectorAll('.fontSizeSliders').forEach((element) => {
-			element.classList.remove('bg-white', 'opacity-100');
+			element.classList.remove(`${window.theme('bgMain')}`, 'opacity-100');
 			element.classList.add('opacity-0', 'pointer-events-none');
 		});
 
 		settingsDrawerOpacity = 'opacity-0';
 		settingsDrawerBackground = 'bg-transparent';
-		document.querySelector('.settings-backdrop').classList.add('opacity-10');
+		document.querySelector('.settings-backdrop').classList.add('opacityyy-10');
 
 		const selectedElement = document.getElementById(selector);
 		selectedElement.classList.remove('opacity-0', 'pointer-events-none');
-		selectedElement.classList.add('opacity-100', 'bg-white', 'rounded-3xl', 'shadow-lg', 'px-2');
+		selectedElement.classList.add('opacity-100', `${window.theme('bgMain')}`, 'rounded-3xl', 'shadow-lg', 'px-2');
 	}
 
 	// Handle mouse leave event to hide font size sliders
 	function onMouseLeave() {
 		document.querySelectorAll('.fontSizeSliders').forEach((element) => {
-			element.classList.remove('bg-white', 'opacity-0', 'rounded-3xl', 'shadow-lg', 'px-2', 'pointer-events-none');
+			element.classList.remove(`${window.theme('bgMain')}`, 'opacity-0', 'rounded-3xl', 'shadow-lg', 'px-2', 'pointer-events-none');
 			element.classList.add('opacity-100');
 		});
 
 		settingsDrawerOpacity = 'opacity-100';
-		settingsDrawerBackground = 'bg-white';
-		document.querySelector('.settings-backdrop').classList.remove('opacity-10');
+		settingsDrawerBackground = `${window.theme('bgMain')}`;
+		document.querySelector('.settings-backdrop').classList.remove('opacityyy-10');
 	}
 </script>
 
 <!-- settings drawer -->
-<Drawer placement="right" transitionType="fly" transitionParams={transitionParamsRight} bind:hidden={$__settingsDrawerHidden} class="theme w-full md:w-1/2 lg:w-[430px] md:rounded-tl-3xl md:rounded-bl-3xl pt-0 {settingsDrawerBackground}" id="settings-drawer">
+<Drawer placement="right" transitionType="fly" transitionParams={transitionParamsRight} bind:hidden={$__settingsDrawerHidden} class="w-full md:w-1/2 lg:w-[430px] md:rounded-tl-3xl md:rounded-bl-3xl pt-0 {settingsDrawerBackground}" id="settings-drawer">
 	<!-- all-settings -->
 	{#if allSettingsVisible}
 		<div id="all-settings">
-			<div class="flex z-30 top-0 sticky bg-white border-b-2 border-black/10 mb-4 {settingsDrawerOpacity}">
+			<div class="flex z-30 top-0 sticky {window.theme('bgMain')} border-b-2 {window.theme('border')} mb-4 {settingsDrawerOpacity}">
 				<h5 id="drawer-label" class="inline-flex items-center my-4 text-3xl font-semibold">Settings</h5>
 				<CloseButton on:click={() => ($__settingsDrawerHidden = true)} class="my-4 rounded-3xl" />
 			</div>
@@ -205,34 +204,34 @@
 					<div id="website-theme-setting" class={settingsBlockClasses}>
 						<div class="flex flex-row justify-between items-center">
 							<div class="block">Theme</div>
-							<Button class={selectorClasses} on:click={() => gotoIndividualSetting('website-theme')}>{selectableThemes[$__websiteTheme].name}</Button>
+							<button class={selectorClasses} on:click={() => gotoIndividualSetting('website-theme')}>{selectableThemes[$__websiteTheme].name}</button>
 						</div>
 						<p class={settingsDescriptionClasses}>An assortment of website themes to please your vision.</p>
 					</div>
 
-					<div class="border-b border-black/10"></div>
+					<div class="border-b {window.theme('border')}"></div>
 
 					<!-- display-type-setting -->
 					<div id="display-type-setting" class="{settingsBlockClasses} {!['chapter', 'mushaf', 'supplications', 'bookmarks', 'morphology', 'search'].includes($__currentPage) && disabledClasses}">
 						<div class="flex flex-row justify-between items-center">
 							<div class="block">Display Type</div>
-							<Button class={selectorClasses} on:click={() => gotoIndividualSetting('display-type')}>{selectableDisplays[$__selectedDisplayId].displayName}</Button>
+							<button class={selectorClasses} on:click={() => gotoIndividualSetting('display-type')}>{selectableDisplays[$__selectedDisplayId].displayName}</button>
 						</div>
 						<p class={settingsDescriptionClasses}>Different {term('verse')} layouts that you can choose from.</p>
 					</div>
 
-					<div class="border-b border-black/10"></div>
+					<div class="border-b {window.theme('border')}"></div>
 
 					<!-- word-tooltip-setting -->
 					<div id="word-tooltip-setting" class={settingsBlockClasses}>
 						<div class="flex flex-row justify-between items-center">
 							<div class="block">Word Tooltip</div>
-							<Button class={selectorClasses} on:click={() => gotoIndividualSetting('word-tooltip')}>{selectableTooltipOptions[$__wordTooltip].name}</Button>
+							<button class={selectorClasses} on:click={() => gotoIndividualSetting('word-tooltip')}>{selectableTooltipOptions[$__wordTooltip].name}</button>
 						</div>
 						<p class={settingsDescriptionClasses}>Choose what is displayed when you hover a word.</p>
 					</div>
 
-					<div class="border-b border-black/10"></div>
+					<div class="border-b {window.theme('border')}"></div>
 
 					<!-- word-translation-toggle-setting -->
 					<div id="word-translation-toggle-setting" class={settingsBlockClasses}>
@@ -247,7 +246,7 @@
 						<p class={settingsDescriptionClasses}>Toggle the word translation which is shown below the Arabic word.</p>
 					</div>
 
-					<div class="border-b border-black/10"></div>
+					<div class="border-b {window.theme('border')}"></div>
 
 					<!-- word-transliteration-toggle-setting -->
 					<div id="word-transliteration-toggle-setting" class={settingsBlockClasses}>
@@ -263,7 +262,7 @@
 
 					<!-- prevent sleep toggle, only show if the browser supports it  -->
 					{#if 'wakeLock' in navigator}
-						<div class="border-b border-black/10"></div>
+						<div class="border-b {window.theme('border')}"></div>
 
 						<!-- prevent-sleep-toggle-setting -->
 						<div id="prevent-sleep-toggle-setting" class={settingsBlockClasses}>
@@ -281,7 +280,7 @@
 			</div>
 
 			<!-- font-settings-block -->
-			<div id="font-settings-block" class="py-5 border-t-2 border-black/10">
+			<div id="font-settings-block" class="py-5 border-t-2 {window.theme('border')}">
 				<h3 class="block mb-2 font-medium text-xl {settingsDrawerOpacity}">Font</h3>
 
 				<div class="flex flex-col flex-wrap text-base">
@@ -289,7 +288,7 @@
 					<div id="quran-font-setting" class="{settingsBlockClasses} {settingsDrawerOpacity}">
 						<div class="flex flex-row justify-between items-center">
 							<div class="block">Quran Font</div>
-							<Button class={selectorClasses} on:click={() => gotoIndividualSetting('quran-font')}>{selectableFontTypes[$__fontType].font}</Button>
+							<button class={selectorClasses} on:click={() => gotoIndividualSetting('quran-font')}>{selectableFontTypes[$__fontType].font}</button>
 						</div>
 						<p class={settingsDescriptionClasses}>Multiple Quranic fonts to choose from depending on your mushaf or region preference.</p>
 
@@ -301,7 +300,7 @@
 						{/if}
 					</div>
 
-					<div class="border-b border-black/10 {settingsDrawerOpacity}"></div>
+					<div class="border-b {window.theme('border')} {settingsDrawerOpacity}"></div>
 
 					<!-- arabic-word-size-setting -->
 					<div id="arabic-word-size-setting" class="fontSizeSliders {settingsBlockClasses} {$__currentPage === 'mushaf' && disabledClasses}">
@@ -309,12 +308,12 @@
 							<span class="block">Arabic Word Size ({selectableFontSizes[arabicWordSizeValue].value.split('-')[1]})</span>
 							<!-- svelte-ignore a11y-mouse-events-have-key-events -->
 							<div class="flex flex-col space-y-2 rounded-3xl w-full" role="group" on:mouseenter={() => onMouseEnter('arabic-word-size-setting')} on:mouseleave={() => onMouseLeave()}>
-								<Range min="1" max={maxFontSizeAllowed} bind:value={arabicWordSizeValue} class="theme-grayscale" />
+								<Range min="1" max={maxFontSizeAllowed} bind:value={arabicWordSizeValue} class={rangeClasses} />
 							</div>
 						</div>
 					</div>
 
-					<div class="border-b border-black/10 {settingsDrawerOpacity}"></div>
+					<div class="border-b {window.theme('border')} {settingsDrawerOpacity}"></div>
 
 					<!-- word-translation-size-setting . -->
 					<div id="word-translation-size-setting" class="fontSizeSliders {settingsBlockClasses} {$__currentPage === 'mushaf' && disabledClasses}">
@@ -322,12 +321,12 @@
 							<span class="block">Word Translation/Transliteration Size ({selectableFontSizes[wordTranlationTransliterationSizeValue].value.split('-')[1]})</span>
 							<!-- svelte-ignore a11y-mouse-events-have-key-events -->
 							<div class="flex flex-col space-y-2 rounded-3xl w-full" role="group" on:mouseenter={() => onMouseEnter('word-translation-size-setting')} on:mouseleave={() => onMouseLeave()}>
-								<Range min="1" max={maxFontSizeAllowed} bind:value={wordTranlationTransliterationSizeValue} class="theme-grayscale" />
+								<Range min="1" max={maxFontSizeAllowed} bind:value={wordTranlationTransliterationSizeValue} class={rangeClasses} />
 							</div>
 						</div>
 					</div>
 
-					<div class="border-b border-black/10 {settingsDrawerOpacity}"></div>
+					<div class="border-b {window.theme('border')} {settingsDrawerOpacity}"></div>
 
 					<!-- verse-translation-size-setting -->
 					<div id="verse-translation-size-setting" class="fontSizeSliders {settingsBlockClasses} {$__currentPage === 'mushaf' && disabledClasses}">
@@ -335,7 +334,7 @@
 							<span class="block">{term('verse')} Translation/Transliteration Size ({selectableFontSizes[verseTranlationTransliterationSizeValue].value.split('-')[1]})</span>
 							<!-- svelte-ignore a11y-mouse-events-have-key-events -->
 							<div class="flex flex-col space-y-2 rounded-3xl w-full" role="group" on:mouseenter={() => onMouseEnter('verse-translation-size-setting')} on:mouseleave={() => onMouseLeave()}>
-								<Range min="1" max={maxFontSizeAllowed} bind:value={verseTranlationTransliterationSizeValue} class="theme-grayscale" />
+								<Range min="1" max={maxFontSizeAllowed} bind:value={verseTranlationTransliterationSizeValue} class={rangeClasses} />
 							</div>
 						</div>
 					</div>
@@ -343,7 +342,7 @@
 			</div>
 
 			<!-- translation-settings-block -->
-			<div id="translation-settings-block" class="py-5 border-t-2 border-black/10 {settingsDrawerOpacity}">
+			<div id="translation-settings-block" class="py-5 border-t-2 {window.theme('border')} {settingsDrawerOpacity}">
 				<h3 class="block mb-2 font-medium text-xl">Translation, Transliteration & {term('tafsir')}</h3>
 
 				<div class="flex flex-col flex-wrap text-base">
@@ -351,51 +350,51 @@
 					<div id="word-translation-setting" class={settingsBlockClasses}>
 						<div class="flex flex-row justify-between items-center">
 							<div class="block">Word Translation</div>
-							<Button class={selectorClasses} on:click={() => gotoIndividualSetting('word-translation')}>{selectableWordTranslations[wordTranslationKey].language}</Button>
+							<button class={selectorClasses} on:click={() => gotoIndividualSetting('word-translation')}>{selectableWordTranslations[wordTranslationKey].language}</button>
 						</div>
 						<p class={settingsDescriptionClasses}>Word translation which will be displaced under the Arabic word text.</p>
 					</div>
 
-					<div class="border-b border-black/10"></div>
+					<div class="border-b {window.theme('border')}"></div>
 
 					<!-- word-transliteration-setting -->
 					<div id="word-transliteration-setting" class={settingsBlockClasses}>
 						<div class="flex flex-row justify-between items-center">
 							<div class="block">Word Transliteration</div>
-							<Button class={selectorClasses} on:click={() => gotoIndividualSetting('word-transliteration')}>{selectableWordTransliterations[wordTransliterationKey].language}</Button>
+							<button class={selectorClasses} on:click={() => gotoIndividualSetting('word-transliteration')}>{selectableWordTransliterations[wordTransliterationKey].language}</button>
 						</div>
 						<p class={settingsDescriptionClasses}>Word transliteration of various types.</p>
 					</div>
 
-					<div class="border-b border-black/10"></div>
+					<div class="border-b {window.theme('border')}"></div>
 
 					<!-- verse-translation-setting -->
 					<div id="verse-translation-setting" class={settingsBlockClasses}>
 						<div class="flex flex-row justify-between items-center">
 							<div class="block">{term('verse')} Translation</div>
-							<Button class={selectorClasses} on:click={() => gotoIndividualSetting('verse-translation')}>{$__verseTranslations.length - totalVerseTransliterationsSelected} selected</Button>
+							<button class={selectorClasses} on:click={() => gotoIndividualSetting('verse-translation')}>{$__verseTranslations.length - totalVerseTransliterationsSelected} selected</button>
 						</div>
 						<p class={settingsDescriptionClasses}>{term('verse')} translations from multiple authors and languages.</p>
 					</div>
 
-					<div class="border-b border-black/10"></div>
+					<div class="border-b {window.theme('border')}"></div>
 
 					<!-- verse-transliteration-setting -->
 					<div id="verse-transliteration-setting" class={settingsBlockClasses}>
 						<div class="flex flex-row justify-between items-center">
 							<div class="block">{term('verse')} Transliteration</div>
-							<Button class={selectorClasses} on:click={() => gotoIndividualSetting('verse-transliteration')}>{totalVerseTransliterationsSelected} selected</Button>
+							<button class={selectorClasses} on:click={() => gotoIndividualSetting('verse-transliteration')}>{totalVerseTransliterationsSelected} selected</button>
 						</div>
 						<p class={settingsDescriptionClasses}>{term('verse')} transliteration of various types.</p>
 					</div>
 
-					<div class="border-b border-black/10"></div>
+					<div class="border-b {window.theme('border')}"></div>
 
 					<!-- tafsir-setting -->
 					<div id="tafsir-setting" class={settingsBlockClasses}>
 						<div class="flex flex-row justify-between items-center">
 							<div class="block">{term('tafsir')}</div>
-							<Button class={selectorClasses} on:click={() => gotoIndividualSetting('verse-tafsir')}>{selectableTafsirs[$__verseTafsir].name}</Button>
+							<button class={selectorClasses} on:click={() => gotoIndividualSetting('verse-tafsir')}>{selectableTafsirs[$__verseTafsir].name}</button>
 						</div>
 						<p class={settingsDescriptionClasses}>{term('verse')} {term('tafsir')} from multiple authors and languages.</p>
 					</div>
@@ -403,7 +402,7 @@
 			</div>
 
 			<!-- audio-settings-block -->
-			<div id="audio-settings-block" class="py-5 border-t-2 border-black/10 {settingsDrawerOpacity}">
+			<div id="audio-settings-block" class="py-5 border-t-2 {window.theme('border')} {settingsDrawerOpacity}">
 				<h3 class="block mb-2 font-medium text-xl">Audio</h3>
 
 				<div class="flex flex-col flex-wrap text-base">
@@ -411,35 +410,35 @@
 					<div id="verse-reciter-setting" class={settingsBlockClasses}>
 						<div class="flex flex-row justify-between items-center">
 							<div class="block">{term('verse')} Reciter</div>
-							<Button class={selectorClasses} on:click={() => gotoIndividualSetting('verse-reciter')}>{selectableReciters[$__reciter].reciter}</Button>
+							<button class={selectorClasses} on:click={() => gotoIndividualSetting('verse-reciter')}>{selectableReciters[$__reciter].reciter}</button>
 						</div>
 						<p class={settingsDescriptionClasses}>The reciter whose audio will be played when you choose to listen to a {term('verse')}.</p>
 					</div>
 
-					<div class="border-b border-black/10"></div>
+					<div class="border-b {window.theme('border')}"></div>
 
 					<!-- translation-reciter-setting -->
 					<div id="translation-reciter-setting" class={settingsBlockClasses}>
 						<div class="flex flex-row justify-between items-center">
 							<div class="block">Translation Reciter</div>
-							<Button class={selectorClasses} on:click={() => gotoIndividualSetting('translation-reciter')}>{selectableTranslationReciters[$__translationReciter].reciter}</Button>
+							<button class={selectorClasses} on:click={() => gotoIndividualSetting('translation-reciter')}>{selectableTranslationReciters[$__translationReciter].reciter}</button>
 						</div>
 						<p class={settingsDescriptionClasses}>The translation reciter whose audio will be played after the {term('verse')} audio.</p>
 					</div>
 
-					<div class="border-b border-black/10"></div>
+					<div class="border-b {window.theme('border')}"></div>
 
 					<!-- playback-speed-setting -->
 					<div id="playback-speed-setting" class={settingsBlockClasses}>
 						<div class="flex flex-col justify-between space-y-4">
 							<span class="block">Playback Speed ({selectablePlaybackSpeeds[playbackSpeedValue].speed})</span>
 							<div class="flex flex-col space-y-2 rounded-3xl w-full" role="group">
-								<Range min="1" max="7" bind:value={playbackSpeedValue} class="theme-grayscale" />
+								<Range min="1" max="7" bind:value={playbackSpeedValue} class={rangeClasses} />
 							</div>
 						</div>
 					</div>
 
-					<div class="border-b border-black/10"></div>
+					<div class="border-b {window.theme('border')}"></div>
 
 					<!-- play-translation-setting -->
 					<div id="play-translation-setting" class={settingsBlockClasses}>
@@ -453,13 +452,13 @@
 						<p class={settingsDescriptionClasses}>Whether the translation audio should be played after the Arabic audio.</p>
 					</div>
 
-					<div class="border-b border-black/10"></div>
+					<div class="border-b {window.theme('border')}"></div>
 
 					<!-- verse-play-button-setting -->
 					<div id="verse-play-button-setting" class={settingsBlockClasses}>
 						<div class="flex flex-row justify-between items-center">
 							<div class="block">{term('verse')} Play Button</div>
-							<Button class={selectorClasses} on:click={() => gotoIndividualSetting('verse-play-button')}>{selectableVersePlayButtonOptions[$__playButtonsFunctionality.verse].name}</Button>
+							<button class={selectorClasses} on:click={() => gotoIndividualSetting('verse-play-button')}>{selectableVersePlayButtonOptions[$__playButtonsFunctionality.verse].name}</button>
 						</div>
 						<p class={settingsDescriptionClasses}>Select what happens when you click on the play button for a {term('verse')}.</p>
 					</div>
@@ -467,7 +466,7 @@
 			</div>
 
 			<!-- miscellaneous-settings-block -->
-			<div id="miscellaneous-settings-block" class="py-5 border-t-2 border-black/10 {settingsDrawerOpacity}">
+			<div id="miscellaneous-settings-block" class="py-5 border-t-2 {window.theme('border')} {settingsDrawerOpacity}">
 				<h3 class="block mb-2 font-medium text-xl">Miscellaneous</h3>
 
 				<div class="flex flex-col flex-wrap text-base">
@@ -483,7 +482,7 @@
 						<p class={settingsDescriptionClasses}>Switch between the English and Arabic terminologies used on the website.</p>
 					</div>
 
-					<div class="border-b border-black/10"></div>
+					<div class="border-b {window.theme('border')}"></div>
 
 					<!-- non-dua-part-toggle -->
 					<div id="non-dua-part-toggle" class={settingsBlockClasses}>
@@ -500,7 +499,7 @@
 			</div>
 
 			<!-- reset settings button -->
-			<div class="flex flex-col justify-center border-t border-black/10 py-6 space-y-4 {settingsDrawerOpacity}">
+			<div class="flex flex-col justify-center border-t {window.theme('border')} py-6 space-y-4 {settingsDrawerOpacity}">
 				<button on:click={() => resetSettings()} class="text-sm {buttonClasses}">Reset Settings</button>
 				<p class={settingsDescriptionClasses}>Your bookmarks and notes will remain unaffected.</p>
 			</div>
@@ -510,7 +509,7 @@
 	<!-- individual-setting -->
 	{#if individualSettingsVisible}
 		<div id="individual-setting" transition:fly={{ duration: 150, x: 0, easing: sineIn }}>
-			<div class="flex z-30 top-0 sticky bg-white border-b-2 border-black/10 mb-4">
+			<div class="flex z-30 top-0 sticky {window.theme('bgMain')} border-b-2 {window.theme('border')} mb-4">
 				<button id="drawer-label" class="inline-flex items-center my-4 text-3xl font-semibold" on:click={() => goBackToMainSettings()}>← Back</button>
 				<CloseButton on:click={() => ($__settingsDrawerHidden = true)} class="my-4 rounded-3xl" />
 			</div>

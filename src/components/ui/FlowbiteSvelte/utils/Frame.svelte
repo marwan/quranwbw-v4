@@ -7,7 +7,6 @@
 	export let tag = $$restProps.href ? 'a' : 'div';
 	export let color = 'default';
 	export let rounded = false;
-	export let border = false;
 	export let shadow = false;
 	// For components development
 	export let node = undefined;
@@ -27,43 +26,31 @@
 	$: setContext('color', color);
 	// your script goes here
 	const bgColors = {
-		gray: 'bg-gray-50 dark:bg-gray-800',
-		light: 'bg-gray-50 dark:bg-gray-700',
-		dark: 'bg-gray-50 dark:bg-gray-800',
-		default: 'bg-white dark:bg-gray-800',
-		dropdown: 'bg-white dark:bg-gray-700',
-		navbar: 'bg-white dark:bg-gray-900',
-		navbarUl: 'bg-gray-50 dark:bg-gray-800',
-		form: 'bg-gray-50 dark:bg-gray-700',
-		primary: 'bg-primary-50 dark:bg-gray-800 ',
+		default: `${window.theme('bgMain')}`,
+		dropdown: `${window.theme('bgMain')}`,
+		navbar: `${window.theme('bgMain')}`,
+		navbarUl: '',
+		form: '',
 		none: ''
 	};
 	const textColors = {
-		gray: 'text-gray-800 ',
-		light: 'text-gray-700 ',
-		dark: 'text-gray-700 ',
-		default: 'text-gray-500 ',
-		dropdown: 'text-gray-700 ',
-		navbar: 'text-gray-700 ',
-		navbarUl: 'text-gray-700 ',
-		form: 'text-gray-900 ',
-		primary: 'text-primary-800 dark:text-primary-400',
+		default: '',
+		dropdown: '',
+		navbar: '',
+		navbarUl: '',
+		form: '',
 		none: ''
 	};
 	const borderColors = {
-		gray: 'border-black/10 dark:border-gray-800 divide-gray-300 dark:divide-gray-800',
-		light: 'border-gray-500 divide-gray-500',
-		dark: 'border-gray-500 divide-gray-500',
-		default: 'border-black/10 dark:border-gray-700 divide-gray-200 dark:divide-gray-700',
-		dropdown: 'border-gray-100 dark:border-gray-600 divide-gray-100 dark:divide-gray-600',
-		navbar: 'border-gray-100 dark:border-gray-700 divide-gray-100 dark:divide-gray-700',
-		navbarUl: 'border-gray-100 dark:border-gray-700 divide-gray-100 dark:divide-gray-700',
-		form: 'border-black/10 dark:border-gray-700 divide-gray-300 dark:divide-gray-700',
-		primary: 'border-primary-500 dark:border-primary-200  divide-primary-500 dark:divide-primary-200 ',
+		default: `border-b ${window.theme('border')}`,
+		dropdown: `${window.theme('border')}`,
+		navbar: `${window.theme('border')}`,
+		navbarUl: `${window.theme('border')}`,
+		form: `${window.theme('border')}`,
 		none: ''
 	};
 	let divClass;
-	$: divClass = twMerge(bgColors[color], textColors[color], rounded && 'rounded-3xl', border && 'border', borderColors[color], shadow && 'shadow-md', $$props.class);
+	$: divClass = twMerge(bgColors[color], textColors[color], rounded && 'rounded-3xl', `border ${window.theme('border')}`, borderColors[color], shadow && 'shadow-md', $$props.class);
 </script>
 
 {#if transition && open}

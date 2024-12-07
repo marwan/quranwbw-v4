@@ -125,7 +125,7 @@
 					<!-- if it's the first verse of a chapter -->
 					{#if chapters.length > 0 && lines.includes(line) && verses[lines.indexOf(line)] === 1}
 						<div class="flex flex-col my-2">
-							<div style="font-family: chapter-headers" class="header invisible leading-base pt-4 md:pt-8 pb-6 text-[28vw] md:text-[195px] lg:text-[195px]">{chapterHeaderCodes[chapters[lines.indexOf(line)]]}</div>
+							<div style="font-family: chapter-headers" class="header invisible leading-base pt-4 md:pt-8 pb-6 text-[28vw] md:text-[195px] lg:text-[195px] custom-header-color">{chapterHeaderCodes[chapters[lines.indexOf(line)]]}</div>
 
 							<Bismillah {chapters} {lines} {line} />
 						</div>
@@ -140,11 +140,11 @@
 			</div>
 
 			<!-- page number -->
-			<div class="max-w-3xl md:max-w-[40rem] mx-auto justify-center text-sm theme">
+			<div class="max-w-3xl md:max-w-[40rem] mx-auto justify-center text-sm">
 				<div class="flex items-center">
-					<div class="flex-1 border-t-2 border-black/10"></div>
-					<span class="px-3 opacity-70">{page}</span>
-					<div class="flex-1 border-t-2 border-black/10"></div>
+					<div class="flex-1 border-t-2 {window.theme('border')}"></div>
+					<span class="px-3">{page}</span>
+					<div class="flex-1 border-t-2 {window.theme('border')}"></div>
 				</div>
 			</div>
 		</div>
@@ -160,9 +160,9 @@
 	</div> -->
 
 	<div class="flex justify-center -mt-12 pb-16">
-		<button class="w-fit flex flex-row space-x-2 py-3 px-3 text-black/70 opacity-70 bg-gray-200 hover:bg-gray-300 rounded-xl items-center cursor-pointer theme" on:click={toggleMushafMinimalMode}>
+		<button class="w-fit flex flex-row space-x-2 py-3 px-3 rounded-xl items-center cursor-pointer {window.theme('bgSecondaryLight')}" on:click={toggleMushafMinimalMode}>
 			<Minimize size={3} />
 		</button>
-		<Tooltip arrow={false} type="light" class="z-30 hidden md:block font-filter font-normal">Minimal Mode</Tooltip>
+		<Tooltip arrow={false} type="light" class="z-30 hidden md:block font-normal">Minimal Mode</Tooltip>
 	</div>
 {/if}

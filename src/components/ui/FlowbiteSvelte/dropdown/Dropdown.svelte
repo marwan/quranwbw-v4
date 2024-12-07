@@ -10,13 +10,13 @@
 	const activeUrlStore = writable('');
 	export let activeUrl = '';
 	export let open = false;
-	export let containerClass = 'divide-y z-50 border border-lightGray';
+	export let containerClass = `divide-y z-50 border ${window.theme('border')}`;
 	export let classContainer = undefined;
 	export let headerClass = 'py-1 overflow-hidden rounded-t-lg';
 	export let classHeader = undefined;
 	export let footerClass = 'py-1 overflow-hidden rounded-b-lg';
 	export let classFooter = undefined;
-	export let activeClass = 'text-primary-700 dark:text-primary-700 hover:text-primary-900 dark:hover:text-primary-900';
+	export let activeClass = 'text-primary-700 hover:text-primary-900';
 	export let classActive = undefined;
 	let activeCls = twMerge(activeClass, classActive);
 	setContext('DropdownType', { activeClass: activeCls });
@@ -65,6 +65,6 @@
 @prop export let classHeader: string | undefined = undefined;
 @prop export let footerClass: string = 'py-1 overflow-hidden rounded-b-lg';
 @prop export let classFooter: string | undefined = undefined;
-@prop export let activeClass: string = 'text-primary-700 dark:text-primary-700 hover:text-primary-900 dark:hover:text-primary-900';
+@prop export let activeClass: string = 'text-primary-700 hover:text-primary-900';
 @prop export let classActive: string | undefined = undefined;
 -->

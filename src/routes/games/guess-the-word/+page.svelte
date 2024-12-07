@@ -7,7 +7,7 @@
 	import Radio from '$ui/FlowbiteSvelte/forms/Radio.svelte';
 	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
 	import { __currentPage, __fontType, __quizCorrectAnswers, __quizWrongAnswers } from '$utils/stores';
-	import { buttonClasses, buttonOutlineClasses, disabledClasses } from '$data/commonClasses';
+	import { buttonClasses, buttonOutlineClasses, disabledClasses, individualSettingsClasses } from '$data/commonClasses';
 	import { updateSettings } from '$utils/updateSettings';
 	import { playWordAudio } from '$utils/audioController';
 
@@ -66,7 +66,7 @@
 
 <PageHead title={'Guess The Word'} />
 
-<div class="space-y-12 my-6 md:my-8 theme">
+<div class="space-y-12 my-6 md:my-8">
 	<div id="word">
 		{#await fetchData}
 			<Spinner />
@@ -79,12 +79,12 @@
 				</button>
 
 				<!-- options -->
-				<div id="options" class="pt-8 theme-grayscale">
+				<div id="options" class="pt-8">
 					<p class="mb-5 text-sm">Guess the correct translation:</p>
 					<div class="grid gap-4 md:gap-6 w-full md:grid-cols-2">
 						{#each Object.entries(fetchData) as [key, value]}
-							<div class="rounded border border-black/10 {selection === +key ? 'border-gray-400' : null} {answerChecked === true && selection !== +key ? disabledClasses : null}">
-								<Radio name="bordered" bind:group={selection} value={+key} class="w-full p-4 flex flex-row font-normal cursor-pointer">
+							<Radio name="bordered" bind:group={selection} value={+key} class={answerChecked === true && selection !== +key ? disabledClasses : null} custom>
+								<div class="{individualSettingsClasses} {selection === +key ? `${window.theme('border')}` : null}">
 									<div class="flex flex-row mr-auto ml-2">{fetchData[key].word_english}</div>
 
 									<!-- check / cross icon -->
@@ -93,17 +93,17 @@
 											<svelte:component this={selection === randomWord ? Check : Cross} size={5} />
 										</div>
 									{/if}
-								</Radio>
-							</div>
+								</div>
+							</Radio>
 						{/each}
 					</div>
 				</div>
 
 				<!-- answer-results -->
 				{#if answerChecked === true && isAnswerCorrect !== null}
-					<div id="answer-results" class="flex justify-center text-center font-medium text-md theme-grayscale">
+					<div id="answer-results" class="flex justify-center text-center font-medium text-md">
 						<span>
-							{isAnswerCorrect ? 'Your answer was correct.' : `Sorry, the correct answer was "${fetchData[randomWord].word_english}".`}
+							{isAnswerCorrect ? 'Your answer was correct 😀' : `Sorry, the correct answer was "${fetchData[randomWord].word_english}" 😟`}
 						</span>
 					</div>
 				{/if}

@@ -58,19 +58,19 @@
 	}
 </script>
 
-<Modal id="notesModal" bind:open={$__notesModalVisible} transitionParams={getModalTransition('bottom')} size="xs" class="!rounded-b-none md:!rounded-3xl theme" bodyClass="p-6" position="bottom" center outsideclose>
+<Modal id="notesModal" bind:open={$__notesModalVisible} transitionParams={getModalTransition('bottom')} size="xs" class="!rounded-b-none md:!rounded-3xl" bodyClass="p-6" position="bottom" center outsideclose>
 	<!-- Modal content -->
-	<h3 id="notes-modal-title" class="mb-8 text-xl font-medium text-black">{quranMetaData[chapter].transliteration}, {$__verseKey}</h3>
-	<textarea id="notes-value" rows="8" value={verseNote} class="block p-2.5 w-full text-sm text-black bg-gray-50 rounded-3xl border border-black/10 focus:ring-gray-500 focus:border-gray-500 placeholder-black theme-grayscale" placeholder="Write your thoughts here..."></textarea>
+	<h3 id="notes-modal-title" class="mb-8 text-xl font-medium">{quranMetaData[chapter].transliteration}, {$__verseKey}</h3>
+	<textarea id="notes-value" rows="8" value={verseNote} class="block p-2.5 w-full text-sm rounded-3xl bg-transparent border {window.theme('border')} {window.theme('input')} {window.theme('placeholder')}" placeholder="Write your thoughts here..."></textarea>
 
 	{#if noteModifiedAt !== null}
-		<div id="notes-last-modified" class="text-xs mt-4 theme-grayscale">Modified {noteModifiedAt}.</div>
+		<div id="notes-last-modified" class="text-xs mt-4">Modified {noteModifiedAt}.</div>
 	{/if}
 
 	<div class="flex flex-row">
 		<button on:click={() => updateNote()} class="w-full mr-2 mt-6 {buttonClasses}">Update</button>
 		<button on:click={() => resetNote()} class="w-fit mr-2 mt-6 {buttonOutlineClasses}">
-			<span class="opacity-70"><Trash size={5} /></span>
+			<span><Trash size={5} /></span>
 		</button>
 	</div>
 </Modal>

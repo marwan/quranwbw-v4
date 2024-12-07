@@ -25,8 +25,8 @@
 </script>
 
 <!-- previous chapter / next page -->
-<a href="/{linkHref}" class="inline-flex flex-col items-center justify-center px-5 rounded-s-full hover:bg-lightGray group {linkDisabled ? disabledClasses : 'opacity-70'}">
-	<ChevronLeft />
+<a href="/{linkHref}" class="inline-flex flex-col items-center justify-center px-5 rounded-s-full group {window.theme('hover')} {linkDisabled ? disabledClasses : 'opacity-100'}">
+	<ChevronLeft size={7} />
 	<span class="sr-only">{linkText}</span>
 </a>
-<Tooltip arrow={false} type="light" class="w-max hidden md:block font-filter font-normal">{linkText}</Tooltip>
+<Tooltip arrow={false} type="light" class="w-max hidden md:block font-normal">{linkText}</Tooltip>

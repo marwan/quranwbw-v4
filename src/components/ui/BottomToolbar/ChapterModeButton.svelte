@@ -14,8 +14,8 @@
 	}
 </script>
 
-<a href="/{chapter}/{verse}" class="opacity-70 inline-flex flex-col items-center justify-center px-5 hover:bg-lightGray group">
+<a href="/{chapter}/{verse}" class="inline-flex flex-col items-center justify-center px-5 group {window.theme('hover')}">
 	<List />
 	<span class="sr-only">{term('chapter')} Mode</span>
 </a>
-<Tooltip arrow={false} type="light" class="hidden md:block font-filter font-normal">{term('chapter')} Mode</Tooltip>
+<Tooltip arrow={false} type="light" class="hidden md:block font-normal">{term('chapter')} Mode</Tooltip>
