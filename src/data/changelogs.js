@@ -2,8 +2,8 @@ import { linkClasses } from '$data/commonClasses';
 
 export const websiteChangelogs = [
 	{
-		title: 'QuranWBW v4.0.1 Update',
-		bannerTitle: 'Shine with Golden Glint.',
+		version: 'v4.0.1',
+		title: 'Shine with Golden Glint',
 		date: '07-Dec-2024',
 		description: [
 			"Golden Glint has arrived, bringing a dazzling upgrade to our signature gold look. We've infused various elements with shimmering gold accents that'll make your reading experience feel extra special. Not on the new theme yet? No worries! Just head over to settings and switch to bask in the glow.",
@@ -11,8 +11,8 @@ export const websiteChangelogs = [
 		]
 	},
 	{
-		title: 'QuranWBW v4.0 Update',
-		bannerTitle: 'Introducing QuranWBW v4.0.',
+		version: 'v4.0',
+		title: 'Introducing QuranWBW v4.0',
 		date: '02-Dec-2024',
 		description: [
 			'Alhamdulillah, we are thrilled to announce the release of QuranWBW v4, featuring a completely redesigned website with significant performance enhancements and a multitude of new and improved features.',

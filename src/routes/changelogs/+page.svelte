@@ -2,6 +2,7 @@
 	import PageHead from '$misc/PageHead.svelte';
 	import { __currentPage, __websiteTheme, __changelogModalVisible } from '$utils/stores';
 	import { websiteChangelogs } from '$data/changelogs';
+	import { buttonClasses } from '$data/commonClasses';
 
 	$: if ($__currentPage) __changelogModalVisible.set(false);
 
@@ -10,12 +11,12 @@
 
 <PageHead title={'Changelogs'} />
 
-<div id="changelog-list" class="flex flex-col space-y-6 text-sm">
-	<div class="text-sm">
+<div class="flex flex-col space-y-6 text-sm">
+	<div id="changelog-list" class="text-sm">
 		{#each Object.entries(websiteChangelogs) as [key, changelog]}
 			<div class="py-6 space-y-2 border-b {window.theme('border')}">
 				<div id="changelog-title" class="font-medium text-lg">
-					<span>{changelog.title}</span>
+					<span>Update {changelog.version} - {changelog.title}</span>
 
 					{#if changelog.date !== null}
 						<span class="opacity-70">({changelog.date})</span>
@@ -38,5 +39,9 @@
 				{/if}
 			</div>
 		{/each}
+	</div>
+
+	<div class="flex justify-center">
+		<a class="{buttonClasses} w-fit" href="https://github.com/marwan/quranwbw" target="_blank">View Our Github Repository {@html '&#x2192;'}</a>
 	</div>
 </div>

@@ -39,7 +39,7 @@
 		</span>
 
 		<span class="text-xs md:text-sm">
-			{websiteChangelogs[0].bannerTitle} <button class={linkClasses} on:click={() => __changelogModalVisible.set(true)}> See What's New {@html '&#x2192;'}</button>
+			{websiteChangelogs[0].title}. <button class={linkClasses} on:click={() => __changelogModalVisible.set(true)}> See What's New {@html '&#x2192;'}</button>
 		</span>
 	</p>
 </Banner>
