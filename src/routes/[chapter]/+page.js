@@ -26,7 +26,7 @@ export async function load({ params }) {
 
 function getIdByKeyword(keyword) {
 	// Basic checks
-	if (keyword.length < 3 || typeof keyword !== 'string' || /\d/.test(keyword) || /\s/.test(keyword) || keyword.toLowerCase() === 'the' || keyword.toLowerCase() === 'of') {
+	if (keyword.length < 3 || typeof keyword !== 'string' || /\d/.test(keyword) || /\s/.test(keyword) || keyword.toLowerCase() === 'the') {
 		return null;
 	}
 
