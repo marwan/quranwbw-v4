@@ -80,17 +80,21 @@
 		arabic-font-${$__fontType} 
 		${$__currentPage !== 'mushaf' && fontSizes.arabicText} 
 		${displayIsContinuous && 'inline-block'}
-		${[1, 4].includes($__fontType) && 'theme'}
 	`;
 
 	// Classes for v4 hafs words
+	// If tajweed fonts were select, apply tajweed palette
+	// But in Mocha Night & Dark Luxury themes, if non-tajweed fonts were selected, use custom palette to match theme
 	$: v4hafsClasses = `
 		invisible v4-words 
 		p${value.meta.page} 
 		${$__fontType === 3 ? 'theme-palette-tajweed' : 'theme-palette-normal'} 
+		${$__fontType === 2 && $__websiteTheme === 5 ? 'mocha-night-font-color' : ''}
+		${$__fontType === 2 && $__websiteTheme === 9 ? 'dark-luxury-font-color' : ''}
 	`;
 
 	// Classes for end icons
+	// In Golden Glint theme, the end icon should be gold
 	$: endIconClasses = `
 		rounded-lg 
 		${wordAndEndIconCommonClasses}

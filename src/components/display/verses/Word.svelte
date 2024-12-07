@@ -37,7 +37,7 @@
 
 	$: wordDivClasses = `
 	  word rounded-lg ${wordAndEndIconCommonClasses} text-center print:break-inside-avoid
-	  ${$__audioSettings.playingWordKey === wordKey || ($__currentPage === 'morphology' && $__morphologyKey === wordKey) ? (selectableThemes[$__websiteTheme].palette === 1 ? `${window.theme('bgSecondaryLight')}` : `${window.theme('bgSecondaryLight')}`) : null}
+	  ${$__audioSettings.playingWordKey === wordKey || ($__currentPage === 'morphology' && $__morphologyKey === wordKey) ? (selectableThemes[$__websiteTheme].palette === 1 ? `${window.theme('bgSecondaryDark')}` : `${window.theme('bgSecondaryDark')}`) : null}
 		${$__currentPage === 'supplications' && word + 1 < supplicationsFromQuran[key] ? ($__hideNonDuaPart ? 'hidden' : 'opacity-30') : null}
 	`;
 
@@ -47,23 +47,23 @@
 		theme
 	`;
 
-	let hoveredWordKey = null;
-	let wordTajweedData;
+	// let hoveredWordKey = null;
+	// let wordTajweedData;
 
-	$: {
-		if (hoveredWordKey !== null && v4PopoverEnabled) {
-			const chapter = +hoveredWordKey.split(':')[0];
-			const verse = +hoveredWordKey.split(':')[1];
-			const word = +hoveredWordKey.split(':')[2];
+	// $: {
+	// 	if (hoveredWordKey !== null && v4PopoverEnabled) {
+	// 		const chapter = +hoveredWordKey.split(':')[0];
+	// 		const verse = +hoveredWordKey.split(':')[1];
+	// 		const word = +hoveredWordKey.split(':')[2];
 
-			wordTajweedData = (async () => {
-				const response = await fetch(`${apiEndpoint}/tajweed-data?key=${chapter}:${verse}`);
-				const data = await response.json();
-				const colorIds = data.data[word - 1].color_ids;
-				return colorIds;
-			})();
-		}
-	}
+	// 		wordTajweedData = (async () => {
+	// 			const response = await fetch(`${apiEndpoint}/tajweed-data?key=${chapter}:${verse}`);
+	// 			const data = await response.json();
+	// 			const colorIds = data.data[word - 1].color_ids;
+	// 			return colorIds;
+	// 		})();
+	// 	}
+	// }
 </script>
 
 {#if $__currentPage != 'mushaf' || ($__currentPage === 'mushaf' && +value.words.line.split(splitDelimiter)[word] === line)}
@@ -76,7 +76,7 @@
 				{arabicSplit[word]}
 				<!-- 2: Uthmanic Hafs Mushaf -->
 			{:else if [2, 3].includes($__fontType)}
-				<span id="word-{wordKey.split(':')[1]}-{wordKey.split(':')[2]}" style="font-family: p{value.meta.page}" class={v4hafsClasses} on:mouseenter={() => (hoveredWordKey = wordKey)}>
+				<span id="word-{wordKey.split(':')[1]}-{wordKey.split(':')[2]}" style="font-family: p{value.meta.page}" class={v4hafsClasses}>
 					<!-- word fix, see fixedMushafWords -->
 					{#if fixedMushafWords.hasOwnProperty(wordKey)}
 						{fixedMushafWords[wordKey]}
