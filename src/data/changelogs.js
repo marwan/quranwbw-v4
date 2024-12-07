@@ -1,6 +1,17 @@
-import { linkClasses } from '$data/commonClasses';
+import { createLink } from '$utils/createLink';
 
 export const websiteChangelogs = [
+	// {
+	// 	version: 'v4.0.2',
+	// 	title: 'Explore Chapters with Ease',
+	// 	date: 'Dec 7, 2024',
+	// 	description: [
+	// 		"In our latest update, we're thrilled to introduce custom chapter slugs for effortless navigation. Now, you can jump to any chapter using their translated, transliterated, or Arabic names. For instance:",
+	// 		`${createLink('https://quranwbw.com/cave', 'quranwbw.com/cave')}, ${createLink('https://quranwbw.com/yaseen', 'quranwbw.com/yaseen')}, ${createLink('https://quranwbw.com/هود', 'quranwbw.com/هود')}, ${createLink('https://quranwbw.com/baqarah', 'quranwbw.com/baqarah')}...`,
+	// 		"Each link will take you straight to its respective chapter. It's never been easier to explore!",
+	// 		'Happy navigating!'
+	// 	]
+	// },
 	{
 		version: 'v4.0.1',
 		title: 'Shine with Golden Glint',
@@ -16,7 +27,7 @@ export const websiteChangelogs = [
 		date: 'Dec 2, 2024',
 		description: [
 			'Alhamdulillah, we are thrilled to announce the release of QuranWBW v4, featuring a completely redesigned website with significant performance enhancements and a multitude of new and improved features.',
-			`We hope you enjoy the new and improved QuranWBW experience! In case you'd still like to use the old website, you may visit <a class="${linkClasses}" target="_blank" rel="noreferrer" href="https://old.quranwbw.com">old.quranwbw.com</a>.`,
+			`We hope you enjoy the new and improved QuranWBW experience! In case you'd still like to use the old website, you may visit ${createLink('https://old.quranwbw.com', 'old.quranwbw.com')}.`,
 			'Here are the highlights of this update:'
 		],
 		updates: [

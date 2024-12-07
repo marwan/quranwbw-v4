@@ -4,7 +4,8 @@
 	import { __websiteTheme } from '$utils/stores';
 	import { selectableThemes, themeColors } from '$data/options';
 	import { updateSettings } from '$utils/updateSettings';
-	import { selectedRadioClasses, linkClasses, individualSettingsClasses } from '$data/commonClasses';
+	import { selectedRadioClasses, individualSettingsClasses } from '$data/commonClasses';
+	import { createLink } from '$utils/createLink';
 </script>
 
 <div class="grid gap-3 w-full">
@@ -30,4 +31,4 @@
 	{/each}
 </div>
 
-<div class="text-xs opacity-70">Got a unique color combo in mind that's a visual delight? Shoot your suggestions over to <a class={linkClasses} href="mailto:quranwbw@gmail.com">quranwbw@gmail.com</a>.</div>
+<div class="text-xs opacity-70">Got a unique color combo in mind that's a visual delight? Shoot your suggestions over to {@html createLink('mailto:quranwbw@gmail.com', 'quranwbw@gmail.com')}.</div>

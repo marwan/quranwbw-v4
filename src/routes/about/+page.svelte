@@ -2,6 +2,7 @@
 	import PageHead from '$misc/PageHead.svelte';
 	import { __currentPage } from '$utils/stores';
 	import { linkClasses } from '$data/commonClasses';
+	import { createLink } from '$utils/createLink';
 
 	const creditlinks = [
 		{
@@ -194,8 +195,9 @@
 				<span>QuranWBW.com is your companion for reading, listening to, and learning the Holy Quran, word by word. With features like word audios, Tajweed colors, and transliteration, you can delve into the Quran with ease. Additionally, explore multi-language translations, tafsir, and detailed word morphology.</span>
 
 				<span>
-					This website is a passion project, not a full-time endeavor. For issues, suggestions, or contributions, please visit our <a class={linkClasses} target="_blank" rel="noreferrer" href="https://github.com/marwan/quranwbw">GitHub repository</a> or contact us at <a class={linkClasses} href="mailto:quranwbw@gmail.com">quranwbw@gmail.com</a>. You can also join our
-					<a class={linkClasses} target="_blank" rel="noreferrer" href="https://chat.whatsapp.com/CtrbWUB4GTyDdZWXWujVSl">WhatsApp group</a> for updates.
+					This website is a passion project, not a full-time endeavor. For issues, suggestions, or contributions, please visit our
+					{@html createLink('https://github.com/marwan/quranwbw', 'GitHub repository')} or contact us at via
+					{@html createLink('mailto:quranwbw@gmail.com', 'email')}. You can also join our {@html createLink('https://chat.whatsapp.com/CtrbWUB4GTyDdZWXWujVSl', 'WhatsApp group')} for updates.
 				</span>
 			</div>
 
@@ -221,10 +223,11 @@
 				<div class="border-b {window.theme('border')}"></div>
 
 				<span class="text-xs opacity-70"
-					>*The Mushaf fonts are developed by and are a property of <a class={linkClasses} target="_blank" rel="noreferrer" href="https://qurancomplex.gov.sa/">King Fahad Glorious Quran Printing Complex</a> based in Madinah, Saudi Arabia. Tajweed Colors are based on
-					<a class={linkClasses} target="_blank" rel="noreferrer" href="https://easyquran.com/ar/">Tajweed Quran (Easy Quran) Mushaf by Dar-Al-Marifa</a> developed by Dr. Eng. Taha Subhi, Damascus - Syria. Tajweed Color Font Features on King Fahad Glorious Quran Printing Complex V4 Mushaf fonts invented and developed by
-					<a class={linkClasses} target="_blank" rel="noreferrer" href="https://zoopernet.com">Ayman Siddiqui</a>
-					and co-developed by team : Rania, Amena, Naveed Ahmed, Mohammed Zahid, Tooba and Anza for Sadaqa-e-jaria (non-commercial) purposes only. Permitted to develop with prior permissions secured from King Fahad Glorious Quran Printing Complex and Dar-Al-Marifa by <a class={linkClasses} target="_blank" rel="noreferrer" href="https://quran.com">Quran.com</a> (Quran Foundation) team.</span
+					>*The Mushaf fonts are developed by and are a property of {@html createLink('https://qurancomplex.gov.sa/', 'King Fahad Glorious Quran Printing Complex')} based in Madinah, Saudi Arabia. Tajweed Colors are based on {@html createLink('https://easyquran.com/ar/', 'Tajweed Quran (Easy Quran) Mushaf by Dar-Al-Marifa')}
+					developed by Dr. Eng. Taha Subhi, Damascus - Syria. Tajweed Color Font Features on King Fahad Glorious Quran Printing Complex V4 Mushaf fonts invented and developed by
+					{@html createLink('https://zoopernet.com', 'Ayman Siddiqui')}
+					and co-developed by team : Rania, Amena, Naveed Ahmed, Mohammed Zahid, Tooba and Anza for Sadaqa-e-jaria (non-commercial) purposes only. Permitted to develop with prior permissions secured from King Fahad Glorious Quran Printing Complex and Dar-Al-Marifa by
+					{@html createLink('https://quran.com', 'Quran.com')} (Quran Foundation) team.</span
 				>
 
 				<span class="text-xs opacity-70">
@@ -234,9 +237,9 @@
 
 				<span class="text-xs opacity-70"
 					>***Original sources for the Malayalam translations are
-					<a class={linkClasses} target="_blank" rel="noreferrer" href="https://amanithafseer.com">Amani Thafseer</a>
+					{@html createLink('https://amanithafseer.com', 'Amani Thafseer')}
 					and
-					<a class={linkClasses} target="_blank" rel="noreferrer" href="https://www.lalithasaram.net/">Lalithasaram</a>
+					{@html createLink('https://www.lalithasaram.net/', 'Lalithasaram')}
 					For the Amani Thafseer translation, Brother Usama Nonnenmacher assisted in formatting the data and adjusting word splitting where knowledge of Malayalam was not required. Brother Ameen Abdussalam, whom he collaborated with via the Amani Thafseer team, provided crucial support for cases needing Malayalam expertise. Regarding the Lalithasaram translation, minimal adjustments were necessary
 					beyond converting the format from an SQL file to a standard database file.</span
 				>
