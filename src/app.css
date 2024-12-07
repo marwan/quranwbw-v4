@@ -263,7 +263,13 @@ svg {
 @font-palette-values --GoldenGlintHeaderColor {
   font-family: "chapter-headers";
   base-palette: 0;
-  override-colors: 10 #b1901f, /* outside border */    11 #b1901f, /* inside border */    13 #fff, /* inner chapter text */    16 #fff, /* decoration */    18 #b1901f, /* inner text background */    19 #fff
+  override-colors: 
+    10 #b1901f, /* outside border */    
+    11 #b1901f, /* inside border */    
+    13 #000000, /* inner chapter text */    
+    16 #b1901f, /* decoration */    
+    18 #f8efd3, /* inner text background */    
+    19 #ffffff
 }
 
 .theme-1 .theme-palette-normal { font-palette: --palette3; } /* Golden Glint */
