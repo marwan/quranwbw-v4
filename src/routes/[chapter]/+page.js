@@ -38,7 +38,7 @@ function getIdByKeyword(keyword) {
 	keyword = keyword.toLowerCase();
 	for (let item of quranMetaData) {
 		if (item.id > 0) {
-			if (item.arabic.toLowerCase().includes(keyword) || item.translation.toLowerCase().includes(keyword) || item.transliteration.toLowerCase().includes(keyword) || item.alternateNames.toLowerCase().includes(keyword)) {
+			if (item.arabic.toLowerCase().includes(keyword) || item.translation.toLowerCase().includes(keyword) || item.transliteration.toLowerCase().includes(keyword)) {
 				return item.id;
 			}
 		}
