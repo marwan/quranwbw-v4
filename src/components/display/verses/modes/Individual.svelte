@@ -25,6 +25,7 @@
 	const maxIndexesAllowedToRender = 5;
 	let keysArray = $__keysToFetch.split(',');
 	let keysArrayLength = keysArray.length - 1;
+	let nextStartIndex, nextEndIndex;
 
 	// Set initial indexes
 	if (startIndex === undefined) startIndex = 0;
@@ -44,7 +45,9 @@
 	function loadNextVerses() {
 		import('./Individual.svelte').then((res) => (Individual = res.default));
 		const lastRenderedId = document.querySelectorAll('.verse')[document.querySelectorAll('.verse').length - 1].id;
-		let { nextStartIndex, nextEndIndex } = findKeyIndices($__keysToFetch, lastRenderedId, maxIndexesAllowedToRender);
+
+		nextStartIndex = findKeyIndices($__keysToFetch, lastRenderedId, maxIndexesAllowedToRender).startIndex;
+		nextEndIndex = findKeyIndices($__keysToFetch, lastRenderedId, maxIndexesAllowedToRender).endIndex;
 
 		// don't let the end index be more than the data object's length
 		if (nextEndIndex === -1) nextEndIndex = Object.keys($__keysToFetch).length;
@@ -86,7 +89,7 @@
 	{:then data}
 		{@const key = keysArray[index]}
 		{@const verseValue = data[key]}
-		<svelte:component this={displayComponents[$__displayType]?.component} key={keysArray[index]} value={verseValue} />
+		<svelte:component this={displayComponents[$__displayType]?.component} {key} value={verseValue} />
 	{:catch error}
 		<p>...</p>
 	{/await}
