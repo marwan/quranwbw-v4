@@ -4,7 +4,7 @@
 	import { __verseTranslations } from '$utils/stores';
 	import { selectableVerseTranslations, verseTranslationsLanguages } from '$data/options';
 	import { updateSettings } from '$utils/updateSettings';
-	import { selectedRadioClasses, individualSettingsClasses } from '$data/commonClasses';
+	import { selectedRadioOrCheckboxClasses, individualCheckboxClasses } from '$data/commonClasses';
 </script>
 
 <div class="grid gap-3 w-full">
@@ -17,7 +17,7 @@
 						{#if translation.language_id === language.language_id}
 							<div class="flex items-center w-full">
 								<Checkbox on:click={() => updateSettings({ type: 'verseTranslation', value: translation.resource_id })} custom>
-									<div class="{individualSettingsClasses} {$__verseTranslations.includes(translation.resource_id) && selectedRadioClasses}">
+									<div class="{individualCheckboxClasses} {$__verseTranslations.includes(translation.resource_id) && selectedRadioOrCheckboxClasses}">
 										<div class="w-full">{translation.resource_name}</div>
 
 										{#if $__verseTranslations.includes(translation.resource_id)}

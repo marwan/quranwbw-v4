@@ -4,7 +4,7 @@
 	import { __verseTafsir } from '$utils/stores';
 	import { verseTafsirLanguages, selectableTafsirs } from '$data/selectableTafsirs';
 	import { updateSettings } from '$utils/updateSettings';
-	import { selectedRadioClasses, individualSettingsClasses } from '$data/commonClasses';
+	import { selectedRadioOrCheckboxClasses, individualRadioClasses } from '$data/commonClasses';
 </script>
 
 <div class="grid gap-3 w-full">
@@ -16,7 +16,7 @@
 					{#if tafsir.language === language.language}
 						<div class="flex items-center w-full">
 							<Radio name="verseTafsir" bind:group={$__verseTafsir} value={tafsir.id} on:change={(event) => updateSettings({ type: 'verseTafsir', value: +event.target.value })} custom>
-								<div class="{individualSettingsClasses} {$__verseTafsir === tafsir.id && selectedRadioClasses}">
+								<div class="{individualRadioClasses} {$__verseTafsir === tafsir.id && selectedRadioOrCheckboxClasses}">
 									<div class="flex flex-col space-y-2 w-full">
 										<span>{tafsir.name}</span>
 										<!-- <span class="text-xs font-normal">{tafsir.author}</span> -->

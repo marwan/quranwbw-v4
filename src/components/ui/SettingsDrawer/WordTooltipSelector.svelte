@@ -4,13 +4,13 @@
 	import { __wordTooltip } from '$utils/stores';
 	import { selectableTooltipOptions } from '$data/options';
 	import { updateSettings } from '$utils/updateSettings';
-	import { selectedRadioClasses, individualSettingsClasses } from '$data/commonClasses';
+	import { selectedRadioOrCheckboxClasses, individualRadioClasses } from '$data/commonClasses';
 </script>
 
 <div class="grid gap-3 w-full">
 	{#each Object.entries(selectableTooltipOptions) as [id, options]}
 		<Radio name="wordTooltip" bind:group={$__wordTooltip} value={options.id} on:change={(event) => updateSettings({ type: 'wordTooltip', value: +event.target.value })} custom>
-			<div class="{individualSettingsClasses} {$__wordTooltip === options.id && selectedRadioClasses}">
+			<div class="{individualRadioClasses} {$__wordTooltip === options.id && selectedRadioOrCheckboxClasses}">
 				<div class="w-full">{options.name}</div>
 
 				{#if $__wordTooltip === options.id}
