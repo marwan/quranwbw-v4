@@ -1,12 +1,12 @@
 <script>
 	export let startIndex, endIndex;
 
-	import Spinner from '$svgs/Spinner.svelte';
 	import Skeleton from '$ui/FlowbiteSvelte/skeleton/Skeleton.svelte';
 	import WordByWord from '$display/layouts/WordByWord.svelte';
 	import Normal from '$display/layouts/Normal.svelte';
 	import TranslationTransliteration from '$display/layouts/TranslationTransliteration.svelte';
-	import { __displayType, __fontType, __wordTranslation, __wordTransliteration, __keysToFetch } from '$utils/stores';
+	import Bismillah from '$display/Bismillah.svelte';
+	import { __displayType, __fontType, __wordTranslation, __wordTransliteration, __keysToFetch, __currentPage } from '$utils/stores';
 	import { buttonOutlineClasses } from '$data/commonClasses';
 	import { fetchChapterData } from '$utils/fetchData';
 	import { inview } from 'svelte-inview';
@@ -43,25 +43,29 @@
 	}
 
 	function loadNextVerses() {
-		import('./Individual.svelte').then((res) => (Individual = res.default));
-		const lastRenderedId = document.querySelectorAll('.verse')[document.querySelectorAll('.verse').length - 1].id;
+		try {
+			import('./Individual.svelte').then((res) => (Individual = res.default));
+			const lastRenderedId = document.querySelectorAll('.verse')[document.querySelectorAll('.verse').length - 1].id;
 
-		nextStartIndex = findKeyIndices($__keysToFetch, lastRenderedId, maxIndexesAllowedToRender).startIndex;
-		nextEndIndex = findKeyIndices($__keysToFetch, lastRenderedId, maxIndexesAllowedToRender).endIndex;
+			nextStartIndex = findKeyIndices($__keysToFetch, lastRenderedId, maxIndexesAllowedToRender).startIndex;
+			nextEndIndex = findKeyIndices($__keysToFetch, lastRenderedId, maxIndexesAllowedToRender).endIndex;
 
-		// don't let the end index be more than the data object's length
-		if (nextEndIndex === -1) nextEndIndex = Object.keys($__keysToFetch).length;
+			// don't let the end index be more than the data object's length
+			if (nextEndIndex === -1) nextEndIndex = Object.keys($__keysToFetch).length;
 
-		// Remove the existing button
-		document.getElementById('loadVersesButton').remove();
+			// Remove the existing button
+			document.getElementById('loadVersesButton').remove();
 
-		// Setting the nextVersesProps
-		nextVersesProps = {
-			startIndex: nextStartIndex,
-			endIndex: nextEndIndex
-		};
+			// Setting the nextVersesProps
+			nextVersesProps = {
+				startIndex: nextStartIndex,
+				endIndex: nextEndIndex
+			};
 
-		versesLoadType = 'next';
+			versesLoadType = 'next';
+		} catch (error) {
+			// ...
+		}
 	}
 
 	function findKeyIndices(keyString, key, threshold) {
@@ -89,6 +93,12 @@
 	{:then data}
 		{@const key = keysArray[index]}
 		{@const verseValue = data[key]}
+
+		<!-- Only show Bismillah when its the Juz page, because the verses there can continue to next chapters -->
+		{#if $__currentPage === 'juz' && +key.split(':')[1] === 1}
+			<Bismillah chapter={+key.split(':')[0]} startVerse={+key.split(':')[1]} />
+		{/if}
+
 		<svelte:component this={displayComponents[$__displayType]?.component} {key} value={verseValue} />
 	{:catch error}
 		<p>...</p>
@@ -96,8 +106,7 @@
 {/each}
 
 {#if endIndex < keysArrayLength && document.getElementById('loadVersesButton') === null}
-	<!-- <div id="loadVersesButton" class="flex justify-center pt-6 pb-18 invisible" use:inview={loadButtonOptions} on:inview_enter={(event) => document.querySelector('#loadVersesButton > button').click()}> -->
-	<div id="loadVersesButton" class="flex justify-center pt-6 pb-18">
+	<div id="loadVersesButton" class="flex justify-center pt-6 pb-18" use:inview={loadButtonOptions} on:inview_enter={(event) => document.querySelector('#loadVersesButton > button').click()}>
 		<button on:click={loadNextVerses} class="text-sm {buttonOutlineClasses}"> Continue Reading </button>
 	</div>
 {/if}

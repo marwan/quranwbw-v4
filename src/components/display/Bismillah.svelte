@@ -1,4 +1,5 @@
 <script>
+	export let chapter = $__chapterNumber;
 	export let chapters = null;
 	export let lines = null;
 	export let line = null;
@@ -20,7 +21,7 @@
 	const chapterBismillahClasses = `
 		${window.theme('text')}
 		flex flex-col text-center flex-wrap block pt-6 pb-4 
-		${[1, 2, 3].includes($__fontType) ? `bismillah ${$__chapterNumber === 2 ? 'text-3xl' : 'text-2xl md:text-3xl'}` : 'arabic-font-4 text-3xl md:text-4xl'}
+		${[1, 2, 3].includes($__fontType) ? `bismillah ${chapter === 2 ? 'text-3xl' : 'text-2xl md:text-3xl'}` : 'arabic-font-4 text-3xl md:text-4xl'}
 		${commonClasses}
 		`;
 
@@ -34,15 +35,15 @@
 </script>
 
 <!-- chapter page -->
-{#if $__currentPage === 'chapter'}
-	{#if ![1, 9].includes($__chapterNumber) || ($__chapterNumber === 1 && startVerse > 1)}
+{#if ['chapter', 'juz'].includes($__currentPage)}
+	{#if ![1, 9].includes(chapter) || (chapter === 1 && startVerse > 1)}
 		<div class={chapterBismillahClasses}>
 			<!-- uthmani font -->
 			{#if [1, 2, 3].includes($__fontType)}
 				<span class={$__fontType === 1 ? 'theme-palette-normal' : $__fontType === 3 ? 'theme-palette-tajweed' : 'theme-palette-normal'}>
-					{#if $__chapterNumber === 2}
+					{#if chapter === 2}
 						{bismillahTypes.uthmaniType1}
-					{:else if ![1, 9, 2].includes($__chapterNumber) || ($__chapterNumber === 1 && startVerse > 1)}
+					{:else if ![1, 9, 2].includes(chapter) || (chapter === 1 && startVerse > 1)}
 						{bismillahTypes.uthmaniType2}
 					{/if}
 				</span>
