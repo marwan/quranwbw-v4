@@ -6,20 +6,9 @@
 	import { term } from '$utils/terminologies';
 	import { supplicationsFromQuran } from '$data/quranMeta';
 
-	// Function to get a string of all supplications chapter:verses
-	function getSupplicationKeys() {
-		let keysArray = [];
-
-		for (const [key] of Object.entries(supplicationsFromQuran)) {
-			keysArray.push(key);
-		}
-
-		return keysArray.toString();
-	}
-
 	// storing the keys
 	__keysToFetch.set(null);
-	__keysToFetch.set(getSupplicationKeys());
+	__keysToFetch.set(Object.keys(supplicationsFromQuran).toString());
 
 	// Set the current page to 'supplications'
 	__currentPage.set('supplications');

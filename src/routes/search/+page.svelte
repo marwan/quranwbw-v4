@@ -3,7 +3,7 @@
 	import Spinner from '$svgs/Spinner.svelte';
 	import Translation from '$svgs/Translation.svelte';
 	import Search2 from '$svgs/Search2.svelte';
-	import Individual from '$display/verses/modes/Individual.svelte';
+	import DisplayVerses from './DisplayVerses.svelte';
 	import VerseTranslationSelector from '$ui/SettingsDrawer/VerseTranslationSelector.svelte';
 	import { goto } from '$app/navigation';
 	import { __currentPage, __fontType, __wordTranslation, __wordTransliteration, __verseTranslations, __settingsSelectorModal } from '$utils/stores';
@@ -146,7 +146,7 @@
 
 					{@const totalRecords = Object.keys(data).length}
 					<div id="individual-verses-block">
-						<Individual {data} startIndex={0} endIndex={totalRecords > 5 ? 5 : totalRecords} />
+						<DisplayVerses {data} startIndex={0} endIndex={totalRecords > 5 ? 5 : totalRecords} />
 					</div>
 
 					<!-- pagination -->

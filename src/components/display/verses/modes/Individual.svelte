@@ -2,6 +2,7 @@
 	export let startIndex, endIndex;
 
 	import Spinner from '$svgs/Spinner.svelte';
+	import Skeleton from '$ui/FlowbiteSvelte/skeleton/Skeleton.svelte';
 	import WordByWord from '$display/layouts/WordByWord.svelte';
 	import Normal from '$display/layouts/Normal.svelte';
 	import TranslationTransliteration from '$display/layouts/TranslationTransliteration.svelte';
@@ -19,8 +20,6 @@
 	let Individual; // for the "Individual" component
 	let nextVersesProps = {};
 	let versesLoadType; // previous/next
-	let nextStartIndex;
-	let nextEndIndex;
 	const allowedDisplayTypes = [1, 2, 7];
 
 	const maxIndexesAllowedToRender = 5;
@@ -45,10 +44,7 @@
 	function loadNextVerses() {
 		import('./Individual.svelte').then((res) => (Individual = res.default));
 		const lastRenderedId = document.querySelectorAll('.verse')[document.querySelectorAll('.verse').length - 1].id;
-		versesLoadType = 'next';
-
-		nextStartIndex = findKeyIndices($__keysToFetch, lastRenderedId, maxIndexesAllowedToRender).startIndex;
-		nextEndIndex = findKeyIndices($__keysToFetch, lastRenderedId, maxIndexesAllowedToRender).endIndex;
+		let { nextStartIndex, nextEndIndex } = findKeyIndices($__keysToFetch, lastRenderedId, maxIndexesAllowedToRender);
 
 		// don't let the end index be more than the data object's length
 		if (nextEndIndex === -1) nextEndIndex = Object.keys($__keysToFetch).length;
@@ -61,6 +57,8 @@
 			startIndex: nextStartIndex,
 			endIndex: nextEndIndex
 		};
+
+		versesLoadType = 'next';
 	}
 
 	function findKeyIndices(keyString, key, threshold) {
@@ -84,11 +82,11 @@
 
 {#each Array.from(Array(endIndex + 1).keys()).slice(startIndex) as index}
 	{#await fetchChapterData({ chapter: keysArray[index].split(':')[0], reRenderWhenTheseUpdates: [$__fontType, $__wordTranslation, $__wordTransliteration] })}
-		<Spinner size={8} />
+		<div class="w-full"><Skeleton size="xxl" class="py-8 ml-auto direction-rtl" /></div>
 	{:then data}
 		{@const key = keysArray[index]}
 		{@const verseValue = data[key]}
-		<svelte:component this={displayComponents[$__displayType]?.component} {key} value={verseValue} />
+		<svelte:component this={displayComponents[$__displayType]?.component} key={keysArray[index]} value={verseValue} />
 	{:catch error}
 		<p>...</p>
 	{/await}

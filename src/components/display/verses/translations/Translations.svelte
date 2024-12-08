@@ -3,6 +3,7 @@
 
 	import Spinner from '$svgs/Spinner.svelte';
 	import Layout from '$display/verses/translations/Layout.svelte';
+	import Skeleton from '$ui/FlowbiteSvelte/skeleton/Skeleton.svelte';
 	import { __currentPage, __verseKey, __verseTranslations, __verseTranslationData, __chapterData, __userSettings, __fontType, __wordTranslation, __wordTransliteration, __keysToFetch } from '$utils/stores';
 	import { fetchChapterData, fetchVerseTranslationData } from '$utils/fetchData';
 
@@ -49,16 +50,14 @@
 					{/each}
 				{/if}
 			{:else}
-				<div class="mr-auto">
-					<Spinner size="10" />
-				</div>
+				<Skeleton size="xxl" class="mb-2.5" />
 			{/if}
 
 			<!-- for other pages, we fetch chapter translations for each verse -->
 		{:else}
 			<!-- Render verse transliterations -->
 			{#await fetchChapterData({ chapter: value.meta.chapter, reRenderWhenTheseUpdates: $__verseTranslations })}
-				<!-- <Spinner size={4} /> -->
+				<Skeleton size="xxl" class="mb-2.5" />
 			{:then data}
 				{#if $__verseTranslations.includes(1)}
 					<Layout verseTranslationID={1} verseTranslation={data[`${value.meta.chapter}:${value.meta.verse}`].translations[0]} {value} />
@@ -73,9 +72,7 @@
 
 			<!-- Render verse translations -->
 			{#await verseTranslationData}
-				<div class="mr-auto">
-					<!-- <Spinner size={4} /> -->
-				</div>
+				<Skeleton size="xxl" class="mb-2.5" />
 			{:then verseTranslationData}
 				{#if verseTranslationData}
 					{#if verseTranslationData[Object.keys(verseTranslationData)[value.meta.verse - 1]].hasOwnProperty('translations')}

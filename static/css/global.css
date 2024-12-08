@@ -1249,6 +1249,10 @@ input[type="range"].range-lg::-moz-range-thumb {
   margin-bottom: 0.5rem;
 }
 
+.mb-2\.5 {
+  margin-bottom: 0.625rem;
+}
+
 .mb-24 {
   margin-bottom: 6rem;
 }
@@ -1519,6 +1523,14 @@ input[type="range"].range-lg::-moz-range-thumb {
   width: 2.5rem;
 }
 
+.w-10\/12 {
+  width: 83.333333%;
+}
+
+.w-11\/12 {
+  width: 91.666667%;
+}
+
 .w-12 {
   width: 3rem;
 }
@@ -1593,6 +1605,10 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .w-80 {
   width: 20rem;
+}
+
+.w-9\/12 {
+  width: 75%;
 }
 
 .w-\[-webkit-fill-available\] {
@@ -1687,6 +1703,16 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .transform {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+@keyframes pulse {
+  50% {
+    opacity: .5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 @keyframes spin {
