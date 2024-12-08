@@ -23,6 +23,7 @@ function generateThemes() {
 			text: `text-[${color3 !== undefined ? color3 : color2}]`,
 			textSecondary: `text-[${color2}]`,
 			border: `border-[${color2}]/20`,
+			borderDark: `border-[${color2}]`,
 			icon: `${color2}`,
 			input: `focus:border-[${color2}] focus:ring-[${color2}]`,
 			checked: `peer-checked:border-2 peer-checked:border-[${color2}] peer-checked:border-[${color2}]`,

@@ -4,7 +4,7 @@
 	import { quranMetaData } from '$data/quranMeta';
 	import { __currentPage, __chapterNumber, __audioSettings, __userSettings, __audioModalVisible } from '$utils/stores';
 	import { playVerseAudio, playWordAudio, updateAudioSettings, setVersesToPlay } from '$utils/audioController';
-	import { disabledClasses, buttonClasses, selectedRadioClasses } from '$data/commonClasses';
+	import { disabledClasses, buttonClasses, selectedRadioOrCheckboxClasses } from '$data/commonClasses';
 	import { term } from '$utils/terminologies';
 	import { getModalTransition } from '$utils/getModalTransition';
 
@@ -83,7 +83,7 @@
 				<!-- play verse -->
 				<div class="flex items-center">
 					<Radio bind:group={$__audioSettings.audioType} value="verse" custom>
-						<div class="{radioClasses} {$__audioSettings.audioType === 'verse' && selectedRadioClasses}">
+						<div class="{radioClasses} {$__audioSettings.audioType === 'verse' && selectedRadioOrCheckboxClasses}">
 							<div class="w-full">Play {term('verse')}</div>
 						</div>
 					</Radio>
@@ -91,7 +91,7 @@
 				<!-- play word -->
 				<div class="flex items-center">
 					<Radio bind:group={$__audioSettings.audioType} value="word" custom>
-						<div class="{radioClasses} {$__audioSettings.audioType === 'word' && selectedRadioClasses}">
+						<div class="{radioClasses} {$__audioSettings.audioType === 'word' && selectedRadioOrCheckboxClasses}">
 							<div class="w-full">Play Words</div>
 						</div>
 					</Radio>
@@ -112,7 +112,7 @@
 				<!-- play this verse -->
 				<div class="flex items-center {!['chapter', 'mushaf'].includes($__currentPage) && disabledClasses}">
 					<Radio bind:group={$__audioSettings.audioRange} value="playThisVerse" custom>
-						<div class="{radioClasses} {$__audioSettings.audioRange === 'playThisVerse' && selectedRadioClasses}">
+						<div class="{radioClasses} {$__audioSettings.audioRange === 'playThisVerse' && selectedRadioOrCheckboxClasses}">
 							<div class="w-full">This {term('verse')}</div>
 						</div>
 					</Radio>
@@ -120,7 +120,7 @@
 				<!-- play from here -->
 				<div class="flex items-center {!['chapter', 'mushaf'].includes($__currentPage) && disabledClasses}">
 					<Radio bind:group={$__audioSettings.audioRange} value="playFromHere" custom>
-						<div class="{radioClasses} {$__audioSettings.audioRange === 'playFromHere' && selectedRadioClasses}">
+						<div class="{radioClasses} {$__audioSettings.audioRange === 'playFromHere' && selectedRadioOrCheckboxClasses}">
 							<div class="w-full">From Here</div>
 						</div>
 					</Radio>
@@ -128,7 +128,7 @@
 				<!-- play range -->
 				<div class="flex items-center {!['chapter'].includes($__currentPage) && disabledClasses}">
 					<Radio bind:group={$__audioSettings.audioRange} value="playRange" custom>
-						<div class="{radioClasses} {$__audioSettings.audioRange === 'playRange' && selectedRadioClasses}">
+						<div class="{radioClasses} {$__audioSettings.audioRange === 'playRange' && selectedRadioOrCheckboxClasses}">
 							<div class="w-full">From / Till</div>
 						</div>
 					</Radio>

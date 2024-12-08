@@ -4,7 +4,7 @@
 	import { __websiteTheme } from '$utils/stores';
 	import { selectableThemes, themeColors } from '$data/options';
 	import { updateSettings } from '$utils/updateSettings';
-	import { selectedRadioClasses, linkClasses, individualSettingsClasses } from '$data/commonClasses';
+	import { selectedRadioOrCheckboxClasses, linkClasses, individualRadioClasses } from '$data/commonClasses';
 </script>
 
 <div class="grid gap-3 w-full">
@@ -15,7 +15,7 @@
 				{#each Object.entries(selectableThemes) as [id, theme]}
 					{#if theme.color === color}
 						<Radio name="websiteTheme" bind:group={$__websiteTheme} value={theme.id} on:change={(event) => updateSettings({ type: 'websiteTheme', value: +event.target.value })} custom>
-							<div class="{individualSettingsClasses} {$__websiteTheme === theme.id && selectedRadioClasses}">
+							<div class="{individualRadioClasses} {$__websiteTheme === theme.id && selectedRadioOrCheckboxClasses}">
 								<div class="w-full">{theme.name}</div>
 
 								{#if $__websiteTheme === theme.id}
