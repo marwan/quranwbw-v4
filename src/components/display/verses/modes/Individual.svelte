@@ -5,7 +5,7 @@
 	import WordByWord from '$display/layouts/WordByWord.svelte';
 	import Normal from '$display/layouts/Normal.svelte';
 	import TranslationTransliteration from '$display/layouts/TranslationTransliteration.svelte';
-	import { __displayType, __fontType, __wordTranslation, __wordTransliteration, __verseTranslations, __keysToFetch } from '$utils/stores';
+	import { __displayType, __fontType, __wordTranslation, __wordTransliteration, __keysToFetch } from '$utils/stores';
 	import { buttonOutlineClasses } from '$data/commonClasses';
 	import { fetchChapterData } from '$utils/fetchData';
 	import { inview } from 'svelte-inview';
@@ -45,16 +45,10 @@
 	function loadNextVerses() {
 		import('./Individual.svelte').then((res) => (Individual = res.default));
 		const lastRenderedId = document.querySelectorAll('.verse')[document.querySelectorAll('.verse').length - 1].id;
-		const keys = Object.keys($__keysToFetch);
-
 		versesLoadType = 'next';
 
-		try {
-			nextStartIndex = findKeyIndices($__keysToFetch, lastRenderedId, maxIndexesAllowedToRender).startIndex;
-			nextEndIndex = findKeyIndices($__keysToFetch, lastRenderedId, maxIndexesAllowedToRender).endIndex;
-		} catch (error) {
-			console.log(error);
-		}
+		nextStartIndex = findKeyIndices($__keysToFetch, lastRenderedId, maxIndexesAllowedToRender).startIndex;
+		nextEndIndex = findKeyIndices($__keysToFetch, lastRenderedId, maxIndexesAllowedToRender).endIndex;
 
 		// don't let the end index be more than the data object's length
 		if (nextEndIndex === -1) nextEndIndex = Object.keys($__keysToFetch).length;
@@ -89,8 +83,8 @@
 </script>
 
 {#each Array.from(Array(endIndex + 1).keys()).slice(startIndex) as index}
-	{#await fetchChapterData({ chapter: keysArray[index].split(':')[0], reRenderWhenTheFollowingUpdates: $__wordTranslation })}
-		<Spinner size={4} />
+	{#await fetchChapterData({ chapter: keysArray[index].split(':')[0], reRenderWhenTheseUpdates: [$__fontType, $__wordTranslation, $__wordTransliteration] })}
+		<Spinner size={8} />
 	{:then data}
 		{@const key = keysArray[index]}
 		{@const verseValue = data[key]}

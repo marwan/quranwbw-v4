@@ -57,11 +57,11 @@
 			<!-- for other pages, we fetch chapter translations for each verse -->
 		{:else}
 			<!-- Render verse transliterations -->
-			{#await fetchChapterData({ chapter: value.meta.chapter, reRenderWhenTheFollowingUpdates: $__verseTranslations })}
-				<Spinner size={4} />
+			{#await fetchChapterData({ chapter: value.meta.chapter, reRenderWhenTheseUpdates: $__verseTranslations })}
+				<!-- <Spinner size={4} /> -->
 			{:then data}
 				{#if $__verseTranslations.includes(1)}
-					<Layout verseTranslationID={1} verseTranslation={data[`${value.meta.chapter}:${value.meta.verse}`].translations[1]} {value} />
+					<Layout verseTranslationID={1} verseTranslation={data[`${value.meta.chapter}:${value.meta.verse}`].translations[0]} {value} />
 				{/if}
 
 				{#if $__verseTranslations.includes(3)}
@@ -74,7 +74,7 @@
 			<!-- Render verse translations -->
 			{#await verseTranslationData}
 				<div class="mr-auto">
-					<Spinner size={4} />
+					<!-- <Spinner size={4} /> -->
 				</div>
 			{:then verseTranslationData}
 				{#if verseTranslationData}
