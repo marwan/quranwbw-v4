@@ -42,7 +42,7 @@
 		}
 
 		// Fetch chapter data from API
-		chapterData = fetchChapterData($__chapterNumber);
+		chapterData = fetchChapterData({ chapter: $__chapterNumber });
 
 		// Update the first verse on page
 		__firstVerseOnPage.set(startVerse);

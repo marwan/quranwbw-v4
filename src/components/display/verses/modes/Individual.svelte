@@ -1,11 +1,13 @@
 <script>
-	export let data, startIndex, endIndex;
+	export let startIndex, endIndex;
 
+	import Spinner from '$svgs/Spinner.svelte';
 	import WordByWord from '$display/layouts/WordByWord.svelte';
 	import Normal from '$display/layouts/Normal.svelte';
 	import TranslationTransliteration from '$display/layouts/TranslationTransliteration.svelte';
-	import { __displayType } from '$utils/stores';
+	import { __displayType, __fontType, __wordTranslation, __wordTransliteration, __verseTranslations, __keysToFetch } from '$utils/stores';
 	import { buttonOutlineClasses } from '$data/commonClasses';
+	import { fetchChapterData } from '$utils/fetchData';
 	import { inview } from 'svelte-inview';
 
 	// Load button click options
@@ -21,6 +23,14 @@
 	let nextEndIndex;
 	const allowedDisplayTypes = [1, 2, 7];
 
+	const maxIndexesAllowedToRender = 5;
+	let keysArray = $__keysToFetch.split(',');
+	let keysArrayLength = keysArray.length - 1;
+
+	// Set initial indexes
+	if (startIndex === undefined) startIndex = 0;
+	if (endIndex === undefined) endIndex = keysArrayLength > maxIndexesAllowedToRender ? maxIndexesAllowedToRender : keysArrayLength;
+
 	const displayComponents = {
 		1: { component: WordByWord },
 		2: { component: Normal },
@@ -34,17 +44,20 @@
 
 	function loadNextVerses() {
 		import('./Individual.svelte').then((res) => (Individual = res.default));
-		const versesToLoad = 5;
 		const lastRenderedId = document.querySelectorAll('.verse')[document.querySelectorAll('.verse').length - 1].id;
-		const keys = Object.keys(data);
-		const requiredIndex = keys.indexOf(lastRenderedId);
+		const keys = Object.keys($__keysToFetch);
 
 		versesLoadType = 'next';
-		nextStartIndex = keys.indexOf(keys[requiredIndex + 1]);
-		nextEndIndex = keys.indexOf(keys[requiredIndex + versesToLoad]);
+
+		try {
+			nextStartIndex = findKeyIndices($__keysToFetch, lastRenderedId, maxIndexesAllowedToRender).startIndex;
+			nextEndIndex = findKeyIndices($__keysToFetch, lastRenderedId, maxIndexesAllowedToRender).endIndex;
+		} catch (error) {
+			console.log(error);
+		}
 
 		// don't let the end index be more than the data object's length
-		if (nextEndIndex === -1) nextEndIndex = Object.keys(data).length;
+		if (nextEndIndex === -1) nextEndIndex = Object.keys($__keysToFetch).length;
 
 		// Remove the existing button
 		document.getElementById('loadVersesButton').remove();
@@ -55,20 +68,45 @@
 			endIndex: nextEndIndex
 		};
 	}
+
+	function findKeyIndices(keyString, key, threshold) {
+		// Convert the comma-separated string into an array
+		let keys = keyString.split(',');
+
+		// Find the index of the given key
+		let keyIndex = keys.indexOf(key);
+
+		if (keyIndex === -1) {
+			return { startIndex: -1, endIndex: -1 };
+		}
+
+		// Calculate start and end indices
+		let startIndex = keyIndex + 1;
+		let endIndex = Math.min(keyIndex + threshold, keys.length - 1);
+
+		return { startIndex, endIndex };
+	}
 </script>
 
-{#each Array.from(Array(endIndex).keys()).slice(startIndex) as verse}
-	{@const verseKey = Object.keys(data)[verse]}
-	{@const verseValue = data[verseKey]}
-	<svelte:component this={displayComponents[$__displayType]?.component} key={verseKey} value={verseValue} />
+{#each Array.from(Array(endIndex + 1).keys()).slice(startIndex) as index}
+	{#await fetchChapterData({ chapter: keysArray[index].split(':')[0], reRenderWhenTheFollowingUpdates: $__wordTranslation })}
+		<Spinner size={4} />
+	{:then data}
+		{@const key = keysArray[index]}
+		{@const verseValue = data[key]}
+		<svelte:component this={displayComponents[$__displayType]?.component} {key} value={verseValue} />
+	{:catch error}
+		<p>...</p>
+	{/await}
 {/each}
 
-{#if endIndex < Object.keys(data).length && document.getElementById('loadVersesButton') === null}
-	<div id="loadVersesButton" class="flex justify-center pt-6 pb-18 invisible" use:inview={loadButtonOptions} on:inview_enter={(event) => document.querySelector('#loadVersesButton > button').click()}>
+{#if endIndex < keysArrayLength && document.getElementById('loadVersesButton') === null}
+	<!-- <div id="loadVersesButton" class="flex justify-center pt-6 pb-18 invisible" use:inview={loadButtonOptions} on:inview_enter={(event) => document.querySelector('#loadVersesButton > button').click()}> -->
+	<div id="loadVersesButton" class="flex justify-center pt-6 pb-18">
 		<button on:click={loadNextVerses} class="text-sm {buttonOutlineClasses}"> Continue Reading </button>
 	</div>
 {/if}
 
 {#if versesLoadType === 'next'}
-	<svelte:component this={Individual} {data} {...nextVersesProps} />
+	<svelte:component this={Individual} verses={$__keysToFetch} {...nextVersesProps} />
 {/if}

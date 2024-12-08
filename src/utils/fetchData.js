@@ -4,7 +4,7 @@ import { apiEndpoint, staticEndpoint, apiVersion } from '$data/websiteSettings';
 import { selectableFontTypes } from '$data/options';
 
 // Fetch specific verses (startVerse to endVerse) and then fetch the complete chapter data to be cached by the user's browser
-export async function fetchChapterData(chapter, download = false) {
+export async function fetchChapterData(props) {
 	__chapterData.set(null);
 	const fontType = get(__fontType);
 	const wordTranslation = get(__wordTranslation);
@@ -13,7 +13,7 @@ export async function fetchChapterData(chapter, download = false) {
 	const apiURL =
 		`${apiEndpoint}/chapter?` +
 		new URLSearchParams({
-			chapter: chapter,
+			chapter: props.chapter,
 			word_type: selectableFontTypes[fontType].apiId,
 			word_translation: wordTranslation,
 			word_transliteration: wordTransliteration,
@@ -25,12 +25,9 @@ export async function fetchChapterData(chapter, download = false) {
 	const response = await fetch(apiURL);
 	const data = await response.json();
 
-	// 'download' = true means we are just fetching API data without updating the __chapterData store (for downloadData)
-	if (!download) {
-		__chapterData.set(data.data.verses);
-	} else {
-		fetchChapterData(chapter);
-	}
+	// 'skipSave' = true means we are just fetching API data without updating the __chapterData store (for downloadData)
+	if (!props.skipSave) __chapterData.set(data.data.verses);
+	return data.data.verses;
 }
 
 // Get verse translations from Quran.com's API as a separate request compared to the rest of the verse data (from our API)

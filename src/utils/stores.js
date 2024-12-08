@@ -63,7 +63,8 @@ let __websiteOnline,
 	__hideNonDuaPart,
 	__wordRoot,
 	__playButtonsFunctionality,
-	__mushafMinimalModeEnabled;
+	__mushafMinimalModeEnabled,
+	__keysToFetch;
 
 if (browser) {
 	const userSettings = JSON.parse(localStorage.getItem('userSettings'));
@@ -247,6 +248,9 @@ if (browser) {
 
 	// used to hide elements on pinch
 	__mushafMinimalModeEnabled = writable(false);
+
+	// storing the total keys to fetch by Individual component
+	__keysToFetch = writable(null);
 }
 
 export {
@@ -312,5 +316,6 @@ export {
 	__hideNonDuaPart,
 	__wordRoot,
 	__playButtonsFunctionality,
-	__mushafMinimalModeEnabled
+	__mushafMinimalModeEnabled,
+	__keysToFetch
 };
