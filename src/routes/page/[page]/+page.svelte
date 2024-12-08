@@ -2,6 +2,7 @@
 	export let data;
 
 	import Bismillah from '$display/Bismillah.svelte';
+	import ChapterHeader from '$display/ChapterHeader.svelte';
 	import PageHead from '$misc/PageHead.svelte';
 	import WordsBlock from '$display/verses/WordsBlock.svelte';
 	import Spinner from '$svgs/Spinner.svelte';
@@ -11,10 +12,9 @@
 	import { goto } from '$app/navigation';
 	import { __chapterNumber, __pageNumber, __currentPage, __fontType, __wordTranslation, __mushafPageDivisions, __lastRead, __displayType, __topNavbarVisible, __bottomToolbarVisible, __mushafMinimalModeEnabled } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';
-	import { apiEndpoint, apiVersion, errorLoadingDataMessage, mushafWordFontLink, mushafHeaderFontLink, mushafFontVersion } from '$data/websiteSettings';
-	import { quranMetaData, chapterHeaderCodes } from '$data/quranMeta';
+	import { apiEndpoint, apiVersion, errorLoadingDataMessage, mushafWordFontLink, mushafFontVersion } from '$data/websiteSettings';
+	import { quranMetaData } from '$data/quranMeta';
 	import { selectableFontTypes } from '$data/options';
-	import { loadFont } from '$utils/loadFont';
 	import { toggleMushafMinimalMode } from '$utils/toggleMushafMinimalMode';
 	import { splitDelimiter } from '$data/websiteSettings';
 	import '$lib/swiped-events.min.js';
@@ -92,11 +92,6 @@
 			pageBlock.addEventListener('swiped-left', () => goto(`/page/${page === 1 ? 1 : page - 1}`, { replaceState: false }));
 			pageBlock.addEventListener('swiped-right', () => goto(`/page/${page === 604 ? 604 : page + 1}`, { replaceState: false }));
 
-			// Dynamically load header font
-			loadFont('chapter-headers', `${mushafHeaderFontLink}?version=${mushafFontVersion}`).then(() => {
-				document.querySelectorAll('.header').forEach((element) => element.classList.remove('invisible'));
-			});
-
 			return apiData;
 		})();
 
@@ -125,8 +120,7 @@
 					<!-- if it's the first verse of a chapter -->
 					{#if chapters.length > 0 && lines.includes(line) && verses[lines.indexOf(line)] === 1}
 						<div class="flex flex-col my-2">
-							<div style="font-family: chapter-headers" class="header invisible leading-base pt-4 md:pt-8 pb-6 text-[28vw] md:text-[195px] lg:text-[195px] custom-header-color">{chapterHeaderCodes[chapters[lines.indexOf(line)]]}</div>
-
+							<ChapterHeader chapter={chapters[lines.indexOf(line)]} />
 							<Bismillah {chapters} {lines} {line} />
 						</div>
 					{/if}

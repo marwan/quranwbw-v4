@@ -2770,6 +2770,10 @@ input[type="range"].range-lg::-moz-range-thumb {
   padding-top: 2rem;
 }
 
+.pb-14 {
+  padding-bottom: 3.5rem;
+}
+
 .text-left {
   text-align: left;
 }
@@ -2866,6 +2870,10 @@ input[type="range"].range-lg::-moz-range-thumb {
   line-height: 1rem;
 }
 
+.text-\[27vw\] {
+  font-size: 27vw;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -2912,6 +2920,10 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .leading-normal {
   line-height: 1.5;
+}
+
+.leading-tight {
+  line-height: 1.25;
 }
 
 .text-\[\#000000\] {
@@ -4367,6 +4379,10 @@ svg {
 
   .lg\:text-\[36px\] {
     font-size: 36px;
+  }
+
+  .lg\:text-\[33cqmin\] {
+    font-size: 33cqmin;
   }
 }
 

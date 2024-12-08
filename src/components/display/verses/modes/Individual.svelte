@@ -6,10 +6,20 @@
 	import Normal from '$display/layouts/Normal.svelte';
 	import TranslationTransliteration from '$display/layouts/TranslationTransliteration.svelte';
 	import Bismillah from '$display/Bismillah.svelte';
+	import ChapterHeader from '$display/ChapterHeader.svelte';
 	import { __displayType, __fontType, __wordTranslation, __wordTransliteration, __keysToFetch, __currentPage } from '$utils/stores';
 	import { buttonOutlineClasses } from '$data/commonClasses';
 	import { fetchChapterData } from '$utils/fetchData';
 	import { inview } from 'svelte-inview';
+
+	const allowedDisplayTypes = [1, 2, 7];
+	const displayComponents = {
+		1: { component: WordByWord },
+		2: { component: Normal },
+		7: { component: TranslationTransliteration }
+	};
+
+	const maxIndexesAllowedToRender = 5;
 
 	// Load button click options
 	const loadButtonOptions = {
@@ -20,9 +30,6 @@
 	let Individual; // for the "Individual" component
 	let nextVersesProps = {};
 	let versesLoadType; // previous/next
-	const allowedDisplayTypes = [1, 2, 7];
-
-	const maxIndexesAllowedToRender = 5;
 	let keysArray = $__keysToFetch.split(',');
 	let keysArrayLength = keysArray.length - 1;
 	let nextStartIndex, nextEndIndex;
@@ -30,12 +37,6 @@
 	// Set initial indexes
 	if (startIndex === undefined) startIndex = 0;
 	if (endIndex === undefined) endIndex = keysArrayLength > maxIndexesAllowedToRender ? maxIndexesAllowedToRender : keysArrayLength;
-
-	const displayComponents = {
-		1: { component: WordByWord },
-		2: { component: Normal },
-		7: { component: TranslationTransliteration }
-	};
 
 	// Only allow display type 1, 2, & 7, and don't save the layout in settings if not allowed
 	if (!allowedDisplayTypes.includes($__displayType)) {
@@ -96,7 +97,11 @@
 
 		<!-- Only show Bismillah when its the Juz page, because the verses there can continue to next chapters -->
 		{#if $__currentPage === 'juz' && +key.split(':')[1] === 1}
-			<Bismillah chapter={+key.split(':')[0]} startVerse={+key.split(':')[1]} />
+			{@const chapter = +key.split(':')[0]}
+			<div class="mt-4">
+				<ChapterHeader {chapter} />
+				<Bismillah {chapter} startVerse={+key.split(':')[1]} />
+			</div>
 		{/if}
 
 		<svelte:component this={displayComponents[$__displayType]?.component} {key} value={verseValue} />
@@ -106,7 +111,8 @@
 {/each}
 
 {#if endIndex < keysArrayLength && document.getElementById('loadVersesButton') === null}
-	<div id="loadVersesButton" class="flex justify-center pt-6 pb-18" use:inview={loadButtonOptions} on:inview_enter={(event) => document.querySelector('#loadVersesButton > button').click()}>
+	<div id="loadVersesButton" class="flex justify-center pt-6 pb-18">
+		<!-- <div id="loadVersesButton" class="flex justify-center pt-6 pb-18" use:inview={loadButtonOptions} on:inview_enter={(event) => document.querySelector('#loadVersesButton > button').click()}> -->
 		<button on:click={loadNextVerses} class="text-sm {buttonOutlineClasses}"> Continue Reading </button>
 	</div>
 {/if}
