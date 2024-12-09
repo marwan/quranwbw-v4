@@ -84,13 +84,19 @@
 				<ChevronDown />
 			{/if}
 
+			<!-- display only the juz number for juz page -->
+			{#if $__currentPage === 'juz'}
+				{document.title.split(' - ')[0]}
+				<ChevronDown />
+			{/if}
+
 			<!-- display Quranic+supplication term for supplications page -->
 			{#if $__currentPage === 'supplications'}
 				Quranic {term('supplications')}
 			{/if}
 
 			<!-- display only the page name for non-chapter page -->
-			{#if !['chapter', 'mushaf', 'supplications'].includes($__currentPage)}
+			{#if !['chapter', 'mushaf', 'supplications', 'juz'].includes($__currentPage)}
 				{$__currentPage[0].toUpperCase() + $__currentPage.slice(1)}
 
 				<!-- if it's the morphology page, show morphology key as well -->
