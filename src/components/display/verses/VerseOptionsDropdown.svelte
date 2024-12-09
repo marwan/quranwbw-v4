@@ -12,6 +12,7 @@
 	import VerseTranslation from '$svgs/VerseTranslation.svelte';
 	import ChapterMode from '$svgs/ChapterMode.svelte';
 	import Book from '$svgs/Book.svelte';
+	import Juz from '$svgs/Juz.svelte';
 	import Morphology from '$svgs/Morphology.svelte';
 	import Share from '$svgs/Share.svelte';
 	import { showAudioModal } from '$utils/audioController';
@@ -20,12 +21,9 @@
 	import { __userSettings, __verseKey, __notesModalVisible, __tafsirModalVisible, __verseTranslationModalVisible, __currentPage, __displayType, __userNotes } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';
 	import { term } from '$utils/terminologies';
+	import { staticEndpoint } from '$data/websiteSettings';
 	import { sineIn } from 'svelte/easing';
 	import { fly } from 'svelte/transition';
-
-	const dropdownItemClasses = `flex flex-row items-center space-x-2 font-normal rounded-3xl ${window.theme('hover')}`;
-	let dropdownOpen = false;
-	let moreOptionsEnabled = true;
 
 	// Transition parameters for drawer
 	const transitionParamsRight = {
@@ -34,8 +32,25 @@
 		easing: sineIn
 	};
 
+	const dropdownItemClasses = `flex flex-row items-center space-x-2 font-normal rounded-3xl ${window.theme('hover')}`;
+	let dropdownOpen = false;
+	let moreOptionsEnabled = true;
+	let verseKeyData;
+
 	// Update userBookmarks whenever the __userSettings changes
 	$: userBookmarks = JSON.parse($__userSettings).userBookmarks;
+
+	// Load verse key data externally to reduce bundle size
+	$: {
+		if (dropdownOpen) {
+			verseKeyData = (async () => {
+				// getting indexes file
+				const response = await fetch(`${staticEndpoint}/v4/meta/verseKeyData.json?version=2`);
+				const data = await response.json();
+				return data;
+			})();
+		}
+	}
 
 	// Open share menu
 	function shareVerse() {
@@ -128,17 +143,27 @@
 			</DropdownItem>
 
 			<!-- mode change buttons -->
-			{#if $__currentPage === 'chapter'}
-				<DropdownItem class={dropdownItemClasses} href="/page/{page}">
-					<Book />
-					<span>Mushaf Mode</span>
-				</DropdownItem>
-			{:else if $__currentPage === 'mushaf'}
+			{#if $__currentPage === 'mushaf'}
 				<DropdownItem class={dropdownItemClasses} href="/{$__verseKey.split(':')[0]}/{$__verseKey.split(':')[1]}">
 					<ChapterMode />
 					<span>{term('chapter')} Mode</span>
 				</DropdownItem>
+			{:else}
+				<DropdownItem class={dropdownItemClasses} href="/page/{page}">
+					<Book />
+					<span>Mushaf Mode</span>
+				</DropdownItem>
 			{/if}
+
+			<!-- only show results of key-pages if we have loaded the data -->
+			{#await verseKeyData}
+				<!-- ... -->
+			{:then data}
+				<DropdownItem class={dropdownItemClasses} href="/juz/{data[$__verseKey].juz}?startKey={$__verseKey}">
+					<Juz />
+					<span>Juz Mode</span>
+				</DropdownItem>
+			{/await}
 
 			<!-- verse morphology button -->
 			<DropdownItem class={dropdownItemClasses} href="/morphology/{$__verseKey}">

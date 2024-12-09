@@ -10,6 +10,8 @@
 	import { __displayType, __fontType, __wordTranslation, __wordTransliteration, __keysToFetch, __currentPage } from '$utils/stores';
 	import { buttonOutlineClasses } from '$data/commonClasses';
 	import { fetchChapterData } from '$utils/fetchData';
+	import { isValidVerseKey } from '$utils/validateKey';
+	import { goto } from '$app/navigation';
 	import { inview } from 'svelte-inview';
 
 	const allowedDisplayTypes = [1, 2, 7];
@@ -34,9 +36,29 @@
 	let keysArrayLength = keysArray.length - 1;
 	let nextStartIndex, nextEndIndex;
 
-	// Set initial indexes
+	const params = new URLSearchParams(window.location.search);
+
+	// Checking if a start key was provided
+	if (params.get('startKey') !== undefined || params.get('startKey') !== null) {
+		try {
+			let keyToStartWith = params.get('startKey');
+
+			if (isValidVerseKey(keyToStartWith)) {
+				goto(removeParam('startKey'), { replaceState: false });
+				startIndex = getIndexOfKey(keyToStartWith);
+				endIndex = keysArrayLength > maxIndexesAllowedToRender ? startIndex + maxIndexesAllowedToRender : keysArrayLength;
+			}
+		} catch (error) {
+			// ...
+		}
+	}
+
+	// Set initial indexes if nothing was set earlier
 	if (startIndex === undefined) startIndex = 0;
-	if (endIndex === undefined) endIndex = keysArrayLength > maxIndexesAllowedToRender ? maxIndexesAllowedToRender : keysArrayLength;
+	if (endIndex === undefined) endIndex = keysArrayLength > maxIndexesAllowedToRender ? startIndex + maxIndexesAllowedToRender : keysArrayLength;
+	// Basic checks
+	if (startIndex < 0) startIndex = 0;
+	if (endIndex > keysArrayLength) endIndex = keysArrayLength;
 
 	// Only allow display type 1, 2, & 7, and don't save the layout in settings if not allowed
 	if (!allowedDisplayTypes.includes($__displayType)) {
@@ -85,6 +107,19 @@
 		let endIndex = Math.min(keyIndex + threshold, keys.length - 1);
 
 		return { startIndex, endIndex };
+	}
+
+	function getIndexOfKey(key, keysString = $__keysToFetch) {
+		const keysArray = keysString.split(',');
+		let index = keysArray.indexOf(key);
+		if (index === -1) index = 0;
+		return index;
+	}
+
+	function removeParam(param) {
+		const parsedUrl = new URL(window.location.href);
+		parsedUrl.searchParams.delete(param);
+		return parsedUrl.toString();
 	}
 </script>
 

@@ -2774,6 +2774,10 @@ input[type="range"].range-lg::-moz-range-thumb {
   padding-bottom: 3.5rem;
 }
 
+.pb-10 {
+  padding-bottom: 2.5rem;
+}
+
 .text-left {
   text-align: left;
 }
@@ -4305,6 +4309,10 @@ svg {
 
   .md\:pt-8 {
     padding-top: 2rem;
+  }
+
+  .md\:pt-10 {
+    padding-top: 2.5rem;
   }
 
   .md\:text-left {
