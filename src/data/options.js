@@ -489,7 +489,12 @@ export const selectableReciters = {
 		url: 'https://everyayah.com/data/Abu%20Bakr%20Ash-Shaatree_128kbps/',
 		image: 'abu-bakr-al-shatri-medium.webp'
 	},
-	// 5: ...
+	5: {
+		id: 5,
+		reciter: 'Ayman Suwayd',
+		url: 'https://everyayah.com/data/Ayman_Sowaid_64kbps/',
+		image: 'ayman-suwayd-medium.webp'
+	},
 	6: {
 		id: 6,
 		timestampSlug: 'rifai',

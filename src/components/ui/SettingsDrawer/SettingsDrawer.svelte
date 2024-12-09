@@ -508,7 +508,7 @@
 								<div class={toggleBtnClasses}></div>
 							</label>
 						</div>
-						<p class={settingsDescriptionClasses}>Word click plays audio by default. Toggle this to view morphology instead.</p>
+						<p class={settingsDescriptionClasses}>Enable this option to view morphology on word click, instead of playing audio.</p>
 					</div>
 				</div>
 			</div>

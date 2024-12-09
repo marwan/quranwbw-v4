@@ -34,10 +34,13 @@ export async function playVerseAudio(props) {
 	audioSettings.playingKey = props.key;
 	audioSettings.audioType = 'verse';
 
-	console.log('playing', props.language, `${props.key}`);
-
+	// Attach word highlighting function for supported reciters
 	if (props.language === 'arabic' && selectableReciters[get(__reciter)].timestampSlug) {
 		audio.addEventListener('timeupdate', wordHighlighter);
+	}
+
+	// Scroll to the playing verse
+	if (props.language === 'arabic') {
 		try {
 			scrollSmoothly(document.getElementById(`${audioSettings.playingKey}`).offsetTop - 75, 500);
 		} catch (error) {
