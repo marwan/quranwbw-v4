@@ -35,6 +35,8 @@
 	let keysArray = $__keysToFetch.split(',');
 	let keysArrayLength = keysArray.length - 1;
 	let nextStartIndex, nextEndIndex;
+	let renderedVerses = 0;
+	let showContinueReadingButton = false;
 
 	const params = new URLSearchParams(window.location.search);
 
@@ -87,7 +89,7 @@
 
 			versesLoadType = 'next';
 		} catch (error) {
-			// ...
+			console.log(error);
 		}
 	}
 
@@ -121,6 +123,14 @@
 		parsedUrl.searchParams.delete(param);
 		return parsedUrl.toString();
 	}
+
+	function versesRendered() {
+		renderedVerses += 1;
+
+		if (renderedVerses === endIndex + 1 - startIndex) {
+			showContinueReadingButton = true;
+		}
+	}
 </script>
 
 {#each Array.from(Array(endIndex + 1).keys()).slice(startIndex) as index}
@@ -128,7 +138,7 @@
 		<div class="w-full"><Skeleton size="xxl" class="py-8 ml-auto direction-rtl" /></div>
 	{:then data}
 		{@const key = keysArray[index]}
-		{@const verseValue = data[key]}
+		{@const value = data[key]}
 
 		<!-- Only show Bismillah when its the Juz page, because the verses there can continue to next chapters -->
 		{#if $__currentPage === 'juz' && +key.split(':')[1] === 1}
@@ -138,18 +148,20 @@
 				<Bismillah {chapter} startVerse={+key.split(':')[1]} />
 			</div>
 		{/if}
-
-		<svelte:component this={displayComponents[$__displayType]?.component} {key} value={verseValue} />
+		<section use:versesRendered>
+			<svelte:component this={displayComponents[$__displayType]?.component} {key} {value} />
+		</section>
 	{:catch error}
 		<p>...</p>
 	{/await}
 {/each}
 
-{#if endIndex < keysArrayLength && document.getElementById('loadVersesButton') === null}
-	<div id="loadVersesButton" class="flex justify-center pt-6 pb-18">
-		<!-- <div id="loadVersesButton" class="flex justify-center pt-6 pb-18" use:inview={loadButtonOptions} on:inview_enter={(event) => document.querySelector('#loadVersesButton > button').click()}> -->
-		<button on:click={loadNextVerses} class="text-sm {buttonOutlineClasses}"> Continue Reading </button>
-	</div>
+{#if showContinueReadingButton}
+	{#if endIndex < keysArrayLength && document.getElementById('loadVersesButton') === null}
+		<div id="loadVersesButton" class="flex justify-center pt-6 pb-18" use:inview={loadButtonOptions} on:inview_enter={(event) => document.querySelector('#loadVersesButton > button').click()}>
+			<button on:click={loadNextVerses} class="text-sm {buttonOutlineClasses}"> Continue Reading </button>
+		</div>
+	{/if}
 {/if}
 
 {#if versesLoadType === 'next'}
