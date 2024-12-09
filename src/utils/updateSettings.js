@@ -26,7 +26,8 @@ import {
 	__quizWrongAnswers,
 	__englishTerminology,
 	__hideNonDuaPart,
-	__playButtonsFunctionality
+	__playButtonsFunctionality,
+	__wordMorphologyOnClick
 } from '$utils/stores';
 // import { uploadSettingsToCloud } from '$utils/cloudSettings';
 
@@ -262,6 +263,12 @@ export function updateSettings(props) {
 				toolbar: 1
 			});
 			userSettings.audioSettings.versePlayButton = props.value;
+			break;
+
+		// for toggling word morphology on click
+		case 'wordMorphologyOnClick':
+			__wordMorphologyOnClick.set(props.value);
+			userSettings.displaySettings.wordMorphologyOnClick = props.value;
 			break;
 
 		// for increasing/decreasing font sizes

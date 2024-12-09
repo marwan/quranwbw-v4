@@ -122,7 +122,7 @@
 			</div>
 
 			<!-- word audio button -->
-			<!-- <div class="pt-4 text-xs">
+			<div class="pt-4 text-xs">
 				<button
 					class={buttonClasses}
 					on:click={() =>
@@ -132,7 +132,7 @@
 							verse: +data.key.split(':')[1]
 						})}>Listen To Word</button
 				>
-			</div> -->
+			</div>
 		{:catch error}
 			<p>{errorLoadingDataMessage}</p>
 		{/await}

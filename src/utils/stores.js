@@ -64,7 +64,8 @@ let __websiteOnline,
 	__wordRoot,
 	__playButtonsFunctionality,
 	__mushafMinimalModeEnabled,
-	__keysToFetch;
+	__keysToFetch,
+	__wordMorphologyOnClick;
 
 if (browser) {
 	const userSettings = JSON.parse(localStorage.getItem('userSettings'));
@@ -251,6 +252,9 @@ if (browser) {
 
 	// storing the total keys to fetch by Individual component
 	__keysToFetch = writable(null);
+
+	// what happens when a user clicks on a word
+	__wordMorphologyOnClick = writable(userSettings.displaySettings.wordMorphologyOnClick);
 }
 
 export {
@@ -317,5 +321,6 @@ export {
 	__wordRoot,
 	__playButtonsFunctionality,
 	__mushafMinimalModeEnabled,
-	__keysToFetch
+	__keysToFetch,
+	__wordMorphologyOnClick
 };

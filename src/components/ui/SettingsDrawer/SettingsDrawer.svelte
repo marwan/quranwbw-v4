@@ -41,7 +41,8 @@
 		__englishTerminology,
 		__lastRead,
 		__hideNonDuaPart,
-		__playButtonsFunctionality
+		__playButtonsFunctionality,
+		__wordMorphologyOnClick
 	} from '$utils/stores';
 
 	import { selectableDisplays, selectableFontTypes, selectableThemes, selectableWordTranslations, selectableWordTransliterations, selectableVerseTransliterations, selectableReciters, selectableTranslationReciters, selectablePlaybackSpeeds, selectableTooltipOptions, selectableFontSizes, fontSizePresets, selectableVersePlayButtonOptions } from '$data/options';
@@ -494,6 +495,20 @@
 							</label>
 						</div>
 						<p class={settingsDescriptionClasses}>Show/hide the non-{term('supplications')} words in the {term('supplications')} page.</p>
+					</div>
+
+					<div class="border-b {window.theme('border')}"></div>
+
+					<!-- show-morphology-on-word-click-toggle -->
+					<div id="show-morphology-on-word-click" class={settingsBlockClasses}>
+						<div class="flex flex-row justify-between items-center">
+							<span class="block">Word Morphology On Click</span>
+							<label class="inline-flex items-center cursor-pointer">
+								<input type="checkbox" value="" class="sr-only peer" checked={$__wordMorphologyOnClick} on:click={(event) => updateSettings({ type: 'wordMorphologyOnClick', value: event.target.checked })} />
+								<div class={toggleBtnClasses}></div>
+							</label>
+						</div>
+						<p class={settingsDescriptionClasses}>Word click plays audio by default. Toggle this to view morphology instead.</p>
 					</div>
 				</div>
 			</div>

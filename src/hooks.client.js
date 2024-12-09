@@ -32,6 +32,7 @@ export function setUserSettings() {
 	userSettings.displaySettings.wakeLockEnabled = userSettings.displaySettings.wakeLockEnabled !== undefined ? userSettings.displaySettings.wakeLockEnabled : false; // Enable sleep (default behaviour)
 	userSettings.displaySettings.englishTerminology = userSettings.displaySettings.englishTerminology !== undefined ? userSettings.displaySettings.englishTerminology : false; // Quran terminologies language (default is Arabic)
 	userSettings.displaySettings.hideNonDuaPart = userSettings.displaySettings.hideNonDuaPart !== undefined ? userSettings.displaySettings.hideNonDuaPart : false; // Show all words
+	userSettings.displaySettings.wordMorphologyOnClick = userSettings.displaySettings.wordMorphologyOnClick !== undefined ? userSettings.displaySettings.wordMorphologyOnClick : false; // Play word audio by default
 
 	// Font size settings (child of display settings)
 	if (!userSettings.displaySettings.fontSizes) userSettings.displaySettings.fontSizes = {}; // Parent

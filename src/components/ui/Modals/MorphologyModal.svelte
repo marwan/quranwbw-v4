@@ -3,10 +3,13 @@
 	import MorphologyView from '$src/routes/morphology/[key]/MorphologyView.svelte';
 	import { __morphologyModalVisible, __morphologyKey } from '$utils/stores';
 	import { getModalTransition } from '$utils/getModalTransition';
+	import { page } from '$app/stores';
 
 	$: wordKeyData = {
 		key: $__morphologyKey
 	};
+
+	$: if ($page.url.href) __morphologyModalVisible.set(false);
 </script>
 
 <Modal

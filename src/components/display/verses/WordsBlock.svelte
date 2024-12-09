@@ -9,7 +9,7 @@
 	import Tooltip from '$ui/FlowbiteSvelte/tooltip/Tooltip.svelte';
 	import { goto } from '$app/navigation';
 	import { selectableDisplays } from '$data/options';
-	import { __currentPage, __fontType, __displayType, __userSettings, __audioSettings, __morphologyKey, __verseKey, __websiteTheme, __morphologyModalVisible } from '$utils/stores';
+	import { __currentPage, __fontType, __displayType, __userSettings, __audioSettings, __morphologyKey, __verseKey, __websiteTheme, __morphologyModalVisible, __wordMorphologyOnClick } from '$utils/stores';
 	import { loadFont } from '$utils/loadFont';
 	import { wordAudioController } from '$utils/audioController';
 	import { updateSettings } from '$utils/updateSettings';
@@ -39,11 +39,11 @@
 			goto(`/morphology/${props.key}`, { replaceState: false });
 		}
 
-		// // If the user clicks on a word in a non-Morphology page
-		// else if ($__currentPage !== 'morphology' && props.type === 'word') {
-		// 	__morphologyKey.set(props.key);
-		// 	__morphologyModalVisible.set(true);
-		// }
+		// If the user clicks on a word in a non-Morphology page
+		else if ($__currentPage !== 'morphology' && props.type === 'word' && $__wordMorphologyOnClick) {
+			__morphologyKey.set(props.key);
+			__morphologyModalVisible.set(true);
+		}
 
 		// All other options
 		else {
