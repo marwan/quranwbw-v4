@@ -1,6 +1,6 @@
 import { get } from 'svelte/store';
 import { quranMetaData } from '$data/quranMeta';
-import { __reciter, __translationReciter, __playbackSpeed, __audioSettings, __audioModalVisible, __currentPage, __chapterNumber, __chapterData, __playTranslation, __timestampData } from '$utils/stores';
+import { __reciter, __translationReciter, __playbackSpeed, __audioSettings, __audioModalVisible, __currentPage, __chapterNumber, __playTranslation, __timestampData } from '$utils/stores';
 import { wordsAudioURL } from '$data/websiteSettings';
 import { selectableReciters, selectableTranslationReciters, selectablePlaybackSpeeds } from '$data/options';
 import { fetchTimestampData } from '$utils/fetchData';
@@ -296,8 +296,14 @@ export function setVersesToPlay(props) {
 
 // Get the total number of words in the verse based on the current mode
 function getWordsInVerse(key) {
-	const data = get(__currentPage) === 'mushaf' ? JSON.parse(localStorage.getItem('pageData')) : get(__chapterData);
+	const isMushafPage = get(__currentPage) === 'mushaf';
+	const [chapter, verse] = key.split(':');
 
-	// Return the total number of words in the specified verse
-	return data[key].meta.words;
+	if (isMushafPage) {
+		const pageData = JSON.parse(localStorage.getItem('pageData'));
+		return Number(pageData[key].meta.words);
+	} else {
+		const wordData = document.querySelector(`.verse-${chapter}-${verse}`).dataset.words;
+		return Number(wordData);
+	}
 }
