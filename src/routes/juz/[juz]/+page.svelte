@@ -31,7 +31,7 @@
 	__currentPage.set('juz');
 </script>
 
-<PageHead title={'Juz'} />
+<PageHead title={`Juz ${juzNumber}`} />
 
 {#await fetchJuzKeys}
 	<!-- <Spinner /> -->
