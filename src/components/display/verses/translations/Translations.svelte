@@ -7,7 +7,7 @@
 	import { __currentPage, __verseKey, __verseTranslations, __verseTranslationData, __chapterData, __userSettings, __fontType, __wordTranslation, __wordTransliteration, __keysToFetch } from '$utils/stores';
 	import { fetchChapterData, fetchVerseTranslationData } from '$utils/fetchData';
 
-	let verseTranslationData;
+	let verseTranslationData, verseTransliterationData;
 
 	$: fontSizes = JSON.parse($__userSettings).displaySettings.fontSizes;
 	$: verseTranslationClasses = `verseTranslationText flex flex-col space-y-4 leading-normal ${fontSizes.verseTranslationText}`;
@@ -20,6 +20,7 @@
 	$: if ($__currentPage !== 'chapter') {
 		(async () => {
 			verseTranslationData = await fetchVerseTranslationData(chapterToFetch, $__verseTranslations.toString());
+			verseTransliterationData = await fetchChapterData({ chapter: value.meta.chapter, reRenderWhenTheseUpdates: $__verseTranslations });
 		})();
 	}
 </script>
@@ -56,15 +57,17 @@
 			<!-- for other pages, we fetch chapter translations for each verse -->
 		{:else}
 			<!-- Render verse transliterations -->
-			{#await fetchChapterData({ chapter: value.meta.chapter, reRenderWhenTheseUpdates: $__verseTranslations })}
+			{#await verseTransliterationData}
 				<Skeleton size="xxl" class="mb-2.5" />
-			{:then data}
-				{#if $__verseTranslations.includes(1)}
-					<Layout verseTranslationID={1} verseTranslation={data[`${value.meta.chapter}:${value.meta.verse}`].translations[0]} {value} />
-				{/if}
+			{:then verseTransliterationData}
+				{#if verseTransliterationData}
+					{#if $__verseTranslations.includes(1)}
+						<Layout verseTranslationID={1} verseTranslation={verseTransliterationData[`${value.meta.chapter}:${value.meta.verse}`].translations[0]} {value} />
+					{/if}
 
-				{#if $__verseTranslations.includes(3)}
-					<Layout verseTranslationID={3} verseTranslation={data[`${value.meta.chapter}:${value.meta.verse}`].translations[1]} {value} />
+					{#if $__verseTranslations.includes(3)}
+						<Layout verseTranslationID={3} verseTranslation={verseTransliterationData[`${value.meta.chapter}:${value.meta.verse}`].translations[1]} {value} />
+					{/if}
 				{/if}
 			{:catch error}
 				<p>{error}</p>
