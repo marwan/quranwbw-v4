@@ -7,6 +7,9 @@
 
 	// quick play from first verse of page till the max chapter verses
 	function audioHandler() {
+		$__audioSettings.language = 'arabic';
+		$__audioSettings.playBoth = false;
+
 		if ($__audioSettings.isPlaying) {
 			resetAudioSettings({ location: 'end' });
 		} else {

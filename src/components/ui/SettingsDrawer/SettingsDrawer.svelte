@@ -9,8 +9,6 @@
 	import VerseTransliterationSelector from '$ui/SettingsDrawer/VerseTransliterationSelector.svelte';
 	import VerseTafsirSelector from '$ui/SettingsDrawer/VerseTafsirSelector.svelte';
 	import VerseRecitorSelector from '$ui/SettingsDrawer/VerseRecitorSelector.svelte';
-	import TranslationRecitorSelector from '$ui/SettingsDrawer/TranslationRecitorSelector.svelte';
-	import PlaybackSpeedSelector from '$ui/SettingsDrawer/PlaybackSpeedSelector.svelte';
 	import VersePlayButtonSelector from '$ui/SettingsDrawer/VersePlayButtonSelector.svelte';
 	import Drawer from '$ui/FlowbiteSvelte/drawer/Drawer.svelte';
 	import Range from '$ui/FlowbiteSvelte/forms/Range.svelte';
@@ -67,8 +65,6 @@
 		'verse-transliteration': VerseTransliterationSelector,
 		'verse-tafsir': VerseTafsirSelector,
 		'verse-reciter': VerseRecitorSelector,
-		'translation-reciter': TranslationRecitorSelector,
-		'playback-speed': PlaybackSpeedSelector,
 		'verse-play-button': VersePlayButtonSelector
 	};
 
@@ -412,18 +408,7 @@
 							<div class="block">{term('verse')} Reciter</div>
 							<button class={selectorClasses} on:click={() => gotoIndividualSetting('verse-reciter')}>{selectableReciters[$__reciter].reciter}</button>
 						</div>
-						<p class={settingsDescriptionClasses}>The reciter whose audio will be played when you choose to listen to a {term('verse')}.</p>
-					</div>
-
-					<div class="border-b {window.theme('border')}"></div>
-
-					<!-- translation-reciter-setting -->
-					<div id="translation-reciter-setting" class={settingsBlockClasses}>
-						<div class="flex flex-row justify-between items-center">
-							<div class="block">Translation Reciter</div>
-							<button class={selectorClasses} on:click={() => gotoIndividualSetting('translation-reciter')}>{selectableTranslationReciters[$__translationReciter].reciter}</button>
-						</div>
-						<p class={settingsDescriptionClasses}>The translation reciter whose audio will be played after the {term('verse')} audio.</p>
+						<p class={settingsDescriptionClasses}>The reciter's voice that will play when you choose to listen to an {term('verse')}.</p>
 					</div>
 
 					<div class="border-b {window.theme('border')}"></div>

@@ -12,8 +12,8 @@ export const labelPillClasses = `${window.theme('bgSecondaryLight')} text-sm fon
 
 export const linkClasses = `font-semibold underline ${window.theme('textSecondary')}`;
 
-export const selectedRadioOrCheckboxClasses = `${window.theme('bgSecondaryLight')} border-2 ${window.theme('borderDark')}`;
+export const selectedRadioOrCheckboxClasses = `${window.theme('bgSecondaryLight')} ${window.theme('borderDark')}`;
 
-export const individualRadioClasses = `inline-flex justify-between items-center p-5 w-full rounded-lg cursor-pointer border ${window.theme('border')} ${window.theme('bgMain')} ${window.theme('checked')} ${window.theme('hover')}`;
+export const individualRadioClasses = `inline-flex justify-between items-center p-5 w-full rounded-lg cursor-pointer border-2 ${window.theme('bgMain')} ${window.theme('checked')} ${window.theme('hover')}`;
 
-export const individualCheckboxClasses = `inline-flex justify-between items-center p-5 w-full rounded-lg cursor-pointer border ${window.theme('border')} ${window.theme('bgMain')} ${window.theme('hover')}`;
+export const individualCheckboxClasses = `inline-flex justify-between items-center p-5 w-full rounded-lg cursor-pointer border-2 ${window.theme('bgMain')} ${window.theme('hover')}`;

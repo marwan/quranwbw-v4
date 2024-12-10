@@ -29,42 +29,29 @@
 
 	function audioHandler(key) {
 		// Stop any audio if something is playing
-		if ($__audioSettings.isPlaying) {
-			resetAudioSettings({ location: 'end' });
-		} else {
-			// For chapter & mushaf page, respect the user select play button functionality
-			if (['chapter', 'mushaf'].includes($__currentPage)) {
-				handleAudioPlayOptions(key);
-			} else {
-				playVerseAudio({ key, language: 'arabic', timesToRepeat: 1 });
+		if ($__audioSettings.isPlaying) return resetAudioSettings({ location: 'end' });
+
+		// For chapter & mushaf page, perform action depending on the play button functionality set by the user
+		if (['chapter', 'mushaf', 'supplications', 'bookmarks', 'juz'].includes($__currentPage)) {
+			switch ($__playButtonsFunctionality.verse) {
+				case 1:
+					playVerseAudio({ key, language: 'arabic', timesToRepeat: 1 });
+					break;
+				case 2:
+					setVersesToPlay({ location: 'verseOptionsOrModal', chapter, startVerse: verse, endVerse: versesInChapter, audioRange: 'playFromHere' });
+					playVerseAudio({ key: `${window.versesToPlayArray[0]}`, timesToRepeat: 1, language: 'arabic' });
+					break;
+				case 3:
+					showAudioModal(key);
+					break;
+				default:
+					playVerseAudio({ key, language: 'arabic', timesToRepeat: 1 });
+					break;
 			}
 		}
-	}
 
-	function handleAudioPlayOptions(key) {
-		const { verse } = $__playButtonsFunctionality;
-
-		switch (verse) {
-			case 1:
-				playVerseAudio({ key, language: 'arabic', timesToRepeat: 1 });
-				break;
-			case 2:
-				setVersesToPlay({
-					location: 'verseOptionsOrModal',
-					chapter,
-					startVerse: verse,
-					endVerse: versesInChapter,
-					audioRange: 'playFromHere'
-				});
-				playVerseAudio({ key: `${window.versesToPlayArray[0]}`, timesToRepeat: 1, language: 'arabic' });
-				break;
-			case 3:
-				showAudioModal(key);
-				break;
-			default:
-				playVerseAudio({ key, language: 'arabic', timesToRepeat: 1 });
-				break;
-		}
+		// For all other pages, just play the audio directly
+		else playVerseAudio({ key, language: 'arabic', timesToRepeat: 1 });
 	}
 
 	// Function to toggle words block for display mode #7

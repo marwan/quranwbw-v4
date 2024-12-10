@@ -21,7 +21,7 @@ export async function playVerseAudio(props) {
 	// Defaulting the language to Arabic
 	if (props.language === undefined) props.language = 'arabic';
 
-	console.log('playing: ', props.language);
+	console.log('playing:', props.language);
 
 	const reciterAudioUrl = props.language === 'arabic' ? selectableReciters[get(__reciter)].url : selectableTranslationReciters[get(__translationReciter)].url;
 	const currentVerseFileName = `${String(playChapter).padStart(3, '0')}${String(playVerse).padStart(3, '0')}.mp3`;
@@ -213,8 +213,6 @@ export function wordAudioController(props) {
 // Highlight words during audio playback based on timestamps
 function wordHighlighter() {
 	try {
-		console.log({ playingKey: audioSettings.playingKey });
-
 		// Get the total number of words in the verse
 		const wordsInVerse = getWordsInVerse(audioSettings.playingKey);
 

@@ -57,6 +57,7 @@
 		$__audioSettings.audioRange = 'playThisVerse';
 	}
 
+	// Set the audio language
 	$: {
 		switch (playLanguage) {
 			case 'arabic':
