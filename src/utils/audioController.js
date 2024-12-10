@@ -20,9 +20,10 @@ export async function playVerseAudio(props) {
 	const reciterAudioUrl = props.language === 'arabic' ? selectableReciters[get(__reciter)].url : selectableTranslationReciters[get(__translationReciter)].url;
 
 	const currentVerseFileName = `${String(playChapter).padStart(3, '0')}${String(playVerse).padStart(3, '0')}.mp3`;
+	const nextVerseFileName = `${String(playChapter).padStart(3, '0')}${String(playVerse + 1).padStart(3, '0')}.mp3`;
 
 	// Prefetch the next verse audio
-	fetch(`${reciterAudioUrl}/${String(playChapter).padStart(3, '0')}${String(playVerse + 1).padStart(3, '0')}.mp3`);
+	fetch(`${reciterAudioUrl}/${nextVerseFileName}`);
 
 	audio.src = `${reciterAudioUrl}/${currentVerseFileName}`;
 	audio.currentTime = 0;
@@ -85,6 +86,10 @@ export function playWordAudio(props) {
 	const [wordChapter, wordVerse, wordNumber] = props.key.split(':').map(Number);
 
 	const currentWordFileName = `${wordChapter}/${String(wordChapter).padStart(3, '0')}_${String(wordVerse).padStart(3, '0')}_${String(wordNumber).padStart(3, '0')}.mp3`;
+	const nextWordFileName = `${wordChapter}/${String(wordChapter).padStart(3, '0')}_${String(wordVerse).padStart(3, '0')}_${String(wordNumber + 1).padStart(3, '0')}.mp3`;
+
+	// Prefetch the next word audio
+	fetch(`${wordsAudioURL}/${nextWordFileName}?version=2`);
 
 	audio.src = `${wordsAudioURL}/${currentWordFileName}?version=2`;
 	audio.currentTime = 0;
