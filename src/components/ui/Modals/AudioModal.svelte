@@ -50,6 +50,26 @@
 		}
 	}
 
+	let playLanguage = 'arabic';
+
+	$: if (playLanguage === 'arabic') {
+		$__audioSettings.language = 'arabic';
+		$__audioSettings.playBoth = false;
+	} else if (playLanguage === 'translation') {
+		$__audioSettings.language = 'translation';
+		$__audioSettings.playBoth = false;
+	} else if (playLanguage === 'both') {
+		$__audioSettings.language = 'arabic';
+		$__audioSettings.playBoth = true;
+	}
+
+	// $: if ($__audioSettings.language === 'both') {
+	// 	$__audioSettings.language = 'arabic';
+	// 	$__audioSettings.playBoth = true;
+	// }
+
+	// $: console.log($__audioSettings);
+
 	// Handle play button click
 	function playButtonHandler() {
 		const { audioType, playingKey, audioRange } = $__audioSettings;
@@ -57,7 +77,7 @@
 			playVerseAudio({
 				key: `${window.versesToPlayArray[0]}`,
 				timesToRepeat: audioRange,
-				language: 'arabic'
+				language: $__audioSettings.language
 			});
 		} else if (audioType === 'word') {
 			playWordAudio({
@@ -103,6 +123,37 @@
 					<span>This feature allows you to hear each word in the {term('verse')} individually. To listen to specific words, simply click on them. Please note, this option plays the words sequentially without accounting for the connecting silent letters between them. For a seamless and accurate recitation, it is recommended to play the entire {term('verse')}.</span>
 				</span>
 			{/if}
+		</div>
+
+		<!-- recitation language -->
+		<div id="recitation-language-block" class="flex flex-col space-y-4 py-4 border-t {window.theme('border')} {$__audioSettings.audioType === 'word' ? 'hidden' : null}">
+			<span class="text-sm">Your preferred language.</span>
+			<div class="flex flex-row space-x-2">
+				<!-- play arabic only -->
+				<div class="flex items-center">
+					<Radio bind:group={playLanguage} value="arabic" custom>
+						<div class="{radioClasses} {playLanguage === 'arabic' && selectedRadioOrCheckboxClasses}">
+							<div class="w-full">Arabic</div>
+						</div>
+					</Radio>
+				</div>
+				<!-- play translation only -->
+				<div class="flex items-center">
+					<Radio bind:group={playLanguage} value="translation" custom>
+						<div class="{radioClasses} {playLanguage === 'translation' && selectedRadioOrCheckboxClasses}">
+							<div class="w-full">Translation</div>
+						</div>
+					</Radio>
+				</div>
+				<!-- play both -->
+				<div class="flex items-center">
+					<Radio bind:group={playLanguage} value="both" custom>
+						<div class="{radioClasses} {playLanguage === 'both' && selectedRadioOrCheckboxClasses}">
+							<div class="w-full">Both</div>
+						</div>
+					</Radio>
+				</div>
+			</div>
 		</div>
 
 		<!-- single or range -->

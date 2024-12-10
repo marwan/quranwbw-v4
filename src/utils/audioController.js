@@ -1,6 +1,6 @@
 import { get } from 'svelte/store';
 import { quranMetaData } from '$data/quranMeta';
-import { __reciter, __translationReciter, __playbackSpeed, __audioSettings, __audioModalVisible, __currentPage, __chapterNumber, __playTranslation, __timestampData } from '$utils/stores';
+import { __reciter, __translationReciter, __playbackSpeed, __audioSettings, __audioModalVisible, __currentPage, __chapterNumber, __timestampData } from '$utils/stores';
 import { wordsAudioURL } from '$data/websiteSettings';
 import { selectableReciters, selectableTranslationReciters, selectablePlaybackSpeeds } from '$data/options';
 import { fetchTimestampData } from '$utils/fetchData';
@@ -12,13 +12,18 @@ const audioSettings = get(__audioSettings);
 
 // Function to play verse audio, either one time, or multiple times
 export async function playVerseAudio(props) {
-	resetAudioSettings();
 	const [playChapter, playVerse] = props.key.split(':').map(Number);
 
+	// Reset audio settings and fetch timestamp data for wbw highlighting
+	resetAudioSettings();
 	await fetchTimestampData(playChapter);
 
-	const reciterAudioUrl = props.language === 'arabic' ? selectableReciters[get(__reciter)].url : selectableTranslationReciters[get(__translationReciter)].url;
+	// Defaulting the language to Arabic
+	if (props.language === undefined) props.language = 'arabic';
 
+	console.log('playing: ', props.language);
+
+	const reciterAudioUrl = props.language === 'arabic' ? selectableReciters[get(__reciter)].url : selectableTranslationReciters[get(__translationReciter)].url;
 	const currentVerseFileName = `${String(playChapter).padStart(3, '0')}${String(playVerse).padStart(3, '0')}.mp3`;
 	const nextVerseFileName = `${String(playChapter).padStart(3, '0')}${String(playVerse + 1).padStart(3, '0')}.mp3`;
 
@@ -41,19 +46,17 @@ export async function playVerseAudio(props) {
 	}
 
 	// Scroll to the playing verse
-	if (props.language === 'arabic') {
-		try {
-			scrollSmoothly(document.getElementById(`${audioSettings.playingKey}`).offsetTop - 75, 500);
-		} catch (error) {
-			// Handle the error if necessary
-		}
+	try {
+		scrollSmoothly(document.getElementById(`${audioSettings.playingKey}`).offsetTop - 75, 500);
+	} catch (error) {
+		// ...
 	}
 
 	audio.onended = async function () {
 		audio.removeEventListener('timeupdate', wordHighlighter);
 		const previousLanguage = props.language;
 
-		if (get(__playTranslation) && previousLanguage === 'arabic') {
+		if (audioSettings.playBoth && previousLanguage === 'arabic') {
 			return playVerseAudio({ key: `${props.key}`, timesToRepeat: +props.timesToRepeat, language: 'translation' });
 		}
 
@@ -70,7 +73,7 @@ export async function playVerseAudio(props) {
 			if (index > -1) window.versesToPlayArray.splice(index, 1);
 
 			if (window.versesToPlayArray.length > 0) {
-				return playVerseAudio({ key: `${window.versesToPlayArray[0]}`, timesToRepeat: +props.timesToRepeat, language: 'arabic' });
+				return playVerseAudio({ key: `${window.versesToPlayArray[0]}`, timesToRepeat: +props.timesToRepeat, language: audioSettings.language });
 			}
 		}
 

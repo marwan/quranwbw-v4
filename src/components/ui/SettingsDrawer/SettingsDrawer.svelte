@@ -33,7 +33,6 @@
 		__reciter,
 		__translationReciter,
 		__playbackSpeed,
-		__playTranslation,
 		__userSettings,
 		__wordTooltip,
 		__settingsDrawerHidden,
@@ -437,20 +436,6 @@
 								<Range min="1" max="7" bind:value={playbackSpeedValue} class={rangeClasses} />
 							</div>
 						</div>
-					</div>
-
-					<div class="border-b {window.theme('border')}"></div>
-
-					<!-- play-translation-setting -->
-					<div id="play-translation-setting" class={settingsBlockClasses}>
-						<div class="flex flex-row justify-between items-center">
-							<span class="block">Play Translation</span>
-							<label class="inline-flex items-center cursor-pointer {$__wordTranslationEnabled === false && disabledClasses}">
-								<input type="checkbox" value="" class="sr-only peer" checked={$__playTranslation} on:click={(event) => updateSettings({ type: 'playTranslation', value: event.target.checked })} />
-								<div class={toggleBtnClasses}></div>
-							</label>
-						</div>
-						<p class={settingsDescriptionClasses}>Whether the translation audio should be played after the Arabic audio.</p>
 					</div>
 
 					<div class="border-b {window.theme('border')}"></div>
