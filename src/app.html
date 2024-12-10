@@ -47,11 +47,11 @@
 				9: 'bg-[#09090b]'
 			};
 
-			function theme(type) {
-				try {
-					const userSettings = JSON.parse(localStorage.getItem('userSettings'));
-					const currentTheme = userSettings ? +userSettings.displaySettings.websiteTheme : 1;
+			const userSettings = JSON.parse(localStorage.getItem('userSettings'));
+			const usersTheme = userSettings ? +userSettings.displaySettings.websiteTheme : 1;
 
+			function theme(type, id = usersTheme) {
+				try {
 					const themes = {
 						1: {
 							themeName: 'Golden Glint',
@@ -226,7 +226,7 @@
 						}
 					};
 
-					return themes[currentTheme][type] || '';
+					return themes[id][type] || '';
 				} catch (error) {
 					console.error('An error occurred while fetching the theme:', error);
 					return '';

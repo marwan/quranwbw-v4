@@ -11,7 +11,7 @@
 	import Eye from '$svgs/Eye.svelte';
 	import Tooltip from '$ui/FlowbiteSvelte/tooltip/Tooltip.svelte';
 	import { playVerseAudio, resetAudioSettings, setVersesToPlay, showAudioModal } from '$utils/audioController';
-	import { __currentPage, __userSettings, __audioSettings, __verseKey, __userNotes, __notesModalVisible, __playButtonsFunctionality, __displayType } from '$utils/stores';
+	import { __currentPage, __userSettings, __audioSettings, __verseKey, __userNotes, __notesModalVisible, __playButtonsFunctionality, __displayType, __savedPlaySettings } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';
 	import { term } from '$utils/terminologies';
 	import { quranMetaData } from '$data/quranMeta';
@@ -31,7 +31,7 @@
 		// Stop any audio if something is playing
 		if ($__audioSettings.isPlaying) return resetAudioSettings({ location: 'end' });
 
-		// For chapter & mushaf page, perform action depending on the play button functionality set by the user
+		// For these pages, perform action depending on the play button functionality set by the user
 		if (['chapter', 'mushaf', 'supplications', 'bookmarks', 'juz'].includes($__currentPage)) {
 			switch ($__playButtonsFunctionality.verse) {
 				case 1:

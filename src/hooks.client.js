@@ -59,8 +59,17 @@ export function setUserSettings() {
 	userSettings.audioSettings.reciter = userSettings.audioSettings.reciter || 10; // Mishary Rashid Alafasy
 	userSettings.audioSettings.translationReciter = userSettings.audioSettings.translationReciter || 1; // English - Ibrahim Walk (Sahih International)
 	userSettings.audioSettings.playbackSpeed = userSettings.audioSettings.playbackSpeed || 3; // x1
-	userSettings.audioSettings.playTranslation = userSettings.audioSettings.playTranslation !== undefined ? userSettings.audioSettings.playTranslation : false; // Verse translation
 	userSettings.audioSettings.versePlayButton = userSettings.audioSettings.versePlayButton || 1; // Play selected verse
+
+	// Default audio settings
+	userSettings.audioSettings.savedPlaySettings =
+		userSettings.audioSettings.savedPlaySettings !== undefined
+			? userSettings.audioSettings.savedPlaySettings
+			: {
+					audioType: 'verse',
+					playLanguage: 'arabic',
+					audioRange: 'playThisVerse'
+				};
 
 	// Quiz settings
 	if (!userSettings.quiz) userSettings.quiz = {}; // Parent

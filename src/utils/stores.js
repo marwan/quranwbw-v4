@@ -25,7 +25,7 @@ let __websiteOnline,
 	__translationReciter,
 	__timestampData,
 	__playbackSpeed,
-	__playTranslation,
+	__savedPlaySettings,
 	__displayType,
 	__selectedDisplayId,
 	__websiteTheme,
@@ -141,7 +141,7 @@ if (browser) {
 	__playbackSpeed = writable(userSettings.audioSettings.playbackSpeed);
 
 	// to store the toggle boolean for play translation
-	__playTranslation = writable(userSettings.audioSettings.playTranslation);
+	__savedPlaySettings = writable(userSettings.audioSettings.savedPlaySettings);
 
 	// to store the display type - WBW, Normal, Continuous, etc...
 	__displayType = writable(userSettings.displaySettings.displayType);
@@ -284,7 +284,7 @@ export {
 	__translationReciter,
 	__timestampData,
 	__playbackSpeed,
-	__playTranslation,
+	__savedPlaySettings,
 	__displayType,
 	__selectedDisplayId,
 	__websiteTheme,

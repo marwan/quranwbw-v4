@@ -65,7 +65,7 @@
 	// }
 </script>
 
-{#if $__currentPage != 'mushaf' || ($__currentPage === 'mushaf' && +value.words.line.split(splitDelimiter)[word] === line)}
+{#if $__currentPage !== 'mushaf' || ($__currentPage === 'mushaf' && +value.words.line.split(splitDelimiter)[word] === line)}
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<div id={wordKey} class={wordDivClasses} on:click={() => wordClickHandler({ key: wordKey, type: 'word' })}>
