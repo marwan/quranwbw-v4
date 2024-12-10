@@ -57,8 +57,8 @@
 	}
 
 	// Set initial indexes if nothing was set earlier
-	if (startIndex === undefined || startIndex === null) startIndex = 0;
-	if (endIndex === undefined || endIndex === null) endIndex = keysArrayLength > maxIndexesAllowedToRender ? startIndex + maxIndexesAllowedToRender : keysArrayLength;
+	if (startIndex === undefined) startIndex = 0;
+	if (endIndex === undefined) endIndex = keysArrayLength > maxIndexesAllowedToRender ? startIndex + maxIndexesAllowedToRender : keysArrayLength;
 	// Basic checks
 	if (startIndex < 0) startIndex = 0;
 	if (endIndex > keysArrayLength) endIndex = keysArrayLength;
