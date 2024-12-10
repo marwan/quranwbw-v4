@@ -17,41 +17,39 @@
 	let playLanguage = 'arabic';
 
 	// Update settings and validate verses when audio modal is visible
-	$: {
-		if ($__audioModalVisible) {
-			const [thisChapter, thisVerse] = $__audioSettings.playingKey.split(':');
-			const versesInChapter = quranMetaData[thisChapter].verses;
-			const { startVerse, endVerse, timesToRepeat, audioRange } = $__audioSettings;
+	$: if ($__audioModalVisible) {
+		const [thisChapter, thisVerse] = $__audioSettings.playingKey.split(':');
+		const versesInChapter = quranMetaData[thisChapter].verses;
+		const { startVerse, endVerse, timesToRepeat, audioRange } = $__audioSettings;
 
-			// Set verses to play based on audio range setting
-			switch (audioRange) {
-				case 'playThisVerse':
-					setVersesToPlay({ location: 'verseOptionsOrModal', chapter: thisChapter, startVerse: thisVerse, endVerse: thisVerse });
-					break;
-				case 'playFromHere':
-					// On the following pages, we already have the keys stored in "__keysToFetch",
-					// So we just push all the keys in setVersesToPlay from the current key onwards
-					if (['supplications', 'bookmarks', 'juz'].includes($__currentPage)) {
-						const removeKeysBefore = (string, key) => string.split(',').slice(string.split(',').indexOf(key)).join(',');
-						setVersesToPlay({ verses: removeKeysBefore($__keysToFetch, $__audioSettings.playingKey).split(',') });
-					}
+		// Set verses to play based on audio range setting
+		switch (audioRange) {
+			case 'playThisVerse':
+				setVersesToPlay({ location: 'verseOptionsOrModal', chapter: thisChapter, startVerse: thisVerse, endVerse: thisVerse });
+				break;
+			case 'playFromHere':
+				// On the following pages, we already have the keys stored in "__keysToFetch",
+				// So we just push all the keys in setVersesToPlay from the current key onwards
+				if (['supplications', 'bookmarks', 'juz'].includes($__currentPage)) {
+					const removeKeysBefore = (string, key) => string.split(',').slice(string.split(',').indexOf(key)).join(',');
+					setVersesToPlay({ verses: removeKeysBefore($__keysToFetch, $__audioSettings.playingKey).split(',') });
+				}
 
-					// Else on the chapter page, we manually set the start and end verses
-					else setVersesToPlay({ location: 'verseOptionsOrModal', chapter: thisChapter, startVerse: thisVerse, endVerse: versesInChapter, audioRange: 'playFromHere' });
-					break;
-				case 'playRange':
-					setVersesToPlay({ location: 'verseOptionsOrModal', chapter: thisChapter, startVerse, endVerse: versesInChapter });
-					break;
-			}
-
-			// Initialize endVerse as startVerse if undefined
-			$__audioSettings.endVerse ??= startVerse;
-
-			// Validate verse and repeat times
-			invalidStartVerse = startVerse < 1 || startVerse > versesInChapter;
-			invalidEndVerse = endVerse < 1 || endVerse > versesInChapter || endVerse < startVerse;
-			invalidTimesToRepeat = timesToRepeat < 1 || timesToRepeat > 20 || isNaN(timesToRepeat);
+				// Else on the chapter page, we manually set the start and end verses
+				else setVersesToPlay({ location: 'verseOptionsOrModal', chapter: thisChapter, startVerse: thisVerse, endVerse: versesInChapter, audioRange: 'playFromHere' });
+				break;
+			case 'playRange':
+				setVersesToPlay({ location: 'verseOptionsOrModal', chapter: thisChapter, startVerse, endVerse: versesInChapter });
+				break;
 		}
+
+		// Initialize endVerse as startVerse if undefined
+		$__audioSettings.endVerse ??= startVerse;
+
+		// Validate verse and repeat times
+		invalidStartVerse = startVerse < 1 || startVerse > versesInChapter;
+		invalidEndVerse = endVerse < 1 || endVerse > versesInChapter || endVerse < startVerse;
+		invalidTimesToRepeat = timesToRepeat < 1 || timesToRepeat > 20 || isNaN(timesToRepeat);
 	}
 
 	// Allow only "playThisVerse" option for non-chapter pages
@@ -104,7 +102,7 @@
 	<div class="flex flex-col">
 		<!-- verse or words -->
 		<div class="flex flex-col space-y-4 py-4">
-			<span class="text-sm">Either play the whole {term('verse')} or individual words.</span>
+			<span class="text-sm">Playback Options</span>
 			<div class="flex flex-row space-x-2">
 				<!-- play verse -->
 				<div class="flex items-center">
@@ -125,7 +123,7 @@
 			</div>
 
 			{#if $__audioSettings.audioType === 'word'}
-				<span class="flex flex-col space-y-3 text-sm pt-2">
+				<span class="flex flex-col space-y-3 text-xs pt-2 opacity-70">
 					<span>This feature allows you to hear each word in the {term('verse')} individually. To listen to specific words, simply click on them. Please note, this option plays the words sequentially without accounting for the connecting silent letters between them. For a seamless and accurate recitation, it is recommended to play the entire {term('verse')}.</span>
 				</span>
 			{/if}
@@ -133,7 +131,7 @@
 
 		<!-- recitation language -->
 		<div id="recitation-language-block" class="flex flex-col space-y-4 py-4 border-t {window.theme('border')} {$__audioSettings.audioType === 'word' ? 'hidden' : null}">
-			<span class="text-sm">Your preferred language.</span>
+			<span class="text-sm">Preferred Language</span>
 			<div class="flex flex-row space-x-2">
 				<!-- play arabic only -->
 				<div class="flex items-center">
@@ -164,7 +162,7 @@
 
 		<!-- single or range -->
 		<div id="single-or-range-block" class="flex flex-col space-y-4 py-4 border-t {window.theme('border')} {$__audioSettings.audioType === 'word' ? 'hidden' : null}">
-			<span class="text-sm">Your preferred range.</span>
+			<span class="text-sm">Preferred Range</span>
 			<div class="flex flex-row space-x-2">
 				<!-- play this verse -->
 				<div class="flex items-center {!['chapter', 'mushaf', 'supplications', 'bookmarks', 'juz'].includes($__currentPage) && disabledClasses}">
