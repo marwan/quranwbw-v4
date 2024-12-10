@@ -1,7 +1,6 @@
 <script>
 	export let value;
 
-	import Spinner from '$svgs/Spinner.svelte';
 	import Layout from '$display/verses/translations/Layout.svelte';
 	import Skeleton from '$ui/FlowbiteSvelte/skeleton/Skeleton.svelte';
 	import { __currentPage, __verseKey, __verseTranslations, __verseTranslationData, __chapterData, __userSettings, __fontType, __wordTranslation, __wordTransliteration, __keysToFetch } from '$utils/stores';
@@ -16,12 +15,10 @@
 	$: chapterData = $__currentPage === 'mushaf' ? JSON.parse(localStorage.getItem('pageData')) : $__chapterData;
 	$: chapterToFetch = $__currentPage === 'mushaf' ? parseInt($__verseKey.split(':')[0], 10) : value.meta.chapter;
 
-	// Fetch verse translations for pages other than chapter
+	// Fetch verse translations and transliteration data for pages other than chapter
 	$: if ($__currentPage !== 'chapter') {
-		(async () => {
-			verseTranslationData = await fetchVerseTranslationData(chapterToFetch, $__verseTranslations.toString());
-			verseTransliterationData = await fetchChapterData({ chapter: value.meta.chapter, reRenderWhenTheseUpdates: $__verseTranslations });
-		})();
+		verseTranslationData = fetchVerseTranslationData(chapterToFetch, $__verseTranslations.toString());
+		verseTransliterationData = fetchChapterData({ chapter: value.meta.chapter, reRenderWhenTheseUpdates: $__verseTranslations });
 	}
 </script>
 
