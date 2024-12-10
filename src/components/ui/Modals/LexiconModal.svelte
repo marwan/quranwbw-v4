@@ -9,7 +9,7 @@
 	$: {
 		lexiconData = (async () => {
 			// getting indexes file
-			const indexesResponse = await fetch(`${staticEndpoint}/v4/lexicon/indexes.json`);
+			const indexesResponse = await fetch(`${staticEndpoint}/lexicon/indexes.json`);
 			const indexesData = await indexesResponse.json();
 
 			if (indexesData[$__wordRoot] === undefined) return 'No data for this word.';
@@ -18,7 +18,7 @@
 			const lexiconIndex = indexesData[$__wordRoot].index;
 
 			// getting lexicon data for the root
-			const lexiconResponse = await fetch(`${staticEndpoint}/v4/lexicon/${lexiconFile}.json`);
+			const lexiconResponse = await fetch(`${staticEndpoint}/lexicon/${lexiconFile}.json`);
 			const lexiconData = await lexiconResponse.json();
 
 			return lexiconData[lexiconIndex];

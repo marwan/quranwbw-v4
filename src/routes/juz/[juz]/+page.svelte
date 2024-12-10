@@ -14,7 +14,7 @@
 	// Fetch words data for morphology
 	$: fetchJuzKeys = (async () => {
 		try {
-			const response = await fetch(`${staticEndpoint}/v4/meta/keysInJuz.json`);
+			const response = await fetch(`${staticEndpoint}/meta/keysInJuz.json`);
 			const data = await response.json();
 
 			// storing the keys

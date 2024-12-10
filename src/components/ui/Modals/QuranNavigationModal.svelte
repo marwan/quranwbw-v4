@@ -63,7 +63,7 @@
 	// Load verse key data externally to reduce bundle size
 	$: if ($__quranNavigationModalVisible || ['mushaf', 'morphology'].includes($__currentPage)) {
 		(async () => {
-			const response = await fetch(`${staticEndpoint}/v4/meta/verseKeyData.json`);
+			const response = await fetch(`${staticEndpoint}/meta/verseKeyData.json`);
 			verseKeyData = await response.json();
 		})();
 	}

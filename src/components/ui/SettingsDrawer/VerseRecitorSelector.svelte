@@ -15,7 +15,7 @@
 		<Radio name="reciter" bind:group={$__reciter} value={reciter.id} on:change={(event) => updateSettings({ type: 'reciter', value: +event.target.value })} custom>
 			<div class="{individualRadioClasses} px-5 py-3 {$__reciter === reciter.id && selectedRadioOrCheckboxClasses}">
 				<div class="flex flex-row space-x-2 items-center w-full">
-					<img src="{staticEndpoint}/v4/images/reciters/{reciter.image}" class={reciterImageClasses} alt={reciter.reciter} />
+					<img src="{staticEndpoint}/images/reciters/{reciter.image}" class={reciterImageClasses} alt={reciter.reciter} />
 					<span>{reciter.reciter}</span>
 				</div>
 

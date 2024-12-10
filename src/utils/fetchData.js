@@ -75,7 +75,7 @@ export async function fetchVersesData(props) {
 
 // Fetch timestamps for word-by-word highlighting
 export async function fetchTimestampData(chapter) {
-	const apiURL = `${staticEndpoint}/v4/timestamps/${chapter}.json?version=1`;
+	const apiURL = `${staticEndpoint}/timestamps/${chapter}.json?version=1`;
 	const response = await fetch(apiURL);
 	const data = await response.json();
 	__timestampData.set(data);

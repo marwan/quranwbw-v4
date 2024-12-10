@@ -138,7 +138,7 @@ function isValidVerse(chapter, verse) {
 
 // Fetches data required for validating verse keys
 async function fetchVerseKeyData() {
-	const response = await fetch(`${staticEndpoint}/v4/meta/verseKeyData.json`);
+	const response = await fetch(`${staticEndpoint}/meta/verseKeyData.json`);
 	return response.json();
 }
 

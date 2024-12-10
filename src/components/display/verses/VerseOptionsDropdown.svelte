@@ -45,7 +45,7 @@
 		if (dropdownOpen) {
 			verseKeyData = (async () => {
 				// getting indexes file
-				const response = await fetch(`${staticEndpoint}/v4/meta/verseKeyData.json?version=2`);
+				const response = await fetch(`${staticEndpoint}/meta/verseKeyData.json?version=2`);
 				const data = await response.json();
 				return data;
 			})();
