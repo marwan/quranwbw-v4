@@ -16,5 +16,5 @@
 <PageHead title={'Bookmarks'} />
 
 <div id="individual-verses-block">
-	<Individual verses={$__keysToFetch} />
+	<Individual />
 </div>

@@ -37,7 +37,7 @@
 	<!-- <Spinner /> -->
 {:then fetchJuzKeys}
 	<div id="individual-verses-block">
-		<Individual verses={$__keysToFetch} />
+		<Individual />
 	</div>
 {:catch error}
 	<p>...</p>
