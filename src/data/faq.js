@@ -7,7 +7,7 @@ export const websiteFAQs = [
 	{
 		id: 2,
 		question: 'What languages are available on QuranWBW.com?',
-		answer: 'Word by word translations are available for English, Urdu, Hindi, Indonesian, Bangla, Turkish, Russian, German, Ingush and Tamil. However, the website interface is only available in English at the moment.'
+		answer: 'Word by word translations are available for English, Urdu, Hindi, Indonesian, Bangla, Turkish, German and Tamil. However, the website interface is only available in English at the moment.'
 	},
 	{
 		id: 3,

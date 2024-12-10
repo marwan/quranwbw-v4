@@ -39,82 +39,73 @@
 	setDefaultPaddings();
 
 	// Update body scroll based on settings drawer visibility
-	$: {
-		document.body.classList.toggle('overflow-y-hidden', !$__settingsDrawerHidden);
-	}
+	$: document.body.classList.toggle('overflow-y-hidden', !$__settingsDrawerHidden);
 
 	// Update settings from cloud when chapter or page changes
-	$: {
-		if ($__currentPage && $__chapterNumber) {
-			// downloadSettingsFromCloud();
-		}
-	}
+	// $: if ($__currentPage && $__chapterNumber) {
+	// 	downloadSettingsFromCloud();
+	// }
 
 	// Reset chapter data loaded when certain settings update
-	$: {
-		if ($__currentPage || $__fontType || $__wordTranslation || $__verseTranslations) {
-			localStorage.setItem('chapterDataLoaded', false);
-		}
+	$: if ($__currentPage || $__fontType || $__wordTranslation || $__verseTranslations) {
+		localStorage.setItem('chapterDataLoaded', false);
 	}
 
 	// Stop all audio when the page or chapter changes
-	$: {
-		if ($__currentPage || $__chapterNumber) {
-			resetAudioSettings({ location: 'end' });
-		}
+	$: if ($__currentPage || $__chapterNumber) {
+		resetAudioSettings({ location: 'end' });
 	}
 
 	// Toggle distraction-free mushaf mode
-	$: {
-		if ($__mushafMinimalModeEnabled && $__currentPage === 'mushaf') {
-			paddingTop = 'pt-0';
-			paddingBottom = 'pb-0';
-			__topNavbarVisible.set(false);
-			__bottomToolbarVisible.set(false);
-		} else {
-			setDefaultPaddings();
-			__topNavbarVisible.set(true);
-			__bottomToolbarVisible.set(true);
-		}
+	$: if ($__mushafMinimalModeEnabled && $__currentPage === 'mushaf') {
+		paddingTop = 'pt-0';
+		paddingBottom = 'pb-0';
+		__topNavbarVisible.set(false);
+		__bottomToolbarVisible.set(false);
+	} else {
+		setDefaultPaddings();
+		__topNavbarVisible.set(true);
+		__bottomToolbarVisible.set(true);
 	}
 
 	// Enable or disable wakeLock based on setting
-	$: {
-		(async function () {
-			if ($__wakeLockEnabled) {
-				if (!wakeLock) {
-					try {
-						wakeLock = await navigator.wakeLock.request('screen');
-						console.log('Wake lock enabled');
-					} catch (err) {
-						console.error(err);
-					}
+	$: (async function () {
+		if ($__wakeLockEnabled) {
+			if (!wakeLock) {
+				try {
+					wakeLock = await navigator.wakeLock.request('screen');
+					console.log('Wake lock enabled');
+				} catch (err) {
+					console.error(err);
 				}
-			} else {
-				if (wakeLock) {
-					await wakeLock.release();
-					wakeLock = null;
-					console.log('Wake lock disabled');
-				}
-			}
-		})();
-	}
-
-	// Update display and font type based on current page
-	$: {
-		if ($__currentPage === 'mushaf') {
-			__selectedDisplayId.set(6); // Mushaf Mode
-			if (![2, 3].includes($__fontType)) {
-				__fontType.set(2); // Default font
 			}
 		} else {
-			const userSettings = JSON.parse(localStorage.getItem('userSettings'));
-
-			updateSettings({ type: 'displayType', value: userSettings.displaySettings.displayType });
-			__selectedDisplayId.set(userSettings.displaySettings.displayType);
-
-			__fontType.set(userSettings.displaySettings.fontType);
+			if (wakeLock) {
+				await wakeLock.release();
+				wakeLock = null;
+				console.log('Wake lock disabled');
+			}
 		}
+	})();
+
+	// Update display and font type based on current page
+	$: if ($__currentPage === 'mushaf') {
+		__selectedDisplayId.set(6); // Mushaf Mode
+		if (![2, 3].includes($__fontType)) {
+			__fontType.set(2); // Default font
+		}
+	} else {
+		const userSettings = JSON.parse(localStorage.getItem('userSettings'));
+
+		updateSettings({ type: 'displayType', value: userSettings.displaySettings.displayType });
+		__selectedDisplayId.set(userSettings.displaySettings.displayType);
+
+		__fontType.set(userSettings.displaySettings.fontType);
+	}
+
+	// If wbw language was set to Russian or Ingush, switch back to English
+	$: if ([9, 10].includes($__wordTranslation)) {
+		updateSettings({ type: 'wordTranslation', value: 1 });
 	}
 
 	// Set default paddings based on current page

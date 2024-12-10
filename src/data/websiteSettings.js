@@ -4,7 +4,7 @@ export const websiteTagline = 'Word By Word Translation, Transliteration And Mor
 
 export const websiteTitle = `Quran ${websiteTagline} - ${websiteURL}`;
 
-export const wbwLanguages = 'English, Urdu, Hindi, Indonesian, Bangla, Turkish, Tamil, French, German, Russian, Ingush, Chinese, Malayalam, Divehi and Persian';
+export const wbwLanguages = 'English, Urdu, Hindi, Indonesian, Bangla, Turkish, Tamil, French, German, Chinese, Malayalam, Divehi and Persian';
 
 export const apiEndpoint = 'https://api.quranwbw.com/v1';
 // export const apiEndpoint = 'http://localhost:7500/v1';

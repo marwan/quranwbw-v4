@@ -447,11 +447,11 @@ export const selectableWordTranslations = {
 	9: { id: 8, language: 'German' },
 	10: { id: 3, language: 'Hindi' },
 	11: { id: 4, language: 'Indonesian' },
-	12: { id: 10, language: 'Ingush' },
+	// 12: { id: 10, language: 'Ingush' },
 	13: { id: 12, language: 'Malayalam (Amani Thafseer)' },
 	14: { id: 13, language: 'Malayalam (Quran Lalithasaram)' },
 	15: { id: 19, language: 'Persian' },
-	16: { id: 9, language: 'Russian' },
+	// 16: { id: 9, language: 'Russian' },
 	17: { id: 7, language: 'Tamil' },
 	18: { id: 6, language: 'Turkish' },
 	19: { id: 2, language: 'Urdu' }
