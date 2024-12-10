@@ -1,7 +1,7 @@
 <script>
 	export let startIndex, endIndex;
 
-	import Skeleton from '$ui/FlowbiteSvelte/skeleton/Skeleton.svelte';
+	import Spinner from '$svgs/Spinner.svelte';
 	import WordByWord from '$display/layouts/WordByWord.svelte';
 	import Normal from '$display/layouts/Normal.svelte';
 	import TranslationTransliteration from '$display/layouts/TranslationTransliteration.svelte';
@@ -13,6 +13,7 @@
 	import { isValidVerseKey } from '$utils/validateKey';
 	import { goto } from '$app/navigation';
 	import { inview } from 'svelte-inview';
+	import { onMount } from 'svelte';
 
 	const allowedDisplayTypes = [1, 2, 7];
 	const displayComponents = {
@@ -29,6 +30,7 @@
 		unobserveOnEnter: true
 	};
 
+	const params = new URLSearchParams(window.location.search);
 	let Individual; // for the "Individual" component
 	let nextVersesProps = {};
 	let versesLoadType; // previous/next
@@ -37,8 +39,7 @@
 	let nextStartIndex, nextEndIndex;
 	let renderedVerses = 0;
 	let showContinueReadingButton = false;
-
-	const params = new URLSearchParams(window.location.search);
+	let dataMap = {};
 
 	// Checking if a start key was provided
 	if (params.get('startKey') !== undefined || params.get('startKey') !== null) {
@@ -131,14 +132,39 @@
 			showContinueReadingButton = true;
 		}
 	}
+
+	// This function fetches the data for all chapters within the specified startIndex and endIndex range, stores the data in a dataMap object,
+	// and then renders the fetched data on the page.
+	// Instead of rendering each chapter immediately upon retrieval, the function waits until all the chapter data is fetched,
+	// ensuring the complete data set is rendered at once, improving the user experience by avoiding partial rendering.
+	async function fetchAllChapterData() {
+		const promises = Array.from(Array(endIndex + 1).keys())
+			.slice(startIndex)
+			.map((index) =>
+				fetchChapterData({
+					chapter: keysArray[index].split(':')[0],
+					reRenderWhenTheseUpdates: [$__fontType, $__wordTranslation, $__wordTransliteration]
+				})
+			);
+
+		const results = await Promise.all(promises);
+
+		results.forEach((data, i) => {
+			const index = startIndex + i;
+			const key = keysArray[index];
+			dataMap[key] = data[key];
+		});
+	}
+
+	onMount(() => {
+		fetchAllChapterData();
+	});
 </script>
 
-{#each Array.from(Array(endIndex + 1).keys()).slice(startIndex) as index}
-	{#await fetchChapterData({ chapter: keysArray[index].split(':')[0], reRenderWhenTheseUpdates: [$__fontType, $__wordTranslation, $__wordTransliteration] })}
-		<div class="w-full"><Skeleton size="xxl" class="py-8 ml-auto direction-rtl" /></div>
-	{:then data}
+{#if Object.keys(dataMap).length === endIndex - startIndex + 1}
+	{#each Array.from(Array(endIndex + 1).keys()).slice(startIndex) as index}
 		{@const key = keysArray[index]}
-		{@const value = data[key]}
+		{@const value = dataMap[key]}
 
 		<!-- Only show Bismillah when its the Juz page, because the verses there can continue to next chapters -->
 		{#if $__currentPage === 'juz' && +key.split(':')[1] === 1}
@@ -151,14 +177,15 @@
 		<section use:versesRendered>
 			<svelte:component this={displayComponents[$__displayType]?.component} {key} {value} />
 		</section>
-	{:catch error}
-		<p>...</p>
-	{/await}
-{/each}
+	{/each}
+{:else}
+	<Spinner />
+{/if}
 
 {#if showContinueReadingButton}
 	{#if endIndex < keysArrayLength && document.getElementById('loadVersesButton') === null}
-		<div id="loadVersesButton" class="flex justify-center pt-6 pb-18" use:inview={loadButtonOptions} on:inview_enter={(event) => document.querySelector('#loadVersesButton > button').click()}>
+		<div id="loadVersesButton" class="flex justify-center pt-6 pb-18">
+			<!-- <div id="loadVersesButton" class="flex justify-center pt-6 pb-18" use:inview={loadButtonOptions} on:inview_enter={(event) => document.querySelector('#loadVersesButton > button').click()}> -->
 			<button on:click={loadNextVerses} class="text-sm {buttonOutlineClasses}"> Continue Reading </button>
 		</div>
 	{/if}
