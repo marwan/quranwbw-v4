@@ -160,10 +160,10 @@
 				{#await verseKeyData}
 					<!-- ... -->
 				{:then data}
-					<DropdownItem class={dropdownItemClasses} href="/juz/{data[$__verseKey].juz}?startKey={$__verseKey}">
+					<!-- <DropdownItem class={dropdownItemClasses} href="/juz/{data[$__verseKey].juz}?startKey={$__verseKey}">
 						<Juz />
 						<span>Juz Mode</span>
-					</DropdownItem>
+					</DropdownItem> -->
 				{/await}
 			{/if}
 
