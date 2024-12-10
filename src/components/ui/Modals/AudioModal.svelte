@@ -14,6 +14,7 @@
 	let invalidStartVerse = false;
 	let invalidEndVerse = false;
 	let invalidTimesToRepeat = false;
+	let playLanguage = 'arabic';
 
 	// Update settings and validate verses when audio modal is visible
 	$: {
@@ -21,11 +22,6 @@
 			const [thisChapter, thisVerse] = $__audioSettings.playingKey.split(':');
 			const versesInChapter = quranMetaData[thisChapter].verses;
 			const { startVerse, endVerse, timesToRepeat, audioRange } = $__audioSettings;
-
-			// Allow only "playThisVerse" option for non-chapter pages
-			if (!['chapter', 'mushaf', 'supplications', 'bookmarks', 'juz'].includes($__currentPage)) {
-				$__audioSettings.audioRange = 'playThisVerse';
-			}
 
 			// Set verses to play based on audio range setting
 			switch (audioRange) {
@@ -39,8 +35,9 @@
 						const removeKeysBefore = (string, key) => string.split(',').slice(string.split(',').indexOf(key)).join(',');
 						setVersesToPlay({ verses: removeKeysBefore($__keysToFetch, $__audioSettings.playingKey).split(',') });
 					}
+
 					// Else on the chapter page, we manually set the start and end verses
-					setVersesToPlay({ location: 'verseOptionsOrModal', chapter: thisChapter, startVerse: thisVerse, endVerse: versesInChapter, audioRange: 'playFromHere' });
+					else setVersesToPlay({ location: 'verseOptionsOrModal', chapter: thisChapter, startVerse: thisVerse, endVerse: versesInChapter, audioRange: 'playFromHere' });
 					break;
 				case 'playRange':
 					setVersesToPlay({ location: 'verseOptionsOrModal', chapter: thisChapter, startVerse, endVerse: versesInChapter });
@@ -57,27 +54,27 @@
 		}
 	}
 
-	let playLanguage = 'arabic';
-
-	$: console.log($__audioSettings.playingKey);
-
-	$: if (playLanguage === 'arabic') {
-		$__audioSettings.language = 'arabic';
-		$__audioSettings.playBoth = false;
-	} else if (playLanguage === 'translation') {
-		$__audioSettings.language = 'translation';
-		$__audioSettings.playBoth = false;
-	} else if (playLanguage === 'both') {
-		$__audioSettings.language = 'arabic';
-		$__audioSettings.playBoth = true;
+	// Allow only "playThisVerse" option for non-chapter pages
+	$: if ($__currentPage !== 'chapter' && $__audioSettings.audioRange === 'playRange') {
+		$__audioSettings.audioRange = 'playThisVerse';
 	}
 
-	// $: if ($__audioSettings.language === 'both') {
-	// 	$__audioSettings.language = 'arabic';
-	// 	$__audioSettings.playBoth = true;
-	// }
-
-	// $: console.log($__audioSettings);
+	$: {
+		switch (playLanguage) {
+			case 'arabic':
+				$__audioSettings.language = 'arabic';
+				$__audioSettings.playBoth = false;
+				break;
+			case 'translation':
+				$__audioSettings.language = 'translation';
+				$__audioSettings.playBoth = false;
+				break;
+			case 'both':
+				$__audioSettings.language = 'arabic';
+				$__audioSettings.playBoth = true;
+				break;
+		}
+	}
 
 	// Handle play button click
 	function playButtonHandler() {
