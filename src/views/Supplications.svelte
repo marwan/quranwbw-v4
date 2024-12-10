@@ -17,5 +17,5 @@
 <PageHead title={`Quranic ${term('supplications')}`} />
 
 <div id="individual-verses-block">
-	<Individual verses={$__keysToFetch} />
+	<Individual />
 </div>

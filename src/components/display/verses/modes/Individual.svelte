@@ -57,8 +57,8 @@
 	}
 
 	// Set initial indexes if nothing was set earlier
-	if (startIndex === undefined) startIndex = 0;
-	if (endIndex === undefined) endIndex = keysArrayLength > maxIndexesAllowedToRender ? startIndex + maxIndexesAllowedToRender : keysArrayLength;
+	if (startIndex === undefined || startIndex === null) startIndex = 0;
+	if (endIndex === undefined || endIndex === null) endIndex = keysArrayLength > maxIndexesAllowedToRender ? startIndex + maxIndexesAllowedToRender : keysArrayLength;
 	// Basic checks
 	if (startIndex < 0) startIndex = 0;
 	if (endIndex > keysArrayLength) endIndex = keysArrayLength;
@@ -184,13 +184,12 @@
 
 {#if showContinueReadingButton}
 	{#if endIndex < keysArrayLength && document.getElementById('loadVersesButton') === null}
-		<div id="loadVersesButton" class="flex justify-center pt-6 pb-18">
-			<!-- <div id="loadVersesButton" class="flex justify-center pt-6 pb-18" use:inview={loadButtonOptions} on:inview_enter={(event) => document.querySelector('#loadVersesButton > button').click()}> -->
+		<div id="loadVersesButton" class="flex justify-center pt-6 pb-18" use:inview={loadButtonOptions} on:inview_enter={(event) => document.querySelector('#loadVersesButton > button').click()}>
 			<button on:click={loadNextVerses} class="text-sm {buttonOutlineClasses}"> Continue Reading </button>
 		</div>
 	{/if}
 {/if}
 
 {#if versesLoadType === 'next'}
-	<svelte:component this={Individual} verses={$__keysToFetch} {...nextVersesProps} />
+	<svelte:component this={Individual} {...nextVersesProps} />
 {/if}
