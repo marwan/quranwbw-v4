@@ -36,7 +36,7 @@
 					setVersesToPlay({ location: 'verseOptionsOrModal', chapter: thisChapter, startVerse: thisVerse, endVerse: versesInChapter, audioRange: 'playFromHere' });
 					break;
 				case 'playRange':
-					setVersesToPlay({ location: 'verseOptionsOrModal', chapter: thisChapter, startVerse, endVerse });
+					setVersesToPlay({ location: 'verseOptionsOrModal', chapter: thisChapter, startVerse, endVerse: versesInChapter });
 					break;
 			}
 
