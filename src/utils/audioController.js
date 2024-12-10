@@ -213,6 +213,8 @@ export function wordAudioController(props) {
 // Highlight words during audio playback based on timestamps
 function wordHighlighter() {
 	try {
+		console.log({ playingKey: audioSettings.playingKey });
+
 		// Get the total number of words in the verse
 		const wordsInVerse = getWordsInVerse(audioSettings.playingKey);
 
@@ -242,8 +244,15 @@ function wordHighlighter() {
 export function setVersesToPlay(props) {
 	window.versesToPlayArray = [];
 
+	// If the verses were provided in an array, just use those
+	if (props?.verses) {
+		for (const key of props.verses) {
+			window.versesToPlayArray.push(key);
+		}
+	}
+
 	// Handle play action based on the current page and options
-	if (props?.allVersesOnPage) {
+	else if (props?.allVersesOnPage) {
 		if (get(__currentPage) === 'mushaf') {
 			// For mushaf page
 			const wordsOnPage = document.getElementsByClassName('word');

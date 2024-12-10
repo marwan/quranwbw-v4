@@ -2,7 +2,7 @@
 	import Modal from '$ui/FlowbiteSvelte/modal/Modal.svelte';
 	import Radio from '$ui/FlowbiteSvelte/forms/Radio.svelte';
 	import { quranMetaData } from '$data/quranMeta';
-	import { __currentPage, __chapterNumber, __audioSettings, __userSettings, __audioModalVisible } from '$utils/stores';
+	import { __currentPage, __chapterNumber, __audioSettings, __userSettings, __audioModalVisible, __keysToFetch } from '$utils/stores';
 	import { playVerseAudio, playWordAudio, updateAudioSettings, setVersesToPlay } from '$utils/audioController';
 	import { disabledClasses, buttonClasses, selectedRadioOrCheckboxClasses } from '$data/commonClasses';
 	import { term } from '$utils/terminologies';
@@ -23,7 +23,7 @@
 			const { startVerse, endVerse, timesToRepeat, audioRange } = $__audioSettings;
 
 			// Allow only "playThisVerse" option for non-chapter pages
-			if (!['chapter', 'mushaf'].includes($__currentPage)) {
+			if (!['chapter', 'mushaf', 'supplications', 'bookmarks', 'juz'].includes($__currentPage)) {
 				$__audioSettings.audioRange = 'playThisVerse';
 			}
 
@@ -33,6 +33,13 @@
 					setVersesToPlay({ location: 'verseOptionsOrModal', chapter: thisChapter, startVerse: thisVerse, endVerse: thisVerse });
 					break;
 				case 'playFromHere':
+					// On the following pages, we already have the keys stored in "__keysToFetch",
+					// So we just push all the keys in setVersesToPlay from the current key onwards
+					if (['supplications', 'bookmarks', 'juz'].includes($__currentPage)) {
+						const removeKeysBefore = (string, key) => string.split(',').slice(string.split(',').indexOf(key)).join(',');
+						setVersesToPlay({ verses: removeKeysBefore($__keysToFetch, $__audioSettings.playingKey).split(',') });
+					}
+					// Else on the chapter page, we manually set the start and end verses
 					setVersesToPlay({ location: 'verseOptionsOrModal', chapter: thisChapter, startVerse: thisVerse, endVerse: versesInChapter, audioRange: 'playFromHere' });
 					break;
 				case 'playRange':
@@ -51,6 +58,8 @@
 	}
 
 	let playLanguage = 'arabic';
+
+	$: console.log($__audioSettings.playingKey);
 
 	$: if (playLanguage === 'arabic') {
 		$__audioSettings.language = 'arabic';
@@ -161,7 +170,7 @@
 			<span class="text-sm">Your preferred range.</span>
 			<div class="flex flex-row space-x-2">
 				<!-- play this verse -->
-				<div class="flex items-center {!['chapter', 'mushaf'].includes($__currentPage) && disabledClasses}">
+				<div class="flex items-center {!['chapter', 'mushaf', 'supplications', 'bookmarks', 'juz'].includes($__currentPage) && disabledClasses}">
 					<Radio bind:group={$__audioSettings.audioRange} value="playThisVerse" custom>
 						<div class="{radioClasses} {$__audioSettings.audioRange === 'playThisVerse' && selectedRadioOrCheckboxClasses}">
 							<div class="w-full">This {term('verse')}</div>
@@ -169,7 +178,7 @@
 					</Radio>
 				</div>
 				<!-- play from here -->
-				<div class="flex items-center {!['chapter', 'mushaf'].includes($__currentPage) && disabledClasses}">
+				<div class="flex items-center {!['chapter', 'mushaf', 'supplications', 'bookmarks', 'juz'].includes($__currentPage) && disabledClasses}">
 					<Radio bind:group={$__audioSettings.audioRange} value="playFromHere" custom>
 						<div class="{radioClasses} {$__audioSettings.audioRange === 'playFromHere' && selectedRadioOrCheckboxClasses}">
 							<div class="w-full">From Here</div>
