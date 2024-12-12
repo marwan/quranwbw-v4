@@ -186,6 +186,7 @@ if (browser) {
 		audioRange: userSettings.audioSettings.savedPlaySettings.audioRange,
 		language: userSettings.audioSettings.savedPlaySettings.language,
 		timesToRepeat: userSettings.audioSettings.savedPlaySettings.timesToRepeat,
+		rememberSettings: userSettings.audioSettings.savedPlaySettings.rememberSettings,
 		isPlaying: false,
 		timesRepeated: 0,
 		delay: 0

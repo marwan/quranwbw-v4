@@ -150,11 +150,6 @@ export function updateSettings(props) {
 			userSettings.initialSetupCompleted = props.value;
 			break;
 
-		// for v4 features modal
-		case 'changelogModal':
-			userSettings.oneTimeModals.changelogModal = props.value;
-			break;
-
 		case 'userBookmarks':
 			const key = props.key;
 			let userBookmarks = userSettings['userBookmarks'];

@@ -40,7 +40,7 @@ function generateThemes() {
 		const cssComment = `/* ${selectableThemes[themeIndex].name} */`;
 
 		cssStyles.push(`html.theme-${themeIndex} ::-webkit-scrollbar-thumb { background: ${color2}; } ${cssComment}`);
-		checkboxStyles.push(`.theme-${themeIndex} [type='checkbox'], .theme-${themeIndex} [type='checkbox']:checked { background-color: ${color1}; border-color: ${color2} } ${cssComment}`);
+		checkboxStyles.push(`.theme-${themeIndex} [type='checkbox'], .theme-${themeIndex} [type='checkbox']:checked { background-color: ${color2}; border-color: ${color2} } ${cssComment}`);
 		normalFontPaletteStyles.push(`.theme-${themeIndex} .theme-palette-normal { font-palette: --palette${selectableThemes[themeIndex].paletteNormal}; } ${cssComment}`);
 		tajweedFontPaletteStyles.push(`.theme-${themeIndex} .theme-palette-tajweed { font-palette: --palette${selectableThemes[themeIndex].paletteTajweed}; } ${cssComment}`);
 		headerPaletteStyles.push(`.theme-${themeIndex} .header { font-palette: --palette${selectableThemes[themeIndex].paletteHeader}; } ${cssComment}`);

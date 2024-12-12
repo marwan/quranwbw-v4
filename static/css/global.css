@@ -3214,63 +3214,63 @@ html.theme-9 ::-webkit-scrollbar-thumb {
 /* Dark Luxury */
 
 .theme-1 [type='checkbox'], .theme-1 [type='checkbox']:checked {
-  background-color: #FFFFFF;
+  background-color: #b1901f;
   border-color: #b1901f
 }
 
 /* Golden Glint */
 
 .theme-2 [type='checkbox'], .theme-2 [type='checkbox']:checked {
-  background-color: #FFFFFF;
+  background-color: #000000;
   border-color: #000000
 }
 
 /* Classic Light */
 
 .theme-3 [type='checkbox'], .theme-3 [type='checkbox']:checked {
-  background-color: #e1e1e1;
+  background-color: #000000;
   border-color: #000000
 }
 
 /* Silver Lining */
 
 .theme-4 [type='checkbox'], .theme-4 [type='checkbox']:checked {
-  background-color: #e9e3d7;
+  background-color: #553c0f;
   border-color: #553c0f
 }
 
 /* Vintage Sepia */
 
 .theme-5 [type='checkbox'], .theme-5 [type='checkbox']:checked {
-  background-color: #20161f;
+  background-color: #c59f60;
   border-color: #c59f60
 }
 
 /* Mocha Night */
 
 .theme-6 [type='checkbox'], .theme-6 [type='checkbox']:checked {
-  background-color: #02021b;
+  background-color: #c2c2c2;
   border-color: #c2c2c2
 }
 
 /* Midnight Blue */
 
 .theme-7 [type='checkbox'], .theme-7 [type='checkbox']:checked {
-  background-color: #001617;
+  background-color: #dddddd;
   border-color: #dddddd
 }
 
 /* Forest Green */
 
 .theme-8 [type='checkbox'], .theme-8 [type='checkbox']:checked {
-  background-color: #000000;
+  background-color: #dddddd;
   border-color: #dddddd
 }
 
 /* Oled Black */
 
 .theme-9 [type='checkbox'], .theme-9 [type='checkbox']:checked {
-  background-color: #09090b;
+  background-color: #dca54c;
   border-color: #dca54c
 }
 

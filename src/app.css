@@ -78,15 +78,15 @@ html.theme-7 ::-webkit-scrollbar-thumb { background: #dddddd; } /* Forest Green 
 html.theme-8 ::-webkit-scrollbar-thumb { background: #dddddd; } /* Oled Black */
 html.theme-9 ::-webkit-scrollbar-thumb { background: #dca54c; } /* Dark Luxury */
 
-.theme-1 [type='checkbox'], .theme-1 [type='checkbox']:checked { background-color: #FFFFFF; border-color: #b1901f } /* Golden Glint */
-.theme-2 [type='checkbox'], .theme-2 [type='checkbox']:checked { background-color: #FFFFFF; border-color: #000000 } /* Classic Light */
-.theme-3 [type='checkbox'], .theme-3 [type='checkbox']:checked { background-color: #e1e1e1; border-color: #000000 } /* Silver Lining */
-.theme-4 [type='checkbox'], .theme-4 [type='checkbox']:checked { background-color: #e9e3d7; border-color: #553c0f } /* Vintage Sepia */
-.theme-5 [type='checkbox'], .theme-5 [type='checkbox']:checked { background-color: #20161f; border-color: #c59f60 } /* Mocha Night */
-.theme-6 [type='checkbox'], .theme-6 [type='checkbox']:checked { background-color: #02021b; border-color: #c2c2c2 } /* Midnight Blue */
-.theme-7 [type='checkbox'], .theme-7 [type='checkbox']:checked { background-color: #001617; border-color: #dddddd } /* Forest Green */
-.theme-8 [type='checkbox'], .theme-8 [type='checkbox']:checked { background-color: #000000; border-color: #dddddd } /* Oled Black */
-.theme-9 [type='checkbox'], .theme-9 [type='checkbox']:checked { background-color: #09090b; border-color: #dca54c } /* Dark Luxury */
+.theme-1 [type='checkbox'], .theme-1 [type='checkbox']:checked { background-color: #b1901f; border-color: #b1901f } /* Golden Glint */
+.theme-2 [type='checkbox'], .theme-2 [type='checkbox']:checked { background-color: #000000; border-color: #000000 } /* Classic Light */
+.theme-3 [type='checkbox'], .theme-3 [type='checkbox']:checked { background-color: #000000; border-color: #000000 } /* Silver Lining */
+.theme-4 [type='checkbox'], .theme-4 [type='checkbox']:checked { background-color: #553c0f; border-color: #553c0f } /* Vintage Sepia */
+.theme-5 [type='checkbox'], .theme-5 [type='checkbox']:checked { background-color: #c59f60; border-color: #c59f60 } /* Mocha Night */
+.theme-6 [type='checkbox'], .theme-6 [type='checkbox']:checked { background-color: #c2c2c2; border-color: #c2c2c2 } /* Midnight Blue */
+.theme-7 [type='checkbox'], .theme-7 [type='checkbox']:checked { background-color: #dddddd; border-color: #dddddd } /* Forest Green */
+.theme-8 [type='checkbox'], .theme-8 [type='checkbox']:checked { background-color: #dddddd; border-color: #dddddd } /* Oled Black */
+.theme-9 [type='checkbox'], .theme-9 [type='checkbox']:checked { background-color: #dca54c; border-color: #dca54c } /* Dark Luxury */
 
 /* for some reason, Tailwind applies bottom-right padding to the below elements, so have to manually reset them */
 input, select, textarea {

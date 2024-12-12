@@ -57,13 +57,25 @@
 		$__audioSettings.audioRange = 'playThisVerse';
 	}
 
+	// // Get the saved settings only if the user had opted to remember them
+	// $: if ($__savedPlaySettings && $__savedPlaySettings.rememberSettings) {
+	// 	savedPlaySettingsHandler('get');
+	// }
+
+	// // Update the selected settings only if the user had opted to remember them
+	// $: if ($__audioSettings && $__savedPlaySettings) {
+	// 	savedPlaySettingsHandler('save');
+	// }
+
 	// Get the saved settings only if the user had opted to remember them
-	$: if ($__savedPlaySettings && $__savedPlaySettings.rememberSettings) {
-		savedPlaySettingsHandler('get');
-	}
+	// $: if ($__audioSettings) {
+	// 	if ($__audioSettings.rememberSettings === true) {
+	// 		savedPlaySettingsHandler('get');
+	// 	}
+	// }
 
 	// Update the selected settings only if the user had opted to remember them
-	$: if ($__audioSettings && $__savedPlaySettings.rememberSettings) {
+	$: if ($__audioSettings && $__audioSettings.rememberSettings === true) {
 		savedPlaySettingsHandler('save');
 	}
 
@@ -77,27 +89,17 @@
 			$__audioSettings.audioRange = $__savedPlaySettings.audioRange;
 			$__audioSettings.language = $__savedPlaySettings.language;
 			$__audioSettings.timesToRepeat = $__savedPlaySettings.timesToRepeat;
+			$__audioSettings.rememberSettings = $__savedPlaySettings.rememberSettings;
 			console.log('getting audio settings...');
 		}
-
-		// Savw in localStorage
-		else if (action === 'save') {
+		// Save in localStorage else
+		if (action === 'save') {
 			$__savedPlaySettings.audioType = $__audioSettings.audioType;
 			$__savedPlaySettings.audioRange = $__audioSettings.audioRange;
 			$__savedPlaySettings.language = $__audioSettings.language;
 			$__savedPlaySettings.timesToRepeat = $__audioSettings.timesToRepeat;
-
-			updateSettings({
-				type: 'savedPlaySettings',
-				value: {
-					audioType: $__savedPlaySettings.audioType,
-					audioRange: $__savedPlaySettings.audioRange,
-					language: $__savedPlaySettings.language,
-					timesToRepeat: $__savedPlaySettings.timesToRepeat,
-					rememberSettings: true
-				}
-			});
-
+			$__savedPlaySettings.rememberSettings = $__audioSettings.rememberSettings;
+			updateSettings({ type: 'savedPlaySettings', value: { audioType: $__savedPlaySettings.audioType, audioRange: $__savedPlaySettings.audioRange, language: $__savedPlaySettings.language, timesToRepeat: $__savedPlaySettings.timesToRepeat, rememberSettings: $__savedPlaySettings.rememberSettings } });
 			console.log('saving audio settings...');
 		}
 	}
@@ -244,7 +246,7 @@
 		</div>
 	{/if}
 
-	<Checkbox checked={$__savedPlaySettings.rememberSettings} class="space-x-2 pb-2 font-normal {window.theme('bgMain')}">
+	<Checkbox checked={$__audioSettings.rememberSettings} on:click={() => ($__audioSettings.rememberSettings = !$__audioSettings.rememberSettings)} class="space-x-2 pb-2 font-normal {window.theme('bgMain')}">
 		<span>Remember Settings</span>
 	</Checkbox>
 
