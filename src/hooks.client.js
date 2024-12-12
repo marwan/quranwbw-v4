@@ -1,15 +1,15 @@
 /* eslint-disable no-prototype-builtins */
-// Setting default user settings in localStorage
+// Do not continue without setting the default user's settings first
 (async function () {
 	setUserSettings();
 })();
 
-// This function, setUserSettings, updates user settings stored in localStorage by adding new settings from a provided object without replacing existing settings.
+// This function updates user settings stored in localStorage by adding new settings from a provided object without replacing existing settings.
 // It recursively processes the object, ensuring that only new keys are added, preserving existing values.
 // If the userSettings object doesn't exist in localStorage, it initializes it with the provided object.
 // This approach allows for seamless additions to the settings structure over time without overwriting current data.
 export function setUserSettings() {
-	const userSettings = {
+	const defaultSettings = {
 		displaySettings: {
 			websiteTheme: 1,
 			displayType: 1,
@@ -87,7 +87,7 @@ export function setUserSettings() {
 	}
 
 	// Add only new settings to the existing settings
-	existingSettings = addNewSettings(existingSettings, userSettings);
+	existingSettings = addNewSettings(existingSettings, defaultSettings);
 
 	// Save the updated settings back to localStorage
 	localStorage.setItem('userSettings', JSON.stringify(existingSettings));
