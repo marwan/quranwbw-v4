@@ -2,7 +2,7 @@
 	import Modal from '$ui/FlowbiteSvelte/modal/Modal.svelte';
 	import Radio from '$ui/FlowbiteSvelte/forms/Radio.svelte';
 	import { quranMetaData } from '$data/quranMeta';
-	import { __currentPage, __chapterNumber, __audioSettings, __userSettings, __audioModalVisible, __keysToFetch } from '$utils/stores';
+	import { __currentPage, __chapterNumber, __audioSettings, __userSettings, __audioModalVisible, __keysToFetch, __savedPlaySettings } from '$utils/stores';
 	import { playVerseAudio, playWordAudio, updateAudioSettings, setVersesToPlay } from '$utils/audioController';
 	import { disabledClasses, buttonClasses, selectedRadioOrCheckboxClasses } from '$data/commonClasses';
 	import { term } from '$utils/terminologies';
@@ -10,11 +10,9 @@
 
 	// CSS classes for radio buttons
 	const radioClasses = `inline-flex justify-between items-center py-2 px-4 w-full ${window.theme('bgMain')} rounded-lg border ${window.theme('border')} cursor-pointer ${window.theme('checked')} ${window.theme('hover')}`;
-
 	let invalidStartVerse = false;
 	let invalidEndVerse = false;
 	let invalidTimesToRepeat = false;
-	let playLanguage = 'arabic';
 
 	// Update settings and validate verses when audio modal is visible
 	$: if ($__audioModalVisible) {
@@ -58,22 +56,13 @@
 	}
 
 	// Set the audio language
-	$: {
-		switch (playLanguage) {
-			case 'arabic':
-				$__audioSettings.language = 'arabic';
-				$__audioSettings.playBoth = false;
-				break;
-			case 'translation':
-				$__audioSettings.language = 'translation';
-				$__audioSettings.playBoth = false;
-				break;
-			case 'both':
-				$__audioSettings.language = 'arabic';
-				$__audioSettings.playBoth = true;
-				break;
-		}
+	$: if ($__savedPlaySettings) {
+		$__audioSettings.audioRange = $__savedPlaySettings.audioRange;
+		$__audioSettings.language = $__savedPlaySettings.language;
+		$__audioSettings.audioType = $__savedPlaySettings.audioType;
 	}
+
+	$: console.log($__audioSettings);
 
 	// Handle play button click
 	function playButtonHandler() {
@@ -136,24 +125,24 @@
 			<div class="flex flex-row space-x-2">
 				<!-- play arabic only -->
 				<div class="flex items-center">
-					<Radio bind:group={playLanguage} value="arabic" custom>
-						<div class="{radioClasses} {playLanguage === 'arabic' && selectedRadioOrCheckboxClasses}">
+					<Radio bind:group={$__audioSettings.language} value="arabic" custom>
+						<div class="{radioClasses} {$__audioSettings.language === 'arabic' && selectedRadioOrCheckboxClasses}">
 							<div class="w-full">Arabic</div>
 						</div>
 					</Radio>
 				</div>
 				<!-- play translation only -->
 				<div class="flex items-center">
-					<Radio bind:group={playLanguage} value="translation" custom>
-						<div class="{radioClasses} {playLanguage === 'translation' && selectedRadioOrCheckboxClasses}">
+					<Radio bind:group={$__audioSettings.language} value="translation" custom>
+						<div class="{radioClasses} {$__audioSettings.language === 'translation' && selectedRadioOrCheckboxClasses}">
 							<div class="w-full">Translation</div>
 						</div>
 					</Radio>
 				</div>
 				<!-- play both -->
 				<div class="flex items-center">
-					<Radio bind:group={playLanguage} value="both" custom>
-						<div class="{radioClasses} {playLanguage === 'both' && selectedRadioOrCheckboxClasses}">
+					<Radio bind:group={$__audioSettings.language} value="both" custom>
+						<div class="{radioClasses} {$__audioSettings.language === 'both' && selectedRadioOrCheckboxClasses}">
 							<div class="w-full">Both</div>
 						</div>
 					</Radio>

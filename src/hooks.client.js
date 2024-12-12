@@ -67,8 +67,8 @@ export function setUserSettings() {
 			? userSettings.audioSettings.savedPlaySettings
 			: {
 					audioType: 'verse',
-					playLanguage: 'arabic',
-					audioRange: 'playThisVerse'
+					audioRange: 'playFromHere',
+					language: 'arabic'
 				};
 
 	// Quiz settings

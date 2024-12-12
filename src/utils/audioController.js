@@ -13,6 +13,7 @@ const audioSettings = get(__audioSettings);
 // Function to play verse audio, either one time, or multiple times
 export async function playVerseAudio(props) {
 	const [playChapter, playVerse] = props.key.split(':').map(Number);
+	let playBoth = false;
 
 	// Reset audio settings and fetch timestamp data for wbw highlighting
 	resetAudioSettings();
@@ -20,6 +21,13 @@ export async function playVerseAudio(props) {
 
 	// Defaulting the language to Arabic
 	if (props.language === undefined) props.language = 'arabic';
+
+	// If the user has opted to play both languages:
+	// set current play language to Arabic and playBoth to true, so it can be used when the current audio has ended
+	if (props.language === 'both') {
+		props.language = 'arabic';
+		playBoth = true;
+	}
 
 	console.log('playing:', props.language);
 
@@ -56,7 +64,7 @@ export async function playVerseAudio(props) {
 		audio.removeEventListener('timeupdate', wordHighlighter);
 		const previousLanguage = props.language;
 
-		if (audioSettings.playBoth && previousLanguage === 'arabic') {
+		if (playBoth && previousLanguage === 'arabic') {
 			return playVerseAudio({ key: `${props.key}`, timesToRepeat: +props.timesToRepeat, language: 'translation' });
 		}
 

@@ -186,8 +186,7 @@ if (browser) {
 		timesToRepeat: 1,
 		timesRepeated: 0,
 		delay: 0,
-		language: 'arabic',
-		playBoth: false
+		language: 'arabic'
 	});
 
 	// to store the morphology verse/word key
