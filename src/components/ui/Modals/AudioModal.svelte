@@ -74,16 +74,20 @@
 	// 	}
 	// }
 
+	if ($__audioSettings.rememberSettings) {
+		savedPlaySettingsHandler('get');
+	}
+
 	// Update the selected settings only if the user had opted to remember them
 	$: if ($__audioSettings && $__audioSettings.rememberSettings === true) {
-		savedPlaySettingsHandler('save');
+		savedPlaySettingsHandler('set');
 	}
 
 	$: console.log($__audioSettings);
 
 	// Get or save the audio settings
 	function savedPlaySettingsHandler(action) {
-		// Get from localStorage/store
+		// Get from store
 		if (action === 'get') {
 			$__audioSettings.audioType = $__savedPlaySettings.audioType;
 			$__audioSettings.audioRange = $__savedPlaySettings.audioRange;
@@ -92,8 +96,8 @@
 			$__audioSettings.rememberSettings = $__savedPlaySettings.rememberSettings;
 			console.log('getting audio settings...');
 		}
-		// Save in localStorage else
-		if (action === 'save') {
+		// Set in localStorage and store
+		if (action === 'set') {
 			$__savedPlaySettings.audioType = $__audioSettings.audioType;
 			$__savedPlaySettings.audioRange = $__audioSettings.audioRange;
 			$__savedPlaySettings.language = $__audioSettings.language;
@@ -102,6 +106,11 @@
 			updateSettings({ type: 'savedPlaySettings', value: { audioType: $__savedPlaySettings.audioType, audioRange: $__savedPlaySettings.audioRange, language: $__savedPlaySettings.language, timesToRepeat: $__savedPlaySettings.timesToRepeat, rememberSettings: $__savedPlaySettings.rememberSettings } });
 			console.log('saving audio settings...');
 		}
+	}
+
+	function rememberSettingsToggler() {
+		$__audioSettings.rememberSettings = !$__audioSettings.rememberSettings;
+		updateSettings({ type: 'savedPlaySettings', value: { audioType: $__audioSettings.audioType, audioRange: $__audioSettings.audioRange, language: $__audioSettings.language, timesToRepeat: $__audioSettings.timesToRepeat, rememberSettings: $__audioSettings.rememberSettings } });
 	}
 </script>
 
@@ -246,7 +255,7 @@
 		</div>
 	{/if}
 
-	<Checkbox checked={$__audioSettings.rememberSettings} on:click={() => ($__audioSettings.rememberSettings = !$__audioSettings.rememberSettings)} class="space-x-2 pb-2 font-normal {window.theme('bgMain')}">
+	<Checkbox checked={$__audioSettings.rememberSettings} on:click={() => rememberSettingsToggler()} class="space-x-2 pb-2 font-normal {window.theme('bgMain')}">
 		<span>Remember Settings</span>
 	</Checkbox>
 
