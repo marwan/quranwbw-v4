@@ -1,6 +1,7 @@
 <script>
 	import Modal from '$ui/FlowbiteSvelte/modal/Modal.svelte';
 	import Radio from '$ui/FlowbiteSvelte/forms/Radio.svelte';
+	import Checkbox from '$ui/FlowbiteSvelte/forms/Checkbox.svelte';
 	import { quranMetaData } from '$data/quranMeta';
 	import { __currentPage, __chapterNumber, __audioSettings, __userSettings, __audioModalVisible, __keysToFetch, __savedPlaySettings } from '$utils/stores';
 	import { playVerseAudio, playWordAudio, updateAudioSettings, setVersesToPlay } from '$utils/audioController';
@@ -55,23 +56,21 @@
 		$__audioSettings.audioRange = 'playThisVerse';
 	}
 
-	// Set the audio language
-	$: if ($__savedPlaySettings) {
-		$__audioSettings.audioRange = $__savedPlaySettings.audioRange;
-		$__audioSettings.language = $__savedPlaySettings.language;
-		$__audioSettings.audioType = $__savedPlaySettings.audioType;
+	// Get the saved settings only if the user had opted to remember them
+	$: if ($__savedPlaySettings && $__savedPlaySettings.rememberSettings) {
+		savedPlaySettingsHandler('get');
 	}
 
 	$: console.log($__audioSettings);
 
 	// Handle play button click
 	function playButtonHandler() {
-		const { audioType, playingKey, audioRange } = $__audioSettings;
+		const { audioType, playingKey, timesToRepeat, language } = $__audioSettings;
 		if (audioType === 'verse') {
 			playVerseAudio({
 				key: `${window.versesToPlayArray[0]}`,
-				timesToRepeat: audioRange,
-				language: $__audioSettings.language
+				timesToRepeat: timesToRepeat,
+				language: language
 			});
 		} else if (audioType === 'word') {
 			playWordAudio({
@@ -81,6 +80,27 @@
 		}
 
 		__audioModalVisible.set(false);
+	}
+
+	// Get or update the saved settings
+	function savedPlaySettingsHandler(action) {
+		// Get from localStorage/store
+		if (action === 'get') {
+			$__audioSettings.audioRange = $__savedPlaySettings.audioRange;
+			$__audioSettings.language = $__savedPlaySettings.language;
+			$__audioSettings.audioType = $__savedPlaySettings.audioType;
+			$__audioSettings.timesToRepeat = $__savedPlaySettings.timesToRepeat;
+			console.log('getting audio settings...');
+		}
+
+		// Update in localStorage
+		else if (action === 'update') {
+			$__savedPlaySettings.audioRange = $__audioSettings.audioRange;
+			$__savedPlaySettings.language = $__audioSettings.language;
+			$__savedPlaySettings.audioType = $__audioSettings.audioType;
+			$__savedPlaySettings.timesToRepeat = $__audioSettings.timesToRepeat;
+			console.log('updating audio settings...');
+		}
 	}
 </script>
 
@@ -224,6 +244,10 @@
 			</div>
 		</div>
 	{/if}
+
+	<Checkbox checked={$__savedPlaySettings.rememberSettings} class="space-x-2 pb-2 font-normal">
+		<span>Remember Settings</span>
+	</Checkbox>
 
 	<div class="mt-4">
 		<button on:click={playButtonHandler} class="w-full mr-2 {buttonClasses} {invalidStartVerse || invalidEndVerse || invalidTimesToRepeat ? disabledClasses : null}">Play</button>

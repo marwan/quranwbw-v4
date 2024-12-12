@@ -182,11 +182,13 @@ if (browser) {
 
 	// to store all the audio settings
 	__audioSettings = writable({
+		audioType: userSettings.audioSettings.savedPlaySettings.audioType,
+		audioRange: userSettings.audioSettings.savedPlaySettings.audioRange,
+		language: userSettings.audioSettings.savedPlaySettings.language,
+		timesToRepeat: userSettings.audioSettings.savedPlaySettings.timesToRepeat,
 		isPlaying: false,
-		timesToRepeat: 1,
 		timesRepeated: 0,
-		delay: 0,
-		language: 'arabic'
+		delay: 0
 	});
 
 	// to store the morphology verse/word key

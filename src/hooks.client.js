@@ -66,9 +66,11 @@ export function setUserSettings() {
 		userSettings.audioSettings.savedPlaySettings !== undefined
 			? userSettings.audioSettings.savedPlaySettings
 			: {
-					audioType: 'verse',
+					audioType: 'word',
 					audioRange: 'playFromHere',
-					language: 'arabic'
+					language: 'arabic',
+					timesToRepeat: 10,
+					rememberSettings: true
 				};
 
 	// Quiz settings

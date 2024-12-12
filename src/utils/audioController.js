@@ -8,10 +8,11 @@ import { scrollSmoothly } from '$utils/scrollSmoothly';
 
 // Getting the audio element
 let audio = document.querySelector('#player');
-const audioSettings = get(__audioSettings);
+// const audioSettings = get(__audioSettings);
 
 // Function to play verse audio, either one time, or multiple times
 export async function playVerseAudio(props) {
+	const audioSettings = get(__audioSettings);
 	const [playChapter, playVerse] = props.key.split(':').map(Number);
 	let playBoth = false;
 
@@ -94,6 +95,8 @@ export async function playVerseAudio(props) {
 // Function to play word audio
 export function playWordAudio(props) {
 	resetAudioSettings();
+
+	const audioSettings = get(__audioSettings);
 	const [wordChapter, wordVerse, wordNumber] = props.key.split(':').map(Number);
 
 	const currentWordFileName = `${wordChapter}/${String(wordChapter).padStart(3, '0')}_${String(wordVerse).padStart(3, '0')}_${String(wordNumber).padStart(3, '0')}.mp3`;
@@ -125,7 +128,9 @@ export function playWordAudio(props) {
 
 // Function to update audio settings
 export function updateAudioSettings(event) {
+	const audioSettings = get(__audioSettings);
 	const { id, value, valueAsNumber } = event.target;
+
 	try {
 		switch (id) {
 			case 'startVerse':
@@ -151,6 +156,8 @@ export function updateAudioSettings(event) {
 
 // Initialize audio settings based on key
 export function initializeAudioSettings(key) {
+	const audioSettings = get(__audioSettings);
+
 	audioSettings.playingKey = key;
 	[audioSettings.playingChapter, audioSettings.playingVerse] = key.split(':').map(Number);
 	__audioSettings.set(audioSettings);
@@ -172,6 +179,8 @@ export function initializeAudioSettings(key) {
 
 // Reset audio settings
 export function resetAudioSettings(props) {
+	const audioSettings = get(__audioSettings);
+
 	try {
 		if (audio === null) audio = document.querySelector('#player');
 
@@ -182,7 +191,6 @@ export function resetAudioSettings(props) {
 
 		if (props?.location === 'end') {
 			audioSettings.timesRepeated = 0;
-			audioSettings.timesToRepeat = 1;
 			window.versesToPlayArray = [];
 		}
 
@@ -206,6 +214,7 @@ export function showAudioModal(key) {
 
 // Word audio controller
 export function wordAudioController(props) {
+	const audioSettings = get(__audioSettings);
 	const timestampSlug = selectableReciters[get(__reciter)].timestampSlug;
 
 	if (audioSettings.isPlaying && audioSettings.audioType === 'verse' && timestampSlug) {
@@ -220,6 +229,8 @@ export function wordAudioController(props) {
 
 // Highlight words during audio playback based on timestamps
 function wordHighlighter() {
+	const audioSettings = get(__audioSettings);
+
 	try {
 		// Get the total number of words in the verse
 		const wordsInVerse = getWordsInVerse(audioSettings.playingKey);
