@@ -1,69 +1,69 @@
 /* eslint-disable no-prototype-builtins */
+export const defaultSettings = {
+	displaySettings: {
+		websiteTheme: 1,
+		displayType: 1,
+		fontType: 1,
+		wordTranslationEnabled: true,
+		wordTransliterationEnabled: true,
+		wordTooltip: 1,
+		autoScrollSpeed: 40,
+		wakeLockEnabled: false,
+		englishTerminology: false,
+		hideNonDuaPart: false,
+		wordMorphologyOnClick: false,
+		fontSizes: {
+			arabicText: window.matchMedia('(min-width: 1280px)').matches || window.matchMedia('(min-width: 1024px)').matches || window.matchMedia('(min-width: 768px)').matches ? 'text-4xl' : 'text-2xl',
+			wordTranslationText: 'text-sm',
+			verseTranslationText: 'text-sm'
+		}
+	},
+	translations: {
+		word: 1,
+		verse_v1: [1, 131],
+		tafsir: 30
+	},
+	transliteration: {
+		word: 1
+	},
+	audioSettings: {
+		reciter: 10,
+		translationReciter: 1,
+		playbackSpeed: 3,
+		versePlayButton: 1,
+		savedPlaySettings: {
+			audioType: 'verse',
+			audioRange: 'playThisVerse',
+			language: 'arabic',
+			timesToRepeat: 1,
+			rememberSettings: true
+		}
+	},
+	quiz: {
+		correctAnswers: 0,
+		wrongAnswers: 0
+	},
+	lastRead: {
+		key: '1:1',
+		page: 1
+	},
+	userBookmarks: [],
+	userNotes: {},
+	favouriteChapters: [1, 5, 18],
+	initialSetupCompleted: false,
+	chapter: 1
+};
+
 // Do not continue without setting the default user's settings first
 (async function () {
-	setUserSettings();
+	setUserSettings(defaultSettings);
 })();
 
 // This function updates user settings stored in localStorage by adding new settings from a provided object without replacing existing settings.
 // It recursively processes the object, ensuring that only new keys are added, preserving existing values.
 // If the userSettings object doesn't exist in localStorage, it initializes it with the provided object.
 // This approach allows for seamless additions to the settings structure over time without overwriting current data.
-export function setUserSettings() {
-	const defaultSettings = {
-		displaySettings: {
-			websiteTheme: 1,
-			displayType: 1,
-			fontType: 1,
-			wordTranslationEnabled: true,
-			wordTransliterationEnabled: true,
-			wordTooltip: 1,
-			autoScrollSpeed: 40,
-			wakeLockEnabled: false,
-			englishTerminology: false,
-			hideNonDuaPart: false,
-			wordMorphologyOnClick: false,
-			fontSizes: {
-				arabicText: window.matchMedia('(min-width: 1280px)').matches || window.matchMedia('(min-width: 1024px)').matches || window.matchMedia('(min-width: 768px)').matches ? 'text-4xl' : 'text-2xl',
-				wordTranslationText: 'text-sm',
-				verseTranslationText: 'text-sm'
-			}
-		},
-		translations: {
-			word: 1,
-			verse_v1: [1, 131],
-			tafsir: 30
-		},
-		transliteration: {
-			word: 1
-		},
-		audioSettings: {
-			reciter: 10,
-			translationReciter: 1,
-			playbackSpeed: 3,
-			versePlayButton: 1,
-			savedPlaySettings: {
-				audioType: 'verse',
-				audioRange: 'playThisVerse',
-				language: 'arabic',
-				timesToRepeat: 1,
-				rememberSettings: true
-			}
-		},
-		quiz: {
-			correctAnswers: 0,
-			wrongAnswers: 0
-		},
-		lastRead: {
-			key: '1:1',
-			page: 1
-		},
-		userBookmarks: [],
-		userNotes: {},
-		favouriteChapters: [1, 5, 18],
-		initialSetupCompleted: false,
-		chapter: 1
-	};
-
+export function setUserSettings(defaultSettings) {
 	// Get existing settings from localStorage or initialize an empty object
 	let existingSettings = localStorage.getItem('userSettings');
 	existingSettings = existingSettings ? JSON.parse(existingSettings) : {};

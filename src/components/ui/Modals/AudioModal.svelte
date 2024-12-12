@@ -9,6 +9,7 @@
 	import { term } from '$utils/terminologies';
 	import { getModalTransition } from '$utils/getModalTransition';
 	import { updateSettings } from '$utils/updateSettings';
+	import { defaultSettings } from '$src/hooks.client';
 
 	// CSS classes for radio buttons
 	const radioClasses = `inline-flex justify-between items-center py-2 px-4 w-full ${window.theme('bgMain')} rounded-lg border ${window.theme('border')} cursor-pointer ${window.theme('checked')} ${window.theme('hover')}`;
@@ -87,30 +88,25 @@
 
 	// Get or save the audio settings
 	function savedPlaySettingsHandler(action) {
-		// Get from store
-		if (action === 'get') {
-			$__audioSettings.audioType = $__savedPlaySettings.audioType;
-			$__audioSettings.audioRange = $__savedPlaySettings.audioRange;
-			$__audioSettings.language = $__savedPlaySettings.language;
-			$__audioSettings.timesToRepeat = $__savedPlaySettings.timesToRepeat;
-			$__audioSettings.rememberSettings = $__savedPlaySettings.rememberSettings;
-			console.log('getting audio settings...');
+		const settingsKeys = ['audioType', 'audioRange', 'language', 'timesToRepeat', 'rememberSettings'];
+
+		function applySettings(source, target) {
+			settingsKeys.forEach((key) => {
+				target[key] = source[key];
+			});
 		}
-		// Set in localStorage and store
-		if (action === 'set') {
-			$__savedPlaySettings.audioType = $__audioSettings.audioType;
-			$__savedPlaySettings.audioRange = $__audioSettings.audioRange;
-			$__savedPlaySettings.language = $__audioSettings.language;
-			$__savedPlaySettings.timesToRepeat = $__audioSettings.timesToRepeat;
-			$__savedPlaySettings.rememberSettings = $__audioSettings.rememberSettings;
-			updateSettings({ type: 'savedPlaySettings', value: { audioType: $__savedPlaySettings.audioType, audioRange: $__savedPlaySettings.audioRange, language: $__savedPlaySettings.language, timesToRepeat: $__savedPlaySettings.timesToRepeat, rememberSettings: $__savedPlaySettings.rememberSettings } });
-			console.log('saving audio settings...');
+
+		if (action === 'get') {
+			applySettings($__savedPlaySettings, $__audioSettings);
+		} else if (action === 'set') {
+			applySettings($__audioSettings, $__savedPlaySettings);
+			updateSettings({ type: 'savedPlaySettings', value: { ...$__savedPlaySettings } });
 		}
 	}
 
 	function rememberSettingsToggler() {
 		$__audioSettings.rememberSettings = !$__audioSettings.rememberSettings;
-		updateSettings({ type: 'savedPlaySettings', value: { audioType: $__audioSettings.audioType, audioRange: $__audioSettings.audioRange, language: $__audioSettings.language, timesToRepeat: $__audioSettings.timesToRepeat, rememberSettings: $__audioSettings.rememberSettings } });
+		updateSettings({ type: 'savedPlaySettings', value: { ...$__audioSettings } });
 	}
 </script>
 

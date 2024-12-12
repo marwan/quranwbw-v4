@@ -1,6 +1,6 @@
 import { updateSettings } from '$utils/updateSettings';
 import { __userBookmarks, __userNotes, __lastRead } from '$utils/stores';
-import { setUserSettings } from '$src/hooks.client';
+import { setUserSettings, defaultSettings } from '$src/hooks.client';
 import { get } from 'svelte/store';
 
 export function resetSettings() {
@@ -10,7 +10,7 @@ export function resetSettings() {
 
 	// Remove current settings from localStorage and set new ones
 	localStorage.removeItem('userSettings');
-	setUserSettings();
+	setUserSettings(defaultSettings);
 
 	// Restore important data
 	updateSettings({ type: 'userBookmarks', key: userBookmarks, override: true, set: true });

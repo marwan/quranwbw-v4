@@ -174,12 +174,6 @@ if (browser) {
 	// to store the word tooltip type
 	__wordTooltip = writable(userSettings.displaySettings.wordTooltip);
 
-	// to store the bottom alert info
-	__bottomAlert = writable({
-		visible: false,
-		message: '...'
-	});
-
 	// to store all the audio settings
 	__audioSettings = writable({
 		audioType: userSettings.audioSettings.savedPlaySettings.audioType,
