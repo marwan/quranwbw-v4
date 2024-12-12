@@ -1753,14 +1753,6 @@ input[type="range"].range-lg::-moz-range-thumb {
           appearance: none;
 }
 
-.grid-flow-row {
-  grid-auto-flow: row;
-}
-
-.grid-flow-col {
-  grid-auto-flow: column;
-}
-
 .grid-cols-1 {
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
@@ -1779,10 +1771,6 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .grid-cols-7 {
   grid-template-columns: repeat(7, minmax(0, 1fr));
-}
-
-.grid-rows-2 {
-  grid-template-rows: repeat(2, minmax(0, 1fr));
 }
 
 .flex-row {
@@ -1851,10 +1839,6 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .gap-4 {
   gap: 1rem;
-}
-
-.gap-2 {
-  gap: 0.5rem;
 }
 
 .gap-x-8 {
@@ -2189,63 +2173,63 @@ input[type="range"].range-lg::-moz-range-thumb {
   border-top-width: 2px;
 }
 
-.\!border-\[\#000000\] {
-  --tw-border-opacity: 1 !important;
-  border-color: rgb(0 0 0 / var(--tw-border-opacity)) !important;
-}
-
-.\!border-\[\#553c0f\] {
-  --tw-border-opacity: 1 !important;
-  border-color: rgb(85 60 15 / var(--tw-border-opacity)) !important;
-}
-
-.\!border-\[\#b1901f\] {
-  --tw-border-opacity: 1 !important;
-  border-color: rgb(177 144 31 / var(--tw-border-opacity)) !important;
-}
-
-.\!border-\[\#c2c2c2\] {
-  --tw-border-opacity: 1 !important;
-  border-color: rgb(194 194 194 / var(--tw-border-opacity)) !important;
-}
-
-.\!border-\[\#c59f60\] {
-  --tw-border-opacity: 1 !important;
-  border-color: rgb(197 159 96 / var(--tw-border-opacity)) !important;
-}
-
-.\!border-\[\#dca54c\] {
-  --tw-border-opacity: 1 !important;
-  border-color: rgb(220 165 76 / var(--tw-border-opacity)) !important;
-}
-
-.\!border-\[\#dddddd\] {
-  --tw-border-opacity: 1 !important;
-  border-color: rgb(221 221 221 / var(--tw-border-opacity)) !important;
+.border-\[\#000000\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(0 0 0 / var(--tw-border-opacity));
 }
 
 .border-\[\#000000\]\/20 {
   border-color: rgb(0 0 0 / 0.2);
 }
 
+.border-\[\#553c0f\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(85 60 15 / var(--tw-border-opacity));
+}
+
 .border-\[\#553c0f\]\/20 {
   border-color: rgb(85 60 15 / 0.2);
+}
+
+.border-\[\#b1901f\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(177 144 31 / var(--tw-border-opacity));
 }
 
 .border-\[\#b1901f\]\/20 {
   border-color: rgb(177 144 31 / 0.2);
 }
 
+.border-\[\#c2c2c2\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(194 194 194 / var(--tw-border-opacity));
+}
+
 .border-\[\#c2c2c2\]\/20 {
   border-color: rgb(194 194 194 / 0.2);
+}
+
+.border-\[\#c59f60\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(197 159 96 / var(--tw-border-opacity));
 }
 
 .border-\[\#c59f60\]\/20 {
   border-color: rgb(197 159 96 / 0.2);
 }
 
+.border-\[\#dca54c\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(220 165 76 / var(--tw-border-opacity));
+}
+
 .border-\[\#dca54c\]\/20 {
   border-color: rgb(220 165 76 / 0.2);
+}
+
+.border-\[\#dddddd\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(221 221 221 / var(--tw-border-opacity));
 }
 
 .border-\[\#dddddd\]\/20 {
@@ -2262,6 +2246,41 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .border-transparent {
   border-color: transparent;
+}
+
+.\!bg-\[\#000000\] {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity)) !important;
+}
+
+.\!bg-\[\#553c0f\] {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(85 60 15 / var(--tw-bg-opacity)) !important;
+}
+
+.\!bg-\[\#b1901f\] {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(177 144 31 / var(--tw-bg-opacity)) !important;
+}
+
+.\!bg-\[\#c2c2c2\] {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(194 194 194 / var(--tw-bg-opacity)) !important;
+}
+
+.\!bg-\[\#c59f60\] {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(197 159 96 / var(--tw-bg-opacity)) !important;
+}
+
+.\!bg-\[\#dca54c\] {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(220 165 76 / var(--tw-bg-opacity)) !important;
+}
+
+.\!bg-\[\#dddddd\] {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(221 221 221 / var(--tw-bg-opacity)) !important;
 }
 
 .bg-\[\#000000\] {
@@ -2305,11 +2324,6 @@ input[type="range"].range-lg::-moz-range-thumb {
   background-color: #282828c4;
 }
 
-.bg-\[\#553c0f\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(85 60 15 / var(--tw-bg-opacity));
-}
-
 .bg-\[\#553c0f\]\/10 {
   background-color: rgb(85 60 15 / 0.1);
 }
@@ -2327,11 +2341,6 @@ input[type="range"].range-lg::-moz-range-thumb {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
-.bg-\[\#b1901f\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(177 144 31 / var(--tw-bg-opacity));
-}
-
 .bg-\[\#b1901f\]\/10 {
   background-color: rgb(177 144 31 / 0.1);
 }
@@ -2342,11 +2351,6 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .bg-\[\#b1901f\]\/5 {
   background-color: rgb(177 144 31 / 0.05);
-}
-
-.bg-\[\#c2c2c2\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(194 194 194 / var(--tw-bg-opacity));
 }
 
 .bg-\[\#c2c2c2\]\/10 {
@@ -2361,11 +2365,6 @@ input[type="range"].range-lg::-moz-range-thumb {
   background-color: rgb(194 194 194 / 0.05);
 }
 
-.bg-\[\#c59f60\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(197 159 96 / var(--tw-bg-opacity));
-}
-
 .bg-\[\#c59f60\]\/10 {
   background-color: rgb(197 159 96 / 0.1);
 }
@@ -2378,11 +2377,6 @@ input[type="range"].range-lg::-moz-range-thumb {
   background-color: rgb(197 159 96 / 0.05);
 }
 
-.bg-\[\#dca54c\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(220 165 76 / var(--tw-bg-opacity));
-}
-
 .bg-\[\#dca54c\]\/10 {
   background-color: rgb(220 165 76 / 0.1);
 }
@@ -2393,11 +2387,6 @@ input[type="range"].range-lg::-moz-range-thumb {
 
 .bg-\[\#dca54c\]\/5 {
   background-color: rgb(220 165 76 / 0.05);
-}
-
-.bg-\[\#dddddd\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(221 221 221 / var(--tw-bg-opacity));
 }
 
 .bg-\[\#dddddd\]\/10 {
@@ -3220,6 +3209,69 @@ html.theme-8 ::-webkit-scrollbar-thumb {
 
 html.theme-9 ::-webkit-scrollbar-thumb {
   background: #dca54c;
+}
+
+/* Dark Luxury */
+
+.theme-1 [type='checkbox'], .theme-1 [type='checkbox']:checked {
+  background-color: #FFFFFF;
+  border-color: #b1901f
+}
+
+/* Golden Glint */
+
+.theme-2 [type='checkbox'], .theme-2 [type='checkbox']:checked {
+  background-color: #FFFFFF;
+  border-color: #000000
+}
+
+/* Classic Light */
+
+.theme-3 [type='checkbox'], .theme-3 [type='checkbox']:checked {
+  background-color: #e1e1e1;
+  border-color: #000000
+}
+
+/* Silver Lining */
+
+.theme-4 [type='checkbox'], .theme-4 [type='checkbox']:checked {
+  background-color: #e9e3d7;
+  border-color: #553c0f
+}
+
+/* Vintage Sepia */
+
+.theme-5 [type='checkbox'], .theme-5 [type='checkbox']:checked {
+  background-color: #20161f;
+  border-color: #c59f60
+}
+
+/* Mocha Night */
+
+.theme-6 [type='checkbox'], .theme-6 [type='checkbox']:checked {
+  background-color: #02021b;
+  border-color: #c2c2c2
+}
+
+/* Midnight Blue */
+
+.theme-7 [type='checkbox'], .theme-7 [type='checkbox']:checked {
+  background-color: #001617;
+  border-color: #dddddd
+}
+
+/* Forest Green */
+
+.theme-8 [type='checkbox'], .theme-8 [type='checkbox']:checked {
+  background-color: #000000;
+  border-color: #dddddd
+}
+
+/* Oled Black */
+
+.theme-9 [type='checkbox'], .theme-9 [type='checkbox']:checked {
+  background-color: #09090b;
+  border-color: #dca54c
 }
 
 /* Dark Luxury */

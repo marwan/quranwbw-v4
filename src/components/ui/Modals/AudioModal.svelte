@@ -4,7 +4,7 @@
 	import Checkbox from '$ui/FlowbiteSvelte/forms/Checkbox.svelte';
 	import { quranMetaData } from '$data/quranMeta';
 	import { __currentPage, __chapterNumber, __audioSettings, __userSettings, __audioModalVisible, __keysToFetch, __savedPlaySettings } from '$utils/stores';
-	import { playVerseAudio, playWordAudio, updateAudioSettings, setVersesToPlay } from '$utils/audioController';
+	import { updateAudioSettings, setVersesToPlay, playButtonHandler } from '$utils/audioController';
 	import { disabledClasses, buttonClasses, selectedRadioOrCheckboxClasses } from '$data/commonClasses';
 	import { term } from '$utils/terminologies';
 	import { getModalTransition } from '$utils/getModalTransition';
@@ -62,25 +62,6 @@
 	}
 
 	$: console.log($__audioSettings);
-
-	// Handle play button click
-	function playButtonHandler() {
-		const { audioType, playingKey, timesToRepeat, language } = $__audioSettings;
-		if (audioType === 'verse') {
-			playVerseAudio({
-				key: `${window.versesToPlayArray[0]}`,
-				timesToRepeat: timesToRepeat,
-				language: language
-			});
-		} else if (audioType === 'word') {
-			playWordAudio({
-				key: `${playingKey}:1`,
-				playAllWords: true
-			});
-		}
-
-		__audioModalVisible.set(false);
-	}
 
 	// Get or update the saved settings
 	function savedPlaySettingsHandler(action) {
@@ -245,11 +226,11 @@
 		</div>
 	{/if}
 
-	<Checkbox checked={$__savedPlaySettings.rememberSettings} class="space-x-2 pb-2 font-normal">
+	<Checkbox checked={$__savedPlaySettings.rememberSettings} class="space-x-2 pb-2 font-normal {window.theme('bgMain')}">
 		<span>Remember Settings</span>
 	</Checkbox>
 
 	<div class="mt-4">
-		<button on:click={playButtonHandler} class="w-full mr-2 {buttonClasses} {invalidStartVerse || invalidEndVerse || invalidTimesToRepeat ? disabledClasses : null}">Play</button>
+		<button on:click={() => playButtonHandler($__audioSettings.playingKey)} class="w-full mr-2 {buttonClasses} {invalidStartVerse || invalidEndVerse || invalidTimesToRepeat ? disabledClasses : null}">Play</button>
 	</div>
 </Modal>

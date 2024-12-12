@@ -10,7 +10,7 @@
 	import DotsHorizontal from '$svgs/DotsHorizontal.svelte';
 	import Eye from '$svgs/Eye.svelte';
 	import Tooltip from '$ui/FlowbiteSvelte/tooltip/Tooltip.svelte';
-	import { playVerseAudio, resetAudioSettings, setVersesToPlay, showAudioModal } from '$utils/audioController';
+	import { playVerseAudio, resetAudioSettings, showAudioModal, playButtonHandler } from '$utils/audioController';
 	import { __currentPage, __userSettings, __audioSettings, __verseKey, __userNotes, __notesModalVisible, __playButtonsFunctionality, __displayType, __savedPlaySettings } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';
 	import { term } from '$utils/terminologies';
@@ -18,7 +18,6 @@
 
 	const chapter = parseInt(key.split(':')[0], 10);
 	const verse = parseInt(key.split(':')[1], 10);
-	const versesInChapter = quranMetaData[chapter].verses;
 	const buttonClasses = `inline-flex items-center justify-center w-10 h-10 transition-colors duration-150 rounded-3xl focus:shadow-outline print:hidden ${window.theme('hover')}`;
 
 	// For chapter page, just show the key, else show the complete chapter transliteration & key
@@ -35,11 +34,10 @@
 		if (['chapter', 'mushaf', 'supplications', 'bookmarks', 'juz'].includes($__currentPage)) {
 			switch ($__playButtonsFunctionality.verse) {
 				case 1:
-					playVerseAudio({ key, language: 'arabic', timesToRepeat: 1 });
+					playButtonHandler(key);
 					break;
 				case 2:
-					setVersesToPlay({ location: 'verseOptionsOrModal', chapter, startVerse: verse, endVerse: versesInChapter, audioRange: 'playFromHere' });
-					playVerseAudio({ key: `${window.versesToPlayArray[0]}`, timesToRepeat: 1, language: 'arabic' });
+					showAudioModal(key);
 					break;
 				case 3:
 					showAudioModal(key);

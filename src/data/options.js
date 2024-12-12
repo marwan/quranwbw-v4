@@ -614,6 +614,6 @@ export const screenBreakpoints = {
 
 export const selectableVersePlayButtonOptions = {
 	1: { id: 1, name: 'Play Selected Verse' },
-	2: { id: 2, name: 'Play From That Verse' },
+	// 2: { id: 2, name: 'Play From That Verse' },
 	3: { id: 3, name: 'Show Advance Options' }
 };

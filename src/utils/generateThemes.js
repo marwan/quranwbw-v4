@@ -9,6 +9,7 @@ function generateThemes() {
 	const normalFontPaletteStyles = [];
 	const tajweedFontPaletteStyles = [];
 	const headerPaletteStyles = [];
+	const checkboxStyles = [];
 
 	Object.keys(selectableThemes).forEach((key) => {
 		const { color1, color2, color3, name } = selectableThemes[key];
@@ -39,6 +40,7 @@ function generateThemes() {
 		const cssComment = `/* ${selectableThemes[themeIndex].name} */`;
 
 		cssStyles.push(`html.theme-${themeIndex} ::-webkit-scrollbar-thumb { background: ${color2}; } ${cssComment}`);
+		checkboxStyles.push(`.theme-${themeIndex} [type='checkbox'], .theme-${themeIndex} [type='checkbox']:checked { background-color: ${color1}; border-color: ${color2} } ${cssComment}`);
 		normalFontPaletteStyles.push(`.theme-${themeIndex} .theme-palette-normal { font-palette: --palette${selectableThemes[themeIndex].paletteNormal}; } ${cssComment}`);
 		tajweedFontPaletteStyles.push(`.theme-${themeIndex} .theme-palette-tajweed { font-palette: --palette${selectableThemes[themeIndex].paletteTajweed}; } ${cssComment}`);
 		headerPaletteStyles.push(`.theme-${themeIndex} .header { font-palette: --palette${selectableThemes[themeIndex].paletteHeader}; } ${cssComment}`);
@@ -50,6 +52,7 @@ function generateThemes() {
 	console.log(themes);
 	console.log(window.websiteColors);
 	console.log(cssStyles.join('\n'));
+	console.log(checkboxStyles.join('\n'));
 	console.log(normalFontPaletteStyles.join('\n'));
 	console.log(tajweedFontPaletteStyles.join('\n'));
 	console.log(headerPaletteStyles.join('\n'));

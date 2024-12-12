@@ -344,3 +344,22 @@ function getWordsInVerse(key) {
 		return Number(wordData);
 	}
 }
+
+// Handler for verse play button and the play button in audio modal
+export function playButtonHandler(key) {
+	const { audioType, timesToRepeat, language } = get(__audioSettings);
+	if (audioType === 'verse') {
+		playVerseAudio({
+			key: `${window.versesToPlayArray[0]}`,
+			timesToRepeat: timesToRepeat,
+			language: language
+		});
+	} else if (audioType === 'word') {
+		playWordAudio({
+			key: `${key}:1`,
+			playAllWords: true
+		});
+	}
+
+	__audioModalVisible.set(false);
+}
