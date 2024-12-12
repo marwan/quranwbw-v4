@@ -8,6 +8,7 @@
 	import { disabledClasses, buttonClasses, selectedRadioOrCheckboxClasses } from '$data/commonClasses';
 	import { term } from '$utils/terminologies';
 	import { getModalTransition } from '$utils/getModalTransition';
+	import { updateSettings } from '$utils/updateSettings';
 
 	// CSS classes for radio buttons
 	const radioClasses = `inline-flex justify-between items-center py-2 px-4 w-full ${window.theme('bgMain')} rounded-lg border ${window.theme('border')} cursor-pointer ${window.theme('checked')} ${window.theme('hover')}`;
@@ -61,26 +62,43 @@
 		savedPlaySettingsHandler('get');
 	}
 
+	// Update the selected settings only if the user had opted to remember them
+	$: if ($__audioSettings && $__savedPlaySettings.rememberSettings) {
+		savedPlaySettingsHandler('save');
+	}
+
 	$: console.log($__audioSettings);
 
-	// Get or update the saved settings
+	// Get or save the audio settings
 	function savedPlaySettingsHandler(action) {
 		// Get from localStorage/store
 		if (action === 'get') {
+			$__audioSettings.audioType = $__savedPlaySettings.audioType;
 			$__audioSettings.audioRange = $__savedPlaySettings.audioRange;
 			$__audioSettings.language = $__savedPlaySettings.language;
-			$__audioSettings.audioType = $__savedPlaySettings.audioType;
 			$__audioSettings.timesToRepeat = $__savedPlaySettings.timesToRepeat;
 			console.log('getting audio settings...');
 		}
 
-		// Update in localStorage
-		else if (action === 'update') {
+		// Savw in localStorage
+		else if (action === 'save') {
+			$__savedPlaySettings.audioType = $__audioSettings.audioType;
 			$__savedPlaySettings.audioRange = $__audioSettings.audioRange;
 			$__savedPlaySettings.language = $__audioSettings.language;
-			$__savedPlaySettings.audioType = $__audioSettings.audioType;
 			$__savedPlaySettings.timesToRepeat = $__audioSettings.timesToRepeat;
-			console.log('updating audio settings...');
+
+			updateSettings({
+				type: 'savedPlaySettings',
+				value: {
+					audioType: $__savedPlaySettings.audioType,
+					audioRange: $__savedPlaySettings.audioRange,
+					language: $__savedPlaySettings.language,
+					timesToRepeat: $__savedPlaySettings.timesToRepeat,
+					rememberSettings: true
+				}
+			});
+
+			console.log('saving audio settings...');
 		}
 	}
 </script>

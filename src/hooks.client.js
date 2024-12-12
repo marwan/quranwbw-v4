@@ -66,10 +66,10 @@ export function setUserSettings() {
 		userSettings.audioSettings.savedPlaySettings !== undefined
 			? userSettings.audioSettings.savedPlaySettings
 			: {
-					audioType: 'word',
-					audioRange: 'playFromHere',
+					audioType: 'verse',
+					audioRange: 'playThisVerse',
 					language: 'arabic',
-					timesToRepeat: 10,
+					timesToRepeat: 1,
 					rememberSettings: true
 				};
 
