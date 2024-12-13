@@ -58,49 +58,50 @@
 		$__audioSettings.audioRange = 'playThisVerse';
 	}
 
+	// If the audio settings had to be remembered, get them from localStorage whenever the page is loaded
 	if ($__audioSettings.rememberSettings) {
 		savedPlaySettingsHandler('get');
 	}
 
-	// Update the selected settings only if the user had opted to remember them
+	// If the audio settings had to be remembered, set them in localStorage whenever the a change is made
 	$: if ($__audioSettings && $__audioSettings.rememberSettings === true) {
 		savedPlaySettingsHandler('set');
 	}
 
 	$: console.log($__audioSettings);
 
+	// This function manages the saving, retrieving, and resetting of audio settings in the $__audioSettings object.
+	// It takes an action parameter that determines whether to get ('get'), set ('set'), or reset to default ('default') the audio settings.
 	function savedPlaySettingsHandler(action) {
-		// Get the settings
+		const audioSettings = $__audioSettings;
+		const savedSettings = $__audioSettings.savedPlaySettings;
+
+		const assignSettings = (source, target) => {
+			Object.assign(target, {
+				audioType: source.audioType,
+				audioRange: source.audioRange,
+				language: source.language,
+				timesToRepeat: source.timesToRepeat
+			});
+		};
+
 		if (action === 'get') {
-			if (Object.keys($__audioSettings.savedPlaySettings).length === 0) savedPlaySettingsHandler('set');
-			$__audioSettings.audioType = $__audioSettings.savedPlaySettings.audioType;
-			$__audioSettings.audioRange = $__audioSettings.savedPlaySettings.audioRange;
-			$__audioSettings.language = $__audioSettings.savedPlaySettings.language;
-			$__audioSettings.timesToRepeat = $__audioSettings.savedPlaySettings.timesToRepeat;
+			if (Object.keys(savedSettings).length === 0) {
+				savedPlaySettingsHandler('set');
+			}
+			assignSettings(savedSettings, audioSettings);
+		} else if (action === 'set') {
+			assignSettings(audioSettings, savedSettings);
+		} else if (action === 'default') {
+			assignSettings(defaultSettings.audioSettings, audioSettings);
+			delete audioSettings.savedPlaySettings;
 		}
 
-		// Save the settings
-		else if (action === 'set') {
-			$__audioSettings.savedPlaySettings.audioType = $__audioSettings.audioType;
-			$__audioSettings.savedPlaySettings.audioRange = $__audioSettings.audioRange;
-			$__audioSettings.savedPlaySettings.language = $__audioSettings.language;
-			$__audioSettings.savedPlaySettings.timesToRepeat = $__audioSettings.timesToRepeat;
-		}
-
-		// Defaults
-		else if (action === 'default') {
-			$__audioSettings.audioType = defaultSettings.audioSettings.audioType;
-			$__audioSettings.audioRange = defaultSettings.audioSettings.audioRange;
-			$__audioSettings.language = defaultSettings.audioSettings.language;
-			$__audioSettings.timesToRepeat = defaultSettings.audioSettings.timesToRepeat;
-			delete $__audioSettings.savedPlaySettings;
-		}
-
-		updateSettings({ type: 'audioSettings', value: $__audioSettings });
+		updateSettings({ type: 'audioSettings', value: audioSettings });
 	}
 
-	// If user would like to remember the settings, save them
-	// Else set everything back to default by getting the values from defaultSettings
+	// This function toggles the rememberSettings property within the $__audioSettings object.
+	// Depending on the new state, it calls savedPlaySettingsHandler to either save or reset the audio settings.
 	function toggleRememberSettings() {
 		const rememberSettings = $__audioSettings.rememberSettings;
 		const newSetting = !rememberSettings;
