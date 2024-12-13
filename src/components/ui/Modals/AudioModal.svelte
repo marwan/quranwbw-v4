@@ -3,7 +3,7 @@
 	import Radio from '$ui/FlowbiteSvelte/forms/Radio.svelte';
 	import Checkbox from '$ui/FlowbiteSvelte/forms/Checkbox.svelte';
 	import { quranMetaData } from '$data/quranMeta';
-	import { __currentPage, __chapterNumber, __audioSettings, __userSettings, __audioModalVisible, __keysToFetch, __savedPlaySettings } from '$utils/stores';
+	import { __currentPage, __chapterNumber, __audioSettings, __userSettings, __audioModalVisible, __keysToFetch } from '$utils/stores';
 	import { updateAudioSettings, setVersesToPlay, playButtonHandler } from '$utils/audioController';
 	import { disabledClasses, buttonClasses, selectedRadioOrCheckboxClasses } from '$data/commonClasses';
 	import { term } from '$utils/terminologies';
@@ -58,23 +58,6 @@
 		$__audioSettings.audioRange = 'playThisVerse';
 	}
 
-	// // Get the saved settings only if the user had opted to remember them
-	// $: if ($__savedPlaySettings && $__savedPlaySettings.rememberSettings) {
-	// 	savedPlaySettingsHandler('get');
-	// }
-
-	// // Update the selected settings only if the user had opted to remember them
-	// $: if ($__audioSettings && $__savedPlaySettings) {
-	// 	savedPlaySettingsHandler('save');
-	// }
-
-	// Get the saved settings only if the user had opted to remember them
-	// $: if ($__audioSettings) {
-	// 	if ($__audioSettings.rememberSettings === true) {
-	// 		savedPlaySettingsHandler('get');
-	// 	}
-	// }
-
 	if ($__audioSettings.rememberSettings) {
 		savedPlaySettingsHandler('get');
 	}
@@ -86,27 +69,50 @@
 
 	$: console.log($__audioSettings);
 
-	// Get or save the audio settings
 	function savedPlaySettingsHandler(action) {
-		const settingsKeys = ['audioType', 'audioRange', 'language', 'timesToRepeat', 'rememberSettings'];
-
-		function applySettings(source, target) {
-			settingsKeys.forEach((key) => {
-				target[key] = source[key];
-			});
-		}
-
+		// Get the settings
 		if (action === 'get') {
-			applySettings($__savedPlaySettings, $__audioSettings);
-		} else if (action === 'set') {
-			applySettings($__audioSettings, $__savedPlaySettings);
-			updateSettings({ type: 'savedPlaySettings', value: { ...$__savedPlaySettings } });
+			if (Object.keys($__audioSettings.savedPlaySettings).length === 0) savedPlaySettingsHandler('set');
+
+			$__audioSettings.audioType = $__audioSettings.savedPlaySettings.audioType;
+			$__audioSettings.audioRange = $__audioSettings.savedPlaySettings.audioRange;
+			$__audioSettings.language = $__audioSettings.savedPlaySettings.language;
+			$__audioSettings.timesToRepeat = $__audioSettings.savedPlaySettings.timesToRepeat;
+			console.log('getting saved settings...');
 		}
+
+		// Save the settings
+		else if (action === 'set') {
+			$__audioSettings.savedPlaySettings.audioType = $__audioSettings.audioType;
+			$__audioSettings.savedPlaySettings.audioRange = $__audioSettings.audioRange;
+			$__audioSettings.savedPlaySettings.language = $__audioSettings.language;
+			$__audioSettings.savedPlaySettings.timesToRepeat = $__audioSettings.timesToRepeat;
+			console.log('setting saved settings...');
+		}
+
+		// Defaults
+		else if (action === 'default') {
+			$__audioSettings.audioType = defaultSettings.audioSettings.audioType;
+			$__audioSettings.audioRange = defaultSettings.audioSettings.audioRange;
+			$__audioSettings.language = defaultSettings.audioSettings.language;
+			$__audioSettings.timesToRepeat = defaultSettings.audioSettings.timesToRepeat;
+			delete $__audioSettings.savedPlaySettings;
+			console.log('deleting saved settings...');
+		}
+
+		updateSettings({ type: 'audioSettings', value: $__audioSettings });
 	}
 
+	// If remember is true, export the current settings to savedPlaySettings
+	// Else set everything back to default by getting the values from defaultSettings
 	function rememberSettingsToggler() {
 		$__audioSettings.rememberSettings = !$__audioSettings.rememberSettings;
-		updateSettings({ type: 'savedPlaySettings', value: { ...$__audioSettings } });
+
+		if ($__audioSettings.rememberSettings === true) {
+			savedPlaySettingsHandler('set');
+		} else {
+			savedPlaySettingsHandler('default');
+		}
 	}
 </script>
 

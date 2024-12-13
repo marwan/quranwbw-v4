@@ -15,7 +15,7 @@ import {
 	__reciter,
 	__translationReciter,
 	__playbackSpeed,
-	__savedPlaySettings,
+	__audioSettings,
 	__lastRead,
 	__wordTooltip,
 	__userBookmarks,
@@ -139,10 +139,10 @@ export function updateSettings(props) {
 			userSettings.audioSettings.playbackSpeed = props.value;
 			break;
 
-		// for play translation toggle
-		case 'savedPlaySettings':
-			__savedPlaySettings.set(props.value);
-			userSettings.audioSettings.savedPlaySettings = props.value;
+		// for audio settings
+		case 'audioSettings':
+			__audioSettings.set(props.value);
+			userSettings.audioSettings = props.value;
 			break;
 
 		// for Initial Setup

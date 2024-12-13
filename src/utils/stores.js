@@ -175,16 +175,17 @@ if (browser) {
 	__wordTooltip = writable(userSettings.displaySettings.wordTooltip);
 
 	// to store all the audio settings
-	__audioSettings = writable({
-		audioType: userSettings.audioSettings.savedPlaySettings.audioType,
-		audioRange: userSettings.audioSettings.savedPlaySettings.audioRange,
-		language: userSettings.audioSettings.savedPlaySettings.language,
-		timesToRepeat: userSettings.audioSettings.savedPlaySettings.timesToRepeat,
-		rememberSettings: userSettings.audioSettings.savedPlaySettings.rememberSettings,
-		isPlaying: false,
-		timesRepeated: 0,
-		delay: 0
-	});
+	// __audioSettings = writable({
+	// 	audioType: userSettings.audioSettings.savedPlaySettings.audioType,
+	// 	audioRange: userSettings.audioSettings.savedPlaySettings.audioRange,
+	// 	language: userSettings.audioSettings.savedPlaySettings.language,
+	// 	timesToRepeat: userSettings.audioSettings.savedPlaySettings.timesToRepeat,
+	// 	rememberSettings: userSettings.audioSettings.savedPlaySettings.rememberSettings,
+	// 	isPlaying: false,
+	// 	timesRepeated: 0,
+	// 	delay: 0
+	// });
+	__audioSettings = writable(userSettings.audioSettings);
 
 	// to store the morphology verse/word key
 	__morphologyKey = writable(null);

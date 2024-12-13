@@ -31,13 +31,12 @@ export const defaultSettings = {
 		translationReciter: 1,
 		playbackSpeed: 3,
 		versePlayButton: 1,
-		savedPlaySettings: {
-			audioType: 'verse',
-			audioRange: 'playThisVerse',
-			language: 'arabic',
-			timesToRepeat: 1,
-			rememberSettings: true
-		}
+		rememberSettings: true,
+		audioType: 'verse',
+		audioRange: 'playThisVerse',
+		language: 'arabic',
+		timesToRepeat: 1,
+		savedPlaySettings: {}
 	},
 	quiz: {
 		correctAnswers: 0,
