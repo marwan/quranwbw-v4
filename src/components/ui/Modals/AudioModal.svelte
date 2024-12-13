@@ -73,12 +73,10 @@
 		// Get the settings
 		if (action === 'get') {
 			if (Object.keys($__audioSettings.savedPlaySettings).length === 0) savedPlaySettingsHandler('set');
-
 			$__audioSettings.audioType = $__audioSettings.savedPlaySettings.audioType;
 			$__audioSettings.audioRange = $__audioSettings.savedPlaySettings.audioRange;
 			$__audioSettings.language = $__audioSettings.savedPlaySettings.language;
 			$__audioSettings.timesToRepeat = $__audioSettings.savedPlaySettings.timesToRepeat;
-			console.log('getting saved settings...');
 		}
 
 		// Save the settings
@@ -87,7 +85,6 @@
 			$__audioSettings.savedPlaySettings.audioRange = $__audioSettings.audioRange;
 			$__audioSettings.savedPlaySettings.language = $__audioSettings.language;
 			$__audioSettings.savedPlaySettings.timesToRepeat = $__audioSettings.timesToRepeat;
-			console.log('setting saved settings...');
 		}
 
 		// Defaults
@@ -97,22 +94,20 @@
 			$__audioSettings.language = defaultSettings.audioSettings.language;
 			$__audioSettings.timesToRepeat = defaultSettings.audioSettings.timesToRepeat;
 			delete $__audioSettings.savedPlaySettings;
-			console.log('deleting saved settings...');
 		}
 
 		updateSettings({ type: 'audioSettings', value: $__audioSettings });
 	}
 
-	// If remember is true, export the current settings to savedPlaySettings
+	// If user would like to remember the settings, save them
 	// Else set everything back to default by getting the values from defaultSettings
-	function rememberSettingsToggler() {
-		$__audioSettings.rememberSettings = !$__audioSettings.rememberSettings;
+	function toggleRememberSettings() {
+		const rememberSettings = $__audioSettings.rememberSettings;
+		const newSetting = !rememberSettings;
+		const settingType = newSetting ? 'set' : 'default';
 
-		if ($__audioSettings.rememberSettings === true) {
-			savedPlaySettingsHandler('set');
-		} else {
-			savedPlaySettingsHandler('default');
-		}
+		$__audioSettings.rememberSettings = newSetting;
+		savedPlaySettingsHandler(settingType);
 	}
 </script>
 
@@ -257,7 +252,7 @@
 		</div>
 	{/if}
 
-	<Checkbox checked={$__audioSettings.rememberSettings} on:click={() => rememberSettingsToggler()} class="space-x-2 pb-2 font-normal {window.theme('bgMain')}">
+	<Checkbox checked={$__audioSettings.rememberSettings} on:click={() => toggleRememberSettings()} class="space-x-2 pb-2 font-normal {window.theme('bgMain')}">
 		<span>Remember Settings</span>
 	</Checkbox>
 
