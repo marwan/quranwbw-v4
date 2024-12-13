@@ -25,7 +25,6 @@ let __websiteOnline,
 	__translationReciter,
 	__timestampData,
 	__playbackSpeed,
-	__savedPlaySettings,
 	__displayType,
 	__selectedDisplayId,
 	__websiteTheme,
@@ -140,9 +139,6 @@ if (browser) {
 	// to store playback speed
 	__playbackSpeed = writable(userSettings.audioSettings.playbackSpeed);
 
-	// to store the toggle boolean for play translation
-	__savedPlaySettings = writable(userSettings.audioSettings.savedPlaySettings);
-
 	// to store the display type - WBW, Normal, Continuous, etc...
 	__displayType = writable(userSettings.displaySettings.displayType);
 	__selectedDisplayId = writable(1);
@@ -175,16 +171,6 @@ if (browser) {
 	__wordTooltip = writable(userSettings.displaySettings.wordTooltip);
 
 	// to store all the audio settings
-	// __audioSettings = writable({
-	// 	audioType: userSettings.audioSettings.savedPlaySettings.audioType,
-	// 	audioRange: userSettings.audioSettings.savedPlaySettings.audioRange,
-	// 	language: userSettings.audioSettings.savedPlaySettings.language,
-	// 	timesToRepeat: userSettings.audioSettings.savedPlaySettings.timesToRepeat,
-	// 	rememberSettings: userSettings.audioSettings.savedPlaySettings.rememberSettings,
-	// 	isPlaying: false,
-	// 	timesRepeated: 0,
-	// 	delay: 0
-	// });
 	__audioSettings = writable(userSettings.audioSettings);
 
 	// to store the morphology verse/word key
@@ -281,7 +267,6 @@ export {
 	__translationReciter,
 	__timestampData,
 	__playbackSpeed,
-	__savedPlaySettings,
 	__displayType,
 	__selectedDisplayId,
 	__websiteTheme,
