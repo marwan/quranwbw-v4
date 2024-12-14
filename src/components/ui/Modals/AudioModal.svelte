@@ -74,7 +74,7 @@
 	// It takes an action parameter that determines whether to get ('get'), set ('set'), or reset to default ('default') the audio settings.
 	function savedPlaySettingsHandler(action) {
 		const audioSettings = $__audioSettings;
-		const savedSettings = $__audioSettings.savedPlaySettings;
+		const savedSettings = $__audioSettings.savedPlaySettings || {};
 
 		const assignSettings = (source, target) => {
 			Object.assign(target, {
