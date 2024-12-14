@@ -14,16 +14,20 @@
 	import Book from '$svgs/Book.svelte';
 	import Juz from '$svgs/Juz.svelte';
 	import Morphology from '$svgs/Morphology.svelte';
+	import Copy from '$svgs/Copy.svelte';
 	import Share from '$svgs/Share.svelte';
 	import { showAudioModal } from '$utils/audioController';
 	import { quranMetaData } from '$data/quranMeta';
 	import { selectableDisplays } from '$data/options';
-	import { __userSettings, __verseKey, __notesModalVisible, __tafsirModalVisible, __verseTranslationModalVisible, __currentPage, __displayType, __userNotes } from '$utils/stores';
+	import { __userSettings, __verseKey, __notesModalVisible, __tafsirModalVisible, __verseTranslationModalVisible, __currentPage, __displayType, __userNotes, __fontType } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';
 	import { term } from '$utils/terminologies';
+	import { getVerseText } from '$utils/getVerseText';
 	import { staticEndpoint } from '$data/websiteSettings';
 	import { sineIn } from 'svelte/easing';
 	import { fly } from 'svelte/transition';
+
+	const [chapter, verse] = $__verseKey.split(':').map(Number);
 
 	// Transition parameters for drawer
 	const transitionParamsRight = {
@@ -54,14 +58,24 @@
 
 	// Open share menu
 	function shareVerse() {
-		const [chapter, verse] = $__verseKey.split(':').map(Number);
-
 		if (navigator.share) {
 			navigator.share({
 				title: `${quranMetaData[chapter].transliteration}, ${term('verse')} ${verse}`,
 				url: `https://quranwbw.com/${chapter}/${verse}`
 			});
 		}
+	}
+
+	// Copy arabic verse text
+	function copyVerse() {
+		const copyButtonText = document.getElementById(`copy-text-${verse}`);
+		navigator.clipboard.writeText(getVerseText($__verseKey));
+		copyButtonText.innerText = 'Copied!';
+
+		// Set the button text back to default
+		setTimeout(function () {
+			copyButtonText.innerText = `Copy ${term('verse')}`;
+		}, 1500);
 	}
 </script>
 
@@ -84,7 +98,7 @@
 		<!-- bookmark button -->
 		<DropdownItem class={dropdownItemClasses} on:click={() => updateSettings({ type: 'userBookmarks', key: $__verseKey, set: true })}>
 			<svelte:component this={userBookmarks.includes($__verseKey) ? BookmarkFilled : Bookmark} />
-			<span>{userBookmarks.includes($__verseKey) ? `Unbookmark  ${term('verse')}` : `Bookmark ${term('verse')}`}</span>
+			<span>{userBookmarks.includes($__verseKey) ? 'Unbookmark' : 'Bookmark'}</span>
 		</DropdownItem>
 
 		<!-- verse notes button -->
@@ -96,7 +110,7 @@
 			}}
 		>
 			<svelte:component this={$__userNotes.hasOwnProperty($__verseKey) ? NotesFilled : Notes} />
-			<span>{term('verse')} Notes</span>
+			<span>Notes</span>
 		</DropdownItem>
 	{/if}
 
@@ -126,7 +140,7 @@
 					}}
 				>
 					<VerseTranslation />
-					<span>{term('verse')} Translation</span>
+					<span>Translation</span>
 				</DropdownItem>
 			{/if}
 
@@ -139,12 +153,12 @@
 				}}
 			>
 				<Tafsir />
-				<span>{term('verse')} {term('tafsir')}</span>
+				<span>{term('tafsir')}</span>
 			</DropdownItem>
 
 			<!-- mode change buttons -->
 			{#if $__currentPage === 'mushaf'}
-				<DropdownItem class={dropdownItemClasses} href="/{$__verseKey.split(':')[0]}/{$__verseKey.split(':')[1]}">
+				<DropdownItem class={dropdownItemClasses} href="/{chapter}/{verse}">
 					<ChapterMode />
 					<span>{term('chapter')} Mode</span>
 				</DropdownItem>
@@ -170,13 +184,21 @@
 			<!-- verse morphology button -->
 			<DropdownItem class={dropdownItemClasses} href="/morphology/{$__verseKey}">
 				<Morphology />
-				<span>{term('verse')} Morphology</span>
+				<span>Morphology</span>
 			</DropdownItem>
+
+			<!-- copy verse button (only for hafs digital and indopak) -->
+			{#if [1, 4].includes($__fontType)}
+				<DropdownItem class={dropdownItemClasses} on:click={(event) => copyVerse(event)}>
+					<Copy />
+					<span id="copy-text-{verse}">Copy</span>
+				</DropdownItem>
+			{/if}
 
 			<!-- share verse button -->
 			<DropdownItem class={dropdownItemClasses} on:click={() => shareVerse()}>
 				<Share />
-				<span>Share {term('verse')}</span>
+				<span>Share</span>
 			</DropdownItem>
 		</div>
 	{/if}

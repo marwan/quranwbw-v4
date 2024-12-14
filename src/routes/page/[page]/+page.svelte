@@ -33,14 +33,14 @@
 	$: page = +data.page;
 
 	// Prefetch adjacent pages for better UX
-	$: {
-		if ([2, 3].includes($__fontType)) {
-			for (let thisPage = +page - 2; thisPage <= +page + 2; thisPage++) {
-				fetch(`${mushafWordFontLink}/QCF4${`00${thisPage}`.slice(-3)}_COLOR-Regular.woff?version=${mushafFontVersion}`);
-				fetch(`${apiEndpoint}/page?page=${thisPage}&word_type=${selectableFontTypes[$__fontType].apiId}&word_translation=${$__wordTranslation}&version=${apiVersion}`);
-			}
-		}
-	}
+	// $: {
+	// 	if ([2, 3].includes($__fontType)) {
+	// 		for (let thisPage = +page - 2; thisPage <= +page + 2; thisPage++) {
+	// 			fetch(`${mushafWordFontLink}/QCF4${`00${thisPage}`.slice(-3)}_COLOR-Regular.woff?version=${mushafFontVersion}`);
+	// 			fetch(`${apiEndpoint}/page?page=${thisPage}&word_type=${selectableFontTypes[$__fontType].apiId}&word_translation=${$__wordTranslation}&version=${apiVersion}`);
+	// 		}
+	// 	}
+	// }
 
 	// Fetching the page data from API
 	$: {
