@@ -29,7 +29,7 @@
 	<Tooltip arrow={false} type="light" class="hidden md:block font-normal">{term('supplications')}</Tooltip>
 
 	<div class="flex items-center justify-center">
-		<a href={$__lastRead.hasOwnProperty('mushaf') ? `/page/${$__lastRead.page}` : '/page/1'} class="inline-flex flex-col items-center justify-center w-12 h-12 rounded-full group {window.theme('input')} {window.theme('bgSecondaryDark')}">
+		<a href={$__lastRead.hasOwnProperty('page') ? `/page/${$__lastRead.page}` : '/page/1'} class="inline-flex flex-col items-center justify-center w-12 h-12 rounded-full group {window.theme('input')} {window.theme('bgSecondaryDark')}">
 			<span><BookFilled size={5} /></span>
 			<span class="sr-only">Mushaf</span>
 		</a>
