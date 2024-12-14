@@ -76,8 +76,8 @@ function findChapters(key) {
 	let chapters = {};
 
 	for (let chapter = 1; chapter <= 114; chapter++) {
-		const { arabic, transliteration, translation, alternateNames } = quranMetaData[chapter];
-		if ([arabic, transliteration, translation, alternateNames].some((term) => term.toLowerCase().includes(key.toLowerCase()))) {
+		const { arabic, transliteration, translation, alternateNames = [] } = quranMetaData[chapter];
+		if ([arabic, transliteration, translation, ...alternateNames].some((term) => term.toLowerCase().includes(key.toLowerCase()))) {
 			chapters[chapter] = { transliteration, translation }; // Adds matching chapters to results
 		}
 	}
