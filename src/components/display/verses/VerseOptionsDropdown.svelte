@@ -16,6 +16,8 @@
 	import Morphology from '$svgs/Morphology.svelte';
 	import Copy from '$svgs/Copy.svelte';
 	import Share from '$svgs/Share.svelte';
+	import DotsHorizontal from '$svgs/DotsHorizontal.svelte';
+	import Back from '$svgs/Back.svelte';
 	import { showAudioModal } from '$utils/audioController';
 	import { quranMetaData } from '$data/quranMeta';
 	import { selectableDisplays } from '$data/options';
@@ -74,7 +76,7 @@
 
 		// Set the button text back to default
 		setTimeout(function () {
-			copyButtonText.innerText = `Copy ${term('verse')}`;
+			copyButtonText.innerText = 'Copy';
 		}, 1500);
 	}
 </script>
@@ -122,14 +124,16 @@
 		}}
 	>
 		{#if !moreOptionsEnabled}
+			<DotsHorizontal />
 			<span>More Options</span>
 		{:else}
+			<Back />
 			<span>Go Back</span>
 		{/if}
 	</DropdownItem> -->
 
 	{#if moreOptionsEnabled}
-		<div transition:fly={{ duration: 150, x: 0, easing: sineIn }}>
+		<div transition:fly={{ duration: 0, x: 0, easing: sineIn }}>
 			<!-- verse translation button - only show on Mushaf page or on continuous display -->
 			{#if selectableDisplays[$__displayType].continuous}
 				<DropdownItem
