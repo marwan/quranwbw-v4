@@ -4,7 +4,7 @@
 	import Checkbox from '$ui/FlowbiteSvelte/forms/Checkbox.svelte';
 	import { quranMetaData } from '$data/quranMeta';
 	import { __currentPage, __chapterNumber, __audioSettings, __userSettings, __audioModalVisible, __keysToFetch } from '$utils/stores';
-	import { updateAudioSettings, setVersesToPlay, playButtonHandler } from '$utils/audioController';
+	import { updateAudioSettings, prepareVersesToPlay, playButtonHandler } from '$utils/audioController';
 	import { disabledClasses, buttonClasses, selectedRadioOrCheckboxClasses } from '$data/commonClasses';
 	import { term } from '$utils/terminologies';
 	import { getModalTransition } from '$utils/getModalTransition';
@@ -19,30 +19,12 @@
 
 	// Update settings and validate verses when audio modal is visible
 	$: if ($__audioModalVisible) {
-		const [thisChapter, thisVerse] = $__audioSettings.playingKey.split(':');
+		const thisChapter = $__audioSettings.playingKey.split(':')[0];
 		const versesInChapter = quranMetaData[thisChapter].verses;
-		const { startVerse, endVerse, timesToRepeat, audioRange } = $__audioSettings;
+		const { startVerse, endVerse, timesToRepeat } = $__audioSettings;
 
 		// Set verses to play based on audio range setting
-		switch (audioRange) {
-			case 'playThisVerse':
-				setVersesToPlay({ location: 'verseOptionsOrModal', chapter: thisChapter, startVerse: thisVerse, endVerse: thisVerse });
-				break;
-			case 'playFromHere':
-				// On the following pages, we already have the keys stored in "__keysToFetch",
-				// So we just push all the keys in setVersesToPlay from the current key onwards
-				if (['supplications', 'bookmarks', 'juz'].includes($__currentPage)) {
-					const removeKeysBefore = (string, key) => string.split(',').slice(string.split(',').indexOf(key)).join(',');
-					setVersesToPlay({ verses: removeKeysBefore($__keysToFetch, $__audioSettings.playingKey).split(',') });
-				}
-
-				// Else on the chapter page, we manually set the start and end verses
-				else setVersesToPlay({ location: 'verseOptionsOrModal', chapter: thisChapter, startVerse: thisVerse, endVerse: versesInChapter, audioRange: 'playFromHere' });
-				break;
-			case 'playRange':
-				setVersesToPlay({ location: 'verseOptionsOrModal', chapter: thisChapter, startVerse, endVerse: versesInChapter });
-				break;
-		}
+		prepareVersesToPlay($__audioSettings.playingKey);
 
 		// Initialize endVerse as startVerse if undefined
 		$__audioSettings.endVerse ??= startVerse;
@@ -68,7 +50,7 @@
 		savedPlaySettingsHandler('set');
 	}
 
-	$: console.log($__audioSettings);
+	// $: console.log($__audioSettings);
 
 	// This function manages the saving, retrieving, and resetting of audio settings in the $__audioSettings object.
 	// It takes an action parameter that determines whether to get ('get'), set ('set'), or reset to default ('default') the audio settings.

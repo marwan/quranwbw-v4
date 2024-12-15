@@ -103,9 +103,10 @@
 	// Calculate maximum allowed font size based on breakpoint
 	$: maxFontSizeAllowed = ['default', 'sm'].includes(getTailwindBreakpoint()) ? 9 : 12;
 
-	// Get translation and transliteration keys
+	// Get keys
 	$: wordTranslationKey = Object.keys(selectableWordTranslations).find((item) => selectableWordTranslations[item].id === $__wordTranslation);
 	$: wordTransliterationKey = Object.keys(selectableWordTransliterations).find((item) => selectableWordTransliterations[item].id === $__wordTransliteration);
+	$: verseReciterKey = Object.keys(selectableReciters).find((item) => selectableReciters[item].id === $__reciter);
 
 	// Hide settings drawer and go back to main settings on certain conditions
 	$: if ($__currentPage || $__settingsDrawerHidden) goBackToMainSettings();
@@ -406,7 +407,7 @@
 					<div id="verse-reciter-setting" class={settingsBlockClasses}>
 						<div class="flex flex-row justify-between items-center">
 							<div class="block">{term('verse')} Reciter</div>
-							<button class={selectorClasses} on:click={() => gotoIndividualSetting('verse-reciter')}>{selectableReciters[$__reciter].reciter}</button>
+							<button class={selectorClasses} on:click={() => gotoIndividualSetting('verse-reciter')}>{selectableReciters[verseReciterKey].reciter}</button>
 						</div>
 						<p class={settingsDescriptionClasses}>The reciter's voice that will play when you choose to listen to an {term('verse')}.</p>
 					</div>

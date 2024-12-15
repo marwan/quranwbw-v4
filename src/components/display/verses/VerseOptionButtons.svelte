@@ -10,7 +10,7 @@
 	import DotsHorizontal from '$svgs/DotsHorizontal.svelte';
 	import Eye from '$svgs/Eye.svelte';
 	import Tooltip from '$ui/FlowbiteSvelte/tooltip/Tooltip.svelte';
-	import { playVerseAudio, resetAudioSettings, showAudioModal, playButtonHandler } from '$utils/audioController';
+	import { playVerseAudio, resetAudioSettings, showAudioModal, playButtonHandler, prepareVersesToPlay } from '$utils/audioController';
 	import { __currentPage, __userSettings, __audioSettings, __verseKey, __userNotes, __notesModalVisible, __playButtonsFunctionality, __displayType } from '$utils/stores';
 	import { updateSettings } from '$utils/updateSettings';
 	import { term } from '$utils/terminologies';
@@ -33,17 +33,21 @@
 		// For these pages, perform action depending on the play button functionality set by the user
 		if (['chapter', 'mushaf', 'supplications', 'bookmarks', 'juz'].includes($__currentPage)) {
 			switch ($__playButtonsFunctionality.verse) {
+				// Play Verse
 				case 1:
+					prepareVersesToPlay(key);
 					playButtonHandler(key);
 					break;
+				// Show Advance Options
 				case 2:
 					showAudioModal(key);
 					break;
+				// Show Advance Options
 				case 3:
 					showAudioModal(key);
 					break;
 				default:
-					playVerseAudio({ key, language: 'arabic', timesToRepeat: 1 });
+					showAudioModal(key);
 					break;
 			}
 		}

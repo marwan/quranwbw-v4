@@ -8,6 +8,7 @@
 	import { staticEndpoint } from '$data/websiteSettings';
 
 	$: reciterImageClasses = `rounded-full size-10`;
+	$: verseReciterKey = Object.keys(selectableReciters).find((item) => selectableReciters[item].id === $__reciter);
 </script>
 
 <div class="grid gap-3 w-full">
