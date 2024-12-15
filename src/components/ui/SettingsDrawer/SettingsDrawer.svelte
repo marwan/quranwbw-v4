@@ -8,7 +8,7 @@
 	import VerseTranslationSelector from '$ui/SettingsDrawer/VerseTranslationSelector.svelte';
 	import VerseTransliterationSelector from '$ui/SettingsDrawer/VerseTransliterationSelector.svelte';
 	import VerseTafsirSelector from '$ui/SettingsDrawer/VerseTafsirSelector.svelte';
-	import VerseRecitorSelector from '$ui/SettingsDrawer/VerseRecitorSelector.svelte';
+	import VerseReciterSelector from '$ui/SettingsDrawer/VerseReciterSelector.svelte';
 	import VersePlayButtonSelector from '$ui/SettingsDrawer/VersePlayButtonSelector.svelte';
 	import Drawer from '$ui/FlowbiteSvelte/drawer/Drawer.svelte';
 	import Range from '$ui/FlowbiteSvelte/forms/Range.svelte';
@@ -64,7 +64,7 @@
 		'verse-translation': VerseTranslationSelector,
 		'verse-transliteration': VerseTransliterationSelector,
 		'verse-tafsir': VerseTafsirSelector,
-		'verse-reciter': VerseRecitorSelector,
+		'verse-reciter': VerseReciterSelector,
 		'verse-play-button': VersePlayButtonSelector
 	};
 
