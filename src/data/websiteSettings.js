@@ -11,7 +11,7 @@ export const apiEndpoint = 'https://api2.quranwbw.com/v1';
 
 export const staticEndpoint = 'https://static.quranwbw.com/data';
 
-export const apiVersion = 111;
+export const apiVersion = 125;
 
 export const wordsAudioURL = 'https://audios.quranwbw.com/words';
 
