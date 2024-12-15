@@ -20,6 +20,15 @@
 		verseTranslationData = fetchVerseTranslationData(chapterToFetch, $__verseTranslations.toString());
 		verseTransliterationData = fetchChapterData({ chapter: value.meta.chapter, reRenderWhenTheseUpdates: $__verseTranslations });
 	}
+
+	// This function takes two arguments: translationsObject and translationsSelected.
+	// It first filters out IDs 1 or 3 (transliterations) from translationsSelected.
+	// Then, it maps the remaining IDs to their corresponding translation objects from translationsObject, returning a sorted array of these translation objects in the specified order.
+	// This ensures that the translations are displayed in the desired sequence
+	function getSortedTranslations(translationsObject, translationsSelected) {
+		const filteredSelections = translationsSelected.filter((id) => id !== 1 && id !== 3);
+		return filteredSelections.map((id) => translationsObject.find((translation) => translation.resource_id === id));
+	}
 </script>
 
 {#if $__verseTranslations.length > 0}
@@ -41,10 +50,9 @@
 				<!-- data from Quran.com's API -->
 				<!-- after transliteration, show other translations -->
 				{#if $__verseTranslationData[value.meta.verse - 1].hasOwnProperty('translations')}
-					{#each Object.entries($__verseTranslationData[Object.keys($__verseTranslationData)[value.meta.verse - 1]].translations) as [verseTranslationID, verseTranslation]}
-						{#if verseTranslation.resource_id !== 57}
-							<Layout verseTranslationID={verseTranslation.resource_id} {verseTranslation} {value} />
-						{/if}
+					{@const sortedTranslations = getSortedTranslations($__verseTranslationData[Object.keys($__verseTranslationData)[value.meta.verse - 1]].translations, $__verseTranslations)}
+					{#each sortedTranslations as verseTranslation}
+						<Layout verseTranslationID={verseTranslation.resource_id} {verseTranslation} {value} />
 					{/each}
 				{/if}
 			{:else}
@@ -76,10 +84,9 @@
 			{:then verseTranslationData}
 				{#if verseTranslationData}
 					{#if verseTranslationData[Object.keys(verseTranslationData)[value.meta.verse - 1]].hasOwnProperty('translations')}
-						{#each Object.entries(verseTranslationData[Object.keys(verseTranslationData)[value.meta.verse - 1]].translations) as [verseTranslationID, verseTranslation]}
-							{#if verseTranslation.resource_id !== 57}
-								<Layout verseTranslationID={verseTranslation.resource_id} {verseTranslation} {value} />
-							{/if}
+						{@const sortedTranslations = getSortedTranslations(verseTranslationData[Object.keys(verseTranslationData)[value.meta.verse - 1]].translations, $__verseTranslations)}
+						{#each sortedTranslations as verseTranslation}
+							<Layout verseTranslationID={verseTranslation.resource_id} {verseTranslation} {value} />
 						{/each}
 					{/if}
 				{/if}

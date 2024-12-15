@@ -33,3 +33,5 @@
 		{/if}
 	{/each}
 </div>
+
+<div class="text-xs opacity-70 pb-8">The translations appear in the order you select them. To rearrange the sequence, simply deselect all options and then reselect them in your desired order.</div>

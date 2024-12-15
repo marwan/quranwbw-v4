@@ -8,7 +8,6 @@ import { scrollSmoothly } from '$utils/scrollSmoothly';
 
 // Getting the audio element
 let audio = document.querySelector('#player');
-// const audioSettings = get(__audioSettings);
 
 // Function to play verse audio, either one time, or multiple times
 export async function playVerseAudio(props) {
