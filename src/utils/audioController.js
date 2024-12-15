@@ -371,12 +371,10 @@ export function playButtonHandler(key) {
 	__audioModalVisible.set(false);
 }
 
-/**
- * This function prepares the verses to play based on the provided key (chapter and verse).
- * It handles different audio range options and adapts its behavior according to the current page context.
- * Note: This function only prepares the verses to play. The actual setting of verses to play in a global array
- * is handled by another function called setVersesToPlay.
- */
+// This function prepares the verses to play based on the provided key (chapter and verse).
+// It handles different audio range options and adapts its behavior according to the current page context.
+// Note: This function only prepares the verses to play.
+// The actual setting of verses to play in a global array is handled by another function called setVersesToPlay.
 export function prepareVersesToPlay(key) {
 	// Split the key into chapter and verse
 	const [chapter, verse] = key.split(':');
