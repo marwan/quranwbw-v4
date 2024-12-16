@@ -98,7 +98,7 @@ export function playWordAudio(props) {
 	resetAudioSettings();
 
 	const audioSettings = get(__audioSettings);
-	const [wordChapter, wordVerse, wordNumber] = props.key.split(':').map(Number);
+	const [wordChapter, wordVerse, wordNumber = 1] = props.key.split(':').map(Number);
 
 	const currentWordFileName = `${wordChapter}/${String(wordChapter).padStart(3, '0')}_${String(wordVerse).padStart(3, '0')}_${String(wordNumber).padStart(3, '0')}.mp3`;
 	const nextWordFileName = `${wordChapter}/${String(wordChapter).padStart(3, '0')}_${String(wordVerse).padStart(3, '0')}_${String(wordNumber + 1).padStart(3, '0')}.mp3`;
