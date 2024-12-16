@@ -8,7 +8,7 @@
 	import Morphology from '$svgs/Morphology.svelte';
 	import Puzzle from '$svgs/Puzzle.svelte';
 	import About from '$svgs/About.svelte';
-	import Changelogs from '$svgs/Changelogs.svelte';
+	import Changelog from '$svgs/Changelog.svelte';
 	import LegacySite from '$svgs/LegacySite.svelte';
 	import { __siteNavigationModalVisible, __settingsDrawerHidden, __tajweedRulesModalVisible, __tokenModalVisible, __currentPage } from '$utils/stores';
 	import { term } from '$utils/terminologies';
@@ -81,10 +81,10 @@
 					<span class={linkTextClasses}>Word Game</span>
 				</a>
 
-				<!-- Changelogs -->
-				<a href="/changelogs" class={linkClasses}>
-					<Changelogs size={4} />
-					<span class={linkTextClasses}>Changelogs</span>
+				<!-- changelog -->
+				<a href="/changelog" class={linkClasses}>
+					<Changelog size={4} />
+					<span class={linkTextClasses}>Changelog</span>
 				</a>
 
 				<!-- legacy site link -->

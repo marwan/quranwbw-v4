@@ -8,7 +8,7 @@
 	import { websiteTagline } from '$data/websiteSettings';
 	import { __currentPage, __lastRead, __changelogModalVisible } from '$utils/stores';
 	import { linkClasses } from '$data/commonClasses';
-	import { websiteChangelogs } from '$data/changelogs';
+	import { websitechangelog } from '$data/changelog';
 
 	__currentPage.set('home');
 </script>
@@ -39,7 +39,7 @@
 		</span>
 
 		<span class="text-xs md:text-sm">
-			{websiteChangelogs[0].title}. <button class={linkClasses} on:click={() => __changelogModalVisible.set(true)}> See What's New {@html '&#x2192;'}</button>
+			{websitechangelog[0].title}. <button class={linkClasses} on:click={() => __changelogModalVisible.set(true)}> See What's New {@html '&#x2192;'}</button>
 		</span>
 	</p>
 </Banner>

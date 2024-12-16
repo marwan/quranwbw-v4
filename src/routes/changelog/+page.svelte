@@ -1,19 +1,19 @@
 <script>
 	import PageHead from '$misc/PageHead.svelte';
 	import { __currentPage, __websiteTheme, __changelogModalVisible } from '$utils/stores';
-	import { websiteChangelogs } from '$data/changelogs';
+	import { websitechangelog } from '$data/changelog';
 	import { buttonClasses } from '$data/commonClasses';
 
 	$: if ($__currentPage) __changelogModalVisible.set(false);
 
-	__currentPage.set('changelogs');
+	__currentPage.set('changelog');
 </script>
 
-<PageHead title={'Changelogs'} />
+<PageHead title={'Changelog'} />
 
 <div class="flex flex-col space-y-6 text-sm">
 	<div id="changelog-list" class="text-sm">
-		{#each Object.entries(websiteChangelogs) as [key, changelog]}
+		{#each Object.entries(websitechangelog) as [key, changelog]}
 			<div class="py-6 space-y-2 border-b {window.theme('border')}">
 				<div id="changelog-title" class="font-medium text-lg">
 					<span>Update {changelog.version} - {changelog.title}</span>

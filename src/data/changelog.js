@@ -1,6 +1,6 @@
 import { createLink } from '$utils/createLink';
 
-export const websiteChangelogs = [
+export const websitechangelog = [
 	// {
 	// 	version: 'v4.0.2',
 	// 	title: 'Explore Chapters with Ease',
