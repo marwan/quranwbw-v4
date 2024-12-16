@@ -4,7 +4,7 @@
 	import { __websiteTheme, __tajweedRulesModalVisible, __currentPage, __chapterNumber } from '$utils/stores';
 	import { term } from '$utils/terminologies';
 	import { getModalTransition } from '$utils/getModalTransition';
-	import { apiEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
+	import { staticEndpoint, errorLoadingDataMessage } from '$data/websiteSettings';
 	import { linkClasses } from '$data/commonClasses';
 	import { createLink } from '$utils/createLink';
 
@@ -16,7 +16,7 @@
 	$: {
 		if ($__tajweedRulesModalVisible) {
 			tajweedRulesData = (async () => {
-				const response = await fetch(`${apiEndpoint}/tajweed-rules?version=3`);
+				const response = await fetch(`${staticEndpoint}/tajweed/tajweed-rules.json?version=3`);
 				const data = await response.json();
 				return data.data;
 			})();
@@ -37,17 +37,17 @@
 </script>
 
 <Modal bind:open={$__tajweedRulesModalVisible} title={modalTitle} transitionParams={getModalTransition('bottom')} class="!rounded-b-none md:!rounded-3xl" bodyClass="p-6 space-y-4 flex-1 overflow-y-auto overscroll-contain border {window.theme('border')}" headerClass="flex justify-between items-center p-6 rounded-t-3xl" position="bottom" center outsideclose>
-	<table class="w-full text-sm text-left rtl:text-right">
-		<thead class="text-xs uppercase {window.theme('bgSecondaryLight')}">
-			<tr>
-				<th scope="col" class="px-6 py-3 w-fit"> Icon </th>
-				<th scope="col" class="pl-2 pr-6 py-3"> Description </th>
-			</tr>
-		</thead>
-		<tbody>
-			{#await tajweedRulesData}
-				<Spinner size={10} />
-			{:then tajweedRulesData}
+	{#await tajweedRulesData}
+		<Spinner size={10} />
+	{:then tajweedRulesData}
+		<table class="w-full text-sm text-left rtl:text-right">
+			<thead class="text-xs uppercase {window.theme('bgSecondaryLight')}">
+				<tr>
+					<th scope="col" class="px-6 py-3 w-fit"> Icon </th>
+					<th scope="col" class="pl-2 pr-6 py-3"> Description </th>
+				</tr>
+			</thead>
+			<tbody>
 				{#each Object.entries(tajweedRulesData) as [key, value]}
 					<tr class="{window.theme('bgMain')} border-b {window.theme('border')} {window.theme('hover')}">
 						<td class="py-4 w-fit tajweed-rules text-2xl text-center align-top theme-palette-tajweed"> {value.code} </td>
@@ -66,15 +66,15 @@
 						</td>
 					</tr>
 				{/each}
-			{:catch error}
-				<p>{errorLoadingDataMessage}</p>
-			{/await}
-		</tbody>
-	</table>
+			</tbody>
+		</table>
+	{:catch error}
+		<p>{errorLoadingDataMessage}</p>
+	{/await}
 
 	<!-- links to PDF files -->
 	<div class="mt-4 text-xs">
 		To learn the correct pronunciation of Arabic alphabets, please refer to
-		{@html createLink('https://static.quranwbw.com/data/v4/tajweed/Makharij%20Al%20Huroof.pdf', 'Makharij Al Huroof')}.
+		{@html createLink(`${staticEndpoint}/tajweed/Makharij%20Al%20Huroof.pdf`, 'Makharij Al Huroof')}.
 	</div>
 </Modal>
